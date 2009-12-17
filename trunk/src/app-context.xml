@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<!--************* -->
+	<!--BASE DE DATOS -->
+	<!--************* -->
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/inia_mscc_db" />
+		<property name="username" value="inia_db" />
+		<property name="password" value="inia" />
+	</bean>
+	
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	  <property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<!-- org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean 
+	org.springframework.orm.hibernate3.LocalSessionFactoryBean
+	-->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<value>
+				hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect
+	  			hibernate.hbm2ddl.auto = update
+				hibernate.show_sql = true				
+				hibernate.connection.isolation = 2
+			</value>
+		</property>
+		<!-- mappingLocations  ó annotatedClasses-->
+		<property name="mappingLocations">
+			<list>
+				<!-- value>com.tcs.ejemploSpring.modelo.Alumno</value -->
+				<!-- value>com/tcs/ejemploSpring/modelo/Alumno.hbm.xml</value-->
+				<value>classpath:**/*.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="alumnoDao" class="com.tcs.ejemploSpring.dao.AlumnoDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+
+	<bean id="alumnoService" class="com.tcs.ejemploSpring.service.AlumnoServiceImpl">
+		<property name="alumnoDao" ref="alumnoDao"/>
+	</bean>
+		
+</beans>
