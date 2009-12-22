@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import INIA.MSCC.DAO.UsuarioDAO;
 import INIA.MSCC.NEGOCIO.SEG.ENTIDADES.Usuario;
-import INIA.MSCC.NEGOCIO.SEG.LOGICA.GlobalLN;
 
 public class LoginBean implements Serializable {
 
@@ -45,12 +44,12 @@ public class LoginBean implements Serializable {
 		
 		if (u != null) 
 		{
-			GlobalLN g = GlobalLN.getInstance();
-			g.setLogged(true);
-			g.setUsuarioId(u.getId());
+			//GlobalLN g = GlobalLN.getInstance();
+//			g.setLogged(true);
+//			g.setUsuarioId(u.getId());
 
 			error = "";
-			GlobalLN.getInstance().setOpcion("listado");
+			//GlobalLN.getInstance().setOpcion("listado");
 			return "login-ok";
 		} 
 		else 
@@ -64,9 +63,9 @@ public class LoginBean implements Serializable {
 	{
 		if (!isLogged()) return "";
 		
-		GlobalLN g = GlobalLN.getInstance();
-		g.setLogged(false);
-		g.setUsuarioId(-1);
+//		GlobalLN g = GlobalLN.getInstance();
+//		g.setLogged(false);
+//		g.setUsuarioId(-1);
 
 		error = "";
 		return "";
