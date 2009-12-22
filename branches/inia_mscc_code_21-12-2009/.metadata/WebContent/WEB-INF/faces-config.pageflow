@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf12604051459770" configfile="/inia_mscc_6/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="inicio" x="336" y="348" id="pf12604061783107" referenceLink="//@navigationRule.1/@navigationCase.2/@toViewId|" outlinks="pf12604061783118 pf12604061783119" inlinks="pf12604061783119 pf126040617831110 pf126040617831111 pf126040617831112" path="/inicio.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="lista" x="552" y="348" id="pf126040617831113" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf12604061783118" path="/lista.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="*" x="120" y="348" id="pf126040617831114" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf126040617831110 pf126040617831111 pf126040617831112" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="Login" comment="Pagina de ingreso a la aplicación" x="372" y="108" id="pf126040696656121" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" outlinks="pf126040696656122 pf126040696656123" inlinks="pf126040696656124" path="/Login.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="Bienvenido" x="648" y="144" id="pf126040696656125" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf126040696656122" path="/Bienvenido.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="Fallo" x="144" y="132" id="pf126040696656126" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf126040696656124" inlinks="pf126040696656123" path="/Fallo.jsp"/>
+  <links id="pf12604061783118" target="pf126040617831113" source="pf12604061783107" outcome="login-ok" fromaction="#{LoginBean.login}"/>
+  <links id="pf126040617831110" target="pf12604061783107" source="pf126040617831114" fromaction="#{LoginBean.logout}"/>
+  <links id="pf126040617831111" target="pf12604061783107" source="pf126040617831114" fromaction="#{LoginBean.login}"/>
+  <links id="pf126040617831112" target="pf12604061783107" source="pf126040617831114" outcome="inicio"/>
+  <links id="pf12604061783119" target="pf12604061783107" source="pf12604061783107" outcome="login-error" fromaction="#{LoginBean.login}">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
+  <links id="pf126040696656122" target="pf126040696656125" source="pf126040696656121" outcome="si"/>
+  <links id="pf126040696656123" target="pf126040696656126" source="pf126040696656121" outcome="no"/>
+  <links id="pf126040696656124" target="pf126040696656121" source="pf126040696656126" outcome="volver"/>
+</pageflow:Pageflow>

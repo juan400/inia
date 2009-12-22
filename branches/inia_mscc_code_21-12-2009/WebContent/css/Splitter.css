@@ -1,0 +1,35 @@
+﻿.HorizontalSplitterBar
+{
+	background: url(../../recursos/imagenes/splitter/splitter_horBg.gif);
+	border-left: #2d77c2 0.5pt solid;
+}
+
+.CollapsedHorizontalSplitterBar
+{
+  background: url(../../recursos/imagenes/splitter/splitter_horBg.gif); 
+	
+}
+
+.VerticalSplitterBar
+{
+  background: url(../../recursos/imagenes/splitter/splitter_verBg.gif); 
+}
+
+.CollapsedVerticalSplitterBar
+{
+  background: url(../../recursos/imagenes/splitter/splitter_verBg.gif); 
+  border: 1px solid #000000;
+  border-bottom-width: 0px;
+}
+
+.ActiveSplitterBar
+{
+  background-color: #000000;  
+  filter:progid:DXImageTransform.Microsoft.Alpha(opacity=40); 
+  opacity: 0.4;
+}
+
+.SplitterPane
+{
+	border: 0.5px solid #2D77C2;
+}

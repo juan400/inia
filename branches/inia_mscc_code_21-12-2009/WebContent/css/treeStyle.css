@@ -1,0 +1,132 @@
+.TreeView 
+{ 
+  background-color: #F6F9FD; 
+  border: 1px solid #2D77C2; 
+  padding: 2px; 
+  padding-left: 5px;
+} 
+
+.TreeNode 
+{ 
+  font-family: Arial; 
+  font-size: 11px; 
+  color:#2D77C2;
+  padding: 2px; 
+  padding-left: 3px; 
+  padding-right: 3px; 
+  border: 1px solid #F6F9FD; 
+  cursor: pointer;
+} 
+
+.TreeNodeBoldCeleste
+{ 
+  font-family: Arial; 
+  font-size: 11px; 
+  color:#2D77C2;
+  padding: 2px; 
+  padding-left: 3px; 
+  padding-right: 3px; 
+  border: 1px solid #F6F9FD; 
+  cursor: pointer;
+  font-weight:bold;
+ 
+} 
+
+.TreeNodeBoldVerde
+{ 
+  font-family: Arial; 
+  font-size: 11px; 
+  color: #33CB33;
+  padding: 2px; 
+  padding-left: 3px; 
+  padding-right: 3px; 
+  border: 1px solid #F6F9FD; 
+  cursor: auto;
+  font-weight:bold;
+} 
+
+.TreeNodeGris 
+{ 
+  font-family: Arial; 
+  font-size: 11px; 
+  color:#C2C0BE;
+  padding: 2px; 
+  padding-left: 3px; 
+  padding-right: 3px; 
+  border: 1px solid #F6F9FD; 
+  cursor: pointer;
+  font-weight:normal;
+ 
+} 
+
+.SelectedTreeNode 
+{ 
+  font-family: Arial;     
+  font-size: 11px; 
+  color:White;
+  padding: 2px; 
+  padding-left: 3px; 
+  padding-right: 3px; 
+  background-color:#33CB33; 
+  border: 1px solid #F6F9FD; 
+  cursor: default; 
+} 
+
+.MultipleSelectedTreeNode
+{
+  font-family: Arial; 
+  font-size: 11px;
+  color:White; 
+  background-color: #33CB33; 
+  padding-top:2px;
+  padding-bottom:1px;
+  padding-left: 3px; 
+  padding-right: 3px; 
+  cursor: default; 
+}
+
+.HoverTreeNode 
+{
+  font-family: Arial; 
+  font-size: 11px; 
+  color:White;
+  padding: 2px; 
+  padding-left: 3px; 
+  padding-right: 3px; 
+  background-color:#2D77C2; 
+  border: 1px solid #2D77C2; 
+  cursor: pointer;
+}
+
+.TreeNodeRow 
+{ 
+  height: 20px; 
+}
+
+.CutTreeNode
+{
+  font-family: Arial; 
+  font-size: 11px; 
+  background-color: silver; 
+  color:white; 
+  padding-top:2px;
+  padding-bottom:1px;
+  padding-left: 3px; 
+  padding-right: 3px; 
+  cursor: default; 
+}
+
+.NodeEdit 
+{
+  border:1px #2D77C2 solid;
+  padding-top:0px;
+  padding-bottom:0px;
+  padding-left: 2px; 
+  padding-right: 2px; 
+  font-family: Arial; 
+  font-size: 11px;
+  color:#2D77C2  
+}
+
+	
+	

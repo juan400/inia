@@ -1,0 +1,202 @@
+﻿.picker
+{
+  background-color: #FFFFFF;
+  border: 1px #2d77c2 solid ;
+  font-size: 12px;
+  font-weight:normal;
+  font-family: Arial,monospace;
+  height: 22px;  
+  color:#2D77C2;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.pickerDisabled
+{
+ background-color: #FFFFFF;
+  border: 1px #C2C0BE  solid ;
+  font-size: 12px;
+  font-weight:normal;
+  font-family: Arial,monospace;
+  height: 22px;  
+  color:Gray;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.pickerInvisible
+{
+	display:none;
+}
+
+.calendar_button
+{
+	border:none; 
+	cursor:pointer;
+	width:25px;
+	height:22px;
+}
+
+.calendar td
+{
+  font-size:12px;
+}
+
+.title
+{
+  background-color:#F6F9FD;
+  font-weight:normal;
+  color:#2D77C2;
+  font-size:12pt;
+  font-family:Arial;
+}
+
+.day
+{
+  width:20px;
+  cursor:pointer;
+  text-align:center;
+  border-width:0.5pt;
+  border-color:#ffffff;
+  border-style:solid;
+  font-family:Arial;
+  color:#2D77C2;
+}
+
+.dayLaboral
+{
+  width:20px;
+  cursor:pointer;
+  text-align:center;
+  border-width:0.5pt;
+  border-color:#ffffff;
+  border-style:solid;
+  font-family:Arial;
+  font-weight:bold;
+  color:Green;
+}
+
+.dayNoLaboral
+{
+  width:20px;
+  cursor:pointer;
+  text-align:center;
+  border-width:0.5pt;
+  border-color:#ffffff;
+  border-style:solid;
+  font-family:Arial;
+  font-weight:bold;
+  color:Red;
+}
+
+
+
+.dayhover
+{
+    width:20px;
+  background-color:#F6F9FD;
+  border-width:0.5pt;
+  border-color:#2D77C2;
+  border-style:solid;
+  cursor:pointer;
+  text-align:center;
+  color:#2d77c2;
+  font-weight:normal;
+  font-family:Arial;
+}
+
+.dayheader
+{
+width:20px;
+  text-align:center;
+  border-top-color:#2D77C2;
+  border-top-style:solid;
+  border-top-width:1px;
+  border-bottom-width:1px;
+  border-bottom-color:#2D77C2;
+  border-bottom-style:solid;
+  font-family:Arial;
+  font-weight:normal;
+  color:#2D77C2;
+  background-color:#FFFFFF;
+}
+
+.othermonthday
+{
+  color:#cccccc;
+}
+
+.outofrangeday
+{
+  visibility:hidden;
+}
+
+.selectedday
+{
+	
+  background-color:#33CB33;
+  	width:20px;
+  border-width:0.5pt;
+  border-color:#2D77C2;
+  border-style:solid;
+  cursor:pointer;
+  text-align:center;
+  color:White;
+  font-weight:bold;
+  font-family:Arial;
+}
+
+.calendar
+{
+  border-style: dotted;
+  border-width:1px;
+  border-color:#2D77C2;
+  border-collapse:collapse;
+  background-color:#FFFFFF;
+  cursor:default;
+
+}
+
+.month
+{
+  background-color:#FFFFFF;
+  margin-left:0px;
+  margin-right:0px;
+  margin-bottom:0px;
+  margin-top:0px;
+}
+
+.nextprev
+{
+  cursor:pointer;
+  height:25px;
+  vertical-align:middle;
+  padding:0px 5px 0px 5px;
+}
+
+.selector
+{
+  width:14px;
+  cursor:pointer;
+  text-align:left;
+  vertical-align:middle;
+  background-color:#FFFFFF;
+}
+
+.disabledday
+{
+  text-decoration:none;
+  background-image:url(../Imagenes/Calendario/baddate.gif);
+  background-position:center center;
+  background-repeat:no-repeat;
+  cursor:default;
+}
+input.text
+{
+	border: 1px solid #2d77c2;
+	font-family: Arial;	
+	font-size: 9px; 
+	font-weight:normal; 
+	color: #2d77c2;
+	height: 22px;  
+}

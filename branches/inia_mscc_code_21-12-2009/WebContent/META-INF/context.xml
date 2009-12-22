@@ -1,0 +1,17 @@
+<Context> 
+
+	<Resource name="jdbc/inia_mscc_bd" auth="Container"
+			type="javax.sql.DataSource"
+			driverClassName="com.mysql.jdbc.Driver"
+			url="jdbc:mysql://localhost:3306/inia_mscc_bd" 
+			username="sa" 
+			password="" />
+
+	<ResourceParams name="jdbc/inia_mscc_bd">
+		<parameter>
+		  <name>factory</name>
+		  <value>org.apache.commons.dbcp.BasicDataSourceFactory</value>
+		</parameter>
+	</ResourceParams>
+	
+</Context>

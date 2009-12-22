@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
+	version="1.2">
+
+	<managed-bean>
+		<description>The "backing file" bean</description>
+		<managed-bean-name>BeanLogin</managed-bean-name>
+		<managed-bean-class>INIA.MSCC.WEB.SEG.BeanLogin</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+<!--		<managed-property>-->
+<!--			<property-name>usuario</property-name>-->
+<!--			<property-class>java.lang.String</property-class>-->
+<!--			<value>Pedro</value>-->
+<!--		</managed-property>-->
+<!--		<managed-property>-->
+<!--			<property-name>clave</property-name>-->
+<!--			<property-class>java.lang.String</property-class>-->
+<!--			<value>password</value>-->
+<!--		</managed-property>-->
+	</managed-bean>
+
+
+
+	<managed-bean>
+		<managed-bean-name>LoginBean</managed-bean-name>
+		<managed-bean-class>INIA.MSCC.WEB.SEG.LoginBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+<!--		<description>Se encargara de la gestion de los usuarios nuevos</description>-->
+		<managed-bean-name>registoBean</managed-bean-name>
+		<managed-bean-class>INIA.MSCC.WEB.SEG.RegistoBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/inicio.jsp</from-view-id>
+		<navigation-case>
+			<from-action>#{LoginBean.login}</from-action>
+			<from-outcome>login-ok</from-outcome>
+			<to-view-id>/lista.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{LoginBean.login}</from-action>
+			<from-outcome>login-error</from-outcome>
+			<to-view-id>/inicio.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-action>#{LoginBean.logout}</from-action>
+			<to-view-id>/inicio.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{LoginBean.login}</from-action>
+			<to-view-id>/inicio.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>inicio</from-outcome>
+			<to-view-id>/inicio.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+<!--		<description>Pagina de ingreso a la aplicación</description>-->
+		<from-view-id>/Login.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>si</from-outcome>
+			<to-view-id>/Bienvenido.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+<!--		<description>Pagina de ingreso a la aplicación</description>-->
+		<from-view-id>/Login.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>no</from-outcome>
+			<to-view-id>/Fallo.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/Fallo.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>volver</from-outcome>
+			<to-view-id>/Login.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+</faces-config>

@@ -1,0 +1,155 @@
+﻿.TopGroup
+{
+  z-index:99;
+  position:static;
+  height:21px;
+}
+
+.MultiPageTercero
+{
+  background-color:White;
+  border: 1px solid #2d77c2;
+  width:700px;
+  height:400px;
+  padding:10px;
+  position:static;  
+  top:-2px;
+  left:0px;
+  z-index:98;
+}
+
+.SubGroup
+{
+	z-index: 90;
+	position: static;
+	background-color: White;
+	width: 487px;	
+	top: -3px;
+	left: 1px;
+	border-right: #2d77c2 1px solid;
+	border-top: #2d77c2 1px solid;
+	border-left: #2d77c2 1px solid;
+	border-bottom: #2d77c2 1px;		
+}
+
+.DefaultTab
+{
+	color:#2d77c2;
+	background-image: url(../../recursos/imagenes/tabStrip/tab_bg.gif);
+	font-family: MS Sans Serif, Arial;
+	font-size: 10px;
+	cursor: default;	
+}
+
+.DisabledTab
+{
+	color: #c2c0be;
+	background-image: url(../../recursos/imagenes/tabStrip/tab_bgGRISyAZULabajo.gif);
+	font-family: MS Sans Serif, Arial;
+	font-size: 10px;
+	cursor: default;
+}
+
+.ScrollItem 
+{
+  color:#2D77C2; 
+  background-image: url(../../recursos/imagenes/tabStrip/scroll_item_bg.gif);
+  border: 1px solid #2D77C2; 
+  border-left-color: #2D77C2; 
+  border-top-color: #2D77C2; 
+  font-family:Arial; 
+  font-size:15px; 
+  height: 20px;
+  cursor:default;
+}
+
+.ScrollItemHover 
+{
+  color:#2D77C2; 
+  background-image: url(../../recursos/imagenes/tabStrip/hover_scroll_item_bg.gif);
+  border: 1px solid #2D77C2; 
+  border-left-color: #2D77C2; 
+  border-top-color: #2D77C2; 
+  font-family:Arial; 
+  font-size:14px; 
+  height: 20px;
+  cursor:default;
+}
+
+.ChildTab
+{
+	color: #a9a9a9;
+	font-family: MS Sans Serif, Arial;
+	font-size: 11px;
+	cursor: default;
+	text-decoration: 'underline';
+}
+
+.DefaultTabHover
+{
+	color:#2d77c2;
+	background-image: url(../../recursos/imagenes/tabStrip/hover_tab_bg.gif);
+	font-family: MS Sans Serif, Arial;
+	font-size: 10px;
+	cursor: default;	
+}
+
+.ChildTabHover
+{
+	color: #2d77c2;
+	font-family: MS Sans Serif, Arial;
+	font-size: 11px;
+	cursor: default;
+	text-decoration: 'underline';
+}
+
+.SelectedTab 
+{
+  color:#2d77c2; 
+  background-image: url(../../recursos/imagenes/tabStrip/selected_tab_bg.gif);
+  font-family:MS Sans Serif, Arial; 
+  font-size:10px; 
+  cursor:default;
+}
+
+.ChildSelectedTab
+{
+	color: #2d77c2;
+	font-family: MS Sans Serif, Arial;
+	font-size: 11px;
+	cursor: default;
+	text-decoration: 'underline';
+	font-weight: bold;
+}
+
+.MultiPages
+{
+  background-color:White;
+  border: 1px solid #2d77c2;
+  width:700px;
+  height:150px;
+  padding:12px;
+  position:static;  
+  top:-3px;
+  left:1px;
+  z-index:98;
+}
+
+.MultiPage
+{
+  background-color:White;
+  border: 1px solid #2d77c2;
+  width:100%;
+  padding:12px;
+  position:static;
+  left:1px;
+  z-index:98;
+  top:-10px;
+}
+
+.PageContent
+{
+  font-family:MS Sans Serif, Arial; 
+  font-size:10px;   
+}
+

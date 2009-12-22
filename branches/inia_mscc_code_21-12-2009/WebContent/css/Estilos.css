@@ -1,0 +1,244 @@
+﻿.webPartTitle
+{
+    background-image: url(Images/fondochico.jpg);
+    background-repeat: no-repeat;
+}
+
+.asdasd
+{
+    border-top-style: solid;
+    border-right-style: solid;
+    border-left-style: solid;
+    background-color: blue;
+    border-bottom-style: solid;
+}
+
+.dropdownlist
+{
+    border-color: #a9c6e4;
+    background-color: White;
+    font-family: Arial;
+    font-weight:normal;
+    font-size:10pt;    
+    color:Gray;
+    outline-color:White;
+    border-bottom:#a9c6e4;
+    border-left-color:#a9c6e4;
+    outline-style:solid;
+    border-top-color:#a9c6e4;
+    border:solid 0.5pt #a9c6e4;
+    list-style-type:square;
+    list-style:solid;
+    stress:5;   
+}    
+
+.etiquetaceleste
+{
+    font-family: Arial;
+    font-weight:normal;
+    font-size:10pt;
+    color: #2d77c2;          
+}
+
+.vinculoceleste
+{
+    font-family: Arial;
+    font-weight:normal;
+    font-size:8pt;
+    color: #2d77c2;          
+}    
+.etiquetacelestetabla
+{
+    font-family: Arial;
+    font-weight:normal;
+    font-size:8pt;
+    color: #2d77c2;          
+}  
+.etiquetacelestetablaheader
+{
+    font-family: Arial;
+    font-weight:bold;
+    font-size:10pt;
+    color: #2d77c2;          
+}  
+
+.rowtext
+{
+	background-color: #ffffff;
+	padding: 0px;				
+	color: #2d77c2;
+	font-family: Arial;	
+	font-size: 12px; 
+	font-weight:normal; 	         
+}  
+
+.etiquetagris
+{
+    font-family: Arial;
+    font-weight:normal;
+    font-size:10pt;
+    color:#C2C0BE;          
+}  
+    
+
+
+.menu
+{
+    border-top-color:#2d77c2;
+    border-top-style:solid;
+    border-top-width:0.5pt;
+    border-bottom-color:#2d77c2;
+    border-bottom-style:solid;
+    border-bottom-width:0.5pt;
+    border-left-style:none;
+    border-right-style:none;
+    border-right-width:0px;
+    border-left-width:0px;
+    font-family: Arial;
+    font-weight:normal;
+    font-size:10pt;
+    text-align:center;
+        
+}
+.menuhover
+{
+    border-left-color:#2d77c2;
+    border-left-style:solid;
+    border-left-width:0.5pt;
+    border-right-color:#2d77c2;
+    border-right-style:solid;
+    border-right-width:0.5pt;
+    border-top-style:none;
+    border-bottom-style:none;
+    border-bottom-width:0px;
+    border-top-width:0px;
+}
+
+
+.submenu1
+{
+    background-color:#F6F9FD;
+    border-color:#2D77C2;
+    border-style:solid;
+    border-width:0.5pt;
+    cursor:pointer;
+    font-size:10;
+    font-family:Arial;
+    text-align:left;
+       
+}
+
+.submenu2
+{
+    background-color:#F6F9FD;
+    border-color:#2D77C2;
+    border-style:solid;
+    border-width:0.5pt;
+    cursor:pointer;
+    font-size:10;
+    font-family:Arial;
+    text-align:left;
+        
+}
+
+
+.headergrilla
+{
+    border-bottom-color:#2d77c2;
+    border-bottom-style:solid;
+    border-bottom-width:0.5pt;
+    font-family: Arial;
+    font-weight:normal;
+    font-size:10pt;
+    font-style:normal;
+    color: #2d77c2;
+    background-color: White;
+    text-align:left;
+}
+
+.itemGrilla a:link
+{
+	font-family: Arial;
+	font-size: small;
+	color: #2D77C2;
+}
+
+.itemGrilla a:visited
+{
+	font-family: Arial;
+	font-size: small;
+	color: #2D77C2;
+}
+
+.itemSeleccionadoGrilla a:link
+{
+	font-family: Arial;
+	font-size: small;
+	color: White;
+}   
+
+.itemSeleccionadoGrilla a:visited
+{
+	font-family: Arial;
+	font-size: small;
+	color: White;
+} 
+.carisimo
+{
+    border-color: White;
+    background-color: White;
+    font-family: Arial;
+    font-weight:normal;
+    font-size:10pt;
+    color: #a9c6e4;
+    border-bottom-style:solid;
+    border-bottom-color:White;
+    margin-bottom:auto;
+    margin-left:auto;
+    border-bottom-width:inherit;
+    azimuth:behind    
+}      
+
+.botonSubir
+{
+	background-image: url(../Imagenes/subir.gif);
+	background-position:center;
+	background-repeat:no-repeat;
+}
+
+.botonBajar
+{
+	background-image: url(../Imagenes/bajar.gif);
+	background-position:center;
+	background-repeat:no-repeat;
+}
+
+.botonSubirDeshabilitado
+{
+	background-image: url(../Imagenes/subir gris.gif);
+	background-position:center;
+	background-repeat:no-repeat;
+}
+
+.botonBajarDeshabilitado
+{
+	background-image: url(../Imagenes/bajar gris.gif);
+	background-position:center;
+	background-repeat:no-repeat;
+}
+
+.rightAlign 
+{ 
+	text-align:right; 
+}
+
+.textBoxFormatoCuantia
+{
+    border-Color: #2D77C2;
+    border-Style: Solid;
+    border-Width: 0.5pt;
+    font-family: Arial;
+    font-Size: 9pt;
+    color: #2d77c2;
+    height: 18px;
+}
