@@ -1,3 +1,4 @@
+
 package INIA.MSCC.NEGOCIO.SEG.ENTIDADES;
 
 import java.io.Serializable;
