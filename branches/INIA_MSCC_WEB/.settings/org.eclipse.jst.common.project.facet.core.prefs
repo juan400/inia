@@ -1,0 +1,4 @@
+#Thu Jan 07 21:00:45 UYST 2010
+classpath.helper/org.eclipse.jst.server.core.container\:\:org.eclipse.jst.server.generic.runtimeTarget\:\:JBoss\ v5.0/owners=jst.web\:2.5
+classpath.helper/org.eclipse.jdt.launching.JRE_CONTAINER\:\:org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType\:\:eclipse/owners=jst.java\:6.0
+eclipse.preferences.version=1

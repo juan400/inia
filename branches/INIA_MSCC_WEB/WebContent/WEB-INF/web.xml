@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+
+<web-app version="2.5" 
+                xmlns="http://java.sun.com/xml/ns/javaee"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+<display-name>Cargo</display-name>
+
+<context-param>
+   <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+   <param-value>server</param-value>
+</context-param>
+
+<context-param>
+   <param-name>org.richfaces.SKIN</param-name>
+   <param-value>blueSky</param-value>
+</context-param>
+
+<context-param>
+      <param-name>org.richfaces.CONTROL_SKINNING</param-name>
+      <param-value>enable</param-value>
+</context-param>
+
+<filter> 
+   <display-name>RichFaces Filter</display-name> 
+   <filter-name>richfaces</filter-name> 
+   <filter-class>org.ajax4jsf.Filter</filter-class> 
+</filter> 
+
+<filter-mapping> 
+   <filter-name>richfaces</filter-name> 
+   <servlet-name>Faces Servlet</servlet-name>
+   <dispatcher>REQUEST</dispatcher>
+   <dispatcher>FORWARD</dispatcher>
+   <dispatcher>INCLUDE</dispatcher>
+</filter-mapping>
+
+<listener>
+   <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+</listener>
+
+
+<!-- Faces Servlet -->
+
+<servlet>
+   <servlet-name>Faces Servlet</servlet-name>
+   <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+   <load-on-startup>1</load-on-startup>
+</servlet>
+
+ 
+<!-- Faces Servlet Mapping -->
+<servlet-mapping>
+   <servlet-name>Faces Servlet</servlet-name>
+   <url-pattern>*.jsf</url-pattern>
+</servlet-mapping>
+
+<session-config>
+    <session-timeout>20</session-timeout> 
+  </session-config>
+
+
+<!--
+        <security-constraint>
+                <display-name>Cargo-Restricted</display-name>
+                <web-resource-collection>
+                        <web-resource-name>Cargo</web-resource-name>
+                        <url-pattern>/a/*</url-pattern>
+                        <http-method>DELETE</http-method>
+                        <http-method>GET</http-method>
+                        <http-method>POST</http-method>
+                        <http-method>PUT</http-method>
+                </web-resource-collection>
+                <auth-constraint>
+                        <role-name>ADMINISTRADOR</role-name>
+                </auth-constraint>
+        </security-constraint>
+		
+		
+		 <security-constraint>
+                <display-name>Cargo-Public</display-name>
+                <web-resource-collection>
+                        <web-resource-name>Cargo</web-resource-name>
+                        <url-pattern>/p/*</url-pattern>
+                        <http-method>DELETE</http-method>
+                        <http-method>GET</http-method>
+                        <http-method>POST</http-method>
+                        <http-method>PUT</http-method>
+                </web-resource-collection>
+                <auth-constraint>
+                        <role-name>USER</role-name>
+                </auth-constraint>
+        </security-constraint>
+     
+	    <login-config>
+                <auth-method>FORM</auth-method>
+                <realm-name>Cargo</realm-name>
+					<form-login-config>
+	                <form-login-page>/login.jsf</form-login-page>
+	                <form-error-page>/loginFail.jsf</form-error-page>
+				</form-login-config>
+        </login-config>
+        
+		<security-role>
+                <role-name>ADMINISTRADOR</role-name>
+        </security-role>
+		
+		<security-role>
+                <role-name>USER</role-name>
+        </security-role>
+   
+   -->
+</web-app>
