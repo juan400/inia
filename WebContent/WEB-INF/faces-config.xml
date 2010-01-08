@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="1.2" 
+                    xmlns="http://java.sun.com/xml/ns/javaee"
+                    xmlns:xi="http://www.w3.org/2001/XInclude"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+  
+<managed-bean>
+	<managed-bean-name>prueba</managed-bean-name>
+	<managed-bean-class>com.bean.Prueba</managed-bean-class>
+	<managed-bean-scope>request</managed-bean-scope>
+</managed-bean>
+
+<!--<managed-bean>-->
+<!--	<managed-bean-name>camion</managed-bean-name>-->
+<!--	<managed-bean-class>com.bean.CamionBean</managed-bean-class>-->
+<!--	<managed-bean-scope>request</managed-bean-scope>-->
+<!--</managed-bean>-->
+<!---->
+<!--<managed-bean>-->
+<!--	<managed-bean-name>marcaSuggestionBean</managed-bean-name>-->
+<!--	<managed-bean-class>com.bean.MarcaSuggestionBean</managed-bean-class>-->
+<!--	<managed-bean-scope>request</managed-bean-scope>-->
+<!--</managed-bean>-->
+<!--      -->
+<!-- -->
+<!--   -->
+<!--<navigation-rule>-->
+<!--  <from-view-id>/inicio.jsp</from-view-id>-->
+<!--  <navigation-case>-->
+<!--    <from-action>#{carpeta.salvarNombre}</from-action>-->
+<!--    <from-outcome>paso</from-outcome>-->
+<!--    <to-view-id>/destino.jsp</to-view-id>-->
+<!--  </navigation-case>-->
+<!--</navigation-rule>-->
+<!---->
+<!--<navigation-rule>-->
+<!--  <navigation-case>-->
+<!--    <from-action>#{sesion.logout}</from-action>-->
+<!--    <from-outcome>go_login_administracion</from-outcome>-->
+<!--    <to-view-id>/login.jsf</to-view-id>-->
+<!--  </navigation-case>-->
+<!--</navigation-rule>-->
+<!---->
+<!--<managed-bean>-->
+<!--        <managed-bean-name>sesion</managed-bean-name>-->
+<!--        <managed-bean-class>com.bean.LoginBean</managed-bean-class>-->
+<!--        <managed-bean-scope>request</managed-bean-scope>-->
+<!--</managed-bean>-->
+	  
+</faces-config>
