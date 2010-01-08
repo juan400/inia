@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="INIA_MSCC_CORE">
+        <wb-resource deploy-path="/" source-path="/ejbModule"/>
+        <wb-resource deploy-path="/" source-path="/build/classes/com/inia_mscc/com.inia_mscc.entidades"/>
+        <property name="java-output-path"/>
+    </wb-module>
+</project-modules>
