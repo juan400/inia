@@ -5,11 +5,11 @@
                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
                     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
   
-<managed-bean>
-	<managed-bean-name>prueba</managed-bean-name>
-	<managed-bean-class>com.bean.Prueba</managed-bean-class>
-	<managed-bean-scope>request</managed-bean-scope>
-</managed-bean>
+<!--<managed-bean>-->
+<!--	<managed-bean-name>prueba</managed-bean-name>-->
+<!--	<managed-bean-class>com.bean.Prueba</managed-bean-class>-->
+<!--	<managed-bean-scope>request</managed-bean-scope>-->
+<!--</managed-bean>-->
 
 <!--<managed-bean>-->
 <!--	<managed-bean-name>camion</managed-bean-name>-->
@@ -34,18 +34,19 @@
 <!--  </navigation-case>-->
 <!--</navigation-rule>-->
 <!---->
-<!--<navigation-rule>-->
-<!--  <navigation-case>-->
-<!--    <from-action>#{sesion.logout}</from-action>-->
-<!--    <from-outcome>go_login_administracion</from-outcome>-->
-<!--    <to-view-id>/login.jsf</to-view-id>-->
-<!--  </navigation-case>-->
-<!--</navigation-rule>-->
-<!---->
-<!--<managed-bean>-->
-<!--        <managed-bean-name>sesion</managed-bean-name>-->
-<!--        <managed-bean-class>com.bean.LoginBean</managed-bean-class>-->
-<!--        <managed-bean-scope>request</managed-bean-scope>-->
-<!--</managed-bean>-->
+
+<navigation-rule>
+  <navigation-case>
+    <from-action>#{sesion.logout}</from-action>
+    <from-outcome>go_login_administracion</from-outcome>
+    <to-view-id>/login.jsf</to-view-id>
+  </navigation-case>
+</navigation-rule>
+
+<managed-bean>
+        <managed-bean-name>sesion</managed-bean-name>
+        <managed-bean-class>com.bean.LoginBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+</managed-bean>
 	  
 </faces-config>
