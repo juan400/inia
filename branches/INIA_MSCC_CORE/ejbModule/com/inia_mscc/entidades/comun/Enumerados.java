@@ -7,7 +7,7 @@ public class Enumerados {
 	 * 
 	 */
 	static public enum EstadoUsuario {
-		Activo, Inactivo, Registrado, Bloqueado
+		Ninguno, Activo, Inactivo, Registrado, Bloqueado
 	}
 
 	/**
@@ -33,19 +33,29 @@ public class Enumerados {
 		Fenotipica, Genotipica, ambiente
 	}
 
+	/**
+	 * @author Juan Andres Pio
+	 */
 	static public enum EstadoArchivo {
 		Subiendo, Cargado
 	}
 
+	/**
+	 * @author Juan Andres Pio
+	 */
 	static public enum TipoArchivo {
 		Climatologico, Escenario, Gecros, Wgen, Climate_Parameters, K_Wgen_Prep
 	}
 
+	/**
+	 * @author Juan Andres Pio
+	 */
 	static public enum TipoExtencionArchivo {
 		xml, txt, py
 	}
+	
 	/**
-	 * @author Juan Andres Pio Establece los posibles estados de un usuario
+	 * @author Juan Andres Pio
 	 */
 	static public enum EstadoModificacion {
 		Ninguno, Modificado, Insertado, Eliminado
