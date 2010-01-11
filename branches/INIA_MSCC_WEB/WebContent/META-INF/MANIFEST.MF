@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Class-Path: 
+Class-Path: INIA_MSCC_CORE.jar
 
