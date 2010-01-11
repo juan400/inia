@@ -37,14 +37,14 @@ public class Enumerados {
 	 * @author Juan Andres Pio
 	 */
 	static public enum EstadoArchivo {
-		Subiendo, Cargado
+		Ninguno ,Subiendo, Cargado
 	}
 
 	/**
 	 * @author Juan Andres Pio
 	 */
 	static public enum TipoArchivo {
-		Climatologico, Escenario, Gecros, Wgen, Climate_Parameters, K_Wgen_Prep
+		Ninguno, Climatologico, Escenario, Gecros, Wgen, Climate_Parameters, K_Wgen_Prep
 	}
 
 	/**
