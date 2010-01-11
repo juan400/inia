@@ -4,12 +4,12 @@ import java.util.List;
 
 import com.inia_mscc.entidades.comun.Objeto;
 
-public class Culvito extends Objeto{
+public class Cultivo extends Objeto{
 	
 	private String _descripcion;
 	private List<Propiedad> _listaPropiedades;
 	
-	public Culvito() {
+	public Cultivo() {
 		super();
 		_descripcion = null;
 		_listaPropiedades = null;
