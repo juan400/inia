@@ -13,6 +13,4 @@ public class LoggingUtilities {
         z.printStackTrace(printWriter);
         return result.toString();
     }
-
-
 }
