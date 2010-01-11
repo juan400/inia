@@ -60,4 +60,13 @@ public class Enumerados {
 	static public enum EstadoModificacion {
 		Ninguno, Modificado, Insertado, Eliminado
 	}
+	
+	/**
+	 * @author Juan Andres Pio
+	 */
+	static public enum TipoSolicitud {
+		Ninguno, Perfil, Transaccion, Habilitacion
+	}
+	
+	
 }
