@@ -1,4 +1,6 @@
-package com.inia_mscc.entidades.comun;
+package com.inia_mscc.entidades.adm;
+
+import com.inia_mscc.entidades.comun.Objeto;
 
 public class ValorSeleccion extends Objeto {
 	private String _codigo; 

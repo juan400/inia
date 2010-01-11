@@ -3,9 +3,9 @@ package com.inia_mscc.entidades.seg;
 import java.util.List;
 
 import com.inia_mscc.entidades.adm.Transaccion;
+import com.inia_mscc.entidades.adm.ValorSeleccion;
 import com.inia_mscc.entidades.comun.Enumerados;
 import com.inia_mscc.entidades.comun.Objeto;
-import com.inia_mscc.entidades.comun.ValorSeleccion;
 
 public class Perfil extends Objeto {
 	private String _nombre;

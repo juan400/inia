@@ -1,9 +1,11 @@
 /**
  * 
  */
-package com.inia_mscc.entidades.comun;
+package com.inia_mscc.entidades.adm;
 
 import java.util.List;
+
+import com.inia_mscc.entidades.comun.Objeto;
 
 /**
  * @author Juan Andres Pio
