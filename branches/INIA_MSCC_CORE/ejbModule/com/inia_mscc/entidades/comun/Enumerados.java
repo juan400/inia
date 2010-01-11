@@ -30,7 +30,7 @@ public class Enumerados {
 	 * 
 	 */
 	static public enum TipoPropiedadCultivo {
-		Fenotipica, Genotipica, ambiente
+		Ninguno, Fenotipica, Genotipica, Ambiente
 	}
 
 	/**
