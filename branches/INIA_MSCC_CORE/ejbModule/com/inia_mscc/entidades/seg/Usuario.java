@@ -12,7 +12,7 @@ public class Usuario extends Objeto
 	private String _password;
 	private boolean _activado;
 	private Date _ultimoAcceso;
-	private Enumerados.EstadoUsuario _estado;
+	private Enumerados.EstadoUsuario _estadoUsuario;
 	private DatoUsuario _datos;
 	
 	public Usuario() {
@@ -21,7 +21,7 @@ public class Usuario extends Objeto
 		_password = null;
 		_activado = false;
 		_ultimoAcceso = new Date();
-		_estado = Enumerados.EstadoUsuario.Ninguno;
+		_estadoUsuario = Enumerados.EstadoUsuario.Ninguno;
 		_datos = null;
 	}
 	
@@ -49,11 +49,11 @@ public class Usuario extends Objeto
 	public void set_ultimoAcceso(Date ultimoAcceso) {
 		_ultimoAcceso = ultimoAcceso;
 	}
-	public Enumerados.EstadoUsuario get_estado() {
-		return _estado;
+	public Enumerados.EstadoUsuario get_estadoUsuario() {
+		return _estadoUsuario;
 	}
-	public void set_estado(Enumerados.EstadoUsuario estado) {
-		_estado = estado;
+	public void set_estadoUsuario(Enumerados.EstadoUsuario estadoUsuario) {
+		_estadoUsuario = estadoUsuario;
 	}
 	public DatoUsuario get_datos() {
 		return _datos;
