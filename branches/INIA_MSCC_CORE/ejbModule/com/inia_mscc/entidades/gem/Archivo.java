@@ -15,7 +15,8 @@ public class Archivo extends Objeto {
 	private Date _fechaHora;
 	private Enumerados.EstadoArchivo _estadoArchivo;
 	private Enumerados.TipoExtencionArchivo _extencion;
-	//private Ubicacion _ubicacion;
+	private Ubicacion _ubicacion;
+	
 	public Archivo() {
 		super();
 		_nombre = null;
@@ -54,6 +55,12 @@ public class Archivo extends Objeto {
 	}
 	public void set_extencion(Enumerados.TipoExtencionArchivo extencion) {
 		_extencion = extencion;
+	}
+	public Ubicacion get_ubicacion() {
+		return _ubicacion;
+	}
+	public void set_ubicacion(Ubicacion ubicacion) {
+		_ubicacion = ubicacion;
 	}
 	
 }
