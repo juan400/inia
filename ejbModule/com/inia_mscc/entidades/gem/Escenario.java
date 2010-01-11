@@ -9,24 +9,20 @@ import com.inia_mscc.entidades.seg.Usuario;
 public class Escenario extends Objeto {
 	
 	private Date _fechaHora;
-	private Usuario _usuario;
+	private Usuario _usuarioInvestigador;
 	private Region _region;
 	private Cultivo _cultivo;
 	private Archivo _archivoEscenario;
 	private Archivo _archivoMSCC;
-	private Archivo _archivoResultado;
-	private Archivo _resultaroMSCC;
 	
 	public Escenario() {
 		super();
 		_fechaHora = new Date();
-		_usuario = null;
+		_usuarioInvestigador = null;
 		_region = null;
 		_cultivo = null;
 		_archivoEscenario = null;
 		_archivoMSCC = null;
-		_archivoResultado = null;
-		_resultaroMSCC = null;
 	}
 
 	public Date get_fechaHora() {
@@ -37,12 +33,12 @@ public class Escenario extends Objeto {
 		_fechaHora = fechaHora;
 	}
 
-	public Usuario get_usuario() {
-		return _usuario;
+	public Usuario get_usuarioInvestigador() {
+		return _usuarioInvestigador;
 	}
 
-	public void set_usuario(Usuario usuario) {
-		_usuario = usuario;
+	public void set_usuarioInvestigador(Usuario usuarioInvestigador) {
+		_usuarioInvestigador = usuarioInvestigador;
 	}
 
 	public Region get_region() {
@@ -75,22 +71,6 @@ public class Escenario extends Objeto {
 
 	public void set_archivoMSCC(Archivo archivoMSCC) {
 		_archivoMSCC = archivoMSCC;
-	}
-
-	public Archivo get_archivoResultado() {
-		return _archivoResultado;
-	}
-
-	public void set_archivoResultado(Archivo archivoResultado) {
-		_archivoResultado = archivoResultado;
-	}
-
-	public Archivo get_resultaroMSCC() {
-		return _resultaroMSCC;
-	}
-
-	public void set_resultaroMSCC(Archivo resultaroMSCC) {
-		_resultaroMSCC = resultaroMSCC;
 	}
 	
 }
