@@ -3,6 +3,7 @@
 	<name>INIA_MSCC_WEB</name>
 	<comment></comment>
 	<projects>
+		<project>INIA_MSCC_CORE</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
