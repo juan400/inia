@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.inia_mscc.negocio.adm;
+package com.inia_mscc.negocio.adm.entidades;
 
 import java.util.List;
 

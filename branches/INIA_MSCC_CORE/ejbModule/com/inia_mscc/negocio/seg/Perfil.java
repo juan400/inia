@@ -2,8 +2,8 @@ package com.inia_mscc.negocio.seg;
 
 import java.util.List;
 
-import com.inia_mscc.negocio.adm.Transaccion;
-import com.inia_mscc.negocio.adm.ValorSeleccion;
+import com.inia_mscc.negocio.adm.entidades.Transaccion;
+import com.inia_mscc.negocio.adm.entidades.ValorSeleccion;
 import com.inia_mscc.negocio.comun.entidades.Enumerados;
 import com.inia_mscc.negocio.comun.entidades.Objeto;
 
