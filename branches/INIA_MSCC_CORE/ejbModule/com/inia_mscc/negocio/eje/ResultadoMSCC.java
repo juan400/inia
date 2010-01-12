@@ -10,7 +10,7 @@ import java.util.Map;
 
 import org.hibernate.hql.ast.tree.IsNotNullLogicOperatorNode;
 
-import com.inia_mscc.negocio.comun.Objeto;
+import com.inia_mscc.negocio.comun.entidades.Objeto;
 import com.inia_mscc.negocio.gem.Archivo;
 import com.inia_mscc.negocio.gem.Escenario;
 

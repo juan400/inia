@@ -2,7 +2,7 @@ package com.inia_mscc.negocio.gem;
 
 import java.util.List;
 
-import com.inia_mscc.negocio.comun.Objeto;
+import com.inia_mscc.negocio.comun.entidades.Objeto;
 
 public class Cultivo extends Objeto{
 	
