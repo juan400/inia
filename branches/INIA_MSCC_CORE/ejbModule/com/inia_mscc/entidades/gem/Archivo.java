@@ -2,11 +2,11 @@ package com.inia_mscc.entidades.gem;
 
 import java.util.Date;
 
-import com.inia_mscc.entidades.comun.Enumerados;
-import com.inia_mscc.entidades.comun.Objeto;
-import com.inia_mscc.entidades.comun.Enumerados.EstadoArchivo;
-import com.inia_mscc.entidades.comun.Enumerados.TipoArchivo;
-import com.inia_mscc.entidades.comun.Enumerados.TipoExtencionArchivo;
+import com.inia_mscc.negocio.comun.Enumerados;
+import com.inia_mscc.negocio.comun.Objeto;
+import com.inia_mscc.negocio.comun.Enumerados.EstadoArchivo;
+import com.inia_mscc.negocio.comun.Enumerados.TipoArchivo;
+import com.inia_mscc.negocio.comun.Enumerados.TipoExtencionArchivo;
 
 public class Archivo extends Objeto {
 

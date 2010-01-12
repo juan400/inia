@@ -1,6 +1,6 @@
 package com.inia_mscc.entidades.seg;
 
-import com.inia_mscc.entidades.comun.Objeto;
+import com.inia_mscc.negocio.comun.Objeto;
 
 public class DatoUsuario extends Objeto {
 	private String _nombre;
