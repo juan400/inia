@@ -2,9 +2,9 @@ package com.inia_mscc.entidades.seg;
 
 import java.util.Date;
 
-import com.inia_mscc.entidades.comun.Enumerados;
-import com.inia_mscc.entidades.comun.Objeto;
-import com.inia_mscc.entidades.comun.Enumerados.EstadoUsuario;
+import com.inia_mscc.negocio.comun.Enumerados;
+import com.inia_mscc.negocio.comun.Objeto;
+import com.inia_mscc.negocio.comun.Enumerados.EstadoUsuario;
 
 public class Usuario extends Objeto
 {

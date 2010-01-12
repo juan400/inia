@@ -3,7 +3,7 @@ package com.inia_mscc.entidades.gem;
 import java.net.URL;
 import java.util.Date;
 
-import com.inia_mscc.entidades.comun.Objeto;
+import com.inia_mscc.negocio.comun.Objeto;
 
 public class Ubicacion extends Objeto {
 	

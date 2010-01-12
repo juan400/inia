@@ -10,9 +10,9 @@ import java.util.Map;
 
 import org.hibernate.hql.ast.tree.IsNotNullLogicOperatorNode;
 
-import com.inia_mscc.entidades.comun.Objeto;
 import com.inia_mscc.entidades.gem.Archivo;
 import com.inia_mscc.entidades.gem.Escenario;
+import com.inia_mscc.negocio.comun.Objeto;
 
 public class ResultadoMSCC extends Objeto {
 	private Date _fecha;
