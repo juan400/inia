@@ -2,12 +2,12 @@ package com.inia_mscc.entidades.seg;
 
 import java.util.Date;
 
-import com.inia_mscc.entidades.adm.Transaccion;
-import com.inia_mscc.entidades.adm.ValorSeleccion;
-import com.inia_mscc.entidades.comun.Enumerados;
-import com.inia_mscc.entidades.comun.Objeto;
-import com.inia_mscc.entidades.comun.Enumerados.EstadoSolicitud;
-import com.inia_mscc.entidades.comun.Enumerados.TipoSolicitud;
+import com.inia_mscc.negocio.adm.Transaccion;
+import com.inia_mscc.negocio.adm.ValorSeleccion;
+import com.inia_mscc.negocio.comun.Enumerados;
+import com.inia_mscc.negocio.comun.Objeto;
+import com.inia_mscc.negocio.comun.Enumerados.EstadoSolicitud;
+import com.inia_mscc.negocio.comun.Enumerados.TipoSolicitud;
 
 public class Solicitud extends Objeto {
 	private String _codigo;
