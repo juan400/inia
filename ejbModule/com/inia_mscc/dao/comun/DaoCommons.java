@@ -1,4 +1,4 @@
-package com.inia_mscc.dao;
+package com.inia_mscc.dao.comun;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
