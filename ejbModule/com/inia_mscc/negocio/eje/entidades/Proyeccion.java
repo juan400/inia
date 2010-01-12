@@ -1,9 +1,9 @@
-package com.inia_mscc.negocio.eje;
+package com.inia_mscc.negocio.eje.entidades;
 
 import java.util.Date;
 
 import com.inia_mscc.negocio.comun.entidades.Objeto;
-import com.inia_mscc.negocio.gem.Archivo;
+import com.inia_mscc.negocio.gem.entidades.Archivo;
 
 public class Proyeccion extends Objeto {
 	private Date _fecha;

@@ -9,7 +9,7 @@ import javax.mail.internet.MimeMessage;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import com.inia_mscc.servicios.MailSenderServices;
+import com.inia_mscc.config.servicios.MailSenderServices;
 
 @Stateless(name = "EJBMailSender", mappedName = "EJBMailSender")
 @Remote(MailSenderServices.class)

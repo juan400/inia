@@ -1,4 +1,4 @@
-package com.inia_mscc.servicios;
+package com.inia_mscc.config.servicios;
 
 import com.inia_mscc.excepciones.ErrorEnviandoMailException;
 

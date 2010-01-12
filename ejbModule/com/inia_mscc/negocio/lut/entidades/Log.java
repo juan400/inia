@@ -1,4 +1,4 @@
-package com.inia_mscc.negocio.lut;
+package com.inia_mscc.negocio.lut.entidades;
 
 import com.inia_mscc.negocio.comun.entidades.Objeto;
 
