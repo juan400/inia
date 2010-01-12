@@ -1,10 +1,10 @@
-package com.inia_mscc.negocio.gem;
+package com.inia_mscc.negocio.gem.entidades;
 
 import java.util.Date;
 
 import com.inia_mscc.negocio.adm.entidades.Region;
 import com.inia_mscc.negocio.comun.entidades.Objeto;
-import com.inia_mscc.negocio.seg.Usuario;
+import com.inia_mscc.negocio.seg.entidades.Usuario;
 
 public class Escenario extends Objeto {
 	

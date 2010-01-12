@@ -7,8 +7,8 @@ import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 
+import com.inia_mscc.config.servicios.CommonsServices;
 import com.inia_mscc.dao.comun.DaoCommons;
-import com.inia_mscc.servicios.CommonsServices;
 
 
 @Stateless(name="EJBCommons", mappedName="EJBCommons")

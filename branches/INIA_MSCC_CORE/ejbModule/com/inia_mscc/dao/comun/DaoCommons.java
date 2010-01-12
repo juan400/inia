@@ -6,9 +6,9 @@ import org.hibernate.Session;
 import org.hibernate.StaleObjectStateException;
 
 import com.inia_mscc.config.hibernate.CargoHibernateUtil;
+import com.inia_mscc.config.util.LoggingUtilities;
 import com.inia_mscc.excepciones.IniaPersistenciaException;
 import com.inia_mscc.excepciones.ObjetoNoEncontradoException;
-import com.inia_mscc.util.LoggingUtilities;
 
 public class DaoCommons {
 

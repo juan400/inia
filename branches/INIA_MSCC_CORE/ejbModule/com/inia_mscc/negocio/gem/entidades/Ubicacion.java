@@ -1,4 +1,4 @@
-package com.inia_mscc.negocio.gem;
+package com.inia_mscc.negocio.gem.entidades;
 
 import java.net.URL;
 import java.util.Date;
