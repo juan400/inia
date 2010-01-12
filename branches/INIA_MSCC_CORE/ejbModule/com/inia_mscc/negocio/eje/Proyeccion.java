@@ -2,7 +2,7 @@ package com.inia_mscc.negocio.eje;
 
 import java.util.Date;
 
-import com.inia_mscc.negocio.comun.Objeto;
+import com.inia_mscc.negocio.comun.entidades.Objeto;
 import com.inia_mscc.negocio.gem.Archivo;
 
 public class Proyeccion extends Objeto {

@@ -1,4 +1,4 @@
-package com.inia_mscc.negocio;
+package com.inia_mscc.negocio.comun.entidades;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
