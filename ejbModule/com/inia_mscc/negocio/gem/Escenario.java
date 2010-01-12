@@ -2,7 +2,7 @@ package com.inia_mscc.negocio.gem;
 
 import java.util.Date;
 
-import com.inia_mscc.negocio.adm.Region;
+import com.inia_mscc.negocio.adm.entidades.Region;
 import com.inia_mscc.negocio.comun.entidades.Objeto;
 import com.inia_mscc.negocio.seg.Usuario;
 
