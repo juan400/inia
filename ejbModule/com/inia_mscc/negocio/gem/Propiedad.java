@@ -1,7 +1,7 @@
 package com.inia_mscc.negocio.gem;
 
-import com.inia_mscc.negocio.comun.Enumerados;
-import com.inia_mscc.negocio.comun.Objeto;
+import com.inia_mscc.negocio.comun.entidades.Enumerados;
+import com.inia_mscc.negocio.comun.entidades.Objeto;
 
 public class Propiedad extends Objeto {
 	private String _codigo;

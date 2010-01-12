@@ -1,4 +1,4 @@
-package com.inia_mscc.negocio.comun;
+package com.inia_mscc.negocio.comun.entidades;
 
 public class Objeto {
 	private long _id; 

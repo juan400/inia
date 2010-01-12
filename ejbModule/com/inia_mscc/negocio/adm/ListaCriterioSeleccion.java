@@ -5,7 +5,7 @@ package com.inia_mscc.negocio.adm;
 
 import java.util.List;
 
-import com.inia_mscc.negocio.comun.Objeto;
+import com.inia_mscc.negocio.comun.entidades.Objeto;
 
 /**
  * @author Juan Andres Pio

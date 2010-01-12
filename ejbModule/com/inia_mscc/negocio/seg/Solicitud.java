@@ -4,10 +4,10 @@ import java.util.Date;
 
 import com.inia_mscc.negocio.adm.Transaccion;
 import com.inia_mscc.negocio.adm.ValorSeleccion;
-import com.inia_mscc.negocio.comun.Enumerados;
-import com.inia_mscc.negocio.comun.Objeto;
-import com.inia_mscc.negocio.comun.Enumerados.EstadoSolicitud;
-import com.inia_mscc.negocio.comun.Enumerados.TipoSolicitud;
+import com.inia_mscc.negocio.comun.entidades.Enumerados;
+import com.inia_mscc.negocio.comun.entidades.Objeto;
+import com.inia_mscc.negocio.comun.entidades.Enumerados.EstadoSolicitud;
+import com.inia_mscc.negocio.comun.entidades.Enumerados.TipoSolicitud;
 
 public class Solicitud extends Objeto {
 	private String _codigo;

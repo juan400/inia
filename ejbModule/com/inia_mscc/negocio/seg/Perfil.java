@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.inia_mscc.negocio.adm.Transaccion;
 import com.inia_mscc.negocio.adm.ValorSeleccion;
-import com.inia_mscc.negocio.comun.Enumerados;
-import com.inia_mscc.negocio.comun.Objeto;
+import com.inia_mscc.negocio.comun.entidades.Enumerados;
+import com.inia_mscc.negocio.comun.entidades.Objeto;
 
 public class Perfil extends Objeto {
 	private String _nombre;
