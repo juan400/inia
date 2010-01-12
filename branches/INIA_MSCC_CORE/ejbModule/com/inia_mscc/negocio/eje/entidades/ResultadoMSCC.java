@@ -1,4 +1,4 @@
-package com.inia_mscc.negocio.eje;
+package com.inia_mscc.negocio.eje.entidades;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,8 +11,8 @@ import java.util.Map;
 import org.hibernate.hql.ast.tree.IsNotNullLogicOperatorNode;
 
 import com.inia_mscc.negocio.comun.entidades.Objeto;
-import com.inia_mscc.negocio.gem.Archivo;
-import com.inia_mscc.negocio.gem.Escenario;
+import com.inia_mscc.negocio.gem.entidades.Archivo;
+import com.inia_mscc.negocio.gem.entidades.Escenario;
 
 public class ResultadoMSCC extends Objeto {
 	private Date _fecha;

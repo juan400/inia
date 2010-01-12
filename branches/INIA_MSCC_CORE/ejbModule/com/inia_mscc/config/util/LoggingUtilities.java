@@ -1,4 +1,4 @@
-package com.inia_mscc.util;
+package com.inia_mscc.config.util;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

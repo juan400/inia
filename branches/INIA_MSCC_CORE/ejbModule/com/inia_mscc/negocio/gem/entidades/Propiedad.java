@@ -1,4 +1,4 @@
-package com.inia_mscc.negocio.gem;
+package com.inia_mscc.negocio.gem.entidades;
 
 import com.inia_mscc.negocio.comun.entidades.Enumerados;
 import com.inia_mscc.negocio.comun.entidades.Objeto;

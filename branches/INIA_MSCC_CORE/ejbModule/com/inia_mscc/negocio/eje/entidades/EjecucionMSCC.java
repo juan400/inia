@@ -1,11 +1,11 @@
-package com.inia_mscc.negocio.eje;
+package com.inia_mscc.negocio.eje.entidades;
 
 import java.util.Date;
 
 import com.inia_mscc.negocio.comun.entidades.Objeto;
-import com.inia_mscc.negocio.gem.Archivo;
-import com.inia_mscc.negocio.gem.Escenario;
-import com.inia_mscc.negocio.seg.Usuario;
+import com.inia_mscc.negocio.gem.entidades.Archivo;
+import com.inia_mscc.negocio.gem.entidades.Escenario;
+import com.inia_mscc.negocio.seg.entidades.Usuario;
 
 public class EjecucionMSCC extends Objeto {
 

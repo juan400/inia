@@ -1,4 +1,4 @@
-package com.inia_mscc.negocio.seg;
+package com.inia_mscc.negocio.seg.entidades;
 
 import java.util.Date;
 
