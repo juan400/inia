@@ -4,8 +4,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import com.inia_mscc.entidades.Casa;
 import com.inia_mscc.excepciones.ProviderException;
+import com.inia_mscc.negocio.comun.Casa;
 
 public class CommonsProvider implements CommonsServices{
 
