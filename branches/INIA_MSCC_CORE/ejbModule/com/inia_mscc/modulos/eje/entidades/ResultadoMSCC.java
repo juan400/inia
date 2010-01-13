@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.Map;
 
+import javax.persistence.Transient;
+
 import com.inia_mscc.modulos.comun.entidades.Objeto;
 import com.inia_mscc.modulos.gem.entidades.Archivo;
 import com.inia_mscc.modulos.gem.entidades.Escenario;
@@ -39,7 +41,8 @@ public class ResultadoMSCC extends Objeto {
 	public void set_archivo(Archivo archivo) {
 		_archivo = archivo;
 	}
-
+	
+	@Transient
 	public Map get_matrizDatos() throws Exception {
 		try {
 			InputStream is = _archivo.get_ubicacion().get_urlPaht()

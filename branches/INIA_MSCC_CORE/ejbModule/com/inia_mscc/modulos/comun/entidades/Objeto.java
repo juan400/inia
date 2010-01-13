@@ -1,10 +1,24 @@
 package com.inia_mscc.modulos.comun.entidades;
 
+import java.sql.Timestamp;
+
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
+import javax.persistence.Version;
+
+@MappedSuperclass
 public class Objeto {
+	 
 	private long _id; 
 	private Enumerados.Estado _estado;
 	private Enumerados.EstadoModificacion _estadoModificacion;
-	private byte[] _timeStamp;
+	private Timestamp _timeStamp;
 
 	
 	public Objeto() {
@@ -14,7 +28,8 @@ public class Objeto {
 		_estadoModificacion = Enumerados.EstadoModificacion.Ninguno;
 	}
 
-
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	public long get_id() {
 		return _id;
 	}
@@ -24,7 +39,8 @@ public class Objeto {
 		_id = id;
 	}
 
-
+	@Enumerated(EnumType.STRING)
+	@Column (name="estado")
 	public Enumerados.Estado get_estado() {
 		return _estado;
 	}
@@ -34,7 +50,7 @@ public class Objeto {
 		_estado = estado;
 	}
 
-
+	@Transient
 	public Enumerados.EstadoModificacion get_estadoModificacion() {
 		return _estadoModificacion;
 	}
@@ -45,13 +61,15 @@ public class Objeto {
 		_estadoModificacion = estadoModificacion;
 	}
 
-
-	public byte[] get_timeStamp() {
+	@Version
+    @Column(name="timestamp")
+//    @Basic
+//    @Temporal(TemporalType.TIMESTAMP)
+	public Timestamp get_timeStamp() {
 		return _timeStamp;
 	}
 
-
-	public void set_timeStamp(byte[] timeStamp) {
+	public void set_timeStamp(Timestamp timeStamp) {
 		_timeStamp = timeStamp;
 	}
 
