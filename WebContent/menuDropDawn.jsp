@@ -13,13 +13,13 @@
 <f:loadBundle basename="com.bean.text" var="text" />
 <h:form id="menuForm">
 
-        <rich:toolBar>
+        <rich:toolBar >
 
-            <rich:dropDownMenu>
+            <rich:dropDownMenu id="ddmPrincipal">
                 <f:facet name="label"> 
                     <h:panelGroup>
                         <h:graphicImage value="/images/icons/copy.gif" styleClass="pic"/>
-                        <h:outputText value="File"/>
+                        <h:outputText value="ADM"/>
                     </h:panelGroup>
                 </f:facet>
                 <rich:menuItem submitMode="ajax" value="New"
