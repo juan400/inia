@@ -2,12 +2,12 @@ package com.inia_mscc.config.hibernate;
 
 import org.hibernate.Session;
 
-public class CargoHibernateDAO {
+public class HibernateDAO {
 
-//	private static Logger logger = Logger.getLogger(CargoHibernateDAO.class);
+//	private static Logger logger = Logger.getLogger(HibernateDAO.class);
 
 	protected Session getCargoSession() {
-		return CargoHibernateUtil.getSessionFactory().getCurrentSession();
+		return HibernateUtil.getSessionFactory().getCurrentSession();
 	}
 
 //	@SuppressWarnings("unchecked")
