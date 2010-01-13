@@ -8,38 +8,25 @@ import org.hibernate.tool.hbm2ddl.SchemaExport;
 
 import com.inia_mscc.config.util.LoggingUtilities;
 import com.inia_mscc.excepciones.IniaPersistenciaException;
-import com.inia_mscc.modulos.comun.entidades.Casa;
+//import com.inia_mscc.modulos.comun.entidades.Casa;
 
-public class CargoHibernateUtil {
+public class HibernateUtil {
 
     private static final SessionFactory SESSION_FACTORY;
 
-    private static Logger logger = Logger.getLogger(CargoHibernateUtil.class);
+    private static Logger logger = Logger.getLogger(HibernateUtil.class);
     
     static {
         try {
         	
         	SESSION_FACTORY = new AnnotationConfiguration()
-        	.addPackage("com.inia_mscc.entidades")
-//        	.addAnnotatedClass(Carpeta.class)
-//        	.addAnnotatedClass(Empresa.class)
-//        	.addAnnotatedClass(TipoEmpresa.class)
-//        	.addAnnotatedClass(Origen.class)
-//        	.addAnnotatedClass(Pais.class)
-//        	.addAnnotatedClass(Barco.class)
-//        	.addAnnotatedClass(Camion.class)
-//        	.addAnnotatedClass(Capacidad.class)
-//        	.addAnnotatedClass(Ciudad.class)
-//        	.addAnnotatedClass(Identificacion.class)
-//        	.addAnnotatedClass(Marca.class)
-//        	.addAnnotatedClass(Moneda.class)
-//        	.addAnnotatedClass(Propietario.class)
-//        	.addAnnotatedClass(Responsable.class)
-//        	.addAnnotatedClass(TipoCapacidad.class)
-//        	.addAnnotatedClass(TipoIdentificacion.class)
-//        	.addAnnotatedClass(TipoPropietario.class)
-//        	.addAnnotatedClass(TipoTransporte.class)
-        	.addAnnotatedClass(Casa.class)
+        	.addPackage("com.inia_mscc.modulos.adm.entidades")
+        	.addPackage("com.inia_mscc.modulos.comun.entidades")
+        	.addPackage("com.inia_mscc.modulos.eje.entidades")
+        	.addPackage("com.inia_mscc.modulos.gem.entidades")
+        	.addPackage("com.inia_mscc.modulos.lut.entidades")
+        	.addPackage("com.inia_mscc.modulos.seg.entidades")
+        	//.addAnnotatedClass(Casa.class)
         	.configure("hibernate.cfg.xml")
         	.buildSessionFactory();
             
