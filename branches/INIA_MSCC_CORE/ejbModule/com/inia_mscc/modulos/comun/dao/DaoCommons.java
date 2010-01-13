@@ -5,7 +5,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.StaleObjectStateException;
 
-import com.inia_mscc.config.hibernate.CargoHibernateUtil;
+import com.inia_mscc.config.hibernate.HibernateUtil;
 import com.inia_mscc.config.util.LoggingUtilities;
 import com.inia_mscc.excepciones.IniaPersistenciaException;
 import com.inia_mscc.excepciones.ObjetoNoEncontradoException;
@@ -21,7 +21,7 @@ public class DaoCommons {
 		Object retorno ;
 		Session session = null;
 		try {
-			session = CargoHibernateUtil.getSessionFactory().getCurrentSession();
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			Criteria c;
             c = session.createCriteria(clazz);
             retorno = c.uniqueResult();
