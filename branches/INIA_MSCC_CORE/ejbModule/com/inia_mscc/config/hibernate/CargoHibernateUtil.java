@@ -8,7 +8,7 @@ import org.hibernate.tool.hbm2ddl.SchemaExport;
 
 import com.inia_mscc.config.util.LoggingUtilities;
 import com.inia_mscc.excepciones.IniaPersistenciaException;
-import com.inia_mscc.negocio.comun.entidades.Casa;
+import com.inia_mscc.modulos.comun.entidades.Casa;
 
 public class CargoHibernateUtil {
 
