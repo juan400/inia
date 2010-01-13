@@ -2,9 +2,17 @@ package com.inia_mscc.modulos.seg.entidades;
 
 import java.util.Date;
 
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Entity;
+
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.comun.entidades.Objeto;
 
+@Entity
+@Table(name="tl_seg_usua_usuario", catalog="inia_mscc_db"
+	//, uniqueConstraints={ @UniqueConstraint(columnNames={"month", "day"})}
+)
 public class Usuario extends Objeto
 {
 	private String _login;
