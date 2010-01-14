@@ -7,20 +7,24 @@ import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 
-import com.inia_mscc.modulos.comun.dao.DaoCommons;
+import org.apache.log4j.Logger;
+
+import com.inia_mscc.modulos.comun.dao.DAOComun;
 import com.inia_mscc.modulos.comun.servicios.CommonsServices;
 
 
-@Stateless(name="EJBCommons", mappedName="EJBCommons")
+@Stateless(name="EJBComun", mappedName="EJBComun")
 @Remote(CommonsServices.class)
 @TransactionManagement(value = TransactionManagementType.CONTAINER)
 @TransactionAttribute(value = TransactionAttributeType.NEVER)
-public class EJBCommons {
-
-	private DaoCommons daoCommons = new DaoCommons();
+public class EJBComun {
+	
+	//private static final Logger logger = Logger.getLogger(DaoCommons.class);
+	
+	private DAOComun daoComun = new DAOComun();
 	
 	public <T> T obtenerEntidad(Class<T> clazz){
-		return daoCommons.obtenerEntidad(clazz);
+		return daoComun.obtenerEntidad(clazz);
 	}
 	
 	

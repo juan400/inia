@@ -10,9 +10,9 @@ import com.inia_mscc.config.util.LoggingUtilities;
 import com.inia_mscc.excepciones.IniaPersistenciaException;
 import com.inia_mscc.excepciones.ObjetoNoEncontradoException;
 
-public class DaoCommons {
+public class DAOComun {
 
-	private static final Logger logger = Logger.getLogger(DaoCommons.class);
+	private static final Logger logger = Logger.getLogger(DAOComun.class);
 	
 	
 	

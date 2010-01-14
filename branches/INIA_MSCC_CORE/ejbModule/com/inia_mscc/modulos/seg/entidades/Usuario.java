@@ -1,16 +1,17 @@
 package com.inia_mscc.modulos.seg.entidades;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.AssociationOverride;
+//import javax.persistence.AssociationOverride;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
-import javax.persistence.Basic;
+//import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.OneToOne;
+//import javax.persistence.FetchType;
+//import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Entity;
@@ -42,8 +43,13 @@ import com.inia_mscc.modulos.comun.entidades.Objeto;
  */	
 //@AssociationOverride( name="propulsion", joinColumns = @JoinColumn(name="fld_propulsion_fk") )
 
-public class Usuario extends Objeto
+public class Usuario extends Objeto implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1317547340768515297L;
+	
 	private String _login;
 	private String _password;
 	private boolean _activado;
