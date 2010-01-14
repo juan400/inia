@@ -13,8 +13,11 @@ import javax.persistence.Transient;
 import javax.persistence.Version;
 
 @MappedSuperclass
-public class Objeto {
+public class Objeto{
 	 
+	/**
+	 * 
+	 */
 	private long _id; 
 	private Enumerados.Estado _estado;
 	private Enumerados.EstadoModificacion _estadoModificacion;

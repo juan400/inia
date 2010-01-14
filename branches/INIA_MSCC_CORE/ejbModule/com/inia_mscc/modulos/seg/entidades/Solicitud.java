@@ -1,5 +1,6 @@
 package com.inia_mscc.modulos.seg.entidades;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.inia_mscc.modulos.adm.entidades.Transaccion;
@@ -7,7 +8,13 @@ import com.inia_mscc.modulos.adm.entidades.ValorSeleccion;
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.comun.entidades.Objeto;
 
-public class Solicitud extends Objeto {
+public class Solicitud extends Objeto implements Serializable
+{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4460742038189538337L;
+	
 	private String _codigo;
 	private String _detalleMotivo;
 	private Date _fechaRegistro;
