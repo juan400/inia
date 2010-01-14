@@ -20,7 +20,7 @@ import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.comun.entidades.Objeto;
 
 @Entity
-@Table(name="tl_seg_usua_usuario"
+@Table(name="temp_tl_seg_usua_usuario"
 	,catalog="inia_mscc_db"
 )
 /**
