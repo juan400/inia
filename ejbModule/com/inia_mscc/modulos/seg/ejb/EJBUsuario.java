@@ -13,11 +13,10 @@ import com.inia_mscc.modulos.seg.entidades.Usuario;
 import com.inia_mscc.modulos.seg.servicios.ServicioUsuario;
 
 @Stateless(name="EJBUsuario", mappedName="EJBUsuario")
-@Remote(ServicioUsuario.class)
+@Remote(Usuario.class)
 @TransactionManagement(value = TransactionManagementType.CONTAINER)
-//@TransactionAttribute(value = TransactionAttributeType.NEVER)//Solo para crear la base de datos!!!!
 @TransactionAttribute(value = TransactionAttributeType.REQUIRED)
-public @MessageDriven class EJBUsuario implements ServicioUsuario {
+public class EJBUsuario implements ServicioUsuario {
 
 	private DAOUsuario dao = new DAOUsuario();
 	

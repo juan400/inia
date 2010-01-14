@@ -10,7 +10,7 @@
 		<!-- properties -->
 		<!-- <property name="dialect">org.hibernate.dialect.MySQLDialect</property>-->
 		<property name="dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
-		<property name="connection.datasource">java:/INIA_MSCC</property>
+		<property name="connection.datasource">java:/iniamsccdb</property>
 		<property name="transaction.factory_class">org.hibernate.transaction.CMTTransactionFactory</property> 
 		<property name="transaction.manager_lookup_class">org.hibernate.transaction.JBossTransactionManagerLookup</property> 
 		<property name="cache.provider_class">org.hibernate.cache.HashtableCacheProvider</property>
@@ -18,7 +18,7 @@
 		<property name="show_sql">true</property>
 		<property name="hibernate.transaction.flush_before_completion">true</property>
 		<property name="hibernate.transaction.auto_close_session">true</property>
-		<property name="hibernate.hbm2ddl.auto">create-drop</property>
+		<property name="hibernate.hbm2ddl.auto">create</property>
 		
 																				
 	</session-factory>
