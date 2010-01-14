@@ -1,6 +1,5 @@
 package com.inia_mscc.modulos.seg.ejb;
 
-import javax.ejb.MessageDriven;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -13,7 +12,7 @@ import com.inia_mscc.modulos.seg.entidades.Usuario;
 import com.inia_mscc.modulos.seg.servicios.ServicioUsuario;
 
 @Stateless(name="EJBUsuario", mappedName="EJBUsuario")
-@Remote(Usuario.class)
+@Remote(ServicioUsuario.class)
 @TransactionManagement(value = TransactionManagementType.CONTAINER)
 @TransactionAttribute(value = TransactionAttributeType.REQUIRED)
 public class EJBUsuario implements ServicioUsuario {

@@ -8,6 +8,7 @@ import javax.naming.NamingException;
 
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 import com.inia_mscc.modulos.seg.servicios.ServicioUsuario;
+import com.inia_mscc.excepciones.ProviderException;
 
 public class ProveedorUsuario implements ServicioUsuario {
 
@@ -17,9 +18,8 @@ public class ProveedorUsuario implements ServicioUsuario {
 		try {
 			Context ctx = new InitialContext();
 			ejbUsuario = (ServicioUsuario) ctx.lookup("EJBUsuario");
-		} 
-		catch (NamingException e) {
-			throw new com.inia_mscc.excepciones.ProviderException(e);
+		} catch (NamingException e) {
+			throw new ProviderException(e);
 		}
 	}
 	
