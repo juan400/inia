@@ -21,12 +21,7 @@ public class HibernateUtil {
         try {
         	
         	SESSION_FACTORY = new AnnotationConfiguration()
-//        	.addPackage("com.inia_mscc.modulos.adm.entidades")
-//        	.addPackage("com.inia_mscc.modulos.comun.entidades")
-//        	.addPackage("com.inia_mscc.modulos.eje.entidades")
-//        	.addPackage("com.inia_mscc.modulos.gem.entidades")
-//        	.addPackage("com.inia_mscc.modulos.lut.entidades")
-//        	.addPackage("com.inia_mscc.modulos.seg.entidades.Usuario")
+        	.addPackage("com.inia_mscc.modulos.seg.entidades")
         	.addAnnotatedClass(Usuario.class)
         	.configure("hibernate.cfg.xml")
         	.buildSessionFactory();
