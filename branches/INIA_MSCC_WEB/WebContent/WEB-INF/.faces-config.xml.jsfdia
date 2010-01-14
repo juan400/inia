@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PROCESS model-entity="JSFProcess">
- <PROCESS-ITEM NAME="rules:#Servicios#SEG#loginFail.jsp"
-  PATH="/Servicios/SEG/loginFail.jsp" SHAPE="288,33,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#Servicios#SEG#login.jsp"
   PATH="/Servicios/SEG/login.jsp" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#Servicios#SEG#login.jsp:0" NAME="item"
@@ -12,9 +10,9 @@
     TARGET="rules:#Servicios#SEG#menuDropDawn.jsp"
     TITLE="#{loginBean.login}:login-ok" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="login-error:#{loginBean.login}:#Servicios#SEG#loginFail.jsp"
-    NAME="output1" PATH="/Servicios/SEG/loginFail.jsp"
-    TARGET="rules:#Servicios#SEG#loginFail.jsp"
+    ID="login-error:#{loginBean.login}:#Servicios#SEG#login.jsp"
+    NAME="output1" PATH="/Servicios/SEG/login.jsp"
+    TARGET="rules:#Servicios#SEG#login.jsp"
     TITLE="#{loginBean.login}:login-error" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="registrarse::#Servicios#SEG#menuRich.jsp"
     NAME="output2" PATH="/Servicios/SEG/menuRich.jsp"

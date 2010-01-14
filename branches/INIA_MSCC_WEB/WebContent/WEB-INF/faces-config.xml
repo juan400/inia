@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
 	<managed-bean>
 		<managed-bean-name>maestroBean</managed-bean-name>
-		<managed-bean-class>com.bean.seg.BeanMaestro</managed-bean-class>
+		<managed-bean-class>com.bean.comun.BeanMaestro</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
@@ -22,7 +22,7 @@
 		<navigation-case>
 			<from-action>#{loginBean.login}</from-action>
 			<from-outcome>login-error</from-outcome>
-			<to-view-id>/Servicios/SEG/loginFail.jsp</to-view-id>
+			<to-view-id>/Servicios/SEG/login.jsp</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>registrarse</from-outcome>
