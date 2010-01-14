@@ -22,7 +22,7 @@
 ////		MailSenderServices mail = new MailSenderProvider();
 ////		mail.enviarMailTextoPlano("usuario_origen@dominio.com", "sujeto", "mensaje");
 ////		mail.enviarMailTextoPlano("usuario_destino@dominio.com", "sujeto", "mensaje");
-//		CarpetaServices carSrv = new CarpetaProvider();
+//		ServicioUsuario carSrv = new CarpetaProvider();
 //		carSrv.salvarCarpeta(new Carpeta("Erwin"));
 //		return "paso";
 //	}
