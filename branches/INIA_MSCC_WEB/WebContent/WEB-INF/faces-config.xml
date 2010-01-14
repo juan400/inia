@@ -10,23 +10,23 @@
 	<managed-bean>
 		<managed-bean-name>loginBean</managed-bean-name>
 		<managed-bean-class>com.bean.seg.LoginBean</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
+		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<navigation-rule>
-		<from-view-id>/login.jsp</from-view-id>
+		<from-view-id>/Servicios/SEG/login.jsp</from-view-id>
 		<navigation-case>
 			<from-action>#{loginBean.login}</from-action>
 			<from-outcome>login-ok</from-outcome>
-			<to-view-id>/menuDropDawn.jsp</to-view-id>
+			<to-view-id>/Servicios/SEG/menuDropDawn.jsp</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-action>#{loginBean.login}</from-action>
 			<from-outcome>login-error</from-outcome>
-			<to-view-id>/loginFail.jsp</to-view-id>
+			<to-view-id>/Servicios/SEG/loginFail.jsp</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>registrarse</from-outcome>
-			<to-view-id>/menuRich.jsp</to-view-id>
+			<to-view-id>/Servicios/SEG/menuRich.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 </faces-config>
