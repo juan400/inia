@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PROCESS model-entity="JSFProcess">
- <PROCESS-ITEM NAME="rules:#menuDropDawn.jsp" PATH="/menuDropDawn.jsp"
-  SHAPE="272,145,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#login.jsp" PATH="/login.jsp"
-  SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:#login.jsp:0" NAME="item" PATH="/login.jsp" model-entity="JSFProcessItem">
+ <PROCESS-ITEM NAME="rules:#Servicios#SEG#loginFail.jsp"
+  PATH="/Servicios/SEG/loginFail.jsp" SHAPE="288,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#Servicios#SEG#login.jsp"
+  PATH="/Servicios/SEG/login.jsp" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#SEG#login.jsp:0" NAME="item"
+   PATH="/Servicios/SEG/login.jsp" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="login-ok:#{loginBean.login}:#menuDropDawn.jsp" NAME="output"
-    PATH="/menuDropDawn.jsp" TARGET="rules:#menuDropDawn.jsp"
+    ID="login-ok:#{loginBean.login}:#Servicios#SEG#menuDropDawn.jsp"
+    NAME="output" PATH="/Servicios/SEG/menuDropDawn.jsp"
+    TARGET="rules:#Servicios#SEG#menuDropDawn.jsp"
     TITLE="#{loginBean.login}:login-ok" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="login-error:#{loginBean.login}:#loginFail.jsp" NAME="output1"
-    PATH="/loginFail.jsp" TARGET="rules:#loginFail.jsp"
+    ID="login-error:#{loginBean.login}:#Servicios#SEG#loginFail.jsp"
+    NAME="output1" PATH="/Servicios/SEG/loginFail.jsp"
+    TARGET="rules:#Servicios#SEG#loginFail.jsp"
     TITLE="#{loginBean.login}:login-error" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="registrarse::#menuRich.jsp" NAME="output2"
-    PATH="/menuRich.jsp" TARGET="rules:#menuRich.jsp"
-    TITLE="registrarse" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="registrarse::#Servicios#SEG#menuRich.jsp"
+    NAME="output2" PATH="/Servicios/SEG/menuRich.jsp"
+    TARGET="rules:#Servicios#SEG#menuRich.jsp" TITLE="registrarse" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#menuRich.jsp" PATH="/menuRich.jsp"
-  SHAPE="272,433,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#loginFail.jsp" PATH="/loginFail.jsp"
-  SHAPE="272,321,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#Servicios#SEG#menuRich.jsp"
+  PATH="/Servicios/SEG/menuRich.jsp" SHAPE="272,321,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#Servicios#SEG#menuDropDawn.jsp"
+  PATH="/Servicios/SEG/menuDropDawn.jsp" SHAPE="272,209,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>
