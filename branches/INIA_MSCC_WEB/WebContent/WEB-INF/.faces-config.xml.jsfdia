@@ -5,12 +5,14 @@
  <PROCESS-ITEM NAME="rules:#login.jsp" PATH="/login.jsp"
   SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#login.jsp:0" NAME="item" PATH="/login.jsp" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="login-ok:#{sesion.login}:#menuDropDawn.jsp"
-    NAME="output" PATH="/menuDropDawn.jsp"
-    TARGET="rules:#menuDropDawn.jsp" TITLE="#{sesion.login}:login-ok" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="login-error:#{sesion.login}:#loginFail.jsp"
-    NAME="output1" PATH="/loginFail.jsp" TARGET="rules:#loginFail.jsp"
-    TITLE="#{sesion.login}:login-error" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="login-ok:#{loginBean.login}:#menuDropDawn.jsp" NAME="output"
+    PATH="/menuDropDawn.jsp" TARGET="rules:#menuDropDawn.jsp"
+    TITLE="#{loginBean.login}:login-ok" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="login-error:#{loginBean.login}:#loginFail.jsp" NAME="output1"
+    PATH="/loginFail.jsp" TARGET="rules:#loginFail.jsp"
+    TITLE="#{loginBean.login}:login-error" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="registrarse::#menuRich.jsp" NAME="output2"
     PATH="/menuRich.jsp" TARGET="rules:#menuRich.jsp"
     TITLE="registrarse" model-entity="JSFProcessItemOutput"/>
