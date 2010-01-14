@@ -6,7 +6,7 @@
 <!--el archivo hibernate.cfg.xml ya esta apuntando a el recurso INIA_MSCC como datasource-->
 <datasources>
  <local-tx-datasource>
-  <jndi-name>INIA_MSCC</jndi-name>
+  <jndi-name>iniamsccdb</jndi-name>
    <connection-url>jdbc:mysql://localhost:3306/inia_mscc_db</connection-url>
    <driver-class>com.mysql.jdbc.Driver</driver-class>
    <user-name>root</user-name>
@@ -17,7 +17,7 @@
    <track-statements/>
 
    <metadata>
-       <type-mapping>INIA_MSCC</type-mapping>
+       <type-mapping>iniamsccdb</type-mapping>
     </metadata>
   </local-tx-datasource>
 </datasources>

@@ -8,6 +8,7 @@ import org.hibernate.tool.hbm2ddl.SchemaExport;
 
 import com.inia_mscc.config.util.LoggingUtilities;
 import com.inia_mscc.excepciones.IniaPersistenciaException;
+import com.inia_mscc.modulos.seg.entidades.Usuario;
 //import com.inia_mscc.modulos.comun.entidades.Casa;
 
 public class HibernateUtil {
@@ -20,13 +21,13 @@ public class HibernateUtil {
         try {
         	
         	SESSION_FACTORY = new AnnotationConfiguration()
-        	.addPackage("com.inia_mscc.modulos.adm.entidades")
-        	.addPackage("com.inia_mscc.modulos.comun.entidades")
-        	.addPackage("com.inia_mscc.modulos.eje.entidades")
-        	.addPackage("com.inia_mscc.modulos.gem.entidades")
-        	.addPackage("com.inia_mscc.modulos.lut.entidades")
-        	.addPackage("com.inia_mscc.modulos.seg.entidades")
-        	//.addAnnotatedClass(Casa.class)
+//        	.addPackage("com.inia_mscc.modulos.adm.entidades")
+//        	.addPackage("com.inia_mscc.modulos.comun.entidades")
+//        	.addPackage("com.inia_mscc.modulos.eje.entidades")
+//        	.addPackage("com.inia_mscc.modulos.gem.entidades")
+//        	.addPackage("com.inia_mscc.modulos.lut.entidades")
+//        	.addPackage("com.inia_mscc.modulos.seg.entidades.Usuario")
+        	.addAnnotatedClass(Usuario.class)
         	.configure("hibernate.cfg.xml")
         	.buildSessionFactory();
             
