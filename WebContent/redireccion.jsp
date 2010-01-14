@@ -7,6 +7,6 @@
 <title>Redireccion</title>
 </head>
 <body>
-<jsp:forward page="/p/login.jsf"/>
+<jsp:forward page="/Servicios/SEG/login.jsf"/>
 </body>
 </html>

@@ -2,20 +2,14 @@ package com.bean.seg;
 
 import java.io.Serializable;
 
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import com.inia_mscc.modulos.seg.SEGFachada;
-import com.inia_mscc.modulos.seg.dao.DAOUsuario;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
 
-public class LoginBean implements Serializable  {
-
+public class LoginBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
 	private SEGFachada segFachada =  new SEGFachada();
 	
 		public boolean isInit() {
@@ -26,15 +20,15 @@ public class LoginBean implements Serializable  {
 			return BeanMaestro.getInstance().isLogged();
 		}
 		
-		private String nombre;
+		private String loginName;
 		private String password;
 		private String error;
 		
-		public String getNombre() {
-			return nombre;
+		public String getLoginName() {
+			return loginName;
 		}
-		public void setNombre(String nombre) {
-			this.nombre = nombre;
+		public void setLoginName(String loginName) {
+			this.loginName = loginName;
 		}
 		public String getPassword() {
 			return password;
@@ -48,7 +42,7 @@ public class LoginBean implements Serializable  {
 
 		public String login() {
 			BeanMaestro.getInstance().getTextBundle();
-			Usuario u = segFachada.login(nombre, password);
+			Usuario u = segFachada.login(loginName, password);
 			
 			if (u != null) {
 				BeanMaestro maestro = BeanMaestro.getInstance();
