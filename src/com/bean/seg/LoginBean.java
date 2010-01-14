@@ -6,6 +6,7 @@ import java.io.Serializable;
 import javax.mail.MessagingException;
 import javax.naming.NamingException;
 
+import com.bean.comun.BeanMaestro;
 import com.inia_mscc.modulos.seg.SEGFachada;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 

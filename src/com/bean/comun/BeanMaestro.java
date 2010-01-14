@@ -1,12 +1,18 @@
-package com.bean.seg;
+package com.bean.comun;
 
+import java.io.Serializable;
 import java.util.Map;
 import java.util.ResourceBundle;
 
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
-	public class BeanMaestro {
+	public class BeanMaestro implements Serializable {
+		
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 3243282531248279355L;
 		
 		private long usuarioId = -1;
 		private boolean logged = false;
