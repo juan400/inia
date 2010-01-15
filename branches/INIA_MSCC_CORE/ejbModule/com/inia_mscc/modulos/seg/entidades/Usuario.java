@@ -13,66 +13,55 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 //import javax.persistence.FetchType;
 //import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 import org.hibernate.annotations.Entity;
+import org.hibernate.annotations.Table;
 
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
-//import com.inia_mscc.modulos.comun.entidades.Objeto;
 
 
-/**
- * @author Juan Andres Pio
- *	@AttributeOverride( name="id", column = @Column(name="usua_num_id") )
-	Cuando tenemos que sobre escribir mapeos
-	de la superclase en la clase actual se usa esto.
-	Por ejemplo: como todas las clases heredan de Objeto, 
-	todas van a implementar esto
- */
-//@AttributeOverrides(
-//	{
-//		@AttributeOverride(name = "id",column = @Column(name = "usua_num_id"))
-//		,@AttributeOverride(name = "timestamp",column = @Column(name = "usua_tst_timestamp"))
-//	})
-/**
- * @author Juan Andres Pio
- *  Para generar el mapeo de una asociacion que implementa una clase padre,
- *  y nosotros necesitamos mapearla con columnas de la endidad hija, usamos esto:
- */	
-//@AssociationOverride( name="propulsion", joinColumns = @JoinColumn(name="fld_propulsion_fk") )
-
-//public class Usuario extends Objeto implements Serializable
-@Entity @Table(name="tl_seg_usua_usuario")
+@Entity
+	@Table(appliesTo="tl_seg_usua_usuario")
 public class Usuario implements Serializable
 {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1317547340768515297L;
-	
+
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="usua_num_id")
 	private long _id;
+	@Column	(name="usua_str_login")
 	private String _login;
+	@Column (name="usua_str_password")
 	private String _password;
-//	private boolean _activado;
-//	private Date _ultimoAcceso;
-//	private Enumerados.EstadoUsuario _estadoUsuario;
+	@Column (name="usua_bol_activado")
+	private boolean _activado;
+	@Column(name = "usua_dte_ultimo_acceso")
+	@Temporal(TemporalType.TIMESTAMP)
+	@org.hibernate.annotations.Generated(org.hibernate.annotations.GenerationTime.ALWAYS)
+	private Date _ultimoAcceso;
+	@Enumerated(EnumType.STRING)
+	@Column (name="usua_str_estado_usuario")
+	private Enumerados.EstadoUsuario _estadoUsuario;
 //	private DatoUsuario _datos;
 	
 	public Usuario() {
 		super();
 		_login = null;
 		_password = null;
-//		_activado = false;
-//		_ultimoAcceso = new Date();
-//		_estadoUsuario = Enumerados.EstadoUsuario.Ninguno;
+		_activado = false;
+		_ultimoAcceso = new Date();
+		_estadoUsuario = Enumerados.EstadoUsuario.Ninguno;
 //		_datos = null;
 	}
 
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="usua_num_id")
 	public long get_id() {
 		return _id;
 	}
@@ -82,13 +71,7 @@ public class Usuario implements Serializable
 		_id = id;
 	}
 	
-	@Column
-	(name="usua_str_login")
-//			,unique=true 
-//			,nullable=false
-//			,updatable=false
-//			,length=220
-//	)
+
 	public String get_login() {
 		return _login;
 	}
@@ -96,10 +79,7 @@ public class Usuario implements Serializable
 		_login = login;
 	}
 
-	@Column (name="usua_str_password"
-//		,nullable=false
-//		,length=13
-		)
+
 	public String get_password() {
 		return _password;
 	}
