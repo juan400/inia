@@ -5,11 +5,6 @@
 <!-- RichFaces tag library declaration -->
 <%@ taglib uri="http://richfaces.org/a4j" prefix="a4j"%>
 <%@ taglib uri="http://richfaces.org/rich" prefix="rich"%>
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:a4j="http://richfaces.org/a4j"
-                xmlns:rich="http://richfaces.org/rich">
-</ui:composition>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
