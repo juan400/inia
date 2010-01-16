@@ -18,7 +18,6 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = -1317547340768515297L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "usua_num_id")
 	private long _id;
 	@Column(name = "usua_str_login")//, columnDefinition = "VARCHAR(20)")
