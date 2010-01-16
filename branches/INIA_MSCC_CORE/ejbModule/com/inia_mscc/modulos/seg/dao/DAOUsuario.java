@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.StaleObjectStateException;
 import org.hibernate.criterion.Restrictions;
 
 import com.inia_mscc.config.hibernate.HibernateUtil;
@@ -21,12 +22,15 @@ public class DAOUsuario {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			Criteria c = session.createCriteria(Usuario.class);
-			c.add(Restrictions.eq("usua_str_login", loginNombre));
-			c.add(Restrictions.eq("usua_str_password", password));
+			c.add(Restrictions.eq("_login", loginNombre));
+			c.add(Restrictions.eq("_password", password));
 			usuario = (Usuario) c.uniqueResult();
-			// session.save(usuario);
-			// } catch (StaleObjectStateException e) {
-		} catch (Exception e) {
+			// usuario = new Usuario();
+			// usuario.set_login(loginNombre);
+			// usuario.set_password(password);
+			// cantidad = (Long) session.save(usuario);
+		} catch (StaleObjectStateException e) {
+			// } catch (Exception e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);
@@ -53,16 +57,16 @@ public class DAOUsuario {
 	}
 
 	public void saveUser(Session session, Usuario u) {
-		// session.saveOrUpdate(u);
+		// cantidad = (Long) session.save(usuario);
 	}
 
-	public boolean isUser(String login, Session session) {
+	public boolean isUser(String loginNombre, Session session) {
 		boolean existe = false;
-		// List res = session.createQuery(
-		// "select u from tl_seg_usua_usuario as u " +
-		// " where u.usua_str_login='" + login + "' "
-		// ).list();
-		// existe = res.size() > 0;
+		Criteria c = session.createCriteria(Usuario.class);
+		c.add(Restrictions.eq("_login", loginNombre));
+		if (c.uniqueResult() != null) {
+			existe = true;
+		}
 		return existe;
 	}
 
