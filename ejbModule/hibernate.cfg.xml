@@ -6,29 +6,6 @@
 <hibernate-configuration>
 
 	<session-factory name="java:hibernate/SessionFactory">
-
-		<!-- Database connection settings -->
-		<!--
-			<property
-			name="connection.driver_class">com.mysql.jdbc.Driver</property>
-		-->
-		<!--
-			<property
-			name="connection.url">jdbc:mysql://localhost:3306/inia_mscc_db</property>
-		-->
-		<!--		<property name="connection.username">inia_db</property>-->
-		<!--		<property name="connection.password">inia</property>-->
-		<!--				 JDBC connection pool (use the built-in) -->
-		<!--		<property name="connection.pool_size">1</property>-->
-
-
-		<!-- properties -->
-		<!-- SQL dialect -->
-		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
-		<!--
-			<property
-			name="dialect">org.hibernate.dialect.MySQLDialect</property>
-		-->
 		<property name="connection.datasource">java:/iniamsccdb</property>
 		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
 		<property name="transaction.factory_class">org.hibernate.transaction.CMTTransactionFactory</property>
@@ -40,11 +17,7 @@
 		<property name="show_sql">true</property>
 		<property name="hibernate.transaction.flush_before_completion">true</property>
 		<property name="hibernate.transaction.auto_close_session">true</property>
-		<property name="hibernate.hbm2ddl.auto">create</property>
-
-				<!--<mapping package="com.inia_mscc.modulos.seg.entidades" />--> 
-		<mapping class="com.inia_mscc.modulos.seg.entidades.Usuario" />
-
+		<property name="hibernate.hbm2ddl.auto">create-update</property>
 	</session-factory>
 
 </hibernate-configuration>
