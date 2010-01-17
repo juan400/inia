@@ -5,12 +5,14 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import com.inia_mscc.modulos.comun.entidades.Enumerados;
 
 @Entity(name = "Usuario")
 @Table(name = "tl_seg_usua_usuario")
@@ -18,26 +20,24 @@ public class Usuario implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -1317547340768515297L;
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "usua_num_id",nullable=false,columnDefinition="BIGINT(20)")
+	@Column(name = "usua_num_id", nullable = false, columnDefinition = "BIGINT(20)")
 	private long _id;
-	@Column(name = "usua_str_login",nullable=false, columnDefinition = "VARCHAR(20)")
+	@Column(name = "usua_str_login", nullable = false, columnDefinition = "VARCHAR(20)")
 	private String _login;
-	@Column(name = "usua_str_password",nullable=false, columnDefinition = "VARCHAR(13)")
+	@Column(name = "usua_str_password", nullable = false, columnDefinition = "VARCHAR(13)")
 	private String _password;
-	@Column(name = "usua_bol_activado",nullable=false, columnDefinition = "TINYINT(1)")
+	@Column(name = "usua_bol_activado", nullable = false, columnDefinition = "TINYINT(1)")
 	private boolean _activado;
-	@Column(name = "usua_dte_ultimo_acceso",nullable=false, columnDefinition = "TIMESTAMP")
-	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "usua_dte_ultimo_acceso", nullable = false, columnDefinition = "DATETIME")
 	private Date _ultimoAcceso;
-	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "usua_str_estado_usuario", nullable = false, columnDefinition = "VARCHAR(45)")
+	private Enumerados.EstadoUsuario _estadoUsuario;
 
-	// @Enumerated(EnumType.STRING)
-	// @Column (name="usua_str_estado_usuario")
-	// private Enumerados.EstadoUsuario _estadoUsuario;
 	// private DatoUsuario _datos;
 
 	public Usuario() {
@@ -46,7 +46,7 @@ public class Usuario implements Serializable {
 		_password = null;
 		_activado = false;
 		_ultimoAcceso = new Date();
-		// _estadoUsuario = Enumerados.EstadoUsuario.Ninguno;
+		_estadoUsuario = Enumerados.EstadoUsuario.Ninguno;
 		// _datos = null;
 	}
 
@@ -80,6 +80,14 @@ public class Usuario implements Serializable {
 
 	public boolean is_activado() {
 		return _activado;
+	}
+
+	public void set_estadoUsuario(Enumerados.EstadoUsuario _estadoUsuario) {
+		this._estadoUsuario = _estadoUsuario;
+	}
+
+	public Enumerados.EstadoUsuario get_estadoUsuario() {
+		return _estadoUsuario;
 	}
 
 	public void set_ultimoAcceso(Date _ultimoAcceso) {
