@@ -1,5 +1,6 @@
 package com.inia_mscc.modulos.seg.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -13,8 +14,13 @@ import com.inia_mscc.config.util.LoggingUtilities;
 import com.inia_mscc.excepciones.IniaPersistenciaException;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
-public class DAOUsuario {
+public class DAOUsuario implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private static final Logger logger = Logger.getLogger(DAOUsuario.class);
 
 	public Usuario login(String loginNombre, String password) {
@@ -26,7 +32,6 @@ public class DAOUsuario {
 			c.add(Restrictions.eq("_password", password));
 			usuario = (Usuario) c.uniqueResult();
 		} catch (StaleObjectStateException e) {
-			// } catch (Exception e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);
@@ -36,28 +41,21 @@ public class DAOUsuario {
 
 	public List<Usuario> getUsers() {
 		List<Usuario> ret = null;
-
-		// Transaction tx = null;
-		// Session session =
-		// InitSessionFactory.getInstance().getCurrentSession();
-		// try {
-		// tx = session.beginTransaction();
-		// ret = (List<Usuario>)session.createQuery("from Usuario").list();
-		// tx.commit();
-		// } catch (HibernateException e) {
-		// e.printStackTrace();
-		// if (tx != null && tx.isActive())
-		// tx.rollback();
-		// }
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			Criteria c = session.createCriteria(Usuario.class);
+			ret = (List<Usuario>) c.list();
+		} catch (StaleObjectStateException e) {
+			// } catch (Exception e) {
+			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
+			logger.error(stackTrace);
+			throw new IniaPersistenciaException(e.getMessage(), e);
+		}
 		return ret;
 	}
 
 	public void saveUser(Session session, Usuario u) {
-//		 usuario = new Usuario();
-//		 usuario.set_login(loginNombre);
-//		 usuario.set_password(password);
-//		 usuario.set_activado(true);
-//		 session.save(usuario);
+		 session.save(u);
 	}
 
 	public boolean isUser(String loginNombre, Session session) {
