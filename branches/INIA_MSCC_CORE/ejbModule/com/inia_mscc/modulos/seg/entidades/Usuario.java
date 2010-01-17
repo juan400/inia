@@ -98,4 +98,10 @@ public class Usuario implements Serializable {
 		return _ultimoAcceso;
 	}
 
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.get_login()+this.get_ultimoAcceso()+ this.get_estadoUsuario();
+	}
+	
 }
