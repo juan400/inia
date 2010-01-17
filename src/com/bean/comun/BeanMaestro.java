@@ -7,21 +7,22 @@ import java.util.ResourceBundle;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
+import com.inia_mscc.modulos.seg.entidades.Usuario;
+
 	public class BeanMaestro implements Serializable {
-		
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 3243282531248279355L;
-		
-		private long usuarioId = -1;
+
+		private static final long serialVersionUID = 1L;
+
+		private Usuario usuario = null;
 		private boolean logged = false;
 		private String opcion;
 		private ResourceBundle textBundle;
 		private ResourceBundle config;
 		private boolean reload = false;
 		
-		private BeanMaestro() {}
+		public boolean isInit() {
+			return false;
+		}
 		
 		public boolean isLogged() {
 			return logged;
@@ -31,12 +32,16 @@ import javax.faces.context.FacesContext;
 			this.logged = logged;
 		}
 
-		public long getUsuarioId() {
-			return usuarioId;
+		public Usuario getUsuario() {
+			return usuario;
 		}
 
-		public void setUsuarioId(long l) {
-			this.usuarioId = l;
+		public void setUsuario(Usuario usu) {
+			this.usuario = usu;
+		}
+		
+		public String usuarioRegistrado(){
+			return this.getUsuario().get_login();
 		}
 		
 		public String getOpcion() {
