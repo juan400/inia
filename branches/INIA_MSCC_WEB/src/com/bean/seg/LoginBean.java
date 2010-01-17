@@ -16,6 +16,10 @@ public class LoginBean implements Serializable {
 
 	private SEGFachada segFachada = new SEGFachada();
 
+	private String loginName;
+	private String password;
+	private String error;
+
 	public boolean isInit() {
 		return false;
 	}
@@ -23,11 +27,7 @@ public class LoginBean implements Serializable {
 	public boolean isLogged() {
 		return BeanMaestro.getInstance().isLogged();
 	}
-
-	private String loginName;
-	private String password;
-	private String error;
-
+	
 	public String getLoginName() {
 		return loginName;
 	}
@@ -51,12 +51,13 @@ public class LoginBean implements Serializable {
 	public String login() throws IOException, NamingException,
 			MessagingException {
 		// BeanMaestro.getInstance().getTextBundle();
+		
 		Usuario u = segFachada.login(loginName, password);
 
 		if (u != null) {
 			BeanMaestro maestro = BeanMaestro.getInstance();
 			maestro.setLogged(true);
-			maestro.setUsuarioId(u.get_id());
+			maestro.setUsuario(u);
 
 			error = "";
 			BeanMaestro.getInstance().setOpcion("/Servicios/SEG/menuRich.jsp");
@@ -73,7 +74,7 @@ public class LoginBean implements Serializable {
 
 		BeanMaestro maestro = BeanMaestro.getInstance();
 		maestro.setLogged(false);
-		maestro.setUsuarioId(-1);
+		maestro.setUsuario(null);
 
 		error = "";
 		return "";
