@@ -6,7 +6,7 @@ import java.io.Serializable;
 import javax.mail.MessagingException;
 import javax.naming.NamingException;
 
-import com.bean.comun.BeanMaestro;
+import com.bean.comun.MaestroBean;
 import com.inia_mscc.modulos.seg.SEGFachada;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
@@ -25,7 +25,7 @@ public class LoginBean implements Serializable {
 	}
 
 	public boolean isLogged() {
-		return BeanMaestro.getInstance().isLogged();
+		return MaestroBean.getInstance().isLogged();
 	}
 	
 	public String getLoginName() {
@@ -50,17 +50,17 @@ public class LoginBean implements Serializable {
 
 	public String login() throws IOException, NamingException,
 			MessagingException {
-		// BeanMaestro.getInstance().getTextBundle();
+		// MaestroBean.getInstance().getTextBundle();
 		
 		Usuario u = segFachada.login(loginName, password);
 
 		if (u != null) {
-			BeanMaestro maestro = BeanMaestro.getInstance();
+			MaestroBean maestro = MaestroBean.getInstance();
 			maestro.setLogged(true);
 			maestro.setUsuario(u);
 
 			error = "";
-			BeanMaestro.getInstance().setOpcion("/Servicios/SEG/menuRich.jsp");
+			MaestroBean.getInstance().setOpcion("/Servicios/SEG/menuRich.jsp");
 			return "login-ok";
 		} else {
 			error = "El nombre de usuario y password no concuerdan";
@@ -72,7 +72,7 @@ public class LoginBean implements Serializable {
 		if (!isLogged())
 			return "";
 
-		BeanMaestro maestro = BeanMaestro.getInstance();
+		MaestroBean maestro = MaestroBean.getInstance();
 		maestro.setLogged(false);
 		maestro.setUsuario(null);
 

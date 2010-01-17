@@ -9,7 +9,7 @@ import javax.faces.context.FacesContext;
 
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
-	public class BeanMaestro implements Serializable {
+	public class MaestroBean implements Serializable {
 
 		private static final long serialVersionUID = 1L;
 
@@ -40,9 +40,6 @@ import com.inia_mscc.modulos.seg.entidades.Usuario;
 			this.usuario = usu;
 		}
 		
-		public String usuarioRegistrado(){
-			return this.getUsuario().get_login();
-		}
 		
 		public String getOpcion() {
 			return opcion;
@@ -75,13 +72,13 @@ import com.inia_mscc.modulos.seg.entidades.Usuario;
 		}
 
 		@SuppressWarnings("unchecked")
-		public static BeanMaestro getInstance() {
+		public static MaestroBean getInstance() {
 			ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
 			Map session = context.getSessionMap();
-			BeanMaestro g = (BeanMaestro)session.get("BeanMaestro");
+			MaestroBean g = (MaestroBean)session.get("MaestroBean");
 			if (g == null) {
-				g = new BeanMaestro();
-				session.put("BeanMaestro", g);
+				g = new MaestroBean();
+				session.put("MaestroBean", g);
 			}
 			return g;
 		}
