@@ -25,10 +25,6 @@ public class DAOUsuario {
 			c.add(Restrictions.eq("_login", loginNombre));
 			c.add(Restrictions.eq("_password", password));
 			usuario = (Usuario) c.uniqueResult();
-			// usuario = new Usuario();
-			// usuario.set_login(loginNombre);
-			// usuario.set_password(password);
-			// cantidad = (Long) session.save(usuario);
 		} catch (StaleObjectStateException e) {
 			// } catch (Exception e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
@@ -57,7 +53,11 @@ public class DAOUsuario {
 	}
 
 	public void saveUser(Session session, Usuario u) {
-		// cantidad = (Long) session.save(usuario);
+//		 usuario = new Usuario();
+//		 usuario.set_login(loginNombre);
+//		 usuario.set_password(password);
+//		 usuario.set_activado(true);
+//		 session.save(usuario);
 	}
 
 	public boolean isUser(String loginNombre, Session session) {
