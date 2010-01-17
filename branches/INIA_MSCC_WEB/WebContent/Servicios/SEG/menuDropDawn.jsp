@@ -76,7 +76,7 @@
     <br />
     <a4j:outputPanel ajaxRendered="true">
         <h:outputText value="Current Selection: "></h:outputText>
-        <h:outputText style="font-weight:bold" value="#{maestroBean.usuarioRegistrado}"></h:outputText>
+        <h:outputText style="font-weight:bold" value="#{maestroBean.islogged}"></h:outputText>
     </a4j:outputPanel>
     <br />
     <rich:spacer width="1" height="25" />
