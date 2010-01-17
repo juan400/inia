@@ -1,6 +1,7 @@
 package com.inia_mscc.modulos.seg.entidades;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity(name = "Usuario")
 @Table(name = "tl_seg_usua_usuario")
@@ -18,19 +21,20 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = -1317547340768515297L;
 
 	@Id
-	@Column(name = "usua_num_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "usua_num_id",nullable=false,columnDefinition="BIGINT(20)")
 	private long _id;
-	@Column(name = "usua_str_login")//, columnDefinition = "VARCHAR(20)")
+	@Column(name = "usua_str_login",nullable=false, columnDefinition = "VARCHAR(20)")
 	private String _login;
-	@Column(name = "usua_str_password")//, columnDefinition = "VARCHAR(13)")
+	@Column(name = "usua_str_password",nullable=false, columnDefinition = "VARCHAR(13)")
 	private String _password;
-//	@Column(name = "usua_bol_activado", columnDefinition = "TINYINT(1)")
-//	private boolean _activado;
+	@Column(name = "usua_bol_activado",nullable=false, columnDefinition = "TINYINT(1)")
+	private boolean _activado;
+	@Column(name = "usua_dte_ultimo_acceso",nullable=false, columnDefinition = "TIMESTAMP")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date _ultimoAcceso;
+	
 
-	// @Column(name = "usua_dte_ultimo_acceso")
-	// @Temporal(TemporalType.TIMESTAMP)
-	// @org.hibernate.annotations.Generated(org.hibernate.annotations.GenerationTime.ALWAYS)
-	// private Date _ultimoAcceso;
 	// @Enumerated(EnumType.STRING)
 	// @Column (name="usua_str_estado_usuario")
 	// private Enumerados.EstadoUsuario _estadoUsuario;
@@ -40,8 +44,8 @@ public class Usuario implements Serializable {
 		super();
 		_login = null;
 		_password = null;
-//		_activado = false;
-		// _ultimoAcceso = new Date();
+		_activado = false;
+		_ultimoAcceso = new Date();
 		// _estadoUsuario = Enumerados.EstadoUsuario.Ninguno;
 		// _datos = null;
 	}
@@ -70,12 +74,20 @@ public class Usuario implements Serializable {
 		_password = password;
 	}
 
-//	public boolean is_activado() {
-//		return _activado;
-//	}
-//
-//	public void set_activado(boolean activado) {
-//		_activado = activado;
-//	}
+	public void set_activado(boolean _activado) {
+		this._activado = _activado;
+	}
+
+	public boolean is_activado() {
+		return _activado;
+	}
+
+	public void set_ultimoAcceso(Date _ultimoAcceso) {
+		this._ultimoAcceso = _ultimoAcceso;
+	}
+
+	public Date get_ultimoAcceso() {
+		return _ultimoAcceso;
+	}
 
 }
