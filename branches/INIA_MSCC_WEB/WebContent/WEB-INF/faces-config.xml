@@ -1,32 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faces-config version="1.2" xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
-	<managed-bean>
-		<managed-bean-name>maestroBean</managed-bean-name>
-		<managed-bean-class>com.bean.comun.BeanMaestro</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>loginBean</managed-bean-name>
-		<managed-bean-class>com.bean.seg.LoginBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<navigation-rule>
-		<from-view-id>/Servicios/SEG/login.jsp</from-view-id>
-		<navigation-case>
-			<from-action>#{loginBean.login}</from-action>
-			<from-outcome>login-ok</from-outcome>
-			<to-view-id>/Servicios/SEG/menuDropDawn.jsp</to-view-id>
-		</navigation-case>
-		<navigation-case>
-			<from-action>#{loginBean.login}</from-action>
-			<from-outcome>login-error</from-outcome>
-			<to-view-id>/Servicios/SEG/login.jsp</to-view-id>
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>registrarse</from-outcome>
-			<to-view-id>/Servicios/SEG/menuRich.jsp</to-view-id>
-		</navigation-case>
-	</navigation-rule>
+ xmlns:xi="http://www.w3.org/2001/XInclude"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+ <managed-bean>
+  <managed-bean-name>maestroBean</managed-bean-name>
+  <managed-bean-class>com.bean.comun.MaestroBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>loginBean</managed-bean-name>
+  <managed-bean-class>com.bean.seg.LoginBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <navigation-rule>
+  <from-view-id>/Servicios/SEG/login.jsp</from-view-id>
+  <navigation-case>
+   <from-action>#{loginBean.login}</from-action>
+   <from-outcome>login-ok</from-outcome>
+   <to-view-id>/Servicios/SEG/menuDropDawn.jsp</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-action>#{loginBean.login}</from-action>
+   <from-outcome>login-error</from-outcome>
+   <to-view-id>/Servicios/SEG/login.jsp</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>registrarse</from-outcome>
+   <to-view-id>/Servicios/SEG/menuRich.jsp</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <application>
+  <locale-config>
+   <default-locale>es</default-locale>
+   <supported-locale>en</supported-locale>
+   <supported-locale>es</supported-locale>
+  </locale-config>
+  <message-bundle>com.bean.text_es</message-bundle>
+  <message-bundle>com.bean.text_en</message-bundle>
+  <resource-bundle>
+   <base-name>com.bean.juan400SVN</base-name>
+   <var>mailjuan400SVN</var>
+  </resource-bundle>
+ </application>
 </faces-config>
