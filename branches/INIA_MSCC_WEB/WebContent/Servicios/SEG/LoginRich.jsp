@@ -2,6 +2,7 @@
 <%@ taglib uri="http://richfaces.org/rich" prefix="rich"%>
 <%@ taglib uri="http://java.sun.com/jsf/core" prefix="f"%>
 <%@ taglib uri="http://java.sun.com/jsf/html" prefix="h"%>
+
 <f:view>
 	<link href="/Recursos/css/inia2010-01-17.css" rel="stylesheet"
 		type="text/css">
