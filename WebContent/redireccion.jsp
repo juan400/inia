@@ -4,9 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Redireccion</title>
+<title>INIA - Proyecto: Modelo de simulación de crecimiento de cultivos de secano.</title>
+<link href="Recursos/css/inia2010-01-17.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<jsp:forward page="/Servicios/SEG/login.jsf"/>
+	<div class="logo"></div>
+		<div class="top">
+		<jsp:forward page="Servicios/Contenido.jsf"></jsp:forward>
+		</div>
 </body>
 </html>

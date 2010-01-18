@@ -1,25 +1,28 @@
 /*Estilo para los enlaces*/
 form {
+	background-image: url("../../Recursos/Imagenes/fondo.gif");
+	background-position:top,center;
+	background-repeat: repeat;
+	text-align: left;
 	display: inline;
 	margin: 0px;
-	text-align: center;
 }
 
 body {
-	background-image: url(../Recursos/Imagenes/skinInia.jpg);
-	background-color: #ffffff;
-	background-repeat: no-repeat;
+	background-image: url("../../Recursos/Imagenes/skinInia.jpg");
+	background-repeat: repeat;
 	background-attachment: fixed;
 	background-position-x: 100%;
 	background-position-y: 0%;
-	font-family: Tahoma, 'Trebuchet MS', Arial, sans-serif;
+	font-family: Arial;
 	font-size: 11px;
-	color: #000000;
 	margin: 10px;
 	text-align: center;
+	font-weight: bold;
+	width: 100%;
 }
 
-.popupStyle { 
+.popupStyle {
 	background-color: red;
 	color: yellow;
 	font-size: 18px;
@@ -58,17 +61,30 @@ td {
 }
 
 div.logo {
-	background-image: url(../images/LogoInia20.jpg);
+	background-image: url(../../Recursos/Imagenes/LogoInia20.jpg);
 	background-repeat: no-repeat;
+	background-position: center;
 	width: 100%;
-	height: 200px;
+	height: 110px;
 	align: center;
+	text-align: center;
 }
 
 div.top {
-	background-image: url(../images/LogoInia20.jpg);
+	background-image: url(../../Recursos/Imagenes/fondo.gif);
 	background-size: 100%;
-	background-origin: content;	
+	background-origin: content;
+	background-repeat: repeat;
+	text-align: center;
+}
+
+div.pie {
+	background-image: url(../../Recursos/Imagenes/pie.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 100%;
+	height: 30px;
+	align: center;
 	text-align: center;
 }
 

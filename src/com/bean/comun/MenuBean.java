@@ -3,6 +3,12 @@ package com.bean.comun;
 
 public class MenuBean {
 
+//	MenuGroup
+//	HtmlMenuGroup
+//	DropDownMenu
+//	MenuGroupRenderer
+//	MenuGroupTag
+	
 	public String inicio() {
 		MaestroBean.getInstance().setOpcion("inicio");
 		return "inicio";
