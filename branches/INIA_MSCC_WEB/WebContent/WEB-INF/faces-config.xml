@@ -12,23 +12,47 @@
 		<managed-bean-class>com.bean.seg.LoginBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
-	<navigation-rule>
-		<from-view-id>/Servicios/SEG/login.jsp</from-view-id>
-		<navigation-case>
-			<from-action>#{loginBean.login}</from-action>
-			<from-outcome>login-ok</from-outcome>
-			<to-view-id>/Servicios/SEG/menuDropDawn.jsp</to-view-id>
-		</navigation-case>
-		<navigation-case>
-			<from-action>#{loginBean.login}</from-action>
-			<from-outcome>login-error</from-outcome>
-			<to-view-id>/Servicios/SEG/login.jsp</to-view-id>
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>registrarse</from-outcome>
-			<to-view-id>/Servicios/SEG/menuRich.jsp</to-view-id>
-		</navigation-case>
-	</navigation-rule>
+	<!--
+		<managed-bean> <managed-bean-name>state</managed-bean-name>
+		<managed-bean-class>org.richfaces.ui.model.States</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope> </managed-bean>
+		<managed-bean> <managed-bean-name>loginbean</managed-bean-name>
+		<managed-bean-class>com.bean.seg.pruebas.Bean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope> </managed-bean>
+		<managed-bean> <managed-bean-name>registerbean</managed-bean-name>
+		<managed-bean-class>com.bean.seg.pruebas.Bean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope> </managed-bean>
+		<managed-bean> <managed-bean-name>loginaction</managed-bean-name>
+		<managed-bean-class>com.bean.seg.pruebas.LoginAction</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope> <managed-property>
+		<property-name>bean</property-name>
+		<property-class>com.bean.seg.pruebas.Bean</property-class>
+		<value>#{loginbean}</value> </managed-property> </managed-bean>
+		<managed-bean> <managed-bean-name>registeraction</managed-bean-name>
+		<managed-bean-class>com.bean.seg.pruebas.RegisterAction</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope> <managed-property>
+		<property-name>bean</property-name>
+		<property-class>com.bean.seg.pruebas.Bean</property-class>
+		<value>#{registerbean}</value> </managed-property> </managed-bean>
+	-->
+
+<!--	<navigation-rule>-->
+<!--		<from-view-id>/Servicios/SEG/login.jsp</from-view-id>-->
+<!--		<navigation-case>-->
+<!--			<from-action>#{loginBean.login}</from-action>-->
+<!--			<from-outcome>login-ok</from-outcome>-->
+<!--			<to-view-id>/Servicios/SEG/menuDropDawn.jsp</to-view-id>-->
+<!--		</navigation-case>-->
+<!--		<navigation-case>-->
+<!--			<from-action>#{loginBean.login}</from-action>-->
+<!--			<from-outcome>login-error</from-outcome>-->
+<!--			<to-view-id>/Servicios/SEG/login.jsp</to-view-id>-->
+<!--		</navigation-case>-->
+<!--		<navigation-case>-->
+<!--			<from-outcome>registrarse</from-outcome>-->
+<!--			<to-view-id>/Servicios/SEG/menuRich.jsp</to-view-id>-->
+<!--		</navigation-case>-->
+<!--	</navigation-rule>-->
 	<application>
 		<locale-config>
 			<default-locale>es</default-locale>
