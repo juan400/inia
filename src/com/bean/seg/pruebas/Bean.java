@@ -1,7 +1,5 @@
 package com.bean.seg.pruebas;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Bean {
 
