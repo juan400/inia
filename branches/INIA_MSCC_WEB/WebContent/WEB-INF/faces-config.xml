@@ -72,20 +72,24 @@
 		</managed-property>
 	</managed-bean>-->
 		<navigation-rule>
+			
 			<from-view-id>/Servicios/SEG/SEG001.jsp</from-view-id>
 			<navigation-case>
 				<from-action>#{loginBean.login}</from-action>
 				<from-outcome>login-ok</from-outcome>
 				<to-view-id>/Servicios/Contenido.jsp</to-view-id>
+				<redirect /> 
 			</navigation-case>
 			<navigation-case>
 				<from-action>#{loginBean.login}</from-action>
 				<from-outcome>login-error</from-outcome>
 				<to-view-id>/Servicios/SEG/SEG001.jsp</to-view-id>
+				<redirect /> 
 			</navigation-case>
 			<navigation-case>
 				<from-outcome>registrarse</from-outcome>
 				<to-view-id>/Servicios/SEG/SEG002.jsp</to-view-id>
+				<redirect /> 
 			</navigation-case>
 		</navigation-rule>
 

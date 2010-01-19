@@ -46,6 +46,5 @@
 	</session-config>
 	<welcome-file-list>
 		<welcome-file>/Bienvenido.jsp</welcome-file>
-<!--		<welcome-file>/redireccion.jsp</welcome-file>-->
 	</welcome-file-list>
 </web-app>
