@@ -19,8 +19,8 @@
     TARGET="rules:#Servicios#SEG#SEG002.jsp" TITLE="registrarse" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#Servicios#Contenido.jsp"
-  PATH="/Servicios/Contenido.jsp" SHAPE="272,33,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#Servicios#SEG#SEG002.jsp"
   PATH="/Servicios/SEG/SEG002.jsp" SHAPE="272,209,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#Servicios#Contenido.jsp"
+  PATH="/Servicios/Contenido.jsp" SHAPE="272,33,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>
