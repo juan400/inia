@@ -8,6 +8,8 @@ import java.util.Map;
 
 import javax.persistence.Transient;
 
+import org.apache.commons.collections.map.HashedMap;
+
 import com.inia_mscc.modulos.comun.entidades.Objeto;
 import com.inia_mscc.modulos.gem.entidades.Archivo;
 import com.inia_mscc.modulos.gem.entidades.Escenario;
@@ -15,7 +17,7 @@ import com.inia_mscc.modulos.gem.entidades.Escenario;
 public class ResultadoMSCC extends Objeto {
 	private Date _fecha;
 	private Archivo _archivo;
-	private Map _matrizDatos;// : Map<dia, registro<ValorSeleccion, dato>>
+	private HashedMap _matrizDatos;// : Map<dia, registro<ValorSeleccion, dato>>
 	private Escenario _escenario;
 
 	public ResultadoMSCC() {
@@ -43,7 +45,7 @@ public class ResultadoMSCC extends Objeto {
 	}
 	
 	@Transient
-	public Map get_matrizDatos() throws Exception {
+	public HashedMap get_matrizDatos() throws Exception {
 		try {
 			InputStream is = _archivo.get_ubicacion().get_urlPaht()
 					.openStream(); // Abro InputStream desde URL
@@ -56,18 +58,17 @@ public class ResultadoMSCC extends Objeto {
 			// if (f.canRead()) {
 			// entrada.read();
 			String archivo = entrada.readLine();
-			//Map<dia, registro<ValorSeleccion, dato>>
 			if (archivo.isEmpty()) {
 				String[] lineas = archivo.split("\n");
 				for (int i = 1; i < lineas.length; i++) {
 					String[] columnas = lineas[1].split(" ");
 
 					String[] datos = lineas[i].split(" ");
-					Map<Integer,Map<String,Double>> registro;
+					HashedMap registro = new HashedMap();
 					for (int j = 0; j < datos.length; j++) {
-						//registro.put(columnas[j].toString(), Double.parseDouble(datos[j].toString());	
+						registro.put(columnas[j].toString(), Double.parseDouble(datos[j].toString()));
 					}
-					//_matrizDatos.put(i, registro);
+					_matrizDatos.put(i, registro);
 				}
 			}
 			// }
@@ -78,7 +79,7 @@ public class ResultadoMSCC extends Objeto {
 		return _matrizDatos;
 	}
 
-	public void set_matrizDatos(Map matrizDatos) {
+	public void set_matrizDatos(HashedMap matrizDatos) {
 		_matrizDatos = matrizDatos;
 	}
 	
