@@ -1,65 +1,4 @@
-/*Estilo para los enlaces*/
-form {
-	background-image: url("../../Recursos/Imagenes/fondo.gif");
-	background-position:top,center;
-	background-repeat: repeat;
-	text-align: left;
-	display: inline;
-	margin: 0px;
-}
-
-body {
-	background-image: url("../../Recursos/Imagenes/skinInia.jpg");
-	background-repeat: repeat;
-	background-attachment: fixed;
-	background-position-x: 100%;
-	background-position-y: 0%;
-	font-family: Arial;
-	font-size: 11px;
-	margin: 10px;
-	text-align: center;
-	font-weight: bold;
-	width: 100%;
-}
-
-.popupStyle {
-	background-color: red;
-	color: yellow;
-	font-size: 18px;
-	font-family: Arial, Helvetica, sans-serif;
-}
-
-td {
-	font-family: verdana;
-	font-size: 9pt;
-}
-
-.toolbar {
-	height: 30px;
-}
-
-.barsearch {
-	height: 14px;
-	width: 100px;
-}
-
-.tooltip {
-	border-width: 3px;
-	padding: 10px;
-}
-
-.tooltip-text {
-	width: 350px;
-	height: 65px;
-	cursor: arrow;
-	border-width: 2px;
-	text-align: center;
-}
-
-.tooltipData {
-	font-weight: bold;
-}
-
+/*Estilo para los enlaces DBDFF1*/
 div.logo {
 	background-image: url(../../Recursos/Imagenes/LogoInia20.jpg);
 	background-repeat: no-repeat;
@@ -87,6 +26,73 @@ div.pie {
 	align: center;
 	text-align: center;
 }
+form {
+	background-image: url("../../Recursos/Imagenes/fondo.gif");
+	background-position: top, center;
+	background-repeat: repeat;
+	text-align: left;
+	display: inline;
+	margin: 0px;
+}
+
+body {
+	background-image: url("../../Recursos/Imagenes/skinInia.jpg");
+	background-repeat: repeat;
+	background-attachment: fixed;
+	background-position-x: 100%;
+	background-position-y: 0%;
+	font-family: Arial;
+	font-size: 11px;
+	margin: 10px;
+	text-align: center;
+	font-weight: bold;
+}
+
+TBODY {
+	font-family: verdana;
+	font-size: 11pt;
+	vertical-align:top;  
+}
+
+td {
+	font-family: verdana;
+	background-color: transparent;
+}
+
+
+.popupStyle {
+	background-color: red;
+	color: yellow;
+	font-size: 18px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.toolbar {
+	height: 30px;
+}
+
+.barsearch {
+	height: 14px;
+	width: 100px;
+}
+
+.tooltip {
+	border-width: 3px;
+	padding: 10px;
+}
+
+.tooltip-text {
+	width: 350px;
+	height: 65px;
+	cursor: arrow;
+	border-width: 2px;
+	text-align: center;
+}
+
+.tooltipData {
+	font-weight: bold;
+}
 
 }
 #header-logo {
@@ -102,8 +108,8 @@ a.pestanhas:link,a.pestanhas:visited {
 }
 
 a.pestanhas:hover {
-	color: #000000;
-	background-color: #84A8DE;
+	color: #2d77c2;
+	background-color: #BFE2E6;
 	text-decoration: none
 }
 
@@ -143,59 +149,62 @@ select {
 }
 
 table {
-	vertical-align: top;
+	vertical-align:top;
+	border-style:inherit;
 }
 
 a.table {
-	color: #000000;
+	color: #2d77c2;
 	text-decoration: underline
 }
 
 .mensajeError {
 	font-family: verdana;
 	font-size: 9pt;
-	color: #FF0000;
+	color: #FF0000; 
 	font-weight: normal
 }
 
 .tituloTabla {
 	font-family: verdana;
 	font-size: 9pt;
-	background-color: #84A8DE;
-	color: #000000;
+	background-color: #DBDFF1;
+	color: #2d77c2;
 	font-weight: bold;
+	border-style:inherit;
 }
 
 .cuerpoTabla {
 	font-family: verdana;
 	font-size: 9pt;
 	background-color: #E0F0FF;
-	color: #000000;
+	color: #2d77c2;
 	font-weight: normal;
 	vertical-align: top;
 	text-decoration: none;
 	text-align: left;
+	border-style:inherit;
 }
 
 a.cuerpoTabla {
-	color: #000000;
+	color: #2d77c2;
 	text-decoration: underline
 }
 
 a.cuerpoTabla2 {
-	color: #000000;
+	color: #2d77c2;
 	text-decoration: underline
 }
 
 a.cuerpoTabla:hover {
-	color: #000000;
+	color: #2d77c2;
 	text-decoration: underline
 }
 
 .combo {
 	font-family: verdana;
 	font-size: 9pt;
-	color: #000000;
+	color: #2d77c2;
 	font-weight: normal;
 	font-style: italic;
 	text-decoration: none;
@@ -204,133 +213,139 @@ a.cuerpoTabla:hover {
 .cuerpoTabla2 {
 	font-family: verdana;
 	font-size: 9pt;
-	background-color: #CCE6FF;
-	color: #000000;
+	background-color: #E6F3F7;
+	color: #2d77c2;
 	font-weight: normal;
 	vertical-align: top;
 	text-decoration: none;
 	text-align: left;
+	border-style:inherit;
 }
 
 .tituloPantalla {
 	font-family: verdana;
 	font-size: 9pt;
-	background-color: #84A8DE;
-	color: #000000;
+	background-color: #DBDFF1;
+	color: #2d77c2;
+	border-style:inherit;
 }
 
 .cuerpoTablaNivel1 {
 	font-family: verdana;
 	font-size: 9pt;
-	background-color: #D3E0F3;
-	color: #000000;
+	background-color: #B6DCF1;
+	color: #2d77c2;
 	font-weight: normal;
 	vertical-align: top;
 	text-decoration: none;
 	text-align: left;
+	border-style:inherit;
 }
 
 a.cuerpoTablaNivel1 {
-	color: #000000;
+	color: #2d77c2;
 	text-decoration: underline
 }
 
 a.cuerpoTablaNivel1:hover {
-	color: #000000;
+	color: #2d77c2;
 	text-decoration: underline
 }
 
 .cuerpoTablaNivel2 {
 	font-family: verdana;
 	font-size: 9pt;
-	background-color: #AAC3E9;
-	color: #000000;
+	background-color: white;
+	color: #2d77c2;
 	font-weight: normal;
 	vertical-align: top;
 	text-decoration: none;
 	text-align: left;
+	border-style:inherit;
 }
 
 a.cuerpoTablaNivel2 {
-	color: #000000;
+	color: #2d77c2;
 	text-decoration: underline
 }
 
 a.cuerpoTablaNivel2:hover {
-	color: #000000;
+	color: #2d77c2;
 	text-decoration: underline
 }
 
 .cuerpoTablaNivel3 {
 	font-family: verdana;
 	font-size: 9pt;
-	background-color: #84A8DE;
-	color: #000000;
+	background-color: white;
+	color: #2d77c2;
 	font-weight: normal;
 	vertical-align: top;
 	text-decoration: none;
 	text-align: left;
+	border-style:inherit;
 }
 
 a.cuerpoTablaNivel3 {
-	color: #000000;
+	color: #2d77c2;
 	text-decoration: underline
 }
 
 a.cuerpoTablaNivel3:hover {
-	color: #000000;
+	color: #2d77c2;
 	text-decoration: underline
 }
 
 .cuerpoTablaNivel4 {
 	font-family: verdana;
 	font-size: 9pt;
-	background-color: #467CCE;
-	color: #000000;
+	color: #2d77c2;
 	font-weight: normal;
 	vertical-align: top;
 	text-decoration: none;
 	text-align: left;
+	border-style:inherit;
 }
 
 a.cuerpoTablaNivel4 {
-	color: #000000;
+	color: #2d77c2;
 	text-decoration: underline
 }
 
 a.cuerpoTablaNivel4:hover {
-	color: #000000;
+	color: #2d77c2;
 	text-decoration: underline
 }
 
 .letraChica {
 	font-family: verdana;
-	color: #000000;
+	color: #2d77c2;
 }
 
 a.letraChica {
-	color: #000000;
+	color: #2d77c2;
 	text-decoration: underline
 }
 
 a.letraChica:hover {
-	color: #000000;
+	color: #2d77c2;
 	text-decoration: underline
 }
 
 .textoPlano {
 	font-family: verdana;
 	font-size: 9pt;
-	color: #000000;
+	color: #2d77c2;
+	background-color: #DBDFF1
 }
 
 a.textoPlano {
-	color: #84A8DE;
+	color: #2d77c2;
 	text-decoration: underline
 }
 
 a.textoPlano:hover {
-	color: #000000;
+	color: #0932D8;
 	text-decoration: underline
 }
 
@@ -338,7 +353,7 @@ a.textoPlano:hover {
 	font-family: verdana;
 	font-size: 9pt;
 	background-color: #BED1EE;
-	color: #000000;
+	color: #2d77c2;
 	font-weight: bold;
 	text-decoration: none;
 	padding-top: 10px;
@@ -350,8 +365,8 @@ a.textoPlano:hover {
 .opcionElegida {
 	font-family: verdana;
 	font-size: 9pt;
-	background-color: #84A8DE;
-	color: #000000;
+	background-color: white;
+	color: #2d77c2;
 	font-weight: bold;
 	text-decoration: none;
 	padding-top: 10px;
