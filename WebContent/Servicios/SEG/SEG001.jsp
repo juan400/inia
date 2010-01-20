@@ -18,13 +18,16 @@ Secano.</title>
 		<f:loadBundle basename="com.bean.text" var="text" />
 		<table align="center" width="956px">
 			<thead>
+			<tr>
 				<td>
 				<div class="logo"></div>
 				</td>
+				</tr>
 			</thead>
 			<tbody>
+			<tr>
 				<td align="center"><h:panelGroup rendered="#{loginBean.init}" />
-				<h:panelGrid headerClass="tituloPantalla" style="bordercolo: #DBDFF1;">
+				<h:panelGrid headerClass="tituloPantalla">
 					<h:panelGrid rendered="#{loginBean.logged}">
 						<h:outputText styleClass="mensajeError"
 							value="#{text.login_alreadyLogged}" />
@@ -62,13 +65,16 @@ Secano.</title>
 						</h:panelGrid>
 					</h:panelGroup>
 				</h:panelGrid></td>
+				</tr>
 			</tbody>
 			<tfoot>
+			<tr>
 				<td>
 				<div class="pie"></div>
 				</td>
+				</tr>
 			</tfoot>
 		</table>
 	</h:form>
 </f:view>
-</body>
+</body></html>

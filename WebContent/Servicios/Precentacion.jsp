@@ -7,10 +7,45 @@
 		type="text/css">
 	<f:loadBundle basename="com.bean.text" var="text" />
 	<h:form>
-		<table align="center" width="956px" border="1">
+		<table align="center" width="100%">
 			<tr>
 				<td width="200px">Poner algo que explique brevemente el
-				contenido y fucion de la pagina.</td>
+				contenido y fucion de la pagina.
+				asdf<br>
+				asdf<br>
+				asdf<br>
+				asdf<br>
+				ads<br>
+				fads<br>
+				fadsv
+				fads<br>
+				fasd<br>
+				fsad<br>
+				fads<br>
+				f<br>
+				adsf<br>
+				adsf<br>
+				adsf<br>
+				ads<br>
+				f<br>
+				adsf<br>
+				sadf<br>
+				adsf<br>
+				adsf<br>
+				asdf<br>
+				sadf<br>
+				sdf<br>
+				ads<br>
+				f<br>
+				ads<br>
+				asf<br>
+				adsf<br>
+				adsf<br>
+				sdf<br>
+				adsv
+				fads<br>
+				fa<br>
+				dsf</td>
 			</tr>
 		</table>
 	</h:form>

@@ -58,7 +58,11 @@ public class LoginBean implements Serializable {
 			MaestroBean maestro = MaestroBean.getInstance();
 			maestro.setLogged(true);
 			maestro.setUsuario(u);
-
+			StringBuffer p = new StringBuffer();
+			for (int i = 0; i < 8; i++) {
+				String c = "" + (int)(Math.random() * 10);
+				p.append(c);
+			}
 			error = "";
 			MaestroBean.getInstance().setOpcion("/Servicios/SEG/menuRich.jsp");
 			return "login-ok";
