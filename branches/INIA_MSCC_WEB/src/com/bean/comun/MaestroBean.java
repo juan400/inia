@@ -19,7 +19,17 @@ import com.inia_mscc.modulos.seg.entidades.Usuario;
 		private ResourceBundle textBundle;
 		private ResourceBundle config;
 		private boolean reload = false;
+		private boolean activado = false;
 		
+		
+		public void setActivado(boolean activado) {
+			this.activado = activado;
+		}
+
+		public boolean isActivado() {
+			return activado;
+		}
+
 		public boolean isInit() {
 			return false;
 		}
