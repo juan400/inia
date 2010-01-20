@@ -42,7 +42,7 @@ body {
 	background-position-x: 100%;
 	background-position-y: 0%;
 	font-family: Arial;
-	font-size: 11px;
+	font-size: 9px;
 	margin: 10px;
 	text-align: center;
 	font-weight: bold;
@@ -50,8 +50,9 @@ body {
 
 TBODY {
 	font-family: verdana;
-	font-size: 11pt;
-	vertical-align:top;  
+	font-size: 9pt;
+	vertical-align:top;
+	background-image:url("../../Recursos/Imagenes/backgroundTablas.gif");   
 }
 
 td {
@@ -150,7 +151,6 @@ select {
 
 table {
 	vertical-align:top;
-	border-style:inherit;
 }
 
 a.table {
@@ -171,7 +171,6 @@ a.table {
 	background-color: #DBDFF1;
 	color: #2d77c2;
 	font-weight: bold;
-	border-style:inherit;
 }
 
 .cuerpoTabla {
@@ -183,7 +182,6 @@ a.table {
 	vertical-align: top;
 	text-decoration: none;
 	text-align: left;
-	border-style:inherit;
 }
 
 a.cuerpoTabla {
@@ -219,7 +217,6 @@ a.cuerpoTabla:hover {
 	vertical-align: top;
 	text-decoration: none;
 	text-align: left;
-	border-style:inherit;
 }
 
 .tituloPantalla {
@@ -227,7 +224,6 @@ a.cuerpoTabla:hover {
 	font-size: 9pt;
 	background-color: #DBDFF1;
 	color: #2d77c2;
-	border-style:inherit;
 }
 
 .cuerpoTablaNivel1 {
@@ -239,7 +235,6 @@ a.cuerpoTabla:hover {
 	vertical-align: top;
 	text-decoration: none;
 	text-align: left;
-	border-style:inherit;
 }
 
 a.cuerpoTablaNivel1 {
@@ -261,7 +256,6 @@ a.cuerpoTablaNivel1:hover {
 	vertical-align: top;
 	text-decoration: none;
 	text-align: left;
-	border-style:inherit;
 }
 
 a.cuerpoTablaNivel2 {
@@ -283,7 +277,6 @@ a.cuerpoTablaNivel2:hover {
 	vertical-align: top;
 	text-decoration: none;
 	text-align: left;
-	border-style:inherit;
 }
 
 a.cuerpoTablaNivel3 {
@@ -304,7 +297,6 @@ a.cuerpoTablaNivel3:hover {
 	vertical-align: top;
 	text-decoration: none;
 	text-align: left;
-	border-style:inherit;
 }
 
 a.cuerpoTablaNivel4 {
