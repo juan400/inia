@@ -1,0 +1,142 @@
+﻿.Titulo 
+{
+	border-right: #2d77c2 0.5pt solid;
+    border-top: #2d77c2 0.5pt solid; 
+    border-left: #2d77c2 0.5pt solid;
+    border-bottom: #2d77c2 0.5pt solid; 
+    background-color: white;
+}
+
+.TituloFristRow 
+{
+	background-position: right top; 
+	border-bottom: #2d77c2 0.5pt solid;
+    background-repeat: no-repeat; 
+    background-color: white; 
+    
+}
+
+.TituloSecondRow 
+{
+	background-position: left bottom; 
+	background-image: url(../../Recursos/Imagenes/11.jpg);
+    background-repeat: no-repeat; 
+        
+}
+
+.SubTituloFristRow 
+{
+    background-position: right top; 
+    border-bottom: #2d77c2 0.5pt solid;
+    background-repeat: no-repeat; 
+    background-color: #f6f9fd; 
+   
+}
+
+.Celeste
+{
+	color:#2D77C2;
+	font-family:Arial;
+	font-size:9pt;
+	font-weight:normal;
+}
+
+.CampoRequerido
+{
+	color:#2D77C2;
+	font-family:Arial;
+	font-size:9pt;
+	font-weight:normal;
+}
+
+.SubTituloSecondRow 
+{
+    background-position: right top;
+    background-repeat: no-repeat; 
+    background-color: white; 
+}
+
+.dhtmltooltip{
+position: absolute;
+width: 300px;
+border: 1px solid black;
+padding: 5px;
+background-color: #FFFFD8;
+visibility: hidden;
+z-index: 300;
+}
+/* --| aprTableForm --------------------------------------- */
+
+#aprTableForm 
+{
+    background-color: #FFFFFF;
+    padding: 0px;
+    margin: 0px;
+}
+
+#aprTableForm #aprTableFormHead
+{
+	border-top: #2d77c2 0.5pt solid;
+	border-left: #2d77c2 0.5pt solid;
+	border-right: #2d77c2 0.5pt solid;
+    background-color: #FFFFFF;
+    width: 100%; 
+    padding: 0px;
+    padding-left: 3px;
+    margin: 0px;
+    text-align: left;
+}
+
+#aprTableForm #aprTableFormContent
+{
+	background-image: url('../../Recursos/Imagenes/11.jpg');
+    background-repeat: no-repeat;	
+    background-position: left bottom;
+    padding: 10px;
+	border: #2d77c2 0.5pt solid;
+ 
+}
+
+/* --| aprTablePanel --------------------------------------- */
+
+#aprTableForm TBODY #aprTableFormContent .aprTablePanel 
+{
+    background-color: #FFFFFF;
+    width: 100%; 
+    padding: 0px;
+    margin: 0px;
+}
+
+
+#aprTableForm TBODY #aprTableFormContent .aprTablePanel .aprTablePanelHead 
+{
+    background-color: #f6f9fd;
+	border-top: #2d77c2 0.5pt solid;
+	border-left: #2d77c2 0.5pt solid;
+	border-right: #2d77c2 0.5pt solid;
+	padding-left: 3px;
+}
+
+#aprTableForm TBODY #aprTableFormContent .aprTablePanel .aprTablePanelContent
+{
+    background-color: #ffffff;
+	border: #2d77c2 0.5pt solid;
+	padding: 10px;
+}
+
+/* --| aprForm --------------------------------------- */
+
+.aprForm
+{
+    width: 100%;
+}
+
+.aprForm TD
+{
+    width: 50%;
+}
+
+.aprForm TD INPUT
+{
+    width: 99%;
+}
