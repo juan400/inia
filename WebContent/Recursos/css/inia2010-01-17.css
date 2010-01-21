@@ -19,11 +19,15 @@ div.copyrigth {
 	text-align: center;
 }
 
-.asdasd
-{
-    border-top-style: solid;
-    border-right-style: solid;
-    border-left-style: solid;
-    background-color: blue;
-    border-bottom-style: solid;
+body {
+	background-image: url("../../Recursos/Imagenes/skinInia.jpg");
+	background-repeat: repeat;
+	background-attachment: fixed;
+	background-position-x: 100%;
+	background-position-y: 0%;
+}
+
+TABLE {
+	background-image: url("../../Recursos/Imagenes/FondoTablaPrincipal.jpg");
+	background-position: center, top;	
 }
