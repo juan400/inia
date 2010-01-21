@@ -211,6 +211,7 @@ function ValidarCampoLetras(obj, event)
 //***************************************************************************
 function validarEmail(obj, event)
 {
+	debugger;
     var textoAgregado = "";
     if (event.keyCode != 0)
     {
