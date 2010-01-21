@@ -6,10 +6,9 @@
 <%@ taglib uri="http://java.sun.com/jsf/html" prefix="h"%>
 <html>
 <head>
-<title>INIA - Modelo de Simulación de Crecimiento de Cultivos de
-Secano.</title>
-<link href="Recursos/css/inia2010-01-17.css" rel="stylesheet"
-	type="text/css">
+<title>INIA - Modelo de Simulación de Crecimiento de Cultivos de Secano.</title>
+<link href="<%= request.getContextPath() %>/Recursos/css/inia2010-01-17.css" rel="stylesheet" type="text/css">
+<script src="<%= request.getContextPath() %>/Recursos/Scripts/JSComun.js" type="text/javascript" language="javascript"></script>
 </head>
 <body>
 <f:loadBundle basename="com.bean.text" var="text" />
