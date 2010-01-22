@@ -49,12 +49,15 @@ Secano.</title>
 									<h:outputText value="#{text.login_userName}"
 										styleClass="textoPlano" />
 									<h:inputText value="#{loginBean.loginName}"
-										styleClass="textoPlano" />
+										styleClass="textoPlano" 
+										onkeypress="validarEmailKeyPress(this, event)"/>
 
 									<h:outputText value="#{text.login_password}"
 										styleClass="textoPlano" />
 									<h:inputSecret value="#{loginBean.password}"
-										styleClass="textoPlano" />
+										styleClass="textoPlano"  
+										onblur="ValidarCampoLogin(this, event)" 
+										onkeypress="ValidarCampoLogin(this, event)"/>
 
 									<h:outputText value="" />
 									<h:panelGrid columns="2">

@@ -1,11 +1,10 @@
 package com.bean.seg;
 
 import java.io.Serializable;
-import java.util.Map;
-
-import javax.faces.context.FacesContext;
 
 import com.bean.comun.MaestroBean;
+import com.inia_mscc.modulos.seg.SEGFachada;
+import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
 
 public class RegistroBean implements Serializable {
 
@@ -14,6 +13,7 @@ public class RegistroBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private SEGFachada segFachada = new SEGFachada();
 	/*
 	 * Region de atributos y variables
 	 */
@@ -36,7 +36,7 @@ public class RegistroBean implements Serializable {
 
 	private String error;
 	private Long codigoActivacion;
-	
+
 	/*
 	 * Region de Metodos
 	 */
@@ -48,28 +48,47 @@ public class RegistroBean implements Serializable {
 		return MaestroBean.getInstance().isLogged();
 	}
 
-	public String registrar() {
-		// if (UsuarioHandler.registrar(nombre, email)) {
-		// error = "";
-		// return "registro-ok";
-		// } else {
-		error = "Ya existe un usuario registrado con ese nombre";
-		return null;
-		// }
+	public String registrar() throws Exception{
+		// MaestroBean.getInstance().getTextBundle();
+		String retorno="";
+		try {
+			DatoUsuario pUsuario = new DatoUsuario();
+			pUsuario.set_nombre(this.getNombre());
+			DatoUsuario u = segFachada.RegistrarUsuario(pUsuario);
+//			 Usuario u = segFachada.Login(this.getNombre(),this.getApellido());
+			if (u != null) {
+				StringBuffer p = new StringBuffer();
+				for (int i = 0; i < 8; i++) {
+					String c = "" + (int) (Math.random() * 10);
+					p.append(c);
+				}
+				error = "";
+				MaestroBean.getInstance().setOpcion(
+						"/Servicios/SEG/menuRich.jsp");
+				retorno = "registro-ok";
+			} else {
+				error = "El nombre de usuario y password no concuerdan";
+				retorno = "registro-error";
+			}
+		} catch (Exception ex) {
+			error  = ex.getMessage();
+		}
+		return retorno;
 	}
-	
+
 	public boolean isActivado() {
-//		FacesContext context = FacesContext.getCurrentInstance();
-//		Map<String, String> params = context.getExternalContext().getRequestParameterMap();
-//		if (!params.get("CodigoActivacion").isEmpty())
-//			this.setCodigoActivacion(Long.parseLong(params.get("CodigoActivacion")));
+		// FacesContext context = FacesContext.getCurrentInstance();
+		// Map<String, String> params =
+		// context.getExternalContext().getRequestParameterMap();
+		// if (!params.get("CodigoActivacion").isEmpty())
+		// this.setCodigoActivacion(Long.parseLong(params.get("CodigoActivacion")));
 		return MaestroBean.getInstance().isActivado();
 	}
 
 	/*
 	 * Region de Getters y Setters
-	 * */
-	
+	 */
+
 	public String getNombre() {
 		return nombre;
 	}

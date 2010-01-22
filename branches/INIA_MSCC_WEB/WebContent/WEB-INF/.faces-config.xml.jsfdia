@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PROCESS model-entity="JSFProcess">
  <PROCESS-ITEM NAME="rules:#Servicios#SEG#SEG001.jsp"
-  PATH="/Servicios/SEG/SEG001.jsp" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  PATH="/Servicios/SEG/SEG001.jsp" SHAPE="32,64,50,73" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#Servicios#SEG#SEG001.jsp:0" NAME="item"
    PATH="/Servicios/SEG/SEG001.jsp" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
@@ -14,13 +14,39 @@
     NAME="output1" PATH="/Servicios/SEG/SEG001.jsp"
     TARGET="rules:#Servicios#SEG#SEG001.jsp"
     TITLE="#{loginBean.login}:login-error" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="registrarse::#Servicios#SEG#SEG002.jsp"
-    NAME="output2" PATH="/Servicios/SEG/SEG002.jsp"
-    TARGET="rules:#Servicios#SEG#SEG002.jsp" TITLE="registrarse" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="logout:#{loginBean.logout}:#Servicios#SEG#SEG001.jsp"
+    NAME="output2" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp"
+    TITLE="#{loginBean.logout}:logout" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="registrarse:#{loginBean.registrarse}:#Servicios#SEG#SEG002.jsp"
+    NAME="output3" PATH="/Servicios/SEG/SEG002.jsp"
+    TARGET="rules:#Servicios#SEG#SEG002.jsp"
+    TITLE="#{loginBean.registrarse}:registrarse" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#Servicios#SEG#SEG002.jsp"
-  PATH="/Servicios/SEG/SEG002.jsp" SHAPE="272,209,0,0" model-entity="JSFProcessGroup"/>
+  PATH="/Servicios/SEG/SEG002.jsp" SHAPE="360,168,50,25" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#SEG#SEG002.jsp:0" NAME="item"
+   PATH="/Servicios/SEG/SEG002.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="registro-ok:#{registroBean.registrar}:#Servicios#SEG#SEG001.jsp"
+    NAME="output" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp"
+    TITLE="#{registroBean.registrar}:registro-ok" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="registro-error:#{registroBean.registrar}:#Servicios#SEG#SEG002.jsp"
+    NAME="output1" PATH="/Servicios/SEG/SEG002.jsp"
+    TARGET="rules:#Servicios#SEG#SEG002.jsp"
+    TITLE="#{registroBean.registrar}:registro-error" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="#{registroBean.cancelar}::#Servicios#SEG#SEG001.jsp"
+    NAME="output2" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp"
+    TITLE="#{registroBean.cancelar}" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#Servicios#Contenido.jsp"
   PATH="/Servicios/Contenido.jsp" SHAPE="272,33,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

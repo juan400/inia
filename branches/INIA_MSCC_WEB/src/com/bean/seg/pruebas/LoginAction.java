@@ -13,7 +13,7 @@ public class LoginAction
     
     public void listener(ActionEvent event) {
     		@SuppressWarnings("unused")
-			Usuario u = segFachada.login(bean.getName(), bean.getPassword());
+			Usuario u = segFachada.Login(bean.getName(), bean.getPassword());
 //
 //    		if (u != null) {
 //    			MaestroBean maestro = MaestroBean.getInstance();
