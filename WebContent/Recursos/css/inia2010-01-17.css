@@ -26,11 +26,78 @@ body {
 	background-attachment: fixed;
 	background-position-x: 100%;
 	background-position-y: 0%;
-	border: none;
-	border-bottom: none;
-	border-left: none;
-	border-right: none;
-	border-top: none;
+    border-top-style:none;
+    border-top-width:0px;
+    border-bottom-style:none;
+    border-bottom-width:0px;
+    border-left-style:none;
+    border-right-style:none;
+    border-right-width:0px;
+    border-left-width:0px;
+}
+FORM{
+    border-top-style:none;
+    border-top-width:0px;
+    border-bottom-style:none;
+    border-bottom-width:0px;
+    border-left-style:none;
+    border-right-style:none;
+    border-right-width:0px;
+    border-left-width:0px;
+	}
+TABLE{
+    border-top-style:none;
+    border-top-width:0px;
+    border-bottom-style:none;
+    border-bottom-width:0px;
+    border-left-style:none;
+    border-right-style:none;
+    border-right-width:0px;
+    border-left-width:0px;
+	}
+
+TBODY{
+    border-top-style:none;
+    border-top-width:0px;
+    border-bottom-style:none;
+    border-bottom-width:0px;
+    border-left-style:none;
+    border-right-style:none;
+    border-right-width:0px;
+    border-left-width:0px;
+}
+
+THEAD{
+    border-top-style:none;
+    border-top-width:0px;
+    border-bottom-style:none;
+    border-bottom-width:0px;
+    border-left-style:none;
+    border-right-style:none;
+    border-right-width:0px;
+    border-left-width:0px;
+}
+
+TFOOT{
+    border-top-style:none;
+    border-top-width:0px;
+    border-bottom-style:none;
+    border-bottom-width:0px;
+    border-left-style:none;
+    border-right-style:none;
+    border-right-width:0px;
+    border-left-width:0px;
+}
+
+td{
+    border-top-style:none;
+    border-top-width:0px;
+    border-bottom-style:none;
+    border-bottom-width:0px;
+    border-left-style:none;
+    border-right-style:none;
+    border-right-width:0px;
+    border-left-width:0px;
 }
 
 .tituloPantalla {
@@ -75,3 +142,12 @@ a.textoPlano:hover {
 	color: #FF0000; 
 	font-weight: normal
 }
+
+comboBox
+{
+    font-family: verdana;
+    font-weight:normal;
+    font-size:18pt;  
+    height: 20px; 
+} 
+

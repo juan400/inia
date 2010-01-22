@@ -47,36 +47,42 @@ Secano.</title>
 
 									<h:outputText value="#{text.registro_Nombre}" />
 									<h:inputText value="#{registroBean.nombre}"
-										onkeypress="validarSoloLetras(this, event)"
-										onchange="validarSoloLetras(this, event)" />
+										onkeypress="ValidarCampoLetras(this, event)"
+										onblur="ValidarCampoLetras(this, event)" />
 
 									<h:outputText value="#{text.registro_Apellido}" />
-									<h:inputText value="#{registroBean.apellido}" />
+									<h:inputText value="#{registroBean.apellido}"
+										onkeypress="ValidarCampoLetras(this, event)"
+										onblur="ValidarCampoLetras(this, event)" />
 
 									<h:outputText value="#{text.registro_Email}" />
-									<h:inputText id="txtEmail" onchange="validarEmail(this, event)"
-										onblur="validarEmail(this, event)"
-										onkeypress="validarEmail(this, event)"
-										value="#{registroBean.email}" />
+									<h:inputText value="#{registroBean.email}" 
+										onblur="validarEmailBlur(this, event)" 
+										onkeypress="validarEmailKeyPress(this, event)"/>
 
 									<h:outputText value="#{text.registro_Teléfono}" />
-									<h:inputText value="#{registroBean.telefono}" />
+									<h:inputText value="#{registroBean.telefono}" 
+										onblur="ValidarCampoTelefono(this, event)" 
+										onkeypress="ValidarCampoTelefono(this, event)"/> 
 
 									<h:outputText value="#{text.registro_Celular}" />
-									<h:inputText value="#{registroBean.celular}" />
+									<h:inputText value="#{registroBean.celular}" 
+										onblur="ValidarCampoTelefono(this, event)" 
+										onkeypress="ValidarCampoTelefono(this, event)"/>
 
 									<h:outputText value="#{text.registro_Direccion}" />
-									<h:inputText value="#{registroBean.direccion}" />
+									<h:inputText value="#{registroBean.direccion}" 
+										onkeypress="ValidarCampoConCaracteresEspeciales(this, event)"
+										onblur="ValidarCampoConCaracteresEspeciales(this, event)" />
 
 									<h:outputText value="#{text.registro_Ciudad}" />
 									<rich:comboBox value="#{registroBean.ciudad}" />
 
-									<h:outputText
-										value="#{text.registro_Departamento_Estado_Provincia}" />
-									<rich:comboBox value="#{registroBean.departamento}" />
+									<h:outputText value="#{text.registro_Departamento_Estado_Provincia}" />
+									<rich:comboBox value="#{registroBean.departamento}"  />
 
-									<h:outputLabel value="#{text.registro_Pais}" />
-									<rich:comboBox value="#{registroBean.pais}" />
+									<h:outputLabel value="#{text.registro_Pais}"  />
+									<rich:comboBox value="#{registroBean.pais}"  />
 
 									<h:outputText value="" />
 									<h:panelGrid columns="2">
@@ -88,7 +94,6 @@ Secano.</title>
 											value="#{text.boton_Cancelar}"/>
 									</h:panelGrid>
 									<f:facet name="footer">
-
 										<h:outputText value="#{registroBean.error}"
 											styleClass="mensajeError" />
 									</f:facet>
