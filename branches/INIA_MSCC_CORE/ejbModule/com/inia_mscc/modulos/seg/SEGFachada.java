@@ -1,8 +1,8 @@
 package com.inia_mscc.modulos.seg;
 
-
 import java.io.IOException;
 
+import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 import com.inia_mscc.modulos.seg.proveedores.ProveedorUsuario;
 import com.inia_mscc.modulos.seg.servicios.ServicioUsuario;
@@ -18,9 +18,13 @@ public class SEGFachada {
 			e.printStackTrace();
 		}
 	}
-	
-	public Usuario login(String login, String password){		
-		Usuario usuarioLogeado = srvUsuario.login(login, password);
-		return usuarioLogeado;
+
+	public Usuario Login(String pLogin, String pPassword) {
+		return srvUsuario.Login(pLogin, pPassword);
 	}
+
+	public DatoUsuario RegistrarUsuario(DatoUsuario pUsuario) {
+		return srvUsuario.RegistrarUsuario(pUsuario);
+	}
+
 }

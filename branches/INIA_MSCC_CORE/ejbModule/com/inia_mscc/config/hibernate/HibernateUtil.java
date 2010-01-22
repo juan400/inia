@@ -8,6 +8,7 @@ import org.hibernate.tool.hbm2ddl.SchemaExport;
 
 import com.inia_mscc.config.util.LoggingUtilities;
 import com.inia_mscc.excepciones.IniaPersistenciaException;
+import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
 
@@ -23,6 +24,7 @@ public class HibernateUtil {
         	SESSION_FACTORY = new AnnotationConfiguration()
         	.addPackage("com.inia_mscc.modulos.seg.entidades")
         	.addAnnotatedClass(Usuario.class)
+        	.addAnnotatedClass(DatoUsuario.class)
         	.configure("hibernate.cfg.xml")
         	.buildSessionFactory();
             

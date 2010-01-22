@@ -12,6 +12,7 @@ import org.hibernate.criterion.Restrictions;
 import com.inia_mscc.config.hibernate.HibernateUtil;
 import com.inia_mscc.config.util.LoggingUtilities;
 import com.inia_mscc.excepciones.IniaPersistenciaException;
+import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
 public class DAOUsuario implements Serializable {
@@ -23,7 +24,7 @@ public class DAOUsuario implements Serializable {
 	
 	private static final Logger logger = Logger.getLogger(DAOUsuario.class);
 
-	public Usuario login(String loginNombre, String password) {
+	public Usuario Login(String loginNombre, String password) {
 		Usuario usuario = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
@@ -39,19 +40,20 @@ public class DAOUsuario implements Serializable {
 		return usuario;
 	}
 
-	public List<Usuario> getUsers() {
-		List<Usuario> ret = null;
+	public DatoUsuario RegistrarUsuario(DatoUsuario pDatosUsuario) {
+		DatoUsuario usuario = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
-			Criteria c = session.createCriteria(Usuario.class);
-			ret = (List<Usuario>) c.list();
-		} catch (StaleObjectStateException e) {
-			// } catch (Exception e) {
+			session.save(pDatosUsuario);
+//			Criteria c = session.createCriteria(DatoUsuario.class);
+//			c.add(Restrictions.eq("_nombre", pDatosUsuario.get_nombre()));
+//			usuario = (DatoUsuario) c.uniqueResult();
+		} catch (Exception e){//(StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);
 		}
-		return ret;
+		return usuario;
 	}
 
 	public void saveUser(Session session, Usuario u) {

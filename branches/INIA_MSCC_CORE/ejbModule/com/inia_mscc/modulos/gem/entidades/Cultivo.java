@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.inia_mscc.modulos.comun.entidades.Objeto;
 
+
 public class Cultivo extends Objeto{
 	
 	private String _descripcion;
