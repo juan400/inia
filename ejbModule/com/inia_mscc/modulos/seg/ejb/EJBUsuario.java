@@ -8,6 +8,7 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 
 import com.inia_mscc.modulos.seg.dao.DAOUsuario;
+import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 import com.inia_mscc.modulos.seg.servicios.ServicioUsuario;
 
@@ -20,8 +21,12 @@ public class EJBUsuario implements ServicioUsuario {
 	private DAOUsuario dao = new DAOUsuario();
 	
 	@Override
-	public Usuario login(String login, String password) {
-		return dao.login(login, password);
+	public Usuario Login(String pLogin, String pPassword) {
+		return dao.Login(pLogin, pPassword);
 	}
 
+	@Override
+	public DatoUsuario RegistrarUsuario(DatoUsuario pUsuario) {
+		return dao.RegistrarUsuario(pUsuario);
+	}	
 }

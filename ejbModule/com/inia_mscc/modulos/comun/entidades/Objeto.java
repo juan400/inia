@@ -18,9 +18,16 @@ public class Objeto{
 	/**
 	 * 
 	 */
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id")
 	private long _id; 
+	@Enumerated(EnumType.STRING)
+	@Column (name="estado")
 	private Enumerados.Estado _estado;
+	@Transient
 	private Enumerados.EstadoModificacion _estadoModificacion;
+	@Version
+    @Column(name="timestamp")
 	private Timestamp _timeStamp;
 
 	
@@ -31,8 +38,6 @@ public class Objeto{
 		_estadoModificacion = Enumerados.EstadoModificacion.Ninguno;
 	}
 
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
 	public long get_id() {
 		return _id;
 	}
@@ -42,8 +47,7 @@ public class Objeto{
 		_id = id;
 	}
 
-	@Enumerated(EnumType.STRING)
-	@Column (name="estado")
+
 	public Enumerados.Estado get_estado() {
 		return _estado;
 	}
@@ -53,7 +57,7 @@ public class Objeto{
 		_estado = estado;
 	}
 
-	@Transient
+	
 	public Enumerados.EstadoModificacion get_estadoModificacion() {
 		return _estadoModificacion;
 	}
@@ -64,10 +68,6 @@ public class Objeto{
 		_estadoModificacion = estadoModificacion;
 	}
 
-	@Version
-    @Column(name="timestamp")
-//    @Basic
-//    @Temporal(TemporalType.TIMESTAMP)
 	public Timestamp get_timeStamp() {
 		return _timeStamp;
 	}
