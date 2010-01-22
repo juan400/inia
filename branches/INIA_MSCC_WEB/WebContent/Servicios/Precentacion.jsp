@@ -3,15 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsf/core" prefix="f"%>
 <%@ taglib uri="http://java.sun.com/jsf/html" prefix="h"%>
 <f:view>
-	<link href="../Recursos/css/inia2010-01-17.css" rel="stylesheet"
-		type="text/css">
 	<f:loadBundle basename="com.bean.text" var="text" />
 	<h:form>
 		<table align="center" width="100%">
 			<tr>
 				<td width="200px">Poner algo que explique brevemente el
 				contenido y fucion de la pagina.
-				asdf<br>
+				Como anda esto ! ! ! !<br>
 				asdf<br>
 				asdf<br>
 				asdf<br>

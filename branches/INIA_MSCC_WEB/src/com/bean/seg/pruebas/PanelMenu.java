@@ -1,29 +1,49 @@
 package com.bean.seg.pruebas;
 
 import java.io.Serializable;
+import java.net.URI;
 
-public class PanelMenu implements Serializable {
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 
+import org.richfaces.component.UIPanelMenuItem;
+
+public class PanelMenu implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	private URI current;
+	private boolean singleMode;
 	
-	private String current;
+	public boolean isSingleMode() {
+		return singleMode;
+	}
 
+	public void setSingleMode(boolean singleMode) {
+		this.singleMode = singleMode;
+	}
 
-	public void setCurrent(String current) {
+	public PanelMenu() {
+		singleMode = true;
+	}
+	
+	public URI getCurrent() {
+		return this.current;
+	}
+	
+	public void setCurrent(URI current) {
 		this.current = current;
 	}
-
-
-	public String getCurrent() {
-		return current;
+	public String updateCurrent() {
+		FacesContext context=FacesContext.getCurrentInstance();
+		setCurrent(URI.create(context.getExternalContext().getRequestParameterMap().get("current")));
+		System.out.println("fake called.");
+		setSingleMode(true);
+		return null;
 	}
-	
-	public void updateCurrent(String current){
-		this.setCurrent(current);
-		
+	public void updateCurrent(ActionEvent event) {
+		setCurrent(URI.create(((UIPanelMenuItem)event.getComponent()).getLabel().toString()));
 	}
 }
