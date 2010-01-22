@@ -1,8 +1,9 @@
 package com.inia_mscc.modulos.seg.entidades;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,6 +11,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
@@ -37,15 +40,16 @@ public class Usuario implements Serializable {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "usua_str_estado_usuario", nullable = false, columnDefinition = "VARCHAR(45)")
 	private Enumerados.EstadoUsuario _estadoUsuario;
-
-	// private DatoUsuario _datos;
+	@OneToOne(cascade = CascadeType.ALL, targetEntity=DatoUsuario.class)
+	@PrimaryKeyJoinColumn(name="usua_num_id_dato_usuario",columnDefinition="BIGINT(20)") 
+	private DatoUsuario _datos;
 
 	public Usuario() {
 		super();
 		_login = null;
 		_password = null;
 		_activado = false;
-		_ultimoAcceso = new Date();
+		//_ultimoAcceso = new 
 		_estadoUsuario = Enumerados.EstadoUsuario.Ninguno;
 		// _datos = null;
 	}
@@ -97,7 +101,15 @@ public class Usuario implements Serializable {
 	public Date get_ultimoAcceso() {
 		return _ultimoAcceso;
 	}
+	
+	public DatoUsuario get_datos() {
+		return _datos;
+	}
 
+	public void set_datos(DatoUsuario datos) {
+		_datos = datos;
+	}
+	
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
