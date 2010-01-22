@@ -44,11 +44,21 @@ Secano.</title>
 											iconCollapsedGroup="disc" iconExpandedTopGroup="chevronUp"
 											iconGroupTopPosition="right"
 											iconCollapsedTopGroup="chevronDown">
-											<rich:toolBarGroup location="right" itemSeparator="grid">
-									        	<h:outputLabel  rendered="#{loginBean.logged}" value="#{text.login_userName} : #{loginBean.nombre}"/>
-									            <h:commandButton rendered="#{loginBean.logged}" action="#{loginBean.logout}" label="#{text.login_logout}" image="/Recursos/Imagenes/Iconos/door_out.png"/> 
-									            <h:commandButton rendered="#{!loginBean.logged}" action="#{loginBean.login}" label="#{text.login_login}" image="/Recursos/Imagenes/Iconos/door_in.png"/>
-									        </rich:toolBarGroup>
+											<rich:panelMenuGroup label="Login">
+												<rich:panelMenuItem action="irLogin">
+													<h:outputLabel styleClass="textoPlano"
+														rendered="#{loginBean.logged}"
+														value="#{text.login_userName} : #{loginBean.loginName}" />
+													<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
+														styleClass="textoPlano" rendered="#{loginBean.logged}"
+														action="#{loginBean.logout}" value="#{text.login_logout}"
+														image="../Recursos/Imagenes/Iconos/door_out.png" />
+													<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
+														styleClass="textoPlano" rendered="#{!loginBean.logged}"
+														action="#{loginBean.login}" value="#{text.login_login}"
+														image="../Recursos/Imagenes/Iconos/door_in.png" />
+												</rich:panelMenuItem>
+											</rich:panelMenuGroup>
 											<rich:panelMenuGroup label="Adminstracion">
 												<rich:panelMenuItem label="Precentacion"
 													action="#{panelMenu.updateCurrent}">
@@ -69,15 +79,12 @@ Secano.</title>
 								style="vertical-align: top; background-color: white; background-repeat: repeat-y; background-image: url('../Recursos/Imagenes/fondoTablaContenedora.jpg'); background-position: right;"
 								align="left" width="750px">
 								<tr>
-									<td>
-
-									<rich:panel	>
+									<td><rich:panel>
 										<f:facet name="header">
 											<h:outputText value="Current selection" />
 										</f:facet>
 										<a4j:outputPanel ajaxRendered="true" style="heigth: 100%">
-											 
-											 <jsp:include page="<%=request.getContextPath()%>'#{panelMenu.current}"></jsp:include>
+											<rich:insert src="#{panelMenu.current}" id="current" />
 										</a4j:outputPanel>
 									</rich:panel></td>
 								</tr>

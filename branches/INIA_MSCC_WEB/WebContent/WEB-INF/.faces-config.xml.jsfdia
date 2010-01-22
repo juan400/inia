@@ -40,13 +40,18 @@
     NAME="output1" PATH="/Servicios/SEG/SEG002.jsp"
     TARGET="rules:#Servicios#SEG#SEG002.jsp"
     TITLE="#{registroBean.registrar}:registro-error" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT
-    ID="#{registroBean.cancelar}::#Servicios#SEG#SEG001.jsp"
+   <PROCESS-ITEM-OUTPUT ID="cancelar::#Servicios#SEG#SEG001.jsp"
     NAME="output2" PATH="/Servicios/SEG/SEG001.jsp"
-    TARGET="rules:#Servicios#SEG#SEG001.jsp"
-    TITLE="#{registroBean.cancelar}" model-entity="JSFProcessItemOutput"/>
+    TARGET="rules:#Servicios#SEG#SEG001.jsp" TITLE="cancelar" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#Servicios#Contenido.jsp"
-  PATH="/Servicios/Contenido.jsp" SHAPE="272,33,0,0" model-entity="JSFProcessGroup"/>
+  PATH="/Servicios/Contenido.jsp" SHAPE="272,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#Contenido.jsp:0" NAME="item"
+   PATH="/Servicios/Contenido.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="irLogin::#Servicios#SEG#SEG001.jsp"
+    NAME="output" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp" TITLE="irLogin" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
 </PROCESS>
