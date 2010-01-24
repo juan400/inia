@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8" isThreadSafe="true"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsf/core" prefix="f"%>
 <%@ taglib uri="http://java.sun.com/jsf/html" prefix="h"%>
@@ -66,7 +66,8 @@ Secano.</title>
 												</rich:panelMenuItem>
 												<rich:panelMenuItem label="Login"
 													action="#{panelMenu.updateCurrent}">
-													<f:param name="current" value="/Servicios/SEG/Registro.jsp" />
+													<f:param name="current"
+														value="/Servicios/SEG/Registro.xhtml" />
 												</rich:panelMenuItem>
 											</rich:panelMenuGroup>
 										</rich:panelMenu>
@@ -84,7 +85,7 @@ Secano.</title>
 											<h:outputText value="Current selection" />
 										</f:facet>
 										<a4j:outputPanel ajaxRendered="true" style="heigth: 100%">
-											<rich:insert src="#{panelMenu.current}" id="current" />
+											<rich:insert src="#{panelMenu.current}" id="current"/>
 										</a4j:outputPanel>
 									</rich:panel></td>
 								</tr>
