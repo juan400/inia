@@ -8,6 +8,9 @@ import org.hibernate.tool.hbm2ddl.SchemaExport;
 
 import com.inia_mscc.config.util.LoggingUtilities;
 import com.inia_mscc.excepciones.IniaPersistenciaException;
+import com.inia_mscc.modulos.adm.entidades.Ciudad;
+import com.inia_mscc.modulos.adm.entidades.Departamento;
+import com.inia_mscc.modulos.adm.entidades.Pais;
 import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
@@ -25,6 +28,9 @@ public class HibernateUtil {
         	.addPackage("com.inia_mscc.modulos.seg.entidades")
         	.addAnnotatedClass(Usuario.class)
         	.addAnnotatedClass(DatoUsuario.class)
+        	.addAnnotatedClass(Pais.class)
+        	.addAnnotatedClass(Departamento.class)
+        	.addAnnotatedClass(Ciudad.class)
         	.configure("hibernate.cfg.xml")
         	.buildSessionFactory();
             
