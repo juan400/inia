@@ -46,19 +46,33 @@ Secano.</title>
 								<h:panelGrid columns="2" columnClasses="textoPlano,textoPlano">
 
 									<h:outputText value="#{text.registro_Nombre}" />
-									<h:inputText value="#{registroBean.nombre}"
+									<h:inputText value="#{registroBean.nombre}" required="true"
 										onkeypress="ValidarCampoLetras(this, event)"
 										onblur="ValidarCampoLetras(this, event)" />
 
 									<h:outputText value="#{text.registro_Apellido}" />
-									<h:inputText value="#{registroBean.apellido}"
+									<h:inputText value="#{registroBean.apellido}" required="true"
 										onkeypress="ValidarCampoLetras(this, event)"
 										onblur="ValidarCampoLetras(this, event)" />
 
 									<h:outputText value="#{text.registro_Email}" />
-									<h:inputText value="#{registroBean.email}" 
+									<h:inputText value="#{registroBean.email}" required="true"
 										onblur="validarEmailBlur(this, event)" 
 										onkeypress="validarEmailKeyPress(this, event)"/>
+
+									<h:outputText value="#{text.registro_Ciudad}" />
+									<rich:comboBox value="#{registroBean.ciudad}" />
+
+									<h:outputText value="#{text.registro_Departamento_Estado_Provincia}" />
+									<rich:comboBox value="#{registroBean.departamento}"  />
+
+									<h:outputLabel value="#{text.registro_Pais}"  />
+									<rich:comboBox value="#{registroBean.pais}"  />
+									
+									<h:outputText value="#{text.registro_Direccion}" />
+									<h:inputText value="#{registroBean.direccion}" required="true" 
+										onkeypress="ValidarCampoConCaracteresEspeciales(this, event)"
+										onblur="ValidarCampoConCaracteresEspeciales(this, event)" />
 
 									<h:outputText value="#{text.registro_Teléfono}" />
 									<h:inputText value="#{registroBean.telefono}" 
@@ -70,19 +84,6 @@ Secano.</title>
 										onblur="ValidarCampoTelefono(this, event)" 
 										onkeypress="ValidarCampoTelefono(this, event)"/>
 
-									<h:outputText value="#{text.registro_Direccion}" />
-									<h:inputText value="#{registroBean.direccion}" 
-										onkeypress="ValidarCampoConCaracteresEspeciales(this, event)"
-										onblur="ValidarCampoConCaracteresEspeciales(this, event)" />
-
-									<h:outputText value="#{text.registro_Ciudad}" />
-									<rich:comboBox value="#{registroBean.ciudad}" />
-
-									<h:outputText value="#{text.registro_Departamento_Estado_Provincia}" />
-									<rich:comboBox value="#{registroBean.departamento}"  />
-
-									<h:outputLabel value="#{text.registro_Pais}"  />
-									<rich:comboBox value="#{registroBean.pais}"  />
 
 									<h:outputText value="" />
 									<h:panelGrid columns="2">

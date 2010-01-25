@@ -49,23 +49,25 @@ Secano.</title>
 									<h:outputText value="#{text.login_userName}"
 										styleClass="textoPlano" />
 									<h:inputText value="#{loginBean.loginName}"
-										styleClass="textoPlano" 
+										styleClass="textoPlano" tabindex="1"
 										onkeypress="validarEmailKeyPress(this, event)"/>
 
 									<h:outputText value="#{text.login_password}"
 										styleClass="textoPlano" />
 									<h:inputSecret value="#{loginBean.password}"
-										styleClass="textoPlano"  
+										styleClass="textoPlano" tabindex="2"
 										onblur="ValidarCampoLogin(this, event)" 
 										onkeypress="ValidarCampoLogin(this, event)"/>
 
 									<h:outputText value="" />
 									<h:panelGrid columns="2">
 										<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
-											styleClass="textoPlano" action="#{loginBean.login}"
+											styleClass="textoPlano" tabindex="3"
+											action="#{loginBean.login}"
 											value="#{text.login_login}" />
 										<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
-											styleClass="textoPlano" action="#{loginBean.registrarse}"
+											styleClass="textoPlano" tabindex="4" 
+											action="#{loginBean.registrarse}"
 											value="#{text.login_register}" />
 									</h:panelGrid>
 									<f:facet name="footer">

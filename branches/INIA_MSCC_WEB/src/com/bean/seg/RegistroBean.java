@@ -2,9 +2,14 @@ package com.bean.seg;
 
 import java.io.Serializable;
 
+import java.util.Date;
+
 import com.bean.comun.MaestroBean;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.EstadoUsuario;
 import com.inia_mscc.modulos.seg.SEGFachada;
 import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
+import com.inia_mscc.modulos.seg.entidades.Usuario;
 
 public class RegistroBean implements Serializable {
 
@@ -48,20 +53,40 @@ public class RegistroBean implements Serializable {
 		return MaestroBean.getInstance().isLogged();
 	}
 
-	public String registrar() throws Exception{
+	public String registrar() throws Exception {
 		// MaestroBean.getInstance().getTextBundle();
-		String retorno="";
+		String retorno = "";
 		try {
-			DatoUsuario pUsuario = new DatoUsuario();
-			pUsuario.set_nombre(this.getNombre());
-			DatoUsuario u = segFachada.RegistrarUsuario(pUsuario);
-//			 Usuario u = segFachada.Login(this.getNombre(),this.getApellido());
+			DatoUsuario datos = new DatoUsuario();
+			datos.set_nombre(nombre);
+			datos.set_apellido(apellido);
+			datos.set_mail(email);
+			datos.set_pais(null);
+			datos.set_departamento(null);
+			datos.set_ciudad(null);
+			datos.set_direccion(direccion);
+			datos.set_cel(celular);
+			datos.set_tele(telefono);
+//			datos.set_fechaRegistro((java.sql.Date) new Date());
+//			datos.set_timeStamp((java.sql.Date) new Date());
+			Usuario pUsuario = new Usuario();
+			pUsuario.set_datos(datos);
+			pUsuario.set_login((String)datos.get_mail().subSequence(0, datos.get_mail().indexOf("@")));
+			StringBuffer p = new StringBuffer();
+			p.append(pUsuario.get_login());
+			for (int i = 0; i < 8; i++) {
+				String c = "" + (int) (Math.random() * 10);
+				p.append(c);
+			}
+			System.out.println(p.toString());
+			pUsuario.set_password(p.toString());
+			pUsuario.set_activado(false);
+			pUsuario.set_estadoUsuario(EstadoUsuario.Registrado);
+			Usuario u = segFachada.RegistrarUsuario(pUsuario);
+			// Usuario u =
+			// segFachada.Login(this.getNombre(),this.getApellido());
 			if (u != null) {
-				StringBuffer p = new StringBuffer();
-				for (int i = 0; i < 8; i++) {
-					String c = "" + (int) (Math.random() * 10);
-					p.append(c);
-				}
+				
 				error = "";
 				MaestroBean.getInstance().setOpcion(
 						"/Servicios/SEG/menuRich.jsp");
@@ -71,7 +96,7 @@ public class RegistroBean implements Serializable {
 				retorno = "registro-error";
 			}
 		} catch (Exception ex) {
-			error  = ex.getMessage();
+			error = ex.getMessage();
 		}
 		return retorno;
 	}
