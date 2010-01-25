@@ -33,7 +33,7 @@ public class DatoUsuario implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "daus_num_id", nullable = false, columnDefinition = "BIGINT(20)")
+	@Column(name = "daus_num_id", updatable= false, nullable = false, columnDefinition = "BIGINT(20)")
 	private long _id;
 	@Enumerated(EnumType.STRING)
 	@Column(name = "daus_num_id_estado", nullable = false, columnDefinition = "VARCHAR(45)")
@@ -62,7 +62,7 @@ public class DatoUsuario implements Serializable{
 	@ForeignKey (name="FK_daus_num_id_ciudad")
 	@JoinColumn(name="daus_num_id_ciudad", nullable=true, columnDefinition="BIGINT(20)") 
 	private Ciudad _ciudad;
-	@Column(name = "daus_dte_fecha_registro", nullable = false, columnDefinition = "DATETIME")
+	@Column(name = "daus_dte_fecha_registro", updatable= false, nullable = false, columnDefinition = "DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date _fechaRegistro;
 //	@OneToOne(cascade = CascadeType.ALL, targetEntity=Perfil.class)
@@ -77,7 +77,7 @@ public class DatoUsuario implements Serializable{
 	public DatoUsuario() {
 		super();
 		_id = 0;
-		_estado = Enumerados.Estado.Activo;
+		_estado = Enumerados.Estado.Inactivo;
 		_nombre = null;
 		_fechaRegistro = new Date();
 		_timeStamp = new Date();
