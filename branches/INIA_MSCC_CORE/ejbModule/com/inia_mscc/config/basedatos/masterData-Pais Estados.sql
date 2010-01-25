@@ -1,4 +1,4 @@
-﻿ 
+﻿
 CREATE TABLE `tl_adm_pais_pais` (
   `pais_num_id` bigint NOT NULL AUTO_INCREMENT,
   `pais_str_nombre` varchar(220) NOT NULL,
@@ -30,7 +30,7 @@ INSERT INTO `tl_adm_pais_pais` (`pais_num_id`, `pais_str_nombre`) VALUES
 
 CREATE TABLE `tl_adm_deto_departamento` (
   `deto_num_id` bigint NOT NULL AUTO_INCREMENT,
-  `deto_str_opcion` varchar(220) NOT NULL,
+  `deto_str_nombre` varchar(220) NOT NULL,
   `deto_num_id_pais` bigint NOT NULL,
   PRIMARY KEY  (`deto_num_id`),
   KEY `FK_pais_num_id` (`deto_num_id_pais`),
@@ -38,7 +38,7 @@ CREATE TABLE `tl_adm_deto_departamento` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
-INSERT INTO `tl_adm_deto_departamento` (`deto_num_id`, `deto_str_opcion`, `deto_num_id_pais`) VALUES (1, 'Buenos Aires', 1),
+INSERT INTO `tl_adm_deto_departamento` (`deto_num_id`, `deto_str_nombre`, `deto_num_id_pais`) VALUES (1, 'Buenos Aires', 1),
 (2, 'Capital Federal', 1),
 (3, 'Catamarca', 1),
 (4, 'Chaco', 1),
@@ -527,3 +527,20 @@ INSERT INTO `tl_adm_deto_departamento` (`deto_num_id`, `deto_str_opcion`, `deto_
 (487, 'Soriano', 21),
 (488, 'Tacuarembo', 21),
 (489, 'Treinta y Tres', 21);
+
+
+CREATE TABLE `tl_adm_ciud_ciudad` (
+  `ciud_num_id` bigint NOT NULL AUTO_INCREMENT,
+  `ciud_str_nombre` varchar(220) NOT NULL,
+  `ciud_num_id_departamento` bigint NOT NULL,
+  PRIMARY KEY  (`ciud_num_id`),
+  KEY `FK_deto_num_id` (`ciud_num_id_departamento`),
+  CONSTRAINT `FK_deto_num_id` FOREIGN KEY (`ciud_num_id_departamento`) REFERENCES `tl_adm_deto_departamento` (`deto_num_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `tl_adm_ciud_ciudad` (`ciud_num_id`, `ciud_str_nombre`, `ciud_num_id_departamento`) VALUES (1, 'Montevideo', 480),
+(2, 'Rosario', 474),
+(3, 'Colonia del Sacramento', 474),
+(4, 'Nueva Helvecia', 474),
+(5, 'Comonia Valdense', 474),

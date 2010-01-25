@@ -19,12 +19,24 @@ public class SEGFachada {
 		}
 	}
 
-	public Usuario Login(String pLogin, String pPassword) {
-		return srvUsuario.Login(pLogin, pPassword);
+	public void ActualizarDatos(DatoUsuario pDatosUsuario) {
+		srvUsuario.ActualizarDatos(pDatosUsuario);
 	}
 
-	public DatoUsuario RegistrarUsuario(DatoUsuario pUsuario) {
+	public void CambiarPassword(Usuario pUsuario) {
+		srvUsuario.CambiarPassword(pUsuario);
+	}
+
+	public Boolean ComprobarClaveReigstro(String pClave) {
+		return srvUsuario.ComprobarClaveReigstro(pClave);
+	}
+
+	public Usuario RegistrarUsuario(Usuario pUsuario) {
 		return srvUsuario.RegistrarUsuario(pUsuario);
+	}
+
+	public Usuario Login(String pLogin, String pPassword) {
+		return srvUsuario.Login(pLogin, pPassword);
 	}
 
 }
