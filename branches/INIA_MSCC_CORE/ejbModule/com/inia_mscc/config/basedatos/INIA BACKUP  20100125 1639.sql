@@ -31,9 +31,9 @@ CREATE TABLE `country` (
   `name` varchar(80) NOT NULL,
   `printable_name` varchar(80) NOT NULL,
   `iso3` char(3) DEFAULT NULL,
-  `numcode` smallint(6) DEFAULT NULL,
+  `numcode` smallint(6) unsigned DEFAULT NULL,
   PRIMARY KEY (`iso`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `country`
@@ -1111,13 +1111,41 @@ CREATE TABLE `tl_adc_pacl_parametroclimatologico` (
 
 
 --
+-- Definition of table `tl_adm_ciud_ciudad`
+--
+
+DROP TABLE IF EXISTS `tl_adm_ciud_ciudad`;
+CREATE TABLE `tl_adm_ciud_ciudad` (
+  `ciud_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ciud_str_nombre` varchar(220) NOT NULL,
+  `ciud_num_id_departamento` bigint(20) NOT NULL,
+  PRIMARY KEY (`ciud_num_id`),
+  KEY `FK_deto_num_id` (`ciud_num_id_departamento`),
+  CONSTRAINT `FK_deto_num_id` FOREIGN KEY (`ciud_num_id_departamento`) REFERENCES `tl_adm_deto_departamento` (`deto_num_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tl_adm_ciud_ciudad`
+--
+
+/*!40000 ALTER TABLE `tl_adm_ciud_ciudad` DISABLE KEYS */;
+INSERT INTO `tl_adm_ciud_ciudad` (`ciud_num_id`,`ciud_str_nombre`,`ciud_num_id_departamento`) VALUES 
+ (1,'Montevideo',480),
+ (2,'Rosario',474),
+ (3,'Colonia del Sacramento',474),
+ (4,'Nueva Helvecia',474),
+ (5,'Comonia Valdense',474);
+/*!40000 ALTER TABLE `tl_adm_ciud_ciudad` ENABLE KEYS */;
+
+
+--
 -- Definition of table `tl_adm_deto_departamento`
 --
 
 DROP TABLE IF EXISTS `tl_adm_deto_departamento`;
 CREATE TABLE `tl_adm_deto_departamento` (
   `deto_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `deto_str_opcion` varchar(220) NOT NULL,
+  `deto_str_nombre` varchar(220) NOT NULL,
   `deto_num_id_pais` bigint(20) NOT NULL,
   PRIMARY KEY (`deto_num_id`),
   KEY `FK_pais_num_id` (`deto_num_id_pais`),
@@ -1129,7 +1157,7 @@ CREATE TABLE `tl_adm_deto_departamento` (
 --
 
 /*!40000 ALTER TABLE `tl_adm_deto_departamento` DISABLE KEYS */;
-INSERT INTO `tl_adm_deto_departamento` (`deto_num_id`,`deto_str_opcion`,`deto_num_id_pais`) VALUES 
+INSERT INTO `tl_adm_deto_departamento` (`deto_num_id`,`deto_str_nombre`,`deto_num_id_pais`) VALUES 
  (1,'Buenos Aires',1),
  (2,'Capital Federal',1),
  (3,'Catamarca',1),
@@ -1936,8 +1964,23 @@ CREATE TABLE `tl_seg_daus_datosusuario` (
   `daus_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `daus_num_id_estado` varchar(45) NOT NULL,
   `daus_str_nombre` varchar(220) NOT NULL,
-  `daus_dte_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`daus_num_id`)
+  `daus_dte_timestamp` datetime DEFAULT NULL,
+  `daus_str_apellido` varchar(220) NOT NULL,
+  `daus_str_email` varchar(220) NOT NULL,
+  `daus_str_telefono` varchar(45) DEFAULT NULL,
+  `daus_str_celular` varchar(9) DEFAULT NULL,
+  `daus_str_direccion` varchar(220) NOT NULL,
+  `daus_num_id_pais` bigint(20) DEFAULT NULL,
+  `daus_num_id_departamento` bigint(20) DEFAULT NULL,
+  `daus_num_id_ciudad` bigint(20) DEFAULT NULL,
+  `daus_dte_fecha_registro` datetime NOT NULL,
+  PRIMARY KEY (`daus_num_id`),
+  KEY `FK_daus_num_id_pais` (`daus_num_id_pais`),
+  KEY `FK_daus_num_id_departamentos` (`daus_num_id_departamento`),
+  KEY `FK_daus_num_id_ciudad` (`daus_num_id_ciudad`),
+  CONSTRAINT `FK_daus_num_id_ciudad` FOREIGN KEY (`daus_num_id_ciudad`) REFERENCES `tl_adm_ciud_ciudad` (`ciud_num_id`),
+  CONSTRAINT `FK_daus_num_id_departamentos` FOREIGN KEY (`daus_num_id_departamento`) REFERENCES `tl_adm_deto_departamento` (`deto_num_id`),
+  CONSTRAINT `FK_daus_num_id_pais` FOREIGN KEY (`daus_num_id_pais`) REFERENCES `tl_adm_pais_pais` (`pais_num_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
@@ -1945,9 +1988,9 @@ CREATE TABLE `tl_seg_daus_datosusuario` (
 --
 
 /*!40000 ALTER TABLE `tl_seg_daus_datosusuario` DISABLE KEYS */;
-INSERT INTO `tl_seg_daus_datosusuario` (`daus_num_id`,`daus_num_id_estado`,`daus_str_nombre`,`daus_dte_timestamp`) VALUES 
- (1,'Inactivo','Juan Andres','1970-01-01 00:00:01'),
- (2,'Inactivo','OtroUsuario','1970-01-01 00:00:01');
+INSERT INTO `tl_seg_daus_datosusuario` (`daus_num_id`,`daus_num_id_estado`,`daus_str_nombre`,`daus_dte_timestamp`,`daus_str_apellido`,`daus_str_email`,`daus_str_telefono`,`daus_str_celular`,`daus_str_direccion`,`daus_num_id_pais`,`daus_num_id_departamento`,`daus_num_id_ciudad`,`daus_dte_fecha_registro`) VALUES 
+ (1,'Inactivo','Juan Andres','1970-01-01 00:00:01','Pio','juan400@gmail.com','9026297','099940123','Urugauy-Montevideo-Rio Negro 1076, apto 201',21,480,1,'2010-01-21 11:12:13'),
+ (2,'Inactivo','OtroUsuario','1970-01-01 00:00:01','aFDafAF','juan400@gmail.com',NULL,NULL,'asdfasfasf',21,480,1,'2010-01-21 00:00:00');
 /*!40000 ALTER TABLE `tl_seg_daus_datosusuario` ENABLE KEYS */;
 
 
