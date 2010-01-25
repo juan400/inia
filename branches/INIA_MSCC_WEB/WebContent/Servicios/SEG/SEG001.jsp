@@ -59,7 +59,7 @@ Secano.</title>
 										onblur="ValidarCampoLogin(this, event)" 
 										onkeypress="ValidarCampoLogin(this, event)"/>
 
-									<h:outputText value="" />
+									<h:outputText value="" />									
 									<h:panelGrid columns="2">
 										<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
 											styleClass="textoPlano" tabindex="3"
