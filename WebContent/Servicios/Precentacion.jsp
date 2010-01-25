@@ -9,8 +9,15 @@
 			<tr>
 				<td width="200px">Poner algo que explique brevemente el
 				contenido y fucion de la pagina.
-				Como anda esto ! ! ! !<br>
-				asdf<br>
+				Como anda esto ! ! ! !<br><rich:comboBox>
+					
+				</rich:comboBox>
+				asdf<br><rich:calendar>
+				<rich:dataGrid>
+					
+				</rich:dataGrid>
+					
+				</rich:calendar>
 				asdf<br>
 				asdf<br>
 				ads<br>

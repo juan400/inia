@@ -66,8 +66,7 @@ Secano.</title>
 												</rich:panelMenuItem>
 												<rich:panelMenuItem label="Login"
 													action="#{panelMenu.updateCurrent}">
-													<f:param name="current"
-														value="/Servicios/SEG/Registro.xhtml" />
+													<f:param name="current"	value="/Servicios/SEG/Registro.jsp" />
 												</rich:panelMenuItem>
 											</rich:panelMenuGroup>
 										</rich:panelMenu>
@@ -87,7 +86,16 @@ Secano.</title>
 										<a4j:outputPanel ajaxRendered="true" style="heigth: 100%">
 											<rich:insert src="#{panelMenu.current}" id="current"/>
 										</a4j:outputPanel>
-									</rich:panel></td>
+									</rich:panel>
+									<rich:calendar>
+					
+				</rich:calendar>
+				<br></br>
+				<rich:dataGrid>
+					
+				</rich:dataGrid>
+				
+				</td>
 								</tr>
 							</table>
 							</td>

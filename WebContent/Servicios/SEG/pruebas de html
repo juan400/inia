@@ -1,0 +1,31 @@
+<script type="text/javascript">
+//<![CDATA[
+		var counter = 1;
+		var intervalID;
+    	 	function updateProgress(i) {
+    	 		$('form:progressBar').component.setValue(counter*5);
+    	 		if ((counter++)>20)
+    	 		clearInterval(intervalID);
+    	 	}
+    	 	
+    	 	function startProgress(){
+    	 		counter=1;
+      			$('form:progressBar').component.enable();
+      			$('form:progressBar').component.setValue(1);
+    			intervalID = setInterval(updateProgress,500);
+      		}
+//]]> 
+	  </script>
+
+	<h:form id="form">
+		<rich:progressBar mode="ajax" status="" id="progressBar">
+			<f:facet name="initial">
+				<h:outputText value="Process doesn't started yet" />
+			</f:facet>
+			<f:facet name="complete">
+				<h:outputText value="Process Done" />
+			</f:facet>
+		</rich:progressBar>
+		<button type="button" onclick="startProgress();">Start
+		Progress</button>
+	</h:form>
