@@ -1,7 +1,7 @@
 package com.inia_mscc.modulos.seg.entidades;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -34,8 +34,8 @@ public class Usuario implements Serializable {
 	@Column(name = "usua_str_password", nullable = false, columnDefinition = "VARCHAR(13)")
 	private String _password;
 	@Column(name = "usua_bol_activado", nullable = false, columnDefinition = "TINYINT(1)")
-	private boolean _activado;
-	@Column(name = "usua_dte_ultimo_acceso", nullable = false, columnDefinition = "DATETIME")
+	private boolean _activado; 
+	@Column(name = "usua_dte_ultimo_acceso",  nullable = false, columnDefinition = "DATETIME")
 	private Date _ultimoAcceso;
 	@Enumerated(EnumType.STRING)
 	@Column(name = "usua_str_estado_usuario", nullable = false, columnDefinition = "VARCHAR(45)")
@@ -49,9 +49,9 @@ public class Usuario implements Serializable {
 		_login = null;
 		_password = null;
 		_activado = false;
-		//_ultimoAcceso = new 
+		_ultimoAcceso = new Date(); 
 		_estadoUsuario = Enumerados.EstadoUsuario.Ninguno;
-		// _datos = null;
+		_datos = null;
 	}
 
 	public long get_id() {

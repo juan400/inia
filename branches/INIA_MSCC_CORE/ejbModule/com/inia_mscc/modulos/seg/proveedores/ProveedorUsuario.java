@@ -23,15 +23,31 @@ public class ProveedorUsuario implements ServicioUsuario {
 			throw new ProviderException(e);
 		}
 	}
+
+	@Override
+	public void ActualizarDatos(DatoUsuario pDatosUsuario) {
+		ejbUsuario.ActualizarDatos(pDatosUsuario);
+		
+	}
+
+	@Override
+	public void CambiarPassword(Usuario pUsuario) {
+		ejbUsuario.CambiarPassword(pUsuario);
+		
+	}
+
+	@Override
+	public Boolean ComprobarClaveReigstro(String pClave) {
+		return ejbUsuario.ComprobarClaveReigstro(pClave);
+	}
+
+	@Override
+	public Usuario RegistrarUsuario(Usuario pUsuario) {
+		return ejbUsuario.RegistrarUsuario(pUsuario);
+	}
 	
 	@Override
 	public Usuario Login(String pLogin, String pPassword) {
 		return ejbUsuario.Login(pLogin, pPassword);
 	}
-
-	@Override
-	public DatoUsuario RegistrarUsuario(DatoUsuario pUsuario) {
-		return ejbUsuario.RegistrarUsuario(pUsuario);
-	}
-	
 }

@@ -12,28 +12,28 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-@Entity(name = "Ciudad")
-@Table(name = "tl_adm_ciud_ciudad")
-public class Ciudad implements Serializable {
+@Entity (name="Departamento")
+@Table (name="tl_adm_deto_departamento")
+public class Departamento implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "ciud_num_id", nullable = false, columnDefinition = "BIGINT(20)")
-	private long _id;
-	@Column(name = "ciud_str_nombre", nullable = false, columnDefinition = "VARCHAR(220)")
-	private String _nombre;
-	@OneToOne(cascade = CascadeType.ALL, targetEntity = Departamento.class)
-	@PrimaryKeyJoinColumn(name = "ciud_num_id_departamento", columnDefinition = "BIGINT(20)")
-	private Departamento _departamento;
-
-	public Ciudad() {
-	}
 	
+	@Id 
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="deto_num_id", nullable = false, columnDefinition = "BIGINT(20)")
+	private long _id;
+	@Column(name="deto_str_nombre", nullable = false, columnDefinition = "VARCHAR(220)")
+	private String _nombre;
+	@OneToOne(cascade = CascadeType.ALL, targetEntity=Pais.class)
+	@PrimaryKeyJoinColumn(name="deto_num_id_pais",columnDefinition="BIGINT(20)") 
+	private Pais _pais;
+	
+	public Departamento() {
+	}
+
 	public long get_id() {
 		return _id;
 	}
@@ -41,7 +41,7 @@ public class Ciudad implements Serializable {
 	public void set_id(long id) {
 		_id = id;
 	}
-	
+
 	public String get_nombre() {
 		return _nombre;
 	}
@@ -50,12 +50,12 @@ public class Ciudad implements Serializable {
 		_nombre = nombre;
 	}
 
-	public Departamento get_departamento() {
-		return _departamento;
+	public Pais get_pais() {
+		return _pais;
 	}
 
-	public void set_departamento(Departamento departamento) {
-		_departamento = departamento;
+	public void set_pais(Pais pais) {
+		_pais = pais;
 	}
-
+	
 }
