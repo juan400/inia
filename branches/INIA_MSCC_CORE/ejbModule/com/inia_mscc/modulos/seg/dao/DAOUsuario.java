@@ -36,6 +36,7 @@ public class DAOUsuario implements Serializable {
 		Usuario usuario = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
+			pUsuario.get_datos().set_id((Long)session.save("DatoUsuario", pUsuario.get_datos()));			
 			Long id  = (Long)session.save("Usuario", pUsuario);
 			Criteria c = session.createCriteria(Usuario.class);
 			c.add(Restrictions.eq("_id", id));
