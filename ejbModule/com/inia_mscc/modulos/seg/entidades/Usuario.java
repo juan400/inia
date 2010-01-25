@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
 
@@ -36,6 +38,7 @@ public class Usuario implements Serializable {
 	@Column(name = "usua_bol_activado", nullable = false, columnDefinition = "TINYINT(1)")
 	private boolean _activado; 
 	@Column(name = "usua_dte_ultimo_acceso",  nullable = false, columnDefinition = "DATETIME")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date _ultimoAcceso;
 	@Enumerated(EnumType.STRING)
 	@Column(name = "usua_str_estado_usuario", nullable = false, columnDefinition = "VARCHAR(45)")
