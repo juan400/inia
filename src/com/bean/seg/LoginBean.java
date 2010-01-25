@@ -24,47 +24,16 @@ public class LoginBean implements Serializable {
 		return false;
 	}
 
-	public boolean isLogged() {
-		return MaestroBean.getInstance().isLogged();
-	}
-	
-	public String getLoginName() {
-		return loginName;
-	}
-
-	public void setLoginName(String loginName) {
-		this.loginName = loginName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getError() {
-		return error;
-	}
-
 	public String login() throws IOException, NamingException,
 			MessagingException {
 		// MaestroBean.getInstance().getTextBundle();
-		
 		Usuario u = segFachada.Login(loginName, password);
-
 		if (u != null) {
 			MaestroBean maestro = MaestroBean.getInstance();
 			maestro.setLogged(true);
 			maestro.setUsuario(u);
-			StringBuffer p = new StringBuffer();
-			for (int i = 0; i < 8; i++) {
-				String c = "" + (int)(Math.random() * 10);
-				p.append(c);
-			}
 			error = "";
-			MaestroBean.getInstance().setOpcion("/Servicios/SEG/menuRich.jsp");
+			// MaestroBean.getInstance().setOpcion("/Servicios/SEG/menuRich.jsp");
 			return "login-ok";
 		} else {
 			error = "El nombre de usuario y password no concuerdan";
@@ -73,10 +42,9 @@ public class LoginBean implements Serializable {
 	}
 
 	public String logout() throws IOException, NamingException,
-	MessagingException {
-		if (!isLogged())
-		{
-			MaestroBean.getInstance().setOpcion("/Servicios/SEG/menuRich.jsp");
+			MessagingException {
+		if (!isLogged()) {
+			// MaestroBean.getInstance().setOpcion("/Servicios/SEG/menuRich.jsp");
 		}
 		MaestroBean maestro = MaestroBean.getInstance();
 		maestro.setLogged(false);
@@ -96,6 +64,30 @@ public class LoginBean implements Serializable {
 
 	public SEGFachada getSegFachada() {
 		return segFachada;
+	}
+
+	public boolean isLogged() {
+		return MaestroBean.getInstance().isLogged();
+	}
+
+	public String getLoginName() {
+		return loginName;
+	}
+
+	public void setLoginName(String loginName) {
+		this.loginName = loginName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getError() {
+		return error;
 	}
 
 }

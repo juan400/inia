@@ -1,11 +1,9 @@
 package com.bean.seg;
 
 import java.io.Serializable;
-
 import java.util.Date;
 
 import com.bean.comun.MaestroBean;
-import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.EstadoUsuario;
 import com.inia_mscc.modulos.seg.SEGFachada;
 import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
@@ -67,8 +65,8 @@ public class RegistroBean implements Serializable {
 			datos.set_direccion(direccion);
 			datos.set_cel(celular);
 			datos.set_tele(telefono);
-//			datos.set_fechaRegistro((java.sql.Date) new Date());
-//			datos.set_timeStamp((java.sql.Date) new Date());
+			datos.set_fechaRegistro(new Date());
+			datos.set_timeStamp(new Date());
 			Usuario pUsuario = new Usuario();
 			pUsuario.set_datos(datos);
 			pUsuario.set_login((String)datos.get_mail().subSequence(0, datos.get_mail().indexOf("@")));
@@ -82,17 +80,15 @@ public class RegistroBean implements Serializable {
 			pUsuario.set_password(p.toString());
 			pUsuario.set_activado(false);
 			pUsuario.set_estadoUsuario(EstadoUsuario.Registrado);
+			pUsuario.set_ultimoAcceso(new Date());
 			Usuario u = segFachada.RegistrarUsuario(pUsuario);
-			// Usuario u =
-			// segFachada.Login(this.getNombre(),this.getApellido());
 			if (u != null) {
-				
 				error = "";
-				MaestroBean.getInstance().setOpcion(
-						"/Servicios/SEG/menuRich.jsp");
+				MaestroBean.getInstance().setOpcion("/Servicios/SEG/SEG001.jsp");
 				retorno = "registro-ok";
 			} else {
-				error = "El nombre de usuario y password no concuerdan";
+				error = "No ha sido posible registrar el usuario, revise los datos ingresados y intentelo nuevamente.";
+				MaestroBean.getInstance().setOpcion("/Servicios/SEG/SEG002.jsp");
 				retorno = "registro-error";
 			}
 		} catch (Exception ex) {
