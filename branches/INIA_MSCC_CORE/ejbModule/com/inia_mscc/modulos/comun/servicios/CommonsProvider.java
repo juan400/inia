@@ -5,7 +5,6 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import com.inia_mscc.excepciones.ProviderException;
-import com.inia_mscc.modulos.comun.entidades.Casa;
 
 public class CommonsProvider implements CommonsServices{
 
@@ -30,9 +29,9 @@ public class CommonsProvider implements CommonsServices{
 	public static void main(String[] args) {
 		
 		CommonsServices c = new CommonsProvider();
-		Casa casa = c.obtenerEntidad(Casa.class);
-		System.out.println(casa.getPuerta());
-		System.out.println(casa.getVentana());
+//		Casa casa = c.obtenerEntidad(Casa.class);
+//		System.out.println(casa.getPuerta());
+//		System.out.println(casa.getVentana());
 		
 	}
 

@@ -68,16 +68,13 @@ public class DAOUsuario implements Serializable {
 	 * @param pClave
 	 * @return
 	 */
-	public Boolean ComprobarClaveReigstro(String pClave){
-		Boolean retorno=false;
+	public Usuario ComprobarClaveReigstro(String pClave){
+		Usuario retorno=null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			Criteria c = session.createCriteria(Usuario.class);
 			c.add(Restrictions.eq("_password", pClave));
-			Usuario usuario = (Usuario) c.uniqueResult();
-			if (usuario != null){
-				retorno=true;
-			}
+			retorno = (Usuario) c.uniqueResult();
 		} catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);

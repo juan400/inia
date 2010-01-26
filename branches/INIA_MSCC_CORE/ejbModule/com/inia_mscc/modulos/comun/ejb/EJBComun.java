@@ -7,8 +7,6 @@ import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 
-import org.apache.log4j.Logger;
-
 import com.inia_mscc.modulos.comun.dao.DAOComun;
 import com.inia_mscc.modulos.comun.servicios.CommonsServices;
 
