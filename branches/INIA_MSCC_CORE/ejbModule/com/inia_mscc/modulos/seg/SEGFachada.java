@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
+import com.inia_mscc.modulos.seg.entidades.Perfil;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 import com.inia_mscc.modulos.seg.proveedores.ProveedorPerfil;
 import com.inia_mscc.modulos.seg.proveedores.ProveedorUsuario;
@@ -23,9 +24,8 @@ public class SEGFachada {
 			case Perfil:
 				srvPerfil = new ProveedorPerfil();	
 				break;
-
 			}
-//			srvUsuario = new ProveedorUsuario();
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -52,4 +52,11 @@ public class SEGFachada {
 		return srvUsuario.Login(pLogin, pPassword);
 	}
 
+	public void ActualizarPerfil(Perfil pPerfil) {
+		srvPerfil.ActualizarPerfil(pPerfil);
+	}
+	
+	public Perfil RegistrarPerfil(Perfil pPerfil) {
+		return srvPerfil.RegistrarPerfil(pPerfil);
+	}
 }
