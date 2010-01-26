@@ -27,7 +27,6 @@ public class SEGFachada {
 			}
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -40,7 +39,7 @@ public class SEGFachada {
 		srvUsuario.CambiarPassword(pUsuario);
 	}
 
-	public Boolean ComprobarClaveReigstro(String pClave) {
+	public Usuario ComprobarClaveReigstro(String pClave) {
 		return srvUsuario.ComprobarClaveReigstro(pClave);
 	}
 
