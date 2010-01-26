@@ -22,6 +22,11 @@
 		</managed-property>
 	</managed-bean>
 	<managed-bean>
+		<managed-bean-name>perfilBean</managed-bean-name>
+		<managed-bean-class>com.bean.seg.PerfilBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
 		<managed-bean-name>panelMenu</managed-bean-name>
 		<managed-bean-class>com.bean.seg.pruebas.PanelMenu</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
