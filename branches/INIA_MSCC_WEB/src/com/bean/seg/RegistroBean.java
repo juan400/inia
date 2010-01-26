@@ -16,8 +16,6 @@ import javax.naming.NamingException;
 import com.bean.comun.MaestroBean;
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.EstadoUsuario;
-import com.inia_mscc.modulos.comun.servicios.MailSenderProvider;
-import com.inia_mscc.modulos.comun.servicios.MailSenderServices;
 import com.inia_mscc.modulos.seg.SEGFachada;
 import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
@@ -30,9 +28,7 @@ public class RegistroBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private SEGFachada segFachada = new SEGFachada(Enumerados.Servicio.Usuario);
-	/*
-	 * Region de atributos y variables
-	 */
+
 	private String nombre;
 	private String apellido;
 	private String email;
@@ -51,28 +47,13 @@ public class RegistroBean implements Serializable {
 	private String frase;
 
 	private String error;
-	private Long codigoActivacion;
 
 	/*
 	 * Region de Metodos
 	 */
 	public boolean isInit() {
 		boolean retrono = false;
-		if (codigoActivacion != null) {
-			Usuario registrado = segFachada.ComprobarClaveReigstro(codigoActivacion.toString());
-			if (registrado != null){
-				nombre = registrado.get_datos().get_nombre() +" "+registrado.get_datos().get_apellido();
-				if (registrado.get_estadoUsuario().equals(Enumerados.EstadoUsuario.Activo)){
-					error = "Su usuario esta activado, no es necesario este paso.";
-				}
-				else
-				{}
-			}
-			else {
-				
-			}
-		} else {
-		}
+		
 		return retrono;
 	}
 
@@ -181,7 +162,7 @@ public class RegistroBean implements Serializable {
 								+ "para concluir con el registro aceda al siguiente link </b></i>.<br>"
 								+
 								// TODO cambiar el path del servidor
-								"<a href='http://localhost:8081/INIA_MSCC/Servicios/SEG/SEG003.jsf?CodigoActivacion="
+								"<a href='http://localhost:8081/INIA_MSCC/Servicios/SEG/SEG003.jsf?codigoActivacion="
 								+ pUsuario.get_password()
 								+ "'>"
 								+ "Concluir el registro de usuario</a><br><br>"
@@ -346,14 +327,6 @@ public class RegistroBean implements Serializable {
 
 	public void setError(String error) {
 		this.error = error;
-	}
-
-	public void setCodigoActivacion(Long codigoActivacion) {
-		this.codigoActivacion = codigoActivacion;
-	}
-
-	public Long getCodigoActivacion() {
-		return codigoActivacion;
 	}
 
 }
