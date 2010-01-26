@@ -31,7 +31,7 @@ public class EJBUsuario implements ServicioUsuario {
 	}
 
 	@Override
-	public Boolean ComprobarClaveReigstro(String pClave) {
+	public Usuario ComprobarClaveReigstro(String pClave) {
 		return dao.ComprobarClaveReigstro(pClave);
 	}
 
