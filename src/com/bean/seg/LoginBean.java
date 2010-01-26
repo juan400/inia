@@ -7,6 +7,7 @@ import javax.mail.MessagingException;
 import javax.naming.NamingException;
 
 import com.bean.comun.MaestroBean;
+import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.seg.SEGFachada;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
@@ -14,7 +15,7 @@ public class LoginBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private SEGFachada segFachada = new SEGFachada();
+	private SEGFachada segFachada = new SEGFachada(Enumerados.Servicio.Perfil);
 
 	private String loginName;
 	private String password;
@@ -36,7 +37,7 @@ public class LoginBean implements Serializable {
 			// MaestroBean.getInstance().setOpcion("/Servicios/SEG/menuRich.jsp");
 			return "login-ok";
 		} else {
-			error = "El nombre de usuario y password no concuerdan";
+			error = "El nombre de usuario y password no conciden";
 			return "login-error";
 		}
 	}

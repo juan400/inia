@@ -52,23 +52,23 @@
 
 									<h:outputText value="#{text.registro_Contrasenia}"
 										styleClass="textoPlano" />
-									<h:inputSecret value="#{loginBean.password}"
-										styleClass="textoPlano" tabindex="2"
+									<h:inputSecret value="#{loginBean.password}" required="true"
+										styleClass="textoPlano" tabindex="2" maxlength="13" requiredMessage="#{text.campo_Obligatorio}"
 										onblur="ValidarCampoLogin(this, event)" 
 										onkeypress="ValidarCampoLogin(this, event)"/>
 										
 									<h:outputText value="#{text.registro_ConfirmacionContrasenia}"
 										styleClass="textoPlano" />
 									<h:inputSecret value="#{loginBean.password}"
-										styleClass="textoPlano" tabindex="2"
-										onblur="ValidarCampoLogin(this, event)" 
+										styleClass="textoPlano" tabindex="2" maxlength="13" required="true"
+										onblur="ValidarCampoLogin(this, event)" requiredMessage="#{text.campo_Obligatorio}"
 										onkeypress="ValidarCampoLogin(this, event)"/>
 										
 									<h:outputText value="#{text.registro_Frase}"
 										styleClass="textoPlano" />
 									<h:inputText value="#{loginBean.password}"
-										styleClass="textoPlano" tabindex="2"
-										onblur="ValidarCampoLetras(this, event)" 
+										styleClass="textoPlano" tabindex="2" requiredMessage="#{text.campo_Obligatorio}"
+										onblur="ValidarCampoLetras(this, event)" required="true"
 										onkeypress="ValidarCampoLetras(this, event)"/>
 
 									<h:outputText value="" />

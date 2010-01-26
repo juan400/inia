@@ -1,10 +1,23 @@
 package com.bean.seg;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.naming.NamingException;
 
 import com.bean.comun.MaestroBean;
+import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.EstadoUsuario;
+import com.inia_mscc.modulos.comun.servicios.MailSenderProvider;
+import com.inia_mscc.modulos.comun.servicios.MailSenderServices;
 import com.inia_mscc.modulos.seg.SEGFachada;
 import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
@@ -16,7 +29,7 @@ public class RegistroBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private SEGFachada segFachada = new SEGFachada();
+	private SEGFachada segFachada = new SEGFachada(Enumerados.Servicio.Usuario);
 	/*
 	 * Region de atributos y variables
 	 */
@@ -44,7 +57,23 @@ public class RegistroBean implements Serializable {
 	 * Region de Metodos
 	 */
 	public boolean isInit() {
-		return false;
+		boolean retrono = false;
+		if (codigoActivacion != null) {
+			Usuario registrado = segFachada.ComprobarClaveReigstro(codigoActivacion.toString());
+			if (registrado != null){
+				nombre = registrado.get_datos().get_nombre() +" "+registrado.get_datos().get_apellido();
+				if (registrado.get_estadoUsuario().equals(Enumerados.EstadoUsuario.Activo)){
+					error = "Su usuario esta activado, no es necesario este paso.";
+				}
+				else
+				{}
+			}
+			else {
+				
+			}
+		} else {
+		}
+		return retrono;
 	}
 
 	public boolean isLogged() {
@@ -69,34 +98,116 @@ public class RegistroBean implements Serializable {
 			datos.set_timeStamp(new Date());
 			Usuario pUsuario = new Usuario();
 			pUsuario.set_datos(datos);
-			pUsuario.set_login((String)datos.get_mail().subSequence(0, datos.get_mail().indexOf("@")));
+			pUsuario.set_login(datos.get_mail().substring(0,
+					datos.get_mail().indexOf("@")));
 			StringBuffer p = new StringBuffer();
-			p.append(pUsuario.get_login());
 			for (int i = 0; i < 8; i++) {
 				String c = "" + (int) (Math.random() * 10);
 				p.append(c);
 			}
-			System.out.println(p.toString());
 			pUsuario.set_password(p.toString());
 			pUsuario.set_activado(false);
 			pUsuario.set_estadoUsuario(EstadoUsuario.Registrado);
 			pUsuario.set_ultimoAcceso(new Date());
-			Usuario u = segFachada.RegistrarUsuario(pUsuario);
-			if (u != null) {
-				error = "";
-				MaestroBean.getInstance().setOpcion("/Servicios/SEG/SEG001.jsp");
-				retorno = "registro-ok";
+			if (this.salvarNombre(pUsuario)) {
+				Usuario u = segFachada.RegistrarUsuario(pUsuario);
+				if (u != null) {
+					error = "";
+					MaestroBean.getInstance().setOpcion(
+							"/Servicios/SEG/SEG001.jsp");
+					retorno = "registro-ok";
+				} else {
+					error = "No ha sido posible registrar el usuario, revise los datos ingresados y intentelo nuevamente.";
+					MaestroBean.getInstance().setOpcion(
+							"/Servicios/SEG/SEG002.jsp");
+					retorno = "registro-error";
+				}
 			} else {
-				error = "No ha sido posible registrar el usuario, revise los datos ingresados y intentelo nuevamente.";
-				MaestroBean.getInstance().setOpcion("/Servicios/SEG/SEG002.jsp");
+				error = "No ha sido posible registrar el usuario, el e-mail proporcionado no esta disponible.";
+				MaestroBean.getInstance()
+						.setOpcion("/Servicios/SEG/SEG002.jsp");
 				retorno = "registro-error";
 			}
+
 		} catch (Exception ex) {
 			error = ex.getMessage();
 		}
 		return retorno;
 	}
 
+	/**
+	 * @return
+	 * @throws IOException
+	 * @throws NamingException
+	 * @throws MessagingException
+	 */
+	public Boolean salvarNombre(Usuario pUsuario) throws IOException,
+			NamingException, MessagingException {
+
+		Properties props = new Properties();
+
+		// Nombre del host de correo, es smtp.gmail.com
+		props.setProperty("mail.smtp.host", "smtp.live.com");// hotmail
+		// smtp.live.com
+
+		// TLS si está disponible
+		props.setProperty("mail.smtp.starttls.enable", "true");
+
+		// Puerto de gmail para envio de correos
+		props.setProperty("mail.smtp.port", "587");
+
+		// Nombre del usuario
+		props.setProperty("mail.smtp.user", "INIA - MSCC Registro");
+
+		// Si requiere o no usuario y password para conectarse.
+		props.setProperty("mail.smtp.auth", "true");
+
+		Session session = Session.getDefaultInstance(props);
+		session.setDebug(true);
+
+		MimeMessage message = new MimeMessage(session);
+		// Quien envia el correo
+		message.setFrom(new InternetAddress("juan400SVN@gmail.com"));
+
+		// A quien va dirigido
+		message.addRecipient(Message.RecipientType.TO, new InternetAddress(
+				pUsuario.get_datos().get_mail()));
+
+		message.setSubject("Activacion de usuario en el sistema INIA - MSCC");
+
+		message
+				.setText(
+						"<i><b>Usted se a registrado stisfactoriamente en INIA - MSCC<br>"
+								+ "para concluir con el registro aceda al siguiente link </b></i>.<br>"
+								+
+								// TODO cambiar el path del servidor
+								"<a href='http://localhost:8081/INIA_MSCC/Servicios/SEG/SEG003.jsf?CodigoActivacion="
+								+ pUsuario.get_password()
+								+ "'>"
+								+ "Concluir el registro de usuario</a><br><br>"
+								+ "<i><b>Muchas gracias por registrarse!</b></i>",
+						"ISO-8859-1", "html");
+
+		Transport t = session.getTransport("smtp");
+		t.connect("juan400_4@hotmail.com", "andres4003341");
+		t.sendMessage(message, message.getAllRecipients());
+		t.close();
+
+		// MailService mail = new MailService();
+		// mail.setJNDIName("java:/MailSenderService");
+		// mail.setUser("juan400@gmail.com");
+		// mail.setPassword("andres4003341");
+		// mail.setConfiguration(.ull)
+		// Element ele = new Element();
+		// MailSenderServices mail = new MailSenderProvider();
+		// mail.enviarMailTextoPlano(pDatos.get_mail(), "Enviado desde MSCC",
+		// "Esto es uun mail de prueba.");
+		return true;
+	}
+
+	/**
+	 * @return
+	 */
 	public boolean isActivado() {
 		// FacesContext context = FacesContext.getCurrentInstance();
 		// Map<String, String> params =
@@ -109,7 +220,6 @@ public class RegistroBean implements Serializable {
 	/*
 	 * Region de Getters y Setters
 	 */
-
 	public String getNombre() {
 		return nombre;
 	}

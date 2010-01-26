@@ -100,30 +100,6 @@ Secano.</title>
 									</f:facet>
 								</h:panelGrid>
 							</h:panelGroup>
-							<h:panelGroup rendered="#{registroBean.activado}">
-								<h:panelGrid columns="2" columnClasses="tituloTabla, textoPlano">
-									<h:outputText value="#{text.registro_Contrasenia}" />
-									<h:inputText value="#{registroBean.contrasenia}" />
-
-									<h:outputText value="#{text.registro_ConfirmacionContrasenia}" />
-									<h:inputText value="#{registroBean.confirmacion}" />
-
-									<h:outputText value="#{text.registro_Frase}" />
-									<h:inputText value="#{registroBean.nombre}" />
-
-									<h:outputText value="#{text.login_registerSubject}" />
-									<h:inputText value="#{registroBean.email}" />
-
-									<h:outputText value="" />
-									<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
-											styleClass="textoPlano" 
-											action="#{registroBean.registrar}" value="#{text.login_ok}" />
-									<f:facet name="footer">
-										<h:outputText value="#{registroBean.error}"
-											styleClass="mensajeError" />
-									</f:facet>
-								</h:panelGrid>
-							</h:panelGroup>
 						</rich:panel>
 					</h:panelGrid></td>
 				</tr>
