@@ -1,47 +1,107 @@
 package com.inia_mscc.modulos.seg.entidades;
 
+import java.io.Serializable;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.inia_mscc.modulos.adm.entidades.Transaccion;
 import com.inia_mscc.modulos.adm.entidades.ValorSeleccion;
-import com.inia_mscc.modulos.comun.entidades.Objeto;
+import com.inia_mscc.modulos.comun.entidades.Enumerados;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
 
-public class Perfil extends Objeto {
+@Entity (name= "Perfil")
+@Table (name= "tl_seg_perf_perfil")
+public class Perfil implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "perf_num_id", nullable = false, columnDefinition = "BIGINT(20)")
+	private long _id;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "perf_str_estado", nullable = false, columnDefinition = "VARCHAR(45)")
+	private Enumerados.Estado _estado;
+	
+	@Column(name = "perf_str_nombre", nullable = false, columnDefinition = "VARCHAR(45)")
 	private String _nombre;
+	
+	@Column(name = "perf_str_descripcion", nullable = false, columnDefinition = "VARCHAR(220)")	
 	private String _descripcion;
-	private ValorSeleccion _tipoPerfil; 
+		
+	@Transient
+	private ValorSeleccion _tipoPerfil;
+	@Transient
 	private List<Transaccion> _transaccionesSistema;
 	
 	public Perfil() {
-		super();
+		_id = 0;
+		_estado = Estado.Activo;
 		_nombre = null;
 		_descripcion = null;
 		_tipoPerfil = null;
 		_transaccionesSistema = null;
 	}
+
+	public long get_id() {
+		return _id;
+	}
+
+	public void set_id(long id) {
+		_id = id;
+	}
+
+	public Enumerados.Estado get_estado() {
+		return _estado;
+	}
+
+	public void set_estado(Enumerados.Estado estado) {
+		_estado = estado;
+	}
+
 	public String get_nombre() {
 		return _nombre;
 	}
+
 	public void set_nombre(String nombre) {
 		_nombre = nombre;
 	}
+
 	public String get_descripcion() {
 		return _descripcion;
 	}
+
 	public void set_descripcion(String descripcion) {
 		_descripcion = descripcion;
 	}
+
 	public ValorSeleccion get_tipoPerfil() {
 		return _tipoPerfil;
 	}
+
 	public void set_tipoPerfil(ValorSeleccion tipoPerfil) {
 		_tipoPerfil = tipoPerfil;
 	}
+
 	public List<Transaccion> get_transaccionesSistema() {
 		return _transaccionesSistema;
 	}
+
 	public void set_transaccionesSistema(List<Transaccion> transaccionesSistema) {
 		_transaccionesSistema = transaccionesSistema;
 	}
+
 	
 }
