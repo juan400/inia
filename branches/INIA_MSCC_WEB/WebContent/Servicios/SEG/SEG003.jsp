@@ -29,7 +29,7 @@
 			<tbody>
 				<tr>
 					<td align="center" class="contenido"><h:panelGroup
-						rendered="#{loginBean.init}" /> <h:panelGrid>
+						rendered="#{registroBean.init}" /> <h:panelGrid>
 						<rich:panel headerClass="tituloPantalla"
 							style="background-color: #ebf3fd;">
 							<f:facet name="header">
@@ -37,7 +37,7 @@
 							</f:facet>
 							<h:panelGrid rendered="#{loginBean.logged}">
 								<h:outputText styleClass="mensajeError"
-									value="#{text.login_alreadyLogged}" />
+									value="#{registroBean.nombre} #{text.login_alreadyLogged}" />
 								<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
 									styleClass="textoPlano" action="#{loginBean.logout}"
 									value="#{text.login_logout}" />
@@ -47,26 +47,26 @@
 
 									<h:outputText value="#{text.login_userName}"
 										styleClass="textoPlano" />
-									<h:outputText value="#{loginBean.loginName}"
+									<h:outputText value="#{registroBean.nombre}"
 										styleClass="textoPlano" />
 
 									<h:outputText value="#{text.registro_Contrasenia}"
 										styleClass="textoPlano" />
-									<h:inputSecret value="#{loginBean.password}" required="true"
+									<h:inputSecret value="#{registroBean.contrasenia}" required="true"
 										styleClass="textoPlano" tabindex="2" maxlength="13" requiredMessage="#{text.campo_Obligatorio}"
 										onblur="ValidarCampoLogin(this, event)" 
 										onkeypress="ValidarCampoLogin(this, event)"/>
 										
 									<h:outputText value="#{text.registro_ConfirmacionContrasenia}"
 										styleClass="textoPlano" />
-									<h:inputSecret value="#{loginBean.password}"
+									<h:inputSecret value="#{registroBean.confirmacion}"
 										styleClass="textoPlano" tabindex="2" maxlength="13" required="true"
 										onblur="ValidarCampoLogin(this, event)" requiredMessage="#{text.campo_Obligatorio}"
 										onkeypress="ValidarCampoLogin(this, event)"/>
 										
 									<h:outputText value="#{text.registro_Frase}"
 										styleClass="textoPlano" />
-									<h:inputText value="#{loginBean.password}"
+									<h:inputText value="#{registroBean.frase}"
 										styleClass="textoPlano" tabindex="2" requiredMessage="#{text.campo_Obligatorio}"
 										onblur="ValidarCampoLetras(this, event)" required="true"
 										onkeypress="ValidarCampoLetras(this, event)"/>
@@ -75,7 +75,7 @@
 									<h:panelGrid columns="2">
 										<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
 											styleClass="textoPlano" tabindex="3"
-											action="#{loginBean.terminarRegistro}"
+											action="#{registroBean.Confirmar}"
 											value="#{text.boton_Guardar}" />
 										<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
 											styleClass="textoPlano" tabindex="4" 
@@ -85,7 +85,7 @@
 
 									<h:outputText value="" />
 									<f:facet name="footer">
-										<h:outputText value="#{loginBean.error}"
+										<h:outputText value="#{registroBean.error}"
 											styleClass="mensajeError" />
 									</f:facet>
 									<h:outputText value="" />
