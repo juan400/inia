@@ -12,6 +12,7 @@ import com.inia_mscc.modulos.adm.entidades.Ciudad;
 import com.inia_mscc.modulos.adm.entidades.Departamento;
 import com.inia_mscc.modulos.adm.entidades.Pais;
 import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
+import com.inia_mscc.modulos.seg.entidades.Perfil;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
 
@@ -31,6 +32,7 @@ public class HibernateUtil {
         	.addAnnotatedClass(Pais.class)
         	.addAnnotatedClass(Departamento.class)
         	.addAnnotatedClass(Ciudad.class)
+        	.addAnnotatedClass(Perfil.class)
         	.configure("hibernate.cfg.xml")
         	.buildSessionFactory();
             

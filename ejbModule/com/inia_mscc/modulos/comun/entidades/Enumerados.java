@@ -10,6 +10,10 @@ public class Enumerados {
 		Ninguno, Activo, Inactivo, Registrado, Bloqueado
 	}
 
+	static public enum Servicio{
+		Usuario, Perfil
+	}
+	
 	/**
 	 * @author Juan Andres Pio
 	 * 

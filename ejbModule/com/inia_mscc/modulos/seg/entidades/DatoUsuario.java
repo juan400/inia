@@ -75,9 +75,8 @@ public class DatoUsuario implements Serializable{
 	private Date _timeStamp;
   
 	public DatoUsuario() {
-		super();
 		_id = 0;
-		_estado = Enumerados.Estado.Inactivo;
+		_estado = Enumerados.Estado.Activo;
 		_nombre = null;
 		_fechaRegistro = new Date();
 		_timeStamp = new Date();
