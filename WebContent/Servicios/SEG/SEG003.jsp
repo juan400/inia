@@ -6,7 +6,8 @@
 <%@ taglib uri="http://java.sun.com/jsf/html" prefix="h"%>
 <html>
 <head>
-<title>INIA - Modelo de Simulación de Crecimiento de Cultivos de Secano.</title>
+<title>INIA - Modelo de Simulación de Crecimiento de Cultivos de
+Secano.</title>
 <link
 	href="<%=request.getContextPath()%>/Recursos/css/inia2010-01-17.css"
 	rel="stylesheet" type="text/css">
@@ -29,66 +30,78 @@
 			<tbody>
 				<tr>
 					<td align="center" class="contenido"><h:panelGroup
-						rendered="#{registroBean.init}" /> <h:panelGrid>
+						rendered="#{confirmacionBean.init}" /> <h:panelGrid>
 						<rich:panel headerClass="tituloPantalla"
 							style="background-color: #ebf3fd;">
 							<f:facet name="header">
-								<h:outputText value="#{text.login_title}" />
+								<h:outputText value="#{text.confiramcion_Titulo}" />
 							</f:facet>
-							<h:panelGrid rendered="#{loginBean.logged}">
+							<h:panelGrid rendered="#{confirmacionBean.activado}">
 								<h:outputText styleClass="mensajeError"
-									value="#{registroBean.nombre} #{text.login_alreadyLogged}" />
+									value="#{confirmacionBean.error}" />
 								<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
 									styleClass="textoPlano" action="#{loginBean.logout}"
-									value="#{text.login_logout}" />
+									tabindex="1" value="#{text.login_logout}" />
 							</h:panelGrid>
-							<h:panelGroup rendered="#{!loginBean.logged}">
-								<h:panelGrid columns="2" width="480">
+							<h:panelGroup rendered="#{!confirmacionBean.activado}">
+								<h:panelGrid columns="3" width="480">
 
 									<h:outputText value="#{text.login_userName}"
 										styleClass="textoPlano" />
-									<h:outputText value="#{registroBean.nombre}"
+									<h:outputText value="#{confirmacionBean.nombre}"
 										styleClass="textoPlano" />
+									<h:outputText value="" />
 
 									<h:outputText value="#{text.registro_Contrasenia}"
 										styleClass="textoPlano" />
-									<h:inputSecret value="#{registroBean.contrasenia}" required="true"
-										styleClass="textoPlano" tabindex="2" maxlength="13" requiredMessage="#{text.campo_Obligatorio}"
-										onblur="ValidarCampoLogin(this, event)" 
-										onkeypress="ValidarCampoLogin(this, event)"/>
-										
+									<h:inputSecret id="txtContrasenia"
+										value="#{confirmacionBean.contrasenia}" required="true"
+										styleClass="textoPlano" tabindex="1" maxlength="13">
+										<f:validateLength minimum="6" maximum="13" />
+									</h:inputSecret>
+									<rich:message for="txtContrasenia" >
+										<f:facet name="errorMarker">
+											<h:graphicImage value="/Recursos/Imagenes/Iconos/error.gif" />
+										</f:facet>
+									</rich:message>
+
 									<h:outputText value="#{text.registro_ConfirmacionContrasenia}"
 										styleClass="textoPlano" />
-									<h:inputSecret value="#{registroBean.confirmacion}"
-										styleClass="textoPlano" tabindex="2" maxlength="13" required="true"
-										onblur="ValidarCampoLogin(this, event)" requiredMessage="#{text.campo_Obligatorio}"
-										onkeypress="ValidarCampoLogin(this, event)"/>
-										
+									<h:inputSecret id="txtConfirmarContrasenia"
+										value="#{confirmacionBean.confirmacion}" required="true"
+										styleClass="textoPlano" tabindex="2" maxlength="13">
+										<f:validateLength minimum="6" maximum="13" />
+									</h:inputSecret>
+									<rich:message for="txtConfirmarContrasenia"
+										>
+										<f:facet name="errorMarker">
+											<h:graphicImage value="/Recursos/Imagenes/Iconos/error.gif" />
+										</f:facet>
+									</rich:message>
+
 									<h:outputText value="#{text.registro_Frase}"
 										styleClass="textoPlano" />
-									<h:inputText value="#{registroBean.frase}"
-										styleClass="textoPlano" tabindex="2" requiredMessage="#{text.campo_Obligatorio}"
-										onblur="ValidarCampoLetras(this, event)" required="true"
-										onkeypress="ValidarCampoLetras(this, event)"/>
+									<h:inputText id="txtfrase" value="#{confirmacionBean.frase}"
+										styleClass="textoPlano" tabindex="3" required="true">
+										<f:validateLength minimum="5" maximum="250" />
+									</h:inputText>
+									<rich:message for="txtfrase" >
+										<f:facet name="errorMarker">
+											<h:graphicImage value="/Recursos/Imagenes/Iconos/error.gif" />
+										</f:facet>
+									</rich:message>
 
+									<h:outputText value="" />
 									<h:outputText value="" />
 									<h:panelGrid columns="2">
 										<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
 											styleClass="textoPlano" tabindex="3"
-											action="#{registroBean.Confirmar}"
+											action="#{confirmacionBean.confirmar}"
 											value="#{text.boton_Guardar}" />
 										<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
 											styleClass="textoPlano" tabindex="4" 
-											action="cancelar"
 											value="#{text.boton_Cancelar}" />
 									</h:panelGrid>
-
-									<h:outputText value="" />
-									<f:facet name="footer">
-										<h:outputText value="#{registroBean.error}"
-											styleClass="mensajeError" />
-									</f:facet>
-									<h:outputText value="" />
 								</h:panelGrid>
 							</h:panelGroup>
 						</rich:panel>

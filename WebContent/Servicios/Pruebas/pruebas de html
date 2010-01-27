@@ -29,3 +29,27 @@
 		<button type="button" onclick="startProgress();">Start
 		Progress</button>
 	</h:form>
+	
+	
+	<h:inputSecret id="txtContrasenia" label="#{text.registro_Contrasenia}" value="#{confirmacionBean.contrasenia}"
+										required="true" styleClass="textoPlano" tabindex="1"
+										maxlength="13">
+										<f:validateLength minimum="6" maximum="13" />
+									</h:inputSecret>
+									<h:message for="txtContrasenia" styleClass="errorMessage" />
+									
+
+									<h:inputSecret id="txtConfirmarContrasenia" label="#{text.registro_ConfirmacionContrasenia}" 
+										value="#{confirmacionBean.confirmacion}"
+										required="true" styleClass="textoPlano" tabindex="2"
+										maxlength="13">
+										<f:validateLength minimum="6" maximum="13" />
+									</h:inputSecret>
+									<h:message for="txtConfirmarContrasenia" styleClass="errorMessage" />
+
+									
+									<h:inputText label="#{text.registro_Frase}" id="txtfrase" value="#{confirmacionBean.frase}"
+										styleClass="textoPlano" tabindex="3" required="true">
+										<f:validateLength minimum="5" maximum="250" />
+									</h:inputText>
+									<h:message for="txtfrase" styleClass="errorMessage" />

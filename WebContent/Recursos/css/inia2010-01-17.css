@@ -151,3 +151,29 @@ comboBox
     height: 20px; 
 } 
 
+
+.infoMessage {
+	font-family: "Trebuchet MS", Verdana, "Geometr212 Bk BT";
+	font-size: 11px;
+	color: #FFFFFF;
+}
+
+
+.errorMessage {
+	font-family: "Trebuchet MS", Verdana, "Geometr212 Bk BT";
+	font-size: 11px;
+	color: #FFCC00;
+}
+
+.fatalMessage {
+	font-family: "Trebuchet MS", Verdana, "Geometr212 Bk BT";
+	font-size: 11px;
+	color: #FFFFFF;
+}
+
+
+.warnMessage {
+	font-family: "Trebuchet MS", Verdana, "Geometr212 Bk BT";
+	font-size: 11px;
+	color: #336633;
+}
