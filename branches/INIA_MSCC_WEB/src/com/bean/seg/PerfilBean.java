@@ -1,49 +1,104 @@
 package com.bean.seg;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-
+import com.bean.comun.MaestroBean;
+import com.inia_mscc.modulos.comun.entidades.Enumerados;
+import com.inia_mscc.modulos.seg.SEGFachada;
 import com.inia_mscc.modulos.seg.entidades.Perfil;
 
-public class PerfilBean implements Serializable{
+public class PerfilBean implements Serializable {
 
-		
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private boolean init = false;
+	private String nombre;
+	private String descripcion;
+	private String estado;
+	private String error;
 	private List<Perfil> perfiles;
 
-	
+	private static final long serialVersionUID = 1L;
+
+	private SEGFachada segFachada = new SEGFachada(Enumerados.Servicio.Perfil);
+
 	public boolean isInit() {
-		perfiles = new ArrayList<Perfil>();
-		//perfiles = segFachada.otenerPerfiles();
-		for (int i = 0; i < 4; i++) {
-		 	Perfil per = new Perfil();
-		 	per.set_id(i);
-		 	per.set_nombre("pepe"+i);
-		 	per.set_descripcion("anduvo esta mierda"+i);
-		 	perfiles.add(per);
+		boolean retorno = false;
+
+		return retorno;
+	}
+
+	public boolean isLogged() {
+		return MaestroBean.getInstance().isLogged();
+	}
+
+	public List<Perfil> obternerPerfiles(){
+		return segFachada.ObtenerPerfiles();
+	}
+	
+	public String registrar() throws Exception {
+		// MaestroBean.getInstance().getTextBundle();
+		String retorno = "";
+		try {
+			Perfil datosPerfil = new Perfil();
+			datosPerfil.set_nombre(nombre);
+			datosPerfil.set_descripcion(descripcion);
+			datosPerfil.set_estado(Enumerados.Estado.valueOf(estado));
+		
+			Perfil p = segFachada.RegistrarPerfil(datosPerfil);
+			if (p != null) {
+				setError("");
+				MaestroBean.getInstance()
+						.setOpcion("/Servicios/SEG/SEG009.jsp");
+				retorno = "registro-ok";
+			} else {
+				setError("No ha sido posible registrar el perfil, revise los datos ingresados y intentelo nuevamente.");
+				MaestroBean.getInstance()
+						.setOpcion("/Servicios/SEG/SEG009.jsp");
+				retorno = "registro-error";
+			}
+		} catch (Exception ex) {
+			setError(ex.getMessage());
 		}
-		return init;
+		return retorno;
+	}
+	
+	public String getNombre() {
+		return nombre;
 	}
 
-
-	public void setInit(boolean init) {
-		this.init = init;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public void setError(String error) {
+		this.error = error;
+	}
+
+	public String getError() {
+		return error;
+	}
 
 	public void setPerfiles(List<Perfil> perfiles) {
-		this.perfiles = perfiles;
+		this.perfiles = segFachada.ObtenerPerfiles();
 	}
-	
-	@PostConstruct
+
 	public List<Perfil> getPerfiles() {
 		return perfiles;
 	}
+
 }
