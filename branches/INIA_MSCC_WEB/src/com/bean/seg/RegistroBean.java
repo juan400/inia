@@ -86,8 +86,8 @@ public class RegistroBean implements Serializable {
 				String c = "" + (int) (Math.random() * 10);
 				p.append(c);
 			}
+			pUsuario.set_codigoActivacion(p.toString());
 			pUsuario.set_password(p.toString());
-			pUsuario.set_activado(false);
 			pUsuario.set_estadoUsuario(EstadoUsuario.Registrado);
 			pUsuario.set_ultimoAcceso(new Date());
 			if (this.salvarNombre(pUsuario)) {

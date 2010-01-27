@@ -35,6 +35,7 @@ public class LoginBean implements Serializable {
 			maestro.setUsuario(u);
 			error = "";
 			// MaestroBean.getInstance().setOpcion("/Servicios/SEG/menuRich.jsp");
+			//TODO validar que el usuario estte activo y no este en otro estado que no sea activo.
 			return "login-ok";
 		} else {
 			error = "El nombre de usuario y password no conciden";
