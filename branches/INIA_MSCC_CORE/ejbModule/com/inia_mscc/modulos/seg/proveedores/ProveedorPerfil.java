@@ -1,6 +1,7 @@
 package com.inia_mscc.modulos.seg.proveedores;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -32,5 +33,10 @@ public class ProveedorPerfil implements ServicioPerfil {
 	public void ActualizarPerfil(Perfil pPerfil) {
 		ejbPerfil.ActualizarPerfil(pPerfil);
 		
+	}
+	
+	@Override
+	public List<Perfil> ObtenerPerfiles(){
+		return ejbPerfil.ObtenerPerfiles();
 	}
 }
