@@ -54,4 +54,23 @@
     TARGET="rules:#Servicios#SEG#SEG001.jsp" TITLE="irLogin" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#SEG#SEG003.jsp"
+  PATH="/Servicios/SEG/SEG003.jsp" SHAPE="96,225,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#SEG#SEG003.jsp:0" NAME="item"
+   PATH="/Servicios/SEG/SEG003.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="confirmar-ok:#{confirmacionBean.confirmar}:#Servicios#SEG#SEG001.jsp"
+    NAME="output" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp"
+    TITLE="#{confirmacionBean.confirmar}:confirmar-ok" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="confirmar-error:#{confirmacionBean.confirmar}:#Servicios#SEG#SEG003.jsp"
+    NAME="output1" PATH="/Servicios/SEG/SEG003.jsp"
+    TARGET="rules:#Servicios#SEG#SEG003.jsp"
+    TITLE="#{confirmacionBean.confirmar}:confirmar-error" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cancelar::#Servicios#SEG#SEG001.jsp"
+    NAME="output2" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp" TITLE="cancelar" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
 </PROCESS>
