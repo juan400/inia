@@ -1,6 +1,7 @@
 package com.inia_mscc.modulos.seg;
 
 import java.io.IOException;
+import java.util.List;
 
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
@@ -57,5 +58,9 @@ public class SEGFachada {
 	
 	public Perfil RegistrarPerfil(Perfil pPerfil) {
 		return srvPerfil.RegistrarPerfil(pPerfil);
+	}
+	
+	public List<Perfil> ObtenerPerfiles() {
+		return srvPerfil.ObtenerPerfiles();
 	}
 }
