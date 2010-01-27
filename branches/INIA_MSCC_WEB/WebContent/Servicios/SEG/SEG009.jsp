@@ -27,7 +27,7 @@ Secano.</title>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
+				<tr style="height: 2px;">
 					<td align="center" class="contenido"><h:panelGroup
 						rendered="#{loginBean.init}" /> <h:panelGrid>
 						<rich:panel headerClass="tituloPantalla"
@@ -35,29 +35,38 @@ Secano.</title>
 							<f:facet name="header">
 								<h:outputText value="#{text.Perfil_NuevoPerfil}" />
 							</f:facet>
-							<center><h:panelGrid rendered="#{loginBean.logged}"
-								width="400">
+							<center><h:panelGrid rendered="#{loginBean.logged}" 
+								width="">
 								<h:outputText styleClass="mensajeError"
 									value="#{text.login_alreadyLogged}" />
 								<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
 									styleClass="textoPlano" action="#{loginBean.logout}"
 									value="#{text.login_logout}" />
 							</h:panelGrid></center>
-							<br>
+							<br></br>
 
-							<h:panelGrid columns="2" columnClasses="textoPlano,textoPlano">
+							<h:panelGrid columns="3" columnClasses="textoPlano,textoPlano">
 								<h:outputText value="#{text.Perfil_Nombre}" />
-								<h:inputText value="#{perfilBean.nombre}" required="true"
+								<h:inputText label="Name" id="name" required="true" requiredMessage="Debe ingresar el Nombre."
+									value="#{perfilBean.nombre}" 
 									onkeypress="ValidarCampoLetras(this, event)"
 									style=" width : 245px;">
+									<f:validateLength maximum="45"> </f:validateLength>
+									 
 								</h:inputText>
+								<rich:message for="name">
+									<f:facet name="errorMarker">
+										<h:graphicImage value="Recursos/Imagenes/Iconos/error.gif" />
+									</f:facet>
+								</rich:message>
 
 								<h:outputText value="#{text.Perfil_Descripcion}" />
 								<h:inputTextarea id="descripcion"
-									onkeypress="ValidarLargoMultiline(this, event, 220)"
 									value="#{perfilBean.descripcion}"
+									onkeypress="ValidarLargoMultiline(this, event, 220)"
 									style=" width : 245px; height : 71px;" />
 
+								<td></td>
 								<h:outputText value="#{text.Perfil_Estado}" />
 								<rich:comboBox defaultLabel="Seleccionar Estado"
 									value="#{perfilBean.estado}" width="245px">
@@ -66,9 +75,11 @@ Secano.</title>
 									<f:selectItem itemValue="Inactivo" />
 								</rich:comboBox>
 
+								<td style="width: 2px;"></td>
 								<h:outputText value="" />
 								<h:panelGrid columns="2">
-									<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
+									<a4j:commandButton 
+										style="font-size: 10pt; color: #2d77c2;"
 										styleClass="textoPlano" action="#{perfilBean.registrar}"
 										value="#{text.boton_Aceptar}" />
 									<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
