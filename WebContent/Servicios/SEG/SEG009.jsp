@@ -48,8 +48,8 @@ Secano.</title>
 							<h:panelGrid columns="2" columnClasses="textoPlano,textoPlano">
 								<h:outputText value="#{text.Perfil_Nombre}" />
 								<h:inputText value="#{perfilBean.nombre}" required="true"
+									onkeypress="ValidarCampoLetras(this, event)"
 									style=" width : 245px;">
-									
 								</h:inputText>
 
 								<h:outputText value="#{text.Perfil_Descripcion}" />
@@ -57,29 +57,27 @@ Secano.</title>
 									onkeypress="ValidarLargoMultiline(this, event, 220)"
 									value="#{perfilBean.descripcion}"
 									style=" width : 245px; height : 71px;" />
-									
+
 								<h:outputText value="#{text.Perfil_Estado}" />
-								<rich:comboBox defaultLabel="Seleccionar Estado" value="#{perfilBean.estado}" width="245px">
+								<rich:comboBox defaultLabel="Seleccionar Estado"
+									value="#{perfilBean.estado}" width="245px">
 									<f:selectItem itemValue="Activo" />
 									<f:selectItem itemValue="Bloqueado" />
 									<f:selectItem itemValue="Inactivo" />
 								</rich:comboBox>
-								
+
 								<h:outputText value="" />
 								<h:panelGrid columns="2">
-									<a4j:commandButton style="font-size: 10pt; color: #2d77c2;" 
+									<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
 										styleClass="textoPlano" action="#{perfilBean.registrar}"
 										value="#{text.boton_Aceptar}" />
 									<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
 										styleClass="textoPlano" action="#{perfilBean.cancelar}"
 										value="#{text.boton_Cancelar}" />
 								</h:panelGrid>
-
 							</h:panelGrid>
 						</rich:panel>
 					</h:panelGrid>
-					
-								<h:messages style="color:darkred"/></td>
 				</tr>
 			</tbody>
 		</table>
