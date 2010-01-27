@@ -73,7 +73,7 @@ public class DAOUsuario implements Serializable {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			Criteria c = session.createCriteria(Usuario.class);
-			c.add(Restrictions.eq("_password", pClave));
+			c.add(Restrictions.eq("_codigoActivacion", pClave));
 			retorno = (Usuario) c.uniqueResult();
 		} catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
