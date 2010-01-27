@@ -27,7 +27,7 @@ Secano.</title>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
+				<tr style="height: 2px;">
 					<td align="center" class="contenido"><h:panelGroup
 						rendered="#{perfilBean.init}" /> <h:panelGrid>
 						<rich:panel headerClass="tituloPantalla"
@@ -35,6 +35,7 @@ Secano.</title>
 							<f:facet name="header">
 								<h:outputText value="#{text.Perfil_NuevoPerfil}" />
 							</f:facet>
+
 							<center><h:panelGrid rendered="#{loginBean.logged}">
 								<h:outputText styleClass="mensajeError"
 									value="#{text.login_alreadyLogged}" />
@@ -42,28 +43,36 @@ Secano.</title>
 									styleClass="textoPlano" action="#{loginBean.logout}"
 									value="#{text.login_logout}" />
 							</h:panelGrid></center>
-							<br>
+							<br></br>
 
-							<h:panelGrid columns="1" width="200">
-								<h:dataTable border="2" value="#{perfilBean.perfiles}"
-									var="perfil">
-									<h:column>
-										<f:facet name="header">
-											<h:outputText value="Perfiles" />
-										</f:facet>
-										<h:outputText value="#{perfil._nombre}" />
-									</h:column>
-									<h:column>
-										<f:facet name="header">
-											<h:outputText value="Descripción" />
-										</f:facet>
-										<h:outputText value="#{perfil._descripcion}" />
-									</h:column>
-								</h:dataTable>
+							<center><h:dataTable border="2" width="500"
+								value="#{perfilBean.perfiles}" var="perfil"
+								headerClass="columnHeader"
+								rowClasses="oddRow,evenRow">
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Nombre" />
+									</f:facet>
+									<h:outputText value="#{perfil._nombre}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Descripción" />
+									</f:facet>
+									<h:outputText value="#{perfil._descripcion}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Estado" />
+									</f:facet>
+									<h:outputText value="#{perfil._estado}" />
+								</h:column>
 
-							</h:panelGrid>
+							</h:dataTable></center>
 						</rich:panel>
-					</h:panelGrid>
+					</h:panelGrid></td>
+				</tr>
+			</tbody>
 		</table>
 	</h:form>
 </f:view>
