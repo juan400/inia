@@ -1,5 +1,7 @@
 package com.inia_mscc.modulos.seg.ejb;
 
+import java.util.List;
+
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -27,5 +29,10 @@ public class EJBPerfil implements ServicioPerfil{
 	@Override
 	public Perfil RegistrarPerfil(Perfil pPerfil) {
 		return dao.RegistrarPerfil(pPerfil);
+	}
+	
+	@Override
+	public List<Perfil> ObtenerPerfiles(){
+		return dao.ObtenerPerfiles();
 	}
 }
