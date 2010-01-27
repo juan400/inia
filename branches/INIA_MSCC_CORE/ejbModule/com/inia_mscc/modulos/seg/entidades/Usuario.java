@@ -49,7 +49,11 @@ public class Usuario implements Serializable {
 	@ForeignKey (name="FK_usua_num_id_dato_usuario")
 	@JoinColumn(name="usua_num_id_dato_usuario", updatable=false, nullable=false, columnDefinition="BIGINT(20)") 
 	private DatoUsuario _datos;
-
+	@Column(name = "usua_str_frase", nullable = false, columnDefinition = "VARCHAR(250)")
+	private String _frase;
+	@Column(name = "usua_str_codigo_activacion", nullable = true, columnDefinition = "VARCHAR(45)")
+	private String _codigoActivacion;
+	
 	public Usuario() {
 		super();
 		_login = null;
@@ -115,11 +119,27 @@ public class Usuario implements Serializable {
 	public void set_datos(DatoUsuario datos) {
 		_datos = datos;
 	}
-	
+
+	public String get_frase() {
+		return _frase;
+	}
+
+	public void set_frase(String frase) {
+		_frase = frase;
+	}
+
+	public String get_codigoActivacion() {
+		return _codigoActivacion;
+	}
+
+	public void set_codigoActivacion(String codigoActivacion) {
+		_codigoActivacion = codigoActivacion;
+	}
+		
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
 		return this.get_login()+this.get_ultimoAcceso()+ this.get_estadoUsuario();
 	}
-	
+
 }
