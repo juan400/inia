@@ -6,8 +6,8 @@ import javax.faces.context.FacesContext;
 
 import com.bean.comun.MaestroBean;
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.EstadoUsuario;
 import com.inia_mscc.modulos.seg.SEGFachada;
-import com.inia_mscc.modulos.seg.entidades.Usuario;
 
 public class ConfirmacionBean extends MaestroBean {
 
@@ -28,6 +28,41 @@ public class ConfirmacionBean extends MaestroBean {
 	private String codigoActivacion;
 	private Boolean activado;
 
+	/**
+	 * @return
+	 */
+	public String Confirmar() {
+		String retorno;
+		// retorno = "confirmar-ok";
+		// error = "confirmar-ok";
+		if (super.getUsuario() != null) {
+			if (contrasenia.equals(confirmacion)) {
+				if (!frase.isEmpty() || !frase.equals("")
+						|| !frase.equals(super.getUsuario().get_login())
+						|| !frase.equals(contrasenia)) {
+					super.getUsuario().set_codigoActivacion(null);
+					super.getUsuario().set_password(contrasenia);
+					super.getUsuario().set_frase(frase);
+					super.getUsuario().set_activado(true);
+					super.getUsuario().set_estadoUsuario(EstadoUsuario.Activo);
+					segFachada.CambiarPassword(super.getUsuario());
+					retorno = "confirmar-ok";
+				} else {
+					error = "Ingrese la clave secreta y recuerde que no sea igual a su contraseña o nombre de usuario.";
+					retorno = "confirmar-error";
+				}
+			} else {
+				error = "La contraseña ingresada no es igual a su confirmación.";
+				retorno = "confirmar-error";
+			}
+			// TODO Poner el metod de la fachada que confira el usuario.
+		} else {
+			error = "El usuario no esta registrado en el sistema.";
+			retorno = "confirmar-error";
+		}
+		return retorno;
+	}
+
 	/*
 	 * Region de Metodos
 	 */
@@ -46,24 +81,28 @@ public class ConfirmacionBean extends MaestroBean {
 			codigoActivacion = null;
 		}
 		if (codigoActivacion != null) {
-			Usuario usuario = segFachada
-					.ComprobarClaveReigstro(codigoActivacion.toString());
-			if (usuario != null) {
-				nombre = usuario.get_datos().get_nombre() + " "
-						+ usuario.get_datos().get_apellido();
-				if (usuario.get_estadoUsuario().equals(
+			super.setUsuario(segFachada.ComprobarClaveReigstro(codigoActivacion
+					.toString()));
+			if (super.getUsuario() != null) {
+				nombre = super.getUsuario().get_datos().get_nombre() + " "
+						+ super.getUsuario().get_datos().get_apellido();
+				if (super.getUsuario().is_activado()) {
+					error = "Estiamdo usuario " + nombre
+							+ " su cuenta está confirmada.";
+					activado = true;
+				} else if (super.getUsuario().get_estadoUsuario().equals(
 						Enumerados.EstadoUsuario.Activo)) {
 					error = "Estiamdo usuario "
 							+ nombre
 							+ " su cuenta está activada, no es necesario este paso.";
 					activado = true;
-				} else if (usuario.get_estadoUsuario().equals(
+				} else if (super.getUsuario().get_estadoUsuario().equals(
 						Enumerados.EstadoUsuario.Bloqueado)) {
 					error = "Estiamdo usuario "
 							+ nombre
 							+ " su cuenta está bloqueada, ingrese a recuperar su contraseña.";
 					activado = true;
-				} else if (usuario.get_estadoUsuario().equals(
+				} else if (super.getUsuario().get_estadoUsuario().equals(
 						Enumerados.EstadoUsuario.Inactivo)) {
 					error = "Estiamdo usuario "
 							+ nombre
@@ -81,19 +120,6 @@ public class ConfirmacionBean extends MaestroBean {
 			activado = true;
 		}
 		return activado;
-	}
-
-	public String Confirmar() {
-		String retorno;
-//		retorno = "confirmar-ok";
-//		error = "confirmar-ok";
-//		if (usuario != null) {
-//			//usuario.set_password(password))
-//		} else {
-			retorno = "confirmar-error";
-//			error = "confirmar-error";
-//		}
-		return retorno;
 	}
 
 	/**
