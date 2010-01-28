@@ -28,6 +28,38 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<navigation-rule>
+		<from-view-id>/Servicios/SEG/SEG009.jsp</from-view-id>
+		<navigation-case>
+			<from-action>#{perfilBean.registrar}</from-action>
+			<from-outcome>registro-ok</from-outcome>
+			<to-view-id>/Servicios/SEG/SEG008.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{perfilBean.registrar}</from-action>
+			<from-outcome>registro-error</from-outcome>
+			<to-view-id>/Servicios/SEG/SEG009.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancelar</from-outcome>
+			<to-view-id>/Servicios/SEG/SEG008.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<navigation-rule>
 		<from-view-id>/Servicios/SEG/SEG003.jsp</from-view-id>
 		<navigation-case>
 			<from-action>#{confirmacionBean.Confirmar}</from-action>
