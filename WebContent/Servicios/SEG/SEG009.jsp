@@ -35,7 +35,7 @@ Secano.</title>
 							<f:facet name="header">
 								<h:outputText value="#{text.perfil_NuevoPerfil}" />
 							</f:facet>
-							<center><h:panelGrid rendered="#{loginBean.logged}" 
+							<center><h:panelGrid rendered="#{loginBean.logged}"
 								width="">
 								<h:outputText styleClass="mensajeError"
 									value="#{text.login_alreadyLogged}" />
@@ -47,14 +47,19 @@ Secano.</title>
 
 							<h:panelGrid columns="3" columnClasses="textoPlano,textoPlano">
 								<h:outputText value="#{text.perfil_Nombre}" />
-								<h:inputText label="Name" id="name" required="true" requiredMessage="Debe ingresar el Nombre."
-									value="#{perfilBean.nombre}" 
+								<h:inputText label="Name" id="name" required="true"
+									requiredMessage="Debe ingresar el Nombre."
+									value="#{perfilBean.nombre}"
 									onkeypress="ValidarCampoLetras(this, event)"
 									style=" width : 245px;">
-									<f:validateLength maximum="45"> </f:validateLength>
-									 
+									<f:validateLength maximum="45">
+									</f:validateLength>
 								</h:inputText>
+
 								<rich:message for="name">
+									<f:facet name="passMarker">
+										<h:graphicImage value="Recursos/Imagenes/Iconos/passed.gif" />
+									</f:facet>
 									<f:facet name="errorMarker">
 										<h:graphicImage value="Recursos/Imagenes/Iconos/error.gif" />
 									</f:facet>
@@ -65,7 +70,7 @@ Secano.</title>
 									value="#{perfilBean.descripcion}"
 									onkeypress="ValidarLargoMultiline(this, event, 220)"
 									style=" width : 245px; height : 71px;" />
-									
+
 								<td></td>
 								<h:outputText value="#{text.perfil_Estado}" />
 								<rich:comboBox defaultLabel="Seleccionar Estado"
@@ -76,15 +81,19 @@ Secano.</title>
 
 								<td style="width: 2px;"></td>
 								<h:outputText value="" />
+								<br></br>
+								<br></br>
+								<br></br>
 								<h:panelGrid columns="2">
-									<a4j:commandButton 
-										style="font-size: 10pt; color: #2d77c2;"
+									<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
 										styleClass="textoPlano" action="#{perfilBean.registrar}"
 										value="#{text.boton_Aceptar}" />
-									<a4j:commandButton immediate="true" style="font-size: 10pt; color: #2d77c2;"
+									<a4j:commandButton immediate="true"
+										style="font-size: 10pt; color: #2d77c2;"
 										styleClass="textoPlano" action="cancelar"
 										value="#{text.boton_Cancelar}" />
 								</h:panelGrid>
+
 							</h:panelGrid>
 						</rich:panel>
 					</h:panelGrid>

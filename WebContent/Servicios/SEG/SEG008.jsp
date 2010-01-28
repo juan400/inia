@@ -46,7 +46,7 @@ Secano.</title>
 							<br></br>
 
 							<center><rich:extendedDataTable border="2" width="600px"
-								height="100" styleClass="textoDataTable" selectionMode="single"
+								height="150" styleClass="textoDataTable" selectionMode="single"
 								value="#{perfilBean.perfiles}"
 								var="perfil" headerClass="columnHeader"
 								rowClasses="oddRow,evenRow">
