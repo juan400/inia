@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.bean.comun.MaestroBean;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.EstadoUsuario;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.Servicio;
 import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
@@ -84,24 +85,24 @@ public class RegistroBean extends MaestroBean implements Serializable{
 			pUsuario.set_estadoUsuario(EstadoUsuario.Registrado);
 			pUsuario.set_ultimoAcceso(new Date());
 			pUsuario.set_frase("Ingrese su frase secreta");
-//			Usuario u = segFachada.RegistrarUsuario(pUsuario);
-//			if (u != null) {
+			Usuario u = super.getSegFachada(Servicio.Usuario).RegistrarUsuario(pUsuario);
+			if (u != null) {
 				if (!this.salvarNombre(pUsuario)) {
 					error = "No ha sido posible registrar el usuario, el e-mail proporcionado no esta disponible.";
 					MaestroBean.getInstance().setOpcion(
 							"/Servicios/SEG/SEG002.jsp");
 					retorno = "registro-error";
 				}
-//				error = "";
-//				MaestroBean.getInstance()
-//						.setOpcion("/Servicios/SEG/SEG001.jsp");
-//				retorno = "registro-ok";
-//			} else {
-//				error = "No ha sido posible registrar el usuario, revise los datos ingresados y intentelo nuevamente.";
-//				MaestroBean.getInstance()
-//						.setOpcion("/Servicios/SEG/SEG002.jsp");
-//				retorno = "registro-error";
-//			}
+				error = "";
+				MaestroBean.getInstance()
+						.setOpcion("/Servicios/SEG/SEG001.jsp");
+				retorno = "registro-ok";
+			} else {
+				error = "No ha sido posible registrar el usuario, revise los datos ingresados y intentelo nuevamente.";
+				MaestroBean.getInstance()
+						.setOpcion("/Servicios/SEG/SEG002.jsp");
+				retorno = "registro-error";
+			}
 		} catch (Exception ex) {
 			error = ex.getMessage();
 		}
