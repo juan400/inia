@@ -32,10 +32,10 @@ public class PerfilBean implements Serializable {
 		return MaestroBean.getInstance().isLogged();
 	}
 
-	public List<Perfil> obternerPerfiles(){
+	public List<Perfil> obternerPerfiles() {
 		return segFachada.ObtenerPerfiles();
 	}
-	
+
 	public String registrar() throws Exception {
 		// MaestroBean.getInstance().getTextBundle();
 		String retorno = "";
@@ -44,13 +44,14 @@ public class PerfilBean implements Serializable {
 			datosPerfil.set_nombre(nombre);
 			datosPerfil.set_descripcion(descripcion);
 			datosPerfil.set_estado(Enumerados.Estado.valueOf(estado));
-		
+
 			Perfil p = segFachada.RegistrarPerfil(datosPerfil);
 			if (p != null) {
 				setError("");
 				MaestroBean.getInstance()
 						.setOpcion("/Servicios/SEG/SEG009.jsp");
 				retorno = "registro-ok";
+				LimpiarBean();
 			} else {
 				setError("No ha sido posible registrar el perfil, revise los datos ingresados y intentelo nuevamente.");
 				MaestroBean.getInstance()
@@ -62,7 +63,16 @@ public class PerfilBean implements Serializable {
 		}
 		return retorno;
 	}
-	
+
+	private void LimpiarBean() {
+		nombre = null;
+		descripcion = null;
+		estado = null;
+		perfil = null;
+		perfiles= null;
+		error= null;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
