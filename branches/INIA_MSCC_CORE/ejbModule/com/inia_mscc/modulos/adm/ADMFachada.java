@@ -50,6 +50,13 @@ public class ADMFachada {
 	public List<Pais> ObtenerPaises() {
 		return srvRelacionPCD.ObtenerPaises();
 	}
-
+	
+	public List<Departamento> ObtenerDepartamentosXPais(Pais pPais) {
+		return srvRelacionPCD.ObtenerDepartamentosXPais(pPais);
+	}
+	
+	public List<Ciudad> ObtenerCiudadesXDeptos(Departamento unDepto) {
+		return srvRelacionPCD.ObtenerCiudadesXDeptos(unDepto);
+	}
 	
 }

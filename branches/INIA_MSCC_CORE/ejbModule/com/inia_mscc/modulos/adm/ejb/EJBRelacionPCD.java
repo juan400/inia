@@ -16,10 +16,9 @@ import com.inia_mscc.modulos.adm.entidades.Ciudad;
 import com.inia_mscc.modulos.adm.entidades.Departamento;
 import com.inia_mscc.modulos.adm.entidades.Pais;
 import com.inia_mscc.modulos.adm.servicios.ServicioRelacionPCD;
-import com.inia_mscc.modulos.seg.servicios.ServicioUsuario;
 
 @Stateless(name = "EJBRelacionPCD", mappedName = "EJBRelacionPCD")
-@Remote(ServicioUsuario.class)
+@Remote(ServicioRelacionPCD.class)
 @TransactionManagement(value = TransactionManagementType.CONTAINER)
 @TransactionAttribute(value = TransactionAttributeType.REQUIRED)
 public class EJBRelacionPCD implements ServicioRelacionPCD {
@@ -45,12 +44,20 @@ public class EJBRelacionPCD implements ServicioRelacionPCD {
 		return daoDepto.ObtenerDepartamentos();
 	}
 	@Override
+	public List<Departamento> ObtenerDepartamentosXPais(Pais pPais) {
+		return daoDepto.ObtenerDepartamentosXPais(pPais);
+	}
+	@Override
 	public Pais ObtenerPais(Pais pPais) {
 		return daoPais.ObtenerPais(pPais);
 	}
 	@Override
 	public List<Pais> ObtenerPaises() {
 		return daoPais.ObtenerPaises();
+	}
+	@Override
+	public List<Ciudad> ObtenerCiudadesXDeptos(Departamento unDepto) {
+		return daoCiudad.ObtenerCiudadesXDeptos(unDepto);
 	}
 
 }
