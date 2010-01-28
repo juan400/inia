@@ -44,31 +44,36 @@ Secano.</title>
 									value="#{text.login_logout}" />
 							</h:panelGrid></center>
 							<br></br>
-
-							<center><h:dataTable border="2" width="500"
+	
+							<center>
+							<rich:extendedDataTable border="2" width="600px" height="100" styleClass="textoDataTable"  
+							selectionMode="single" selection="#{perfilBean.perfil}"
 								value="#{perfilBean.perfiles}" var="perfil"
-								headerClass="columnHeader"
-								rowClasses="oddRow,evenRow">
-								<h:column>
+								headerClass="columnHeader" 								
+								rowClasses="oddRow,evenRow" >
+								
+								<rich:column width="150" sortable="false" > 
 									<f:facet name="header">
 										<h:outputText value="Nombre" />
 									</f:facet>
-									<h:outputText value="#{perfil._nombre}" />
-								</h:column>
-								<h:column>
+									<h:outputText value="#{perfil._nombre}"/>
+								</rich:column>
+								
+								<rich:column width="350" sortable="false" >
 									<f:facet name="header">
 										<h:outputText value="Descripción" />
 									</f:facet>
 									<h:outputText value="#{perfil._descripcion}" />
-								</h:column>
-								<h:column>
+								</rich:column>
+								
+								<rich:column width="100" sortable="false" >
 									<f:facet name="header">
 										<h:outputText value="Estado" />
 									</f:facet>
 									<h:outputText value="#{perfil._estado}" />
-								</h:column>
+								</rich:column>
 
-							</h:dataTable></center>
+							</rich:extendedDataTable></center>
 						</rich:panel>
 					</h:panelGrid></td>
 				</tr>
