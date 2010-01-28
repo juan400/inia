@@ -3,8 +3,10 @@ package com.bean.seg;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
+import javax.faces.model.SelectItem;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -15,12 +17,15 @@ import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 
 import com.bean.comun.MaestroBean;
+import com.inia_mscc.modulos.adm.entidades.Ciudad;
+import com.inia_mscc.modulos.adm.entidades.Departamento;
+import com.inia_mscc.modulos.adm.entidades.Pais;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.EstadoUsuario;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.Servicio;
 import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
-public class RegistroBean extends MaestroBean implements Serializable{
+public class RegistroBean extends MaestroBean implements Serializable {
 
 	/**
 	 * 
@@ -35,12 +40,92 @@ public class RegistroBean extends MaestroBean implements Serializable{
 	private String celular;
 	private String formatoCelular;
 	private String direccion;
-	private String ciudad;
-	private String departamento;
-	private String pais;
+	private String paisElegido;
+	private String departamentoElegido;
+	private String ciudadElegido;
 	private String codigoPostal;
-
+	private SelectItem[] paises;
+	private SelectItem[] departamentos;
+	private SelectItem[] ciudades;
 	private String error;
+
+	public void takeSelectionDepartamento() {
+		Departamento unDepto = new Departamento();
+		unDepto.set_nombre(getDepartamentoElegido());
+		unDepto = super.getAdmFachada(Servicio.RelacionPCD).ObtenerDepartamento(unDepto);
+		List<Ciudad> cs = super.getAdmFachada(Servicio.RelacionPCD)
+				.ObtenerCiudadesXDeptos(unDepto);
+		ciudades = new SelectItem[cs.size() + 1];
+		ciudades[0] = new SelectItem(super.getTextBundleKey("combo_seleccione"));
+		int l = 1;
+		for (Ciudad c : cs) {
+			SelectItem si = new SelectItem(c.get_nombre());
+			ciudades[l] = si;
+			l++;
+		}
+		ciudadElegido = ciudades[0].getValue().toString();
+	}
+
+	public void takeSelectionPais() {
+		Pais unPais = new Pais();
+		unPais.set_nombre(getPaisElegido());
+		unPais = super.getAdmFachada(Servicio.RelacionPCD).ObtenerPais(unPais);
+		List<Departamento> depto = super.getAdmFachada(Servicio.RelacionPCD)
+				.ObtenerDepartamentosXPais(unPais);
+		departamentos = new SelectItem[depto.size() + 1];
+		departamentos[0] = new SelectItem(super
+				.getTextBundleKey("combo_seleccione"));
+		int j = 1;
+		for (Departamento d : depto) {
+			SelectItem si = new SelectItem(d.get_nombre());
+			departamentos[j] = si;
+			j++;
+		}
+		departamentoElegido = departamentos[0].getValue().toString();
+	}
+
+	public RegistroBean() throws Exception {
+		try {
+			List<Pais> ps = super.getAdmFachada(Servicio.RelacionPCD)
+					.ObtenerPaises();
+			paises = new SelectItem[ps.size() + 1];
+			paises[0] = new SelectItem(super
+					.getTextBundleKey("combo_seleccione"));
+			int i = 1;
+			for (Pais p : ps) {
+				SelectItem si = new SelectItem(p.get_nombre());
+				paises[i] = si;
+				i++;
+			}
+			List<Departamento> ds = super.getAdmFachada(Servicio.RelacionPCD)
+					.ObtenerDepartamentos();
+			departamentos = new SelectItem[ds.size() + 1];
+			departamentos[0] = new SelectItem(super
+					.getTextBundleKey("combo_seleccione"));
+			int j = 1;
+			for (Departamento d : ds) {
+				SelectItem si = new SelectItem(d.get_nombre());
+				departamentos[j] = si;
+				j++;
+			}
+			List<Ciudad> cs = super.getAdmFachada(Servicio.RelacionPCD)
+					.ObtenerCiudades();
+			ciudades = new SelectItem[cs.size() + 1];
+			ciudades[0] = new SelectItem(super
+					.getTextBundleKey("combo_seleccione"));
+			int l = 1;
+			for (Ciudad c : cs) {
+				SelectItem si = new SelectItem(c.get_nombre());
+				ciudades[l] = si;
+				l++;
+			}
+			paisElegido = paises[0].getValue().toString();
+			departamentoElegido = departamentos[0].getValue().toString();
+			ciudadElegido = ciudades[0].getValue().toString();
+		} catch (Exception e) {
+			throw e;
+		}
+	}
 
 	/*
 	 * Region de Metodos
@@ -85,7 +170,8 @@ public class RegistroBean extends MaestroBean implements Serializable{
 			pUsuario.set_estadoUsuario(EstadoUsuario.Registrado);
 			pUsuario.set_ultimoAcceso(new Date());
 			pUsuario.set_frase("Ingrese su frase secreta");
-			Usuario u = super.getSegFachada(Servicio.Usuario).RegistrarUsuario(pUsuario);
+			Usuario u = super.getSegFachada(Servicio.Usuario).RegistrarUsuario(
+					pUsuario);
 			if (u != null) {
 				if (!this.salvarNombre(pUsuario)) {
 					error = "No ha sido posible registrar el usuario, el e-mail proporcionado no esta disponible.";
@@ -147,10 +233,12 @@ public class RegistroBean extends MaestroBean implements Serializable{
 		message.addRecipient(Message.RecipientType.TO, new InternetAddress(
 				pUsuario.get_datos().get_mail()));
 
-		HttpServletRequest request = (HttpServletRequest) super.getFacesContext().getExternalContext().getRequest();
+		HttpServletRequest request = (HttpServletRequest) super
+				.getFacesContext().getExternalContext().getRequest();
 		StringBuffer path = request.getRequestURL();// http://localhost:8081/INIA_MSCC/Servicios/SEG/SEG002.jsf
-		String server = path.toString().replaceFirst("SEG002", "SEG003").toString();		
-		
+		String server = path.toString().replaceFirst("SEG002", "SEG003")
+				.toString();
+
 		message.setSubject("Activacion de usuario en el sistema INIA - MSCC");
 
 		message
@@ -252,30 +340,6 @@ public class RegistroBean extends MaestroBean implements Serializable{
 		this.direccion = direccion;
 	}
 
-	public String getCiudad() {
-		return ciudad;
-	}
-
-	public void setCiudad(String ciudad) {
-		this.ciudad = ciudad;
-	}
-
-	public String getDepartamento() {
-		return departamento;
-	}
-
-	public void setDepartamento(String departamento) {
-		this.departamento = departamento;
-	}
-
-	public String getPais() {
-		return pais;
-	}
-
-	public void setPais(String pais) {
-		this.pais = pais;
-	}
-
 	public String getCodigoPostal() {
 		return codigoPostal;
 	}
@@ -290,6 +354,54 @@ public class RegistroBean extends MaestroBean implements Serializable{
 
 	public void setError(String error) {
 		this.error = error;
+	}
+
+	public String getPaisElegido() {
+		return paisElegido;
+	}
+
+	public void setPaisElegido(String paisElegido) {
+		this.paisElegido = paisElegido;
+	}
+
+	public String getDepartamentoElegido() {
+		return departamentoElegido;
+	}
+
+	public void setDepartamentoElegido(String departamentoElegido) {
+		this.departamentoElegido = departamentoElegido;
+	}
+
+	public String getCiudadElegido() {
+		return ciudadElegido;
+	}
+
+	public void setCiudadElegido(String ciudadElegido) {
+		this.ciudadElegido = ciudadElegido;
+	}
+
+	public SelectItem[] getPaises() {
+		return paises;
+	}
+
+	public void setPaises(SelectItem[] paises) {
+		this.paises = paises;
+	}
+
+	public SelectItem[] getDepartamentos() {
+		return departamentos;
+	}
+
+	public void setDepartamentos(SelectItem[] departamentos) {
+		this.departamentos = departamentos;
+	}
+
+	public SelectItem[] getCiudades() {
+		return ciudades;
+	}
+
+	public void setCiudades(SelectItem[] ciudades) {
+		this.ciudades = ciudades;
 	}
 
 }
