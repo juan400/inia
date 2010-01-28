@@ -47,18 +47,20 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	<navigation-rule>
+		<from-view-id>/Servicios/SEG/SEG008.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>Alta</from-outcome>
+			<to-view-id>/Servicios/SEG/SEG009.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>perfilBean.cancelar</from-outcome>
+			<to-view-id>/Servicios/Contenido.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 	<navigation-rule>
 		<from-view-id>/Servicios/SEG/SEG003.jsp</from-view-id>
 		<navigation-case>

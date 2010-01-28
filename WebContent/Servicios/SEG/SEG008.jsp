@@ -33,7 +33,7 @@ Secano.</title>
 						<rich:panel headerClass="tituloPantalla"
 							style="background-color: #ebf3fd;">
 							<f:facet name="header">
-								<h:outputText value="#{text.Perfil_NuevoPerfil}" />
+								<h:outputText value="#{text.perfil_ListaPerfiles}" />
 							</f:facet>
 
 							<center><h:panelGrid rendered="#{loginBean.logged}">
@@ -44,29 +44,28 @@ Secano.</title>
 									value="#{text.login_logout}" />
 							</h:panelGrid></center>
 							<br></br>
-	
-							<center>
-							<rich:extendedDataTable border="2" width="600px" height="100" styleClass="textoDataTable"  
-							selectionMode="single" selection="#{perfilBean.perfil}"
-								value="#{perfilBean.perfiles}" var="perfil"
-								headerClass="columnHeader" 								
-								rowClasses="oddRow,evenRow" >
-								
-								<rich:column width="150" sortable="false" > 
+
+							<center><rich:extendedDataTable border="2" width="600px"
+								height="100" styleClass="textoDataTable" selectionMode="single"
+								selection="#{perfilBean.perfil}" value="#{perfilBean.perfiles}"
+								var="perfil" headerClass="columnHeader"
+								rowClasses="oddRow,evenRow">
+
+								<rich:column width="150" sortable="false">
 									<f:facet name="header">
 										<h:outputText value="Nombre" />
 									</f:facet>
-									<h:outputText value="#{perfil._nombre}"/>
+									<h:outputText value="#{perfil._nombre}" />
 								</rich:column>
-								
-								<rich:column width="350" sortable="false" >
+
+								<rich:column width="350" sortable="false">
 									<f:facet name="header">
 										<h:outputText value="Descripción" />
 									</f:facet>
 									<h:outputText value="#{perfil._descripcion}" />
 								</rich:column>
-								
-								<rich:column width="100" sortable="false" >
+
+								<rich:column width="100" sortable="false">
 									<f:facet name="header">
 										<h:outputText value="Estado" />
 									</f:facet>
@@ -74,6 +73,23 @@ Secano.</title>
 								</rich:column>
 
 							</rich:extendedDataTable></center>
+							<br></br>
+							<br></br>
+							<center><h:panelGrid columns="3">
+								
+								<a4j:commandButton immediate="true" style="font-size: 10pt; color: #2d77c2; width : 87px;"
+									styleClass="textoPlano" action="Alta"
+									value="#{text.boton_Registrar}" />
+								
+								<a4j:commandButton style="font-size: 10pt; color: #2d77c2; width : 87px;"
+									styleClass="textoPlano" action="#{perfilBean.cancelar}"
+									value="#{text.boton_Actualizar}" />
+
+								<a4j:commandButton immediate="true" style="font-size: 10pt; color: #2d77c2; width : 87px;"
+									styleClass="textoPlano" action="perfilBean.cancelar" 
+									value="#{text.perfil_Cerrar}" />
+							</h:panelGrid></center>
+							
 						</rich:panel>
 					</h:panelGrid></td>
 				</tr>
