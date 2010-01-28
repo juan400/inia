@@ -47,7 +47,7 @@ Secano.</title>
 
 							<center><rich:extendedDataTable border="2" width="600px"
 								height="100" styleClass="textoDataTable" selectionMode="single"
-								selection="#{perfilBean.perfil}" value="#{perfilBean.perfiles}"
+								value="#{perfilBean.perfiles}"
 								var="perfil" headerClass="columnHeader"
 								rowClasses="oddRow,evenRow">
 
@@ -86,7 +86,7 @@ Secano.</title>
 									value="#{text.boton_Actualizar}" />
 
 								<a4j:commandButton immediate="true" style="font-size: 10pt; color: #2d77c2; width : 87px;"
-									styleClass="textoPlano" action="perfilBean.cancelar" 
+									styleClass="textoPlano" action="cancelar" 
 									value="#{text.perfil_Cerrar}" />
 							</h:panelGrid></center>
 							
