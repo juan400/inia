@@ -43,12 +43,19 @@ Secano.</title>
 									styleClass="textoPlano" action="#{loginBean.logout}"
 									tabindex="1" value="#{text.login_logout}" />
 							</h:panelGrid>
+							
 							<h:panelGroup rendered="#{!confirmacionBean.activado}">
 								<h:panelGrid columns="3" width="480">
 
-									<h:outputText value="#{text.login_userName}"
+									<h:outputText value="#{text.confirmacion_Usuario}"
 										styleClass="textoPlano" />
 									<h:outputText value="#{confirmacionBean.nombre}"
+										styleClass="textoPlano" />
+									<h:outputText value="" />
+
+									<h:outputText value="#{text.confirmacion_Login}"
+										styleClass="textoPlano" />
+									<h:outputText value="#{confirmacionBean.loginName}"
 										styleClass="textoPlano" />
 									<h:outputText value="" />
 
@@ -102,18 +109,16 @@ Secano.</title>
 											<h:graphicImage value="/Recursos/Imagenes/Iconos/error.gif" />
 										</f:facet>
 									</rich:message>
-
-									<h:outputText value="" />
-									<h:outputText value="" />
-									<h:panelGrid columns="2">
-										<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
-											styleClass="textoPlano" tabindex="3"
-											action="#{confirmacionBean.Confirmar}"
-											value="#{text.boton_Guardar}" />
-										<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
-											styleClass="textoPlano" tabindex="4" action="Cancelar"
-											value="#{text.boton_Cancelar}" />
-									</h:panelGrid>
+								</h:panelGrid>
+								<h:panelGrid columns="2" >
+									<a4j:commandButton rendered="#{!confirmacionBean.activado}"
+										style="font-size: 10pt; color: #2d77c2;"
+										styleClass="textoPlano" tabindex="3"
+										action="#{confirmacionBean.Confirmar}"
+										value="#{text.boton_Guardar}" />
+									<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
+										styleClass="textoPlano" tabindex="4" action="Cancelar"
+										value="#{text.boton_Cancelar}" />
 								</h:panelGrid>
 							</h:panelGroup>
 						</rich:panel>

@@ -12,22 +12,19 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.naming.NamingException;
+import javax.servlet.http.HttpServletRequest;
 
 import com.bean.comun.MaestroBean;
-import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.EstadoUsuario;
-import com.inia_mscc.modulos.seg.SEGFachada;
 import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
-public class RegistroBean implements Serializable {
+public class RegistroBean extends MaestroBean implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	private SEGFachada segFachada = new SEGFachada(Enumerados.Servicio.Usuario);
 
 	private String nombre;
 	private String apellido;
@@ -87,24 +84,24 @@ public class RegistroBean implements Serializable {
 			pUsuario.set_estadoUsuario(EstadoUsuario.Registrado);
 			pUsuario.set_ultimoAcceso(new Date());
 			pUsuario.set_frase("Ingrese su frase secreta");
-			Usuario u = segFachada.RegistrarUsuario(pUsuario);
-			if (u != null) {
+//			Usuario u = segFachada.RegistrarUsuario(pUsuario);
+//			if (u != null) {
 				if (!this.salvarNombre(pUsuario)) {
 					error = "No ha sido posible registrar el usuario, el e-mail proporcionado no esta disponible.";
 					MaestroBean.getInstance().setOpcion(
 							"/Servicios/SEG/SEG002.jsp");
 					retorno = "registro-error";
 				}
-				error = "";
-				MaestroBean.getInstance()
-						.setOpcion("/Servicios/SEG/SEG001.jsp");
-				retorno = "registro-ok";
-			} else {
-				error = "No ha sido posible registrar el usuario, revise los datos ingresados y intentelo nuevamente.";
-				MaestroBean.getInstance()
-						.setOpcion("/Servicios/SEG/SEG002.jsp");
-				retorno = "registro-error";
-			}
+//				error = "";
+//				MaestroBean.getInstance()
+//						.setOpcion("/Servicios/SEG/SEG001.jsp");
+//				retorno = "registro-ok";
+//			} else {
+//				error = "No ha sido posible registrar el usuario, revise los datos ingresados y intentelo nuevamente.";
+//				MaestroBean.getInstance()
+//						.setOpcion("/Servicios/SEG/SEG002.jsp");
+//				retorno = "registro-error";
+//			}
 		} catch (Exception ex) {
 			error = ex.getMessage();
 		}
@@ -149,35 +146,29 @@ public class RegistroBean implements Serializable {
 		message.addRecipient(Message.RecipientType.TO, new InternetAddress(
 				pUsuario.get_datos().get_mail()));
 
+		HttpServletRequest request = (HttpServletRequest) super.getFacesContext().getExternalContext().getRequest();
+		StringBuffer path = request.getRequestURL();// http://localhost:8081/INIA_MSCC/Servicios/SEG/SEG002.jsf
+		String server = path.toString().replaceFirst("SEG002", "SEG003").toString();		
+		
 		message.setSubject("Activacion de usuario en el sistema INIA - MSCC");
 
 		message
 				.setText(
-						"<i><b>Usted se a registrado stisfactoriamente en INIA - MSCC<br>"
-								+ "para concluir con el registro aceda al siguiente link </b></i>.<br>"
-								+
-								// TODO cambiar el path del servidor
-								"<a href='http://localhost:8081/INIA_MSCC/Servicios/SEG/SEG003.jsf?codigoActivacion="
+						"<br></br><br></br><br><center><i><b>Usted se a registrado stisfactoriamente en INIA - MSCC,</br>"
+								+ "<br>para concluir con el registro aceda al siguiente link </b></i>.</br>"
+								+ "<br><a href='"
+								+ server
+								+ "?codigoActivacion="
 								+ pUsuario.get_password()
 								+ "'>"
-								+ "Concluir el registro de usuario</a><br><br>"
-								+ "<i><b>Muchas gracias por registrarse!</b></i>",
+								+ "Concluir el registro de usuario</a></br><br></br>"
+								+ "<br><i><b>Muchas gracias por registrarse!</b></i></center><br></br><br></br><br></br>",
 						"ISO-8859-1", "html");
 
 		Transport t = session.getTransport("smtp");
 		t.connect("juan400_4@hotmail.com", "andres4003341");
 		t.sendMessage(message, message.getAllRecipients());
 		t.close();
-
-		// MailService mail = new MailService();
-		// mail.setJNDIName("java:/MailSenderService");
-		// mail.setUser("juan400@gmail.com");
-		// mail.setPassword("andres4003341");
-		// mail.setConfiguration(.ull)
-		// Element ele = new Element();
-		// MailSenderServices mail = new MailSenderProvider();
-		// mail.enviarMailTextoPlano(pDatos.get_mail(), "Enviado desde MSCC",
-		// "Esto es uun mail de prueba.");
 		return true;
 	}
 
