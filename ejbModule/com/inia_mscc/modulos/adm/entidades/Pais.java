@@ -1,12 +1,15 @@
 package com.inia_mscc.modulos.adm.entidades;
 
 import java.io.Serializable;
+import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity(name = "Pais")
@@ -23,7 +26,9 @@ public class Pais implements Serializable {
 	private long _id;
 	@Column(name = "pais_str_nombre", nullable = false, columnDefinition = "VARCHAR(220)")
 	private String _nombre;
-
+    @OneToMany(targetEntity=Departamento.class, mappedBy="deto_num_id_pais",cascade=CascadeType.ALL)
+	private Collection<Departamento> _departamentos;
+	
 	public Pais() {
 	}
 
@@ -42,5 +47,14 @@ public class Pais implements Serializable {
 	public void set_nombre(String nombre) {
 		_nombre = nombre;
 	}
+
+	public Collection<Departamento> get_departamentos() {
+		return _departamentos;
+	}
+
+	public void set_departamentos(Collection<Departamento> departamentos) {
+		_departamentos = departamentos;
+	}
+
 
 }
