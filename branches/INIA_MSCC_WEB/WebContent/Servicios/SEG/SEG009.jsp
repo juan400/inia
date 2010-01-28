@@ -33,7 +33,7 @@ Secano.</title>
 						<rich:panel headerClass="tituloPantalla"
 							style="background-color: #ebf3fd;">
 							<f:facet name="header">
-								<h:outputText value="#{text.Perfil_NuevoPerfil}" />
+								<h:outputText value="#{text.perfil_NuevoPerfil}" />
 							</f:facet>
 							<center><h:panelGrid rendered="#{loginBean.logged}" 
 								width="">
@@ -46,7 +46,7 @@ Secano.</title>
 							<br></br>
 
 							<h:panelGrid columns="3" columnClasses="textoPlano,textoPlano">
-								<h:outputText value="#{text.Perfil_Nombre}" />
+								<h:outputText value="#{text.perfil_Nombre}" />
 								<h:inputText label="Name" id="name" required="true" requiredMessage="Debe ingresar el Nombre."
 									value="#{perfilBean.nombre}" 
 									onkeypress="ValidarCampoLetras(this, event)"
@@ -60,14 +60,14 @@ Secano.</title>
 									</f:facet>
 								</rich:message>
 
-								<h:outputText value="#{text.Perfil_Descripcion}" />
+								<h:outputText value="#{text.perfil_Descripcion}" />
 								<h:inputTextarea id="descripcion"
 									value="#{perfilBean.descripcion}"
 									onkeypress="ValidarLargoMultiline(this, event, 220)"
 									style=" width : 245px; height : 71px;" />
 									
 								<td></td>
-								<h:outputText value="#{text.Perfil_Estado}" />
+								<h:outputText value="#{text.perfil_Estado}" />
 								<rich:comboBox defaultLabel="Seleccionar Estado"
 									value="#{perfilBean.estado}" width="245px">
 									<f:selectItem itemValue="Activo" />
@@ -82,8 +82,8 @@ Secano.</title>
 										style="font-size: 10pt; color: #2d77c2;"
 										styleClass="textoPlano" action="#{perfilBean.registrar}"
 										value="#{text.boton_Aceptar}" />
-									<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
-										styleClass="textoPlano" action="#{perfilBean.cancelar}"
+									<a4j:commandButton immediate="true" style="font-size: 10pt; color: #2d77c2;"
+										styleClass="textoPlano" action="cancelar"
 										value="#{text.boton_Cancelar}" />
 								</h:panelGrid>
 							</h:panelGrid>
