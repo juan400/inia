@@ -99,10 +99,9 @@
    <PROCESS-ITEM-OUTPUT ID="Alta::#Servicios#SEG#SEG009.jsp"
     NAME="output" PATH="/Servicios/SEG/SEG009.jsp"
     TARGET="rules:#Servicios#SEG#SEG009.jsp" TITLE="Alta" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT
-    ID="perfilBean.cancelar::#Servicios#Contenido.jsp" NAME="output2"
-    PATH="/Servicios/Contenido.jsp"
-    TARGET="rules:#Servicios#Contenido.jsp" TITLE="perfilBean.cancelar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cancelar::#Servicios#Contenido.jsp"
+    NAME="output2" PATH="/Servicios/Contenido.jsp"
+    TARGET="rules:#Servicios#Contenido.jsp" TITLE="cancelar" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
 </PROCESS>
