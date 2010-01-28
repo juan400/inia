@@ -12,7 +12,9 @@ public interface ServicioRelacionPCD {
 	public Pais ObtenerPais(Pais pPais);
 	public List<Departamento> ObtenerDepartamentos();
 	public Departamento ObtenerDepartamento(Departamento pDepartamento);
+	public List<Departamento> ObtenerDepartamentosXPais(Pais pPais);
 	public List<Ciudad> ObtenerCiudades();
 	public Ciudad ObtenerCiudad(Ciudad pCiudad);
+	public List<Ciudad> ObtenerCiudadesXDeptos(Departamento unDepto);
 
 }

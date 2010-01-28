@@ -37,7 +37,7 @@ public class Departamento implements Serializable {
 	@ForeignKey (name="FK_pais_num_id")
 	@JoinColumn(name="deto_num_id_pais", nullable=true, columnDefinition="BIGINT(20)")
 	private Pais _pais;
-    @OneToMany(targetEntity=Ciudad.class, mappedBy="ciud_num_id_departamento",cascade=CascadeType.ALL)
+    @OneToMany(targetEntity=Ciudad.class, mappedBy="_departamento",cascade=CascadeType.ALL)
 	private Collection<Ciudad> _ciudades;
 	
 	public Departamento() {
