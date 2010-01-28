@@ -26,6 +26,8 @@ public class DAOPerfil implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(DAOPerfil.class);
 
+	
+	
 	public List<Perfil> ObtenerPerfiles() {
 		List<Perfil> retorno = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
