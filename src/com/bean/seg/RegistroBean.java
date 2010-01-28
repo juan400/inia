@@ -87,7 +87,6 @@ public class RegistroBean implements Serializable {
 			pUsuario.set_estadoUsuario(EstadoUsuario.Registrado);
 			pUsuario.set_ultimoAcceso(new Date());
 			pUsuario.set_frase("Ingrese su frase secreta");
-			// if (this.salvarNombre(pUsuario)) {
 			Usuario u = segFachada.RegistrarUsuario(pUsuario);
 			if (u != null) {
 				if (!this.salvarNombre(pUsuario)) {
@@ -106,7 +105,6 @@ public class RegistroBean implements Serializable {
 						.setOpcion("/Servicios/SEG/SEG002.jsp");
 				retorno = "registro-error";
 			}
-			// }
 		} catch (Exception ex) {
 			error = ex.getMessage();
 		}
