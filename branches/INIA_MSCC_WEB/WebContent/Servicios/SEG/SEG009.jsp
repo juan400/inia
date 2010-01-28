@@ -65,7 +65,7 @@ Secano.</title>
 									value="#{perfilBean.descripcion}"
 									onkeypress="ValidarLargoMultiline(this, event, 220)"
 									style=" width : 245px; height : 71px;" />
-
+									
 								<td></td>
 								<h:outputText value="#{text.Perfil_Estado}" />
 								<rich:comboBox defaultLabel="Seleccionar Estado"
