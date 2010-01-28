@@ -71,7 +71,6 @@ Secano.</title>
 								<rich:comboBox defaultLabel="Seleccionar Estado"
 									value="#{perfilBean.estado}" width="245px">
 									<f:selectItem itemValue="Activo" />
-									<f:selectItem itemValue="Bloqueado" />
 									<f:selectItem itemValue="Inactivo" />
 								</rich:comboBox>
 
