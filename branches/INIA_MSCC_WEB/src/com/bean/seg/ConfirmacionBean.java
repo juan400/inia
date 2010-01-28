@@ -37,9 +37,9 @@ public class ConfirmacionBean extends MaestroBean {
 		// error = "confirmar-ok";
 		if (super.getUsuario() != null) {
 			if (contrasenia.equals(confirmacion)) {
-				if (!frase.isEmpty() || !frase.equals("")
-						|| !frase.equals(super.getUsuario().get_login())
-						|| !frase.equals(contrasenia)) {
+				if (!frase.isEmpty() && !frase.equals("")
+						&& !frase.equals(super.getUsuario().get_login())
+						&& !frase.equals(contrasenia)) {
 					super.getUsuario().set_codigoActivacion(null);
 					super.getUsuario().set_password(contrasenia);
 					super.getUsuario().set_frase(frase);
@@ -66,6 +66,7 @@ public class ConfirmacionBean extends MaestroBean {
 	/*
 	 * Region de Metodos
 	 */
+	@Override
 	public boolean isInit() {
 		activado = false;
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -125,14 +126,6 @@ public class ConfirmacionBean extends MaestroBean {
 	/**
 	 * @return
 	 */
-	public boolean isActivado() {
-		return activado;
-	}
-
-	public boolean isLogged() {
-		return MaestroBean.getInstance().isLogged();
-	}
-
 	public String getNombre() {
 		return nombre;
 	}

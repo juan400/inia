@@ -11,11 +11,11 @@ import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.seg.SEGFachada;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
-public class LoginBean implements Serializable {
+public class LoginBean extends MaestroBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private SEGFachada segFachada = new SEGFachada(Enumerados.Servicio.Perfil);
+	private SEGFachada segFachada = new SEGFachada(Enumerados.Servicio.Usuario);
 
 	private String loginName;
 	private String password;
@@ -66,10 +66,6 @@ public class LoginBean implements Serializable {
 
 	public SEGFachada getSegFachada() {
 		return segFachada;
-	}
-
-	public boolean isLogged() {
-		return MaestroBean.getInstance().isLogged();
 	}
 
 	public String getLoginName() {
