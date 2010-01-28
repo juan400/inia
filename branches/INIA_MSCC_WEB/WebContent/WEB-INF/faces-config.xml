@@ -30,19 +30,19 @@
 	<navigation-rule>
 		<from-view-id>/Servicios/SEG/SEG003.jsp</from-view-id>
 		<navigation-case>
-			<from-action>#{confirmacionBean.confirmar}</from-action>
+			<from-action>#{confirmacionBean.Confirmar}</from-action>
 			<from-outcome>confirmar-ok</from-outcome>
 			<to-view-id>/Servicios/SEG/SEG001.jsp</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
-			<from-action>#{confirmacionBean.confirmar}</from-action>
+			<from-action>#{confirmacionBean.Confirmar}</from-action>
 			<from-outcome>confirmar-error</from-outcome>
 			<to-view-id>/Servicios/SEG/SEG003.jsp</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
-			<from-outcome>cancelar</from-outcome>
+			<from-outcome>Cancelar</from-outcome>
 			<to-view-id>/Servicios/SEG/SEG001.jsp</to-view-id>
 			<redirect />
 		</navigation-case>

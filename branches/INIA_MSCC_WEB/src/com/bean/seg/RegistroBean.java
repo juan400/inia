@@ -42,10 +42,6 @@ public class RegistroBean implements Serializable {
 	private String pais;
 	private String codigoPostal;
 
-	private String contrasenia;
-	private String confirmacion;
-	private String frase;
-
 	private String error;
 
 	/*
@@ -53,7 +49,7 @@ public class RegistroBean implements Serializable {
 	 */
 	public boolean isInit() {
 		boolean retrono = false;
-		
+
 		return retrono;
 	}
 
@@ -90,26 +86,27 @@ public class RegistroBean implements Serializable {
 			pUsuario.set_password(p.toString());
 			pUsuario.set_estadoUsuario(EstadoUsuario.Registrado);
 			pUsuario.set_ultimoAcceso(new Date());
-			if (this.salvarNombre(pUsuario)) {
-				Usuario u = segFachada.RegistrarUsuario(pUsuario);
-				if (u != null) {
-					error = "";
-					MaestroBean.getInstance().setOpcion(
-							"/Servicios/SEG/SEG001.jsp");
-					retorno = "registro-ok";
-				} else {
-					error = "No ha sido posible registrar el usuario, revise los datos ingresados y intentelo nuevamente.";
+			pUsuario.set_frase("Ingrese su frase secreta");
+			// if (this.salvarNombre(pUsuario)) {
+			Usuario u = segFachada.RegistrarUsuario(pUsuario);
+			if (u != null) {
+				if (!this.salvarNombre(pUsuario)) {
+					error = "No ha sido posible registrar el usuario, el e-mail proporcionado no esta disponible.";
 					MaestroBean.getInstance().setOpcion(
 							"/Servicios/SEG/SEG002.jsp");
 					retorno = "registro-error";
 				}
+				error = "";
+				MaestroBean.getInstance()
+						.setOpcion("/Servicios/SEG/SEG001.jsp");
+				retorno = "registro-ok";
 			} else {
-				error = "No ha sido posible registrar el usuario, el e-mail proporcionado no esta disponible.";
+				error = "No ha sido posible registrar el usuario, revise los datos ingresados y intentelo nuevamente.";
 				MaestroBean.getInstance()
 						.setOpcion("/Servicios/SEG/SEG002.jsp");
 				retorno = "registro-error";
 			}
-
+			// }
 		} catch (Exception ex) {
 			error = ex.getMessage();
 		}
@@ -295,30 +292,6 @@ public class RegistroBean implements Serializable {
 
 	public void setCodigoPostal(String codigoPostal) {
 		this.codigoPostal = codigoPostal;
-	}
-
-	public String getContrasenia() {
-		return contrasenia;
-	}
-
-	public void setContrasenia(String contrasenia) {
-		this.contrasenia = contrasenia;
-	}
-
-	public String getConfirmacion() {
-		return confirmacion;
-	}
-
-	public void setConfirmacion(String confirmacion) {
-		this.confirmacion = confirmacion;
-	}
-
-	public String getFrase() {
-		return frase;
-	}
-
-	public void setFrase(String frase) {
-		this.frase = frase;
 	}
 
 	public String getError() {
