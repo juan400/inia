@@ -15,12 +15,14 @@ public class PerfilBean implements Serializable {
 	private String estado;
 	private String error;
 	private List<Perfil> perfiles;
+	private Perfil perfil;
 
 	private static final long serialVersionUID = 1L;
 
 	private SEGFachada segFachada = new SEGFachada(Enumerados.Servicio.Perfil);
 
 	public boolean isInit() {
+		this.perfiles = segFachada.ObtenerPerfiles();
 		boolean retorno = false;
 
 		return retorno;
@@ -94,11 +96,19 @@ public class PerfilBean implements Serializable {
 	}
 
 	public void setPerfiles(List<Perfil> perfiles) {
-		this.perfiles = segFachada.ObtenerPerfiles();
+		this.perfiles = perfiles;
 	}
 
 	public List<Perfil> getPerfiles() {
 		return perfiles;
+	}
+
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
+	}
+
+	public Perfil getPerfil() {
+		return perfil;
 	}
 
 }
