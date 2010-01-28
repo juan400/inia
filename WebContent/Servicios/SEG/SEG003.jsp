@@ -56,10 +56,14 @@ Secano.</title>
 										styleClass="textoPlano" />
 									<h:inputSecret id="txtContrasenia"
 										value="#{confirmacionBean.contrasenia}" required="true"
-										styleClass="textoPlano" tabindex="1" maxlength="13">
+										requiredMessage="puta de mierda" styleClass="textoPlano"
+										tabindex="1" maxlength="13">
 										<f:validateLength minimum="6" maximum="13" />
 									</h:inputSecret>
-									<rich:message for="txtContrasenia" >
+									<rich:message for="txtContrasenia" styleClass="mensajeError">
+										<f:facet name="passedMarker">
+											<h:graphicImage value="/Recursos/Imagenes/Iconos/passed.gif" />
+										</f:facet>
 										<f:facet name="errorMarker">
 											<h:graphicImage value="/Recursos/Imagenes/Iconos/error.gif" />
 										</f:facet>
@@ -69,11 +73,15 @@ Secano.</title>
 										styleClass="textoPlano" />
 									<h:inputSecret id="txtConfirmarContrasenia"
 										value="#{confirmacionBean.confirmacion}" required="true"
-										styleClass="textoPlano" tabindex="2" maxlength="13">
+										requiredMessage="puta de mierda" styleClass="textoPlano"
+										tabindex="2" maxlength="13">
 										<f:validateLength minimum="6" maximum="13" />
 									</h:inputSecret>
 									<rich:message for="txtConfirmarContrasenia"
-										>
+										styleClass="mensajeError">
+										<f:facet name="passedMarker">
+											<h:graphicImage value="/Recursos/Imagenes/Iconos/passed.gif" />
+										</f:facet>
 										<f:facet name="errorMarker">
 											<h:graphicImage value="/Recursos/Imagenes/Iconos/error.gif" />
 										</f:facet>
@@ -82,10 +90,14 @@ Secano.</title>
 									<h:outputText value="#{text.registro_Frase}"
 										styleClass="textoPlano" />
 									<h:inputText id="txtfrase" value="#{confirmacionBean.frase}"
-										styleClass="textoPlano" tabindex="3" required="true">
+										styleClass="textoPlano" tabindex="3" required="true"
+										requiredMessage="puta de mierda">
 										<f:validateLength minimum="5" maximum="250" />
 									</h:inputText>
-									<rich:message for="txtfrase" >
+									<rich:message for="txtfrase" styleClass="mensajeError">
+										<f:facet name="passedMarker">
+											<h:graphicImage value="/Recursos/Imagenes/Iconos/passed.gif" />
+										</f:facet>
 										<f:facet name="errorMarker">
 											<h:graphicImage value="/Recursos/Imagenes/Iconos/error.gif" />
 										</f:facet>
@@ -96,10 +108,10 @@ Secano.</title>
 									<h:panelGrid columns="2">
 										<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
 											styleClass="textoPlano" tabindex="3"
-											action="#{confirmacionBean.confirmar}"
+											action="#{confirmacionBean.Confirmar}"
 											value="#{text.boton_Guardar}" />
 										<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
-											styleClass="textoPlano" tabindex="4" 
+											styleClass="textoPlano" tabindex="4" action="Cancelar"
 											value="#{text.boton_Cancelar}" />
 									</h:panelGrid>
 								</h:panelGrid>
