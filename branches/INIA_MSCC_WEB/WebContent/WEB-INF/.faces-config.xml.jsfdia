@@ -73,4 +73,36 @@
     TARGET="rules:#Servicios#SEG#SEG001.jsp" TITLE="Cancelar" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#SEG#SEG009.jsp"
+  PATH="/Servicios/SEG/SEG009.jsp" SHAPE="32,577,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#SEG#SEG009.jsp:0" NAME="item"
+   PATH="/Servicios/SEG/SEG009.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="registro-ok:#{perfilBean.registrar}:#Servicios#SEG#SEG008.jsp"
+    NAME="output" PATH="/Servicios/SEG/SEG008.jsp"
+    TARGET="rules:#Servicios#SEG#SEG008.jsp"
+    TITLE="#{perfilBean.registrar}:registro-ok" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="registro-error:#{perfilBean.registrar}:#Servicios#SEG#SEG009.jsp"
+    NAME="output1" PATH="/Servicios/SEG/SEG009.jsp"
+    TARGET="rules:#Servicios#SEG#SEG009.jsp"
+    TITLE="#{perfilBean.registrar}:registro-error" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cancelar::#Servicios#SEG#SEG008.jsp"
+    NAME="output2" PATH="/Servicios/SEG/SEG008.jsp"
+    TARGET="rules:#Servicios#SEG#SEG008.jsp" TITLE="cancelar" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#SEG#SEG008.jsp"
+  PATH="/Servicios/SEG/SEG008.jsp" SHAPE="272,593,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#SEG#SEG008.jsp:0" NAME="item"
+   PATH="/Servicios/SEG/SEG008.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="Alta::#Servicios#SEG#SEG009.jsp"
+    NAME="output" PATH="/Servicios/SEG/SEG009.jsp"
+    TARGET="rules:#Servicios#SEG#SEG009.jsp" TITLE="Alta" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="perfilBean.cancelar::#Servicios#Contenido.jsp" NAME="output2"
+    PATH="/Servicios/Contenido.jsp"
+    TARGET="rules:#Servicios#Contenido.jsp" TITLE="perfilBean.cancelar" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
 </PROCESS>
