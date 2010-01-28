@@ -11,7 +11,7 @@ public class Enumerados {
 	}
 
 	static public enum Servicio{
-		Usuario, Perfil
+		Usuario, Perfil, RelacionPCD
 	}
 	
 	/**
