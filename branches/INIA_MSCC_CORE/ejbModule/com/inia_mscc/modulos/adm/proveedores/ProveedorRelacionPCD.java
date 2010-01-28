@@ -57,4 +57,13 @@ public class ProveedorRelacionPCD implements ServicioRelacionPCD {
 		return ejbRelacionPCD.ObtenerPaises();
 	}
 
+	@Override
+	public List<Departamento> ObtenerDepartamentosXPais(Pais pPais) {
+		return ejbRelacionPCD.ObtenerDepartamentosXPais(pPais);
+	}
+	
+	@Override
+	public List<Ciudad> ObtenerCiudadesXDeptos(Departamento unDepto) {
+		return ejbRelacionPCD.ObtenerCiudadesXDeptos(unDepto);
+	}
 }

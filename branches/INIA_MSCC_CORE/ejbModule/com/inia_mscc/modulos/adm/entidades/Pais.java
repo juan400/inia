@@ -26,7 +26,7 @@ public class Pais implements Serializable {
 	private long _id;
 	@Column(name = "pais_str_nombre", nullable = false, columnDefinition = "VARCHAR(220)")
 	private String _nombre;
-    @OneToMany(targetEntity=Departamento.class, mappedBy="deto_num_id_pais",cascade=CascadeType.ALL)
+    @OneToMany(targetEntity=Departamento.class, mappedBy="_pais",cascade=CascadeType.ALL)
 	private Collection<Departamento> _departamentos;
 	
 	public Pais() {

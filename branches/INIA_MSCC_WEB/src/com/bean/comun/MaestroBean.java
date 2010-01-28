@@ -14,6 +14,7 @@ import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
+import com.inia_mscc.modulos.adm.ADMFachada;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.Servicio;
 import com.inia_mscc.modulos.seg.SEGFachada;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
@@ -31,8 +32,7 @@ import com.inia_mscc.modulos.seg.entidades.Usuario;
 		private boolean activado = false;
 		private TimeZone tz;
 		private static final String PATH_Mensajes = "com.bean.comun.mensajes.Messages";
-		@SuppressWarnings("unused")
-		private SEGFachada segFachada;
+		private static final String PATH_Texto = "com.bean.text";
 		
 		/**
 		 * Add a message
@@ -42,7 +42,7 @@ import com.inia_mscc.modulos.seg.entidades.Usuario;
 		 * @param mySeverity
 		 */
 		protected void addGlobalMessage(String key,	Severity mySeverity) {
-			String message = getBundleKey(PATH_Mensajes, key);
+			String message = getTextBundleKey(key);
 			addGlobalMessageFromString(message, mySeverity);
 		}
 
@@ -60,26 +60,25 @@ import com.inia_mscc.modulos.seg.entidades.Usuario;
 		 * Search for the value of a given key in the application loaded bundle
 		 * 
 		 * @param key
-		 * @param bundle
 		 * @return the description for the key
 		 * 
 		 */
-		protected String getBundleKey(String myBundle, String key) {
+		protected String getMensajesBundleKey(String key) {
 			ResourceBundle bundle = ResourceBundle.getBundle(PATH_Mensajes,	getFacesContext().getExternalContext().getRequestLocale());
 			return bundle.getString(key);
-		}
+		}		
 
 		/**
-		 * Searchs for a ResourceBundle
+		 * Search for the value of a given key in the application loaded bundle
 		 * 
-		 * @param bundle
-		 * @return the ResourceBundle
+		 * @param key
+		 * @return the description for the key
 		 */
-		protected ResourceBundle getBundle(String myBundle) {
-			return ResourceBundle.getBundle(PATH_Mensajes, getFacesContext().getExternalContext().getRequestLocale());
-		}
+		protected String getTextBundleKey(String key) {
+			ResourceBundle bundle = ResourceBundle.getBundle(PATH_Texto,	getFacesContext().getExternalContext().getRequestLocale());
+			return bundle.getString(key);
+		}	
 		
-
 		/**
 		 * Obtain the application faces context
 		 * 
@@ -134,8 +133,7 @@ import com.inia_mscc.modulos.seg.entidades.Usuario;
 		 * @MCUnnn
 		 */
 		public String getErrorMessage(String be) {
-			ResourceBundle errorMessages =	getBundle(PATH_Mensajes);
-			return errorMessages.getString(be);
+			return getMensajesBundleKey(be);
 		}
 		
 		public void setActivado(boolean activado) {
@@ -201,4 +199,7 @@ import com.inia_mscc.modulos.seg.entidades.Usuario;
 			return new SEGFachada(servicio);
 		}
 		
+		public ADMFachada getAdmFachada(Servicio servicio) {
+			return new ADMFachada(servicio);
+		}
 }

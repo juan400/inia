@@ -13,6 +13,7 @@ import com.inia_mscc.config.hibernate.HibernateUtil;
 import com.inia_mscc.config.util.LoggingUtilities;
 import com.inia_mscc.excepciones.IniaPersistenciaException;
 import com.inia_mscc.modulos.adm.entidades.Ciudad;
+import com.inia_mscc.modulos.adm.entidades.Departamento;
 
 public class DAOCiudad  implements Serializable {
 
@@ -22,6 +23,24 @@ public class DAOCiudad  implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(DAOCiudad.class);
 
+	/**
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Ciudad> ObtenerCiudadesXDeptos(Departamento unDepto) {
+		List<Ciudad> listaCiudad = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			Criteria c = session.createCriteria(Ciudad.class);
+			c.add(Restrictions.eq("_departamento", unDepto));
+			listaCiudad  = (List<Ciudad>) c.list();
+		} catch (StaleObjectStateException e) {
+			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
+			logger.error(stackTrace);
+			throw new IniaPersistenciaException(e.getMessage(), e);
+		}
+		return listaCiudad ;
+	}
 
 	/**
 	 * @return
