@@ -61,8 +61,8 @@ Secano.</title>
 										onkeypress="validarEmailKeyPress(this, event)" />
 
 									<h:outputLabel value="#{text.registro_Pais}" />
-									<rich:comboBox value="#{registroBean.paisElegido}"
-										styleClass="combo" directInputSuggestions="false">
+									<rich:comboBox value="#{registroBean.paisElegido}" enableManualInput="false"
+										styleClass="combo">
 										<f:selectItems value="#{registroBean.paises}" />
 										<a4j:support action="#{registroBean.takeSelectionPais}"
 											event="onchange" ajaxSingle="true" reRender="cmbDepartamentos" />
@@ -70,17 +70,15 @@ Secano.</title>
 
 									<h:outputText
 										value="#{text.registro_Departamento_Estado_Provincia}" />
-									<rich:comboBox id="cmbDepartamentos"
-										value="#{registroBean.departamentoElegido}"
-										directInputSuggestions="true" >
+									<rich:comboBox id="cmbDepartamentos"  enableManualInput="false"
+										value="#{registroBean.departamentoElegido}">
 										<f:selectItems value="#{registroBean.departamentos}" />
 										<a4j:support action="#{registroBean.takeSelectionDepartamento}"
 											event="onchange" ajaxSingle="true" reRender="cmbCiudad" />
 									</rich:comboBox>
 
 									<h:outputText value="#{text.registro_Ciudad}" />
-									<rich:comboBox id="cmbCiudad" value="#{registroBean.ciudadElegido}"
-										directInputSuggestions="true">
+									<rich:comboBox id="cmbCiudad" value="#{registroBean.ciudadElegido}" enableManualInput="false">
 										<f:selectItems value="#{registroBean.ciudades}" />
 									</rich:comboBox>
 
