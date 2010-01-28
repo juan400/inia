@@ -14,6 +14,8 @@ import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
+import com.inia_mscc.modulos.comun.entidades.Enumerados.Servicio;
+import com.inia_mscc.modulos.seg.SEGFachada;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
 	public class MaestroBean implements Serializable {
@@ -29,6 +31,8 @@ import com.inia_mscc.modulos.seg.entidades.Usuario;
 		private boolean activado = false;
 		private TimeZone tz;
 		private static final String PATH_Mensajes = "com.bean.comun.mensajes.Messages";
+		@SuppressWarnings("unused")
+		private SEGFachada segFachada;
 		
 		/**
 		 * Add a message
@@ -191,6 +195,10 @@ import com.inia_mscc.modulos.seg.entidades.Usuario;
 
 		public void setReload(boolean reload) {
 			this.reload = reload;
+		}
+
+		public SEGFachada getSegFachada(Servicio servicio) {
+			return new SEGFachada(servicio);
 		}
 		
 }

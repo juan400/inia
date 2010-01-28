@@ -1,5 +1,6 @@
 package com.bean.seg;
 
+import java.io.Serializable;
 import java.util.Map;
 
 import javax.faces.context.FacesContext;
@@ -7,18 +8,17 @@ import javax.faces.context.FacesContext;
 import com.bean.comun.MaestroBean;
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.EstadoUsuario;
-import com.inia_mscc.modulos.seg.SEGFachada;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.Servicio;
 
-public class ConfirmacionBean extends MaestroBean {
+public class ConfirmacionBean extends MaestroBean implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private SEGFachada segFachada = new SEGFachada(Enumerados.Servicio.Usuario);
-
 	private String nombre;
+	private String loginName;
 
 	private String contrasenia;
 	private String confirmacion;
@@ -26,7 +26,7 @@ public class ConfirmacionBean extends MaestroBean {
 
 	private String error;
 	private String codigoActivacion;
-	private Boolean activado;
+	private boolean activado;
 
 	/**
 	 * @return
@@ -45,7 +45,7 @@ public class ConfirmacionBean extends MaestroBean {
 					super.getUsuario().set_frase(frase);
 					super.getUsuario().set_activado(true);
 					super.getUsuario().set_estadoUsuario(EstadoUsuario.Activo);
-					segFachada.CambiarPassword(super.getUsuario());
+					super.getSegFachada(Servicio.Usuario).CambiarPassword(super.getUsuario());
 					retorno = "confirmar-ok";
 				} else {
 					error = "Ingrese la clave secreta y recuerde que no sea igual a su contraseña o nombre de usuario.";
@@ -68,7 +68,7 @@ public class ConfirmacionBean extends MaestroBean {
 	 */
 	@Override
 	public boolean isInit() {
-		activado = false;
+		setActivado(false);
 		FacesContext context = FacesContext.getCurrentInstance();
 		Map<String, String> params = context.getExternalContext()
 				.getRequestParameterMap();
@@ -82,45 +82,47 @@ public class ConfirmacionBean extends MaestroBean {
 			codigoActivacion = null;
 		}
 		if (codigoActivacion != null) {
-			super.setUsuario(segFachada.ComprobarClaveReigstro(codigoActivacion
+			super.setUsuario(super.getSegFachada(Servicio.Usuario).ComprobarClaveReigstro(codigoActivacion
 					.toString()));
 			if (super.getUsuario() != null) {
 				nombre = super.getUsuario().get_datos().get_nombre() + " "
 						+ super.getUsuario().get_datos().get_apellido();
+				loginName = super.getUsuario().get_login();
 				if (super.getUsuario().is_activado()) {
 					error = "Estiamdo usuario " + nombre
 							+ " su cuenta está confirmada.";
-					activado = true;
+					setActivado(true);
 				} else if (super.getUsuario().get_estadoUsuario().equals(
 						Enumerados.EstadoUsuario.Activo)) {
 					error = "Estiamdo usuario "
 							+ nombre
 							+ " su cuenta está activada, no es necesario este paso.";
-					activado = true;
+					setActivado(true);
 				} else if (super.getUsuario().get_estadoUsuario().equals(
 						Enumerados.EstadoUsuario.Bloqueado)) {
 					error = "Estiamdo usuario "
 							+ nombre
 							+ " su cuenta está bloqueada, ingrese a recuperar su contraseña.";
-					activado = true;
+					setActivado(true);
 				} else if (super.getUsuario().get_estadoUsuario().equals(
 						Enumerados.EstadoUsuario.Inactivo)) {
 					error = "Estiamdo usuario "
 							+ nombre
 							+ " su cuenta está momentaneamente inactivada, consulte a su administrador.";
-					activado = true;
+					setActivado(true);
 				} else {
 					error = "";
+					setActivado(false);
 				}
 			} else {
 				error = "Estiamdo usuario, realize previamente el paso Registro de usuario.";
-				activado = true;
+				setActivado(true);
 			}
 		} else {
 			error = "Esta pagina es solo util para usuarios registrados.";
-			activado = true;
+			setActivado(true);
 		}
-		return activado;
+		return false;
 	}
 
 	/**
@@ -166,20 +168,28 @@ public class ConfirmacionBean extends MaestroBean {
 		this.error = error;
 	}
 
-	public Boolean getActivado() {
-		return activado;
-	}
-
-	public void setActivado(Boolean activado) {
-		this.activado = activado;
-	}
-
 	public String getCodigoActivacion() {
 		return codigoActivacion;
 	}
 
 	public void setCodigoActivacion(String codigoActivacion) {
 		this.codigoActivacion = codigoActivacion;
+	}
+
+	public String getLoginName() {
+		return loginName;
+	}
+
+	public void setLoginName(String loginName) {
+		this.loginName = loginName;
+	}
+
+	public boolean isActivado() {
+		return activado;
+	}
+
+	public void setActivado(boolean activado) {
+		this.activado = activado;
 	}
 
 }

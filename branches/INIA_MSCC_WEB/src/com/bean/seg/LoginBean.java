@@ -7,15 +7,12 @@ import javax.mail.MessagingException;
 import javax.naming.NamingException;
 
 import com.bean.comun.MaestroBean;
-import com.inia_mscc.modulos.comun.entidades.Enumerados;
-import com.inia_mscc.modulos.seg.SEGFachada;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.Servicio;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
 public class LoginBean extends MaestroBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	private SEGFachada segFachada = new SEGFachada(Enumerados.Servicio.Usuario);
 
 	private String loginName;
 	private String password;
@@ -28,14 +25,16 @@ public class LoginBean extends MaestroBean implements Serializable {
 	public String login() throws IOException, NamingException,
 			MessagingException {
 		// MaestroBean.getInstance().getTextBundle();
-		Usuario u = segFachada.Login(loginName, password);
+		Usuario u = super.getSegFachada(Servicio.Usuario).Login(loginName, password);
 		if (u != null) {
 			MaestroBean maestro = MaestroBean.getInstance();
 			maestro.setLogged(true);
 			maestro.setUsuario(u);
 			error = "";
+			
 			// MaestroBean.getInstance().setOpcion("/Servicios/SEG/menuRich.jsp");
 			//TODO validar que el usuario estte activo y no este en otro estado que no sea activo.
+			
 			return "login-ok";
 		} else {
 			error = "El nombre de usuario y password no conciden";
@@ -58,14 +57,6 @@ public class LoginBean extends MaestroBean implements Serializable {
 
 	public String registrarse() {
 		return "registrarse";
-	}
-
-	public void setSegFachada(SEGFachada segFachada) {
-		this.segFachada = segFachada;
-	}
-
-	public SEGFachada getSegFachada() {
-		return segFachada;
 	}
 
 	public String getLoginName() {
