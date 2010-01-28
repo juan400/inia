@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.bean.comun.MaestroBean;
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
 import com.inia_mscc.modulos.seg.SEGFachada;
 import com.inia_mscc.modulos.seg.entidades.Perfil;
 
@@ -16,6 +17,10 @@ public class PerfilBean implements Serializable {
 	private String error;
 	private List<Perfil> perfiles;
 	private Perfil perfil;
+
+	public PerfilBean() {
+		this.estado = Estado.Activo.name();
+	}
 
 	private static final long serialVersionUID = 1L;
 

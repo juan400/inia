@@ -45,7 +45,8 @@ Secano.</title>
 							</h:panelGrid></center>
 							<br></br>
 
-							<h:panelGrid columns="3" columnClasses="textoPlano,textoPlano">
+							<h:panelGrid columns="2"
+								columnClasses="textoPlano,textoDataTable">
 								<h:outputText value="#{text.perfil_Nombre}" />
 								<h:inputText label="Name" id="name" required="true"
 									requiredMessage="Debe ingresar el Nombre."
@@ -56,24 +57,14 @@ Secano.</title>
 									</f:validateLength>
 								</h:inputText>
 
-								<rich:message for="name">
-									<f:facet name="passMarker">
-										<h:graphicImage value="Recursos/Imagenes/Iconos/passed.gif" />
-									</f:facet>
-									<f:facet name="errorMarker">
-										<h:graphicImage value="Recursos/Imagenes/Iconos/error.gif" />
-									</f:facet>
-								</rich:message>
-
 								<h:outputText value="#{text.perfil_Descripcion}" />
 								<h:inputTextarea id="descripcion"
 									value="#{perfilBean.descripcion}"
 									onkeypress="ValidarLargoMultiline(this, event, 220)"
 									style=" width : 245px; height : 71px;" />
 
-								<td></td>
 								<h:outputText value="#{text.perfil_Estado}" />
-								<rich:comboBox defaultLabel="Seleccionar Estado"
+								<rich:comboBox styleClass="textoDataTable"
 									value="#{perfilBean.estado}" width="245px">
 									<f:selectItem itemValue="Activo" />
 									<f:selectItem itemValue="Inactivo" />
@@ -82,19 +73,25 @@ Secano.</title>
 								<td style="width: 2px;"></td>
 								<h:outputText value="" />
 								<br></br>
-								<br></br>
-								<br></br>
+
 								<h:panelGrid columns="2">
-									<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
+									<a4j:commandButton
+										style="font-size: 10pt; color: #2d77c2; width : 71px;"
 										styleClass="textoPlano" action="#{perfilBean.registrar}"
 										value="#{text.boton_Aceptar}" />
 									<a4j:commandButton immediate="true"
-										style="font-size: 10pt; color: #2d77c2;"
+										style="font-size: 10pt; color: #2d77c2; width : 71px;"
 										styleClass="textoPlano" action="cancelar"
 										value="#{text.boton_Cancelar}" />
 								</h:panelGrid>
-
 							</h:panelGrid>
+
+							<center><rich:message for="name"
+								styleClass="mensajeError">
+								<f:facet name="errorMarker">
+									<h:graphicImage value="/Recursos/Imagenes/Iconos/error.gif" />
+								</f:facet>
+							</rich:message></center>
 						</rich:panel>
 					</h:panelGrid>
 				</tr>

@@ -63,7 +63,7 @@ Secano.</title>
 										styleClass="textoPlano" />
 									<h:inputSecret id="txtContrasenia"
 										value="#{confirmacionBean.contrasenia}" required="true"
-										requiredMessage="puta de mierda" styleClass="textoPlano"
+										requiredMessage="Debe ingresar Contraseña" styleClass="textoPlano"
 										tabindex="1" maxlength="13">
 										<f:validateLength minimum="6" maximum="13" />
 									</h:inputSecret>
@@ -80,7 +80,7 @@ Secano.</title>
 										styleClass="textoPlano" />
 									<h:inputSecret id="txtConfirmarContrasenia"
 										value="#{confirmacionBean.confirmacion}" required="true"
-										requiredMessage="puta de mierda" styleClass="textoPlano"
+										requiredMessage="Debe ingresar confirmación de contraseña" styleClass="textoPlano"
 										tabindex="2" maxlength="13">
 										<f:validateLength minimum="6" maximum="13" />
 									</h:inputSecret>
@@ -98,7 +98,7 @@ Secano.</title>
 										styleClass="textoPlano" />
 									<h:inputText id="txtfrase" value="#{confirmacionBean.frase}"
 										styleClass="textoPlano" tabindex="3" required="true"
-										requiredMessage="puta de mierda">
+										requiredMessage="Debe ingresar Frase Secreta">
 										<f:validateLength minimum="5" maximum="250" />
 									</h:inputText>
 									<rich:message for="txtfrase" styleClass="mensajeError">
