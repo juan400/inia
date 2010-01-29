@@ -36,7 +36,13 @@ public class ProveedorPerfil implements ServicioPerfil {
 	}
 	
 	@Override
-	public List<Perfil> ObtenerPerfiles(){
+	public Perfil ComprobarPerfil(Perfil pPerfil){
+		return ejbPerfil.ComprobarPerfil(pPerfil);
+	}
+
+	@Override
+	public List<Perfil> ObtenerPerfiles() {
 		return ejbPerfil.ObtenerPerfiles();
 	}
+	
 }
