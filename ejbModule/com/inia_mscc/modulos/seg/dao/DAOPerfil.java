@@ -26,8 +26,21 @@ public class DAOPerfil implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(DAOPerfil.class);
 
-	
-	
+	public Perfil ComprobarPerfil(Perfil pPerfil) {
+		Perfil retorno = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			Criteria c = session.createCriteria(Perfil.class);
+			c.add(Restrictions.ilike("_nombre", pPerfil.get_nombre()));
+			retorno = (Perfil) c.uniqueResult();
+		} catch (StaleObjectStateException e) {
+			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
+			logger.error(stackTrace);
+			throw new IniaPersistenciaException(e.getMessage(), e);
+		}
+		return retorno;
+	}
+
 	public List<Perfil> ObtenerPerfiles() {
 		List<Perfil> retorno = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -54,6 +67,7 @@ public class DAOPerfil implements Serializable {
 		try {
 			Long id = (Long) session.save("Perfil", pPerfil);
 			Criteria c = session.createCriteria(Perfil.class);
+
 			c.add(Restrictions.eq("_id", id));
 			perfil = (Perfil) c.uniqueResult();
 		} catch (Exception e) { // catch (StaleObjectStateException e) {

@@ -35,4 +35,10 @@ public class EJBPerfil implements ServicioPerfil{
 	public List<Perfil> ObtenerPerfiles(){
 		return dao.ObtenerPerfiles();
 	}
+	
+	@Override
+	public Perfil ComprobarPerfil(Perfil pPerfil){
+		return dao.ComprobarPerfil(pPerfil);
+	}
+
 }

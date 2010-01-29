@@ -11,6 +11,7 @@ public interface ServicioPerfil {
 	public void ActualizarPerfil(Perfil pPerfil);
 
 	public List<Perfil> ObtenerPerfiles();
-	
 
+	public Perfil ComprobarPerfil(Perfil pPerfil);
+	
 }
