@@ -1,19 +1,17 @@
 package com.bean.seg;
 
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.faces.context.FacesContext;
-
-import org.richfaces.component.html.HtmlExtendedDataTable;
 
 import com.bean.comun.MaestroBean;
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
 import com.inia_mscc.modulos.seg.SEGFachada;
 import com.inia_mscc.modulos.seg.entidades.Perfil;
-
 
 public class PerfilBean implements Serializable {
 
@@ -27,29 +25,38 @@ public class PerfilBean implements Serializable {
 	private String error;
 	private List<Perfil> perfiles;
 	private Perfil perfil = new Perfil();
-	private HtmlExtendedDataTable myDataTable;
 
-	public void CargarPerfil() throws Exception {
-		try{
-		Map paramMap = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-		String consultaElegida = (String)paramMap.get("consultaElegida");
-	
-		nombre = consultaElegida;
-		}catch (Exception e) {
-			throw e;
+	public String eliminar() throws Exception {
+		String retorno = "registro-error";
+		try {
+
+			perfil.set_nombre(nombre);
+			perfil.set_descripcion(descripcion);
+			perfil.set_estado(Enumerados.Estado.valueOf(estado));
+
+//			segFachada.EliminarPerfil(perfil);
+			retorno = "registro-ok";
+		} catch (Exception ex) {
+			setError(ex.getMessage());
 		}
-		
-//		Iterator<Object> iterator = getPerfilSeleccionado().getKeys();
-//		while (iterator.hasNext()) {
-//			Object key = iterator.next();
-//			HtmlExtendedDataTable table = new HtmlExtendedDataTable();
-//			table.setRowKey(key);
-//			
-////			table.setRowKey(key);
-//			if (table.isRowAvailable()) {
-//				unPerfil = (Perfil) table.getRowData();
-//			}
-//		}
+		return retorno;
+	}
+
+	public String verConsulta() {
+		Map paramMap = FacesContext.getCurrentInstance().getExternalContext()
+				.getRequestParameterMap();
+		String consultaElegida = (String) paramMap.get("consultaElegida");
+		Iterator<Perfil> it = perfiles.iterator();
+		while (it.hasNext()) {
+			Perfil object = (Perfil) it.next();
+			if ((Long) object.get_id() == Long.parseLong(consultaElegida)) {
+				perfil = object;
+				nombre = perfil.get_nombre();
+				descripcion = perfil.get_descripcion();
+				estado = perfil.get_estado().toString();
+			}
+		}
+		return "desplegarResultados";
 	}
 
 	public PerfilBean() {
@@ -74,12 +81,12 @@ public class PerfilBean implements Serializable {
 	public String actualizar() throws Exception {
 		String retorno = "registro-error";
 		try {
-			Perfil datosPerfil = new Perfil();
-			datosPerfil.set_nombre(nombre);
-			datosPerfil.set_descripcion(descripcion);
-			datosPerfil.set_estado(Enumerados.Estado.valueOf(estado));
 
-			segFachada.ActualizarPerfil(datosPerfil);
+			perfil.set_nombre(nombre);
+			perfil.set_descripcion(descripcion);
+			perfil.set_estado(Enumerados.Estado.valueOf(estado));
+
+			segFachada.ActualizarPerfil(perfil);
 			retorno = "registro-ok";
 		} catch (Exception ex) {
 			setError(ex.getMessage());
@@ -172,22 +179,6 @@ public class PerfilBean implements Serializable {
 		return perfiles;
 	}
 
-//	public void setPerfilSeleccionado(SimpleSelection perfilSeleccionado) {
-//		this.perfilSeleccionado = perfilSeleccionado;
-//	}
-//
-//	public SimpleSelection getPerfilSeleccionado() {
-//		return perfilSeleccionado;
-//	}
-
-	public void setMyDataTable(HtmlExtendedDataTable myDataTable) {
-		this.myDataTable = myDataTable;
-	}
-
-	public HtmlExtendedDataTable getMyDataTable() {
-		return myDataTable;
-	}
-
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
 	}
@@ -195,5 +186,4 @@ public class PerfilBean implements Serializable {
 	public Perfil getPerfil() {
 		return perfil;
 	}
-
 }
