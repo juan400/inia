@@ -63,4 +63,8 @@ public class SEGFachada {
 	public List<Perfil> ObtenerPerfiles() {
 		return srvPerfil.ObtenerPerfiles();
 	}
+	
+	public Perfil ComprobarPerfil(Perfil pPerfil){
+		return srvPerfil.ComprobarPerfil(pPerfil);
+	}
 }
