@@ -43,8 +43,9 @@ Secano.</title>
 									value="#{text.login_logout}" />
 							</h:panelGrid></center>
 							<br></br>
+
 							<center><rich:extendedDataTable border="2" width="600px"
-								height="140" styleClass="textoDataTable" selectionMode="single"
+								height="140" styleClass="textoDataTable" selectionMode="single" 
 								value="#{perfilBean.perfiles}" var="perfil"
 								headerClass="columnHeader" rowClasses="oddRow,evenRow">
 								<rich:column width="150" sortable="false">
@@ -65,10 +66,52 @@ Secano.</title>
 									</f:facet>
 									<h:outputText value="#{perfil._estado}" />
 								</rich:column>
-
+								<rich:column width="100" sortable="false">
+									<f:facet name="header">
+										<h:outputText value="Estado" />
+									</f:facet>
+									<h:outputText value="#{perfil._estado}" />
+								</rich:column>
+								
+								<a4j:support action="#{perfilBean.CargarPerfil}"
+									ajaxSingle="true" reRender="datos" event="onselectionchange">
+									<a4j:actionparam name="consultaElegida" value="#{perfil._id}" />
+								</a4j:support>
 							</rich:extendedDataTable></center>
 							<br></br>
+
+							<center><h:panelGrid id="datos" columns="2"
+								title="Actulizar datos"
+								columnClasses="textoPlano,textoDataTable">
+								<h:outputText value="#{text.perfil_Nombre}" />
+								<h:inputText label="Name" id="name" required="true"
+									requiredMessage="Debe ingresar el Nombre."
+									value="#{perfilBean.nombre}"
+									onkeypress="ValidarCampoLetras(this, event)"
+									style=" width : 245px;">
+									<f:validateLength maximum="45">
+									</f:validateLength>
+								</h:inputText>
+
+								<h:outputText value="#{text.perfil_Descripcion}" />
+								<h:inputTextarea id="descripcion"
+									value="#{perfilBean.descripcion}"
+									onkeypress="ValidarLargoMultiline(this, event, 220)"
+									style=" width : 245px; height : 71px;" />
+
+								<h:outputText value="#{text.perfil_Estado}" />
+								<rich:comboBox styleClass="textoDataTable"
+									value="#{perfilBean.estado}" width="245px">
+									<f:selectItem itemValue="Activo" />
+									<f:selectItem itemValue="Inactivo" />
+								</rich:comboBox>
+
+								<td style="width: 2px;"></td>
+								<h:outputText value="" />
+							</h:panelGrid></center>
 							<br></br>
+							<br></br>
+
 							<center><h:panelGrid columns="3">
 
 								<a4j:commandButton immediate="true"

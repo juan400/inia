@@ -2,6 +2,11 @@ package com.bean.seg;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
+
+import javax.faces.context.FacesContext;
+
+import org.richfaces.component.html.HtmlExtendedDataTable;
 
 import com.bean.comun.MaestroBean;
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
@@ -9,22 +14,47 @@ import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
 import com.inia_mscc.modulos.seg.SEGFachada;
 import com.inia_mscc.modulos.seg.entidades.Perfil;
 
+
 public class PerfilBean implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private SEGFachada segFachada = new SEGFachada(Enumerados.Servicio.Perfil);
 
 	private String nombre;
 	private String descripcion;
 	private String estado;
 	private String error;
 	private List<Perfil> perfiles;
-	private Perfil perfil;
+	private Perfil perfil = new Perfil();
+	private HtmlExtendedDataTable myDataTable;
+
+	public void CargarPerfil() throws Exception {
+		try{
+		Map paramMap = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		String consultaElegida = (String)paramMap.get("consultaElegida");
+	
+		nombre = consultaElegida;
+		}catch (Exception e) {
+			throw e;
+		}
+		
+//		Iterator<Object> iterator = getPerfilSeleccionado().getKeys();
+//		while (iterator.hasNext()) {
+//			Object key = iterator.next();
+//			HtmlExtendedDataTable table = new HtmlExtendedDataTable();
+//			table.setRowKey(key);
+//			
+////			table.setRowKey(key);
+//			if (table.isRowAvailable()) {
+//				unPerfil = (Perfil) table.getRowData();
+//			}
+//		}
+	}
 
 	public PerfilBean() {
 		this.estado = Estado.Activo.name();
 	}
-
-	private static final long serialVersionUID = 1L;
-
-	private SEGFachada segFachada = new SEGFachada(Enumerados.Servicio.Perfil);
 
 	public boolean isInit() {
 		this.perfiles = segFachada.ObtenerPerfiles();
@@ -98,7 +128,6 @@ public class PerfilBean implements Serializable {
 		nombre = null;
 		descripcion = null;
 		estado = null;
-		perfil = null;
 		perfiles = null;
 		error = null;
 	}
@@ -141,6 +170,22 @@ public class PerfilBean implements Serializable {
 
 	public List<Perfil> getPerfiles() {
 		return perfiles;
+	}
+
+//	public void setPerfilSeleccionado(SimpleSelection perfilSeleccionado) {
+//		this.perfilSeleccionado = perfilSeleccionado;
+//	}
+//
+//	public SimpleSelection getPerfilSeleccionado() {
+//		return perfilSeleccionado;
+//	}
+
+	public void setMyDataTable(HtmlExtendedDataTable myDataTable) {
+		this.myDataTable = myDataTable;
+	}
+
+	public HtmlExtendedDataTable getMyDataTable() {
+		return myDataTable;
 	}
 
 	public void setPerfil(Perfil perfil) {
