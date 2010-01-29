@@ -32,6 +32,8 @@ public class MaestroBean implements Serializable {
 	private ResourceBundle config;
 	private boolean reload = false;
 	private boolean activado = false;
+	private String exito;
+	private String error;
 	private TimeZone tz;
 	private static final String PATH_Mensajes = "com.bean.comun.mensajes.Messages";
 	private static final String PATH_Texto = "com.bean.text";
@@ -235,6 +237,22 @@ public class MaestroBean implements Serializable {
 
 	public void setConfig(ResourceBundle config) {
 		this.config = config;
+	}
+
+	public String getExito() {
+		return exito;
+	}
+
+	public void setExito(String exito) {
+		this.exito = exito;
+	}
+
+	public String getError() {
+		return error;
+	}
+
+	public void setError(String error) {
+		this.error = error;
 	}
 
 }
