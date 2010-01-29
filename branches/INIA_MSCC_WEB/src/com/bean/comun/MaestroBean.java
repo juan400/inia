@@ -19,187 +19,210 @@ import com.inia_mscc.modulos.comun.entidades.Enumerados.Servicio;
 import com.inia_mscc.modulos.seg.SEGFachada;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
-	public class MaestroBean implements Serializable {
+public class MaestroBean implements Serializable {
 
-		private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-		private Usuario usuario = null;
-		private boolean logged = false;
-		private String opcion;
-		private ResourceBundle textBundle;
-		private ResourceBundle config;
-		private boolean reload = false;
-		private boolean activado = false;
-		private TimeZone tz;
-		private static final String PATH_Mensajes = "com.bean.comun.mensajes.Messages";
-		private static final String PATH_Texto = "com.bean.text";
-		
-		/**
-		 * Add a message
-		 * 
-		 * @param key
-		 * @param bundle
-		 * @param mySeverity
-		 */
-		protected void addGlobalMessage(String key,	Severity mySeverity) {
-			String message = getTextBundleKey(key);
-			addGlobalMessageFromString(message, mySeverity);
-		}
+	private Usuario usuario = null;
+	private boolean logged = false;
+	private String opcion;
+	private ResourceBundle textBundle;
+	private ResourceBundle config;
+	private boolean reload = false;
+	private boolean activado = false;
+	private TimeZone tz;
+	private static final String PATH_Mensajes = "com.bean.comun.mensajes.Messages";
+	private static final String PATH_Texto = "com.bean.text";
 
-		/**
-		 * Add a message
-		 * 
-		 * @param message
-		 * @param mySeverity
-		 */
-		protected void addGlobalMessageFromString(String message, Severity mySeverity) {
-			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(mySeverity, message, message));
-		}
+	/**
+	 * Add a message
+	 * 
+	 * @param key
+	 * @param bundle
+	 * @param mySeverity
+	 */
+	protected void addGlobalMessage(String key, Severity mySeverity) {
+		String message = getTextBundleKey(key);
+		addGlobalMessageFromString(message, mySeverity);
+	}
 
-		/**
-		 * Search for the value of a given key in the application loaded bundle
-		 * 
-		 * @param key
-		 * @return the description for the key
-		 * 
-		 */
-		protected String getMensajesBundleKey(String key) {
-			ResourceBundle bundle = ResourceBundle.getBundle(PATH_Mensajes,	getFacesContext().getExternalContext().getRequestLocale());
-			return bundle.getString(key);
-		}		
+	/**
+	 * Add a message
+	 * 
+	 * @param message
+	 * @param mySeverity
+	 */
+	protected void addGlobalMessageFromString(String message,
+			Severity mySeverity) {
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(mySeverity, message, message));
+	}
 
-		/**
-		 * Search for the value of a given key in the application loaded bundle
-		 * 
-		 * @param key
-		 * @return the description for the key
-		 */
-		protected String getTextBundleKey(String key) {
-			ResourceBundle bundle = ResourceBundle.getBundle(PATH_Texto,	getFacesContext().getExternalContext().getRequestLocale());
-			return bundle.getString(key);
-		}	
-		
-		/**
-		 * Obtain the application faces context
-		 * 
-		 * @return the FacesContext
-		 */
-		public FacesContext getFacesContext() {
-			return FacesContext.getCurrentInstance();
-		}
+	/**
+	 * Search for the value of a given key in the application loaded bundle
+	 * 
+	 * @param key
+	 * @return the description for the key
+	 * 
+	 */
+	protected String getMensajesBundleKey(String key) {
+		ResourceBundle bundle = ResourceBundle.getBundle(PATH_Mensajes,
+				getFacesContext().getExternalContext().getRequestLocale());
+		return bundle.getString(key);
+	}
 
-		@SuppressWarnings("unchecked")
-		public static MaestroBean getInstance() {
-			ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-			Map session = context.getSessionMap();
-			MaestroBean g = (MaestroBean)session.get("MaestroBean");
-			if (g == null) {
-				g = new MaestroBean();
-				session.put("MaestroBean", g);
-			}
-			return g;
-		}
-		
+	/**
+	 * Search for the value of a given key in the application loaded bundle
+	 * 
+	 * @param key
+	 * @return the description for the key
+	 */
+	protected String getTextBundleKey(String key) {
+		ResourceBundle bundle = ResourceBundle.getBundle(PATH_Texto,
+				getFacesContext().getExternalContext().getRequestLocale());
+		return bundle.getString(key);
+	}
 
-		/**
-		 * @return the time zone for the application
-		 */
-		public TimeZone getTz() {
-			Calendar cal = new GregorianCalendar();
-			cal.setTime(new Date());
-			tz = cal.getTimeZone();
-			return tz;
-		}
+	/**
+	 * Obtain the application faces context
+	 * 
+	 * @return the FacesContext
+	 */
+	public FacesContext getFacesContext() {
+		return FacesContext.getCurrentInstance();
+	}
 
-		/**
-		 * @param tz
-		 */
-		public void setTz(TimeZone tz) {
-			this.tz = tz;
+	@SuppressWarnings("unchecked")
+	public static MaestroBean getInstance() {
+		ExternalContext context = FacesContext.getCurrentInstance()
+				.getExternalContext();
+		Map session = context.getSessionMap();
+		MaestroBean g = (MaestroBean) session.get("MaestroBean");
+		if (g == null) {
+			g = new MaestroBean();
+			session.put("MaestroBean", g);
 		}
+		return g;
+	}
 
-		/**
-		 * Returns the default Locale according to the ISO 3166
-		 * 
-		 * @return the country code
-		 */
-		public Locale getLocale() {
-			return getFacesContext().getExternalContext().getRequestLocale();
-		}
-		/**
-		 * Gets the error Business Error Messages Localized for the Base Back Bean
-		 * @param be
-		 * @return
-		 * @MCUnnn
-		 */
-		public String getErrorMessage(String be) {
-			return getMensajesBundleKey(be);
-		}
-		
-		public void setActivado(boolean activado) {
-			this.activado = activado;
-		}
+	@SuppressWarnings("unchecked")
+	public Object getSesion(String pClave) {
+		ExternalContext context = FacesContext.getCurrentInstance()
+				.getExternalContext();
+		Map session = context.getSessionMap();
+		Object g = session.get(pClave);
+		return g;
+	}
 
-		public boolean isActivado() {
-			return activado;
-		}
+	@SuppressWarnings("unchecked")
+	public void setSesion(String pClave, Object pObjeto) {
+		ExternalContext context = FacesContext.getCurrentInstance()
+				.getExternalContext();
+		Map session = context.getSessionMap();
+		session.put(pClave, pObjeto);
+	}
 
-		public boolean isInit() {
-			return false;
-		}
-		
-		public boolean isLogged() {
-			return logged;
-		}
+	/**
+	 * @return the time zone for the application
+	 */
+	public TimeZone getTz() {
+		Calendar cal = new GregorianCalendar();
+		cal.setTime(new Date());
+		tz = cal.getTimeZone();
+		return tz;
+	}
 
-		public void setLogged(boolean logged) {
-			this.logged = logged;
-		}
+	/**
+	 * @param tz
+	 */
+	public void setTz(TimeZone tz) {
+		this.tz = tz;
+	}
 
-		public Usuario getUsuario() {
-			return usuario;
-		}
+	/**
+	 * Returns the default Locale according to the ISO 3166
+	 * 
+	 * @return the country code
+	 */
+	public Locale getLocale() {
+		return getFacesContext().getExternalContext().getRequestLocale();
+	}
 
-		public void setUsuario(Usuario usu) {
-			this.usuario = usu;
-		}
-		
-		
-		public String getOpcion() {
-			return opcion;
-		}
+	/**
+	 * Gets the error Business Error Messages Localized for the Base Back Bean
+	 * 
+	 * @param be
+	 * @return
+	 * @MCUnnn
+	 */
+	public String getErrorMessage(String be) {
+		return getMensajesBundleKey(be);
+	}
 
-		public void setOpcion(String opcion) {
-			this.opcion = opcion;
-		}
-				
-		public ResourceBundle getTextBundle() {
-			if (textBundle == null) {
-				textBundle = ResourceBundle.getBundle("text", getFacesContext().getExternalContext().getRequestLocale());
-			}
-			return textBundle;
-		}
-				
-		public ResourceBundle getConfig() {
-			if (config == null) {
-				config = ResourceBundle.getBundle("qgerbil");
-			}
-			return config;
-		}
-		
-		public boolean isReload() {
-			return reload;
-		}
+	public void setActivado(boolean activado) {
+		this.activado = activado;
+	}
 
-		public void setReload(boolean reload) {
-			this.reload = reload;
-		}
+	public boolean isActivado() {
+		return activado;
+	}
 
-		public SEGFachada getSegFachada(Servicio servicio) {
-			return new SEGFachada(servicio);
+	public boolean isInit() {
+		return false;
+	}
+
+	public boolean isLogged() {
+		return logged;
+	}
+
+	public void setLogged(boolean logged) {
+		this.logged = logged;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usu) {
+		this.usuario = usu;
+	}
+
+	public String getOpcion() {
+		return opcion;
+	}
+
+	public void setOpcion(String opcion) {
+		this.opcion = opcion;
+	}
+
+	public ResourceBundle getTextBundle() {
+		if (textBundle == null) {
+			textBundle = ResourceBundle.getBundle("text", getFacesContext()
+					.getExternalContext().getRequestLocale());
 		}
-		
-		public ADMFachada getAdmFachada(Servicio servicio) {
-			return new ADMFachada(servicio);
+		return textBundle;
+	}
+
+	public ResourceBundle getConfig() {
+		if (config == null) {
+			config = ResourceBundle.getBundle("qgerbil");
 		}
+		return config;
+	}
+
+	public boolean isReload() {
+		return reload;
+	}
+
+	public void setReload(boolean reload) {
+		this.reload = reload;
+	}
+
+	public SEGFachada getSegFachada(Servicio servicio) {
+		return new SEGFachada(servicio);
+	}
+
+	public ADMFachada getAdmFachada(Servicio servicio) {
+		return new ADMFachada(servicio);
+	}
 }
