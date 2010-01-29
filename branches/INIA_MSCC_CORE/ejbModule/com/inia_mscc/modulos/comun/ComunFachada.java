@@ -10,16 +10,15 @@ public class ComunFachada {
 	private MailSenderServices srvMailSender;
 
 	public ComunFachada(Enumerados.Servicio servicio) throws IOException {
-
 		switch (servicio) {
 		case MailSender:
 			srvMailSender = new MailSenderProvider();
 			break;
 		}
 	}
-	
+
 	public void enviarMailTextoPlano(String email, String subject, String body) {
 		srvMailSender.enviarMailTextoPlano(email, subject, body);
 	}
-	
+
 }

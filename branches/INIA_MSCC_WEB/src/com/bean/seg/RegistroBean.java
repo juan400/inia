@@ -48,17 +48,56 @@ public class RegistroBean extends MaestroBean implements Serializable {
 	private SelectItem[] departamentos;
 	private SelectItem[] ciudades;
 	private String error;
+	private List<Pais> listPaises;
+	private List<Departamento> listDepartamentos;
+	private List<Ciudad> listCiudades;
+	private Pais pais;
+	private Departamento depto;
+	private Ciudad ciudad;
 
+	public boolean enviarMailConfirmacion(Usuario pUsuario) {
+		try {
+			HttpServletRequest request = (HttpServletRequest) super
+					.getFacesContext().getExternalContext().getRequest();
+			StringBuffer path = request.getRequestURL();// http://localhost:8081/INIA_MSCC/Servicios/SEG/SEG002.jsf
+			String server = path.toString().replaceFirst("SEG002", "SEG003")
+					.toString();
+			String body = "<br></br><br></br><br><center><i><b>Usted se a registrado stisfactoriamente en INIA - MSCC,</br>"
+					+ "<br>para concluir con el registro aceda al siguiente link </b></i>.</br>"
+					+ "<br><a href='"
+					+ server
+					+ "?codigoActivacion="
+					+ pUsuario.get_password()
+					+ "'>"
+					+ "Concluir el registro de usuario</a></br><br></br>"
+					+ "<br><i><b>Muchas gracias por registrarse!</b></i></center><br></br><br></br><br></br>";
+
+			super.getComunFachada(Servicio.MailSender).enviarMailTextoPlano(
+					"juan400SVN@gmail.com", "INIA - MSCC Registro", body);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+
+	public void takeSelectionCiudad() {
+		ciudad = new Ciudad();
+		ciudad.set_nombre(getDepartamentoElegido());
+		ciudad = super.getAdmFachada(Servicio.RelacionPCD)
+				.ObtenerCiudad(ciudad);
+	}
+	
 	public void takeSelectionDepartamento() {
-		Departamento unDepto = new Departamento();
-		unDepto.set_nombre(getDepartamentoElegido());
-		unDepto = super.getAdmFachada(Servicio.RelacionPCD).ObtenerDepartamento(unDepto);
-		List<Ciudad> cs = super.getAdmFachada(Servicio.RelacionPCD)
-				.ObtenerCiudadesXDeptos(unDepto);
-		ciudades = new SelectItem[cs.size() + 1];
+		depto = new Departamento();
+		depto.set_nombre(getDepartamentoElegido());
+		depto = super.getAdmFachada(Servicio.RelacionPCD)
+				.ObtenerDepartamento(depto);
+		listCiudades = super.getAdmFachada(Servicio.RelacionPCD)
+				.ObtenerCiudadesXDeptos(depto);
+		ciudades = new SelectItem[listCiudades.size() + 1];
 		ciudades[0] = new SelectItem(super.getTextBundleKey("combo_seleccione"));
 		int l = 1;
-		for (Ciudad c : cs) {
+		for (Ciudad c : listCiudades) {
 			SelectItem si = new SelectItem(c.get_nombre());
 			ciudades[l] = si;
 			l++;
@@ -67,16 +106,16 @@ public class RegistroBean extends MaestroBean implements Serializable {
 	}
 
 	public void takeSelectionPais() {
-		Pais unPais = new Pais();
-		unPais.set_nombre(getPaisElegido());
-		unPais = super.getAdmFachada(Servicio.RelacionPCD).ObtenerPais(unPais);
-		List<Departamento> depto = super.getAdmFachada(Servicio.RelacionPCD)
-				.ObtenerDepartamentosXPais(unPais);
-		departamentos = new SelectItem[depto.size() + 1];
+		pais = new Pais();
+		pais.set_nombre(getPaisElegido());
+		pais = super.getAdmFachada(Servicio.RelacionPCD).ObtenerPais(pais);
+		listDepartamentos = super.getAdmFachada(Servicio.RelacionPCD)
+				.ObtenerDepartamentosXPais(pais);
+		departamentos = new SelectItem[listDepartamentos.size() + 1];
 		departamentos[0] = new SelectItem(super
 				.getTextBundleKey("combo_seleccione"));
 		int j = 1;
-		for (Departamento d : depto) {
+		for (Departamento d : listDepartamentos) {
 			SelectItem si = new SelectItem(d.get_nombre());
 			departamentos[j] = si;
 			j++;
@@ -86,35 +125,35 @@ public class RegistroBean extends MaestroBean implements Serializable {
 
 	public RegistroBean() throws Exception {
 		try {
-			List<Pais> ps = super.getAdmFachada(Servicio.RelacionPCD)
+			listPaises = super.getAdmFachada(Servicio.RelacionPCD)
 					.ObtenerPaises();
-			paises = new SelectItem[ps.size() + 1];
+			paises = new SelectItem[listPaises.size() + 1];
 			paises[0] = new SelectItem(super
 					.getTextBundleKey("combo_seleccione"));
 			int i = 1;
-			for (Pais p : ps) {
+			for (Pais p : listPaises) {
 				SelectItem si = new SelectItem(p.get_nombre());
 				paises[i] = si;
 				i++;
 			}
-			List<Departamento> ds = super.getAdmFachada(Servicio.RelacionPCD)
+			listDepartamentos = super.getAdmFachada(Servicio.RelacionPCD)
 					.ObtenerDepartamentos();
-			departamentos = new SelectItem[ds.size() + 1];
+			departamentos = new SelectItem[listDepartamentos.size() + 1];
 			departamentos[0] = new SelectItem(super
 					.getTextBundleKey("combo_seleccione"));
 			int j = 1;
-			for (Departamento d : ds) {
+			for (Departamento d : listDepartamentos) {
 				SelectItem si = new SelectItem(d.get_nombre());
 				departamentos[j] = si;
 				j++;
 			}
-			List<Ciudad> cs = super.getAdmFachada(Servicio.RelacionPCD)
+			listCiudades = super.getAdmFachada(Servicio.RelacionPCD)
 					.ObtenerCiudades();
-			ciudades = new SelectItem[cs.size() + 1];
+			ciudades = new SelectItem[listCiudades.size() + 1];
 			ciudades[0] = new SelectItem(super
 					.getTextBundleKey("combo_seleccione"));
 			int l = 1;
-			for (Ciudad c : cs) {
+			for (Ciudad c : listCiudades) {
 				SelectItem si = new SelectItem(c.get_nombre());
 				ciudades[l] = si;
 				l++;
@@ -142,52 +181,58 @@ public class RegistroBean extends MaestroBean implements Serializable {
 
 	public String registrar() throws Exception {
 		// MaestroBean.getInstance().getTextBundle();
-		String retorno = "";
+		String retorno = "registro-error";
 		try {
-			DatoUsuario datos = new DatoUsuario();
-			datos.set_nombre(nombre);
-			datos.set_apellido(apellido);
-			datos.set_mail(email);
-			datos.set_pais(null);
-			datos.set_departamento(null);
-			datos.set_ciudad(null);
-			datos.set_direccion(direccion);
-			datos.set_cel(celular);
-			datos.set_tele(telefono);
-			datos.set_fechaRegistro(new Date());
-			datos.set_timeStamp(new Date());
-			Usuario pUsuario = new Usuario();
-			pUsuario.set_datos(datos);
-			pUsuario.set_login(datos.get_mail().substring(0,
-					datos.get_mail().indexOf("@")));
-			StringBuffer p = new StringBuffer();
-			for (int i = 0; i < 8; i++) {
-				String c = "" + (int) (Math.random() * 10);
-				p.append(c);
-			}
-			pUsuario.set_codigoActivacion(p.toString());
-			pUsuario.set_password(p.toString());
-			pUsuario.set_estadoUsuario(EstadoUsuario.Registrado);
-			pUsuario.set_ultimoAcceso(new Date());
-			pUsuario.set_frase("Ingrese su frase secreta");
-			Usuario u = super.getSegFachada(Servicio.Usuario).RegistrarUsuario(
-					pUsuario);
-			if (u != null) {
-				if (!this.salvarNombre(pUsuario)) {
-					error = "No ha sido posible registrar el usuario, el e-mail proporcionado no esta disponible.";
+			if (super.getSegFachada(Servicio.Usuario).ComprobarEmail(email)) {
+				DatoUsuario datos = new DatoUsuario();
+				datos.set_nombre(nombre);
+				datos.set_apellido(apellido);
+				datos.set_mail(email);
+				datos.set_pais(pais);
+				datos.set_departamento(depto);
+				datos.set_ciudad(ciudad);
+				datos.set_direccion(direccion);
+				datos.set_cel(celular);
+				datos.set_tele(telefono);
+				datos.set_fechaRegistro(new Date());
+				datos.set_timeStamp(new Date());
+				Usuario pUsuario = new Usuario();
+				pUsuario.set_datos(datos);
+				pUsuario.set_login(datos.get_mail().substring(0,
+						datos.get_mail().indexOf("@")));
+				StringBuffer p = new StringBuffer();
+				for (int i = 0; i < 8; i++) {
+					String c = "" + (int) (Math.random() * 10);
+					p.append(c);
+				}
+				pUsuario.set_codigoActivacion(p.toString());
+				pUsuario.set_password(p.toString());
+				pUsuario.set_estadoUsuario(EstadoUsuario.Registrado);
+				pUsuario.set_ultimoAcceso(new Date());
+				pUsuario.set_frase("Ingrese su frase secreta");
+				Usuario u = super.getSegFachada(Servicio.Usuario)
+						.RegistrarUsuario(pUsuario);
+				if (u != null) {
+					if (!this.salvarNombre(pUsuario)) {
+						// if (!this.enviarMailConfirmacion(pUsuario)) {
+						error = "No ha sido posible registrar el usuario, el e-mail proporcionado no esta disponible.";
+						MaestroBean.getInstance().setOpcion(
+								"/Servicios/SEG/SEG002.jsp");
+						retorno = "registro-error";
+					}
+					error = "";
+//					exito = "";
+					MaestroBean.getInstance().setOpcion(
+							"/Servicios/SEG/SEG001.jsp");
+				} else {
+					error = "No ha sido posible registrar el usuario, revise los datos ingresados y intentelo nuevamente.";
 					MaestroBean.getInstance().setOpcion(
 							"/Servicios/SEG/SEG002.jsp");
-					retorno = "registro-error";
 				}
-				error = "";
-				MaestroBean.getInstance()
-						.setOpcion("/Servicios/SEG/SEG001.jsp");
-				retorno = "registro-ok";
 			} else {
-				error = "No ha sido posible registrar el usuario, revise los datos ingresados y intentelo nuevamente.";
+				error = "El e-mail esta registrado para otro usuario.";
 				MaestroBean.getInstance()
 						.setOpcion("/Servicios/SEG/SEG002.jsp");
-				retorno = "registro-error";
 			}
 		} catch (Exception ex) {
 			error = ex.getMessage();
@@ -402,6 +447,30 @@ public class RegistroBean extends MaestroBean implements Serializable {
 
 	public void setCiudades(SelectItem[] ciudades) {
 		this.ciudades = ciudades;
+	}
+
+	public List<Pais> getListPaises() {
+		return listPaises;
+	}
+
+	public void setListPaises(List<Pais> listPaises) {
+		this.listPaises = listPaises;
+	}
+
+	public List<Departamento> getListDepartamentos() {
+		return listDepartamentos;
+	}
+
+	public void setListDepartamentos(List<Departamento> listDepartamentos) {
+		this.listDepartamentos = listDepartamentos;
+	}
+
+	public List<Ciudad> getListCiudades() {
+		return listCiudades;
+	}
+
+	public void setListCiudades(List<Ciudad> listCiudades) {
+		this.listCiudades = listCiudades;
 	}
 
 }

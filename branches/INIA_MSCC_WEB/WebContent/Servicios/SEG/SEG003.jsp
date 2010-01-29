@@ -111,7 +111,7 @@ Secano.</title>
 									</rich:message>
 								</h:panelGrid>
 								<h:panelGrid columns="2" >
-									<a4j:commandButton rendered="#{!confirmacionBean.activado}"
+									<a4j:commandButton 
 										style="font-size: 10pt; color: #2d77c2;"
 										styleClass="textoPlano" tabindex="3"
 										action="#{confirmacionBean.Confirmar}"
