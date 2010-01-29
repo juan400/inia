@@ -66,7 +66,6 @@ public class ConfirmacionBean extends MaestroBean implements Serializable{
 	/*
 	 * Region de Metodos
 	 */
-	@Override
 	public boolean isInit() {
 		setActivado(false);
 		FacesContext context = FacesContext.getCurrentInstance();

@@ -37,9 +37,9 @@ Secano.</title>
 							</f:facet>
 							<h:panelGrid rendered="#{registroBean.logged}">
 								<h:outputText styleClass="mensajeError"
-									value="#{registroBean.loginName} #{text.login_alreadyLogged}" />
+									value="#{loginBean.loginName} #{text.login_alreadyLogged}" />
 								<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
-									styleClass="textoPlano" action="#{registroBean.cancelar}"
+									styleClass="textoPlano" action="cancelar"
 									value="#{text.boton_Cancelar}" />
 							</h:panelGrid>
 							<h:panelGroup rendered="#{!registroBean.logged}">
@@ -80,6 +80,8 @@ Secano.</title>
 									<h:outputText value="#{text.registro_Ciudad}" />
 									<rich:comboBox id="cmbCiudad" value="#{registroBean.ciudadElegido}" enableManualInput="false">
 										<f:selectItems value="#{registroBean.ciudades}" />
+										<a4j:support action="#{registroBean.takeSelectionCiudad}"
+											event="onchange" ajaxSingle="true" />
 									</rich:comboBox>
 
 									<h:outputText value="#{text.registro_Direccion}" />

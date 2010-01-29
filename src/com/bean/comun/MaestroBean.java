@@ -1,5 +1,6 @@
 package com.bean.comun;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
@@ -15,6 +16,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 import com.inia_mscc.modulos.adm.ADMFachada;
+import com.inia_mscc.modulos.comun.ComunFachada;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.Servicio;
 import com.inia_mscc.modulos.seg.SEGFachada;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
@@ -105,22 +107,6 @@ public class MaestroBean implements Serializable {
 		return g;
 	}
 
-	@SuppressWarnings("unchecked")
-	public Object getSesion(String pClave) {
-		ExternalContext context = FacesContext.getCurrentInstance()
-				.getExternalContext();
-		Map session = context.getSessionMap();
-		Object g = session.get(pClave);
-		return g;
-	}
-
-	@SuppressWarnings("unchecked")
-	public void setSesion(String pClave, Object pObjeto) {
-		ExternalContext context = FacesContext.getCurrentInstance()
-				.getExternalContext();
-		Map session = context.getSessionMap();
-		session.put(pClave, pObjeto);
-	}
 
 	/**
 	 * @return the time zone for the application
@@ -132,6 +118,15 @@ public class MaestroBean implements Serializable {
 		return tz;
 	}
 
+	@SuppressWarnings("unchecked")
+	public Object getSesion(String pClave) {
+		ExternalContext context = FacesContext.getCurrentInstance()
+				.getExternalContext();
+		Map session = context.getSessionMap();
+		Object g = session.get(pClave);
+		return g;
+	}
+
 	/**
 	 * @param tz
 	 */
@@ -139,6 +134,14 @@ public class MaestroBean implements Serializable {
 		this.tz = tz;
 	}
 
+	@SuppressWarnings("unchecked")
+	public void setSesion(String pClave, Object pObjeto) {
+		ExternalContext context = FacesContext.getCurrentInstance()
+				.getExternalContext();
+		Map session = context.getSessionMap();
+		session.put(pClave, pObjeto);
+	}
+	
 	/**
 	 * Returns the default Locale according to the ISO 3166
 	 * 
@@ -167,34 +170,6 @@ public class MaestroBean implements Serializable {
 		return activado;
 	}
 
-	public boolean isInit() {
-		return false;
-	}
-
-	public boolean isLogged() {
-		return logged;
-	}
-
-	public void setLogged(boolean logged) {
-		this.logged = logged;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usu) {
-		this.usuario = usu;
-	}
-
-	public String getOpcion() {
-		return opcion;
-	}
-
-	public void setOpcion(String opcion) {
-		this.opcion = opcion;
-	}
-
 	public ResourceBundle getTextBundle() {
 		if (textBundle == null) {
 			textBundle = ResourceBundle.getBundle("text", getFacesContext()
@@ -210,6 +185,18 @@ public class MaestroBean implements Serializable {
 		return config;
 	}
 
+	public SEGFachada getSegFachada(Servicio servicio) {
+		return new SEGFachada(servicio);
+	}
+
+	public ADMFachada getAdmFachada(Servicio servicio) {
+		return new ADMFachada(servicio);
+	}
+
+	public ComunFachada getComunFachada(Servicio servicio) throws IOException {
+		return new ComunFachada(servicio);
+	}
+
 	public boolean isReload() {
 		return reload;
 	}
@@ -218,11 +205,36 @@ public class MaestroBean implements Serializable {
 		this.reload = reload;
 	}
 
-	public SEGFachada getSegFachada(Servicio servicio) {
-		return new SEGFachada(servicio);
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public ADMFachada getAdmFachada(Servicio servicio) {
-		return new ADMFachada(servicio);
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
+
+	public boolean isLogged() {
+		return logged;
+	}
+
+	public void setLogged(boolean logged) {
+		this.logged = logged;
+	}
+
+	public String getOpcion() {
+		return opcion;
+	}
+
+	public void setOpcion(String opcion) {
+		this.opcion = opcion;
+	}
+
+	public void setTextBundle(ResourceBundle textBundle) {
+		this.textBundle = textBundle;
+	}
+
+	public void setConfig(ResourceBundle config) {
+		this.config = config;
+	}
+
 }
