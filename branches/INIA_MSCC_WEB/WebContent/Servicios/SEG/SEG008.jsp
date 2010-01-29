@@ -44,76 +44,76 @@ Secano.</title>
 							</h:panelGrid></center>
 							<br></br>
 
-							<center><rich:extendedDataTable border="2" width="600px"
-								height="140" styleClass="textoDataTable" selectionMode="single" 
-								value="#{perfilBean.perfiles}" var="perfil"
+							<rich:contextMenu attached="false" id="menu" submitMode="ajax"
+								oncollapse="row.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'">
+								<rich:menuItem value="Edit Record" ajaxSingle="true"
+									oncomplete="#{rich:component('editPanel')}.show()">
+									<a4j:actionparam name="vin" value="{carVin}" />
+									<a4j:actionparam name="row" value="{currentRow}" />
+								</rich:menuItem>
+								<rich:menuItem value="Remove Record" ajaxSingle="true"
+									oncomplete="#{rich:component('deletePanel')}.show()">
+									<a4j:actionparam name="vin" value="{carVin}" />
+									<a4j:actionparam name="row" value="{currentRow}" />
+								</rich:menuItem>
+							</rich:contextMenu>
+
+							<center><rich:dataTable border="2" width="660px"
+								rows="10" styleClass="textoDataTable"
+								value="#{perfilBean.perfiles}" var="perfil" rowKeyVar="row"
 								headerClass="columnHeader" rowClasses="oddRow,evenRow">
-								<rich:column width="150" sortable="false">
+
+								<f:facet name="header">
+									<h:outputText value="Perfiles Registrados" />
+								</f:facet>
+
+								<rich:column width="150">
 									<f:facet name="header">
 										<h:outputText value="Nombre" />
 									</f:facet>
-									<h:outputText value="#{perfil._nombre}" />
+									<h:outputText value="#{perfil._nombre}" id="nombre" />
 								</rich:column>
-								<rich:column width="350" sortable="false">
+
+								<rich:column width="350">
 									<f:facet name="header">
 										<h:outputText value="Descripción" />
 									</f:facet>
-									<h:outputText value="#{perfil._descripcion}" />
+									<h:outputText value="#{perfil._descripcion}" id="descripcion" />
 								</rich:column>
-								<rich:column width="100" sortable="false">
+
+								<rich:column width="100">
 									<f:facet name="header">
 										<h:outputText value="Estado" />
 									</f:facet>
-									<h:outputText value="#{perfil._estado}" />
+									<h:outputText value="#{perfil._estado}" id="estado" />
 								</rich:column>
-								<rich:column width="100" sortable="false">
+
+								<rich:column width="60">
 									<f:facet name="header">
-										<h:outputText value="Estado" />
+										<h:outputText value="Acciones" />
 									</f:facet>
-									<h:outputText value="#{perfil._estado}" />
+									<a4j:commandButton action="#{perfilBean.verConsulta}"
+										image="/Recursos/Imagenes/Iconos/edit.gif">
+										<a4j:actionparam name="consultaElegida" value="#{perfil._id}" />
+									</a4j:commandButton>
+									<rich:toolTip value="Modificar" />
+
+									<a4j:commandLink ajaxSingle="true" id="deletelink"
+										oncomplete="#{rich:component('deletePanel')}.show()">
+										<h:graphicImage value="/Recursos/Imagenes/Iconos/delete.gif"
+											style="border:0" />
+									</a4j:commandLink>
+									<rich:toolTip value="Eliminar" />
 								</rich:column>
-								
-								<a4j:support action="#{perfilBean.CargarPerfil}"
-									ajaxSingle="true" reRender="datos" event="onselectionchange">
-									<a4j:actionparam name="consultaElegida" value="#{perfil._id}" />
-								</a4j:support>
-							</rich:extendedDataTable></center>
-							<br></br>
 
-							<center><h:panelGrid id="datos" columns="2"
-								title="Actulizar datos"
-								columnClasses="textoPlano,textoDataTable">
-								<h:outputText value="#{text.perfil_Nombre}" />
-								<h:inputText label="Name" id="name" required="true"
-									requiredMessage="Debe ingresar el Nombre."
-									value="#{perfilBean.nombre}"
-									onkeypress="ValidarCampoLetras(this, event)"
-									style=" width : 245px;">
-									<f:validateLength maximum="45">
-									</f:validateLength>
-								</h:inputText>
+								<f:facet name="footer">
+									<rich:datascroller renderIfSinglePage="false" maxPages="5" />
+								</f:facet>
 
-								<h:outputText value="#{text.perfil_Descripcion}" />
-								<h:inputTextarea id="descripcion"
-									value="#{perfilBean.descripcion}"
-									onkeypress="ValidarLargoMultiline(this, event, 220)"
-									style=" width : 245px; height : 71px;" />
-
-								<h:outputText value="#{text.perfil_Estado}" />
-								<rich:comboBox styleClass="textoDataTable"
-									value="#{perfilBean.estado}" width="245px">
-									<f:selectItem itemValue="Activo" />
-									<f:selectItem itemValue="Inactivo" />
-								</rich:comboBox>
-
-								<td style="width: 2px;"></td>
-								<h:outputText value="" />
-							</h:panelGrid></center>
-							<br></br>
+							</rich:dataTable></center>
 							<br></br>
 
 							<center><h:panelGrid columns="3">
-
 								<a4j:commandButton immediate="true"
 									style="font-size: 10pt; color: #2d77c2; width : 87px;"
 									styleClass="textoPlano" action="Alta"
@@ -121,21 +121,51 @@ Secano.</title>
 
 								<a4j:commandButton
 									style="font-size: 10pt; color: #2d77c2; width : 87px;"
-									styleClass="textoPlano" action="Actualizar"
-									value="#{text.boton_Actualizar}" />
+									styleClass="textoPlano" action="Permisos"
+									value="#{text.boton_Permisos}" />
 
 								<a4j:commandButton immediate="true"
 									style="font-size: 10pt; color: #2d77c2; width : 87px;"
 									styleClass="textoPlano" action="cancelar"
 									value="#{text.perfil_Cerrar}" />
 							</h:panelGrid></center>
-
 						</rich:panel>
 					</h:panelGrid></td>
 				</tr>
 			</tbody>
 		</table>
 	</h:form>
+
+	<rich:modalPanel id="deletePanel" autosized="true" width="200">
+		<f:facet name="header">
+			<h:outputText value="¿Desea eliminar este Perfil?"
+				style="padding-right:15px;" />
+		</f:facet>
+		<f:facet name="controls">
+			<h:panelGroup>
+				<h:graphicImage value="/Recursos/Imagenes/Iconos/close.png"
+					styleClass="hidelink" id="hidelink2" />
+				<rich:componentControl for="deletePanel" attachTo="hidelink2"
+					operation="hide" event="onclick" />
+			</h:panelGroup>
+		</f:facet>
+		<h:form>
+			<table width="100%">
+				<tbody>
+					<tr>
+						<td align="center" width="50%"><a4j:commandButton value="Yes"
+							ajaxSingle="true" action="#{perfilBean.eliminar}"
+							oncomplete="#{rich:component('deletePanel')}.hide();"
+							reRender="table" /></td>
+						<td align="center" width="50%"><a4j:commandButton
+							value="Cancel"
+							onclick="#{rich:component('deletePanel')}.hide();return false;" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</h:form>
+	</rich:modalPanel>
 </f:view>
 </body>
 </html>
