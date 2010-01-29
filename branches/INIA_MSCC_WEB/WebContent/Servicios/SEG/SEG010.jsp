@@ -33,7 +33,7 @@ Secano.</title>
 						<rich:panel headerClass="tituloPantalla"
 							style="background-color: #ebf3fd;">
 							<f:facet name="header">
-								<h:outputText value="#{text.perfil_NuevoPerfil}" />
+								<h:outputText value="#{text.perfil_ActPerfil}" />
 							</f:facet>
 							<center><h:panelGrid rendered="#{loginBean.logged}"
 								width="">
@@ -77,7 +77,7 @@ Secano.</title>
 								<h:panelGrid columns="2">
 									<a4j:commandButton
 										style="font-size: 10pt; color: #2d77c2; width : 71px;"
-										styleClass="textoPlano" action="#{perfilBean.registrar}"
+										styleClass="textoPlano" action="#{perfilBean.actualizar}"
 										value="#{text.boton_Aceptar}" />
 									<a4j:commandButton immediate="true"
 										style="font-size: 10pt; color: #2d77c2; width : 71px;"
