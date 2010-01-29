@@ -64,6 +64,10 @@ public class SEGFachada {
 		return srvPerfil.ObtenerPerfiles();
 	}
 	
+	public boolean ComprobarEmail(String pEmail) {
+		return srvUsuario.ComprobarEmail(pEmail);
+	}
+	
 	public Perfil ComprobarPerfil(Perfil pPerfil){
 		return srvPerfil.ComprobarPerfil(pPerfil);
 	}

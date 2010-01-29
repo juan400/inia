@@ -7,6 +7,7 @@ import javax.mail.MessagingException;
 import javax.naming.NamingException;
 
 import com.bean.comun.MaestroBean;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.EstadoUsuario;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.Servicio;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
@@ -17,6 +18,7 @@ public class LoginBean extends MaestroBean implements Serializable {
 	private String loginName;
 	private String password;
 	private String error;
+	private static long intentos=0;
 
 	public boolean isInit() {
 		return false;
@@ -24,20 +26,37 @@ public class LoginBean extends MaestroBean implements Serializable {
 
 	public String login() throws IOException, NamingException,
 			MessagingException {
-		// MaestroBean.getInstance().getTextBundle();
-		Usuario u = super.getSegFachada(Servicio.Usuario).Login(loginName, password);
+		Usuario u = super.getSegFachada(Servicio.Usuario).Login(loginName,
+				password);
 		if (u != null) {
-			MaestroBean maestro = MaestroBean.getInstance();
-			maestro.setLogged(true);
-			maestro.setUsuario(u);
-			error = "";
-			
-			// MaestroBean.getInstance().setOpcion("/Servicios/SEG/menuRich.jsp");
-			//TODO validar que el usuario estte activo y no este en otro estado que no sea activo.
-			
-			return "login-ok";
+			if (u.is_activado()) {
+				if (u.get_estadoUsuario().equals(EstadoUsuario.Activo)) {
+					super.setLogged(true);
+					super.setUsuario(u);
+					error = "";
+					return "login-ok";
+				} else {
+					error = u.get_datos().get_nombre()
+							+ " su cuenta esta "
+							+ u.get_estadoUsuario().toString().toLowerCase()
+							+ " aún, recuerde chequear su correo, se le a enviado un e-mail para concluir con el registro.";
+					return "login-error";
+				}
+			} else {
+				error = u.get_datos().get_nombre()
+						+ " su cuenta no esta activa aún, recuerde chequear su correo, se le a enviado un e-mail para concluir con el registro.";
+				return "login-error";
+			}
 		} else {
-			error = "El nombre de usuario y password no conciden";
+			error = "El nombre de usuario o password no conciden";
+			 intentos++;
+			 if (intentos == 5) {
+				 error = "Este es el quinto intento en logearse, por favor verifique sus datos e intente nuevamente.";
+				 intentos=0;
+				 // TODO Recordar si vamos a incluir el bloqueo de usuario por intentos.
+//			 u.set_estadoUsuario(EstadoUsuario.Bloqueado);
+//			 super.getSegFachada(Servicio.Usuario).CambiarPassword(u);
+			 }
 			return "login-error";
 		}
 	}

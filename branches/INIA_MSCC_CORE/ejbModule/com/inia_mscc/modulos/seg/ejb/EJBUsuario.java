@@ -44,4 +44,9 @@ public class EJBUsuario implements ServicioUsuario {
 	public Usuario Login(String pLogin, String pPassword) {
 		return dao.Login(pLogin, pPassword);
 	}
+
+	@Override
+	public boolean ComprobarEmail(String pEmail) {
+		return dao.ComprobarEmail(pEmail);
+	}
 }

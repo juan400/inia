@@ -10,5 +10,5 @@ public interface ServicioUsuario {
 	public Usuario ComprobarClaveReigstro(String pClave);
 	public void CambiarPassword(Usuario pUsuario);
 	public Usuario Login(String pLogin, String pPassword);
-
+	public boolean ComprobarEmail(String pEmail);
 }

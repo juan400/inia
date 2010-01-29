@@ -50,15 +50,15 @@ public class DatoUsuario implements Serializable{
 	private String _cel;
 	@Column(name = "daus_str_direccion", nullable = false, columnDefinition = "VARCHAR(220)")
 	private String _direccion;
-	@OneToOne (cascade = CascadeType.ALL, targetEntity=Pais.class)
+	@OneToOne (targetEntity=Pais.class)
 	@ForeignKey (name="FK_daus_num_id_pais")
 	@JoinColumn (name="daus_num_id_pais", nullable=true, columnDefinition="BIGINT(20)")
 	private Pais _pais;
-	@OneToOne(cascade = CascadeType.ALL, targetEntity=Departamento.class)
+	@OneToOne(targetEntity=Departamento.class)
 	@ForeignKey (name="FK_daus_num_id_departamento")
 	@JoinColumn(name="daus_num_id_departamento", nullable=true, columnDefinition="BIGINT(20)")  
 	private Departamento _departamento;
-	@OneToOne(cascade = CascadeType.ALL, targetEntity=Ciudad.class)
+	@OneToOne(targetEntity=Ciudad.class)
 	@ForeignKey (name="FK_daus_num_id_ciudad")
 	@JoinColumn(name="daus_num_id_ciudad", nullable=true, columnDefinition="BIGINT(20)") 
 	private Ciudad _ciudad;

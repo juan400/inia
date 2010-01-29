@@ -16,7 +16,7 @@ import com.inia_mscc.modulos.seg.entidades.Usuario;
 
 /**
  * @author Juan Andres Pio
- *
+ * 
  */
 public class DAOUsuario implements Serializable {
 
@@ -27,30 +27,51 @@ public class DAOUsuario implements Serializable {
 	private static final Logger logger = Logger.getLogger(DAOUsuario.class);
 
 	/**
+	 * @param pClave
+	 * @return
+	 */
+	public boolean ComprobarEmail(String pEmail) {
+		boolean retorno = false;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			Criteria c = session.createCriteria(DatoUsuario.class);
+			retorno = c.add(Restrictions.eq("_mail", pEmail)).list().isEmpty();
+		} catch (StaleObjectStateException e) {
+			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
+			logger.error(stackTrace);
+			throw new IniaPersistenciaException(e.getMessage(), e);
+		}
+		return retorno;
+	}
+
+	/**
 	 * Este metodo registra el usuario en el sistema.
+	 * 
 	 * @param pUsuario
-	 * @return 
-	 * Devuelve el usuario con la clave generada.
+	 * @return Devuelve el usuario con la clave generada.
 	 */
 	public Usuario RegistrarUsuario(Usuario pUsuario) {
 		Usuario usuario = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
-			pUsuario.get_datos().set_id((Long)session.save("DatoUsuario", pUsuario.get_datos()));			
-			Long id  = (Long)session.save("Usuario", pUsuario);
+			pUsuario.get_datos().set_id(
+					(Long) session.save("DatoUsuario", pUsuario.get_datos()));
+			Long id = (Long) session.save("Usuario", pUsuario);
+			session.evict(pUsuario);
 			Criteria c = session.createCriteria(Usuario.class);
 			c.add(Restrictions.eq("_id", id));
 			usuario = (Usuario) c.uniqueResult();
-		} catch(Exception e){ // catch (StaleObjectStateException e) {
+		} catch (Exception e) { // catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);
 		}
 		return usuario;
 	}
-	
+
 	/**
 	 * Actualiza los datos de un usuario registrado en el sitema.
+	 * 
 	 * @param pDatosUsuario
 	 */
 	public void ActualizarDatos(DatoUsuario pDatosUsuario) {
@@ -68,8 +89,8 @@ public class DAOUsuario implements Serializable {
 	 * @param pClave
 	 * @return
 	 */
-	public Usuario ComprobarClaveReigstro(String pClave){
-		Usuario retorno=null;
+	public Usuario ComprobarClaveReigstro(String pClave) {
+		Usuario retorno = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			Criteria c = session.createCriteria(Usuario.class);
@@ -85,6 +106,7 @@ public class DAOUsuario implements Serializable {
 
 	/**
 	 * Cambia la contrasenia de usauario.
+	 * 
 	 * @param pUsuario
 	 */
 	public void CambiarPassword(Usuario pUsuario) {
@@ -101,7 +123,7 @@ public class DAOUsuario implements Serializable {
 	/**
 	 * @param loginNombre
 	 * @param password
-	 * @return 
+	 * @return
 	 */
 	public Usuario Login(String loginNombre, String password) {
 		Usuario usuario = null;
@@ -118,5 +140,5 @@ public class DAOUsuario implements Serializable {
 		}
 		return usuario;
 	}
-	
+
 }

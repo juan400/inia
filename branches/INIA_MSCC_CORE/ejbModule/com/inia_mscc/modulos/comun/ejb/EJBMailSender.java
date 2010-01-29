@@ -27,7 +27,7 @@ public class EJBMailSender implements MailSenderServices {
 			mail = (Session) ctx.lookup("java:/MailSenderService");
 			message.setSubject(subject);
 			message.setRecipients(javax.mail.Message.RecipientType.TO, javax.mail.internet.InternetAddress.parse(email, false));
-			message.setText(body);
+			message.setText(body,"ISO-8859-1", "html");
 			Transport.send(message);
 		} catch (NamingException e) {
 			e.printStackTrace();

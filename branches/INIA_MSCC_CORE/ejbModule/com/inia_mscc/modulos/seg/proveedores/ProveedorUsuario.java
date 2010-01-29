@@ -50,4 +50,9 @@ public class ProveedorUsuario implements ServicioUsuario {
 	public Usuario Login(String pLogin, String pPassword) {
 		return ejbUsuario.Login(pLogin, pPassword);
 	}
+
+	@Override
+	public boolean ComprobarEmail(String pEmail) {
+		return ejbUsuario.ComprobarEmail(pEmail);
+	}
 }

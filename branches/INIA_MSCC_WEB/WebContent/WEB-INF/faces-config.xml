@@ -95,6 +95,11 @@
 			<redirect />
 		</navigation-case>
 		<navigation-case>
+			<from-outcome>logout</from-outcome>
+			<to-view-id>/Servicios/SEG/SEG001.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
 			<from-outcome>Cancelar</from-outcome>
 			<to-view-id>/Servicios/SEG/SEG001.jsp</to-view-id>
 			<redirect />
@@ -124,6 +129,11 @@
 			<from-action>#{loginBean.registrarse}</from-action>
 			<from-outcome>registrarse</from-outcome>
 			<to-view-id>/Servicios/SEG/SEG002.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancelar</from-outcome>
+			<to-view-id>/Servicios/SEG/SEG001.jsp</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
