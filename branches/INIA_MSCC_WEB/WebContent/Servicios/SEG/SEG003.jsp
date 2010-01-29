@@ -41,9 +41,9 @@ Secano.</title>
 									value="#{confirmacionBean.error}" />
 								<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
 									styleClass="textoPlano" action="#{loginBean.logout}"
-									tabindex="1" value="#{text.login_logout}" />
+									tabindex="1" value="#{text.login_login}" />
 							</h:panelGrid>
-							
+
 							<h:panelGroup rendered="#{!confirmacionBean.activado}">
 								<h:panelGrid columns="3" width="480">
 
@@ -63,8 +63,8 @@ Secano.</title>
 										styleClass="textoPlano" />
 									<h:inputSecret id="txtContrasenia"
 										value="#{confirmacionBean.contrasenia}" required="true"
-										requiredMessage="Debe ingresar Contraseña" styleClass="textoPlano"
-										tabindex="1" maxlength="13">
+										requiredMessage="Debe ingresar Contraseña"
+										styleClass="textoPlano" tabindex="1" maxlength="13">
 										<f:validateLength minimum="6" maximum="13" />
 									</h:inputSecret>
 									<rich:message for="txtContrasenia" styleClass="mensajeError">
@@ -80,8 +80,8 @@ Secano.</title>
 										styleClass="textoPlano" />
 									<h:inputSecret id="txtConfirmarContrasenia"
 										value="#{confirmacionBean.confirmacion}" required="true"
-										requiredMessage="Debe ingresar confirmación de contraseña" styleClass="textoPlano"
-										tabindex="2" maxlength="13">
+										requiredMessage="Debe ingresar confirmación de contraseña"
+										styleClass="textoPlano" tabindex="2" maxlength="13">
 										<f:validateLength minimum="6" maximum="13" />
 									</h:inputSecret>
 									<rich:message for="txtConfirmarContrasenia"
@@ -110,9 +110,14 @@ Secano.</title>
 										</f:facet>
 									</rich:message>
 								</h:panelGrid>
-								<h:panelGrid columns="2" >
-									<a4j:commandButton 
-										style="font-size: 10pt; color: #2d77c2;"
+								<h:panelGrid>
+									<h:outputText styleClass="mensajeError"
+										value="#{confirmacionBean.error}" />
+									<h:outputText styleClass="textoPlano"
+										value="#{confirmacionBean.exito}" />
+								</h:panelGrid>
+								<h:panelGrid columns="2">
+									<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
 										styleClass="textoPlano" tabindex="3"
 										action="#{confirmacionBean.Confirmar}"
 										value="#{text.boton_Guardar}" />
