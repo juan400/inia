@@ -1,10 +1,11 @@
-package com.inia_mscc.modulos.comun.servicios;
+package com.inia_mscc.modulos.comun.proveedores;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import com.inia_mscc.excepciones.ProviderException;
+import com.inia_mscc.modulos.comun.servicios.CommonsServices;
 
 public class CommonsProvider implements CommonsServices{
 
