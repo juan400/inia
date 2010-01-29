@@ -49,10 +49,29 @@
 	</navigation-rule>
 
 	<navigation-rule>
+		<from-view-id>/Servicios/SEG/SEG010.jsp</from-view-id>
+		<navigation-case>
+			<from-action>#{perfilBean.actualizar}</from-action>
+			<from-outcome>registro-ok</from-outcome>
+			<to-view-id>/Servicios/SEG/SEG008.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancelar</from-outcome>
+			<to-view-id>/Servicios/SEG/SEG008.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
 		<from-view-id>/Servicios/SEG/SEG008.jsp</from-view-id>
 		<navigation-case>
 			<from-outcome>Alta</from-outcome>
 			<to-view-id>/Servicios/SEG/SEG009.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>Actualizar</from-outcome>
+			<to-view-id>/Servicios/SEG/SEG010.jsp</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>

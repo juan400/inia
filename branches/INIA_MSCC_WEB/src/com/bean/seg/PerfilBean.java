@@ -41,6 +41,22 @@ public class PerfilBean implements Serializable {
 		return segFachada.ObtenerPerfiles();
 	}
 
+	public String actualizar() throws Exception {
+		String retorno = "registro-error";
+		try {
+			Perfil datosPerfil = new Perfil();
+			datosPerfil.set_nombre(nombre);
+			datosPerfil.set_descripcion(descripcion);
+			datosPerfil.set_estado(Enumerados.Estado.valueOf(estado));
+
+			segFachada.ActualizarPerfil(datosPerfil);
+			retorno = "registro-ok";
+		} catch (Exception ex) {
+			setError(ex.getMessage());
+		}
+		return retorno;
+	}
+
 	public String registrar() throws Exception {
 		// MaestroBean.getInstance().getTextBundle();
 		String retorno = "";
@@ -50,15 +66,24 @@ public class PerfilBean implements Serializable {
 			datosPerfil.set_descripcion(descripcion);
 			datosPerfil.set_estado(Enumerados.Estado.valueOf(estado));
 
-			Perfil p = segFachada.RegistrarPerfil(datosPerfil);
-			if (p != null) {
+			Perfil per = segFachada.ComprobarPerfil(datosPerfil);
+			if (per == null) {
 				setError("");
-				MaestroBean.getInstance()
-						.setOpcion("/Servicios/SEG/SEG009.jsp");
-				retorno = "registro-ok";
-				LimpiarBean();
+				Perfil p = segFachada.RegistrarPerfil(datosPerfil);
+				if (p != null) {
+					setError("");
+					MaestroBean.getInstance().setOpcion(
+							"/Servicios/SEG/SEG009.jsp");
+					retorno = "registro-ok";
+					LimpiarBean();
+				} else {
+					setError("No ha sido posible registrar el perfil, revise los datos ingresados y intentelo nuevamente.");
+					MaestroBean.getInstance().setOpcion(
+							"/Servicios/SEG/SEG009.jsp");
+					retorno = "registro-error";
+				}
 			} else {
-				setError("No ha sido posible registrar el perfil, revise los datos ingresados y intentelo nuevamente.");
+				error = "Ya existe un Perfil con igual nombre, Por favor ingrese otro nombre.";
 				MaestroBean.getInstance()
 						.setOpcion("/Servicios/SEG/SEG009.jsp");
 				retorno = "registro-error";
@@ -74,8 +99,8 @@ public class PerfilBean implements Serializable {
 		descripcion = null;
 		estado = null;
 		perfil = null;
-		perfiles= null;
-		error= null;
+		perfiles = null;
+		error = null;
 	}
 
 	public String getNombre() {
