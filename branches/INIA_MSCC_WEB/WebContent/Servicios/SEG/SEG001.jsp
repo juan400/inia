@@ -29,7 +29,8 @@ Secano.</title>
 			</thead>
 			<tbody>
 				<tr>
-					<td align="center" class="contenido"><h:panelGroup
+					<td align="center" class="contenido">
+					<a4j:region id="contenido"><h:panelGroup
 						rendered="#{loginBean.init}" /> <h:panelGrid>
 						<rich:panel headerClass="tituloPantalla"
 							style="background-color: #ebf3fd;">
@@ -83,7 +84,17 @@ Secano.</title>
 								</h:panelGrid>
 							</h:panelGroup>
 						</rich:panel>
-					</h:panelGrid></td>
+					</h:panelGrid><a4j:status for="contenido"
+							onstart="Richfaces.showModalPanel('ajaxLoadingModalBox',{width:100, top:200,height:'90px'})"
+							onstop="Richfaces.hideModalPanel('ajaxLoadingModalBox')"></a4j:status>
+					</a4j:region> <rich:modalPanel id="ajaxLoadingModalBox" minHeight="100"
+						minWidth="200" height="40" width="400" zindex="100" styleClass="">
+						<rich:panel style="background-color: #ebf3fd; ">
+							<center><h2><h:outputText value="Procesando..."
+								styleClass="textoPlano">
+							</h:outputText></h2></center>
+						</rich:panel>
+					</rich:modalPanel></td>
 				</tr>
 			</tbody>
 			<tfoot>

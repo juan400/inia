@@ -259,7 +259,7 @@ public class RegistroBean extends MaestroBean implements Serializable {
 						retorno = "registro-error";
 					}
 					super.setError("");
-					// exito = "";
+					super.setExito("Se a enviado un e-mail a su casilla de correo, lea el correo para confirmar el registro.");
 					MaestroBean.getInstance().setOpcion(
 							"/Servicios/SEG/SEG001.jsp");
 				} else {
@@ -348,18 +348,6 @@ public class RegistroBean extends MaestroBean implements Serializable {
 			super.setError(ex.getMessage());
 		}
 		return true;
-	}
-
-	/**
-	 * @return
-	 */
-	public boolean isActivado() {
-		// FacesContext context = FacesContext.getCurrentInstance();
-		// Map<String, String> params =
-		// context.getExternalContext().getRequestParameterMap();
-		// if (!params.get("CodigoActivacion").isEmpty())
-		// this.setCodigoActivacion(Long.parseLong(params.get("CodigoActivacion")));
-		return MaestroBean.getInstance().isActivado();
 	}
 
 	/*
