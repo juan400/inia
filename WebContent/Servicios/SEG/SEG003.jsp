@@ -110,12 +110,7 @@ Secano.</title>
 										</f:facet>
 									</rich:message>
 								</h:panelGrid>
-								<h:panelGrid>
-									<h:outputText styleClass="mensajeError"
-										value="#{confirmacionBean.error}" />
-									<h:outputText styleClass="textoPlano"
-										value="#{confirmacionBean.exito}" />
-								</h:panelGrid>
+								
 								<h:panelGrid columns="2">
 									<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
 										styleClass="textoPlano" tabindex="3"
@@ -124,6 +119,12 @@ Secano.</title>
 									<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
 										styleClass="textoPlano" tabindex="4" action="Cancelar"
 										value="#{text.boton_Cancelar}" />
+								</h:panelGrid>
+								<h:panelGrid>
+									<h:outputText styleClass="mensajeError"
+										value="#{confirmacionBean.error}" />
+									<h:outputText styleClass="textoPlano"
+										value="#{confirmacionBean.exito}" />
 								</h:panelGrid>
 							</h:panelGroup>
 						</rich:panel>
