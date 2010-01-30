@@ -45,7 +45,7 @@ Secano.</title>
 											iconGroupTopPosition="right"
 											iconCollapsedTopGroup="chevronDown">
 											<rich:panelMenuGroup label="Login">
-												<rich:panelMenuItem action="irLogin">
+												<rich:panelMenuItem action='irLogin'>
 													<h:outputLabel styleClass="textoPlano"
 														rendered="#{loginBean.logged}"
 														value="#{text.login_userName} : #{loginBean.loginName}" />
@@ -58,15 +58,19 @@ Secano.</title>
 														action="#{loginBean.login}" value="#{text.login_login}"
 														image="../Recursos/Imagenes/Iconos/door_in.png" />
 												</rich:panelMenuItem>
+												<rich:panelMenuItem label="Modificar datos personales"
+													action="#{panelMenu.updateCurrent}">
+													<f:param name="current"	value="/Servicios/SEG/SEG004.jsf" />
+												</rich:panelMenuItem>
 											</rich:panelMenuGroup>
 											<rich:panelMenuGroup label="Adminstracion">
 												<rich:panelMenuItem label="Precentacion"
 													action="#{panelMenu.updateCurrent}">
-													<f:param name="current" value="/Servicios/Precentacion.jsp" />
+													<f:param name="current" value="Precentacion.jsp" />
 												</rich:panelMenuItem>
-												<rich:panelMenuItem label="Login"
-													action="#{panelMenu.updateCurrent}">
-													<f:param name="current"	value="/Servicios/SEG/Registro.jsp" />
+												<rich:panelMenuItem label="Modificar datos personales"
+													action="#{panelMenu.updateCurrent}" >
+													<f:param name="current"	value="SEG/SEG004.jsp" />
 												</rich:panelMenuItem>
 											</rich:panelMenuGroup>
 										</rich:panelMenu>
@@ -79,13 +83,13 @@ Secano.</title>
 								style="vertical-align: top; background-color: white; background-repeat: repeat-y; background-image: url('../Recursos/Imagenes/fondoTablaContenedora.jpg'); background-position: right;"
 								align="left" width="750px">
 								<tr>
-									<td><rich:panel>
+									<td><rich:panel >
 										<f:facet name="header">
 											<h:outputText value="Current selection" />
 										</f:facet>
-										<a4j:outputPanel ajaxRendered="true" style="heigth: 100%">
-											<rich:insert src="#{panelMenu.current}" id="current"/>
-										</a4j:outputPanel>
+										<h:panelGroup rendered="true" id="panel" style="heigth: 100%">
+											Prueba
+										</h:panelGroup>
 									</rich:panel>
 									<rich:calendar>
 					

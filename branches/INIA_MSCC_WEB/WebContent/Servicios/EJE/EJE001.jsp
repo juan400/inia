@@ -47,10 +47,10 @@ Secano.</title>
 									value="#{text.login_login}" />
 							</h:panelGrid>
 							<h:panelGroup>
-								<h:panelGrid columns="2" columnClasses="textoPlano,textoPlano">
+								<h:panelGrid columns="2">
 
 									<h:outputText value="Fecha de ejecución" />
-									<rich:calendar id="calFechaEjecucion" 
+									<rich:calendar id="calFechaEjecucion" inputClass="rich-calendar-input"
 											value="#{escenarioBean.fechaEjecucion}" 
 											enableManualInput="false" locale="ES" disabled="true" showApplyButton="false"
 											datePattern="dd/MM/yyyy hh:mm a" popup="true" cellWidth="24px"

@@ -42,7 +42,7 @@ public class ProveedorUsuario implements ServicioUsuario {
 	}
 
 	@Override
-	public Usuario RegistrarUsuario(Usuario pUsuario) {
+	public Usuario RegistrarUsuario(Usuario pUsuario) throws Exception {
 		return ejbUsuario.RegistrarUsuario(pUsuario);
 	}
 	
