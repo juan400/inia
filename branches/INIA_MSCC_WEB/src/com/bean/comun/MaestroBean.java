@@ -143,6 +143,22 @@ public class MaestroBean implements Serializable {
 		Map session = context.getSessionMap();
 		session.put(pClave, pObjeto);
 	}
+
+	@SuppressWarnings("unchecked")
+	public void removerSesion(String pClave) {
+		ExternalContext context = FacesContext.getCurrentInstance()
+				.getExternalContext();
+		Map session = context.getSessionMap();
+		session.remove(pClave);
+	}
+
+	@SuppressWarnings("unchecked")
+	public void limpiarSesion() {
+		ExternalContext context = FacesContext.getCurrentInstance()
+				.getExternalContext();
+		Map session = context.getSessionMap();
+		session.clear();
+	}
 	
 	/**
 	 * Returns the default Locale according to the ISO 3166
