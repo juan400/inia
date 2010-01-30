@@ -13,5 +13,7 @@ public interface ServicioPerfil {
 	public List<Perfil> ObtenerPerfiles();
 
 	public Perfil ComprobarPerfil(Perfil pPerfil);
+
+	public void EliminarPerfil(Perfil pPerfil);
 	
 }
