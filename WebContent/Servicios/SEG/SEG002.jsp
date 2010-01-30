@@ -35,14 +35,14 @@ Secano.</title>
 							<f:facet name="header">
 								<h:outputText value="#{text.login_newUser}" />
 							</f:facet>
-							<h:panelGrid rendered="#{registroBean.logged}">
+							<h:panelGrid rendered="#{loginBean.logged}">
 								<h:outputText styleClass="mensajeError"
 									value="#{loginBean.loginName} #{text.login_alreadyLogged}" />
 								<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
 									styleClass="textoPlano" action="cancelar"
 									value="#{text.boton_Cancelar}" />
 							</h:panelGrid>
-							<h:panelGroup rendered="#{!registroBean.logged}">
+							<h:panelGroup rendered="#{!loginBean.logged}">
 								<h:panelGrid columns="2" columnClasses="textoPlano,textoPlano">
 
 									<h:outputText value="#{text.registro_Nombre}" />
