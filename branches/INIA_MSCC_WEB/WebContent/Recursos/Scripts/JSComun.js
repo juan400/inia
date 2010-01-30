@@ -198,7 +198,7 @@ function ValidarCampoConCaracteresEspeciales(obj, event) {
 	}
 
 	if (!validarTexto
-			.match('^[0-9A-Za-zÑñÁÉÍÓÚáéíóúÜü&#@,-.{}¿?"%&/()=*;:°!¡ ]+$')
+			.match('^[0-9,A-Z,a-z,ÑñÁÉÍÓÚáéíóúÜü&#@,-.{}¿?"%&/()=*;:°!¡ ]+$')
 			|| (validarTexto.match('&#'))
 			|| (validarTexto.match('&'))
 			|| (validarTexto.match('#'))) {
@@ -227,7 +227,7 @@ function ValidarCampoLogin(obj, event) {
 		break;
 	}
 
-	if (!validarTexto.match('^[a-z,A-Z,0-9,@$%&,.,_,-]+$')
+	if (!validarTexto.match('^[a-z,A-Z,0-9,$%&,.,_,-]+$')
 			|| (validarTexto.match('&#')) || (validarTexto.match('&'))
 			|| (validarTexto.match('#'))) {
 		event.returnValue = false;
