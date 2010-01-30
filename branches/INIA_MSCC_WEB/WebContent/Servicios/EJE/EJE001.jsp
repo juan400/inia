@@ -47,7 +47,7 @@ Secano.</title>
 									value="#{text.login_login}" />
 							</h:panelGrid>
 							<h:panelGroup>
-								<h:panelGrid columns="2">
+								<h:panelGrid columns="2" styleClass="textoPlano">
 
 									<h:outputText value="Fecha de ejecución" />
 									<rich:calendar id="calFechaEjecucion" inputClass="rich-calendar-input"
