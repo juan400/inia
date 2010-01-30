@@ -44,7 +44,7 @@ public class SEGFachada {
 		return srvUsuario.ComprobarClaveReigstro(pClave);
 	}
 
-	public Usuario RegistrarUsuario(Usuario pUsuario) {
+	public Usuario RegistrarUsuario(Usuario pUsuario) throws Exception {
 		return srvUsuario.RegistrarUsuario(pUsuario);
 	}
 

@@ -3,7 +3,6 @@ package com.inia_mscc.modulos.seg.entidades;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -65,10 +64,10 @@ public class DatoUsuario implements Serializable{
 	@Column(name = "daus_dte_fecha_registro", updatable= false, nullable = false, columnDefinition = "DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date _fechaRegistro;
-//	@OneToOne(cascade = CascadeType.ALL, targetEntity=Perfil.class)
-//	@ForeignKey (name="FK_daus_num_id_perfil")
-//	@JoinColumn(name="daus_num_id_perfil", nullable=true, columnDefinition="BIGINT(20)") 
-	// private Perfil _perfil;
+	@OneToOne(targetEntity=Perfil.class)
+	@ForeignKey (name="FK_daus_num_id_perfil")
+	@JoinColumn(name="daus_num_id_perfil", nullable=true, columnDefinition="BIGINT(20)") 
+	private Perfil _perfil;
 //	@Version 
 	@Column(name="daus_dte_timestamp", nullable = false, columnDefinition = "DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -184,6 +183,14 @@ public class DatoUsuario implements Serializable{
 
 	public void set_fechaRegistro(Date fechaRegistro) {
 		_fechaRegistro = fechaRegistro;
+	}
+
+	public Perfil get_perfil() {
+		return _perfil;
+	}
+
+	public void set_perfil(Perfil perfil) {
+		_perfil = perfil;
 	}
 
 }

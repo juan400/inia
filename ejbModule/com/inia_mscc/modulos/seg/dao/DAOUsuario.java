@@ -57,7 +57,6 @@ public class DAOUsuario implements Serializable {
 			pUsuario.get_datos().set_id(
 					(Long) session.save("DatoUsuario", pUsuario.get_datos()));
 			Long id = (Long) session.save("Usuario", pUsuario);
-			session.evict(pUsuario);
 			Criteria c = session.createCriteria(Usuario.class);
 			c.add(Restrictions.eq("_id", id));
 			usuario = (Usuario) c.uniqueResult();
