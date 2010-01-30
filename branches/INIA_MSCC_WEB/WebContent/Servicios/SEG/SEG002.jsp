@@ -56,17 +56,19 @@ Secano.</title>
 										onblur="ValidarCampoLetras(this, event)" />
 
 									<h:outputText value="#{text.registro_Email}" />
-									<h:inputText value="#{registroBean.email}" required="true"
-										onblur="validarEmailBlur(this, event)"
-										onkeypress="validarEmailKeyPress(this, event)" />
+									<h:inputText id="txtEmail" value="#{registroBean.email}"
+										required="true" onblur="validarEmailBlur(this, event)"
+										onkeypress="validarEmailKeyPress(this, event)">
+										<a4j:support action="#{registroBean.takeSelectionEmail}"
+											event="onchange" ajaxSingle="true" reRender="txtError" />
+									</h:inputText>
 
 									<h:outputLabel value="#{text.registro_Pais}" />
 									<rich:comboBox value="#{registroBean.paisElegido}"
 										enableManualInput="false" styleClass="combo">
 										<f:selectItems value="#{registroBean.paises}" />
 										<a4j:support action="#{registroBean.takeSelectionPais}"
-											event="onchange" ajaxSingle="true"
-											reRender="cmbDepartamentos" />
+											event="onchange" ajaxSingle="true" reRender="cmbDepartamentos" />
 									</rich:comboBox>
 
 									<h:outputText
@@ -95,21 +97,13 @@ Secano.</title>
 
 									<h:outputText value="#{text.registro_Teléfono}" />
 									<h:inputText value="#{registroBean.telefono}"
-										onblur="ValidarCampoTelefono(this, event)"
 										onkeypress="ValidarCampoTelefono(this, event)" />
 
 									<h:outputText value="#{text.registro_Celular}" />
 									<h:inputText value="#{registroBean.celular}"
-										onblur="ValidarCampoTelefono(this, event)"
 										onkeypress="ValidarCampoTelefono(this, event)" />
 
 
-									<h:panelGrid>
-										<h:outputText styleClass="mensajeError"
-											value="#{confirmacionBean.error}" />
-										<h:outputText styleClass="textoPlano"
-											value="#{confirmacionBean.exito}" />
-									</h:panelGrid>
 									<h:outputText value="" />
 									<h:panelGrid columns="2">
 										<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
@@ -120,7 +114,7 @@ Secano.</title>
 											value="#{text.boton_Cancelar}" />
 									</h:panelGrid>
 									<f:facet name="footer">
-										<h:outputText styleClass="mensajeError"
+										<h:outputText id="txtError" styleClass="mensajeError"
 											value="#{registroBean.error}" />
 										<h:outputText styleClass="textoPlano"
 											value="#{registroBean.exito}" />
