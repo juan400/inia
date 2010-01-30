@@ -168,16 +168,9 @@ comboBox {
 	color: #2d77c2;
 }
 
-.rich-calendar-input {
-	background-color: green;
-	font-size: 11px;
-	font-family: Arial, Verdana;
-	font-weight: bold;
-}
-
 .rich-calendar-tool-btn-disabled {
-	background-color: green;
+	background-color: silver;
 	font-size: 11px;
 	font-family: Arial, Verdana;
-	font-weight: bold;
+	font-weight: bolder;
 }

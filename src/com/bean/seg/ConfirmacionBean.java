@@ -1,6 +1,7 @@
 package com.bean.seg;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Map;
 
 import javax.faces.context.FacesContext;
@@ -31,40 +32,49 @@ public class ConfirmacionBean extends MaestroBean implements Serializable {
 	 * @return
 	 */
 	public String Confirmar() {
-		String retorno;
-		// retorno = "confirmar-ok";
-		// error = "confirmar-ok";
-		if (super.getUsuario() != null) {
-			if (contrasenia.equalsIgnoreCase(confirmacion)) {
-				if (!frase.isEmpty()
-						&& !frase.equals("")
-						&& !frase.equalsIgnoreCase(super.getUsuario()
-								.get_login())
-						&& !frase.equalsIgnoreCase(contrasenia)
-						&& !contrasenia.equalsIgnoreCase(super.getUsuario()
-								.get_login())) {
-//					super.getUsuario().set_codigoActivacion(null);
-					super.getUsuario().set_password(contrasenia);
-					super.getUsuario().set_frase(frase);
-					super.getUsuario().set_activado(true);
-					super.getUsuario().set_estadoUsuario(EstadoUsuario.Activo);
-					super.getSegFachada(Servicio.Usuario).CambiarPassword(
-							super.getUsuario());
-					retorno = "confirmar-ok";
+		String retorno = "confirmar-error";
+		try {
+			if (super.getUsuario() != null) {
+				if (!contrasenia.equalsIgnoreCase(super.getUsuario()
+						.get_login())) {
+					if (contrasenia.equalsIgnoreCase(confirmacion)) {
+						if (!frase.isEmpty()
+								&& !frase.equals("")
+								&& !frase.equalsIgnoreCase(super.getUsuario()
+										.get_login())
+								&& !frase.equalsIgnoreCase(contrasenia)) {
+							// super.getUsuario().set_codigoActivacion(null);
+							super.getUsuario().set_password(contrasenia);
+							super.getUsuario().set_ultimoAcceso(new Date());
+							super.getUsuario().set_frase(frase);
+							super.getUsuario().set_activado(true);
+							super.getUsuario().set_estadoUsuario(
+									EstadoUsuario.Activo);
+							super.getSegFachada(Servicio.Usuario)
+									.CambiarPassword(super.getUsuario());
+							retorno = "confirmar-ok";
+						} else {
+							super
+									.setError("Ingrese la clave secreta y recuerde que no sea igual a su contraseña o nombre de usuario.");
+							retorno = "confirmar-error";
+						}
+					} else {
+						super
+								.setError("La contraseña ingresada no es igual a su confirmación.");
+						retorno = "confirmar-error";
+					}
 				} else {
 					super
-							.setError("Ingrese la clave secreta y recuerde que no sea igual a su contraseña o nombre de usuario.");
+							.setError("La contraseña ingresada no puede ser igual al usuario.");
 					retorno = "confirmar-error";
 				}
+				// TODO Poner el metod de la fachada que confira el usuario.
 			} else {
-				super
-						.setError("La contraseña ingresada no es igual a su confirmación.");
+				super.setError("El usuario no esta registrado en el sistema.");
 				retorno = "confirmar-error";
 			}
-			// TODO Poner el metod de la fachada que confira el usuario.
-		} else {
-			super.setError("El usuario no esta registrado en el sistema.");
-			retorno = "confirmar-error";
+		} catch (Exception ex) {
+			super.setError(ex.getMessage());
 		}
 		return retorno;
 	}
@@ -73,60 +83,64 @@ public class ConfirmacionBean extends MaestroBean implements Serializable {
 	 * Region de Metodos
 	 */
 	public boolean isInit() {
-		setActivado(false);
-		FacesContext context = FacesContext.getCurrentInstance();
-		Map<String, String> params = context.getExternalContext()
-				.getRequestParameterMap();
-		if (params.containsKey("codigoActivacion")) {
-			if (!params.get("codigoActivacion").isEmpty()) {
-				this.setCodigoActivacion(params.get("codigoActivacion"));
+		try {
+			setActivado(false);
+			FacesContext context = FacesContext.getCurrentInstance();
+			Map<String, String> params = context.getExternalContext()
+					.getRequestParameterMap();
+			if (params.containsKey("codigoActivacion")) {
+				if (!params.get("codigoActivacion").isEmpty()) {
+					this.setCodigoActivacion(params.get("codigoActivacion"));
+				} else {
+					codigoActivacion = null;
+				}
 			} else {
 				codigoActivacion = null;
 			}
-		} else {
-			codigoActivacion = null;
-		}
-		if (codigoActivacion != null) {
-			super.setUsuario(super.getSegFachada(Servicio.Usuario)
-					.ComprobarClaveReigstro(codigoActivacion.toString()));
-			if (super.getUsuario() != null) {
-				nombre = super.getUsuario().get_datos().get_nombre() + " "
-						+ super.getUsuario().get_datos().get_apellido();
-				loginName = super.getUsuario().get_login();
-				if (super.getUsuario().is_activado()) {
-					super.setError("Estiamdo usuario " + nombre
-							+ " su cuenta está confirmada.");
-					setActivado(true);
-				} else if (super.getUsuario().get_estadoUsuario().equals(
-						Enumerados.EstadoUsuario.Activo)) {
-					super
-							.setError("Estiamdo usuario "
-									+ nombre
-									+ " su cuenta está activada, no es necesario este paso.");
-					setActivado(true);
-				} else if (super.getUsuario().get_estadoUsuario().equals(
-						Enumerados.EstadoUsuario.Bloqueado)) {
-					super
-							.setError("Estiamdo usuario "
-									+ nombre
-									+ " su cuenta está bloqueada, ingrese a recuperar su contraseña.");
-					setActivado(true);
-				} else if (super.getUsuario().get_estadoUsuario().equals(
-						Enumerados.EstadoUsuario.Inactivo)) {
-					super
-							.setError("Estiamdo usuario "
-									+ nombre
-									+ " su cuenta está momentaneamente inactivada, consulte a su administrador.");
-					setActivado(true);
+			if (codigoActivacion != null) {
+				super.setUsuario(super.getSegFachada(Servicio.Usuario)
+						.ComprobarClaveReigstro(codigoActivacion.toString()));
+				if (super.getUsuario() != null) {
+					nombre = super.getUsuario().get_datos().get_nombre() + " "
+							+ super.getUsuario().get_datos().get_apellido();
+					loginName = super.getUsuario().get_login();
+					if (super.getUsuario().is_activado()) {
+						super.setError("Estiamdo usuario " + nombre
+								+ " su cuenta está confirmada.");
+						setActivado(true);
+					} else if (super.getUsuario().get_estadoUsuario().equals(
+							Enumerados.EstadoUsuario.Activo)) {
+						super
+								.setError("Estiamdo usuario "
+										+ nombre
+										+ " su cuenta está activada, no es necesario este paso.");
+						setActivado(true);
+					} else if (super.getUsuario().get_estadoUsuario().equals(
+							Enumerados.EstadoUsuario.Bloqueado)) {
+						super
+								.setError("Estiamdo usuario "
+										+ nombre
+										+ " su cuenta está bloqueada, ingrese a recuperar su contraseña.");
+						setActivado(true);
+					} else if (super.getUsuario().get_estadoUsuario().equals(
+							Enumerados.EstadoUsuario.Inactivo)) {
+						super
+								.setError("Estiamdo usuario "
+										+ nombre
+										+ " su cuenta está momentaneamente inactivada, consulte a su administrador.");
+						setActivado(true);
+					} else {
+						super.setError("");
+						setActivado(false);
+					}
 				} else {
-					super.setError("");
-					setActivado(false);
+					super
+							.setError("Estiamdo usuario, realize previamente el paso Registro de usuario.");
+					setActivado(true);
 				}
-			} else {
-				super
-						.setError("Estiamdo usuario, realize previamente el paso Registro de usuario.");
-				setActivado(true);
 			}
+		} catch (Exception ex) {
+			super.setError(ex.getMessage());
 		}
 		// else {
 		// super.setError("Esta pagina es solo util para usuarios registrados.");
