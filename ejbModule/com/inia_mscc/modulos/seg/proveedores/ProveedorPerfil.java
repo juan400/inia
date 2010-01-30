@@ -28,15 +28,20 @@ public class ProveedorPerfil implements ServicioPerfil {
 	public Perfil RegistrarPerfil(Perfil pPerfil) {
 		return ejbPerfil.RegistrarPerfil(pPerfil);
 	}
-	
+
 	@Override
 	public void ActualizarPerfil(Perfil pPerfil) {
 		ejbPerfil.ActualizarPerfil(pPerfil);
-		
+
 	}
-	
+
 	@Override
-	public Perfil ComprobarPerfil(Perfil pPerfil){
+	public void EliminarPerfil(Perfil pPerfil) {
+		ejbPerfil.EliminarPerfil(pPerfil);
+	}
+
+	@Override
+	public Perfil ComprobarPerfil(Perfil pPerfil) {
 		return ejbPerfil.ComprobarPerfil(pPerfil);
 	}
 
@@ -44,5 +49,5 @@ public class ProveedorPerfil implements ServicioPerfil {
 	public List<Perfil> ObtenerPerfiles() {
 		return ejbPerfil.ObtenerPerfiles();
 	}
-	
+
 }

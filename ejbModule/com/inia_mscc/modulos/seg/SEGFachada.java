@@ -51,6 +51,10 @@ public class SEGFachada {
 	public Usuario Login(String pLogin, String pPassword) {
 		return srvUsuario.Login(pLogin, pPassword);
 	}
+	
+	public void EliminarPerfil(Perfil pPerfil) {
+		srvPerfil.EliminarPerfil(pPerfil);
+	}
 
 	public void ActualizarPerfil(Perfil pPerfil) {
 		srvPerfil.ActualizarPerfil(pPerfil);

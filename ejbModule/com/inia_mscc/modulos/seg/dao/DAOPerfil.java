@@ -94,4 +94,15 @@ public class DAOPerfil implements Serializable {
 		}
 	}
 
+	public void EliminarPerfil(Perfil pPerfil) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.delete("Perfil", pPerfil);
+		} catch (StaleObjectStateException e) {
+			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
+			logger.error(stackTrace);
+			throw new IniaPersistenciaException(e.getMessage(), e);
+		}
+	}
+
 }
