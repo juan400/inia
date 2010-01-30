@@ -18,7 +18,7 @@ public class LoginBean extends MaestroBean implements Serializable {
 	private String loginName;
 	private String password;
 	private String error;
-	private static long intentos=0;
+	private static long intentos = 0;
 
 	public boolean isInit() {
 		return false;
@@ -33,6 +33,7 @@ public class LoginBean extends MaestroBean implements Serializable {
 				if (u.get_estadoUsuario().equals(EstadoUsuario.Activo)) {
 					super.setLogged(true);
 					super.setUsuario(u);
+					super.setSesion("login", u);
 					error = "";
 					return "login-ok";
 				} else {
@@ -49,29 +50,36 @@ public class LoginBean extends MaestroBean implements Serializable {
 			}
 		} else {
 			error = "El nombre de usuario o password no conciden";
-			 intentos++;
-			 if (intentos == 5) {
-				 error = "Este es el quinto intento en logearse, por favor verifique sus datos e intente nuevamente.";
-				 intentos=0;
-				 // TODO Recordar si vamos a incluir el bloqueo de usuario por intentos.
-//			 u.set_estadoUsuario(EstadoUsuario.Bloqueado);
-//			 super.getSegFachada(Servicio.Usuario).CambiarPassword(u);
-			 }
+			intentos++;
+			if (intentos == 5) {
+				error = "Este es el quinto intento en logearse, por favor verifique sus datos e intente nuevamente.";
+				intentos = 0;
+				// TODO Recordar si vamos a incluir el bloqueo de usuario por
+				// intentos.
+				// u.set_estadoUsuario(EstadoUsuario.Bloqueado);
+				// super.getSegFachada(Servicio.Usuario).CambiarPassword(u);
+			}
 			return "login-error";
 		}
 	}
 
-	public String logout() throws IOException, NamingException,
-			MessagingException {
-		if (!isLogged()) {
-			// MaestroBean.getInstance().setOpcion("/Servicios/SEG/menuRich.jsp");
+	public String logout(){
+		try {
+			super.setLogged(false);
+			super.setUsuario(null);
+			super.setOpcion("/Servicios/SEG/SEG001.jsp");
+			error = "";
+		} catch (Exception ex) {
+			this.setError(ex.getMessage());
 		}
-		MaestroBean maestro = MaestroBean.getInstance();
-		maestro.setLogged(false);
-		maestro.setUsuario(null);
-		maestro.setOpcion("/Servicios/SEG/SEG001.jsp");
-		error = "";
+		finally{
+			super.limpiarSesion();
+		}
 		return "logout";
+	}
+
+	public String olvidoPassword() {
+		return "olvidoPassword";
 	}
 
 	public String registrarse() {
