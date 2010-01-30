@@ -7,8 +7,10 @@ import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 
+import com.inia_mscc.modulos.seg.dao.DAOPerfil;
 import com.inia_mscc.modulos.seg.dao.DAOUsuario;
 import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
+import com.inia_mscc.modulos.seg.entidades.Perfil;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 import com.inia_mscc.modulos.seg.servicios.ServicioUsuario;
 
@@ -36,8 +38,17 @@ public class EJBUsuario implements ServicioUsuario {
 	}
 
 	@Override
-	public Usuario RegistrarUsuario(Usuario pUsuario) {
-		return dao.RegistrarUsuario(pUsuario);
+	public Usuario RegistrarUsuario(Usuario pUsuario) throws Exception {
+		DAOPerfil daoPer = new DAOPerfil();
+		Perfil perfilPublico = new Perfil();
+		perfilPublico.set_nombre("Publico");
+		perfilPublico = daoPer.ComprobarPerfil(perfilPublico);
+		if (perfilPublico != null) {
+			pUsuario.get_datos().set_perfil(perfilPublico);
+			return dao.RegistrarUsuario(pUsuario);
+		} else {
+			throw new Exception("En ese momento no podemos generar el usuario porque no se ha gestionado el perfil público.");
+		}
 	}
 
 	@Override

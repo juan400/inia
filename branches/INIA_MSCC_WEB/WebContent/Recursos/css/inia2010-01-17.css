@@ -18,7 +18,7 @@ div.copyrigth {
 	border: none;
 	align: center;
 	text-align: center;
-} 
+}
 
 body {
 	background-image: url(../../Recursos/Imagenes/skinInia.jpg);
@@ -26,68 +26,68 @@ body {
 	background-attachment: fixed;
 	background-position-x: 100%;
 	background-position-y: 0%;
-    border-top-style:none;
-    border-top-width:0px;
-    border-bottom-style:none;
-    border-bottom-width:0px;
-    border-left-style:none;
-    border-right-style:none;
-    border-right-width:0px;
-    border-left-width:0px;
+	border-top-style: none;
+	border-top-width: 0px;
+	border-bottom-style: none;
+	border-bottom-width: 0px;
+	border-left-style: none;
+	border-right-style: none;
+	border-right-width: 0px;
+	border-left-width: 0px;
 }
 
-TBODY{
-    border-top-style:none;
-    border-top-width:0px;
-    border-bottom-style:none;
-    border-bottom-width:0px;
-    border-left-style:none;
-    border-right-style:none;
-    border-right-width:0px;
-    border-left-width:0px;
+TBODY {
+	border-top-style: none;
+	border-top-width: 0px;
+	border-bottom-style: none;
+	border-bottom-width: 0px;
+	border-left-style: none;
+	border-right-style: none;
+	border-right-width: 0px;
+	border-left-width: 0px;
 }
 
-THEAD{
-    border-top-style:none;
-    border-top-width:0px;
-    border-bottom-style:none;
-    border-bottom-width:0px;
-    border-left-style:none;
-    border-right-style:none;
-    border-right-width:0px;
-    border-left-width:0px;
+THEAD {
+	border-top-style: none;
+	border-top-width: 0px;
+	border-bottom-style: none;
+	border-bottom-width: 0px;
+	border-left-style: none;
+	border-right-style: none;
+	border-right-width: 0px;
+	border-left-width: 0px;
 }
 
-TFOOT{
-    border-top-style:none;
-    border-top-width:0px;
-    border-bottom-style:none;
-    border-bottom-width:0px;
-    border-left-style:none;
-    border-right-style:none;
-    border-right-width:0px;
-    border-left-width:0px;
+TFOOT {
+	border-top-style: none;
+	border-top-width: 0px;
+	border-bottom-style: none;
+	border-bottom-width: 0px;
+	border-left-style: none;
+	border-right-style: none;
+	border-right-width: 0px;
+	border-left-width: 0px;
 }
 
-td{
-    border-top-style:none;
-    border-top-width:0px;
-    border-bottom-style:none;
-    border-bottom-width:0px;
-    border-left-style:none;
-    border-right-style:none;
-    border-right-width:0px;
-    border-left-width:0px;
+td {
+	border-top-style: none;
+	border-top-width: 0px;
+	border-bottom-style: none;
+	border-bottom-width: 0px;
+	border-left-style: none;
+	border-right-style: none;
+	border-right-width: 0px;
+	border-left-width: 0px;
 }
 
 .tituloPantalla {
 	font-family: verdana;
 	font-size: 11pt;
 	color: #2d77c2;
-	font:bolder;
+	font: bolder;
 	text-align: center;
 }
- 
+
 td.contenido {
 	background-image: url(../../Recursos/Imagenes/FondoTablaPrincipal.jpg);
 	background-position: center, top;
@@ -95,9 +95,6 @@ td.contenido {
 	background-position-x: 100%;
 	background-position-y: 0%;
 	background-color: white;
-	font-family: verdana;
-	font-size: 10pt;
-	color: #2d77c2;
 }
 
 .textoPlano {
@@ -116,34 +113,31 @@ a.textoPlano:hover {
 	text-decoration: underline
 }
 
-.textoDataTable {	
+.textoDataTable {
 	font-family: verdana;
 	color: #000000;
-	font-size: 11pt; 	
+	font-size: 11pt;
 }
 
 .mensajeError {
 	font-family: verdana;
 	font-size: 9pt;
-	color: #FF0000; 
+	color: #FF0000;
 	font-weight: normal
 }
 
-comboBox
-{
-    font-family: verdana;
-    font-weight:normal;
-    font-size:18pt;  
-    height: 20px; 
-} 
-
+comboBox {
+	font-family: verdana;
+	font-weight: normal;
+	font-size: 18pt;
+	height: 20px;
+}
 
 .infoMessage {
 	font-family: "Trebuchet MS", Verdana, "Geometr212 Bk BT";
 	font-size: 11px;
 	color: #FFFFFF;
 }
-
 
 .errorMessage {
 	font-family: "Trebuchet MS", Verdana, "Geometr212 Bk BT";
@@ -157,9 +151,33 @@ comboBox
 	color: #FFFFFF;
 }
 
-
 .warnMessage {
 	font-family: "Trebuchet MS", Verdana, "Geometr212 Bk BT";
 	font-size: 11px;
 	color: #336633;
+}
+
+.rich-calendar-tool-btn {
+	font-family: Arial, Verdana;
+}
+
+.rich-calendar-month {
+	font-size: 11px;
+	font-family: Arial, Verdana;
+	font-weight: bold;
+	color: #2d77c2;
+}
+
+.rich-calendar-input {
+	background-color: green;
+	font-size: 11px;
+	font-family: Arial, Verdana;
+	font-weight: bold;
+}
+
+.rich-calendar-tool-btn-disabled {
+	background-color: green;
+	font-size: 11px;
+	font-family: Arial, Verdana;
+	font-weight: bold;
 }
