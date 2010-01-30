@@ -17,7 +17,7 @@ import com.inia_mscc.modulos.seg.servicios.ServicioPerfil;
 @Remote(ServicioPerfil.class)
 @TransactionManagement(value = TransactionManagementType.CONTAINER)
 @TransactionAttribute(value = TransactionAttributeType.REQUIRED)
-public class EJBPerfil implements ServicioPerfil{
+public class EJBPerfil implements ServicioPerfil {
 
 	private DAOPerfil dao = new DAOPerfil();
 
@@ -30,15 +30,20 @@ public class EJBPerfil implements ServicioPerfil{
 	public Perfil RegistrarPerfil(Perfil pPerfil) {
 		return dao.RegistrarPerfil(pPerfil);
 	}
-	
+
 	@Override
-	public List<Perfil> ObtenerPerfiles(){
+	public List<Perfil> ObtenerPerfiles() {
 		return dao.ObtenerPerfiles();
 	}
-	
+
 	@Override
-	public Perfil ComprobarPerfil(Perfil pPerfil){
+	public Perfil ComprobarPerfil(Perfil pPerfil) {
 		return dao.ComprobarPerfil(pPerfil);
+	}
+
+	@Override
+	public void EliminarPerfil(Perfil pPerfil) {
+		dao.EliminarPerfil(pPerfil);
 	}
 
 }
