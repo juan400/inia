@@ -47,13 +47,22 @@ public class RegistroBean extends MaestroBean implements Serializable {
 	private SelectItem[] paises;
 	private SelectItem[] departamentos;
 	private SelectItem[] ciudades;
-	private String error;
 	private List<Pais> listPaises;
 	private List<Departamento> listDepartamentos;
 	private List<Ciudad> listCiudades;
 	private Pais pais;
 	private Departamento depto;
 	private Ciudad ciudad;
+
+	private void validarEmail() {
+		if (super.getUsuario().get_datos().get_mail().equals(email)) {
+			if (!super.getSegFachada(Servicio.Usuario).ComprobarEmail(email)) {
+				super.setError("El e-mail ingresado ya esta registrado en el sistema.");
+			} else {
+				super.setError("");
+			}
+		}
+	}
 
 	public boolean enviarMailConfirmacion(Usuario pUsuario) {
 		try {
@@ -86,12 +95,12 @@ public class RegistroBean extends MaestroBean implements Serializable {
 		ciudad = super.getAdmFachada(Servicio.RelacionPCD)
 				.ObtenerCiudad(ciudad);
 	}
-	
+
 	public void takeSelectionDepartamento() {
 		depto = new Departamento();
 		depto.set_nombre(getDepartamentoElegido());
-		depto = super.getAdmFachada(Servicio.RelacionPCD)
-				.ObtenerDepartamento(depto);
+		depto = super.getAdmFachada(Servicio.RelacionPCD).ObtenerDepartamento(
+				depto);
 		listCiudades = super.getAdmFachada(Servicio.RelacionPCD)
 				.ObtenerCiudadesXDeptos(depto);
 		ciudades = new SelectItem[listCiudades.size() + 1];
@@ -215,27 +224,29 @@ public class RegistroBean extends MaestroBean implements Serializable {
 				if (u != null) {
 					if (!this.salvarNombre(pUsuario)) {
 						// if (!this.enviarMailConfirmacion(pUsuario)) {
-						error = "No ha sido posible registrar el usuario, el e-mail proporcionado no esta disponible.";
+						super
+								.setError("No ha sido posible registrar el usuario, el e-mail proporcionado no esta disponible.");
 						MaestroBean.getInstance().setOpcion(
 								"/Servicios/SEG/SEG002.jsp");
 						retorno = "registro-error";
 					}
-					error = "";
-//					exito = "";
+					super.setError("");
+					// exito = "";
 					MaestroBean.getInstance().setOpcion(
 							"/Servicios/SEG/SEG001.jsp");
 				} else {
-					error = "No ha sido posible registrar el usuario, revise los datos ingresados y intentelo nuevamente.";
+					super
+							.setError("No ha sido posible registrar el usuario, revise los datos ingresados y intentelo nuevamente.");
 					MaestroBean.getInstance().setOpcion(
 							"/Servicios/SEG/SEG002.jsp");
 				}
 			} else {
-				error = "El e-mail esta registrado para otro usuario.";
+				super.setError("El e-mail esta registrado para otro usuario.");
 				MaestroBean.getInstance()
 						.setOpcion("/Servicios/SEG/SEG002.jsp");
 			}
 		} catch (Exception ex) {
-			error = ex.getMessage();
+			super.setError(ex.getMessage());
 		}
 		return retorno;
 	}
@@ -391,14 +402,6 @@ public class RegistroBean extends MaestroBean implements Serializable {
 
 	public void setCodigoPostal(String codigoPostal) {
 		this.codigoPostal = codigoPostal;
-	}
-
-	public String getError() {
-		return error;
-	}
-
-	public void setError(String error) {
-		this.error = error;
 	}
 
 	public String getPaisElegido() {

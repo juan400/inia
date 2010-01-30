@@ -27,6 +27,16 @@
 		<managed-bean-class>com.bean.seg.PerfilBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>panelMenu</managed-bean-name>
+		<managed-bean-class>com.bean.pruebas.PanelMenu</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>escenarioBean</managed-bean-name>
+		<managed-bean-class>com.bean.eje.EscenarioBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>
 		<from-view-id>/Servicios/SEG/SEG009.jsp</from-view-id>
 		<navigation-case>
@@ -47,7 +57,6 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
-
 	<navigation-rule>
 		<from-view-id>/Servicios/SEG/SEG010.jsp</from-view-id>
 		<navigation-case>
@@ -165,6 +174,15 @@
 		<from-view-id>/Servicios/Contenido.jsp</from-view-id>
 		<navigation-case>
 			<from-outcome>irLogin</from-outcome>
+			<to-view-id>/Servicios/SEG/SEG001.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Modificar los datos personales del usuario.</display-name>
+		<from-view-id>/Servicios/SEG/SEG004.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>cancelar</from-outcome>
 			<to-view-id>/Servicios/SEG/SEG001.jsp</to-view-id>
 			<redirect />
 		</navigation-case>
