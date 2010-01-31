@@ -1,5 +1,7 @@
 package com.inia_mscc.modulos.seg.ejb;
 
+import java.util.Date;
+
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -60,4 +62,13 @@ public class EJBUsuario implements ServicioUsuario {
 	public boolean ComprobarEmail(String pEmail) {
 		return dao.ComprobarEmail(pEmail);
 	}
+
+	@Override
+	public Usuario ObtenerUsuarioXDatos(String pLoginName, Date pUltimoAcceso,
+			Perfil pPerfil, String pEmail, String pFrase) {
+		return dao.ObtenerUsuarioXDatos(pLoginName, pUltimoAcceso, pPerfil, pEmail, pFrase);
+	}
+	
+	
+	
 }
