@@ -41,7 +41,7 @@ Secano.</title>
 								<h:outputText styleClass="mensajeError"
 									value="#{text.login_alreadyLogged}" />
 								<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
-									styleClass="textoPlano" action="#{loginBean.logout}"
+									styleClass="textoPlano" action="#{loginBean.logout}" immediate="true"
 									value="#{text.login_logout}" />
 							</h:panelGrid>
 							<h:panelGroup rendered="#{!loginBean.logged}">
@@ -68,7 +68,7 @@ Secano.</title>
 											value="#{text.login_login}" />
 										<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
 											styleClass="textoPlano" tabindex="4" 
-											action="#{loginBean.registrarse}"
+											action="#{loginBean.registrarse}" immediate="true"
 											value="#{text.login_register}" />
 									</h:panelGrid>
 									<f:facet name="footer">
@@ -77,9 +77,9 @@ Secano.</title>
 									</f:facet>
 									<h:outputText value="" />
 									<h:panelGrid columns="2">
-
-										<h:commandLink action="#{loginBean.login}"
+										<a4j:commandLink action="#{loginBean.olvidoContrasenia}" immediate="true"
 											value="#{text.login_forgotPassword}" />
+										
 									</h:panelGrid>
 								</h:panelGrid>
 							</h:panelGroup>

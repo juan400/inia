@@ -24,6 +24,14 @@ public class LoginBean extends MaestroBean implements Serializable {
 		return false;
 	}
 
+	public String olvidoContrasenia(){
+		super.setLogged(true);
+		super.setUsuario(null);
+		super.limpiarSesion();
+		error = "";
+		return "login-olvido";
+	}
+	
 	public String login() throws IOException, NamingException,
 			MessagingException {
 		Usuario u = super.getSegFachada(Servicio.Usuario).Login(loginName,
