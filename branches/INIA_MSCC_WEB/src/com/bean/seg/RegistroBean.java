@@ -53,7 +53,8 @@ public class RegistroBean extends MaestroBean implements Serializable {
 	private Pais pais;
 	private Departamento depto;
 	private Ciudad ciudad;
-
+	private Date fecha = new Date();
+	
 	public void takeSelectionEmail() {
 		try {
 			if (super.getUsuario() == null) {
@@ -495,6 +496,14 @@ public class RegistroBean extends MaestroBean implements Serializable {
 
 	public void setListCiudades(List<Ciudad> listCiudades) {
 		this.listCiudades = listCiudades;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	public Date getFecha() {
+		return fecha;
 	}
 
 }

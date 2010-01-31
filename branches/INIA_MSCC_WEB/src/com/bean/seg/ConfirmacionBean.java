@@ -43,7 +43,6 @@ public class ConfirmacionBean extends MaestroBean implements Serializable {
 								&& !frase.equalsIgnoreCase(super.getUsuario()
 										.get_login())
 								&& !frase.equalsIgnoreCase(contrasenia)) {
-							// super.getUsuario().set_codigoActivacion(null);
 							super.getUsuario().set_password(contrasenia);
 							super.getUsuario().set_ultimoAcceso(new Date());
 							super.getUsuario().set_frase(frase);
@@ -142,10 +141,6 @@ public class ConfirmacionBean extends MaestroBean implements Serializable {
 		} catch (Exception ex) {
 			super.setError(ex.getMessage());
 		}
-		// else {
-		// super.setError("Esta pagina es solo util para usuarios registrados.");
-		// // setActivado(true);
-		// }
 		return false;
 	}
 

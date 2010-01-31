@@ -1,6 +1,7 @@
 package com.inia_mscc.modulos.seg.dao;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
@@ -12,6 +13,7 @@ import com.inia_mscc.config.hibernate.HibernateUtil;
 import com.inia_mscc.config.util.LoggingUtilities;
 import com.inia_mscc.excepciones.IniaPersistenciaException;
 import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
+import com.inia_mscc.modulos.seg.entidades.Perfil;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
 /**
@@ -25,6 +27,48 @@ public class DAOUsuario implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(DAOUsuario.class);
+
+	/**
+	 * @param loginNombre
+	 * @param password
+	 * @return
+	 */
+	public Usuario ObtenerUsuarioXDatos(String pLoginName, Date pUltimoAcceso,
+			Perfil pPerfil, String pEmail, String pFrase) {
+		Usuario usuario = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			Criteria c = session.createCriteria(Usuario.class);
+			if (pLoginName != null) {
+				c.add(Restrictions.ilike("_login", pLoginName));
+
+			}
+			if (pUltimoAcceso != null) {
+				c.add(Restrictions.eq("_ultimoAcceso", pUltimoAcceso));
+
+			}
+			if (pPerfil != null) {
+				Criteria cDU = session.createCriteria(DatoUsuario.class);
+				if (!cDU.add(Restrictions.ilike("_perfil", pPerfil)).list().isEmpty()){
+					c.add(Restrictions.eq("_datos", (DatoUsuario)c.uniqueResult()));
+				}
+			}
+			if (pEmail != null) {
+				c.add(Restrictions.ilike("_mail", pEmail));
+
+			}
+			if (pFrase != null) {
+				c.add(Restrictions.ilike("_frase", pFrase));
+
+			}
+			usuario = (Usuario) c.uniqueResult();
+		} catch (StaleObjectStateException e) {
+			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
+			logger.error(stackTrace);
+			throw new IniaPersistenciaException(e.getMessage(), e);
+		}
+		return usuario;
+	}
 
 	/**
 	 * @param pClave
@@ -60,7 +104,7 @@ public class DAOUsuario implements Serializable {
 			Criteria c = session.createCriteria(Usuario.class);
 			c.add(Restrictions.eq("_id", id));
 			usuario = (Usuario) c.uniqueResult();
-		} catch (Exception e) { // catch (StaleObjectStateException e) {
+		} catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);

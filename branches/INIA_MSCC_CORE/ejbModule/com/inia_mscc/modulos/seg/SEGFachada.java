@@ -1,6 +1,7 @@
 package com.inia_mscc.modulos.seg;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
@@ -31,7 +32,12 @@ public class SEGFachada {
 			e.printStackTrace();
 		}
 	}
-
+	
+	public Usuario ObtenerUsuarioXDatos(String pLoginName, Date pUltimoAcceso,
+			Perfil pPerfil, String pEmail, String pFrase) {
+		return srvUsuario.ObtenerUsuarioXDatos(pLoginName, pUltimoAcceso, pPerfil, pEmail, pFrase);
+	}
+	
 	public void ActualizarDatos(DatoUsuario pDatosUsuario) {
 		srvUsuario.ActualizarDatos(pDatosUsuario);
 	}
