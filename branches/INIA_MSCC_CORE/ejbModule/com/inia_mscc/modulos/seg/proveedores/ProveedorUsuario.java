@@ -1,12 +1,14 @@
 package com.inia_mscc.modulos.seg.proveedores;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
+import com.inia_mscc.modulos.seg.entidades.Perfil;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 import com.inia_mscc.modulos.seg.servicios.ServicioUsuario;
 import com.inia_mscc.excepciones.ProviderException;
@@ -54,5 +56,11 @@ public class ProveedorUsuario implements ServicioUsuario {
 	@Override
 	public boolean ComprobarEmail(String pEmail) {
 		return ejbUsuario.ComprobarEmail(pEmail);
+	}
+
+	@Override
+	public Usuario ObtenerUsuarioXDatos(String pLoginName, Date pUltimoAcceso,
+			Perfil pPerfil, String pEmail, String pFrase) {
+		return ejbUsuario.ObtenerUsuarioXDatos(pLoginName, pUltimoAcceso, pPerfil, pEmail, pFrase);
 	}
 }
