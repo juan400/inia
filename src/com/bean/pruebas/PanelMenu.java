@@ -2,12 +2,8 @@ package com.bean.pruebas;
 
 import java.io.Serializable;
 import java.net.URI;
-import java.net.URISyntaxException;
 
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
-
-import org.richfaces.component.UIPanelMenuItem;
 
 public class PanelMenu implements Serializable{
 	/**
@@ -15,15 +11,15 @@ public class PanelMenu implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private URI current;
+	private String current;
 	private String pagina;
 	private boolean singleMode;
+	private boolean navegacion;
 	
 	
 	public PanelMenu() {
-		super();
 		singleMode = true;
-		pagina = "Precentacion.jsp";
+		current = "/Servicios/Precentacion.jsp";
 	}
 
 	public boolean isSingleMode() {
@@ -34,24 +30,19 @@ public class PanelMenu implements Serializable{
 		this.singleMode = singleMode;
 	}
 	
-	public URI getCurrent() {
-		return this.current;
-	}
-	
-	public void setCurrent(URI current) {
-		this.current = current;
-	}
+
 	public String updateCurrent() {
+		navegacion = true;
 		FacesContext context=FacesContext.getCurrentInstance();
-		setCurrent(URI.create(context.getExternalContext().getRequestParameterMap().get("current")));
-		setPagina(context.getExternalContext().getRequestParameterMap().get("current"));
-		System.out.println("fake called.");
+		setCurrent(URI.create(context.getExternalContext().getRequestParameterMap().get("current")).toString());
+		setPagina(context.getExternalContext().getRequestParameterMap().get("current").toString());
+		System.out.println(this.getCurrent());
 		setSingleMode(true);
-		return null;
+		return "navegar";
 	}
-	public void updateCurrent(ActionEvent event) {
-		setCurrent(URI.create(((UIPanelMenuItem)event.getComponent()).getLabel().toString()));
-	}
+//	public void updateCurrent(ActionEvent event) {
+//		setCurrent(URI.create(((UIPanelMenuItem)event.getComponent()).getLabel().toString()).toString());
+//	}
 
 	public String getPagina() {
 		return pagina;
@@ -59,5 +50,21 @@ public class PanelMenu implements Serializable{
 
 	public void setPagina(String pagina) {
 		this.pagina = pagina;
+	}
+
+	public String getCurrent() {
+		return current;
+	}
+
+	public void setCurrent(String current) {
+		this.current = current;
+	}
+
+	public boolean isNavegacion() {
+		return navegacion;
+	}
+
+	public void setNavegacion(boolean navegacion) {
+		this.navegacion = navegacion;
 	}
 }

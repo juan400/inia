@@ -192,6 +192,12 @@
    <from-outcome>logout</from-outcome>
    <to-view-id>/Servicios/SEG/SEG001.jsp</to-view-id>
   </navigation-case>
+  <navigation-case>
+   <from-action>#{panelMenu.updateCurrent}</from-action>
+   <from-outcome>navegar</from-outcome>
+   <to-view-id>/Servicios/Contenido.jsp</to-view-id>
+   <redirect />
+  </navigation-case>
  </navigation-rule>
  <navigation-rule>
   <display-name>Modificar los datos personales del usuario.</display-name>
