@@ -91,7 +91,7 @@ public class RegistroBean extends MaestroBean implements Serializable {
 					+ "<br><a href='"
 					+ server
 					+ "?codigoActivacion="
-					+ pUsuario.get_password()
+					+ pUsuario.get_codigoActivacion()
 					+ "'>"
 					+ "Concluir el registro de usuario</a></br><br></br>"
 					+ "<br><i><b>Muchas gracias por registrarse!</b></i></center><br></br><br></br><br></br>";
@@ -292,7 +292,8 @@ public class RegistroBean extends MaestroBean implements Serializable {
 			Properties props = new Properties();
 
 			// Nombre del host de correo, es smtp.gmail.com
-			props.setProperty("mail.smtp.host", "smtp.live.com");// hotmail
+			//props.setProperty("mail.smtp.host", "smtp.live.com");// hotmail
+			props.setProperty("mail.smtp.host", "smtp.gmail.com");// gmail
 			// smtp.live.com
 
 			// TLS si está disponible
@@ -334,14 +335,14 @@ public class RegistroBean extends MaestroBean implements Serializable {
 									+ "<br><a href='"
 									+ server
 									+ "?codigoActivacion="
-									+ pUsuario.get_password()
+									+ pUsuario.get_codigoActivacion()
 									+ "'>"
 									+ "Concluir el registro de usuario</a></br><br></br>"
 									+ "<br><i><b>Muchas gracias por registrarse!</b></i></center><br></br><br></br><br></br>",
 							"ISO-8859-1", "html");
 
 			Transport t = session.getTransport("smtp");
-			t.connect("juan400_4@hotmail.com", "andres4003341");
+			t.connect("juan400SVN@gmail.com", "andres4003341");
 			t.sendMessage(message, message.getAllRecipients());
 			t.close();
 

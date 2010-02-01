@@ -27,6 +27,11 @@ public class ProveedorUsuario implements ServicioUsuario {
 	}
 
 	@Override
+	public void ActualizarUltimoAcceso(Usuario pUsuario){
+		ejbUsuario.ActualizarUltimoAcceso(pUsuario);
+	}
+	
+	@Override
 	public void ActualizarDatos(DatoUsuario pDatosUsuario) {
 		ejbUsuario.ActualizarDatos(pDatosUsuario);
 		

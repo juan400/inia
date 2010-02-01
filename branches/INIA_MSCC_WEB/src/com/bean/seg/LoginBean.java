@@ -2,6 +2,7 @@ package com.bean.seg;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.mail.MessagingException;
 import javax.naming.NamingException;
@@ -41,7 +42,10 @@ public class LoginBean extends MaestroBean implements Serializable {
 				if (u.get_estadoUsuario().equals(EstadoUsuario.Activo)) {
 					super.setLogged(true);
 					super.setUsuario(u);
-					super.setSesion("login", u);
+					Date fecha =u.get_ultimoAcceso();
+					u.set_ultimoAcceso(new Date());
+					super.getSegFachada(Servicio.Usuario).ActualizarUltimoAcceso(u);
+					u.set_ultimoAcceso(fecha);
 					error = "";
 					return "login-ok";
 				} else {

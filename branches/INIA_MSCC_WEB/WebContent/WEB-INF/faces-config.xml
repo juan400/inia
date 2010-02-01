@@ -40,7 +40,7 @@
  <managed-bean>
   <managed-bean-name>recuperarContraseniaBean</managed-bean-name>
   <managed-bean-class>com.bean.seg.RecuperarContraseniaBean</managed-bean-class>
-  <managed-bean-scope>request</managed-bean-scope>
+  <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <navigation-rule>
   <from-view-id>/Servicios/SEG/SEG009.jsp</from-view-id>
@@ -118,7 +118,7 @@
    <redirect/>
   </navigation-case>
   <navigation-case>
-   <from-outcome>Cancelar</from-outcome>
+   <from-outcome>cancelar</from-outcome>
    <to-view-id>/Servicios/SEG/SEG001.jsp</to-view-id>
    <redirect/>
   </navigation-case>
@@ -187,6 +187,11 @@
    <to-view-id>/Servicios/SEG/SEG001.jsp</to-view-id>
    <redirect/>
   </navigation-case>
+  <navigation-case>
+   <from-action>#{loginBean.logout}</from-action>
+   <from-outcome>logout</from-outcome>
+   <to-view-id>/Servicios/SEG/SEG001.jsp</to-view-id>
+  </navigation-case>
  </navigation-rule>
  <navigation-rule>
   <display-name>Modificar los datos personales del usuario.</display-name>
@@ -195,6 +200,17 @@
    <from-outcome>cancelar</from-outcome>
    <to-view-id>/Servicios/SEG/SEG001.jsp</to-view-id>
    <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/Servicios/SEG/SEG006.jsp</from-view-id>
+  <navigation-case>
+   <from-outcome>EnvioPassword</from-outcome>
+   <to-view-id>/Servicios/SEG/SEG006.jsp</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cancelar</from-outcome>
+   <to-view-id>/Servicios/SEG/SEG001.jsp</to-view-id>
   </navigation-case>
  </navigation-rule>
  <application>
