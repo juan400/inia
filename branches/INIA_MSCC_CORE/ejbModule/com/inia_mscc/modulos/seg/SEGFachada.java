@@ -33,6 +33,10 @@ public class SEGFachada {
 		}
 	}
 	
+	public void ActualizarUltimoAcceso(Usuario pUsuario){
+		srvUsuario.ActualizarUltimoAcceso(pUsuario);
+	}
+	
 	public Usuario ObtenerUsuarioXDatos(String pLoginName, Date pUltimoAcceso,
 			Perfil pPerfil, String pEmail, String pFrase) {
 		return srvUsuario.ObtenerUsuarioXDatos(pLoginName, pUltimoAcceso, pPerfil, pEmail, pFrase);

@@ -28,6 +28,23 @@ public class DAOUsuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(DAOUsuario.class);
 
+
+	/**
+	 * Actualiza los datos de un usuario registrado en el sitema.
+	 * 
+	 * @param pDatosUsuario
+	 */
+	public void ActualizarUltimoAcceso(Usuario pUsuario) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.update("Usuario", pUsuario);
+		} catch (StaleObjectStateException e) {
+			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
+			logger.error(stackTrace);
+			throw new IniaPersistenciaException(e.getMessage(), e);
+		}
+	}
+	
 	/**
 	 * @param loginNombre
 	 * @param password
@@ -40,7 +57,7 @@ public class DAOUsuario implements Serializable {
 		try {
 			Criteria c = session.createCriteria(Usuario.class);
 			if (pLoginName != null) {
-				c.add(Restrictions.ilike("_login", pLoginName));
+				c.add(Restrictions.eq("_login", pLoginName));
 
 			}
 			if (pUltimoAcceso != null) {
@@ -49,17 +66,19 @@ public class DAOUsuario implements Serializable {
 			}
 			if (pPerfil != null) {
 				Criteria cDU = session.createCriteria(DatoUsuario.class);
-				if (!cDU.add(Restrictions.ilike("_perfil", pPerfil)).list().isEmpty()){
+				if (!cDU.add(Restrictions.eq("_perfil", pPerfil)).list().isEmpty()){
 					c.add(Restrictions.eq("_datos", (DatoUsuario)c.uniqueResult()));
 				}
 			}
 			if (pEmail != null) {
-				c.add(Restrictions.ilike("_mail", pEmail));
-
+				Criteria cDU = session.createCriteria(DatoUsuario.class);
+				cDU.add(Restrictions.eq("_mail", pEmail));
+				if (cDU.uniqueResult()!=null){
+					c.add(Restrictions.eq("_datos", (DatoUsuario)cDU.uniqueResult()));
+				}
 			}
 			if (pFrase != null) {
 				c.add(Restrictions.ilike("_frase", pFrase));
-
 			}
 			usuario = (Usuario) c.uniqueResult();
 		} catch (StaleObjectStateException e) {
@@ -120,7 +139,7 @@ public class DAOUsuario implements Serializable {
 	public void ActualizarDatos(DatoUsuario pDatosUsuario) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
-			session.update("Usuario", pDatosUsuario);
+			session.update("DatoUsuario", pDatosUsuario);
 		} catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);

@@ -25,6 +25,11 @@ public class EJBUsuario implements ServicioUsuario {
 	private DAOUsuario dao = new DAOUsuario();
 
 	@Override
+	public void ActualizarUltimoAcceso(Usuario pUsuario){
+		dao.ActualizarUltimoAcceso(pUsuario);
+	}
+	
+	@Override
 	public void ActualizarDatos(DatoUsuario pDatosUsuario) {
 		dao.ActualizarDatos(pDatosUsuario);
 	}

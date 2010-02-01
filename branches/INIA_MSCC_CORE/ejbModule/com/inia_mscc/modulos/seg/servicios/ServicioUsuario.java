@@ -7,7 +7,7 @@ import com.inia_mscc.modulos.seg.entidades.Perfil;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
 public interface ServicioUsuario {
-	
+	public void ActualizarUltimoAcceso(Usuario pUsuario);
 	public Usuario RegistrarUsuario(Usuario pUsuario) throws Exception;
 	public void ActualizarDatos(DatoUsuario pDatosUsuario);
 	public Usuario ComprobarClaveReigstro(String pClave);

@@ -70,6 +70,7 @@ TFOOT {
 }
 
 td {
+	valign: top;
 	border-top-style: none;
 	border-top-width: 0px;
 	border-bottom-style: none;
@@ -100,6 +101,17 @@ td.contenido {
 .textoPlano {
 	font-family: verdana;
 	font-size: 11pt;
+	color: #2d77c2;
+}
+
+.textoMenu {
+	font-family: verdana;
+	font-size: 10pt;
+	color: #2d77c2;
+}
+.textoMenuSecundario {
+	font-family: verdana;
+	font-size: 9pt;
 	color: #2d77c2;
 }
 
