@@ -45,7 +45,11 @@ Secano.</title>
 									<center><a4j:commandButton
 										style="font-size: 10pt; color: #2d77c2;"
 										styleClass="textoPlano" action="#{loginBean.logout}"
-										immediate="true" value="#{text.login_login}" /></center>
+										immediate="true" value="#{text.login_login}" />
+										<a4j:commandButton
+										style="font-size: 10pt; color: #2d77c2;"
+										styleClass="textoPlano" action="navegar"
+										immediate="true" value="Ingresar" /></center>
 								</h:panelGrid></center>
 								<h:panelGroup rendered="#{loginBean.logged}">
 									<h:panelGrid columns="2" rendered="#{loginBean.logged}"
@@ -78,22 +82,22 @@ Secano.</title>
 													<rich:panelMenuItem label="Datos de su cuenta"
 														styleClass="textoMenuSecundario"
 														action="#{panelMenu.updateCurrent}">
-														<f:param name="current" value="/Servicios/SEG/SEG004.jsf" />
+														<f:param name="current" value="/Servicios/SEG/SEG004.jsp" />
 													</rich:panelMenuItem>
 													<rich:panelMenuItem label="Dar de baja su cuenta"
 														styleClass="textoMenuSecundario"
 														action="#{panelMenu.updateCurrent}">
-														<f:param name="current" value="/Servicios/SEG/SEG005.jsf" />
+														<f:param name="current" value="/Servicios/SEG/SEG005.jsp" />
 													</rich:panelMenuItem>
 													<rich:panelMenuItem label="Cambiar su contraseña"
 														styleClass="textoMenuSecundario"
 														action="#{panelMenu.updateCurrent}">
-														<f:param name="current" value="/Servicios/SEG/SEG007.jsf" />
+														<f:param name="current" value="/Servicios/SEG/SEG007.jsp" />
 													</rich:panelMenuItem>
 													<rich:panelMenuItem label="Item 2.5"
 														styleClass="textoMenuSecundario"
 														action="#{panelMenu.updateCurrent}">
-														<f:param name="current" value="/Servicios/SEG/SEG007.jsf" />
+														<f:param name="current" value="/Servicios/SEG/SEG007.jsp" />
 													</rich:panelMenuItem>
 												</rich:panelMenuGroup>
 												<rich:panelMenuGroup label="Adminstracion"
@@ -101,12 +105,12 @@ Secano.</title>
 													<rich:panelMenuItem label="Precentacion"
 														styleClass="textoMenuSecundario"
 														action="#{panelMenu.updateCurrent}">
-														<f:param name="current" value="Precentacion.jsp" />
+														<f:param name="current" value="/Servicios/Precentacion.jsp" />
 													</rich:panelMenuItem>
 													<rich:panelMenuItem label="Modificar datos personales"
 														styleClass="textoMenuSecundario"
 														action="#{panelMenu.updateCurrent}">
-														<f:param name="current" value="/Servicios/SEG/SEG004.jsf" />
+														<f:param name="current" value="/Servicios/SEG/SEG004.jsp" />
 													</rich:panelMenuItem>
 												</rich:panelMenuGroup>
 											</rich:panelMenu>
@@ -114,6 +118,9 @@ Secano.</title>
 										<h:column>
 											<h:panelGroup rendered="#{recuperarContraseniaBean.init}" />
 											<h:panelGrid>
+											
+											<a4j:include viewId="#{panelMenu.current}"></a4j:include>
+											
 												<rich:panel headerClass="tituloPantalla"
 													style="background-color: #ebf3fd;">
 													<f:facet name="header">
