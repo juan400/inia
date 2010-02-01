@@ -37,13 +37,13 @@ Secano.</title>
 							<f:facet name="header">
 								<h:outputText value="#{text.login_title}" />
 							</f:facet>
-							<h:panelGrid rendered="#{loginBean.logged}">
-								<h:outputText styleClass="mensajeError"
-									value="#{text.login_alreadyLogged}" />
-								<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
+							<center><h:panelGrid rendered="#{loginBean.logged}">
+								<h:outputText styleClass="mensajeError" style="font-size: 12pt;"
+									value="#{loginBean.loginName} #{text.login_alreadyLogged}" />
+								<center><a4j:commandButton 
 									styleClass="textoPlano" action="#{loginBean.logout}" immediate="true"
-									value="#{text.login_logout}" />
-							</h:panelGrid>
+									value="#{text.login_logout}" /></center>
+							</h:panelGrid></center>
 							<h:panelGroup rendered="#{!loginBean.logged}">
 								<h:panelGrid columns="2" width="300">
 

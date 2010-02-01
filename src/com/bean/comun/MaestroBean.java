@@ -25,7 +25,7 @@ public class MaestroBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Usuario usuario = null;
+	private Usuario usuario;
 	private boolean logged = false;
 	private String opcion;
 	private ResourceBundle textBundle;
