@@ -11,6 +11,7 @@ import com.inia_mscc.excepciones.IniaPersistenciaException;
 import com.inia_mscc.modulos.adm.entidades.Ciudad;
 import com.inia_mscc.modulos.adm.entidades.Departamento;
 import com.inia_mscc.modulos.adm.entidades.Pais;
+import com.inia_mscc.modulos.adm.entidades.Transaccion;
 import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
 import com.inia_mscc.modulos.seg.entidades.Perfil;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
@@ -26,13 +27,13 @@ public class HibernateUtil {
         try {
         	
         	SESSION_FACTORY = new AnnotationConfiguration()
-        	.addPackage("com.inia_mscc.modulos.seg.entidades")
         	.addAnnotatedClass(Usuario.class)
         	.addAnnotatedClass(DatoUsuario.class)
+        	.addAnnotatedClass(Perfil.class)
         	.addAnnotatedClass(Pais.class)
         	.addAnnotatedClass(Departamento.class)
         	.addAnnotatedClass(Ciudad.class)
-        	.addAnnotatedClass(Perfil.class)
+        	.addAnnotatedClass(Transaccion.class)
         	.configure("hibernate.cfg.xml")
         	.buildSessionFactory();
             

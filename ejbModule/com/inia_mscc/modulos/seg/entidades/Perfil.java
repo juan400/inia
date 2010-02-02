@@ -7,9 +7,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -30,24 +35,22 @@ public class Perfil implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "perf_num_id", nullable = false, columnDefinition = "BIGINT(20)")
 	private long _id;
-
 	@Enumerated(EnumType.STRING)
 	@Column(name = "perf_str_estado", nullable = false, columnDefinition = "VARCHAR(45)")
 	private Enumerados.Estado _estado;
-
 	@Column(name = "perf_str_nombre", nullable = false, columnDefinition = "VARCHAR(45)")
 	private String _nombre;
-
 	@Column(name = "perf_str_descripcion", nullable = false, columnDefinition = "VARCHAR(220)")
 	private String _descripcion;
-
 	@Transient
 	private ValorSeleccion _tipoPerfil;
-	@Transient
-	private List<Transaccion> _transaccionesSistema;
-
 	@Column(name = "perf_bol_fijo", updatable = false, nullable = false, columnDefinition = "TINYINT(1)")
 	private boolean _fijo;
+
+	@OneToMany(targetEntity = Transaccion.class,fetch=FetchType.EAGER)
+	@JoinTable(name = "tl_seg_trpe_transaccionperfil", joinColumns = @JoinColumn(name = "trpe_num_id_perfile",nullable=false, referencedColumnName = "perf_num_id", columnDefinition = "BIGINT(20)"), inverseJoinColumns = @JoinColumn(name = "trpe_num_id_transaccion",nullable=false, referencedColumnName = "tran_num_id", columnDefinition = "BIGINT(20)"))
+	@OrderBy("_codigoBase")
+	private List<Transaccion> _transaccionesSistema;
 
 	public Perfil() {
 		_id = 0;
