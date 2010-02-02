@@ -18,9 +18,9 @@ import com.inia_mscc.modulos.adm.entidades.ValorSeleccion;
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
 
-@Entity (name= "Perfil")
-@Table (name= "tl_seg_perf_perfil")
-public class Perfil implements Serializable{
+@Entity(name = "Perfil")
+@Table(name = "tl_seg_perf_perfil")
+public class Perfil implements Serializable {
 	/**
 	 * 
 	 */
@@ -30,22 +30,25 @@ public class Perfil implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "perf_num_id", nullable = false, columnDefinition = "BIGINT(20)")
 	private long _id;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "perf_str_estado", nullable = false, columnDefinition = "VARCHAR(45)")
 	private Enumerados.Estado _estado;
-	
+
 	@Column(name = "perf_str_nombre", nullable = false, columnDefinition = "VARCHAR(45)")
 	private String _nombre;
-	
-	@Column(name = "perf_str_descripcion", nullable = false, columnDefinition = "VARCHAR(220)")	
+
+	@Column(name = "perf_str_descripcion", nullable = false, columnDefinition = "VARCHAR(220)")
 	private String _descripcion;
-		
+
 	@Transient
 	private ValorSeleccion _tipoPerfil;
 	@Transient
 	private List<Transaccion> _transaccionesSistema;
-	
+
+	@Column(name = "perf_bol_fijo", updatable = false, nullable = false, columnDefinition = "TINYINT(1)")
+	private boolean _fijo;
+
 	public Perfil() {
 		_id = 0;
 		_estado = Estado.Activo;
@@ -53,6 +56,7 @@ public class Perfil implements Serializable{
 		_descripcion = null;
 		_tipoPerfil = null;
 		_transaccionesSistema = null;
+		_fijo = false;
 	}
 
 	public long get_id() {
@@ -103,5 +107,12 @@ public class Perfil implements Serializable{
 		_transaccionesSistema = transaccionesSistema;
 	}
 
-	
+	public void set_fijo(boolean _fijo) {
+		this._fijo = _fijo;
+	}
+
+	public boolean is_fijo() {
+		return _fijo;
+	}
+
 }
