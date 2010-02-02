@@ -92,20 +92,30 @@ Secano.</title>
 									<f:facet name="header">
 										<h:outputText value="Acciones" />
 									</f:facet>
+
 									<a4j:commandButton action="#{perfilBean.verConsulta}"
-										image="/Recursos/Imagenes/Iconos/edit.gif">
+										image="/Recursos/Imagenes/Iconos/edit.gif"
+										style=" width : 19px; height : 18px;">
 										<a4j:actionparam name="consultaElegida" value="#{perfil._id}" />
+										<rich:toolTip value="Modificar" />
 									</a4j:commandButton>
-									<rich:toolTip value="Modificar" />
 
-									<a4j:commandLink ajaxSingle="true" id="deletelink"
-										oncomplete="#{rich:component('deletePanel')}.show()">
-										<h:graphicImage value="/Recursos/Imagenes/Iconos/delete.gif"
-											style="border:0" />
-									</a4j:commandLink>
-									<rich:toolTip value="Eliminar" />
+									<a4j:commandButton action="#{perfilBean.eliminar}" disabled="#{perfil._fijo}"
+										image="/Recursos/Imagenes/Iconos/delete.gif"
+											style="border:0;width : 20px; height : 17px;" >
+											//mostrar texto de confirmacion
+											
+										<a4j:actionparam name="consultaEliminar" value="#{perfil._id}" />
+										<rich:toolTip value="Eliminar" />
+									</a4j:commandButton>
+
+									<a4j:commandButton action="#{perfilBean.verConsulta}"
+										image="/Recursos/Imagenes/Iconos/application_key.png">
+										<a4j:actionparam name="permisos" value="#{perfil._id}" />
+										<rich:toolTip value="Permisos" />
+									</a4j:commandButton>
+
 								</rich:column>
-
 								<f:facet name="footer">
 									<rich:datascroller renderIfSinglePage="false" maxPages="5" />
 								</f:facet>
@@ -119,11 +129,6 @@ Secano.</title>
 									styleClass="textoPlano" action="Alta"
 									value="#{text.boton_Registrar}" />
 
-								<a4j:commandButton
-									style="font-size: 10pt; color: #2d77c2; width : 87px;"
-									styleClass="textoPlano" action="Permisos"
-									value="#{text.boton_Permisos}" />
-
 								<a4j:commandButton immediate="true"
 									style="font-size: 10pt; color: #2d77c2; width : 87px;"
 									styleClass="textoPlano" action="cancelar"
@@ -135,37 +140,6 @@ Secano.</title>
 			</tbody>
 		</table>
 	</h:form>
-
-	<rich:modalPanel id="deletePanel" autosized="true" width="200">
-		<f:facet name="header">
-			<h:outputText value="¿Desea eliminar este Perfil?"
-				style="padding-right:15px;" />
-		</f:facet>
-		<f:facet name="controls">
-			<h:panelGroup>
-				<h:graphicImage value="/Recursos/Imagenes/Iconos/close.png"
-					styleClass="hidelink" id="hidelink2" />
-				<rich:componentControl for="deletePanel" attachTo="hidelink2"
-					operation="hide" event="onclick" />
-			</h:panelGroup>
-		</f:facet>
-		<h:form>
-			<table width="100%">
-				<tbody>
-					<tr>
-						<td align="center" width="50%"><a4j:commandButton value="Yes"
-							ajaxSingle="true" action="#{perfilBean.eliminar}"
-							oncomplete="#{rich:component('deletePanel')}.hide();"
-							reRender="table" /></td>
-						<td align="center" width="50%"><a4j:commandButton
-							value="Cancel"
-							onclick="#{rich:component('deletePanel')}.hide();return false;" />
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</h:form>
-	</rich:modalPanel>
 </f:view>
 </body>
 </html>
