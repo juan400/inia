@@ -1766,18 +1766,53 @@ CREATE TABLE `tl_adm_regi_regionclimatica` (
 DROP TABLE IF EXISTS `tl_adm_tran_transaccion`;
 CREATE TABLE `tl_adm_tran_transaccion` (
   `tran_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `tran_num_id_estado` bigint(20) NOT NULL,
-  `tran_str_codigo` varchar(6) NOT NULL,
+  `tran_num_id_estado` varchar(10) NOT NULL DEFAULT 'Inactivo',
+  `tran_str_codigo` varchar(6) DEFAULT NULL,
   `tran_str_descirpcion` varchar(220) DEFAULT NULL,
+  `tran_bol_definida` tinyint(1) NOT NULL DEFAULT '0',
+  `tran_str_uri` varchar(250) NOT NULL,
+  `tran_str_codigo_base` varchar(6) NOT NULL,
+  `tran_str_descripcion_base` varchar(220) NOT NULL,
+  `tran_dte_timestamp` datetime NOT NULL,
   PRIMARY KEY (`tran_num_id`),
   UNIQUE KEY `unique_codigo` (`tran_str_codigo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tl_adm_tran_transaccion`
 --
 
 /*!40000 ALTER TABLE `tl_adm_tran_transaccion` DISABLE KEYS */;
+INSERT INTO `tl_adm_tran_transaccion` (`tran_num_id`,`tran_num_id_estado`,`tran_str_codigo`,`tran_str_descirpcion`,`tran_bol_definida`,`tran_str_uri`,`tran_str_codigo_base`,`tran_str_descripcion_base`,`tran_dte_timestamp`) VALUES 
+ (1,'Inactivo',NULL,NULL,0,'/Servicios/SEG/SEG001.jsp','SEG001','Login','2010-02-02 13:12:20'),
+ (2,'Inactivo',NULL,NULL,0,'/Servicios/SEG/SEG002.jsp','SEG002','Registro Usuario','2010-02-02 13:12:20'),
+ (3,'Inactivo',NULL,NULL,0,'/Servicios/SEG/SEG003.jsp','SEG003','Activar Usuario','2010-02-02 13:12:20'),
+ (4,'Inactivo',NULL,NULL,0,'/Servicios/SEG/SEG004.jsp','SEG004','Modificar Usuario','2010-02-02 13:12:20'),
+ (5,'Inactivo',NULL,NULL,0,'/Servicios/SEG/SEG005.jsp','SEG005','Baja Usuario','2010-02-02 13:12:20'),
+ (6,'Inactivo',NULL,NULL,0,'/Servicios/SEG/SEG006.jsp','SEG006','Recuperar Contraseña','2010-02-02 13:12:20'),
+ (7,'Inactivo',NULL,NULL,0,'/Servicios/SEG/SEG007.jsp','SEG007','Cambiar Contraseña','2010-02-02 13:12:20'),
+ (8,'Inactivo',NULL,NULL,0,'/Servicios/SEG/SEG008.jsp','SEG008','Ver Perfiles','2010-02-02 13:12:20'),
+ (9,'Inactivo',NULL,NULL,0,'/Servicios/SEG/SEG009.jsp','SEG009','Crear Perfil Usuario','2010-02-02 13:12:20'),
+ (10,'Inactivo',NULL,NULL,0,'/Servicios/SEG/SEG010.jsp','SEG010','Modificar Perfil Usuario','2010-02-02 13:12:20'),
+ (11,'Inactivo',NULL,NULL,0,'/Servicios/SEG/SEG011.jsp','SEG011','Solicitud Privilegios','2010-02-02 13:12:20'),
+ (12,'Inactivo',NULL,NULL,0,'/Servicios/SEG/SEG011.jsp','SEG012','Autorizar Solicitud Privilegios','2010-02-02 13:12:20'),
+ (13,'Inactivo',NULL,NULL,0,'/Servicios/SEG/SEG011.jsp','SEG013','Denegar Solicitud Privilegios','2010-02-02 13:12:20'),
+ (14,'Inactivo',NULL,NULL,0,'/Servicios/ADM/ADM001.jsp','ADM001','Identificar Transacción','2010-02-02 13:12:20'),
+ (15,'Inactivo',NULL,NULL,0,'/Servicios/ADM/ADM002.jsp','ADM002','Modificar Transacción','2010-02-02 13:12:20'),
+ (16,'Inactivo',NULL,NULL,0,'/Servicios/ADM/ADM003.jsp','ADM003','Listas de Criterio','2010-02-02 13:12:20'),
+ (17,'Inactivo',NULL,NULL,0,'/Servicios/ADM/ADM004.jsp','ADM004','Relación País Departamentos Ciudades','2010-02-02 13:12:20'),
+ (18,'Inactivo',NULL,NULL,0,'/Servicios/ADM/ADM005.jsp','ADM005','Gestión de Regiones','2010-02-02 13:12:20'),
+ (19,'Inactivo',NULL,NULL,0,'/Servicios/GEM/GEM001.jsp','GEM001','Crear Cultivo','2010-02-02 13:12:20'),
+ (20,'Inactivo',NULL,NULL,0,'/Servicios/GEM/GEM002.jsp','GEM002','Modificar Cultivo','2010-02-02 13:12:20'),
+ (21,'Inactivo',NULL,NULL,0,'/Servicios/GEM/GEM003.jsp','GEM003','Crear Propiedades Cultivo','2010-02-02 13:12:20'),
+ (22,'Inactivo',NULL,NULL,0,'/Servicios/GEM/GEM004.jsp','GEM004','Modificar Propiedades de un Cultivo','2010-02-02 13:12:20'),
+ (23,'Inactivo',NULL,NULL,0,'/Servicios/GEM/GEM005.jsp','GEM005','Ingresar Escenario','2010-02-02 13:12:20'),
+ (24,'Inactivo',NULL,NULL,0,'/Servicios/GEM/GEM006.jsp','GEM006','Modificar Escenario','2010-02-02 13:12:20'),
+ (25,'Inactivo',NULL,NULL,0,'/Servicios/GEM/GEM007.jsp','GEM007','Ingresar Python de MSCC','2010-02-02 13:12:20'),
+ (26,'Inactivo',NULL,NULL,0,'/Servicios/GEM/GEM008.jsp','GEM008','Modificar Python de MSCC','2010-02-02 13:12:20'),
+ (27,'Inactivo',NULL,NULL,0,'/Servicios/GEM/GEM009.jsp','GEM009','Anular Python de MSCC','2010-02-02 13:12:20'),
+ (28,'Inactivo',NULL,NULL,0,'/Servicios/EJE/EJE001.jsp','EJE001','Ejecución de MSCC','2010-02-02 13:12:20'),
+ (29,'Inactivo',NULL,NULL,0,'/Servicios/EJE/EJE002.jsp','EJE002','Ejecución de MSCC','2010-02-02 13:12:20');
 /*!40000 ALTER TABLE `tl_adm_tran_transaccion` ENABLE KEYS */;
 
 
@@ -1992,8 +2027,8 @@ CREATE TABLE `tl_seg_daus_datosusuario` (
 
 /*!40000 ALTER TABLE `tl_seg_daus_datosusuario` DISABLE KEYS */;
 INSERT INTO `tl_seg_daus_datosusuario` (`daus_num_id`,`daus_num_id_estado`,`daus_str_nombre`,`daus_dte_timestamp`,`daus_str_apellido`,`daus_str_email`,`daus_str_telefono`,`daus_str_celular`,`daus_str_direccion`,`daus_num_id_pais`,`daus_num_id_departamento`,`daus_num_id_ciudad`,`daus_dte_fecha_registro`,`daus_num_id_perfil`) VALUES 
- (1,'Activo','Juan Andres','2010-01-30 12:46:09','Pio','juan400@gmail.com','adsf','asdf','asdf',21,474,NULL,'2010-01-30 12:46:09',3),
- (2,'Activo','asf','2010-01-30 18:35:29','asd','juan400_4@gmail.com','asdf','asdf','asdf',21,474,NULL,'2010-01-30 18:35:29',3);
+ (1,'Activo','Juan Andres','2010-01-30 12:46:09','Pio','juan400@gmail.com','adsf','asdf','asdf',21,474,NULL,'2010-01-30 12:46:09',1),
+ (2,'Activo','asf','2010-01-30 18:35:29','asd','juan400_4@gmail.com','asdf','asdf','asdf',21,474,NULL,'2010-01-30 18:35:29',2);
 /*!40000 ALTER TABLE `tl_seg_daus_datosusuario` ENABLE KEYS */;
 
 
@@ -2032,14 +2067,55 @@ CREATE TABLE `tl_seg_trpe_transaccionperfil` (
   `trpe_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `trpe_num_id_perfile` bigint(20) NOT NULL,
   `trpe_num_id_transaccion` bigint(20) NOT NULL,
-  PRIMARY KEY (`trpe_num_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`trpe_num_id`),
+  KEY `FK_trpe_num_id_perfile` (`trpe_num_id_perfile`),
+  KEY `FK_trpe_num_id_transaccion` (`trpe_num_id_transaccion`),
+  CONSTRAINT `FK_trpe_num_id_perfile` FOREIGN KEY (`trpe_num_id_perfile`) REFERENCES `tl_seg_perf_perfil` (`perf_num_id`),
+  CONSTRAINT `FK_trpe_num_id_transaccion` FOREIGN KEY (`trpe_num_id_transaccion`) REFERENCES `tl_adm_tran_transaccion` (`tran_num_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tl_seg_trpe_transaccionperfil`
 --
 
 /*!40000 ALTER TABLE `tl_seg_trpe_transaccionperfil` DISABLE KEYS */;
+INSERT INTO `tl_seg_trpe_transaccionperfil` (`trpe_num_id`,`trpe_num_id_perfile`,`trpe_num_id_transaccion`) VALUES 
+ (1,1,1),
+ (2,1,2),
+ (3,1,3),
+ (4,1,4),
+ (5,1,5),
+ (6,1,6),
+ (7,1,7),
+ (8,1,8),
+ (9,1,9),
+ (10,1,10),
+ (11,1,12),
+ (12,1,13),
+ (13,1,14),
+ (14,1,15),
+ (15,1,16),
+ (16,1,17),
+ (17,1,18),
+ (18,1,19),
+ (19,1,20),
+ (20,1,21),
+ (21,1,22),
+ (22,1,23),
+ (23,1,24),
+ (24,1,25),
+ (25,1,26),
+ (26,1,27),
+ (27,1,28),
+ (28,1,29),
+ (29,2,22),
+ (30,2,23),
+ (31,2,24),
+ (32,2,25),
+ (33,2,26),
+ (34,2,27),
+ (35,2,28),
+ (36,2,29);
 /*!40000 ALTER TABLE `tl_seg_trpe_transaccionperfil` ENABLE KEYS */;
 
 
@@ -2069,8 +2145,8 @@ CREATE TABLE `tl_seg_usua_usuario` (
 
 /*!40000 ALTER TABLE `tl_seg_usua_usuario` DISABLE KEYS */;
 INSERT INTO `tl_seg_usua_usuario` (`usua_num_id`,`usua_str_login`,`usua_str_password`,`usua_bol_activado`,`usua_dte_ultimo_acceso`,`usua_str_estado_usuario`,`usua_num_id_dato_usuario`,`usua_str_frase`,`usua_str_codigo_activacion`) VALUES 
- (1,'juan400','jojojo',1,'2010-02-01 21:12:29','Activo',1,'jojojojo','81373981'),
- (2,'juan400_4','32317168',0,'2010-01-30 18:35:29','Registrado',2,'Ingrese su frase secreta','32317168');
+ (1,'juan400','jojojo',1,'2010-02-02 18:12:28','Activo',1,'jojojojo','81373981'),
+ (2,'juan400_4','jojojo',1,'2010-02-02 18:31:29','Activo',2,'Ingrese su frase secreta','32317168');
 /*!40000 ALTER TABLE `tl_seg_usua_usuario` ENABLE KEYS */;
 
 
