@@ -33,7 +33,7 @@ Secano.</title>
 						id="contenido">
 						<h:panelGroup rendered="#{loginBean.init}" />
 						<h:panelGrid width="956" cellpadding="0" cellspacing="0">
-							<rich:panel headerClass="tituloPantalla" 
+							<rich:panel headerClass="tituloPantalla"
 								style="background-color: #ebf3fd;">
 								<f:facet name="header">
 									<h:outputText
@@ -45,127 +45,23 @@ Secano.</title>
 									<center><a4j:commandButton
 										style="font-size: 10pt; color: #2d77c2;"
 										styleClass="textoPlano" action="#{loginBean.logout}"
-										immediate="true" value="#{text.login_login}" />
-										<a4j:commandButton
+										immediate="true" value="#{text.login_login}" /> <a4j:commandButton
 										style="font-size: 10pt; color: #2d77c2;"
-										styleClass="textoPlano" action="navegar"
-										immediate="true" value="Ingresar" /></center>
+										styleClass="textoPlano" action="navegar" immediate="true"
+										value="Ingresar" /></center>
 								</h:panelGrid></center>
 								<h:panelGroup rendered="#{loginBean.logged}">
 									<h:panelGrid columns="2" rendered="#{loginBean.logged}"
 										columnClasses="cols" width="200">
 										<h:column>
-											<rich:panelMenu styleClass="menu" style="width:200px"
-												mode="server" iconExpandedGroup="disc"
-												iconCollapsedGroup="disc" iconExpandedTopGroup="chevronUp"
-												iconGroupTopPosition="right"
-												iconCollapsedTopGroup="chevronDown">
-												<rich:panelMenuGroup label="Seguridad"
-													styleClass="textoMenu">
-													<rich:panelMenuItem action='irLogin'>
-														<h:outputLabel styleClass="textoMenuSecundario"
-															rendered="#{loginBean.logged}"
-															value="#{text.login_userName} : #{loginBean.loginName}" />
-														<a4j:commandButton
-															style="font-size: 10pt; color: #2d77c2;"
-															styleClass="textoMenuSecundario"
-															rendered="#{loginBean.logged}"
-															action="#{loginBean.logout}" value="#{text.login_logout}"
-															image="../Recursos/Imagenes/Iconos/door_out.png" />
-														<a4j:commandButton
-															style="font-size: 10pt; color: #2d77c2;"
-															styleClass="textoMenuSecundario"
-															rendered="#{!loginBean.logged}"
-															action="#{loginBean.login}" value="#{text.login_login}"
-															image="../Recursos/Imagenes/Iconos/door_in.png" />
-													</rich:panelMenuItem>
-													<rich:panelMenuItem label="Datos de su cuenta"
-														styleClass="textoMenuSecundario"
-														action="#{panelMenu.updateCurrent}">
-														<f:param name="current" value="/Servicios/SEG/SEG004.jsp" />
-													</rich:panelMenuItem>
-													<rich:panelMenuItem label="Dar de baja su cuenta"
-														styleClass="textoMenuSecundario"
-														action="#{panelMenu.updateCurrent}">
-														<f:param name="current" value="/Servicios/SEG/SEG005.jsp" />
-													</rich:panelMenuItem>
-													<rich:panelMenuItem label="Cambiar su contraseña"
-														styleClass="textoMenuSecundario"
-														action="#{panelMenu.updateCurrent}">
-														<f:param name="current" value="/Servicios/SEG/SEG007.jsp" />
-													</rich:panelMenuItem>
-													<rich:panelMenuItem label="Item 2.5"
-														styleClass="textoMenuSecundario"
-														action="#{panelMenu.updateCurrent}">
-														<f:param name="current" value="/Servicios/SEG/SEG007.jsp" />
-													</rich:panelMenuItem>
-												</rich:panelMenuGroup>
-												<rich:panelMenuGroup label="Adminstracion"
-													styleClass="textoMenu">
-													<rich:panelMenuItem label="Precentacion"
-														styleClass="textoMenuSecundario"
-														action="#{panelMenu.updateCurrent}">
-														<f:param name="current" value="/Servicios/Precentacion.jsp" />
-													</rich:panelMenuItem>
-													<rich:panelMenuItem label="Modificar datos personales"
-														styleClass="textoMenuSecundario"
-														action="#{panelMenu.updateCurrent}">
-														<f:param name="current" value="/Servicios/SEG/SEG004.jsp" />
-													</rich:panelMenuItem>
-												</rich:panelMenuGroup>
-											</rich:panelMenu>
+											<h:panelGroup rendered="#{menuBean.init}" />
+											<rich:panelMenu binding="#{menuBean.panelMenu}" />
+
+
+
 										</h:column>
 										<h:column>
-											<h:panelGroup rendered="#{recuperarContraseniaBean.init}" />
-											<h:panelGrid>
-											
-											<a4j:include viewId="#{panelMenu.current}"></a4j:include>
-											
-												<rich:panel headerClass="tituloPantalla"
-													style="background-color: #ebf3fd;">
-													<f:facet name="header">
-														<h:outputText value="#{text.confiramcion_Titulo}" />
-													</f:facet>
-
-													<h:panelGroup
-														rendered="#{!recuperarContraseniaBean.activado}">
-														<h:panelGrid columns="2" width="480">
-
-														</h:panelGrid>
-														<h:panelGrid columns="2" width="480">
-
-
-														</h:panelGrid>
-														<center><h:panelGrid columns="2">
-															<a4j:commandButton
-																style="font-size: 10pt; color: #2d77c2;"
-																styleClass="textoPlano" tabindex="3"
-																action="#{confirmacionBean.Confirmar}"
-																value="#{text.boton_Guardar}" />
-															<a4j:commandButton
-																style="font-size: 10pt; color: #2d77c2;"
-																styleClass="textoPlano" tabindex="4" action="Cancelar"
-																value="#{text.boton_Cancelar}" />
-														</h:panelGrid></center>
-														<h:panelGrid>
-															<rich:messages styleClass="mensajeError">
-																<f:facet name="passedMarker">
-																	<h:graphicImage
-																		value="/Recursos/Imagenes/Iconos/passed.gif" />
-																</f:facet>
-																<f:facet name="errorMarker">
-																	<h:graphicImage
-																		value="/Recursos/Imagenes/Iconos/error.gif" />
-																</f:facet>
-															</rich:messages>
-															<h:outputText styleClass="mensajeError"
-																value="#{confirmacionBean.error}" />
-															<h:outputText styleClass="textoPlano"
-																value="#{confirmacionBean.exito}" />
-														</h:panelGrid>
-													</h:panelGroup>
-												</rich:panel>
-											</h:panelGrid>
+											<a4j:include viewId="#{menuBean.current}"></a4j:include>
 										</h:column>
 									</h:panelGrid>
 								</h:panelGroup>
