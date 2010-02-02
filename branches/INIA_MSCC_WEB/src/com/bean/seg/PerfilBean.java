@@ -22,19 +22,29 @@ public class PerfilBean implements Serializable {
 	private String nombre;
 	private String descripcion;
 	private String estado;
+	private String fijo;
 	private String error;
 	private List<Perfil> perfiles;
 	private Perfil perfil = new Perfil();
 
 	public String eliminar() throws Exception {
 		String retorno = "registro-error";
+		retorno = "registro-error";
 		try {
-
-			perfil.set_nombre(nombre);
-			perfil.set_descripcion(descripcion);
-			perfil.set_estado(Enumerados.Estado.valueOf(estado));
-
-//			segFachada.EliminarPerfil(perfil);
+			Map paramMap = FacesContext.getCurrentInstance()
+					.getExternalContext().getRequestParameterMap();
+			String consultaElegida = (String) paramMap.get("consultaEliminar");
+			Iterator<Perfil> it = perfiles.iterator();
+			while (it.hasNext()) {
+				Perfil object = (Perfil) it.next();
+				if ((Long) object.get_id() == Long.parseLong(consultaElegida)) {
+					perfil = object;
+					nombre = perfil.get_nombre();
+					descripcion = perfil.get_descripcion();
+					estado = perfil.get_estado().toString();
+				}
+			}
+			segFachada.EliminarPerfil(perfil);
 			retorno = "registro-ok";
 		} catch (Exception ex) {
 			setError(ex.getMessage());
@@ -185,5 +195,13 @@ public class PerfilBean implements Serializable {
 
 	public Perfil getPerfil() {
 		return perfil;
+	}
+
+	public void setFijo(String fijo) {
+		this.fijo = fijo;
+	}
+
+	public String getFijo() {
+		return fijo;
 	}
 }
