@@ -6,6 +6,22 @@ public class Enumerados {
 	 * @author Juan Andres Pio
 	 * 
 	 */
+	static public enum Proceso {
+		ADM, SEG, EJE, GEM, HPE
+	}
+	
+	/**
+	 * @author Juan Andres Pio
+	 * 
+	 */
+	static public enum NombreProceso {
+		Administración, Seguridad, Ejecución, Escenarios, Historial
+	}
+	
+	/**
+	 * @author Juan Andres Pio
+	 * 
+	 */
 	static public enum EstadoUsuario {
 		Ninguno, Activo, Inactivo, Registrado, Bloqueado
 	}

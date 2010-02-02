@@ -46,6 +46,7 @@ public class LoginBean extends MaestroBean implements Serializable {
 					u.set_ultimoAcceso(new Date());
 					super.getSegFachada(Servicio.Usuario).ActualizarUltimoAcceso(u);
 					u.set_ultimoAcceso(fecha);
+					super.setSesion(Usuario.class.toString(), u);
 					error = "";
 					return "login-ok";
 				} else {
