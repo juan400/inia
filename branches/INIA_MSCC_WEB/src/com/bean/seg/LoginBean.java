@@ -8,6 +8,7 @@ import javax.mail.MessagingException;
 import javax.naming.NamingException;
 
 import com.bean.comun.MaestroBean;
+import com.bean.gem.wgen;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.EstadoUsuario;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.Servicio;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
@@ -35,6 +36,9 @@ public class LoginBean extends MaestroBean implements Serializable {
 	
 	public String login() throws IOException, NamingException,
 			MessagingException {
+		wgen w = new wgen();
+		w.Sim_wea();
+		
 		Usuario u = super.getSegFachada(Servicio.Usuario).Login(loginName,
 				password);
 		if (u != null) {
@@ -81,6 +85,7 @@ public class LoginBean extends MaestroBean implements Serializable {
 			super.setLogged(false);
 			super.setUsuario(null);
 			super.setOpcion("/Servicios/SEG/SEG001.jsp");
+			super.removerSesion(Usuario.class.toString());
 			error = "";
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
