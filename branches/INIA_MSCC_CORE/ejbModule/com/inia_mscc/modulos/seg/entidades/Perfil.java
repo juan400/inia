@@ -3,6 +3,7 @@ package com.inia_mscc.modulos.seg.entidades;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,9 +15,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
 
 import com.inia_mscc.modulos.adm.entidades.Transaccion;
 import com.inia_mscc.modulos.adm.entidades.ValorSeleccion;
@@ -47,9 +48,11 @@ public class Perfil implements Serializable {
 	@Column(name = "perf_bol_fijo", updatable = false, nullable = false, columnDefinition = "TINYINT(1)")
 	private boolean _fijo;
 
-	@OneToMany(targetEntity = Transaccion.class,fetch=FetchType.EAGER)
-	@JoinTable(name = "tl_seg_trpe_transaccionperfil", joinColumns = @JoinColumn(name = "trpe_num_id_perfile",nullable=false, referencedColumnName = "perf_num_id", columnDefinition = "BIGINT(20)"), inverseJoinColumns = @JoinColumn(name = "trpe_num_id_transaccion",nullable=false, referencedColumnName = "tran_num_id", columnDefinition = "BIGINT(20)"))
-	@OrderBy("_codigoBase")
+	@OneToMany(targetEntity = Transaccion.class, cascade = CascadeType.ALL)
+	@JoinTable(name = "tl_seg_trpe_transaccionperfil", 
+			uniqueConstraints={@UniqueConstraint(columnNames={"trpe_num_id_perfile", "trpe_num_id_transaccion"})},
+			joinColumns = { @JoinColumn(name = "trpe_num_id_perfile",nullable=false, referencedColumnName = "perf_num_id", columnDefinition = "BIGINT(20)") }, 
+			inverseJoinColumns = { @JoinColumn(name = "trpe_num_id_transaccion",nullable=false, referencedColumnName = "tran_num_id", columnDefinition = "BIGINT(20)") })
 	private List<Transaccion> _transaccionesSistema;
 
 	public Perfil() {
@@ -101,7 +104,7 @@ public class Perfil implements Serializable {
 	public void set_tipoPerfil(ValorSeleccion tipoPerfil) {
 		_tipoPerfil = tipoPerfil;
 	}
-
+	
 	public List<Transaccion> get_transaccionesSistema() {
 		return _transaccionesSistema;
 	}

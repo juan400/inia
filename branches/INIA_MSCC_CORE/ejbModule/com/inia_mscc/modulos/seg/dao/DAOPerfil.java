@@ -47,7 +47,7 @@ public class DAOPerfil implements Serializable {
 		try {
 			Criteria c = session.createCriteria(Perfil.class);
 			retorno = (List<Perfil>) c.list();
-		} catch (StaleObjectStateException e) {
+		}catch (Exception e) { // catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);
