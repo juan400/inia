@@ -6,6 +6,14 @@ public class Enumerados {
 	 * @author Juan Andres Pio
 	 * 
 	 */
+	static public enum TransaccionesNoContenidas {
+		SEG001, SEG002, SEG003
+	}
+	
+	/**
+	 * @author Juan Andres Pio
+	 * 
+	 */
 	static public enum Proceso {
 		ADM, SEG, EJE, GEM, HPE
 	}
