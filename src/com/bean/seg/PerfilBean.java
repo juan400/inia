@@ -52,6 +52,7 @@ public class PerfilBean implements Serializable {
 		return retorno;
 	}
 
+	@SuppressWarnings("unchecked")
 	public String verConsulta() {
 		Map paramMap = FacesContext.getCurrentInstance().getExternalContext()
 				.getRequestParameterMap();
@@ -71,10 +72,10 @@ public class PerfilBean implements Serializable {
 
 	public PerfilBean() {
 		this.estado = Estado.Activo.name();
+		this.perfiles = segFachada.ObtenerPerfiles();
 	}
 
 	public boolean isInit() {
-		this.perfiles = segFachada.ObtenerPerfiles();
 		boolean retorno = false;
 
 		return retorno;

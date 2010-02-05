@@ -15,6 +15,7 @@ import org.richfaces.component.html.HtmlPanelMenuItem;
 import com.inia_mscc.modulos.adm.entidades.Transaccion;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.Proceso;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.NombreProceso;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.TransaccionesNoContenidas;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
 public class MenuBean extends MaestroBean implements Serializable {
@@ -56,50 +57,71 @@ public class MenuBean extends MaestroBean implements Serializable {
 		panelMenu.setIconCollapsedTopGroup("chevronDown");
 		panelMenu.setRendered(true);
 		try {
-			super.setUsuario((Usuario)super.getSesion(Usuario.class.toString()));
-			transacciones = super.getUsuario().get_datos().get_perfil().get_transaccionesSistema();
+			super.setUsuario((Usuario) super
+					.getSesion(Usuario.class.toString()));
+			transacciones = super.getUsuario().get_datos().get_perfil()
+					.get_transaccionesSistema();
 			HtmlPanelMenuGroup menuGroupADM = new HtmlPanelMenuGroup();
 			HtmlPanelMenuGroup menuGroupSEG = new HtmlPanelMenuGroup();
 			HtmlPanelMenuGroup menuGroupGEM = new HtmlPanelMenuGroup();
 			HtmlPanelMenuGroup menuGroupEJE = new HtmlPanelMenuGroup();
 			HtmlPanelMenuGroup menuGroupHPE = new HtmlPanelMenuGroup();
 			if (transacciones != null) {
-				menuGroupADM.setName(Proceso.ADM.toString());
-				menuGroupADM.setLabel(NombreProceso.Administración.toString());
+				menuGroupADM.setName(Proceso.ADM.name());
+				menuGroupADM.setLabel(NombreProceso.Administración.name());
 				menuGroupADM.setStyleClass("textoMenu");
-				menuGroupSEG.setName(Proceso.SEG.toString());
-				menuGroupSEG.setLabel(NombreProceso.Seguridad.toString());
+				menuGroupSEG.setName(Proceso.SEG.name());
+				menuGroupSEG.setLabel(NombreProceso.Seguridad.name());
 				menuGroupSEG.setStyleClass("textoMenu");
-				menuGroupGEM.setName(Proceso.GEM.toString());
-				menuGroupGEM.setLabel(NombreProceso.Escenarios.toString());
+				menuGroupGEM.setName(Proceso.GEM.name());
+				menuGroupGEM.setLabel(NombreProceso.Escenarios.name());
 				menuGroupGEM.setStyleClass("textoMenu");
-				menuGroupEJE.setName(Proceso.EJE.toString());
-				menuGroupEJE.setLabel(NombreProceso.Ejecución.toString());
+				menuGroupEJE.setName(Proceso.EJE.name());
+				menuGroupEJE.setLabel(NombreProceso.Ejecución.name());
 				menuGroupEJE.setStyleClass("textoMenu");
-				menuGroupHPE.setName(Proceso.HPE.toString());
-				menuGroupHPE.setLabel(NombreProceso.Historial.toString());
+				menuGroupHPE.setName(Proceso.HPE.name());
+				menuGroupHPE.setLabel(NombreProceso.Historial.name());
 				menuGroupHPE.setStyleClass("textoMenu");
 				for (Transaccion unaTransa : transacciones) {
 					if (unaTransa.get_codigoBase().startsWith(
-							Proceso.ADM.toString())) {
-						// TODO Se agrega el item al grupo
-						menuGroupADM.getChildren().add(cargarItemMenu(unaTransa));
+							Proceso.ADM.name())) {
+						// TODO Se agregar los items de manejo de usuario y
+						// sacar los que no van en la contenedora.
+						menuGroupADM.getChildren().add(
+								cargarItemMenu(unaTransa));
 					}
 					if (unaTransa.get_codigoBase().startsWith(
-							Proceso.SEG.toString())) {
-						menuGroupSEG.getChildren().add(cargarItemMenu(unaTransa));
+							Proceso.SEG.name())) {
+						if (!unaTransa.get_codigoBase().equalsIgnoreCase(
+								TransaccionesNoContenidas.SEG001.name())
+								&& !unaTransa
+										.get_codigoBase()
+										.equalsIgnoreCase(
+												TransaccionesNoContenidas.SEG002
+														.name())
+								&& !unaTransa
+										.get_codigoBase()
+										.equalsIgnoreCase(
+												TransaccionesNoContenidas.SEG003
+														.name())) {
+							menuGroupSEG.getChildren().add(
+									cargarItemMenu(unaTransa));
+						}
 					}
 					if (unaTransa.get_codigoBase().startsWith(
-							Proceso.GEM.toString())) {
-						menuGroupGEM.getChildren().add(cargarItemMenu(unaTransa));
+							Proceso.GEM.name())) {
+						menuGroupGEM.getChildren().add(
+								cargarItemMenu(unaTransa));
 					}
 					if (unaTransa.get_codigoBase().startsWith(
-							Proceso.EJE.toString())) {
-						menuGroupEJE.getChildren().add(cargarItemMenu(unaTransa));
+							Proceso.EJE.name())) {
+						menuGroupEJE.getChildren().add(
+								cargarItemMenu(unaTransa));
 					}
 					if (unaTransa.get_codigoBase().startsWith(
-							Proceso.HPE.toString())) {
-						menuGroupHPE.getChildren().add(cargarItemMenu(unaTransa));
+							Proceso.HPE.name())) {
+						menuGroupHPE.getChildren().add(
+								cargarItemMenu(unaTransa));
 					}
 				}
 			}
@@ -124,19 +146,19 @@ public class MenuBean extends MaestroBean implements Serializable {
 		}
 	}
 
-	private HtmlPanelMenuItem cargarItemMenu(Transaccion pTransa){
+	private HtmlPanelMenuItem cargarItemMenu(Transaccion pTransa) {
 		HtmlPanelMenuItem menuItem = new HtmlPanelMenuItem();
 		menuItem.setName(pTransa.get_codigoBase());
 		menuItem.setLabel(pTransa.get_descripcionBase());
 		menuItem.setStyleClass("textoMenuSecundario");
 		menuItem.setImmediate(true);
+		menuItem.setReRender("contenido");
 		MethodExpression me = FacesContext.getCurrentInstance()
 				.getApplication().getExpressionFactory()
 				.createMethodExpression(
-						FacesContext.getCurrentInstance()
-								.getELContext(),
-						"#{menuBean.updateCurrent}",
-						String.class, new Class[] {});
+						FacesContext.getCurrentInstance().getELContext(),
+						"#{menuBean.updateCurrent}", String.class,
+						new Class[] {});
 		menuItem.setActionExpression(me);
 		HtmlActionParameter actionParam = new HtmlActionParameter();
 		actionParam.setName("current");
@@ -147,7 +169,7 @@ public class MenuBean extends MaestroBean implements Serializable {
 		actionParam.setParent(menuItem);
 		return menuItem;
 	}
-	
+
 	public boolean isSingleMode() {
 		return singleMode;
 	}
