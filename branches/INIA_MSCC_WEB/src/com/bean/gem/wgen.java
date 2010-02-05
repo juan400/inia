@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Map;
 import java.util.Random;
+import java.io.File;
+import java.io.IOException;
 
 import org.eclipse.jdt.internal.compiler.parser.diagnose.RangeUtil;
 import org.jboss.util.Strings.Range;
@@ -251,46 +253,103 @@ public class wgen {
 	public ArrayList<Object[]> Sim_wea() {
 		// (int[] yearbounds, double[] prob, double meanppt, double intensity,
 		// int[] adj) {
-
-		int[] yearbounds = { 2007, 2009 };
-		double[] prob = prob_;
-		double meanppt = 6.217768;
-		double intensity = 1.0d;
-		int[] adj = new int[] { 0, 0, 0, 365 };
-
-		// table=[[DateTime.Date(int(0),1,1),0,0,0,0,0,0,0]]
-		Calendar dia = Calendar.getInstance();
-		dia.set(0, 1, 1);
-
-		Object[] fila = { dia, 0, 0, 0, 0, 0, 0, 0 };
 		ArrayList<Object[]> table = new ArrayList<Object[]>();
-		table.add(fila);
-		System.out.println(dia.toString());
-		int i = 0;
-		meanppt = meanppt * intensity;
-		Range rango = new Range();
-		rango.begin = yearbounds[0];
-		rango.end = yearbounds[1];
-		for (int year =rango.begin ; year <= rango.end; year++) {
-			ArrayList ppt = ppt_occ(prob);
-			Calendar RefDay = Calendar.getInstance();
-			RefDay.set(year, 1, 1);
-			for (int day = 0; day < 365; day++) {
-				String state = "";
-				double ppt2=0d;
-				if (ppt.get(day) == Integer.valueOf(1)) {
-					state = "wet";
-					ppt2 = precip(meanppt);
-				} else if (ppt.get(day) == Integer.valueOf(0)) {
-					state = "dry";
-					ppt2 = 0d;
-				}
-				Object[] fila1 = (Object[])zmodel(1, state, table.get(i), ppt2, RefDay);
-				table.add(fila1);
-				System.out.println(fila1[0].toString()+" "+fila1[1].toString()+" "+fila1[2].toString()+" "+fila1[3].toString()+" "+
-						fila1[4].toString()+" "+fila1[5].toString()+" "+fila1[6].toString()+" "+fila1[7].toString()+" "+fila1[8].toString()+" "+fila1[9].toString());
-				i += 1;
+		try {
+			File directorio = new File("c:\\temp\\ArchivoClimaGenerado");
+			if (!directorio.isDirectory()) {
+				System.out.println(" NO es un directorio");
+				directorio.mkdir();
 			}
+			File f = new File("Wather_sim_pickle.txt");
+			if (f.exists()){
+				f.deleteOnExit();
+			}
+			int[] yearbounds = { 2007, 2009 };
+			double[] prob = prob_;
+			double meanppt = 6.217768;
+			double intensity = 1.0d;
+			int[] adj = new int[] { 0, 0, 0, 365 };
+
+			// table=[[DateTime.Date(int(0),1,1),0,0,0,0,0,0,0]]
+			Calendar dia = Calendar.getInstance();
+			dia.set(0, 1, 1);
+
+			Object[] fila = { dia, 0, 0, 0, 0, 0, 0, 0 };
+			table.add(fila);
+			System.out.println(dia.toString());
+			int i = 0;
+			meanppt = meanppt * intensity;
+			Range rango = new Range();
+			rango.begin = yearbounds[0];
+			rango.end = yearbounds[1];
+			for (int year = rango.begin; year <= rango.end; year++) {
+				ArrayList ppt = ppt_occ(prob);
+				Calendar RefDay = Calendar.getInstance();
+				RefDay.set(year, 1, 1);
+				for (int day = 0; day < 365; day++) {
+					String state = "";
+					double ppt2 = 0d;
+					if (ppt.get(day) == Integer.valueOf(1)) {
+						state = "wet";
+						ppt2 = precip(meanppt);
+					} else if (ppt.get(day) == Integer.valueOf(0)) {
+						state = "dry";
+						ppt2 = 0d;
+					}
+					Object[] fila1 = (Object[]) zmodel(1, state, table.get(i),
+							ppt2, RefDay);
+					table.add(fila1);
+					StringBuilder strBuild = new StringBuilder();
+					strBuild.append(fila1[0].toString());
+					strBuild.append(" ");
+					strBuild.append(fila1[1].toString());
+					strBuild.append(" ");
+					strBuild.append(fila1[2].toString());
+					strBuild.append(" ");
+					strBuild.append(fila1[3].toString());
+					strBuild.append(" ");
+					strBuild.append(fila1[4].toString());
+					strBuild.append(" ");
+					strBuild.append(fila1[5].toString());
+					strBuild.append(" ");
+					strBuild.append(fila1[6].toString());
+					strBuild.append(" ");
+					strBuild.append(fila1[7].toString());
+					strBuild.append(" ");
+					strBuild.append(fila1[8].toString());
+					strBuild.append(" ");
+					strBuild.append(fila1[9].toString());
+					i += 1;
+					if (i == 1) {
+						StringBuilder strBuild1 = new StringBuilder();
+						strBuild1.append("DIA");
+						strBuild1.append(" ");
+						strBuild1.append("MES");
+						strBuild1.append(" ");
+						strBuild1.append("ANIO");
+						strBuild1.append(" ");
+						strBuild1.append("C_F(max_c)");
+						strBuild1.append(" ");
+						strBuild1.append("max_c");
+						strBuild1.append(" ");
+						strBuild1.append("C_F(min_c)");
+						strBuild1.append(" ");
+						strBuild1.append("min_c");
+						strBuild1.append(" ");
+						strBuild1.append("((min_c+max_c)/2)");
+						strBuild1.append(" ");
+						strBuild1.append("ppt2");
+						strBuild1.append(" ");
+						strBuild1.append("sol_rad");
+						ArchivosTexto.saveString(f, strBuild1.toString());
+					} else {
+						ArchivosTexto.appendString(f, strBuild.toString());
+					}
+				}
+			}
+			System.out.println(f.getAbsolutePath() + "" + f.getPath());
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		// #import pickle
 		return table;
