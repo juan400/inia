@@ -74,17 +74,23 @@ Secano.</title>
 								<h:outputText value="" />
 								<br></br>
 
-								<h:panelGrid columns="2">
-									<a4j:commandButton
-										style="font-size: 10pt; color: #2d77c2; width : 71px;"
-										styleClass="textoPlano" action="#{perfilBean.registrar}"
-										value="#{text.boton_Aceptar}" />
-									<a4j:commandButton immediate="true"
-										style="font-size: 10pt; color: #2d77c2; width : 71px;"
-										styleClass="textoPlano" action="cancelar"
-										value="#{text.boton_Cancelar}" />
-								</h:panelGrid>
 							</h:panelGrid>
+							
+							
+							
+							
+							<center>
+							<h:panelGrid columns="2">
+								<a4j:commandButton
+									style="font-size: 10pt; color: #2d77c2; width : 71px;"
+									styleClass="textoPlano" action="#{perfilBean.registrar}"
+									value="#{text.boton_Aceptar}" />
+								<a4j:commandButton immediate="true"
+									style="font-size: 10pt; color: #2d77c2; width : 71px;"
+									styleClass="textoPlano" action="cancelar"
+									value="#{text.boton_Cancelar}" />
+							</h:panelGrid>
+							</center>
 							<center><h:panelGrid columns="1">
 								<f:facet name="footer">
 									<h:outputText value="#{perfilBean.error}"
