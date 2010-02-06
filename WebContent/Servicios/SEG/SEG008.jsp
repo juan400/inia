@@ -95,16 +95,16 @@ Secano.</title>
 
 									<a4j:commandButton action="#{perfilBean.verConsulta}"
 										image="/Recursos/Imagenes/Iconos/edit.gif"
+										disabled="#{perfil._fijo}"
 										style=" width : 19px; height : 18px;">
 										<a4j:actionparam name="consultaElegida" value="#{perfil._id}" />
 										<rich:toolTip value="Modificar" />
 									</a4j:commandButton>
 
-									<a4j:commandButton action="#{perfilBean.eliminar}" disabled="#{perfil._fijo}"
+									<a4j:commandButton action="#{perfilBean.verConsulta}"
 										image="/Recursos/Imagenes/Iconos/delete.gif"
-											style="border:0;width : 20px; height : 17px;" >
-											//mostrar texto de confirmacion
-											
+										disabled="#{perfil._fijo}"
+										style="border:0;width : 20px; height : 17px;">
 										<a4j:actionparam name="consultaEliminar" value="#{perfil._id}" />
 										<rich:toolTip value="Eliminar" />
 									</a4j:commandButton>
