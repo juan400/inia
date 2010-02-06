@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 /**
  * * Contiene un grupo de metodos que nos pueden ser utiles al utilizar archivos
@@ -57,26 +58,22 @@ public abstract class ArchivosTexto {
 	 * java.io.IOException En caso de que el archivo no se pueda leer se * lanza
 	 * esta excepcion
 	 */
-	public static void readLines(File f) throws FileNotFoundException,
-			IOException {
+	public static ArrayList<String> leerArchivo(File f)
+			throws FileNotFoundException, IOException {
+		ArrayList<String> SArchivo = new ArrayList<String>();
 		try {
 			BufferedReader fileIn = new BufferedReader(new FileReader(f));
-			String line = "";
-			while ((line = fileIn.readLine()) != null) {
-				/** TODO Usar la linea para algo */
-				/**
-				 * * Por ejemplo, para sacar un valor después del igual (muy
-				 * usado en * archivos de configuracion) * String setting =
-				 * line.substring(line.indexOf('='));
-				 */
+			String linea = "";
+			while ((linea = fileIn.readLine()) != null) {
+				SArchivo.add(linea.trim());
 			}
-			/** Cierro el archivo */
 			fileIn.close();
 		} catch (FileNotFoundException ex) {
 			throw ex;
 		} catch (IOException ex) {
 			throw ex;
 		}
+		return SArchivo;
 	}
 
 	/**
@@ -86,12 +83,15 @@ public abstract class ArchivosTexto {
 	 * java.io.IOException En caso de que el archivo no se pueda * escribir se
 	 * lanza esta excepcion
 	 */
-	public static void saveString(File f, String s) throws IOException {
+	public static void saveString(File f, ArrayList<String> s)
+			throws IOException {
 		try {
 			/** Abro el archivo */
 			PrintWriter fileOut = new PrintWriter(new FileWriter(f));
 			/** Guardo la linea */
-			fileOut.println(s);
+			for (String linea : s) {
+				fileOut.println(linea);
+			}
 			/** Cierro el archivo */
 			fileOut.close();
 		} catch (IOException ex) {
@@ -105,7 +105,8 @@ public abstract class ArchivosTexto {
 	 * guardar * @param s El String a guardar * @throws java.io.IOException En
 	 * caso de que el archivo no se pueda * escribir se lanza esta excepcion
 	 */
-	public static void appendString(File f, String s) throws IOException {
+	public static void appendString(File f, ArrayList<String> s)
+			throws IOException {
 		try {
 			/**
 			 * * Abro el archivo, fijate que ahora puse un valor booleano como
@@ -114,7 +115,12 @@ public abstract class ArchivosTexto {
 			 */
 			PrintWriter fileOut = new PrintWriter(new FileWriter(f, true));
 			/** Guardo la linea */
-			fileOut.println(s);
+			for (String linea : s) {
+				fileOut.println(linea);
+			}
+			// for (int i = 0; i < s.length; i++) {
+			// fileOut.println(s[i]);
+			// }
 			/**
 			 * * Aqui puedo seguir guardando y guardando mas lineas o caracteres
 			 * * hasta que el archivo contenga lo que me interesa
