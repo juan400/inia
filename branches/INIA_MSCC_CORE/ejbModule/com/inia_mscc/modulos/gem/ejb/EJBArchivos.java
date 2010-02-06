@@ -1,4 +1,4 @@
-package com.bean.gem;
+package com.inia_mscc.modulos.gem.ejb;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,11 +9,17 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-/**
- * * Contiene un grupo de metodos que nos pueden ser utiles al utilizar archivos
- * * de texto * * @author Magus
- */
-public abstract class ArchivosTexto {
+import wox.serial.Easy;
+
+public class EJBArchivos {
+	public EJBArchivos() {
+
+	}
+
+	public void salvarObjetoEnXMLArchivo(Object datos, String nombreArchivo) {
+		Easy.save(datos, nombreArchivo);
+	}
+	
 	/**
 	 * * Lee el archivo de texto caracter por caracter * * @param f Un objeto
 	 * File con el archivo que se desea leer * @throws
@@ -58,22 +64,29 @@ public abstract class ArchivosTexto {
 	 * java.io.IOException En caso de que el archivo no se pueda leer se * lanza
 	 * esta excepcion
 	 */
-	public static ArrayList<String> leerArchivo(File f)
-			throws FileNotFoundException, IOException {
-		ArrayList<String> SArchivo = new ArrayList<String>();
+	public static ArrayList<String> readLines(File f) throws FileNotFoundException,
+			IOException {
+		ArrayList<String> SArchivo=new ArrayList<String>();
 		try {
 			BufferedReader fileIn = new BufferedReader(new FileReader(f));
 			String linea = "";
 			while ((linea = fileIn.readLine()) != null) {
+				/** TODO Usar la linea para algo */
+				/**
+				 * * Por ejemplo, para sacar un valor después del igual (muy
+				 * usado en * archivos de configuracion) * String setting =
+				 * linea.substring(linea.indexOf('='));
+				 */
 				SArchivo.add(linea.trim());
 			}
+			/** Cierro el archivo */
 			fileIn.close();
 		} catch (FileNotFoundException ex) {
 			throw ex;
 		} catch (IOException ex) {
 			throw ex;
 		}
-		return SArchivo;
+		return null;
 	}
 
 	/**
@@ -83,8 +96,7 @@ public abstract class ArchivosTexto {
 	 * java.io.IOException En caso de que el archivo no se pueda * escribir se
 	 * lanza esta excepcion
 	 */
-	public static void saveString(File f, ArrayList<String> s)
-			throws IOException {
+	public static void saveString(File f, ArrayList<String> s) throws IOException {
 		try {
 			/** Abro el archivo */
 			PrintWriter fileOut = new PrintWriter(new FileWriter(f));
@@ -92,6 +104,9 @@ public abstract class ArchivosTexto {
 			for (String linea : s) {
 				fileOut.println(linea);
 			}
+//			for (int i = 0; i < s.; i++) {
+//				fileOut.println(s[i]);
+//			}
 			/** Cierro el archivo */
 			fileOut.close();
 		} catch (IOException ex) {
@@ -105,8 +120,7 @@ public abstract class ArchivosTexto {
 	 * guardar * @param s El String a guardar * @throws java.io.IOException En
 	 * caso de que el archivo no se pueda * escribir se lanza esta excepcion
 	 */
-	public static void appendString(File f, ArrayList<String> s)
-			throws IOException {
+	public static void appendString(File f, ArrayList<String> s) throws IOException {
 		try {
 			/**
 			 * * Abro el archivo, fijate que ahora puse un valor booleano como
@@ -118,9 +132,9 @@ public abstract class ArchivosTexto {
 			for (String linea : s) {
 				fileOut.println(linea);
 			}
-			// for (int i = 0; i < s.length; i++) {
-			// fileOut.println(s[i]);
-			// }
+//			for (int i = 0; i < s.length; i++) {
+//				fileOut.println(s[i]);
+//			}
 			/**
 			 * * Aqui puedo seguir guardando y guardando mas lineas o caracteres
 			 * * hasta que el archivo contenga lo que me interesa
@@ -131,4 +145,5 @@ public abstract class ArchivosTexto {
 			throw ex;
 		}
 	}
+	
 }

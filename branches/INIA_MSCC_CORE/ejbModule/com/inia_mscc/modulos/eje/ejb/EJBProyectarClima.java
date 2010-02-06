@@ -1,41 +1,29 @@
-package com.bean.gem;
+package com.inia_mscc.modulos.eje.ejb;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Map;
 import java.util.Random;
-
 import org.jboss.util.Strings.Range;
+import com.inia_mscc.modulos.gem.ejb.EJBArchivos;
 
-import wox.serial.Easy;
-
-import com.bean.gem.leerXML.Course;
-import com.bean.gem.leerXML.Student;
-
-//Xerces classes.
-//import org.apache.xerces.dom.DocumentImpl;
-//import org.apache.xml.serialize.*;
-
-public class wgen {
+public class EJBProyectarClima {
 
 	// ##Estas son las arrays que se definen en el xml y caracterizan el
 	// clima de ua region **********************
 	// #order: rows: max_C, min_C, solar_rad, cols: mean: a, b, c, d, stdev:
 	// a, b, c, d
-	public Map<String, double[][]> param_dict;
-
 	private double[][] dry;
 	private double[][] wet;
-	// #[P000,P010,P100,P110] from out precip data, i.e.:
-	// [drydrydry,drywetdry,wetdrydry,wetwetdry]
+	// #[P000,P010,P100,P110] from out precip data, i.e.: [drydrydry,drywetdry,wetdrydry,wetwetdry]
 	public double[] prob_;
+//	= { 0.62259353432618958, 0.44121447028423771,0.67097608274078857, 0.48002219755826858 };
 
-	// = { 0.62259353432618958, 0.44121447028423771,0.67097608274078857,
-	// 0.48002219755826858 };
-
-	public wgen() {
+	public EJBProyectarClima(double[] pProb, double[][] pDry, double[][] pWet) {
+		this.dry =pDry;
+		this.wet=pWet;
+		this.prob_=pProb;
 	}
 
 	private double C_F(double tc) {
@@ -43,8 +31,12 @@ public class wgen {
 		return tf;
 	}
 
-	private double precip(double mean) { // #our data has an overall mean of
-		// 6.217768
+	/**
+	 * #our data has an overall mean of 6.217768
+	 * @param mean
+	 * @return
+	 */
+	private double precip(double mean) {
 		double k = Math.random();
 		double ppt = -(mean * Math.log(1 - k));
 		return ppt;
@@ -61,34 +53,34 @@ public class wgen {
 	private double[][] sin_fit(String state, int day) {
 		double[][] c;
 		if (state == "dry") {
-			// double[][] dry = {
-			// { -14.974737211233927, 0.015636886230500097,
-			// 1.574329296449279, 11.532013519495585,
-			// 1.4200818794930099, 0.019835241996656455,
-			// 0.36178643519394749, 4.6960945435392265 },
-			// { -12.607026868237501, 0.01644817504524268,
-			// 1.3389681268941718, 2.0983606157408747,
-			// 1.446519606509828, 0.015670217929789051,
-			// 1.3967338855632128, 4.5503280665089969 },
-			// { 229.58347668767991, 0.016033219592976149,
-			// -1.1484582365319118, 329.15476806896186,
-			// 41.50980793045629, 0.014472308834135071,
-			// -0.67016098373625821, 84.510507285933485 } };
+//			double[][] dry = {
+//					{ -14.974737211233927, 0.015636886230500097,
+//							1.574329296449279, 11.532013519495585,
+//							1.4200818794930099, 0.019835241996656455,
+//							0.36178643519394749, 4.6960945435392265 },
+//					{ -12.607026868237501, 0.01644817504524268,
+//							1.3389681268941718, 2.0983606157408747,
+//							1.446519606509828, 0.015670217929789051,
+//							1.3967338855632128, 4.5503280665089969 },
+//					{ 229.58347668767991, 0.016033219592976149,
+//							-1.1484582365319118, 329.15476806896186,
+//							41.50980793045629, 0.014472308834135071,
+//							-0.67016098373625821, 84.510507285933485 } };
 			c = dry;
 		} else {
-			// double[][] wet = {
-			// { -12.925455392811854, 0.017311475775113421,
-			// 1.2019800640953939, 12.373124838415173,
-			// 1.1406368970931773, 0.021733921890600392,
-			// -0.00466885771765324, 4.5028413295737195 },
-			// { -12.056801821532833, 0.017290180610238164,
-			// 1.1635140486223283, 4.3342738004304442,
-			// 1.5765905236974651, 0.015795774310735387,
-			// 1.5040647292366149, 4.0380182600585091 },
-			// { 140.9127971622481, 0.017868978637799508,
-			// -1.5584047076567853, 215.80610127472397,
-			// 50.624280723563047, 0.015326278863157008,
-			// -0.97734210161354629, 84.543269465709486 } };
+//			double[][] wet = {
+//					{ -12.925455392811854, 0.017311475775113421,
+//							1.2019800640953939, 12.373124838415173,
+//							1.1406368970931773, 0.021733921890600392,
+//							-0.00466885771765324, 4.5028413295737195 },
+//					{ -12.056801821532833, 0.017290180610238164,
+//							1.1635140486223283, 4.3342738004304442,
+//							1.5765905236974651, 0.015795774310735387,
+//							1.5040647292366149, 4.0380182600585091 },
+//					{ 140.9127971622481, 0.017868978637799508,
+//							-1.5584047076567853, 215.80610127472397,
+//							50.624280723563047, 0.015326278863157008,
+//							-0.97734210161354629, 84.543269465709486 } };
 			c = wet;
 		}
 		double[][] line = {
@@ -110,13 +102,11 @@ public class wgen {
 	 * 
 	 * @param day
 	 * @param state
-	 * @param objects
 	 * @param ppt2
 	 * @param refDay
 	 * @return
 	 */
-	private Object[] zmodel(int day, String state, Object[] objects,
-			double ppt2, Calendar refDay) {
+	private Object[] zmodel(int day, String state, double ppt2, Calendar refDay) {
 		double[][] p = sin_fit(state, day);
 		double maxcm = p[0][0];
 		double maxcs = p[0][1];
@@ -176,26 +166,21 @@ public class wgen {
 	 */
 	public ArrayList ppt_occ(double[] prob) {
 		int[] adj = { 0, 0, 0, 365 };
-
 		double[] p_adj1 = { prob[0] + adj[0], prob[1] + adj[0],
 				prob[2] + adj[0], prob[3] + adj[0] };
 		double[] p_adj2 = { prob[0] + adj[1], prob[1] + adj[1],
 				prob[2] + adj[1], prob[3] + adj[1] };
-
 		double[] p;
 		if (adj[2] == 0) {
 			p = p_adj1;
 		} else {
 			p = p_adj2;
 		}
-		Random rrrr = new Random();
 		double[] rand = new double[2];
 		for (int j = 0; j < 2; j++) {
 			rand[j] = Math.random();
 		}
-
 		ArrayList ppt = new ArrayList();
-
 		double suma = 0d;
 		for (int i = 0; i < p.length; i++) {
 			suma += p[i];
@@ -205,7 +190,6 @@ public class wgen {
 		} else {
 			ppt.add(1);
 		}
-
 		if (ppt.get(0) == Integer.valueOf(1)) {
 			if (rand[1] < ((p[1] + p[3]) / 2)) {
 				ppt.add(0);
@@ -224,7 +208,6 @@ public class wgen {
 			rand[j] = Math.random();
 		}
 		Range rango = new Range(2, 365);
-
 		for (int day = rango.begin; day < rango.end; day++) {
 			if (day == adj[2]) {
 				p = p_adj1;
@@ -262,9 +245,7 @@ public class wgen {
 				}
 			}
 		}
-
 		return ppt;
-
 	}
 
 	/**
@@ -275,14 +256,13 @@ public class wgen {
 	 * 
 	 * @return
 	 */
-	public ArrayList<Object[]> Sim_wea() {
+	public ArrayList<String> Sim_wea() {
 		// (int[] yearbounds, double[] prob, double meanppt, double intensity,
 		// int[] adj) {
-		ArrayList<Object[]> table = new ArrayList<Object[]>();
 		ArrayList<String> Stable = new ArrayList<String>();
 		try {
 
-			leerXML leer = new leerXML();
+			EJBArchivos leer = new EJBArchivos();
 			//			
 			//			
 			//			
@@ -295,152 +275,14 @@ public class wgen {
 
 			File f = new File("/Wather_sim_pickle.txt");
 			if (f.exists()) {
-				f.deleteOnExit();
+				f.delete();
 			}
 
 			File fxml = new File(
 					"C:/Biblioteca/Cajón/Proyecto/INIA/Archivos Recibidos/climate_parameters_for_site_LE.xml");
 			if (fxml.canRead()) {
 				System.out.println("Puede leer!!!");
-				ArrayList<String> archivo = ArchivosTexto.leerArchivo(fxml);
-				double[][] dryCargado = new double[3][8];
-				double[][] wetCargado = new double[3][8];
-				double[] probCargado = new double[4];
-				for (int i = 0; i < archivo.size(); i++) {
-					if (archivo.get(i).equalsIgnoreCase("<param>")) {
-						i++;
-						if (archivo.get(i).equalsIgnoreCase("<dry>")) {
-							i++;
-							if (archivo.get(i).equalsIgnoreCase("<max_c>")) {
-								int numeroProbabilidad = 0;
-								i++;
-								for (int j = i; j < (i+8); j++) {
-									String valorString = archivo
-											.get(j)
-											.substring(
-													archivo.get(j).indexOf(">") + 1,
-													archivo.get(j).lastIndexOf(
-															"<"));
-									dryCargado[0][numeroProbabilidad] = (double) Double
-											.parseDouble(valorString);
-									numeroProbabilidad++;
-								}
-								i+=numeroProbabilidad;
-							}
-							i++;
-							if (archivo.get(i).equalsIgnoreCase("<min_c>")) {
-								int numeroProbabilidad = 0;
-								i++;
-								for (int j = i; j < (i+8); j++) {
-									String valorString = archivo
-											.get(j)
-											.substring(
-													archivo.get(j).indexOf(">") + 1,
-													archivo.get(j).lastIndexOf(
-															"<"));
-									dryCargado[1][numeroProbabilidad] = (double) Double
-											.parseDouble(valorString);
-									numeroProbabilidad++;
-								}
-								i+=numeroProbabilidad;
-							}
-							i++;
-							if (archivo.get(i).equalsIgnoreCase("<solar_rad>")) {
-								int numeroProbabilidad = 0;
-								i++;
-								for (int j = i; j < (i+8); j++) {
-									String valorString = archivo
-											.get(j)
-											.substring(
-													archivo.get(j).indexOf(">") + 1,
-													archivo.get(j).lastIndexOf(
-															"<"));
-									dryCargado[2][numeroProbabilidad] = (double) Double
-											.parseDouble(valorString);
-									numeroProbabilidad++;
-								}
-								i+=numeroProbabilidad;
-							}
-							i++;
-						}
-						i++;
-						if (archivo.get(i).equalsIgnoreCase("<wet>")) {
-							i++;
-							if (archivo.get(i).equalsIgnoreCase("<max_c>")) {
-								int numeroProbabilidad = 0;
-								i++;
-								for (int j = i; j < (i+8); j++) {
-									String valorString = archivo
-											.get(j)
-											.substring(
-													archivo.get(j).indexOf(">") + 1,
-													archivo.get(j).lastIndexOf(
-															"<"));
-									wetCargado[0][numeroProbabilidad] = (double) Double
-											.parseDouble(valorString);
-									numeroProbabilidad++;
-								}
-								i+=numeroProbabilidad;
-							}
-							i++;
-							if (archivo.get(i).equalsIgnoreCase("<min_c>")) {
-								int numeroProbabilidad = 0;
-								i++;
-								for (int j = i; j < (i+8); j++) {
-									String valorString = archivo
-											.get(j)
-											.substring(
-													archivo.get(j).indexOf(">") + 1,
-													archivo.get(j).lastIndexOf(
-															"<"));
-									wetCargado[1][numeroProbabilidad] = (double) Double
-											.parseDouble(valorString);
-									numeroProbabilidad++;
-								}
-								i+=numeroProbabilidad;
-							}
-							i++;
-							if (archivo.get(i).equalsIgnoreCase("<solar_rad>")) {
-								int numeroProbabilidad = 0;
-								i++;
-								for (int j = i; j < (i+8); j++) {
-									String valorString = archivo
-											.get(j)
-											.substring(
-													archivo.get(j).indexOf(">") + 1,
-													archivo.get(j).lastIndexOf(
-															"<"));
-									wetCargado[2][numeroProbabilidad] = (double) Double
-											.parseDouble(valorString);
-									numeroProbabilidad++;
-								}
-								i+=numeroProbabilidad;
-							}
-							i++;
-						}
-						i++;
-						i++;
-					}
-					if (archivo.get(i).equalsIgnoreCase("<prob>")) {
-						int numeroProbabilidad = 0;
-						i++;
-						for (int j = i; j < (i+4); j++) {
-							String valorString = archivo
-									.get(j)
-									.substring(
-											archivo.get(j).indexOf(">") + 1,
-											archivo.get(j).lastIndexOf(
-													"<"));
-							probCargado[numeroProbabilidad] = (double) Double
-									.parseDouble(valorString);
-							numeroProbabilidad++;
-						}
-						i+=numeroProbabilidad;
-					}
-				}
-				dry = dryCargado;
-				wet = wetCargado;
-				prob_ = probCargado;
+				leer.readLines(fxml);
 			}
 
 			int[] yearbounds = { 2007, 2009 };
@@ -461,10 +303,10 @@ public class wgen {
 			Calendar dia = Calendar.getInstance();
 			dia.set(0, 1, 1);
 
-			Object[] fila = { dia.get(Calendar.DAY_OF_MONTH),
-					dia.get(Calendar.MONTH), dia.get(Calendar.YEAR), 0, 0, 0,
-					0, 0, 0, 0 };
-			table.add(fila);
+//			Object[] fila = { dia.get(Calendar.DAY_OF_MONTH),
+//					dia.get(Calendar.MONTH), dia.get(Calendar.YEAR), 0, 0, 0,
+//					0, 0, 0, 0 };
+//			Stable.add(fila);
 
 			int i = 0;
 			meanppt = (meanppt * intensity);
@@ -485,9 +327,8 @@ public class wgen {
 						state = "dry";
 						ppt2 = 0d;
 					}
-					Object[] fila1 = (Object[]) zmodel(day, state,
-							table.get(i), ppt2, RefDay);
-					table.add(fila1);
+					Object[] fila1 = (Object[]) zmodel(day, state, ppt2, RefDay);
+//					table.add(fila1);
 					StringBuilder strBuild = new StringBuilder();
 					Stable.add(strBuild.append(fila1[0].toString()).append(" ")
 							.append(fila1[1].toString()).append(" ").append(
@@ -502,10 +343,10 @@ public class wgen {
 					i += 1;
 				}
 			}
-			ArchivosTexto.saveString(f, Stable);
-		} catch (Exception e) {
-			e.getMessage();
+			leer.saveString(f, Stable);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		return table;
+		return Stable;
 	}
 }
