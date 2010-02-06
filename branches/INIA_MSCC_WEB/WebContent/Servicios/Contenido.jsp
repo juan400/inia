@@ -56,12 +56,9 @@ Secano.</title>
 										<h:column>
 											<h:panelGroup rendered="#{menuBean.init}" />
 											<rich:panelMenu binding="#{menuBean.panelMenu}" />
-
-
-
 										</h:column>
 										<h:column>
-											<a4j:include viewId="#{menuBean.current}"></a4j:include>
+											<a4j:include viewId="#{menuBean.current}" rendered="true"></a4j:include>
 										</h:column>
 									</h:panelGrid>
 								</h:panelGroup>
