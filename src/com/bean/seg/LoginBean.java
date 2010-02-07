@@ -5,8 +5,19 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import javax.faces.context.FacesContext;
+import javax.faces.webapp.FacesServlet;
 import javax.mail.MessagingException;
 import javax.naming.NamingException;
+
+import org.ajax4jsf.config.FacesConfig;
+import org.apache.tomcat.util.http.fileupload.FileUpload;
+import org.jboss.management.j2ee.Servlet;
 
 import com.bean.comun.MaestroBean;
 import com.bean.gem.ArchivosTexto;
@@ -39,33 +50,6 @@ public class LoginBean extends MaestroBean implements Serializable {
 	public String login() {
 		String mensaje = "login-error";
 		try {
-			wgen w = new wgen();
-			
-
-			// File directorio = new File("c:\\temp\\ArchivoClimaGenerado");
-			// if (!directorio.isDirectory()) {
-			// System.out.println(" NO es un directorio");
-			// directorio.mkdir();
-			// }
-
-			File f = new File("/Wather_sim_pickle.txt");
-			if (f.exists()) {
-				f.deleteOnExit();
-			}
-
-			File fxml = new File(
-					"C:/Biblioteca/Cajón/Proyecto/INIA/Archivos Recibidos/climate_parameters_for_site_LE.xml");
-			
-			// TODO hay que pasar el archivo, ahora esta siendo harcodeado
-			// dnetro del metodo cargraArchivoParametros
-			w.cargarArchivoParametros(fxml);
-			int[] yearbounds = { 2007, 2009 };
-			double meanppt = 6.217768d;
-			double intensity = 1.0d;
-			int[] adj = new int[] { 0, 0, 0, 365 };
-			ArchivosTexto.saveString(f, w.Sim_wea(yearbounds, meanppt,
-					intensity, adj));
-
 			Usuario u = super.getSegFachada(Servicio.Usuario).Login(loginName,
 					password);
 			if (u != null) {
