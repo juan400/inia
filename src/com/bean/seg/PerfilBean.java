@@ -8,28 +8,27 @@ import java.util.Map;
 import javax.faces.context.FacesContext;
 
 import com.bean.comun.MaestroBean;
+import com.inia_mscc.modulos.adm.entidades.Transaccion;
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
-import com.inia_mscc.modulos.seg.SEGFachada;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.Servicio;
 import com.inia_mscc.modulos.seg.entidades.Perfil;
 
-public class PerfilBean implements Serializable {
+public class PerfilBean extends MaestroBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	private SEGFachada segFachada = new SEGFachada(Enumerados.Servicio.Perfil);
 
 	private String nombre;
 	private String descripcion;
 	private String estado;
 	private String fijo;
-	private String error;
 	private List<Perfil> perfiles;
 	private Perfil perfil = new Perfil();
+	private List<Transaccion> transacciones;
 
 	public String eliminar() throws Exception {
-		String retorno = "registro-error";
-		retorno = "registro-error";
+		String retorno = null;
+
 		try {
 			Map paramMap = FacesContext.getCurrentInstance()
 					.getExternalContext().getRequestParameterMap();
@@ -44,10 +43,9 @@ public class PerfilBean implements Serializable {
 					estado = perfil.get_estado().toString();
 				}
 			}
-			segFachada.EliminarPerfil(perfil);
-			retorno = "registro-ok";
+			super.getSegFachada(Servicio.Perfil).EliminarPerfil(perfil);
 		} catch (Exception ex) {
-			setError(ex.getMessage());
+			super.setError("Se ha producido un error, por favor intente nuevamente.");
 		}
 		return retorno;
 	}
@@ -72,12 +70,14 @@ public class PerfilBean implements Serializable {
 
 	public PerfilBean() {
 		this.estado = Estado.Activo.name();
-		this.perfiles = segFachada.ObtenerPerfiles();
 	}
 
 	public boolean isInit() {
 		boolean retorno = false;
-
+		this.LimpiarBean();
+		this.perfiles = super.getSegFachada(Servicio.Perfil).ObtenerPerfiles();
+		this.transacciones = super.getAdmFachada(Servicio.Transaccion)
+				.ObtenerTransacciones();
 		return retorno;
 	}
 
@@ -85,28 +85,24 @@ public class PerfilBean implements Serializable {
 		return MaestroBean.getInstance().isLogged();
 	}
 
-	public List<Perfil> obternerPerfiles() {
-		return segFachada.ObtenerPerfiles();
-	}
-
 	public String actualizar() throws Exception {
 		String retorno = "registro-error";
 		try {
-
 			perfil.set_nombre(nombre);
 			perfil.set_descripcion(descripcion);
 			perfil.set_estado(Enumerados.Estado.valueOf(estado));
 
-			segFachada.ActualizarPerfil(perfil);
+			super.getSegFachada(Servicio.Perfil).ActualizarPerfil(perfil);
 			retorno = "registro-ok";
 		} catch (Exception ex) {
-			setError(ex.getMessage());
+			super
+					.setError("Se ha producido un error, por favor intente nuevamente.");
 		}
 		return retorno;
 	}
 
 	public String registrar() throws Exception {
-		// MaestroBean.getInstance().getTextBundle();
+
 		String retorno = "";
 		try {
 			Perfil datosPerfil = new Perfil();
@@ -114,24 +110,28 @@ public class PerfilBean implements Serializable {
 			datosPerfil.set_descripcion(descripcion);
 			datosPerfil.set_estado(Enumerados.Estado.valueOf(estado));
 
-			Perfil per = segFachada.ComprobarPerfil(datosPerfil);
+			Perfil per = super.getSegFachada(Servicio.Perfil).ComprobarPerfil(
+					datosPerfil);
 			if (per == null) {
 				setError("");
-				Perfil p = segFachada.RegistrarPerfil(datosPerfil);
+				Perfil p = super.getSegFachada(Servicio.Perfil)
+						.RegistrarPerfil(datosPerfil);
 				if (p != null) {
-					setError("");
+					super.setError("");
 					MaestroBean.getInstance().setOpcion(
 							"/Servicios/SEG/SEG009.jsp");
 					retorno = "registro-ok";
 					LimpiarBean();
 				} else {
-					setError("No ha sido posible registrar el perfil, revise los datos ingresados y intentelo nuevamente.");
+					super
+							.setError("No ha sido posible crear el perfil, revise los datos ingresados y intentelo nuevamente.");
 					MaestroBean.getInstance().setOpcion(
 							"/Servicios/SEG/SEG009.jsp");
 					retorno = "registro-error";
 				}
 			} else {
-				error = "Ya existe un Perfil con igual nombre, Por favor ingrese otro nombre.";
+				super
+						.setError("Ya existe un Perfil con igual nombre, Por favor ingrese otro nombre.");
 				MaestroBean.getInstance()
 						.setOpcion("/Servicios/SEG/SEG009.jsp");
 				retorno = "registro-error";
@@ -147,7 +147,6 @@ public class PerfilBean implements Serializable {
 		descripcion = null;
 		estado = null;
 		perfiles = null;
-		error = null;
 	}
 
 	public String getNombre() {
@@ -174,14 +173,6 @@ public class PerfilBean implements Serializable {
 		this.estado = estado;
 	}
 
-	public void setError(String error) {
-		this.error = error;
-	}
-
-	public String getError() {
-		return error;
-	}
-
 	public void setPerfiles(List<Perfil> perfiles) {
 		this.perfiles = perfiles;
 	}
@@ -204,5 +195,13 @@ public class PerfilBean implements Serializable {
 
 	public String getFijo() {
 		return fijo;
+	}
+
+	public void setTransacciones(List<Transaccion> transacciones) {
+		this.transacciones = transacciones;
+	}
+
+	public List<Transaccion> getTransacciones() {
+		return transacciones;
 	}
 }
