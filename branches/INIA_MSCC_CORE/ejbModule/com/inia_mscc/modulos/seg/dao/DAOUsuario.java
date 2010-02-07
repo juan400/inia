@@ -198,8 +198,8 @@ public class DAOUsuario implements Serializable {
 			c.add(Restrictions.eq("_login", loginNombre));
 			c.add(Restrictions.eq("_password", password));
 			usuario = (Usuario) c.uniqueResult();
-			usuario.get_datos().get_perfil().get_transaccionesSistema();
-		} catch (Exception e) {// (StaleObjectStateException e) {
+			usuario.get_datos().get_perfil().get_transaccionesSistema().get(1);
+		} catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);

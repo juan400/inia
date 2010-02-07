@@ -154,7 +154,7 @@ Secano.</title>
 							</rich:panel>
 						</h:panelGrid>
 						<a4j:status for="contenido"
-							onstart="Richfaces.showModalPanel('ajaxLoadingModalBox',{width:100, top:200,height:'90px'})"
+							onstart="Richfaces.showModalPanel('ajaxLoadingModalBox',{width:'200px', top:200,height:'100px'})"
 							onstop="Richfaces.hideModalPanel('ajaxLoadingModalBox')"></a4j:status>
 					</a4j:region> <rich:modalPanel id="ajaxLoadingModalBox" minHeight="100"
 						minWidth="200" height="40" width="400" zindex="100" styleClass="">
