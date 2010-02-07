@@ -48,7 +48,7 @@ public class Perfil implements Serializable {
 	@Column(name = "perf_bol_fijo", updatable = false, nullable = false, columnDefinition = "TINYINT(1)")
 	private boolean _fijo;
 
-	@OneToMany(targetEntity = Transaccion.class, cascade = CascadeType.ALL)
+	@OneToMany(targetEntity = Transaccion.class, cascade = CascadeType.ALL, fetch= FetchType.LAZY)
 	@JoinTable(name = "tl_seg_trpe_transaccionperfil", 
 			uniqueConstraints={@UniqueConstraint(columnNames={"trpe_num_id_perfile", "trpe_num_id_transaccion"})},
 			joinColumns = { @JoinColumn(name = "trpe_num_id_perfile",nullable=false, referencedColumnName = "perf_num_id", columnDefinition = "BIGINT(20)") }, 

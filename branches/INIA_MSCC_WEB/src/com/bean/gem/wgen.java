@@ -1,34 +1,17 @@
 package com.bean.gem;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Map;
 import java.util.Random;
 
 import org.jboss.util.Strings.Range;
 
-import wox.serial.Easy;
-
-import com.bean.gem.leerXML.Course;
-import com.bean.gem.leerXML.Student;
-import com.inia_mscc.modulos.gem.entidades.Archivo;
-
-//Xerces classes.
-//import org.apache.xerces.dom.DocumentImpl;
-//import org.apache.xml.serialize.*;
 
 public class wgen {
 
-	// ##Estas son las arrays que se definen en el xml y caracterizan el
-	// clima de ua region **********************
-	// #order: rows: max_C, min_C, solar_rad, cols: mean: a, b, c, d, stdev:
-	// a, b, c, d
 	private double[][] dry;
 	private double[][] wet;
-	// #[P000,P010,P100,P110] from out precip data, i.e.:
-	// [drydrydry,drywetdry,wetdrydry,wetwetdry]
 	public double[] prob_;
 
 	public wgen() {
@@ -39,8 +22,7 @@ public class wgen {
 		return tf;
 	}
 
-	private double precip(double mean) { // #our data has an overall mean of
-		// 6.217768
+	private double precip(double mean) { 
 		double k = Math.random();
 		double ppt = -(mean * Math.log(1 - k));
 		return ppt;
