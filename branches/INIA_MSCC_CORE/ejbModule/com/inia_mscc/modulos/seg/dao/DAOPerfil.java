@@ -33,7 +33,7 @@ public class DAOPerfil implements Serializable {
 			Criteria c = session.createCriteria(Perfil.class);
 			c.add(Restrictions.ilike("_nombre", pPerfil.get_nombre()));
 			retorno = (Perfil) c.uniqueResult();
-		} catch (StaleObjectStateException e) {
+		}catch(Exception e){ //catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);

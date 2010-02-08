@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
 
@@ -47,6 +48,8 @@ public class Transaccion implements Serializable {
 	@Column(name = "tran_dte_timestamp", nullable = false, columnDefinition = "DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date _timestamp;
+	@Transient
+	private Boolean _asociada;
 		
 	public Transaccion() {
 		_descripcionBase = null;
@@ -55,6 +58,7 @@ public class Transaccion implements Serializable {
 		_descripcion = null;
 		_url = null;
 		_definida = null;
+		_asociada = null;
 	}
 
 	public long get_id() {
@@ -127,6 +131,14 @@ public class Transaccion implements Serializable {
 
 	public void set_timestamp(Date timestamp) {
 		_timestamp = timestamp;
+	}
+
+	public void set_asociada(Boolean _asociada) {
+		this._asociada = _asociada;
+	}
+
+	public Boolean get_asociada() {
+		return _asociada;
 	}
 
 }
