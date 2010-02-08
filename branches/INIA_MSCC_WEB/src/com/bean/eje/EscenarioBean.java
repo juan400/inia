@@ -15,25 +15,23 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 	private Date fechaEjecucion = new Date();
 	private Date fSiembra = new Date();
 	private String estacionClimatica = "LE";
-	private String cultivar ="DonAlberto";
-//	'FertilizacionSiembra':[ 
-//		{
-			private Date fFertilizacionSiembra = new Date();
-			private String fuenteFertilizacionSiembra = "18-46-0"; 
-			private String rateFertilizacionSiembra = "100";
-//		},
-//	'Refertilizacion1': [ 
-//		{
-			private Date fRefertilizacion1 = new Date();
-			private String fuenteRefertilizacion1 = "18-46-0"; 
-			private String rateRefertilizacion1 = "100";
-//		},
-//	'Refertilizacion2': [ 
-//		{
-			private Date fRefertilizacion2 = new Date();
-			private String fuenteRefertilizacion2 = "18-46-0"; 
-			private String rateRefertilizacion2 = "100";
-//		},
+	private String cultivar = "DonAlberto";
+	
+	//Fertilizacion
+	private Date fFertilizacionSiembra = new Date();
+	private String fuenteFertilizacionSiembra = "18-46-0";
+	private String rateFertilizacionSiembra = "100";
+
+	//Refertilizacion 1
+	private Date fRefertilizacion1 = new Date();
+	private String fuenteRefertilizacion1 = "18-46-0";
+	private String rateRefertilizacion1 = "100";
+
+	//Refertilizacion 2
+	private Date fRefertilizacion2 = new Date();
+	private String fuenteRefertilizacion2 = "18-46-0";
+	private String rateRefertilizacion2 = "100";
+
 	private String nombreSueloConeat = "10.1";
 	private double profundidadA = 0.2;
 	private double profundidadB = 0.2;
