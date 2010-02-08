@@ -44,22 +44,8 @@ Secano.</title>
 							</h:panelGrid></center>
 							<br></br>
 
-							<rich:contextMenu attached="false" id="menu" submitMode="ajax"
-								oncollapse="row.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'">
-								<rich:menuItem value="Edit Record" ajaxSingle="true"
-									oncomplete="#{rich:component('editPanel')}.show()">
-									<a4j:actionparam name="vin" value="{carVin}" />
-									<a4j:actionparam name="row" value="{currentRow}" />
-								</rich:menuItem>
-								<rich:menuItem value="Remove Record" ajaxSingle="true"
-									oncomplete="#{rich:component('deletePanel')}.show()">
-									<a4j:actionparam name="vin" value="{carVin}" />
-									<a4j:actionparam name="row" value="{currentRow}" />
-								</rich:menuItem>
-							</rich:contextMenu>
-
 							<center><rich:dataTable border="2" width="660px"
-								rows="10" styleClass="textoDataTable"
+								rows="6" styleClass="textoDataTable" id="tablaPerfiles"
 								value="#{perfilBean.perfiles}" var="perfil" rowKeyVar="row"
 								headerClass="columnHeader" rowClasses="oddRow,evenRow">
 
@@ -101,18 +87,12 @@ Secano.</title>
 										<rich:toolTip value="Modificar" />
 									</a4j:commandButton>
 
-									<a4j:commandButton action="#{perfilBean.verConsulta}"
+									<a4j:commandButton action="#{perfilBean.eliminar}"
 										image="/Recursos/Imagenes/Iconos/delete.gif"
 										disabled="#{perfil._fijo}"
-										style="border:0;width : 20px; height : 17px;">
+										style=" border:0; width : 19px; height : 18px;">
 										<a4j:actionparam name="consultaEliminar" value="#{perfil._id}" />
 										<rich:toolTip value="Eliminar" />
-									</a4j:commandButton>
-
-									<a4j:commandButton action="#{perfilBean.verConsulta}"
-										image="/Recursos/Imagenes/Iconos/application_key.png">
-										<a4j:actionparam name="permisos" value="#{perfil._id}" />
-										<rich:toolTip value="Permisos" />
 									</a4j:commandButton>
 
 								</rich:column>
@@ -128,11 +108,17 @@ Secano.</title>
 									style="font-size: 10pt; color: #2d77c2; width : 87px;"
 									styleClass="textoPlano" action="Alta"
 									value="#{text.boton_Registrar}" />
-
 								<a4j:commandButton immediate="true"
 									style="font-size: 10pt; color: #2d77c2; width : 87px;"
 									styleClass="textoPlano" action="cancelar"
 									value="#{text.perfil_Cerrar}" />
+							</h:panelGrid></center>
+
+							<center><h:panelGrid>
+								<h:outputText styleClass="mensajeError"
+									value="#{perfilBean.error}" />
+								<h:outputText styleClass="textoPlano"
+									value="#{perfilBean.exito}" />
 							</h:panelGrid></center>
 						</rich:panel>
 					</h:panelGrid></td>
