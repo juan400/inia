@@ -46,7 +46,7 @@ public class MenuBean extends MaestroBean implements Serializable {
 	public MenuBean() {
 		singleMode = true;
 		current = "/Servicios/Contenedora.jsp";
-//		current = "/Servicios/Precentacion.jsp";
+		// current = "/Servicios/Precentacion.jsp";
 		panelMenu = new HtmlPanelMenu();
 		panelMenu.setStyleClass("menu");
 		panelMenu.setStyle("width:200px");
@@ -104,6 +104,11 @@ public class MenuBean extends MaestroBean implements Serializable {
 										.get_codigoBase()
 										.equalsIgnoreCase(
 												TransaccionesNoContenidas.SEG003
+														.name())
+								&& !unaTransa
+										.get_codigoBase()
+										.equalsIgnoreCase(
+												TransaccionesNoContenidas.SEG006
 														.name())) {
 							menuGroupSEG.getChildren().add(
 									cargarItemMenu(unaTransa));
@@ -163,7 +168,7 @@ public class MenuBean extends MaestroBean implements Serializable {
 		menuItem.setActionExpression(me);
 		HtmlActionParameter actionParam = new HtmlActionParameter();
 		actionParam.setName("current");
-//		actionParam.setValue(pTransa.get_url());
+		// actionParam.setValue(pTransa.get_url());
 		actionParam.setValue(pTransa.get_codigoBase());
 		// TODO Se agrega el parametro "current" al item
 		menuItem.getChildren().add(actionParam);

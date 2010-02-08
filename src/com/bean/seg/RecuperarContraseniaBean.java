@@ -31,81 +31,172 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 	private String frase;
 	private String actual;
 
+	public RecuperarContraseniaBean() {
+		this.setUsuario((Usuario) this.getSesion(Usuario.class.toString()));
+	}
+
 	public boolean isInit() {
 		return false;
 	}
 
-	public void validarContrasenia() {
-		try {
-			if (super.getUsuario().get_password().equals(getActual())) {
-				super
-						.setError("La contraseña actual que ingreso no es correcta.");
-			} else {
-				super.setError("");
-			}
-		} catch (Exception ex) {
-			super.setError(ex.getMessage());
-		}
-	}
-
 	public void validarEmail() {
 		try {
-			if (super.getSegFachada(Servicio.Usuario).ComprobarEmail(email)) {
-				super
+			if (this.getSegFachada(Servicio.Usuario).ComprobarEmail(email)) {
+				this
 						.setError("El e-mail ingresado no esta registrado en el sistema.");
-				super.setUsuario(null);
+				this.setUsuario(null);
 			} else {
-				super.setError("");
+				this.setError("");
 			}
 		} catch (Exception ex) {
-			super.setError(ex.getMessage());
+			this.setError(ex.getMessage());
 		}
 	}
 
 	public void validarFrase() {
 		try {
-			super.setUsuario(super.getSegFachada(Servicio.Usuario)
+			this.setUsuario(this.getSegFachada(Servicio.Usuario)
 					.ObtenerUsuarioXDatos(null, null, null, email, frase));
-			if (super.getUsuario() != null) {
-				super.setError("");
-				super.setExito("Bienvenido "
-						+ super.getUsuario().get_datos().get_nombre()
-						+ " su login es " + super.getUsuario().get_login());
+			if (this.getUsuario() != null) {
+				this.setError("");
+				this.setExito("Bienvenido "
+						+ this.getUsuario().get_datos().get_nombre()
+						+ " su login es " + this.getUsuario().get_login());
 			} else {
-				super
+				this
 						.setError("Lamentablemente no hay un usuario registrado con el e-mail y frase secretaingresada.");
-				super.setExito("");
+				this.setExito("");
 			}
 		} catch (Exception ex) {
-			super.setError(ex.getMessage());
+			this.setError(ex.getMessage());
 		}
 	}
 
-	public String EnviarPassword() {
+	public String enviarPassword() {
 		String retorno = "";
 		try {
-			if (super.getUsuario() != null) {
-				// if (!this.salvarNombre(super.getUsuario())) {
-				if (!this.enviarMailConfirmacion(super.getUsuario())) {
-					super
-							.setError("No ha sido posible enviar el e-mail, el e-mail proporcionado no esta disponible.");
-					MaestroBean.getInstance().setOpcion(
-							"/Servicios/SEG/SEG002.jsp");
+			if (this.getUsuario() != null) {
+				// if (!this.salvarNombre(this.getUsuario())) {
+				if (!this.enviarMailConfirmacion(this.getUsuario())) {
+					this.setError("No ha sido posible enviar el e-mail, "
+							+ "el e-mail proporcionado no esta disponible.");
 					retorno = "registro-error";
 				}
 			}
-			super.setError("");
-			super
-					.setExito("Se a enviado un e-mail a su casilla de correo, lea el correo ver su clave.");
+			this.setError("");
+			this.setExito("Se a enviado un e-mail a su casilla "
+					+ "de correo, lea el correo ver su clave.");
 			retorno = "EnvioPassword";
 		} catch (Exception ex) {
-			super.setError(ex.getMessage());
+			this.setError(ex.getMessage());
 		}
 		return retorno;
 	}
 
-	public String Confirmar() {
+	public void validarContrasenia() {
+		try {
+			if (!this.getUsuario().get_password().equals(getActual())) {
+				this.setError("La contraseña actual que "
+						+ "ingreso no es correcta.");
+				this.setActual("");
+			} else {
+				this.setError("");
+			}
+		} catch (Exception ex) {
+			this.setError(ex.getMessage());
+		}
+	}
+
+	public void confirmacionIngreso() {
+		try {
+			if (this.getUsuario() != null) {
+				if (this.actual.equals(this.getUsuario().get_password())) {
+					if (this.contrasenia.equals(confirmacion)) {
+						if (!this.getUsuario().get_login().equalsIgnoreCase(
+								confirmacion)
+								|| !this.getUsuario().get_login()
+										.equalsIgnoreCase(contrasenia)) {
+							if (this.getUsuario().get_datos().get_mail()
+									.equalsIgnoreCase(confirmacion)
+									|| this.getUsuario().get_datos().get_mail()
+											.equalsIgnoreCase(contrasenia)) {
+								this
+										.setError("La contraseña nueva no puede ser "
+												+ "igual a su correo electrónico.");
+							}
+						} else {
+							this.setError("La contraseña nueva no puede ser "
+									+ "igual a su usuario de login.");
+						}
+					} else {
+						this.setError("Ingrese la contraseña nueva y "
+								+ "su confirmación iguales.");
+					}
+				} else {
+					this.setError("La contrasena actual ingresada "
+							+ "no corresponde.");
+				}
+			} else {
+				this.setError("");
+				this.setExito("Se a cambiado su contraseña correctamente.");
+			}
+		} catch (Exception ex) {
+			this.setError(ex.getMessage());
+		}
+	}
+
+	public String confirmar() {
 		String retorno = "";
+		try {
+			if (this.getUsuario() != null) {
+				if (this.actual.equals(this.getUsuario().get_password())) {
+					if (this.contrasenia.equals(confirmacion)) {
+						if (!this.getUsuario().get_login().equalsIgnoreCase(
+								confirmacion)
+								|| !this.getUsuario().get_login()
+										.equalsIgnoreCase(contrasenia)) {
+							if (!this.getUsuario().get_datos().get_mail()
+									.equalsIgnoreCase(confirmacion)
+									|| !this.getUsuario().get_datos()
+											.get_mail().equalsIgnoreCase(
+													contrasenia)) {
+								this.getUsuario().set_password(confirmacion);
+								this.getSegFachada(Servicio.Usuario)
+										.CambiarPassword(this.getUsuario());
+								retorno = "SEG001";
+								this.setUsuario(null);
+								this.setSesion(Usuario.class.toString(), null);
+							} else {
+								this
+										.setError("La contraseña nueva no puede ser "
+												+ "igual a su correo electrónico.");
+								this.setContrasenia("");
+								this.setConfirmacion("");
+							}
+						} else {
+							this.setError("La contraseña nueva no puede ser "
+									+ "igual a su usuario de login.");
+							this.setContrasenia("");
+							this.setConfirmacion("");
+						}
+					} else {
+						this.setError("Ingrese la contraseña nueva y "
+								+ "su confirmación iguales.");
+						this.setContrasenia("");
+						this.setConfirmacion("");
+					}
+				} else {
+					this.setError("La contrasena actual ingresada "
+							+ "no corresponde.");
+					this.setActual("");
+				}
+			} else {
+				this.setError("");
+				this.setExito("Se a cambiado su contraseña correctamente.");
+			}
+		} catch (Exception ex) {
+			this.setError(ex.getMessage());
+		}
 		return retorno;
 	}
 
@@ -170,7 +261,7 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 			t.close();
 
 		} catch (Exception ex) {
-			super.setError(ex.getMessage());
+			this.setError(ex.getMessage());
 		}
 		return true;
 	}
@@ -191,11 +282,11 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 					+ "</b></i></br><br>"
 					+ "<br><i><b>Muchas gracias por registrarse!</b></i></center><br></br><br></br><br></br>";
 
-			super.getComunFachada(Servicio.MailSender).enviarMailTextoPlano(
+			this.getComunFachada(Servicio.MailSender).enviarMailTextoPlano(
 					pUsuario.get_datos().get_mail(),
 					"INIA - MSCC Administración", body);
 		} catch (Exception ex) {
-			super.setError(ex.getMessage());
+			this.setError(ex.getMessage());
 		}
 		return true;
 	}

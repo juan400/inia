@@ -10,6 +10,8 @@ import com.bean.comun.MaestroBean;
 import com.inia_mscc.modulos.adm.entidades.Ciudad;
 import com.inia_mscc.modulos.adm.entidades.Departamento;
 import com.inia_mscc.modulos.adm.entidades.Pais;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.EstadoUsuario;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.Servicio;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
@@ -41,16 +43,46 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 	private Pais pais;
 	private Departamento depto;
 	private Ciudad ciudad;
-	private Date fecha = new Date();
 
 	public DatosUsuarioBean() throws Exception {
 		try {
-			this.setError("asdfad");
-			this.setUsuario((Usuario) this
-					.getSesion(Usuario.class.toString()));
+			this.setError("");
+			this.setExito("");
+			this.setUsuario((Usuario) this.getSesion(Usuario.class.toString()));
 			if (this.getUsuario() != null) {
+				pais = new Pais();
+				pais = this.getUsuario().get_datos().get_pais();
+				depto = new Departamento();
+				depto = this.getUsuario().get_datos().get_departamento();
+				ciudad = new Ciudad();
+				ciudad = this.getUsuario().get_datos().get_ciudad();
+
+				nombre = this.getUsuario().get_datos().get_nombre();
+				apellido = this.getUsuario().get_datos().get_apellido();
+				email = this.getUsuario().get_datos().get_mail();
+				direccion = this.getUsuario().get_datos().get_direccion();
+				telefono = this.getUsuario().get_datos().get_tele();
+				celular = this.getUsuario().get_datos().get_cel();
+
 				listPaises = this.getAdmFachada(Servicio.RelacionPCD)
 						.ObtenerPaises();
+				if (pais != null) {
+					listDepartamentos = this
+							.getAdmFachada(Servicio.RelacionPCD)
+							.ObtenerDepartamentosXPais(pais);
+					if (depto != null) {
+						listCiudades = this.getAdmFachada(Servicio.RelacionPCD)
+								.ObtenerCiudadesXDeptos(depto);
+					} else {
+						listCiudades = this.getAdmFachada(Servicio.RelacionPCD)
+								.ObtenerCiudades();
+					}
+				} else {
+					listDepartamentos = super.getAdmFachada(
+							Servicio.RelacionPCD).ObtenerDepartamentos();
+					listCiudades = super.getAdmFachada(Servicio.RelacionPCD)
+							.ObtenerCiudades();
+				}
 				paises = new SelectItem[listPaises.size() + 1];
 				paises[0] = new SelectItem(this
 						.getTextBundleKey("combo_seleccione"));
@@ -60,8 +92,6 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 					paises[i] = si;
 					i++;
 				}
-				listDepartamentos = this.getAdmFachada(Servicio.RelacionPCD)
-						.ObtenerDepartamentos();
 				departamentos = new SelectItem[listDepartamentos.size() + 1];
 				departamentos[0] = new SelectItem(this
 						.getTextBundleKey("combo_seleccione"));
@@ -71,8 +101,6 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 					departamentos[j] = si;
 					j++;
 				}
-				listCiudades = this.getAdmFachada(Servicio.RelacionPCD)
-						.ObtenerCiudades();
 				ciudades = new SelectItem[listCiudades.size() + 1];
 				ciudades[0] = new SelectItem(this
 						.getTextBundleKey("combo_seleccione"));
@@ -82,27 +110,31 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 					ciudades[l] = si;
 					l++;
 				}
-				paisElegido = paises[0].getValue().toString();
-				pais = new Pais();
-				pais= this.getUsuario().get_datos().get_pais();
-				departamentoElegido = departamentos[0].getValue().toString();
-				depto = new Departamento();
-				depto= this.getUsuario().get_datos().get_departamento();
-				ciudadElegido = ciudades[0].getValue().toString();
-				ciudad = new Ciudad();
-				ciudad = this.getUsuario().get_datos().get_ciudad();
-				nombre = this.getUsuario().get_datos().get_nombre();
-				apellido = this.getUsuario().get_datos().get_apellido();
-				email = this.getUsuario().get_datos().get_mail();
-				paisElegido = this.getUsuario().get_datos().get_pais()
-						.get_nombre();
-				departamentoElegido = this.getUsuario().get_datos()
-						.get_departamento().get_nombre();
-				ciudadElegido = this.getUsuario().get_datos().get_ciudad()
-						.get_nombre();
-				direccion = this.getUsuario().get_datos().get_direccion();
-				telefono = this.getUsuario().get_datos().get_tele();
-				celular = this.getUsuario().get_datos().get_cel();
+				if (this.getUsuario().get_datos().get_pais() != null) {
+					paisElegido = this.getUsuario().get_datos().get_pais()
+							.get_nombre();
+				}
+				if (this.getUsuario().get_datos().get_departamento() != null) {
+					departamentoElegido = this.getUsuario().get_datos()
+							.get_departamento().get_nombre();
+				}
+				if (this.getUsuario().get_datos().get_ciudad() != null) {
+					ciudadElegido = this.getUsuario().get_datos().get_ciudad()
+							.get_nombre();
+				}
+				if (paisElegido.isEmpty()) {
+					paisElegido = paises[0].getValue().toString();
+				}
+				if (departamentoElegido.isEmpty()) {
+					departamentoElegido = departamentos[0].getValue()
+							.toString();
+				}
+				if (ciudadElegido.isEmpty()) {
+					ciudadElegido = ciudades[0].getValue().toString();
+				}
+			} else {
+				this
+						.setError("Se a perdido la sesion de su usuario, vuelva a ingresar.");
 			}
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
@@ -111,12 +143,11 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 
 	public void takeSelectionEmail() {
 		try {
-			if (this.getUsuario().get_datos().get_mail().equals(email)) {
-				if (!this.getSegFachada(Servicio.Usuario)
-						.ComprobarEmail(email)) {
+			if (!this.getUsuario().get_datos().get_mail().equals(email)) {
+				if (!this.getSegFachada(Servicio.Usuario).ComprobarEmail(email)) {
 					this
 							.setError("El e-mail ingresado ya esta registrado en el sistema.");
-					this.email=this.getUsuario().get_datos().get_mail();
+					this.email = this.getUsuario().get_datos().get_mail();
 				} else {
 					this.setError("");
 				}
@@ -129,7 +160,7 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 	public void takeSelectionCiudad() {
 		try {
 			ciudad = new Ciudad();
-			ciudad.set_nombre(getDepartamentoElegido());
+			ciudad.set_nombre(getCiudadElegido());
 			ciudad = this.getAdmFachada(Servicio.RelacionPCD).ObtenerCiudad(
 					ciudad);
 		} catch (Exception ex) {
@@ -185,7 +216,7 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 	}
 
 	public String modificar() {
-		String retorno = "error";
+		String retorno = "";
 		try {
 			this.getUsuario().get_datos().set_nombre(nombre);
 			this.getUsuario().get_datos().set_apellido(apellido);
@@ -198,19 +229,39 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 			this.getUsuario().get_datos().set_tele(telefono);
 			this.getUsuario().get_datos().set_fechaRegistro(new Date());
 			this.getUsuario().get_datos().set_timeStamp(new Date());
-			this.getSegFachada(Servicio.Usuario).ActualizarDatos(
+			this.getSegFachada(Servicio.Usuario).ActualizarDatosUsuario(
 					this.getUsuario().get_datos());
 			if (this.getUsuario().get_datos() != null) {
 				this.setError("");
 				this.setExito("Se a modificado los datos de su cuenta.");
-				retorno = "ok";
-				MaestroBean.getInstance()
-						.setOpcion("/Servicios/SEG/SEG001.jsp");
+				retorno = "SEG001";
+				this.setUsuario(null);
+				this.setSesion(Usuario.class.toString(), null);
 			} else {
 				this
 						.setError("No ha sido posible registrar el usuario, revise los datos ingresados y intentelo nuevamente.");
-				MaestroBean.getInstance()
-						.setOpcion("/Servicios/SEG/SEG002.jsp");
+			}
+		} catch (Exception ex) {
+			this.setError(ex.getMessage());
+		}
+		return retorno;
+	}
+
+	public String baja() {
+		String retorno = "";
+		try {
+			this.getUsuario().set_estadoUsuario(EstadoUsuario.Inactivo);
+			this.getUsuario().get_datos().set_estado(Estado.Inactivo);
+			this.getSegFachada(Servicio.Usuario).DarBajaBloquearUsuario(this.getUsuario());
+			if (this.getUsuario().get_estadoUsuario().equals(
+					EstadoUsuario.Inactivo)) {
+				this.setError("");
+				this
+						.setExito("Se a inactivado su cuenta, de esta manera queda dado de baja.");
+				retorno = "ok";
+			} else {
+				this
+						.setError("No ha sido posible inactivar su cuenta, intentelo nuevamente.");
 			}
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
@@ -397,14 +448,6 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 
 	public void setCiudad(Ciudad ciudad) {
 		this.ciudad = ciudad;
-	}
-
-	public Date getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
 	}
 
 }
