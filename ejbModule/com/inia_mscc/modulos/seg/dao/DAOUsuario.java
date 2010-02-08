@@ -35,7 +35,8 @@ public class DAOUsuario implements Serializable {
 	 */
 	public void ActualizarUltimoAcceso(Usuario pUsuario) {
 		try {
-			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+			Session session = HibernateUtil.getSessionFactory()
+					.getCurrentSession();
 			session.update("Usuario", pUsuario);
 		} catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
@@ -53,7 +54,8 @@ public class DAOUsuario implements Serializable {
 			Perfil pPerfil, String pEmail, String pFrase) {
 		Usuario usuario = null;
 		try {
-			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+			Session session = HibernateUtil.getSessionFactory()
+					.getCurrentSession();
 			Criteria c = session.createCriteria(Usuario.class);
 			if (pLoginName != null) {
 				c.add(Restrictions.eq("_login", pLoginName));
@@ -98,7 +100,8 @@ public class DAOUsuario implements Serializable {
 	public boolean ComprobarEmail(String pEmail) {
 		boolean retorno = false;
 		try {
-			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+			Session session = HibernateUtil.getSessionFactory()
+					.getCurrentSession();
 			Criteria c = session.createCriteria(DatoUsuario.class);
 			retorno = c.add(Restrictions.eq("_mail", pEmail)).list().isEmpty();
 		} catch (StaleObjectStateException e) {
@@ -118,7 +121,8 @@ public class DAOUsuario implements Serializable {
 	public Usuario RegistrarUsuario(Usuario pUsuario) {
 		Usuario usuario = null;
 		try {
-			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+			Session session = HibernateUtil.getSessionFactory()
+					.getCurrentSession();
 			pUsuario.get_datos().set_id(
 					(Long) session.save("DatoUsuario", pUsuario.get_datos()));
 			Long id = (Long) session.save("Usuario", pUsuario);
@@ -140,7 +144,8 @@ public class DAOUsuario implements Serializable {
 	 */
 	public void ActualizarDatos(DatoUsuario pDatosUsuario) {
 		try {
-			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+			Session session = HibernateUtil.getSessionFactory()
+					.getCurrentSession();
 			session.update("DatoUsuario", pDatosUsuario);
 		} catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
@@ -156,7 +161,8 @@ public class DAOUsuario implements Serializable {
 	public Usuario ComprobarClaveReigstro(String pClave) {
 		Usuario retorno = null;
 		try {
-			Session session = HibernateUtil.getSessionFactory().getCurrentSession();			
+			Session session = HibernateUtil.getSessionFactory()
+					.getCurrentSession();
 			Criteria c = session.createCriteria(Usuario.class);
 			c.add(Restrictions.eq("_codigoActivacion", pClave));
 			retorno = (Usuario) c.uniqueResult();
@@ -175,7 +181,8 @@ public class DAOUsuario implements Serializable {
 	 */
 	public void CambiarPassword(Usuario pUsuario) {
 		try {
-			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+			Session session = HibernateUtil.getSessionFactory()
+					.getCurrentSession();
 			session.update(pUsuario);
 		} catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
@@ -198,7 +205,10 @@ public class DAOUsuario implements Serializable {
 			c.add(Restrictions.eq("_login", loginNombre));
 			c.add(Restrictions.eq("_password", password));
 			usuario = (Usuario) c.uniqueResult();
-			usuario.get_datos().get_perfil().get_transaccionesSistema().get(1);
+			if (usuario != null) {
+				usuario.get_datos().get_perfil().get_transaccionesSistema()
+						.get(1);
+			}
 		} catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
