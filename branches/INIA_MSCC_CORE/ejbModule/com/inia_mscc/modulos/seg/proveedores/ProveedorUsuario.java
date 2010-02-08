@@ -27,20 +27,20 @@ public class ProveedorUsuario implements ServicioUsuario {
 	}
 
 	@Override
-	public void ActualizarUltimoAcceso(Usuario pUsuario){
-		ejbUsuario.ActualizarUltimoAcceso(pUsuario);
+	public void ActualizarUltimoAccesoUsuario(Usuario pUsuario) {
+		ejbUsuario.ActualizarUltimoAccesoUsuario(pUsuario);
 	}
-	
+
 	@Override
-	public void ActualizarDatos(DatoUsuario pDatosUsuario) {
-		ejbUsuario.ActualizarDatos(pDatosUsuario);
-		
+	public void ActualizarDatosUsuario(DatoUsuario pDatosUsuario) {
+		ejbUsuario.ActualizarDatosUsuario(pDatosUsuario);
+
 	}
 
 	@Override
 	public void CambiarPassword(Usuario pUsuario) {
 		ejbUsuario.CambiarPassword(pUsuario);
-		
+
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class ProveedorUsuario implements ServicioUsuario {
 	public Usuario RegistrarUsuario(Usuario pUsuario) throws Exception {
 		return ejbUsuario.RegistrarUsuario(pUsuario);
 	}
-	
+
 	@Override
 	public Usuario Login(String pLogin, String pPassword) {
 		return ejbUsuario.Login(pLogin, pPassword);
@@ -66,6 +66,12 @@ public class ProveedorUsuario implements ServicioUsuario {
 	@Override
 	public Usuario ObtenerUsuarioXDatos(String pLoginName, Date pUltimoAcceso,
 			Perfil pPerfil, String pEmail, String pFrase) {
-		return ejbUsuario.ObtenerUsuarioXDatos(pLoginName, pUltimoAcceso, pPerfil, pEmail, pFrase);
+		return ejbUsuario.ObtenerUsuarioXDatos(pLoginName, pUltimoAcceso,
+				pPerfil, pEmail, pFrase);
+	}
+
+	@Override
+	public void DarBajaBloquearUsuario(Usuario pUsuario) {
+		ejbUsuario.DarBajaBloquearUsuario(pUsuario);
 	}
 }

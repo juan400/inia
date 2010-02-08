@@ -25,12 +25,12 @@ public class EJBUsuario implements ServicioUsuario {
 	private DAOUsuario dao = new DAOUsuario();
 
 	@Override
-	public void ActualizarUltimoAcceso(Usuario pUsuario){
+	public void ActualizarUltimoAccesoUsuario(Usuario pUsuario){
 		dao.ActualizarUltimoAcceso(pUsuario);
 	}
 	
 	@Override
-	public void ActualizarDatos(DatoUsuario pDatosUsuario) {
+	public void ActualizarDatosUsuario(DatoUsuario pDatosUsuario) {
 		dao.ActualizarDatos(pDatosUsuario);
 	}
 
@@ -72,6 +72,11 @@ public class EJBUsuario implements ServicioUsuario {
 	public Usuario ObtenerUsuarioXDatos(String pLoginName, Date pUltimoAcceso,
 			Perfil pPerfil, String pEmail, String pFrase) {
 		return dao.ObtenerUsuarioXDatos(pLoginName, pUltimoAcceso, pPerfil, pEmail, pFrase);
+	}
+
+	@Override
+	public void DarBajaBloquearUsuario(Usuario pUsuario) {
+		dao.DarBajaBloquearUsuario(pUsuario);
 	}
 	
 	

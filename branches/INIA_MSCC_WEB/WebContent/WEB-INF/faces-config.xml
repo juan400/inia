@@ -55,8 +55,7 @@
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
-			<from-action>#{panelMenu.updateCurrent}</from-action>
-			<from-outcome>navegar</from-outcome>
+			<from-outcome>cancelar</from-outcome>
 			<to-view-id>/Servicios/Contenido.jsp</to-view-id>
 			<redirect />
 		</navigation-case>
@@ -93,7 +92,7 @@
 		<navigation-case>
 			<from-action>#{menuBean.updateCurrent}</from-action>
 			<from-outcome>SEG007</from-outcome>
-			<to-view-id>/Servicios/SEG/SEG008.jsp</to-view-id>
+			<to-view-id>/Servicios/SEG/SEG007.jsp</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
@@ -351,6 +350,48 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
+		<from-view-id>/Servicios/SEG/SEG004.jsp</from-view-id>
+		<navigation-case>
+			<from-action>#{datosUsuarioBean.modificar}</from-action>
+			<from-outcome>ok</from-outcome>
+			<to-view-id>/Servicios/SEG/SEG004.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancelar</from-outcome>
+			<to-view-id>/Servicios/SEG/SEG001.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/Servicios/SEG/SEG005.jsp</from-view-id>
+		<navigation-case>
+			<from-action>#{datosUsuarioBean.baja}</from-action>
+			<from-outcome>ok</from-outcome>
+			<to-view-id>/Servicios/SEG/SEG001.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/Servicios/SEG/SEG006.jsp</from-view-id>
+		<navigation-case>
+			<from-action>#{recuperarContraseniaBean.enviarPassword}</from-action>
+			<from-outcome>enviar</from-outcome>
+			<to-view-id>/Servicios/SEG/SEG006.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancelar</from-outcome>
+			<to-view-id>/Servicios/SEG/SEG001.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/Servicios/SEG/SEG007.jsp</from-view-id>
+		<navigation-case>
+			<from-action>#{recuperarContraseniaBean.confirmar}</from-action>
+			<from-outcome>SEG001</from-outcome>
+			<to-view-id>/Servicios/SEG/SEG001.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
 		<from-view-id>/Servicios/Contenido.jsp</from-view-id>
 		<navigation-case>
 			<from-outcome>irLogin</from-outcome>
@@ -376,30 +417,6 @@
 			<from-outcome>EJE002</from-outcome>
 			<to-view-id>/Servicios/EJE/EJE001.jsp</to-view-id>
 			<redirect />
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<from-view-id>/Servicios/SEG/SEG004.jsp</from-view-id>
-		<navigation-case>
-			<from-outcome>ok</from-outcome>
-			<to-view-id>/Servicios/SEG/SEG004.jsp</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>cancelar</from-outcome>
-			<to-view-id>/Servicios/SEG/SEG001.jsp</to-view-id>
-			<redirect />
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<from-view-id>/Servicios/SEG/SEG006.jsp</from-view-id>
-		<navigation-case>
-			<from-outcome>EnvioPassword</from-outcome>
-			<to-view-id>/Servicios/SEG/SEG006.jsp</to-view-id>
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>cancelar</from-outcome>
-			<to-view-id>/Servicios/SEG/SEG001.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<application>

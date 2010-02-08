@@ -57,36 +57,33 @@ Secano.</title>
 											<h:panelGroup rendered="#{menuBean.init}" />
 											<rich:panelMenu binding="#{menuBean.panelMenu}" />
 										</h:column>
-										<h:column>
-											<h:panelGrid columns="2" width="480">
-						
-						aca va el contenido de la paigna
 
-					</h:panelGrid>
-											<center><h:panelGrid columns="2">
-												<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
-													styleClass="textoPlano" tabindex="3"
-													action="#{confirmacionBean.Confirmar}"
-													value="#{text.boton_Guardar}" />
-												<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
-													styleClass="textoPlano" tabindex="4" action="Cancelar"
-													value="#{text.boton_Cancelar}" />
-											</h:panelGrid></center>
+										<h:column>
 											<h:panelGrid>
-												<rich:messages styleClass="mensajeError">
-													<f:facet name="passedMarker">
-														<h:graphicImage
-															value="/Recursos/Imagenes/Iconos/passed.gif" />
-													</f:facet>
-													<f:facet name="errorMarker">
-														<h:graphicImage
-															value="/Recursos/Imagenes/Iconos/error.gif" />
-													</f:facet>
-												</rich:messages>
-												<h:outputText styleClass="mensajeError"
-													value="#{confirmacionBean.error}" />
-												<h:outputText styleClass="textoPlano"
-													value="#{confirmacionBean.exito}" />
+												<h:panelGrid columns="2" width="480">
+													<center><h:graphicImage
+														url="/Recursos/Imagenes/logoINIA.gif" /></center>
+												</h:panelGrid>
+												<center><h:panelGrid columns="2">
+													<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
+														styleClass="textoPlano" tabindex="3" action="EJE001"
+														value="Ejecutar MSCC" />
+													<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
+														styleClass="textoPlano" tabindex="4" action="EJE003"
+														value="Ver Historico" />
+												</h:panelGrid></center>
+												<f:facet name="footer">
+													<h:panelGrid>
+														<rich:messages styleClass="mensajeError">
+															<f:facet name="errorMarker">
+																<h:graphicImage
+																	value="/Recursos/Imagenes/Iconos/error.gif" />
+															</f:facet>
+														</rich:messages>
+														<h:outputText styleClass="textoPlano"
+															value="#{maestroBean.exito}" />
+													</h:panelGrid>
+												</f:facet>
 											</h:panelGrid>
 										</h:column>
 									</h:panelGrid>

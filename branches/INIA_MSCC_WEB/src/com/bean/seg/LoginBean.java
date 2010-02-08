@@ -22,9 +22,9 @@ public class LoginBean extends MaestroBean implements Serializable {
 	}
 
 	public String olvidoContrasenia() {
-		super.setLogged(true);
-		super.setUsuario(null);
-		super.limpiarSesion();
+		this.setLogged(true);
+		this.setUsuario(null);
+		this.limpiarSesion();
 		error = "";
 		return "login-olvido";
 	}
@@ -34,48 +34,55 @@ public class LoginBean extends MaestroBean implements Serializable {
 		Usuario u = null;
 		try {
 
-			u = super.getSegFachada(Servicio.Usuario).Login(loginName,
-					password);
+			u = this.getSegFachada(Servicio.Usuario)
+					.Login(loginName, password);
 			if (u != null) {
 				if (u.is_activado()) {
-					if (u.get_estadoUsuario().equals(EstadoUsuario.Activo)) {
-						super.setLogged(true);
-						super.setUsuario(u);
-						Date fecha = u.get_ultimoAcceso();
-						u.set_ultimoAcceso(new Date());
-						super.getSegFachada(Servicio.Usuario)
-								.ActualizarUltimoAcceso(u);
-						u.set_ultimoAcceso(fecha);
-						super.setSesion(Usuario.class.toString(), u);
-						super.setError("");
-						mensaje = "login-ok";
+					if (!u.get_estadoUsuario().equals(EstadoUsuario.Inactivo)) {
+						if (u.get_estadoUsuario().equals(EstadoUsuario.Activo)) {
+							this.setLogged(true);
+							this.setUsuario(u);
+							Date fecha = u.get_ultimoAcceso();
+							u.set_ultimoAcceso(new Date());
+							this.getSegFachada(Servicio.Usuario)
+									.ActualizarUltimoAccesoUsuario(u);
+							u.set_ultimoAcceso(fecha);
+							this.setSesion(Usuario.class.toString(), u);
+							this.setError("");
+							mensaje = "login-ok";
+						} else {
+							this
+									.setError(u.get_datos().get_nombre()
+											+ " su cuenta esta "
+											+ u.get_estadoUsuario().toString()
+													.toLowerCase()
+											+ " aún, recuerde chequear su correo, se le a enviado un e-mail para concluir con el registro.");
+							mensaje = "";// "login-error";
+						}
 					} else {
-						super
+						this
 								.setError(u.get_datos().get_nombre()
-										+ " su cuenta esta "
-										+ u.get_estadoUsuario().toString()
-												.toLowerCase()
-										+ " aún, recuerde chequear su correo, se le a enviado un e-mail para concluir con el registro.");
-						mensaje = "";//"login-error";
+										+ " su cuenta esta a sido inactivada.");
+						mensaje = "";// "login-error";
 					}
 				} else {
-					super
+					this
 							.setError(u.get_datos().get_nombre()
 									+ " su cuenta no esta activa aún, recuerde chequear su correo, se le a enviado un e-mail para concluir con el registro.");
-					mensaje = "";//"login-error";
+					mensaje = "";// "login-error";
 				}
 			} else {
 				this
 						.addGlobalMessage("El nombre de usuario o password no conciden");
 				intentos++;
 				if (intentos == 5) {
-					super
+					this
 							.setError("Este es el quinto intento en logearse, por favor verifique sus datos e intente nuevamente.");
 					intentos = 0;
-//					u.set_estadoUsuario(EstadoUsuario.Bloqueado);
-//					super.getSegFachada(Servicio.Usuario).CambiarPassword(u);
+					// u.set_estadoUsuario(EstadoUsuario.Bloqueado);
+					// this.getSegFachada(Servicio.Usuario).CambiarPassword(u);
 				}
-				mensaje = "";//"login-error";
+				mensaje = "";// "login-error";
 			}
 		} catch (Exception ex) {
 			this.addGlobalMessage(ex.getMessage());
@@ -85,15 +92,15 @@ public class LoginBean extends MaestroBean implements Serializable {
 
 	public String logout() {
 		try {
-			super.setLogged(false);
-			super.setUsuario(null);
-			super.setOpcion("/Servicios/SEG/SEG001.jsp");
-			super.removerSesion(Usuario.class.toString());
+			this.setLogged(false);
+			this.setUsuario(null);
+			this.setOpcion("/Servicios/SEG/SEG001.jsp");
+			this.removerSesion(Usuario.class.toString());
 			error = "";
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
 		} finally {
-			super.limpiarSesion();
+			this.limpiarSesion();
 		}
 		return "logout";
 	}
