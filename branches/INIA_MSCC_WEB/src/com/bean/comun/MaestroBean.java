@@ -38,6 +38,7 @@ public class MaestroBean implements Serializable {
 	private static final String PATH_Mensajes = "com.bean.comun.mensajes.Messages";
 	private static final String PATH_Texto = "com.bean.text";
 
+	
 	/**
 	 * Add a message
 	 * 
@@ -45,34 +46,27 @@ public class MaestroBean implements Serializable {
 	 * @param bundle
 	 * @param mySeverity
 	 */
-	protected void addGlobalMessage(String key, Severity mySeverity) {
-		String message = getTextBundleKey(key);
-		addGlobalMessageFromString(message, mySeverity);
-	}
+	protected void addGlobalMessage(String myBundle, String key,
+			Severity mySeverity) {
+		// Agrego los mensajes correspondientes al resultado de la operacion.
+		ResourceBundle bundle = ResourceBundle.getBundle(myBundle,
+				getFacesContext().getExternalContext().getRequestLocale());
+		String message = bundle.getString(key);
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(mySeverity, message, message));
 
+	}
+	
 	/**
 	 * Add a message
 	 * 
-	 * @param message
+	 * @param key
+	 * @param bundle
 	 * @param mySeverity
 	 */
-	protected void addGlobalMessageFromString(String message,
-			Severity mySeverity) {
+	protected void addGlobalMessage( String miMensaje) {
 		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(mySeverity, message, message));
-	}
-
-	/**
-	 * Search for the value of a given key in the application loaded bundle
-	 * 
-	 * @param key
-	 * @return the description for the key
-	 * 
-	 */
-	protected String getMensajesBundleKey(String key) {
-		ResourceBundle bundle = ResourceBundle.getBundle(PATH_Mensajes,
-				getFacesContext().getExternalContext().getRequestLocale());
-		return bundle.getString(key);
+				new FacesMessage(miMensaje));
 	}
 
 	/**
@@ -168,17 +162,17 @@ public class MaestroBean implements Serializable {
 	public Locale getLocale() {
 		return getFacesContext().getExternalContext().getRequestLocale();
 	}
-
-	/**
-	 * Gets the error Business Error Messages Localized for the Base Back Bean
-	 * 
-	 * @param be
-	 * @return
-	 * @MCUnnn
-	 */
-	public String getErrorMessage(String be) {
-		return getMensajesBundleKey(be);
-	}
+//
+//	/**
+//	 * Gets the error Business Error Messages Localized for the Base Back Bean
+//	 * 
+//	 * @param be
+//	 * @return
+//	 * @MCUnnn
+//	 */
+//	public String getErrorMessage(String be) {
+//		return getMensajesBundleKey(be);
+//	}
 
 	public void setActivado(boolean activado) {
 		this.activado = activado;
@@ -268,7 +262,7 @@ public class MaestroBean implements Serializable {
 	}
 
 	public void setError(String error) {
-		this.error = error;
+		this.addGlobalMessage(error);
 	}
 
 }

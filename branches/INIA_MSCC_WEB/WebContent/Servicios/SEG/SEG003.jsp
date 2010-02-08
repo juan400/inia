@@ -62,9 +62,8 @@ Secano.</title>
 										<h:outputText value="#{text.registro_Contrasenia}"
 											styleClass="textoPlano" />
 										<h:inputSecret id="txtContrasenia"
-											label="Debe ingresar Contraseña"
 											value="#{confirmacionBean.contrasenia}" required="true"
-											requiredMessage="Debe ingresar Contraseña"
+											requiredMessage="Debe ingresar su contraseña"
 											onkeypress="ValidarCampoLogin(this, event)"
 											styleClass="textoPlano" tabindex="1" maxlength="13">
 											<f:validateLength minimum="6" maximum="13" />
@@ -73,7 +72,6 @@ Secano.</title>
 										<h:outputText value="#{text.registro_ConfirmacionContrasenia}"
 											styleClass="textoPlano" />
 										<h:inputSecret id="txtConfirmarContrasenia"
-											label="Debe ingresar confirmación de contraseña"
 											value="#{confirmacionBean.confirmacion}" required="true"
 											onkeypress="ValidarCampoLogin(this, event)"
 											requiredMessage="Debe ingresar confirmación de contraseña"
@@ -84,7 +82,6 @@ Secano.</title>
 										<h:outputText value="#{text.registro_Frase}"
 											styleClass="textoPlano" />
 										<h:inputText id="txtfrase" value="#{confirmacionBean.frase}"
-											label="Debe ingresar una frase secreta"
 											styleClass="textoPlano" tabindex="3" required="true"
 											onkeypress="ValidarCampoLetras(this,event)"
 											requiredMessage="Debe ingresar frase secreta">
@@ -101,20 +98,18 @@ Secano.</title>
 											styleClass="textoPlano" tabindex="4" action="Cancelar" immediate="true"
 											value="#{text.boton_Cancelar}" />
 									</h:panelGrid>
-									<h:panelGrid>
-										<rich:messages styleClass="mensajeError">
-											<f:facet name="passedMarker">
-												<h:graphicImage value="/Recursos/Imagenes/Iconos/passed.gif" />
-											</f:facet>
-											<f:facet name="errorMarker">
-												<h:graphicImage value="/Recursos/Imagenes/Iconos/error.gif" />
-											</f:facet>
-										</rich:messages>
-										<h:outputText styleClass="mensajeError"
-											value="#{confirmacionBean.error}" />
-										<h:outputText styleClass="textoPlano"
-											value="#{confirmacionBean.exito}" />
-									</h:panelGrid>
+									<f:facet name="footer">
+											<h:panelGrid>
+												<rich:messages styleClass="mensajeError">
+													<f:facet name="errorMarker">
+														<h:graphicImage
+															value="/Recursos/Imagenes/Iconos/error.gif" />
+													</f:facet>
+												</rich:messages>
+												<h:outputText styleClass="textoPlano"
+													value="#{confirmacionBean.exito}"/>
+											</h:panelGrid>
+										</f:facet>
 								</h:panelGroup>
 							</rich:panel>
 						</h:panelGrid>

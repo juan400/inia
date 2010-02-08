@@ -45,7 +45,8 @@ public class MenuBean extends MaestroBean implements Serializable {
 
 	public MenuBean() {
 		singleMode = true;
-		current = "/Servicios/Precentacion.jsp";
+		current = "/Servicios/Contenedora.jsp";
+//		current = "/Servicios/Precentacion.jsp";
 		panelMenu = new HtmlPanelMenu();
 		panelMenu.setStyleClass("menu");
 		panelMenu.setStyle("width:200px");
@@ -152,7 +153,7 @@ public class MenuBean extends MaestroBean implements Serializable {
 		menuItem.setLabel(pTransa.get_descripcionBase());
 		menuItem.setStyleClass("textoMenuSecundario");
 		menuItem.setImmediate(true);
-		menuItem.setReRender("contenido");
+//		menuItem.setReRender("contenido");
 		MethodExpression me = FacesContext.getCurrentInstance()
 				.getApplication().getExpressionFactory()
 				.createMethodExpression(
