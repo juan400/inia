@@ -46,4 +46,9 @@ public class EJBPerfil implements ServicioPerfil {
 		dao.EliminarPerfil(pPerfil);
 	}
 
+	@Override
+	public Perfil ObtenerPerfilConTransAsociadas(Perfil pPerfil) {
+		return dao.ObtenerPerfilConTransAcosiadas(pPerfil);
+	}
+
 }
