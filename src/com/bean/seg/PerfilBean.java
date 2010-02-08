@@ -27,14 +27,8 @@ public class PerfilBean extends MaestroBean implements Serializable {
 	private Perfil perfil = new Perfil();
 	private List<Transaccion> transacciones;
 
-	private String guardar() {
-
-		return null;
-	}
-
-	public String eliminar() throws Exception {
-		String retorno = "eliminado";
-
+	public String eliminar() {
+		String retorno = "";
 		try {
 			Map paramMap = FacesContext.getCurrentInstance()
 					.getExternalContext().getRequestParameterMap();
@@ -47,18 +41,20 @@ public class PerfilBean extends MaestroBean implements Serializable {
 					nombre = perfil.get_nombre();
 					descripcion = perfil.get_descripcion();
 					estado = perfil.get_estado().toString();
-					perfil.set_transaccionesSistema(new ArrayList<Transaccion>());
+					perfil
+							.set_transaccionesSistema(new ArrayList<Transaccion>());
 				}
 			}
 			this.getSegFachada(Servicio.Perfil).EliminarPerfil(perfil);
+			retorno = "eliminado";
 		} catch (Exception ex) {
-			this
-					.setError("Se ha producido un error, por favor intente nuevamente.");
+			this.setError(ex.getMessage());
+		} catch (Throwable e) {
+			this.setError(e.getMessage());
 		}
 		return retorno;
 	}
 
-	@SuppressWarnings("unchecked")
 	public String verConsulta() {
 		Map paramMap = FacesContext.getCurrentInstance().getExternalContext()
 				.getRequestParameterMap();
@@ -66,17 +62,18 @@ public class PerfilBean extends MaestroBean implements Serializable {
 		Iterator<Perfil> it = perfiles.iterator();
 		while (it.hasNext()) {
 			Perfil perfilSeleccionado = (Perfil) it.next();
-			if (perfilSeleccionado.get_id() == (long)Long
+			if (perfilSeleccionado.get_id() == (long) Long
 					.parseLong(consultaElegida)) {
 				perfil = perfilSeleccionado;
 				perfil = this.getSegFachada(Servicio.Perfil)
-				.ObtenerPerfilConTransAsociadas(perfilSeleccionado);
+						.ObtenerPerfilConTransAsociadas(perfilSeleccionado);
 				nombre = perfil.get_nombre();
 				descripcion = perfil.get_descripcion();
 				estado = perfil.get_estado().toString();
 				for (Transaccion transa : transacciones) {
-					for (Transaccion transaPerfil : perfil.get_transaccionesSistema()) {
-						if(transa.get_id()==transaPerfil.get_id()){
+					for (Transaccion transaPerfil : perfil
+							.get_transaccionesSistema()) {
+						if (transa.get_id() == transaPerfil.get_id()) {
 							transa.set_asociada(true);
 							break;
 						}
@@ -85,11 +82,6 @@ public class PerfilBean extends MaestroBean implements Serializable {
 			}
 		}
 		return "desplegarResultados";
-	}
-
-	public boolean isEdicion() {
-
-		return false;
 	}
 
 	public PerfilBean() {
@@ -105,16 +97,11 @@ public class PerfilBean extends MaestroBean implements Serializable {
 	}
 
 	public boolean isInit() {
-		boolean retorno = false;
 		this.LimpiarBean();
 		this.perfiles = this.getSegFachada(Servicio.Perfil).ObtenerPerfiles();
 		this.transacciones = this.getAdmFachada(Servicio.Transaccion)
 				.ObtenerTransacciones();
-		return retorno;
-	}
-
-	public boolean isLogged() {
-		return MaestroBean.getInstance().isLogged();
+		return false;
 	}
 
 	public String actualizar() throws Exception {
@@ -195,10 +182,9 @@ public class PerfilBean extends MaestroBean implements Serializable {
 	}
 
 	private void LimpiarBean() {
-		nombre = null;
-		descripcion = null;
-		estado = null;
-		perfiles = null;
+		nombre = "";
+		descripcion = "";
+		estado = "";
 	}
 
 	public String getNombre() {
