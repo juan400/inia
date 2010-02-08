@@ -6,13 +6,17 @@ import java.util.List;
 import com.inia_mscc.modulos.adm.entidades.Ciudad;
 import com.inia_mscc.modulos.adm.entidades.Departamento;
 import com.inia_mscc.modulos.adm.entidades.Pais;
+import com.inia_mscc.modulos.adm.entidades.Transaccion;
 import com.inia_mscc.modulos.adm.proveedores.ProveedorRelacionPCD;
+import com.inia_mscc.modulos.adm.proveedores.ProveedorTransaccion;
 import com.inia_mscc.modulos.adm.servicios.ServicioRelacionPCD;
+import com.inia_mscc.modulos.adm.servicios.ServicioTransaccion;
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
 
 public class ADMFachada {
 
 	private ServicioRelacionPCD srvRelacionPCD;
+	private ServicioTransaccion srvTransaccion;
 	
 	public ADMFachada(Enumerados.Servicio servicio) {
 		try {
@@ -20,6 +24,9 @@ public class ADMFachada {
 			case RelacionPCD:
 				srvRelacionPCD = new ProveedorRelacionPCD();
 				break;
+			case Transaccion:
+				srvTransaccion = new ProveedorTransaccion();
+				break;	
 			}
 
 		} catch (IOException e) {
@@ -59,4 +66,11 @@ public class ADMFachada {
 		return srvRelacionPCD.ObtenerCiudadesXDeptos(unDepto);
 	}
 	
+	public List<Transaccion> ObtenerTransacciones() {
+		return srvTransaccion.ObtenerTransacciones();
+	}
+	
+	public void ActualizarTransaccion(Transaccion pTransaccion) {
+		srvTransaccion.ActualizarTransaccion(pTransaccion);
+	}
 }

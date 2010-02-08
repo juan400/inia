@@ -109,6 +109,7 @@ td.contenido {
 	font-size: 10pt;
 	color: #2d77c2;
 }
+
 .textoMenuSecundario {
 	font-family: verdana;
 	font-size: 9pt;
@@ -129,6 +130,19 @@ a.textoPlano:hover {
 	font-family: verdana;
 	color: #000000;
 	font-size: 11pt;
+}
+
+.textoPanelGrip1 {
+	font-family: verdana;
+	color: #000000;
+	font-size: 11pt;
+}
+
+.textoPanelGrip {
+	font-family: verdana;
+	color: #000000;
+	font-size: 11pt;
+	text-align: right;
 }
 
 .mensajeError {

@@ -45,8 +45,9 @@ Secano.</title>
 							</h:panelGrid></center>
 							<br></br>
 
-							<h:panelGrid columns="2"
-								columnClasses="textoPlano,textoDataTable">
+							<h:panelGrid columns="2" width="400px"
+								columnClasses="textoPanelGrid1,textoPanelGrid">
+
 								<h:outputText value="#{text.perfil_Nombre}" />
 								<h:inputText label="Name" id="name" required="true"
 									requiredMessage="Debe ingresar el Nombre."
@@ -64,23 +65,51 @@ Secano.</title>
 									style=" width : 245px; height : 71px;" />
 
 								<h:outputText value="#{text.perfil_Estado}" />
-								<rich:comboBox styleClass="textoDataTable"
+								<rich:comboBox styleClass="textoPanelGrid"
 									value="#{perfilBean.estado}" width="245px">
 									<f:selectItem itemValue="Activo" />
 									<f:selectItem itemValue="Inactivo" />
 								</rich:comboBox>
-
-								<td style="width: 2px;"></td>
-								<h:outputText value="" />
-								<br></br>
-
+								<td></td>
 							</h:panelGrid>
-							
-							
-							
-							
-							<center>
-							<h:panelGrid columns="2">
+
+							<center><rich:dataTable border="2" width="400px" id="tablaTransaccion"
+								rows="6" styleClass="textoDataTable"
+								value="#{perfilBean.transacciones}" var="transaccion"
+								rowKeyVar="row" headerClass="columnHeader"
+								rowClasses="oddRow,evenRow">
+								<f:facet name="header">
+									<h:outputText value="Transacciones" />
+								</f:facet>
+
+								<rich:column width="20">
+									<h:selectBooleanCheckbox value="#{transaccion._asociada}"
+										id="codigo">
+									</h:selectBooleanCheckbox>
+								</rich:column>
+
+								<rich:column width="300">
+									<f:facet name="header">
+										<h:outputText value="Descripción" />
+									</f:facet>
+									<h:outputText value="#{transaccion._descripcion}"
+										id="descripcion" />
+								</rich:column>
+
+								<rich:column width="80">
+									<f:facet name="header">
+										<h:outputText value="Estado" />
+									</f:facet>
+									<h:outputText value="#{transaccion._estado}" id="estado" />
+								</rich:column>
+
+								<f:facet name="footer">
+									<rich:datascroller renderIfSinglePage="false" maxPages="5" />
+								</f:facet>
+							</rich:dataTable></center>
+							<br></br>
+
+							<center><h:panelGrid columns="2">
 								<a4j:commandButton
 									style="font-size: 10pt; color: #2d77c2; width : 71px;"
 									styleClass="textoPlano" action="#{perfilBean.registrar}"
@@ -89,8 +118,7 @@ Secano.</title>
 									style="font-size: 10pt; color: #2d77c2; width : 71px;"
 									styleClass="textoPlano" action="cancelar"
 									value="#{text.boton_Cancelar}" />
-							</h:panelGrid>
-							</center>
+							</h:panelGrid></center>
 							<center><h:panelGrid columns="1">
 								<f:facet name="footer">
 									<h:outputText value="#{perfilBean.error}"
@@ -104,7 +132,6 @@ Secano.</title>
 									<h:graphicImage value="/Recursos/Imagenes/Iconos/error.gif" />
 								</f:facet>
 							</rich:message></center>
-
 						</rich:panel>
 					</h:panelGrid>
 				</tr>

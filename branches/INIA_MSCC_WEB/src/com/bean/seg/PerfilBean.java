@@ -1,6 +1,7 @@
 package com.bean.seg;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -26,8 +27,24 @@ public class PerfilBean extends MaestroBean implements Serializable {
 	private Perfil perfil = new Perfil();
 	private List<Transaccion> transacciones;
 
+	private String guardar() {
+		
+	
+		
+		
+		return null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void asociarTransaccion() {
+		Map paramMap = FacesContext.getCurrentInstance().getExternalContext()
+				.getRequestParameterMap();
+		String transaccionElegida = (String) paramMap.get("transaccionElegida");
+
+	}
+
 	public String eliminar() throws Exception {
-		String retorno = null;
+		String retorno = "eliminado";
 
 		try {
 			Map paramMap = FacesContext.getCurrentInstance()
@@ -45,7 +62,8 @@ public class PerfilBean extends MaestroBean implements Serializable {
 			}
 			super.getSegFachada(Servicio.Perfil).EliminarPerfil(perfil);
 		} catch (Exception ex) {
-			super.setError("Se ha producido un error, por favor intente nuevamente.");
+			super
+					.setError("Se ha producido un error, por favor intente nuevamente.");
 		}
 		return retorno;
 	}
@@ -101,11 +119,19 @@ public class PerfilBean extends MaestroBean implements Serializable {
 		return retorno;
 	}
 
-	public String registrar() throws Exception {
-
+	public String registrar() throws Exception {	
 		String retorno = "";
 		try {
+			ArrayList<Transaccion> asociadas = new ArrayList<Transaccion>();
+			for (Iterator iterator = transacciones.iterator(); iterator.hasNext();) {
+				Transaccion transaccion = (Transaccion) iterator.next();
+				if(transaccion.get_asociada()){
+					 asociadas.add(transaccion);
+				 }
+			} 
+			List<Transaccion> lista = asociadas;
 			Perfil datosPerfil = new Perfil();
+			datosPerfil.set_transaccionesSistema(lista);
 			datosPerfil.set_nombre(nombre);
 			datosPerfil.set_descripcion(descripcion);
 			datosPerfil.set_estado(Enumerados.Estado.valueOf(estado));
@@ -204,4 +230,6 @@ public class PerfilBean extends MaestroBean implements Serializable {
 	public List<Transaccion> getTransacciones() {
 		return transacciones;
 	}
+
+
 }
