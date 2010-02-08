@@ -42,14 +42,15 @@ public class EJBPerfil implements ServicioPerfil {
 	}
 
 	@Override
-	public void EliminarPerfil(Perfil pPerfil) throws Throwable {
+	public String EliminarPerfil(Perfil pPerfil) {
 		if (!dao.ComprobarPerfilEnUso(pPerfil)) {
 			dao.EliminarPerfil(pPerfil);
 		} else {
-			throw new Exception("No es pocible eliminar este perfil,"
+			return "No es pocible eliminar este perfil,"
 					+ " actualmente esta siendo usado por uno o más "
-					+ "usuario en el sistema.");
+					+ "usuario en el sistema.";
 		}
+		return "";
 	}
 
 	@Override
