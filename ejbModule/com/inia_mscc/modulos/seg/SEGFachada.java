@@ -33,8 +33,8 @@ public class SEGFachada {
 		}
 	}
 	
-	public void ActualizarUltimoAcceso(Usuario pUsuario){
-		srvUsuario.ActualizarUltimoAcceso(pUsuario);
+	public void ActualizarUltimoAccesoUsuario(Usuario pUsuario){
+		srvUsuario.ActualizarUltimoAccesoUsuario(pUsuario);
 	}
 	
 	public Usuario ObtenerUsuarioXDatos(String pLoginName, Date pUltimoAcceso,
@@ -42,8 +42,8 @@ public class SEGFachada {
 		return srvUsuario.ObtenerUsuarioXDatos(pLoginName, pUltimoAcceso, pPerfil, pEmail, pFrase);
 	}
 	
-	public void ActualizarDatos(DatoUsuario pDatosUsuario) {
-		srvUsuario.ActualizarDatos(pDatosUsuario);
+	public void ActualizarDatosUsuario(DatoUsuario pDatosUsuario) {
+		srvUsuario.ActualizarDatosUsuario(pDatosUsuario);
 	}
 
 	public void CambiarPassword(Usuario pUsuario) {
@@ -85,4 +85,9 @@ public class SEGFachada {
 	public Perfil ComprobarPerfil(Perfil pPerfil){
 		return srvPerfil.ComprobarPerfil(pPerfil);
 	}
+	
+	public void DarBajaBloquearUsuario(Usuario pUsuario) {
+		srvUsuario.DarBajaBloquearUsuario(pUsuario);
+	}
+	
 }
