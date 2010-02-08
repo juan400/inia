@@ -28,13 +28,10 @@ public class PerfilBean extends MaestroBean implements Serializable {
 	private List<Transaccion> transacciones;
 
 	private String guardar() {
-		
-	
-		
-		
+
 		return null;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public void asociarTransaccion() {
 		Map paramMap = FacesContext.getCurrentInstance().getExternalContext()
@@ -119,16 +116,18 @@ public class PerfilBean extends MaestroBean implements Serializable {
 		return retorno;
 	}
 
-	public String registrar() throws Exception {	
+	public String registrar() throws Exception {
 		String retorno = "";
 		try {
-			ArrayList<Transaccion> asociadas = new ArrayList<Transaccion>();
-			for (Iterator iterator = transacciones.iterator(); iterator.hasNext();) {
-				Transaccion transaccion = (Transaccion) iterator.next();
-				if(transaccion.get_asociada()){
-					 asociadas.add(transaccion);
-				 }
-			} 
+			List<Transaccion> asociadas = new ArrayList<Transaccion>();
+			for (int i = 0; i < transacciones.toArray().length; i++) {
+				Transaccion transaccion = (Transaccion) transacciones.toArray()[i];
+				if (transaccion != null) {
+					if (transaccion.get_asociada()) {
+						asociadas.add(transaccion);
+					}
+				}
+			}
 			List<Transaccion> lista = asociadas;
 			Perfil datosPerfil = new Perfil();
 			datosPerfil.set_transaccionesSistema(lista);
@@ -230,6 +229,5 @@ public class PerfilBean extends MaestroBean implements Serializable {
 	public List<Transaccion> getTransacciones() {
 		return transacciones;
 	}
-
 
 }
