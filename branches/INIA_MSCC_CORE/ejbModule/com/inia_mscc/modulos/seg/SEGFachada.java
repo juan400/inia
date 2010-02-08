@@ -90,4 +90,8 @@ public class SEGFachada {
 		srvUsuario.DarBajaBloquearUsuario(pUsuario);
 	}
 	
+	public Perfil ObtenerPerfilConTransAsociadas(Perfil pPerfil) {
+		return srvPerfil.ObtenerPerfilConTransAsociadas(pPerfil);
+	}
+	
 }

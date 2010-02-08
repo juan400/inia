@@ -16,4 +16,6 @@ public interface ServicioPerfil {
 
 	public void EliminarPerfil(Perfil pPerfil);
 	
+	public Perfil ObtenerPerfilConTransAsociadas(Perfil pPerfil);
+	
 }
