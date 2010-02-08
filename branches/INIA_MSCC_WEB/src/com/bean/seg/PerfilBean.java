@@ -45,12 +45,15 @@ public class PerfilBean extends MaestroBean implements Serializable {
 							.set_transaccionesSistema(new ArrayList<Transaccion>());
 				}
 			}
-			this.getSegFachada(Servicio.Perfil).EliminarPerfil(perfil);
-			retorno = "eliminado";
+			if (this.getSegFachada(Servicio.Perfil).EliminarPerfil(perfil).isEmpty()){
+				this.setExito("Se ha eliminado exitosamente el perfil.");
+				retorno = "eliminado";				
+			}else{
+				this.setError("No se puedo eliminar el perfil, porque " +
+				"esta asignado en uno o mas usuarios del sistema.");				
+			}
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
-		} catch (Throwable e) {
-			this.setError(e.getMessage());
 		}
 		return retorno;
 	}
