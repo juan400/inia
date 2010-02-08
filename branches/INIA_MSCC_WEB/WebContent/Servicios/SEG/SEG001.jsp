@@ -52,15 +52,16 @@ Secano.</title>
 										<h:outputText value="#{text.login_userName}"
 											styleClass="textoPlano" />
 										<h:inputText value="#{loginBean.loginName}"
-											styleClass="textoPlano" tabindex="1" required="true" requiredMessage="Debe ingresar su nombre de usuario"
-											onkeypress="validarEmailKeyPress(this, event)" />
+											styleClass="textoPlano" tabindex="1" required="true"
+											requiredMessage="Debe ingresar su nombre de usuario"
+											onkeypress="ValidarCampoUsuarioLogin(this, event)"/>
 
 										<h:outputText value="#{text.login_password}"
 											styleClass="textoPlano" />
 										<h:inputSecret value="#{loginBean.password}"
-											styleClass="textoPlano" tabindex="2"  required="true" requiredMessage="Debe ingresar su contraseña"
-											onblur="ValidarCampoLogin(this, event)"
-											onkeypress="ValidarCampoLogin(this, event)" />
+											styleClass="textoPlano" tabindex="2" required="true"
+											requiredMessage="Debe ingresar su contraseña" maxlength="13">
+										</h:inputSecret>
 
 										<h:outputText value="" />
 										<h:panelGrid columns="2">
@@ -72,30 +73,26 @@ Secano.</title>
 												action="#{loginBean.registrarse}" immediate="true"
 												value="#{text.login_register}" />
 										</h:panelGrid>
-										<f:facet name="footer">
-											<h:panelGrid>
-												<rich:messages styleClass="mensajeError">
-													<f:facet name="passedMarker">
-														<h:graphicImage
-															value="/Recursos/Imagenes/Iconos/passed.gif" />
-													</f:facet>
-													<f:facet name="errorMarker">
-														<h:graphicImage
-															value="/Recursos/Imagenes/Iconos/error.gif" />
-													</f:facet>
-												</rich:messages>
-												<h:outputText styleClass="mensajeError"
-													value="#{loginBean.error}" />
-												<h:outputText styleClass="textoPlano"
-													value="#{loginBean.exito}" />
-											</h:panelGrid>
-										</f:facet>
+
 										<h:outputText value="" />
 										<h:panelGrid columns="2">
 											<a4j:commandLink action="#{loginBean.olvidoContrasenia}"
 												immediate="true" value="#{text.login_forgotPassword}" />
 
 										</h:panelGrid>
+
+										<f:facet name="footer">
+											<h:panelGrid>
+												<rich:messages styleClass="mensajeError">
+													<f:facet name="errorMarker">
+														<h:graphicImage
+															value="/Recursos/Imagenes/Iconos/error.gif" />
+													</f:facet>
+												</rich:messages>
+												<h:outputText styleClass="textoPlano"
+													value="#{loginBean.exito}"/>
+											</h:panelGrid>
+										</f:facet>
 									</h:panelGrid>
 								</h:panelGroup>
 							</rich:panel>

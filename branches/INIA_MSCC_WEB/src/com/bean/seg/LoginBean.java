@@ -1,27 +1,9 @@
 package com.bean.seg;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletContextEvent;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import javax.faces.context.FacesContext;
-import javax.faces.webapp.FacesServlet;
-import javax.mail.MessagingException;
-import javax.naming.NamingException;
-
-import org.ajax4jsf.config.FacesConfig;
-import org.apache.tomcat.util.http.fileupload.FileUpload;
-import org.jboss.management.j2ee.Servlet;
-
 import com.bean.comun.MaestroBean;
-import com.bean.gem.ArchivosTexto;
-import com.bean.gem.wgen;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.EstadoUsuario;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.Servicio;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
@@ -49,8 +31,10 @@ public class LoginBean extends MaestroBean implements Serializable {
 
 	public String login() {
 		String mensaje = "login-error";
+		Usuario u = null;
 		try {
-			Usuario u = super.getSegFachada(Servicio.Usuario).Login(loginName,
+
+			u = super.getSegFachada(Servicio.Usuario).Login(loginName,
 					password);
 			if (u != null) {
 				if (u.is_activado()) {
@@ -63,37 +47,38 @@ public class LoginBean extends MaestroBean implements Serializable {
 								.ActualizarUltimoAcceso(u);
 						u.set_ultimoAcceso(fecha);
 						super.setSesion(Usuario.class.toString(), u);
-						error = "";
+						super.setError("");
 						mensaje = "login-ok";
 					} else {
-						error = u.get_datos().get_nombre()
-								+ " su cuenta esta "
-								+ u.get_estadoUsuario().toString()
-										.toLowerCase()
-								+ " aún, recuerde chequear su correo, se le a enviado un e-mail para concluir con el registro.";
+						super
+								.setError(u.get_datos().get_nombre()
+										+ " su cuenta esta "
+										+ u.get_estadoUsuario().toString()
+												.toLowerCase()
+										+ " aún, recuerde chequear su correo, se le a enviado un e-mail para concluir con el registro.");
 						mensaje = "login-error";
 					}
 				} else {
-					error = u.get_datos().get_nombre()
-							+ " su cuenta no esta activa aún, recuerde chequear su correo, se le a enviado un e-mail para concluir con el registro.";
+					super
+							.setError(u.get_datos().get_nombre()
+									+ " su cuenta no esta activa aún, recuerde chequear su correo, se le a enviado un e-mail para concluir con el registro.");
 					mensaje = "login-error";
 				}
 			} else {
-				error = "El nombre de usuario o password no conciden";
+				this
+						.addGlobalMessage("El nombre de usuario o password no conciden");
 				intentos++;
 				if (intentos == 5) {
-					error = "Este es el quinto intento en logearse, por favor verifique sus datos e intente nuevamente.";
+					super
+							.setError("Este es el quinto intento en logearse, por favor verifique sus datos e intente nuevamente.");
 					intentos = 0;
-					// TODO Recordar si vamos a incluir el bloqueo de usuario
-					// por
-					// intentos.
-					// u.set_estadoUsuario(EstadoUsuario.Bloqueado);
-					// super.getSegFachada(Servicio.Usuario).CambiarPassword(u);
+//					u.set_estadoUsuario(EstadoUsuario.Bloqueado);
+//					super.getSegFachada(Servicio.Usuario).CambiarPassword(u);
 				}
 				mensaje = "login-error";
 			}
 		} catch (Exception ex) {
-			this.setError(ex.getMessage());
+			this.addGlobalMessage(ex.getMessage());
 		}
 		return mensaje;
 	}

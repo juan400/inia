@@ -44,7 +44,7 @@ function ValidarCampoAlfaNumericoConEspacio(obj, event) {
 		break;
 	}
 
-	if (!validarTexto.match('^[0-9,A-Z,a-z,ÑñÁÉÍÓÚáéíóúÜü´]+$')) {
+	if (!validarTexto.match('^[0-9,A-Z,a-z,ÑñÁÉÍÓÚáéíóúÜü´ ]+$')) {
 		event.returnValue = false;
 		event.cancel = true;
 	}
@@ -207,6 +207,32 @@ function ValidarCampoConCaracteresEspeciales(obj, event) {
 	}
 }
 
+//***************************************************************************
+//Valida que se puedan ingresar caracteres alfanuméricos y caracteres
+//especiales incluyendo el espacio en blanco
+//***************************************************************************
+function ValidarCampoUsuarioLogin(obj, event) {
+	var validarTexto = obj.value;
+	switch (event.type) {
+	case "keypress":
+		validarTexto += String.fromCharCode(event.keyCode);
+		break;
+
+	case "paste":
+		validarTexto += clipboardData.getData("Text");
+		break;
+
+	case "drop":
+		validarTexto += event.dataTransfer.getData("Text");
+		break;
+	}
+
+	if (!validarTexto.match('^[a-z,A-Z,0-9,.,_,-]+$')) {
+		event.returnValue = false;
+		event.cancel = true;
+	}
+}
+
 // ***************************************************************************
 // Valida que se puedan ingresar caracteres alfanuméricos y caracteres
 // especiales incluyendo el espacio en blanco
@@ -227,9 +253,7 @@ function ValidarCampoLogin(obj, event) {
 		break;
 	}
 
-	if (!validarTexto.match('^[a-z,A-Z,0-9,$%&,.,_,-]+$')
-			|| (validarTexto.match('&#')) || (validarTexto.match('&'))
-			|| (validarTexto.match('#'))) {
+	if (!validarTexto.match('^[a-z,A-Z,0-9,$%&,.,_,-]+$')) {
 		event.returnValue = false;
 		event.cancel = true;
 	}
@@ -251,7 +275,7 @@ function validarEmailKeyPress(obj, event) {
 		event.returnValue = false;
 		event.cancel = true;
 	}
-	if (!textoCompleto.match('^[a-z,0-9,@,.,_,-]+$')) {
+	if (!textoCompleto.match('^[a-zA-Z,0-9,@,.,_,-]+$')) {
 		event.returnValue = false;
 		event.cancel = true;
 	}

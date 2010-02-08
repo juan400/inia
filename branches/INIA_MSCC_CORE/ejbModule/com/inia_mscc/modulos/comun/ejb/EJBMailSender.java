@@ -17,7 +17,7 @@ public class EJBMailSender implements MailSenderServices {
 
 	private Session mail;
 
-	public void enviarMailTextoPlano(String email, String subject, String body) {
+	public void enviarMailTextoPlano(String email, String subject, String body) throws Exception {
 		// MailSenderService fue renombrado en el archivo de configuracion
 		// C:\jboss-5.1.0.GA\server\default\deploy\mail-service.xml
 		InitialContext ctx;
@@ -26,14 +26,12 @@ public class EJBMailSender implements MailSenderServices {
 			ctx = new InitialContext();
 			mail = (Session) ctx.lookup("java:/MailSenderService");
 			message.setSubject(subject);
-			message.setRecipients(javax.mail.Message.RecipientType.TO, javax.mail.internet.InternetAddress.parse(email, false));
-			message.setText(body,"ISO-8859-1", "html");
+			message.setRecipients(javax.mail.Message.RecipientType.TO,
+					javax.mail.internet.InternetAddress.parse(email, false));
+			message.setText(body, "ISO-8859-1", "html");
 			Transport.send(message);
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
-		catch (MessagingException e) {
-			e.printStackTrace();
+		} catch (Exception ex) {
+			throw ex;
 		}
 
 	}

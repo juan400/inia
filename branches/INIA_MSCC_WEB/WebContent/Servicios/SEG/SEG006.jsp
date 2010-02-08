@@ -49,22 +49,18 @@
 								styleClass="textoPlano" tabindex="6" action="cancelar"
 								immediate="true" value="#{text.boton_Cancelar}" />
 						</h:panelGrid></center>
-						<h:panelGrid id="mensajes">
-							<rich:messages styleClass="mensajeError">
-								<f:facet name="passedMarker">
-									<h:graphicImage value="/Recursos/Imagenes/Iconos/passed.gif" />
-								</f:facet>
-								<f:facet name="errorMarker">
-									<h:graphicImage value="/Recursos/Imagenes/Iconos/error.gif" />
-								</f:facet>
-							</rich:messages>
+
+						<f:facet name="footer">
 							<h:panelGrid>
-								<h:outputText styleClass="mensajeError"
-									value="#{recuperarContraseniaBean.error}" />
+								<rich:messages styleClass="mensajeError">
+									<f:facet name="errorMarker">
+										<h:graphicImage value="/Recursos/Imagenes/Iconos/error.gif" />
+									</f:facet>
+								</rich:messages>
 								<h:outputText styleClass="textoPlano"
 									value="#{recuperarContraseniaBean.exito}" />
 							</h:panelGrid>
-						</h:panelGrid>
+						</f:facet>
 					</h:panelGroup>
 				</rich:panel>
 			</h:panelGrid>

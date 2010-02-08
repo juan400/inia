@@ -4,6 +4,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import com.inia_mscc.excepciones.ErrorEnviandoMailException;
 import com.inia_mscc.excepciones.ProviderException;
 import com.inia_mscc.modulos.comun.servicios.MailSenderServices;
 
@@ -22,7 +23,7 @@ private MailSenderServices ejbMail;
 	}
 
 	@Override
-	public void enviarMailTextoPlano(String email, String subject, String body) {
+	public void enviarMailTextoPlano(String email, String subject, String body) throws ErrorEnviandoMailException, Exception {
 		ejbMail.enviarMailTextoPlano(email, subject, body);
 	}
 
