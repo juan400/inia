@@ -151,21 +151,21 @@ Secano.</title>
 															style="font-size: 10pt; color: #2d77c2;"
 															styleClass="textoPlano" action="cancelar"
 															immediate="true" value="#{text.boton_Cancelar}" />
-													</h:panelGrid></center>
 
-													<f:facet name="footer">
-														<h:panelGrid>
-															<rich:messages styleClass="mensajeError">
-																<f:facet name="errorMarker">
-																	<h:graphicImage
-																		value="/Recursos/Imagenes/Iconos/error.gif" />
-																</f:facet>
-															</rich:messages>
-															<h:outputText styleClass="textoPlano"
-																value="#{datosUsuarioBean.exito}" />
-														</h:panelGrid>
-													</f:facet>
+													</h:panelGrid></center>
 												</rich:panel>
+												<f:facet name="footer">
+													<h:panelGrid>
+														<rich:messages styleClass="mensajeError">
+															<f:facet name="errorMarker">
+																<h:graphicImage
+																	value="/Recursos/Imagenes/Iconos/error.gif" />
+															</f:facet>
+														</rich:messages>
+														<h:outputText styleClass="textoPlano"
+															value="#{datosUsuarioBean.exito}" />
+													</h:panelGrid>
+												</f:facet>
 											</h:panelGrid>
 										</h:column>
 									</h:panelGrid>

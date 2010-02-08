@@ -222,8 +222,8 @@ public class RegistroBean extends MaestroBean implements Serializable {
 		return MaestroBean.getInstance().isLogged();
 	}
 
-	public String modificar() {
-		String retorno = "registro-error";
+	public String registrar() {
+		String retorno = "";
 		try {
 			if (super.getSegFachada(Servicio.Usuario).ComprobarEmail(email)) {
 				DatoUsuario datos = new DatoUsuario();
@@ -261,7 +261,7 @@ public class RegistroBean extends MaestroBean implements Serializable {
 								.setError("No ha sido posible registrar el usuario, el e-mail proporcionado no esta disponible.");
 						MaestroBean.getInstance().setOpcion(
 								"/Servicios/SEG/SEG002.jsp");
-						retorno = "registro-error";
+						retorno = "";//"registro-error";
 					}
 					super.setError("");
 					super
