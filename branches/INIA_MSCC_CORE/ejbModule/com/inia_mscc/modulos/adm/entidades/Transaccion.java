@@ -33,9 +33,9 @@ public class Transaccion implements Serializable {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "tran_num_id_estado", nullable = false, columnDefinition = "VARCHAR(10)")
 	private Estado _estado;
-	@Column(name = "tran_str_codigo", nullable = false, columnDefinition = "VARCHAR(6)")
+	@Column(name = "tran_str_codigo", nullable = true, columnDefinition = "VARCHAR(6)")
 	private String _codigo;
-	@Column(name = "tran_str_descirpcion", nullable = false, columnDefinition = "VARCHAR(220)")
+	@Column(name = "tran_str_descirpcion", nullable = true, columnDefinition = "VARCHAR(220)")
 	private String _descripcion;
 	@Column(name = "tran_bol_definida", nullable = false, columnDefinition = "TINYINT(1)")
 	private Boolean _definida;
@@ -57,8 +57,8 @@ public class Transaccion implements Serializable {
 		_codigo = null;
 		_descripcion = null;
 		_url = null;
-		_definida = null;
-		_asociada = null;
+		_definida = false;
+		_asociada = false;
 	}
 
 	public long get_id() {
