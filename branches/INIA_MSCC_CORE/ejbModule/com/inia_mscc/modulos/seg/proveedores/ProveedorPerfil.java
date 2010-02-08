@@ -50,4 +50,9 @@ public class ProveedorPerfil implements ServicioPerfil {
 		return ejbPerfil.ObtenerPerfiles();
 	}
 
+	@Override
+	public Perfil ObtenerPerfilConTransAsociadas(Perfil pPerfil) {
+		return ejbPerfil.ObtenerPerfilConTransAsociadas(pPerfil);
+	}
+
 }

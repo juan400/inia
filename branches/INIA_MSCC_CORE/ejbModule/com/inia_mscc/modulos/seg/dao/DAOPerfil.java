@@ -26,6 +26,27 @@ public class DAOPerfil implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(DAOPerfil.class);
 
+	public Perfil ObtenerPerfilConTransAcosiadas(Perfil pPerfil) {
+		Perfil retorno = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			Criteria c = session.createCriteria(Perfil.class);
+			if (pPerfil.get_id() != 0) {
+				c.add(Restrictions.eq("_id", pPerfil.get_id()));
+			}
+			retorno = (Perfil) c.uniqueResult();
+			if (retorno != null) {
+				retorno.get_transaccionesSistema()
+						.get(1);
+			}
+		} catch (Exception e) { // catch (StaleObjectStateException e) {
+			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
+			logger.error(stackTrace);
+			throw new IniaPersistenciaException(e.getMessage(), e);
+		}
+		return retorno;
+	}
+
 	public Perfil ComprobarPerfil(Perfil pPerfil) {
 		Perfil retorno = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -33,7 +54,7 @@ public class DAOPerfil implements Serializable {
 			Criteria c = session.createCriteria(Perfil.class);
 			c.add(Restrictions.ilike("_nombre", pPerfil.get_nombre()));
 			retorno = (Perfil) c.uniqueResult();
-		}catch(Exception e){ //catch (StaleObjectStateException e) {
+		} catch (Exception e) { // catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);
@@ -47,7 +68,7 @@ public class DAOPerfil implements Serializable {
 		try {
 			Criteria c = session.createCriteria(Perfil.class);
 			retorno = (List<Perfil>) c.list();
-		}catch (Exception e) { // catch (StaleObjectStateException e) {
+		} catch (Exception e) { // catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);

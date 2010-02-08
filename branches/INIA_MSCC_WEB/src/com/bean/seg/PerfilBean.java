@@ -32,14 +32,6 @@ public class PerfilBean extends MaestroBean implements Serializable {
 		return null;
 	}
 
-	@SuppressWarnings("unchecked")
-	public void asociarTransaccion() {
-		Map paramMap = FacesContext.getCurrentInstance().getExternalContext()
-				.getRequestParameterMap();
-		String transaccionElegida = (String) paramMap.get("transaccionElegida");
-
-	}
-
 	public String eliminar() throws Exception {
 		String retorno = "eliminado";
 
@@ -55,11 +47,12 @@ public class PerfilBean extends MaestroBean implements Serializable {
 					nombre = perfil.get_nombre();
 					descripcion = perfil.get_descripcion();
 					estado = perfil.get_estado().toString();
+					perfil.set_transaccionesSistema(new ArrayList<Transaccion>());
 				}
 			}
-			super.getSegFachada(Servicio.Perfil).EliminarPerfil(perfil);
+			this.getSegFachada(Servicio.Perfil).EliminarPerfil(perfil);
 		} catch (Exception ex) {
-			super
+			this
 					.setError("Se ha producido un error, por favor intente nuevamente.");
 		}
 		return retorno;
@@ -72,26 +65,50 @@ public class PerfilBean extends MaestroBean implements Serializable {
 		String consultaElegida = (String) paramMap.get("consultaElegida");
 		Iterator<Perfil> it = perfiles.iterator();
 		while (it.hasNext()) {
-			Perfil object = (Perfil) it.next();
-			if ((Long) object.get_id() == Long.parseLong(consultaElegida)) {
-				perfil = object;
+			Perfil perfilSeleccionado = (Perfil) it.next();
+			if (perfilSeleccionado.get_id() == (long)Long
+					.parseLong(consultaElegida)) {
+				perfil = perfilSeleccionado;
+				perfil = this.getSegFachada(Servicio.Perfil)
+				.ObtenerPerfilConTransAsociadas(perfilSeleccionado);
 				nombre = perfil.get_nombre();
 				descripcion = perfil.get_descripcion();
 				estado = perfil.get_estado().toString();
+				for (Transaccion transa : transacciones) {
+					for (Transaccion transaPerfil : perfil.get_transaccionesSistema()) {
+						if(transa.get_id()==transaPerfil.get_id()){
+							transa.set_asociada(true);
+							break;
+						}
+					}
+				}
 			}
 		}
 		return "desplegarResultados";
+	}
+
+	public boolean isEdicion() {
+
+		return false;
 	}
 
 	public PerfilBean() {
 		this.estado = Estado.Activo.name();
 	}
 
+	public String cancelar() {
+		this.LimpiarBean();
+		this.perfiles = this.getSegFachada(Servicio.Perfil).ObtenerPerfiles();
+		this.transacciones = this.getAdmFachada(Servicio.Transaccion)
+				.ObtenerTransacciones();
+		return "cancelar";
+	}
+
 	public boolean isInit() {
 		boolean retorno = false;
 		this.LimpiarBean();
-		this.perfiles = super.getSegFachada(Servicio.Perfil).ObtenerPerfiles();
-		this.transacciones = super.getAdmFachada(Servicio.Transaccion)
+		this.perfiles = this.getSegFachada(Servicio.Perfil).ObtenerPerfiles();
+		this.transacciones = this.getAdmFachada(Servicio.Transaccion)
 				.ObtenerTransacciones();
 		return retorno;
 	}
@@ -106,11 +123,21 @@ public class PerfilBean extends MaestroBean implements Serializable {
 			perfil.set_nombre(nombre);
 			perfil.set_descripcion(descripcion);
 			perfil.set_estado(Enumerados.Estado.valueOf(estado));
-
-			super.getSegFachada(Servicio.Perfil).ActualizarPerfil(perfil);
+			List<Transaccion> asociadas = new ArrayList<Transaccion>();
+			for (int i = 0; i < transacciones.toArray().length; i++) {
+				Transaccion transaccion = (Transaccion) transacciones.toArray()[i];
+				if (transaccion != null) {
+					if (transaccion.get_asociada()) {
+						asociadas.add(transaccion);
+					}
+				}
+			}
+			List<Transaccion> lista = asociadas;
+			perfil.set_transaccionesSistema(lista);
+			this.getSegFachada(Servicio.Perfil).ActualizarPerfil(perfil);
 			retorno = "registro-ok";
 		} catch (Exception ex) {
-			super
+			this
 					.setError("Se ha producido un error, por favor intente nuevamente.");
 		}
 		return retorno;
@@ -135,27 +162,27 @@ public class PerfilBean extends MaestroBean implements Serializable {
 			datosPerfil.set_descripcion(descripcion);
 			datosPerfil.set_estado(Enumerados.Estado.valueOf(estado));
 
-			Perfil per = super.getSegFachada(Servicio.Perfil).ComprobarPerfil(
+			Perfil per = this.getSegFachada(Servicio.Perfil).ComprobarPerfil(
 					datosPerfil);
 			if (per == null) {
 				setError("");
-				Perfil p = super.getSegFachada(Servicio.Perfil)
-						.RegistrarPerfil(datosPerfil);
+				Perfil p = this.getSegFachada(Servicio.Perfil).RegistrarPerfil(
+						datosPerfil);
 				if (p != null) {
-					super.setError("");
+					this.setError("");
 					MaestroBean.getInstance().setOpcion(
 							"/Servicios/SEG/SEG009.jsp");
 					retorno = "registro-ok";
 					LimpiarBean();
 				} else {
-					super
+					this
 							.setError("No ha sido posible crear el perfil, revise los datos ingresados y intentelo nuevamente.");
 					MaestroBean.getInstance().setOpcion(
 							"/Servicios/SEG/SEG009.jsp");
 					retorno = "registro-error";
 				}
 			} else {
-				super
+				this
 						.setError("Ya existe un Perfil con igual nombre, Por favor ingrese otro nombre.");
 				MaestroBean.getInstance()
 						.setOpcion("/Servicios/SEG/SEG009.jsp");
