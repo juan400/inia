@@ -56,13 +56,13 @@ public class LoginBean extends MaestroBean implements Serializable {
 										+ u.get_estadoUsuario().toString()
 												.toLowerCase()
 										+ " aún, recuerde chequear su correo, se le a enviado un e-mail para concluir con el registro.");
-						mensaje = "login-error";
+						mensaje = "";//"login-error";
 					}
 				} else {
 					super
 							.setError(u.get_datos().get_nombre()
 									+ " su cuenta no esta activa aún, recuerde chequear su correo, se le a enviado un e-mail para concluir con el registro.");
-					mensaje = "login-error";
+					mensaje = "";//"login-error";
 				}
 			} else {
 				this
@@ -75,7 +75,7 @@ public class LoginBean extends MaestroBean implements Serializable {
 //					u.set_estadoUsuario(EstadoUsuario.Bloqueado);
 //					super.getSegFachada(Servicio.Usuario).CambiarPassword(u);
 				}
-				mensaje = "login-error";
+				mensaje = "";//"login-error";
 			}
 		} catch (Exception ex) {
 			this.addGlobalMessage(ex.getMessage());

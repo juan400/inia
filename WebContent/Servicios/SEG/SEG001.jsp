@@ -38,63 +38,64 @@ Secano.</title>
 								<f:facet name="header">
 									<h:outputText value="#{text.login_title}" />
 								</f:facet>
-								<center><h:panelGrid rendered="#{loginBean.logged}">
-									<h:outputText styleClass="mensajeError"
-										style="font-size: 12pt;"
-										value="#{loginBean.loginName} #{text.login_alreadyLogged}" />
-									<center><a4j:commandButton styleClass="textoPlano"
-										action="#{loginBean.logout}" immediate="true"
-										value="#{text.login_logout}" /></center>
-								</h:panelGrid></center>
-								<h:panelGroup rendered="#{!loginBean.logged}">
-									<h:panelGrid columns="2" width="300">
+								<h:panelGrid>
+									<center><h:panelGrid rendered="#{loginBean.logged}">
+										<h:outputText styleClass="mensajeError"
+											style="font-size: 12pt;"
+											value="#{loginBean.loginName} #{text.login_alreadyLogged}" />
+										<center><a4j:commandButton styleClass="textoPlano"
+											action="#{loginBean.logout}" immediate="true"
+											value="#{text.login_logout}" /></center>
+									</h:panelGrid></center>
+									<h:panelGroup rendered="#{!loginBean.logged}">
+										<h:panelGrid columns="2" width="300">
 
-										<h:outputText value="#{text.login_userName}"
-											styleClass="textoPlano" />
-										<h:inputText value="#{loginBean.loginName}"
-											styleClass="textoPlano" tabindex="1" required="true"
-											requiredMessage="Debe ingresar su nombre de usuario"
-											onkeypress="ValidarCampoUsuarioLogin(this, event)"/>
+											<h:outputText value="#{text.login_userName}"
+												styleClass="textoPlano" />
+											<h:inputText value="#{loginBean.loginName}"
+												styleClass="textoPlano" tabindex="1" required="true"
+												requiredMessage="Debe ingresar su nombre de usuario"
+												onkeypress="ValidarCampoUsuarioLogin(this, event)" />
 
-										<h:outputText value="#{text.login_password}"
-											styleClass="textoPlano" />
-										<h:inputSecret value="#{loginBean.password}"
-											styleClass="textoPlano" tabindex="2" required="true"
-											requiredMessage="Debe ingresar su contraseña" maxlength="13">
-										</h:inputSecret>
+											<h:outputText value="#{text.login_password}"
+												styleClass="textoPlano" />
+											<h:inputSecret value="#{loginBean.password}"
+												styleClass="textoPlano" tabindex="2" required="true"
+												requiredMessage="Debe ingresar su contraseña" maxlength="13">
+											</h:inputSecret>
 
-										<h:outputText value="" />
-										<h:panelGrid columns="2">
-											<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
-												styleClass="textoPlano" tabindex="3"
-												action="#{loginBean.login}" value="#{text.login_login}" />
-											<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
-												styleClass="textoPlano" tabindex="4"
-												action="#{loginBean.registrarse}" immediate="true"
-												value="#{text.login_register}" />
-										</h:panelGrid>
-
-										<h:outputText value="" />
-										<h:panelGrid columns="2">
-											<a4j:commandLink action="#{loginBean.olvidoContrasenia}"
-												immediate="true" value="#{text.login_forgotPassword}" />
-
-										</h:panelGrid>
-
-										<f:facet name="footer">
-											<h:panelGrid>
-												<rich:messages styleClass="mensajeError">
-													<f:facet name="errorMarker">
-														<h:graphicImage
-															value="/Recursos/Imagenes/Iconos/error.gif" />
-													</f:facet>
-												</rich:messages>
-												<h:outputText styleClass="textoPlano"
-													value="#{loginBean.exito}"/>
+											<h:outputText value="" />
+											<h:panelGrid columns="2">
+												<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
+													styleClass="textoPlano" tabindex="3"
+													action="#{loginBean.login}" value="#{text.login_login}" />
+												<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
+													styleClass="textoPlano" tabindex="4"
+													action="#{loginBean.registrarse}" immediate="true"
+													value="#{text.login_register}" />
 											</h:panelGrid>
-										</f:facet>
-									</h:panelGrid>
-								</h:panelGroup>
+
+											<h:outputText value="" />
+											<h:panelGrid columns="2">
+												<a4j:commandLink action="#{loginBean.olvidoContrasenia}"
+													immediate="true" value="#{text.login_forgotPassword}" />
+
+											</h:panelGrid>
+										</h:panelGrid>
+									</h:panelGroup>
+
+									<f:facet name="footer">
+										<h:panelGrid>
+											<rich:messages styleClass="mensajeError">
+												<f:facet name="errorMarker">
+													<h:graphicImage value="/Recursos/Imagenes/Iconos/error.gif" />
+												</f:facet>
+											</rich:messages>
+											<h:outputText styleClass="textoPlano"
+												value="#{loginBean.exito}" />
+										</h:panelGrid>
+									</f:facet>
+								</h:panelGrid>
 							</rich:panel>
 						</h:panelGrid>
 						<a4j:status for="contenido"

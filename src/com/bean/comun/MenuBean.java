@@ -193,7 +193,6 @@ public class MenuBean extends MaestroBean implements Serializable {
 		} catch (Exception ex) {
 			super.setError(ex.getMessage());
 		}
-//		return "navegar";
 		return getPagina();
 	}
 
