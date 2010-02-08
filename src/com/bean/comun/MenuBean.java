@@ -153,7 +153,7 @@ public class MenuBean extends MaestroBean implements Serializable {
 		menuItem.setLabel(pTransa.get_descripcionBase());
 		menuItem.setStyleClass("textoMenuSecundario");
 		menuItem.setImmediate(true);
-//		menuItem.setReRender("contenido");
+		menuItem.setReRender("contenido");
 		MethodExpression me = FacesContext.getCurrentInstance()
 				.getApplication().getExpressionFactory()
 				.createMethodExpression(
@@ -163,8 +163,8 @@ public class MenuBean extends MaestroBean implements Serializable {
 		menuItem.setActionExpression(me);
 		HtmlActionParameter actionParam = new HtmlActionParameter();
 		actionParam.setName("current");
-		actionParam.setValue(pTransa.get_url());
-
+//		actionParam.setValue(pTransa.get_url());
+		actionParam.setValue(pTransa.get_codigoBase());
 		// TODO Se agrega el parametro "current" al item
 		menuItem.getChildren().add(actionParam);
 		actionParam.setParent(menuItem);
@@ -193,7 +193,8 @@ public class MenuBean extends MaestroBean implements Serializable {
 		} catch (Exception ex) {
 			super.setError(ex.getMessage());
 		}
-		return "navegar";
+//		return "navegar";
+		return getPagina();
 	}
 
 	// public void updateCurrent(ActionEvent event) {
