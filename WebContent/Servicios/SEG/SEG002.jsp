@@ -60,15 +60,13 @@ Secano.</title>
 										<h:inputText value="#{registroBean.nombre}" required="true"
 											requiredMessage="Debe ingresar su nombre"
 											styleClass="textoPlano"
-											onkeypress="ValidarCampoLetras(this, event)"
-											onblur="ValidarCampoLetras(this, event)" />
+											onkeypress="ValidarCampoLetras(this, event)" />
 
 										<h:outputText value="#{text.registro_Apellido}" />
 										<h:inputText value="#{registroBean.apellido}" required="true"
 											requiredMessage="Debe ingresar su apellido"
 											styleClass="textoPlano"
-											onkeypress="ValidarCampoLetras(this, event)"
-											onblur="ValidarCampoLetras(this, event)" />
+											onkeypress="ValidarCampoLetras(this, event)"/>
 
 										<h:outputText value="#{text.registro_Email}" />
 										<h:inputText id="txtEmail" value="#{registroBean.email}"
@@ -77,7 +75,7 @@ Secano.</title>
 											onkeypress="validarEmailKeyPress(this, event)"
 											styleClass="textoPlano">
 											<a4j:support action="#{registroBean.takeSelectionEmail}"
-												event="onchange" ajaxSingle="true" reRender="txtError" />
+												event="onchange" ajaxSingle="true" reRender="txtEmail" />
 										</h:inputText>
 
 										<h:outputLabel value="#{text.registro_Pais}" />
@@ -112,44 +110,39 @@ Secano.</title>
 										<h:inputText value="#{registroBean.direccion}" required="true"
 											styleClass="textoPlano"
 											requiredMessage="Debe ingresar su dirección de domicilio"
-											onkeypress="ValidarCampoConCaracteresEspeciales(this, event)"
-											onblur="ValidarCampoConCaracteresEspeciales(this, event)" />
+											onkeypress="ValidarCampoConCaracteresEspeciales(this, event)" />
 
 										<h:outputText value="#{text.registro_Teléfono}" />
 										<h:inputText value="#{registroBean.telefono}"
 											styleClass="textoPlano"
-											onkeypress="ValidarCampoNumerico(this, event)"
-											onblur="ValidarCampoNumerico(this, event)" />
+											onkeypress="ValidarCampoNumerico(this, event)"/>
 
 										<h:outputText value="#{text.registro_Celular}" />
 										<h:inputText value="#{registroBean.celular}"
 											styleClass="textoPlano"
-											onkeypress="ValidarCampoNumerico(this, event)"
-											onblur="ValidarCampoNumerico(this, event)" maxlength="9" />
+											onkeypress="ValidarCampoNumerico(this, event)" maxlength="9" />
 									</h:panelGrid>
 									<center><h:panelGrid columns="2">
 										<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
 											styleClass="textoPlano" tabindex="3"
-											action="#{registroBean.Confirmar}"
+											action="#{registroBean.registrar}"
 											value="#{text.boton_Guardar}" />
 										<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
-											styleClass="textoPlano" action="#{registroBean.cancelar}" immediate="true"
-											value="#{text.boton_Cancelar}" />
+											styleClass="textoPlano" action="cancelar"
+											immediate="true" value="#{text.boton_Cancelar}" />
 									</h:panelGrid></center>
-									<h:panelGrid>
-										<rich:messages styleClass="mensajeError">
-											<f:facet name="passedMarker">
-												<h:graphicImage value="/Recursos/Imagenes/Iconos/passed.gif" />
-											</f:facet>
-											<f:facet name="errorMarker">
-												<h:graphicImage value="/Recursos/Imagenes/Iconos/error.gif" />
-											</f:facet>
-										</rich:messages>
-										<h:outputText styleClass="mensajeError"
-											value="#{registroBean.error}" />
-										<h:outputText styleClass="textoPlano"
-											value="#{registroBean.exito}" />
-									</h:panelGrid>
+									
+									<f:facet name="footer">
+										<h:panelGrid>
+											<rich:messages styleClass="mensajeError">
+												<f:facet name="errorMarker">
+													<h:graphicImage value="/Recursos/Imagenes/Iconos/error.gif" />
+												</f:facet>
+											</rich:messages>
+											<h:outputText styleClass="textoPlano"
+												value="#{registroBean.exito}" />
+										</h:panelGrid>
+									</f:facet>
 								</h:panelGroup>
 							</rich:panel>
 						</h:panelGrid>

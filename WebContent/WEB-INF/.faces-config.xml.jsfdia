@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#Servicios#SEG#SEG009.jsp"
+  PATH="/Servicios/SEG/SEG009.jsp" SHAPE="48,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#SEG#SEG009.jsp:0" NAME="item"
+   PATH="/Servicios/SEG/SEG009.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="registro-ok:#{perfilBean.registrar}:#Servicios#SEG#SEG008.jsp"
+    NAME="output" PATH="/Servicios/SEG/SEG008.jsp"
+    TARGET="rules:#Servicios#SEG#SEG008.jsp"
+    TITLE="#{perfilBean.registrar}:registro-ok" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="registro-error:#{perfilBean.registrar}:#Servicios#SEG#SEG009.jsp"
+    NAME="output1" PATH="/Servicios/SEG/SEG009.jsp"
+    TARGET="rules:#Servicios#SEG#SEG009.jsp"
+    TITLE="#{perfilBean.registrar}:registro-error" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cancelar::#Servicios#SEG#SEG008.jsp"
+    NAME="output2" PATH="/Servicios/SEG/SEG008.jsp"
+    TARGET="rules:#Servicios#SEG#SEG008.jsp" TITLE="cancelar" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#SEG#SEG010.jsp"
+  PATH="/Servicios/SEG/SEG010.jsp" SHAPE="560,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#SEG#SEG010.jsp:0" NAME="item"
+   PATH="/Servicios/SEG/SEG010.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="registro-ok:#{perfilBean.actualizar}:#Servicios#SEG#SEG008.jsp"
+    NAME="output" PATH="/Servicios/SEG/SEG008.jsp"
+    TARGET="rules:#Servicios#SEG#SEG008.jsp"
+    TITLE="#{perfilBean.actualizar}:registro-ok" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="registro-error:#{perfilBean.actualizar}:#Servicios#SEG#SEG010.jsp"
+    NAME="output1" PATH="/Servicios/SEG/SEG010.jsp"
+    TARGET="rules:#Servicios#SEG#SEG010.jsp"
+    TITLE="#{perfilBean.actualizar}:registro-error" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#SEG#SEG008.jsp"
+  PATH="/Servicios/SEG/SEG008.jsp" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#SEG#SEG008.jsp:0" NAME="item"
+   PATH="/Servicios/SEG/SEG008.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="Alta::#Servicios#SEG#SEG009.jsp"
+    NAME="output" PATH="/Servicios/SEG/SEG009.jsp"
+    TARGET="rules:#Servicios#SEG#SEG009.jsp" TITLE="Alta" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="eliminado:#{perfilBean.eliminar}:#Servicios#SEG#SEG008.jsp"
+    NAME="output1" PATH="/Servicios/SEG/SEG008.jsp"
+    TARGET="rules:#Servicios#SEG#SEG008.jsp"
+    TITLE="#{perfilBean.eliminar}:eliminado" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="Actualizar::#Servicios#SEG#SEG010.jsp"
+    NAME="output2" PATH="/Servicios/SEG/SEG010.jsp"
+    TARGET="rules:#Servicios#SEG#SEG010.jsp" TITLE="Actualizar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cancelar::#Servicios#Contenido.jsp"
+    NAME="output3" PATH="/Servicios/Contenido.jsp"
+    TARGET="rules:#Servicios#Contenido.jsp" TITLE="cancelar" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#SEG#SEG003.jsp"
+  PATH="/Servicios/SEG/SEG003.jsp" SHAPE="560,497,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#SEG#SEG003.jsp:0" NAME="item"
+   PATH="/Servicios/SEG/SEG003.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="confirmar-ok:#{confirmacionBean.Confirmar}:#Servicios#SEG#SEG001.jsp"
+    NAME="output" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp"
+    TITLE="#{confirmacionBean.Confirmar}:confirmar-ok" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="confirmar-error:#{confirmacionBean.Confirmar}:#Servicios#SEG#SEG003.jsp"
+    NAME="output1" PATH="/Servicios/SEG/SEG003.jsp"
+    TARGET="rules:#Servicios#SEG#SEG003.jsp"
+    TITLE="#{confirmacionBean.Confirmar}:confirmar-error" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="logout::#Servicios#SEG#SEG001.jsp"
+    NAME="output2" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp" TITLE="logout" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cancelar::#Servicios#SEG#SEG001.jsp"
+    NAME="output3" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp" TITLE="cancelar" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#SEG#SEG001.jsp"
+  PATH="/Servicios/SEG/SEG001.jsp" SHAPE="832,241,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#SEG#SEG001.jsp:0" NAME="item"
+   PATH="/Servicios/SEG/SEG001.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="login-ok:#{loginBean.login}:#Servicios#Contenido.jsp"
+    NAME="output" PATH="/Servicios/Contenido.jsp"
+    TARGET="rules:#Servicios#Contenido.jsp"
+    TITLE="#{loginBean.login}:login-ok" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="login-error:#{loginBean.login}:#Servicios#SEG#SEG001.jsp"
+    NAME="output1" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp"
+    TITLE="#{loginBean.login}:login-error" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="logout:#{loginBean.logout}:#Servicios#SEG#SEG001.jsp"
+    NAME="output2" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp"
+    TITLE="#{loginBean.logout}:logout" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="registrarse:#{loginBean.registrarse}:#Servicios#SEG#SEG002.jsp"
+    NAME="output3" PATH="/Servicios/SEG/SEG002.jsp"
+    TARGET="rules:#Servicios#SEG#SEG002.jsp"
+    TITLE="#{loginBean.registrarse}:registrarse" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cancelar::#Servicios#SEG#SEG001.jsp"
+    NAME="output4" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp" TITLE="cancelar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="login-olvido:#{loginBean.olvidoContrasenia}:#Servicios#SEG#SEG006.jsp"
+    NAME="output5" PATH="/Servicios/SEG/SEG006.jsp"
+    TARGET="rules:#Servicios#SEG#SEG006.jsp"
+    TITLE="#{loginBean.olvidoContrasenia}:login-olvido" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#SEG#SEG002.jsp"
+  PATH="/Servicios/SEG/SEG002.jsp" SHAPE="560,705,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#SEG#SEG002.jsp:0" NAME="item"
+   PATH="/Servicios/SEG/SEG002.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="registro-ok:#{registroBean.registrar}:#Servicios#SEG#SEG001.jsp"
+    NAME="output" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp"
+    TITLE="#{registroBean.registrar}:registro-ok" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="registro-error:#{registroBean.registrar}:#Servicios#SEG#SEG002.jsp"
+    NAME="output1" PATH="/Servicios/SEG/SEG002.jsp"
+    TARGET="rules:#Servicios#SEG#SEG002.jsp"
+    TITLE="#{registroBean.registrar}:registro-error" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cancelar::#Servicios#SEG#SEG001.jsp"
+    NAME="output2" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp" TITLE="cancelar" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#Contenido.jsp"
+  PATH="/Servicios/Contenido.jsp" SHAPE="560,225,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#Contenido.jsp:0" NAME="item"
+   PATH="/Servicios/Contenido.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="irLogin::#Servicios#SEG#SEG001.jsp"
+    NAME="output" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp" TITLE="irLogin" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="logout:#{loginBean.logout}:#Servicios#SEG#SEG001.jsp"
+    NAME="output1" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp"
+    TITLE="#{loginBean.logout}:logout" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="navegar:#{panelMenu.updateCurrent}:#Servicios#Contenido.jsp"
+    NAME="output2" PATH="/Servicios/Contenido.jsp"
+    TARGET="rules:#Servicios#Contenido.jsp"
+    TITLE="#{panelMenu.updateCurrent}:navegar" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#SEG#SEG004.jsp"
+  PATH="/Servicios/SEG/SEG004.jsp" SHAPE="560,881,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#SEG#SEG004.jsp:0" NAME="item"
+   PATH="/Servicios/SEG/SEG004.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="cancelar::#Servicios#SEG#SEG001.jsp"
+    NAME="output" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp" TITLE="cancelar" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#SEG#SEG006.jsp"
+  PATH="/Servicios/SEG/SEG006.jsp" SHAPE="560,993,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#SEG#SEG006.jsp:0" NAME="item"
+   PATH="/Servicios/SEG/SEG006.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="EnvioPassword::#Servicios#SEG#SEG006.jsp"
+    NAME="output" PATH="/Servicios/SEG/SEG006.jsp"
+    TARGET="rules:#Servicios#SEG#SEG006.jsp" TITLE="EnvioPassword" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cancelar::#Servicios#SEG#SEG001.jsp"
+    NAME="output1" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp" TITLE="cancelar" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*" PATH="*" SHAPE="816,353,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:0" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="navegar:#{panelMenu.updateCurrent}:#Servicios#Contenido.jsp"
+    NAME="output" PATH="/Servicios/Contenido.jsp"
+    TARGET="rules:#Servicios#Contenido.jsp"
+    TITLE="#{panelMenu.updateCurrent}:navegar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID=":#{loginBean.logout}:#Servicios#SEG#SEG001.jsp" NAME="output1"
+    PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp"
+    TITLE="#{loginBean.logout}:[any]" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID=":#{loginBean.login}:#Servicios#SEG#SEG001.jsp" NAME="output2"
+    PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp"
+    TITLE="#{loginBean.login}:[any]" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="inicio::#Servicios#Contenedora.jsp"
+    NAME="output3" PATH="/Servicios/Contenedora.jsp"
+    TARGET="rules:#Servicios#Contenedora.jsp" TITLE="inicio" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="navegar:#{panelMenu.updateCurrent}:#{menuBean.current}"
+    NAME="output4" PATH="#{menuBean.current}"
+    TARGET="rules:#{menuBean.current}"
+    TITLE="#{panelMenu.updateCurrent}:navegar" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#Contenedora.jsp"
+  PATH="/Servicios/Contenedora.jsp" SHAPE="1088,609,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#{menuBean.current}"
+  PATH="/{menuBean.current}" SHAPE="1088,225,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

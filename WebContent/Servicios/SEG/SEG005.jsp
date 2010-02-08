@@ -32,20 +32,17 @@
 								styleClass="textoPlano" tabindex="4" action="Cancelar"
 								value="#{text.boton_Cancelar}" />
 						</h:panelGrid></center>
-						<h:panelGrid>
-							<rich:messages styleClass="mensajeError">
-								<f:facet name="passedMarker">
-									<h:graphicImage value="/Recursos/Imagenes/Iconos/passed.gif" />
-								</f:facet>
-								<f:facet name="errorMarker">
-									<h:graphicImage value="/Recursos/Imagenes/Iconos/error.gif" />
-								</f:facet>
-							</rich:messages>
-							<h:outputText styleClass="mensajeError"
-								value="#{confirmacionBean.error}" />
-							<h:outputText styleClass="textoPlano"
-								value="#{confirmacionBean.exito}" />
-						</h:panelGrid>
+						<f:facet name="footer">
+							<h:panelGrid>
+								<rich:messages styleClass="mensajeError">
+									<f:facet name="errorMarker">
+										<h:graphicImage value="/Recursos/Imagenes/Iconos/error.gif" />
+									</f:facet>
+								</rich:messages>
+								<h:outputText styleClass="textoPlano"
+									value="#{registroBean.exito}" />
+							</h:panelGrid>
+						</f:facet>
 					</h:panelGroup>
 				</rich:panel>
 			</h:panelGrid>

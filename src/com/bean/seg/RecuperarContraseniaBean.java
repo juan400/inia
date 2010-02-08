@@ -31,11 +31,11 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 	private String frase;
 	private String actual;
 
-	public boolean isInit(){
+	public boolean isInit() {
 		return false;
 	}
-	
-	public void validarContrasenia(){
+
+	public void validarContrasenia() {
 		try {
 			if (super.getUsuario().get_password().equals(getActual())) {
 				super
@@ -47,8 +47,7 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 			super.setError(ex.getMessage());
 		}
 	}
-	
-	
+
 	public void validarEmail() {
 		try {
 			if (super.getSegFachada(Servicio.Usuario).ComprobarEmail(email)) {
@@ -86,8 +85,8 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 		String retorno = "";
 		try {
 			if (super.getUsuario() != null) {
-				if (!this.salvarNombre(super.getUsuario())) {
-					// if (!this.enviarMailConfirmacion(pUsuario)) {
+				// if (!this.salvarNombre(super.getUsuario())) {
+				if (!this.enviarMailConfirmacion(super.getUsuario())) {
 					super
 							.setError("No ha sido posible enviar el e-mail, el e-mail proporcionado no esta disponible.");
 					MaestroBean.getInstance().setOpcion(
@@ -122,7 +121,7 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 			Properties props = new Properties();
 
 			// Nombre del host de correo, es smtp.gmail.com
-			//props.setProperty("mail.smtp.host", "smtp.live.com");// hotmail
+			// props.setProperty("mail.smtp.host", "smtp.live.com");// hotmail
 			props.setProperty("mail.smtp.host", "smtp.gmail.com");// gmail
 
 			// TLS si está disponible
@@ -148,8 +147,7 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(
 					pUsuario.get_datos().get_mail()));
 
-			message
-					.setSubject("Clave de usuario en el sistema INIA - MSCC");
+			message.setSubject("Clave de usuario en el sistema INIA - MSCC");
 
 			message
 					.setText(
@@ -194,7 +192,8 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 					+ "<br><i><b>Muchas gracias por registrarse!</b></i></center><br></br><br></br><br></br>";
 
 			super.getComunFachada(Servicio.MailSender).enviarMailTextoPlano(
-					pUsuario.get_datos().get_mail(), "INIA - MSCC Administración", body);
+					pUsuario.get_datos().get_mail(),
+					"INIA - MSCC Administración", body);
 		} catch (Exception ex) {
 			super.setError(ex.getMessage());
 		}
