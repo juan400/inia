@@ -36,8 +36,8 @@ public class ProveedorPerfil implements ServicioPerfil {
 	}
 
 	@Override
-	public void EliminarPerfil(Perfil pPerfil) throws Throwable {
-		ejbPerfil.EliminarPerfil(pPerfil);
+	public String EliminarPerfil(Perfil pPerfil){
+		return ejbPerfil.EliminarPerfil(pPerfil);
 	}
 
 	@Override
