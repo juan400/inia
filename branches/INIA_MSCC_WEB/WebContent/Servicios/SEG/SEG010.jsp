@@ -59,7 +59,6 @@ Secano.</title>
 											<rich:panelMenu binding="#{menuBean.panelMenu}" />
 										</h:column>
 										<h:column>
-											<h:panelGroup rendered="#{loginBean.init}" />
 											<h:panelGrid>
 												<rich:panel headerClass="tituloPantalla"
 													style="background-color: #ebf3fd;">

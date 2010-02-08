@@ -62,7 +62,7 @@ public class SEGFachada {
 		return srvUsuario.Login(pLogin, pPassword);
 	}
 	
-	public void EliminarPerfil(Perfil pPerfil) {
+	public void EliminarPerfil(Perfil pPerfil) throws Throwable {
 		srvPerfil.EliminarPerfil(pPerfil);
 	}
 
