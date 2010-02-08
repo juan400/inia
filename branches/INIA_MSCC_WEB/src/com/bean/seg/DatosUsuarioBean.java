@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.faces.model.SelectItem;
-import javax.servlet.http.HttpServletRequest;
 
 import com.bean.comun.MaestroBean;
 import com.inia_mscc.modulos.adm.entidades.Ciudad;
@@ -20,7 +19,7 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private String nombre;
 	private String apellido;
 	private String email;
@@ -43,107 +42,98 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 	private Departamento depto;
 	private Ciudad ciudad;
 	private Date fecha = new Date();
-	
+
 	public DatosUsuarioBean() throws Exception {
 		try {
-			listPaises = super.getAdmFachada(Servicio.RelacionPCD)
-					.ObtenerPaises();
-			paises = new SelectItem[listPaises.size() + 1];
-			paises[0] = new SelectItem(super
-					.getTextBundleKey("combo_seleccione"));
-			int i = 1;
-			for (Pais p : listPaises) {
-				SelectItem si = new SelectItem(p.get_nombre());
-				paises[i] = si;
-				i++;
+			this.setError("asdfad");
+			this.setUsuario((Usuario) this
+					.getSesion(Usuario.class.toString()));
+			if (this.getUsuario() != null) {
+				listPaises = this.getAdmFachada(Servicio.RelacionPCD)
+						.ObtenerPaises();
+				paises = new SelectItem[listPaises.size() + 1];
+				paises[0] = new SelectItem(this
+						.getTextBundleKey("combo_seleccione"));
+				int i = 1;
+				for (Pais p : listPaises) {
+					SelectItem si = new SelectItem(p.get_nombre());
+					paises[i] = si;
+					i++;
+				}
+				listDepartamentos = this.getAdmFachada(Servicio.RelacionPCD)
+						.ObtenerDepartamentos();
+				departamentos = new SelectItem[listDepartamentos.size() + 1];
+				departamentos[0] = new SelectItem(this
+						.getTextBundleKey("combo_seleccione"));
+				int j = 1;
+				for (Departamento d : listDepartamentos) {
+					SelectItem si = new SelectItem(d.get_nombre());
+					departamentos[j] = si;
+					j++;
+				}
+				listCiudades = this.getAdmFachada(Servicio.RelacionPCD)
+						.ObtenerCiudades();
+				ciudades = new SelectItem[listCiudades.size() + 1];
+				ciudades[0] = new SelectItem(this
+						.getTextBundleKey("combo_seleccione"));
+				int l = 1;
+				for (Ciudad c : listCiudades) {
+					SelectItem si = new SelectItem(c.get_nombre());
+					ciudades[l] = si;
+					l++;
+				}
+				paisElegido = paises[0].getValue().toString();
+				pais = new Pais();
+				pais= this.getUsuario().get_datos().get_pais();
+				departamentoElegido = departamentos[0].getValue().toString();
+				depto = new Departamento();
+				depto= this.getUsuario().get_datos().get_departamento();
+				ciudadElegido = ciudades[0].getValue().toString();
+				ciudad = new Ciudad();
+				ciudad = this.getUsuario().get_datos().get_ciudad();
+				nombre = this.getUsuario().get_datos().get_nombre();
+				apellido = this.getUsuario().get_datos().get_apellido();
+				email = this.getUsuario().get_datos().get_mail();
+				paisElegido = this.getUsuario().get_datos().get_pais()
+						.get_nombre();
+				departamentoElegido = this.getUsuario().get_datos()
+						.get_departamento().get_nombre();
+				ciudadElegido = this.getUsuario().get_datos().get_ciudad()
+						.get_nombre();
+				direccion = this.getUsuario().get_datos().get_direccion();
+				telefono = this.getUsuario().get_datos().get_tele();
+				celular = this.getUsuario().get_datos().get_cel();
 			}
-			listDepartamentos = super.getAdmFachada(Servicio.RelacionPCD)
-					.ObtenerDepartamentos();
-			departamentos = new SelectItem[listDepartamentos.size() + 1];
-			departamentos[0] = new SelectItem(super
-					.getTextBundleKey("combo_seleccione"));
-			int j = 1;
-			for (Departamento d : listDepartamentos) {
-				SelectItem si = new SelectItem(d.get_nombre());
-				departamentos[j] = si;
-				j++;
-			}
-			listCiudades = super.getAdmFachada(Servicio.RelacionPCD)
-					.ObtenerCiudades();
-			ciudades = new SelectItem[listCiudades.size() + 1];
-			ciudades[0] = new SelectItem(super
-					.getTextBundleKey("combo_seleccione"));
-			int l = 1;
-			for (Ciudad c : listCiudades) {
-				SelectItem si = new SelectItem(c.get_nombre());
-				ciudades[l] = si;
-				l++;
-			}
-			paisElegido = paises[0].getValue().toString();
-			departamentoElegido = departamentos[0].getValue().toString();
-			ciudadElegido = ciudades[0].getValue().toString();
 		} catch (Exception ex) {
-			super.setError(ex.getMessage());
+			this.setError(ex.getMessage());
 		}
 	}
-	
+
 	public void takeSelectionEmail() {
 		try {
-			if (super.getUsuario() == null) {
-				if (!super.getSegFachada(Servicio.Usuario)
+			if (this.getUsuario().get_datos().get_mail().equals(email)) {
+				if (!this.getSegFachada(Servicio.Usuario)
 						.ComprobarEmail(email)) {
-					super
+					this
 							.setError("El e-mail ingresado ya esta registrado en el sistema.");
+					this.email=this.getUsuario().get_datos().get_mail();
 				} else {
-					super.setError("");
-				}
-			} else if (super.getUsuario().get_datos().get_mail().equals(email)) {
-				if (!super.getSegFachada(Servicio.Usuario)
-						.ComprobarEmail(email)) {
-					super
-							.setError("El e-mail ingresado ya esta registrado en el sistema.");
-				} else {
-					super.setError("");
+					this.setError("");
 				}
 			}
 		} catch (Exception ex) {
-			super.setError(ex.getMessage());
+			this.setError(ex.getMessage());
 		}
-	}
-
-	public boolean enviarMailConfirmacion(Usuario pUsuario) {
-		try {
-			HttpServletRequest request = (HttpServletRequest) super
-					.getFacesContext().getExternalContext().getRequest();
-			StringBuffer path = request.getRequestURL();// http://localhost:8081/INIA_MSCC/Servicios/SEG/SEG002.jsf
-			String server = path.toString().replaceFirst("SEG002", "SEG003")
-					.toString();
-			String body = "<br></br><br></br><br><center><i><b>Usted se a registrado stisfactoriamente en INIA - MSCC,</br>"
-					+ "<br>para concluir con el registro aceda al siguiente link </b></i>.</br>"
-					+ "<br><a href='"
-					+ server
-					+ "?codigoActivacion="
-					+ pUsuario.get_codigoActivacion()
-					+ "'>"
-					+ "Concluir el registro de usuario</a></br><br></br>"
-					+ "<br><i><b>Muchas gracias por registrarse!</b></i></center><br></br><br></br><br></br>";
-
-			super.getComunFachada(Servicio.MailSender).enviarMailTextoPlano(
-					"juan400SVN@gmail.com", "INIA - MSCC Registro", body);
-		} catch (Exception ex) {
-			super.setError(ex.getMessage());
-		}
-		return true;
 	}
 
 	public void takeSelectionCiudad() {
 		try {
 			ciudad = new Ciudad();
 			ciudad.set_nombre(getDepartamentoElegido());
-			ciudad = super.getAdmFachada(Servicio.RelacionPCD).ObtenerCiudad(
+			ciudad = this.getAdmFachada(Servicio.RelacionPCD).ObtenerCiudad(
 					ciudad);
 		} catch (Exception ex) {
-			super.setError(ex.getMessage());
+			this.setError(ex.getMessage());
 		}
 	}
 
@@ -151,12 +141,12 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 		try {
 			depto = new Departamento();
 			depto.set_nombre(getDepartamentoElegido());
-			depto = super.getAdmFachada(Servicio.RelacionPCD)
+			depto = this.getAdmFachada(Servicio.RelacionPCD)
 					.ObtenerDepartamento(depto);
-			listCiudades = super.getAdmFachada(Servicio.RelacionPCD)
+			listCiudades = this.getAdmFachada(Servicio.RelacionPCD)
 					.ObtenerCiudadesXDeptos(depto);
 			ciudades = new SelectItem[listCiudades.size() + 1];
-			ciudades[0] = new SelectItem(super
+			ciudades[0] = new SelectItem(this
 					.getTextBundleKey("combo_seleccione"));
 			int l = 1;
 			for (Ciudad c : listCiudades) {
@@ -167,7 +157,7 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 			ciudadElegido = ciudades[0].getValue().toString();
 
 		} catch (Exception ex) {
-			super.setError(ex.getMessage());
+			this.setError(ex.getMessage());
 		}
 	}
 
@@ -175,11 +165,11 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 		try {
 			pais = new Pais();
 			pais.set_nombre(getPaisElegido());
-			pais = super.getAdmFachada(Servicio.RelacionPCD).ObtenerPais(pais);
-			listDepartamentos = super.getAdmFachada(Servicio.RelacionPCD)
+			pais = this.getAdmFachada(Servicio.RelacionPCD).ObtenerPais(pais);
+			listDepartamentos = this.getAdmFachada(Servicio.RelacionPCD)
 					.ObtenerDepartamentosXPais(pais);
 			departamentos = new SelectItem[listDepartamentos.size() + 1];
-			departamentos[0] = new SelectItem(super
+			departamentos[0] = new SelectItem(this
 					.getTextBundleKey("combo_seleccione"));
 			int j = 1;
 			for (Departamento d : listDepartamentos) {
@@ -190,8 +180,42 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 			departamentoElegido = departamentos[0].getValue().toString();
 
 		} catch (Exception ex) {
-			super.setError(ex.getMessage());
+			this.setError(ex.getMessage());
 		}
+	}
+
+	public String modificar() {
+		String retorno = "error";
+		try {
+			this.getUsuario().get_datos().set_nombre(nombre);
+			this.getUsuario().get_datos().set_apellido(apellido);
+			this.getUsuario().get_datos().set_mail(email);
+			this.getUsuario().get_datos().set_pais(pais);
+			this.getUsuario().get_datos().set_departamento(depto);
+			this.getUsuario().get_datos().set_ciudad(ciudad);
+			this.getUsuario().get_datos().set_direccion(direccion);
+			this.getUsuario().get_datos().set_cel(celular);
+			this.getUsuario().get_datos().set_tele(telefono);
+			this.getUsuario().get_datos().set_fechaRegistro(new Date());
+			this.getUsuario().get_datos().set_timeStamp(new Date());
+			this.getSegFachada(Servicio.Usuario).ActualizarDatos(
+					this.getUsuario().get_datos());
+			if (this.getUsuario().get_datos() != null) {
+				this.setError("");
+				this.setExito("Se a modificado los datos de su cuenta.");
+				retorno = "ok";
+				MaestroBean.getInstance()
+						.setOpcion("/Servicios/SEG/SEG001.jsp");
+			} else {
+				this
+						.setError("No ha sido posible registrar el usuario, revise los datos ingresados y intentelo nuevamente.");
+				MaestroBean.getInstance()
+						.setOpcion("/Servicios/SEG/SEG002.jsp");
+			}
+		} catch (Exception ex) {
+			this.setError(ex.getMessage());
+		}
+		return retorno;
 	}
 
 	/*
@@ -382,6 +406,5 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-
 
 }

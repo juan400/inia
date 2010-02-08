@@ -38,79 +38,81 @@ Secano.</title>
 								<f:facet name="header">
 									<h:outputText value="#{text.confiramcion_Titulo}" />
 								</f:facet>
-								<h:panelGrid rendered="#{confirmacionBean.activado}">
-									<h:outputText styleClass="mensajeError"
-										value="#{confirmacionBean.error}" />
-									<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
-										styleClass="textoPlano" action="#{loginBean.logout}" immediate="true"
-										tabindex="1" value="#{text.login_login}" />
-								</h:panelGrid>
-
-								<h:panelGroup rendered="#{!confirmacionBean.activado}">
-									<h:panelGrid columns="2" width="480">
-
-										<h:outputText value="#{text.confirmacion_Usuario}"
-											styleClass="textoPlano" />
-										<h:outputText value="#{confirmacionBean.nombre}"
-											styleClass="textoPlano" />
-
-										<h:outputText value="#{text.confirmacion_Login}"
-											styleClass="textoPlano" />
-										<h:outputText value="#{confirmacionBean.loginName}"
-											styleClass="textoPlano" />
-
-										<h:outputText value="#{text.registro_Contrasenia}"
-											styleClass="textoPlano" />
-										<h:inputSecret id="txtContrasenia"
-											value="#{confirmacionBean.contrasenia}" required="true"
-											requiredMessage="Debe ingresar su contraseña"
-											onkeypress="ValidarCampoLogin(this, event)"
-											styleClass="textoPlano" tabindex="1" maxlength="13">
-											<f:validateLength minimum="6" maximum="13" />
-										</h:inputSecret>
-
-										<h:outputText value="#{text.registro_ConfirmacionContrasenia}"
-											styleClass="textoPlano" />
-										<h:inputSecret id="txtConfirmarContrasenia"
-											value="#{confirmacionBean.confirmacion}" required="true"
-											onkeypress="ValidarCampoLogin(this, event)"
-											requiredMessage="Debe ingresar confirmación de contraseña"
-											styleClass="textoPlano" tabindex="2" maxlength="13">
-											<f:validateLength minimum="6" maximum="13" />
-										</h:inputSecret>
-
-										<h:outputText value="#{text.registro_Frase}"
-											styleClass="textoPlano" />
-										<h:inputText id="txtfrase" value="#{confirmacionBean.frase}"
-											styleClass="textoPlano" tabindex="3" required="true"
-											onkeypress="ValidarCampoLetras(this,event)"
-											requiredMessage="Debe ingresar frase secreta">
-											<f:validateLength minimum="5" maximum="250" />
-										</h:inputText>
+								<h:panelGrid>
+									<h:panelGrid rendered="#{confirmacionBean.activado}">
+										<h:outputText styleClass="mensajeError"
+											value="#{confirmacionBean.error}" />
+										<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
+											styleClass="textoPlano" action="#{loginBean.logout}"
+											immediate="true" tabindex="1" value="#{text.login_login}" />
 									</h:panelGrid>
 
-									<h:panelGrid columns="2">
-										<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
-											styleClass="textoPlano" tabindex="3"
-											action="#{confirmacionBean.Confirmar}"
-											value="#{text.boton_Guardar}" />
-										<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
-											styleClass="textoPlano" tabindex="4" action="Cancelar" immediate="true"
-											value="#{text.boton_Cancelar}" />
-									</h:panelGrid>
+									<h:panelGroup rendered="#{!confirmacionBean.activado}">
+										<h:panelGrid columns="2" width="480">
+
+											<h:outputText value="#{text.confirmacion_Usuario}"
+												styleClass="textoPlano" />
+											<h:outputText value="#{confirmacionBean.nombre}"
+												styleClass="textoPlano" />
+
+											<h:outputText value="#{text.confirmacion_Login}"
+												styleClass="textoPlano" />
+											<h:outputText value="#{confirmacionBean.loginName}"
+												styleClass="textoPlano" />
+
+											<h:outputText value="#{text.registro_Contrasenia}"
+												styleClass="textoPlano" />
+											<h:inputSecret id="txtContrasenia"
+												value="#{confirmacionBean.contrasenia}" required="true"
+												requiredMessage="Debe ingresar su contraseña"
+												onkeypress="ValidarCampoLogin(this, event)"
+												styleClass="textoPlano" tabindex="1" maxlength="13">
+												<f:validateLength minimum="6" maximum="13" />
+											</h:inputSecret>
+
+											<h:outputText
+												value="#{text.registro_ConfirmacionContrasenia}"
+												styleClass="textoPlano" />
+											<h:inputSecret id="txtConfirmarContrasenia"
+												value="#{confirmacionBean.confirmacion}" required="true"
+												onkeypress="ValidarCampoLogin(this, event)"
+												requiredMessage="Debe ingresar confirmación de contraseña"
+												styleClass="textoPlano" tabindex="2" maxlength="13">
+												<f:validateLength minimum="6" maximum="13" />
+											</h:inputSecret>
+
+											<h:outputText value="#{text.registro_Frase}"
+												styleClass="textoPlano" />
+											<h:inputText id="txtfrase" value="#{confirmacionBean.frase}"
+												styleClass="textoPlano" tabindex="3" required="true"
+												onkeypress="ValidarCampoLetras(this,event)"
+												requiredMessage="Debe ingresar frase secreta">
+												<f:validateLength minimum="5" maximum="250" />
+											</h:inputText>
+										</h:panelGrid>
+
+										<h:panelGrid columns="2">
+											<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
+												styleClass="textoPlano" tabindex="3"
+												action="#{confirmacionBean.Confirmar}"
+												value="#{text.boton_Guardar}" />
+											<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
+												styleClass="textoPlano" tabindex="4" action="Cancelar"
+												immediate="true" value="#{text.boton_Cancelar}" />
+										</h:panelGrid>
+									</h:panelGroup>
 									<f:facet name="footer">
-											<h:panelGrid>
-												<rich:messages styleClass="mensajeError">
-													<f:facet name="errorMarker">
-														<h:graphicImage
-															value="/Recursos/Imagenes/Iconos/error.gif" />
-													</f:facet>
-												</rich:messages>
-												<h:outputText styleClass="textoPlano"
-													value="#{confirmacionBean.exito}"/>
-											</h:panelGrid>
-										</f:facet>
-								</h:panelGroup>
+										<h:panelGrid>
+											<rich:messages styleClass="mensajeError">
+												<f:facet name="errorMarker">
+													<h:graphicImage value="/Recursos/Imagenes/Iconos/error.gif" />
+												</f:facet>
+											</rich:messages>
+											<h:outputText styleClass="textoPlano"
+												value="#{loginBean.exito}" />
+										</h:panelGrid>
+									</f:facet>
+								</h:panelGrid>
 							</rich:panel>
 						</h:panelGrid>
 						<a4j:status for="contenido"
