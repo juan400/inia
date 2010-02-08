@@ -14,7 +14,7 @@ public interface ServicioPerfil {
 
 	public Perfil ComprobarPerfil(Perfil pPerfil);
 
-	public void EliminarPerfil(Perfil pPerfil);
+	public void EliminarPerfil(Perfil pPerfil) throws Throwable;
 	
 	public Perfil ObtenerPerfilConTransAsociadas(Perfil pPerfil);
 	
