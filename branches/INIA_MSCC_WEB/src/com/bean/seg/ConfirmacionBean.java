@@ -34,46 +34,46 @@ public class ConfirmacionBean extends MaestroBean implements Serializable {
 	public String Confirmar() {
 		String retorno = "confirmar-error";
 		try {
-			if (super.getUsuario() != null) {
-				if (!contrasenia.equalsIgnoreCase(super.getUsuario()
+			if (this.getUsuario() != null) {
+				if (!contrasenia.equalsIgnoreCase(this.getUsuario()
 						.get_login())) {
 					if (contrasenia.equalsIgnoreCase(confirmacion)) {
 						if (!frase.isEmpty()
 								&& !frase.equals("")
-								&& !frase.equalsIgnoreCase(super.getUsuario()
+								&& !frase.equalsIgnoreCase(this.getUsuario()
 										.get_login())
 								&& !frase.equalsIgnoreCase(contrasenia)) {
-							super.getUsuario().set_password(contrasenia);
-							super.getUsuario().set_ultimoAcceso(new Date());
-							super.getUsuario().set_frase(frase);
-							super.getUsuario().set_activado(true);
-							super.getUsuario().set_estadoUsuario(
+							this.getUsuario().set_password(contrasenia);
+							this.getUsuario().set_ultimoAcceso(new Date());
+							this.getUsuario().set_frase(frase);
+							this.getUsuario().set_activado(true);
+							this.getUsuario().set_estadoUsuario(
 									EstadoUsuario.Activo);
-							super.getSegFachada(Servicio.Usuario)
-									.CambiarPassword(super.getUsuario());
+							this.getSegFachada(Servicio.Usuario)
+									.CambiarPassword(this.getUsuario());
 							retorno = "confirmar-ok";
 						} else {
-							super
+							this
 									.setError("Ingrese la clave secreta y recuerde que no sea igual a su contraseña o nombre de usuario.");
 							retorno = "confirmar-error";
 						}
 					} else {
-						super
+						this
 								.setError("La contraseña ingresada no es igual a su confirmación.");
 						retorno = "confirmar-error";
 					}
 				} else {
-					super
+					this
 							.setError("La contraseña ingresada no puede ser igual al usuario.");
 					retorno = "confirmar-error";
 				}
 				// TODO Poner el metod de la fachada que confira el usuario.
 			} else {
-				super.setError("El usuario no esta registrado en el sistema.");
+				this.setError("El usuario no esta registrado en el sistema.");
 				retorno = "confirmar-error";
 			}
 		} catch (Exception ex) {
-			super.setError(ex.getMessage());
+			this.setError(ex.getMessage());
 		}
 		return retorno;
 	}
@@ -97,49 +97,49 @@ public class ConfirmacionBean extends MaestroBean implements Serializable {
 				codigoActivacion = null;
 			}
 			if (codigoActivacion != null) {
-				super.setUsuario(super.getSegFachada(Servicio.Usuario)
+				this.setUsuario(this.getSegFachada(Servicio.Usuario)
 						.ComprobarClaveReigstro(codigoActivacion.toString()));
-				if (super.getUsuario() != null) {
-					nombre = super.getUsuario().get_datos().get_nombre() + " "
-							+ super.getUsuario().get_datos().get_apellido();
-					loginName = super.getUsuario().get_login();
-					if (super.getUsuario().is_activado()) {
-						super.setError("Estiamdo usuario " + nombre
+				if (this.getUsuario() != null) {
+					nombre = this.getUsuario().get_datos().get_nombre() + " "
+							+ this.getUsuario().get_datos().get_apellido();
+					loginName = this.getUsuario().get_login();
+					if (this.getUsuario().is_activado()) {
+						this.setError("Estiamdo usuario " + nombre
 								+ " su cuenta está confirmada.");
 						setActivado(true);
-					} else if (super.getUsuario().get_estadoUsuario().equals(
+					} else if (this.getUsuario().get_estadoUsuario().equals(
 							Enumerados.EstadoUsuario.Activo)) {
-						super
+						this
 								.setError("Estiamdo usuario "
 										+ nombre
 										+ " su cuenta está activada, no es necesario este paso.");
 						setActivado(true);
-					} else if (super.getUsuario().get_estadoUsuario().equals(
+					} else if (this.getUsuario().get_estadoUsuario().equals(
 							Enumerados.EstadoUsuario.Bloqueado)) {
-						super
+						this
 								.setError("Estiamdo usuario "
 										+ nombre
 										+ " su cuenta está bloqueada, ingrese a recuperar su contraseña.");
 						setActivado(true);
-					} else if (super.getUsuario().get_estadoUsuario().equals(
+					} else if (this.getUsuario().get_estadoUsuario().equals(
 							Enumerados.EstadoUsuario.Inactivo)) {
-						super
+						this
 								.setError("Estiamdo usuario "
 										+ nombre
 										+ " su cuenta está momentaneamente inactivada, consulte a su administrador.");
 						setActivado(true);
 					} else {
-						super.setError("");
+						this.setError("");
 						setActivado(false);
 					}
 				} else {
-					super
+					this
 							.setError("Estiamdo usuario, realize previamente el paso Registro de usuario.");
 					setActivado(true);
 				}
 			}
 		} catch (Exception ex) {
-			super.setError(ex.getMessage());
+			this.setError(ex.getMessage());
 		}
 		return false;
 	}

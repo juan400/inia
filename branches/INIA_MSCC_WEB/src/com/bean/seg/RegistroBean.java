@@ -57,27 +57,27 @@ public class RegistroBean extends MaestroBean implements Serializable {
 
 	public void takeSelectionEmail() {
 		try {
-			if (super.getUsuario() == null) {
-				if (!super.getSegFachada(Servicio.Usuario)
+			if (this.getUsuario() == null) {
+				if (!this.getSegFachada(Servicio.Usuario)
 						.ComprobarEmail(email)) {
-					super
+					this
 							.setError("El e-mail ingresado ya esta registrado en el sistema.");
 					this.setEmail("");
 				} else {
-					super.setError("");
+					this.setError("");
 				}
-			} else if (super.getUsuario().get_datos().get_mail().equals(email)) {
-				if (!super.getSegFachada(Servicio.Usuario)
+			} else if (this.getUsuario().get_datos().get_mail().equals(email)) {
+				if (!this.getSegFachada(Servicio.Usuario)
 						.ComprobarEmail(email)) {
-					super
+					this
 							.setError("El e-mail ingresado ya esta registrado en el sistema.");
 					this.setEmail("");
 				} else {
-					super.setError("");
+					this.setError("");
 				}
 			}
 		} catch (Exception ex) {
-			super.setError(ex.getMessage());
+			this.setError(ex.getMessage());
 		}
 	}
 
@@ -87,7 +87,7 @@ public class RegistroBean extends MaestroBean implements Serializable {
 	 */
 	public boolean enviarMailConfirmacion(Usuario pUsuario) {
 		try {
-			HttpServletRequest request = (HttpServletRequest) super
+			HttpServletRequest request = (HttpServletRequest) this
 					.getFacesContext().getExternalContext().getRequest();
 			StringBuffer path = request.getRequestURL();// http://localhost:8081/INIA_MSCC/Servicios/SEG/SEG002.jsf
 			String server = path.toString().replaceFirst("SEG002", "SEG003")
@@ -102,11 +102,11 @@ public class RegistroBean extends MaestroBean implements Serializable {
 					+ "Concluir el registro de usuario</a></br><br></br>"
 					+ "<br><i><b>Muchas gracias por registrarse!</b></i></center><br></br><br></br><br></br>";
 
-			super.getComunFachada(Servicio.MailSender).enviarMailTextoPlano(
+			this.getComunFachada(Servicio.MailSender).enviarMailTextoPlano(
 					pUsuario.get_datos().get_mail(), "INIA - MSCC Registro",
 					body);
 		} catch (Exception ex) {
-			super.setError(ex.getMessage());
+			this.setError(ex.getMessage());
 		}
 		return true;
 	}
@@ -114,11 +114,11 @@ public class RegistroBean extends MaestroBean implements Serializable {
 	public void takeSelectionCiudad() {
 		try {
 			ciudad = new Ciudad();
-			ciudad.set_nombre(getDepartamentoElegido());
-			ciudad = super.getAdmFachada(Servicio.RelacionPCD).ObtenerCiudad(
+			ciudad.set_nombre(getCiudadElegido());
+			ciudad = this.getAdmFachada(Servicio.RelacionPCD).ObtenerCiudad(
 					ciudad);
 		} catch (Exception ex) {
-			super.setError(ex.getMessage());
+			this.setError(ex.getMessage());
 		}
 	}
 
@@ -126,12 +126,12 @@ public class RegistroBean extends MaestroBean implements Serializable {
 		try {
 			depto = new Departamento();
 			depto.set_nombre(getDepartamentoElegido());
-			depto = super.getAdmFachada(Servicio.RelacionPCD)
+			depto = this.getAdmFachada(Servicio.RelacionPCD)
 					.ObtenerDepartamento(depto);
-			listCiudades = super.getAdmFachada(Servicio.RelacionPCD)
+			listCiudades = this.getAdmFachada(Servicio.RelacionPCD)
 					.ObtenerCiudadesXDeptos(depto);
 			ciudades = new SelectItem[listCiudades.size() + 1];
-			ciudades[0] = new SelectItem(super
+			ciudades[0] = new SelectItem(this
 					.getTextBundleKey("combo_seleccione"));
 			int l = 1;
 			for (Ciudad c : listCiudades) {
@@ -142,7 +142,7 @@ public class RegistroBean extends MaestroBean implements Serializable {
 			ciudadElegido = ciudades[0].getValue().toString();
 
 		} catch (Exception ex) {
-			super.setError(ex.getMessage());
+			this.setError(ex.getMessage());
 		}
 	}
 
@@ -150,11 +150,11 @@ public class RegistroBean extends MaestroBean implements Serializable {
 		try {
 			pais = new Pais();
 			pais.set_nombre(getPaisElegido());
-			pais = super.getAdmFachada(Servicio.RelacionPCD).ObtenerPais(pais);
-			listDepartamentos = super.getAdmFachada(Servicio.RelacionPCD)
+			pais = this.getAdmFachada(Servicio.RelacionPCD).ObtenerPais(pais);
+			listDepartamentos = this.getAdmFachada(Servicio.RelacionPCD)
 					.ObtenerDepartamentosXPais(pais);
 			departamentos = new SelectItem[listDepartamentos.size() + 1];
-			departamentos[0] = new SelectItem(super
+			departamentos[0] = new SelectItem(this
 					.getTextBundleKey("combo_seleccione"));
 			int j = 1;
 			for (Departamento d : listDepartamentos) {
@@ -165,16 +165,16 @@ public class RegistroBean extends MaestroBean implements Serializable {
 			departamentoElegido = departamentos[0].getValue().toString();
 
 		} catch (Exception ex) {
-			super.setError(ex.getMessage());
+			this.setError(ex.getMessage());
 		}
 	}
 
 	public RegistroBean() throws Exception {
 		try {
-			listPaises = super.getAdmFachada(Servicio.RelacionPCD)
+			listPaises = this.getAdmFachada(Servicio.RelacionPCD)
 					.ObtenerPaises();
 			paises = new SelectItem[listPaises.size() + 1];
-			paises[0] = new SelectItem(super
+			paises[0] = new SelectItem(this
 					.getTextBundleKey("combo_seleccione"));
 			int i = 1;
 			for (Pais p : listPaises) {
@@ -182,10 +182,10 @@ public class RegistroBean extends MaestroBean implements Serializable {
 				paises[i] = si;
 				i++;
 			}
-			listDepartamentos = super.getAdmFachada(Servicio.RelacionPCD)
+			listDepartamentos = this.getAdmFachada(Servicio.RelacionPCD)
 					.ObtenerDepartamentos();
 			departamentos = new SelectItem[listDepartamentos.size() + 1];
-			departamentos[0] = new SelectItem(super
+			departamentos[0] = new SelectItem(this
 					.getTextBundleKey("combo_seleccione"));
 			int j = 1;
 			for (Departamento d : listDepartamentos) {
@@ -193,10 +193,10 @@ public class RegistroBean extends MaestroBean implements Serializable {
 				departamentos[j] = si;
 				j++;
 			}
-			listCiudades = super.getAdmFachada(Servicio.RelacionPCD)
+			listCiudades = this.getAdmFachada(Servicio.RelacionPCD)
 					.ObtenerCiudades();
 			ciudades = new SelectItem[listCiudades.size() + 1];
-			ciudades[0] = new SelectItem(super
+			ciudades[0] = new SelectItem(this
 					.getTextBundleKey("combo_seleccione"));
 			int l = 1;
 			for (Ciudad c : listCiudades) {
@@ -208,7 +208,7 @@ public class RegistroBean extends MaestroBean implements Serializable {
 			departamentoElegido = departamentos[0].getValue().toString();
 			ciudadElegido = ciudades[0].getValue().toString();
 		} catch (Exception ex) {
-			super.setError(ex.getMessage());
+			this.setError(ex.getMessage());
 		}
 	}
 
@@ -225,7 +225,7 @@ public class RegistroBean extends MaestroBean implements Serializable {
 	public String registrar() {
 		String retorno = "";
 		try {
-			if (super.getSegFachada(Servicio.Usuario).ComprobarEmail(email)) {
+			if (this.getSegFachada(Servicio.Usuario).ComprobarEmail(email)) {
 				DatoUsuario datos = new DatoUsuario();
 				datos.set_nombre(nombre);
 				datos.set_apellido(apellido);
@@ -252,35 +252,28 @@ public class RegistroBean extends MaestroBean implements Serializable {
 				pUsuario.set_estadoUsuario(EstadoUsuario.Registrado);
 				pUsuario.set_ultimoAcceso(new Date());
 				pUsuario.set_frase("Ingrese su frase secreta");
-				Usuario u = super.getSegFachada(Servicio.Usuario)
+				Usuario u = this.getSegFachada(Servicio.Usuario)
 						.RegistrarUsuario(pUsuario);
 				if (u != null) {
 					// if (!this.salvarNombre(pUsuario)) {
 					if (!this.enviarMailConfirmacion(pUsuario)) {
-						super
+						this
 								.setError("No ha sido posible registrar el usuario, el e-mail proporcionado no esta disponible.");
-						MaestroBean.getInstance().setOpcion(
-								"/Servicios/SEG/SEG002.jsp");
-						retorno = "";//"registro-error";
 					}
-					super.setError("");
-					super
+					this.setError("");
+					this
 							.setExito("Se a enviado un e-mail a su casilla de correo, lea el correo para confirmar el registro.");
-					MaestroBean.getInstance().setOpcion(
-							"/Servicios/SEG/SEG001.jsp");
 				} else {
-					super
+					this
 							.setError("No ha sido posible registrar el usuario, revise los datos ingresados y intentelo nuevamente.");
-					MaestroBean.getInstance().setOpcion(
-							"/Servicios/SEG/SEG002.jsp");
 				}
 			} else {
-				super.setError("El e-mail esta registrado para otro usuario.");
+				this.setError("El e-mail esta registrado para otro usuario.");
 				MaestroBean.getInstance()
 						.setOpcion("/Servicios/SEG/SEG002.jsp");
 			}
 		} catch (Exception ex) {
-			super.setError(ex.getMessage());
+			this.setError(ex.getMessage());
 		}
 		return retorno;
 	}
@@ -324,7 +317,7 @@ public class RegistroBean extends MaestroBean implements Serializable {
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(
 					pUsuario.get_datos().get_mail()));
 
-			HttpServletRequest request = (HttpServletRequest) super
+			HttpServletRequest request = (HttpServletRequest) this
 					.getFacesContext().getExternalContext().getRequest();
 			StringBuffer path = request.getRequestURL();// http://localhost:8081/INIA_MSCC/Servicios/SEG/SEG002.jsf
 			String server = path.toString().replaceFirst("SEG002", "SEG003")
@@ -352,7 +345,7 @@ public class RegistroBean extends MaestroBean implements Serializable {
 			t.close();
 
 		} catch (Exception ex) {
-			super.setError(ex.getMessage());
+			this.setError(ex.getMessage());
 		}
 		return true;
 	}

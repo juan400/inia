@@ -184,7 +184,7 @@ public class DAOUsuario implements Serializable {
 			Session session = HibernateUtil.getSessionFactory()
 					.getCurrentSession();
 			session.update(pUsuario);
-		} catch (StaleObjectStateException e) {
+		}catch(Exception e){// catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);
@@ -217,4 +217,16 @@ public class DAOUsuario implements Serializable {
 		return usuario;
 	}
 
+	public void DarBajaBloquearUsuario(Usuario pUsuario) {
+		try {
+			Session session = HibernateUtil.getSessionFactory()
+					.getCurrentSession();
+			session.update(pUsuario);
+		} catch (StaleObjectStateException e) {
+			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
+			logger.error(stackTrace);
+			throw new IniaPersistenciaException(e.getMessage(), e);
+		}		
+	}
+	
 }
