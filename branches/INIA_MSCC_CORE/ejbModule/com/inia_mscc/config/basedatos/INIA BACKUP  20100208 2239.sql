@@ -1007,7 +1007,7 @@ CREATE TABLE `tl_seg_daus_datosusuario` (
   CONSTRAINT `FK_daus_num_id_departamentos` FOREIGN KEY (`daus_num_id_departamento`) REFERENCES `tl_adm_deto_departamento` (`deto_num_id`),
   CONSTRAINT `FK_daus_num_id_pais` FOREIGN KEY (`daus_num_id_pais`) REFERENCES `tl_adm_pais_pais` (`pais_num_id`),
   CONSTRAINT `FK_daus_num_id_perfil` FOREIGN KEY (`daus_num_id_perfil`) REFERENCES `tl_seg_perf_perfil` (`perf_num_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tl_seg_daus_datosusuario`
@@ -1015,8 +1015,15 @@ CREATE TABLE `tl_seg_daus_datosusuario` (
 
 /*!40000 ALTER TABLE `tl_seg_daus_datosusuario` DISABLE KEYS */;
 INSERT INTO `tl_seg_daus_datosusuario` (`daus_num_id`,`daus_num_id_estado`,`daus_str_nombre`,`daus_dte_timestamp`,`daus_str_apellido`,`daus_str_email`,`daus_str_telefono`,`daus_str_celular`,`daus_str_direccion`,`daus_num_id_pais`,`daus_num_id_departamento`,`daus_num_id_ciudad`,`daus_dte_fecha_registro`,`daus_num_id_perfil`) VALUES 
- (1,'Activo','Juan Andres','2010-01-30 12:46:09','Pio','juan400@gmail.com','adsf','asdf','asdf',21,474,NULL,'2010-01-30 12:46:09',1),
- (2,'Activo','asf','2010-01-30 18:35:29','asd','juan400_4@gmail.com','asdf','asdf','asdf',21,474,NULL,'2010-01-30 18:35:29',2);
+ (1,'Activo','Juan Andres','2010-02-08 12:03:01','Pio','juan400@gmail.com','9026297','099940123','Rio Negro 1076 - apto 201',21,480,NULL,'2010-01-30 12:46:09',1),
+ (2,'Activo','asf','2010-01-30 18:35:29','asd','juan400_4@gmail.com','asdf','asdf','asdf',21,474,NULL,'2010-01-30 18:35:29',2),
+ (3,'Activo','mauricio','2010-02-07 18:15:00','gayol','asd','334','34343','aDF',21,480,1,'2010-02-07 18:15:00',3),
+ (5,'Activo','sdf','2010-02-07 18:20:32','asd','afd','34','234','asd',NULL,NULL,NULL,'2010-02-07 18:20:32',3),
+ (6,'Activo','sdf','2010-02-07 18:32:25','asd','juan4l;00@gmail.com','34','234','asd',NULL,NULL,NULL,'2010-02-07 18:32:25',3),
+ (7,'Activo','sdf','2010-02-07 18:34:04','asd','jua2n00@gmail.com','34','234','asd',NULL,NULL,NULL,'2010-02-07 18:34:04',3),
+ (8,'Activo','sdf','2010-02-07 18:37:51','asd','jua2nd00@gmail.com','34','234','asd',NULL,NULL,NULL,'2010-02-07 18:37:51',3),
+ (9,'Activo','asdf','2010-02-07 19:03:22','asdf','asdf@asfg.com','34','','asdf',NULL,NULL,NULL,'2010-02-07 19:03:22',3),
+ (10,'Activo','hjhkjh','2010-02-07 19:13:28','fhdhd','jjkljh@gfh.com','','',';lkj',NULL,NULL,NULL,'2010-02-07 19:13:28',3);
 /*!40000 ALTER TABLE `tl_seg_daus_datosusuario` ENABLE KEYS */;
 
 
@@ -1032,7 +1039,7 @@ CREATE TABLE `tl_seg_perf_perfil` (
   `perf_str_descripcion` varchar(220) DEFAULT NULL,
   `perf_bol_fijo` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`perf_num_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tl_seg_perf_perfil`
@@ -1042,7 +1049,8 @@ CREATE TABLE `tl_seg_perf_perfil` (
 INSERT INTO `tl_seg_perf_perfil` (`perf_num_id`,`perf_str_estado`,`perf_str_nombre`,`perf_str_descripcion`,`perf_bol_fijo`) VALUES 
  (1,'Activo','Administrador','Administrador del sistema',1),
  (2,'Activo','Investigador','Investigadores de MSCC',1),
- (3,'Activo','Publico','Público en general',1);
+ (3,'Activo','Publico','Público en general',1),
+ (8,'Activo','Perfil de Juan','asdfaf',0);
 /*!40000 ALTER TABLE `tl_seg_perf_perfil` ENABLE KEYS */;
 
 
@@ -1052,58 +1060,62 @@ INSERT INTO `tl_seg_perf_perfil` (`perf_num_id`,`perf_str_estado`,`perf_str_nomb
 
 DROP TABLE IF EXISTS `tl_seg_trpe_transaccionperfil`;
 CREATE TABLE `tl_seg_trpe_transaccionperfil` (
-  `trpe_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `trpe_num_id_perfile` bigint(20) NOT NULL,
   `trpe_num_id_transaccion` bigint(20) NOT NULL,
-  PRIMARY KEY (`trpe_num_id`),
-  KEY `FK_trpe_num_id_perfile` (`trpe_num_id_perfile`),
+  PRIMARY KEY (`trpe_num_id_perfile`,`trpe_num_id_transaccion`) USING BTREE,
   KEY `FK_trpe_num_id_transaccion` (`trpe_num_id_transaccion`),
   CONSTRAINT `FK_trpe_num_id_perfile` FOREIGN KEY (`trpe_num_id_perfile`) REFERENCES `tl_seg_perf_perfil` (`perf_num_id`),
   CONSTRAINT `FK_trpe_num_id_transaccion` FOREIGN KEY (`trpe_num_id_transaccion`) REFERENCES `tl_adm_tran_transaccion` (`tran_num_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tl_seg_trpe_transaccionperfil`
 --
 
 /*!40000 ALTER TABLE `tl_seg_trpe_transaccionperfil` DISABLE KEYS */;
-INSERT INTO `tl_seg_trpe_transaccionperfil` (`trpe_num_id`,`trpe_num_id_perfile`,`trpe_num_id_transaccion`) VALUES 
- (1,1,1),
- (2,1,2),
- (3,1,3),
- (4,1,4),
- (5,1,5),
- (6,1,6),
- (7,1,7),
- (8,1,8),
- (9,1,9),
- (10,1,10),
- (11,1,12),
- (12,1,13),
- (13,1,14),
- (14,1,15),
- (15,1,16),
- (16,1,17),
- (17,1,18),
- (18,1,19),
- (19,1,20),
- (20,1,21),
- (21,1,22),
- (22,1,23),
- (23,1,24),
- (24,1,25),
- (25,1,26),
- (26,1,27),
- (27,1,28),
- (28,1,29),
- (29,2,22),
- (30,2,23),
- (31,2,24),
- (32,2,25),
- (33,2,26),
- (34,2,27),
- (35,2,28),
- (36,2,29);
+INSERT INTO `tl_seg_trpe_transaccionperfil` (`trpe_num_id_perfile`,`trpe_num_id_transaccion`) VALUES 
+ (1,1),
+ (1,2),
+ (1,3),
+ (1,4),
+ (1,5),
+ (1,6),
+ (1,7),
+ (8,7),
+ (1,8),
+ (8,8),
+ (1,9),
+ (8,9),
+ (1,10),
+ (8,10),
+ (8,11),
+ (1,12),
+ (8,12),
+ (1,13),
+ (1,14),
+ (1,15),
+ (1,16),
+ (1,17),
+ (1,18),
+ (1,19),
+ (1,20),
+ (1,21),
+ (1,22),
+ (2,22),
+ (1,23),
+ (2,23),
+ (1,24),
+ (2,24),
+ (1,25),
+ (2,25),
+ (1,26),
+ (2,26),
+ (1,27),
+ (2,27),
+ (1,28),
+ (2,28),
+ (1,29),
+ (2,29);
 /*!40000 ALTER TABLE `tl_seg_trpe_transaccionperfil` ENABLE KEYS */;
 
 
@@ -1125,7 +1137,7 @@ CREATE TABLE `tl_seg_usua_usuario` (
   PRIMARY KEY (`usua_num_id`),
   KEY `FK_usua_num_id_dato_usuario` (`usua_num_id_dato_usuario`),
   CONSTRAINT `FK_usua_num_id_dato_usuario` FOREIGN KEY (`usua_num_id_dato_usuario`) REFERENCES `tl_seg_daus_datosusuario` (`daus_num_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tl_seg_usua_usuario`
@@ -1133,8 +1145,15 @@ CREATE TABLE `tl_seg_usua_usuario` (
 
 /*!40000 ALTER TABLE `tl_seg_usua_usuario` DISABLE KEYS */;
 INSERT INTO `tl_seg_usua_usuario` (`usua_num_id`,`usua_str_login`,`usua_str_password`,`usua_bol_activado`,`usua_dte_ultimo_acceso`,`usua_str_estado_usuario`,`usua_num_id_dato_usuario`,`usua_str_frase`,`usua_str_codigo_activacion`) VALUES 
- (1,'juan400','jojojo',1,'2010-02-02 19:02:37','Activo',1,'jojojojo','81373981'),
- (2,'juan400_4','jojojo',1,'2010-02-02 19:03:22','Activo',2,'Ingrese su frase secreta','32317168');
+ (1,'juan400','juan4003',1,'2010-02-08 21:02:14','Activo',1,'jojojojo','81373981'),
+ (2,'juan400_4','jojojo',1,'2010-02-02 19:03:22','Activo',2,'Ingrese su frase secreta','32317168'),
+ (3,'mgayol','85400880',0,'2010-02-07 18:15:00','Registrado',3,'Ingrese su frase secreta','85400880'),
+ (5,'juan400','17568942',0,'2010-02-07 18:20:32','Registrado',5,'Ingrese su frase secreta','17568942'),
+ (6,'juan400','80781734',0,'2010-02-07 18:32:25','Registrado',6,'Ingrese su frase secreta','80781734'),
+ (7,'jua2n00','57972792',0,'2010-02-07 18:34:04','Registrado',7,'Ingrese su frase secreta','57972792'),
+ (8,'jua2nd00','19959745',0,'2010-02-07 18:37:51','Registrado',8,'Ingrese su frase secreta','19959745'),
+ (9,'asdf','52256651',0,'2010-02-07 19:03:22','Registrado',9,'Ingrese su frase secreta','52256651'),
+ (10,'jjkljh','02102240',0,'2010-02-07 19:13:28','Registrado',10,'Ingrese su frase secreta','02102240');
 /*!40000 ALTER TABLE `tl_seg_usua_usuario` ENABLE KEYS */;
 
 
