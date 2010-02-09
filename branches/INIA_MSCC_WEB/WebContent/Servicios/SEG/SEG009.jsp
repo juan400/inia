@@ -96,7 +96,7 @@ Secano.</title>
 
 														<center><rich:dataTable border="2" width="400px"
 															id="tablaTransaccion" rows="6"
-															styleClass="textoDataTable"
+															styleClass="textoDataTable" 
 															value="#{perfilBean.transacciones}" var="transaccion"
 															rowKeyVar="row" headerClass="columnHeader"
 															rowClasses="oddRow,evenRow">
@@ -126,8 +126,8 @@ Secano.</title>
 															</rich:column>
 
 															<f:facet name="footer">
-																<rich:datascroller renderIfSinglePage="false"
-																	maxPages="5" />
+																<rich:datascroller for="tablaTransaccion" renderIfSinglePage="false"
+																	maxPages="5"/>
 															</f:facet>
 														</rich:dataTable></center>
 														<br></br>
