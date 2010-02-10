@@ -34,4 +34,9 @@ public class ProveedorTransaccion implements ServicioTransaccion {
 		ejbTransaccion.ActualizarTransaccion(pTransaccion);
 	}
 
+	@Override
+	public List<Transaccion> ObtenerTransaccionesActiva() {
+		return ejbTransaccion.ObtenerTransaccionesActiva();
+	}
+
 }

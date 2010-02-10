@@ -93,13 +93,13 @@ Secano.</title>
 
 															<td style="width: 2px;"></td>
 															<h:outputText value="" />
-															<br></br>
+															
 														</h:panelGrid>
 
 														<center><rich:dataTable border="2" width="400px"
 															id="tablaTransaccion" rows="6"
 															styleClass="textoDataTable"
-															value="#{perfilBean.transacciones}" var="transaccion"
+															value="#{perfilBean.transaccionesActivas}" var="transaccion"
 															rowKeyVar="row" headerClass="columnHeader"
 															rowClasses="oddRow,evenRow">
 															<f:facet name="header">
@@ -132,9 +132,9 @@ Secano.</title>
 																	maxPages="5" />
 															</f:facet>
 														</rich:dataTable></center>
-														<br></br>
+														
 
-														<h:panelGrid columns="2">
+														<CENTER><h:panelGrid columns="2">
 															<a4j:commandButton
 																style="font-size: 10pt; color: #2d77c2; width : 71px;"
 																styleClass="textoPlano"
@@ -144,7 +144,7 @@ Secano.</title>
 																style="font-size: 10pt; color: #2d77c2; width : 71px;"
 																styleClass="textoPlano" action="cancelar"
 																value="#{text.boton_Cancelar}" />
-														</h:panelGrid>
+														</h:panelGrid></center>
 
 														<f:facet name="footer">
 															<h:panelGrid>

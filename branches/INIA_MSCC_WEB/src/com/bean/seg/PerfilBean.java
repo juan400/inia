@@ -25,8 +25,9 @@ public class PerfilBean extends MaestroBean implements Serializable {
 	private String fijo;
 	private List<Perfil> perfiles;
 	private Perfil perfil = new Perfil();
-	private List<Transaccion> transacciones;
+	private List<Transaccion> transaccionesActivas;
 
+	
 	public String eliminar() {
 		String retorno = "";
 		try {
@@ -45,12 +46,13 @@ public class PerfilBean extends MaestroBean implements Serializable {
 							.set_transaccionesSistema(new ArrayList<Transaccion>());
 				}
 			}
-			if (this.getSegFachada(Servicio.Perfil).EliminarPerfil(perfil).isEmpty()){
+			if (this.getSegFachada(Servicio.Perfil).EliminarPerfil(perfil)
+					.isEmpty()) {
 				this.setExito("Se ha eliminado exitosamente el perfil.");
-				retorno = "eliminado";				
-			}else{
-				this.setError("No se puedo eliminar el perfil, porque " +
-				"esta asignado en uno o mas usuarios del sistema.");				
+				retorno = "eliminado";
+			} else {
+				this.setError("No se puedo eliminar el perfil, porque "
+						+ "esta asignado en uno o mas usuarios del sistema.");
 			}
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
@@ -73,7 +75,7 @@ public class PerfilBean extends MaestroBean implements Serializable {
 				nombre = perfil.get_nombre();
 				descripcion = perfil.get_descripcion();
 				estado = perfil.get_estado().toString();
-				for (Transaccion transa : transacciones) {
+				for (Transaccion transa : transaccionesActivas) {
 					for (Transaccion transaPerfil : perfil
 							.get_transaccionesSistema()) {
 						if (transa.get_id() == transaPerfil.get_id()) {
@@ -91,19 +93,11 @@ public class PerfilBean extends MaestroBean implements Serializable {
 		this.estado = Estado.Activo.name();
 	}
 
-	public String cancelar() {
-		this.LimpiarBean();
-		this.perfiles = this.getSegFachada(Servicio.Perfil).ObtenerPerfiles();
-		this.transacciones = this.getAdmFachada(Servicio.Transaccion)
-				.ObtenerTransacciones();
-		return "cancelar";
-	}
-
 	public boolean isInit() {
 		this.LimpiarBean();
 		this.perfiles = this.getSegFachada(Servicio.Perfil).ObtenerPerfiles();
-		this.transacciones = this.getAdmFachada(Servicio.Transaccion)
-				.ObtenerTransacciones();
+		this.transaccionesActivas = this.getAdmFachada(Servicio.Transaccion)
+				.ObtenerTransaccionesActiva();
 		return false;
 	}
 
@@ -114,8 +108,8 @@ public class PerfilBean extends MaestroBean implements Serializable {
 			perfil.set_descripcion(descripcion);
 			perfil.set_estado(Enumerados.Estado.valueOf(estado));
 			List<Transaccion> asociadas = new ArrayList<Transaccion>();
-			for (int i = 0; i < transacciones.toArray().length; i++) {
-				Transaccion transaccion = (Transaccion) transacciones.toArray()[i];
+			for (int i = 0; i < transaccionesActivas.toArray().length; i++) {
+				Transaccion transaccion = (Transaccion) transaccionesActivas.toArray()[i];
 				if (transaccion != null) {
 					if (transaccion.get_asociada()) {
 						asociadas.add(transaccion);
@@ -137,8 +131,8 @@ public class PerfilBean extends MaestroBean implements Serializable {
 		String retorno = "";
 		try {
 			List<Transaccion> asociadas = new ArrayList<Transaccion>();
-			for (int i = 0; i < transacciones.toArray().length; i++) {
-				Transaccion transaccion = (Transaccion) transacciones.toArray()[i];
+			for (int i = 0; i < transaccionesActivas.toArray().length; i++) {
+				Transaccion transaccion = (Transaccion) transaccionesActivas.toArray()[i];
 				if (transaccion != null) {
 					if (transaccion.get_asociada()) {
 						asociadas.add(transaccion);
@@ -238,12 +232,12 @@ public class PerfilBean extends MaestroBean implements Serializable {
 		return fijo;
 	}
 
-	public void setTransacciones(List<Transaccion> transacciones) {
-		this.transacciones = transacciones;
+	public void setTransaccionesActivas(List<Transaccion> transaccionesActivas) {
+		this.transaccionesActivas = transaccionesActivas;
 	}
 
-	public List<Transaccion> getTransacciones() {
-		return transacciones;
+	public List<Transaccion> getTransaccionesActivas() {
+		return transaccionesActivas;
 	}
 
 }
