@@ -70,6 +70,10 @@ public class ADMFachada {
 		return srvTransaccion.ObtenerTransacciones();
 	}
 	
+	public List<Transaccion> ObtenerTransaccionesActiva() {
+		return srvTransaccion.ObtenerTransaccionesActiva();
+	}
+	
 	public void ActualizarTransaccion(Transaccion pTransaccion) {
 		srvTransaccion.ActualizarTransaccion(pTransaccion);
 	}

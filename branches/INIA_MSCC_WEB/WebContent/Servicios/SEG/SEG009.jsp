@@ -95,9 +95,9 @@ Secano.</title>
 														</h:panelGrid>
 
 														<center><rich:dataTable border="2" width="400px"
-															id="tablaTransaccion" rows="6"
-															styleClass="textoDataTable" 
-															value="#{perfilBean.transacciones}" var="transaccion"
+															id="tablaTransaccion" rows="10"
+															styleClass="textoDataTable"
+															value="#{perfilBean.transaccionesActivas}" var="transaccion"
 															rowKeyVar="row" headerClass="columnHeader"
 															rowClasses="oddRow,evenRow">
 															<f:facet name="header">
@@ -114,7 +114,7 @@ Secano.</title>
 																<f:facet name="header">
 																	<h:outputText value="Descripción" />
 																</f:facet>
-																<h:outputText value="#{transaccion._descripcionBase}"
+																<h:outputText value="#{transaccion._descripcion}"
 																	id="descripcion" />
 															</rich:column>
 
@@ -126,11 +126,11 @@ Secano.</title>
 															</rich:column>
 
 															<f:facet name="footer">
-																<rich:datascroller for="tablaTransaccion" renderIfSinglePage="false"
-																	maxPages="5"/>
+																<rich:datascroller for="tablaTransaccion"
+																	renderIfSinglePage="false" maxPages="5" />
 															</f:facet>
 														</rich:dataTable></center>
-														<br></br>
+														
 
 														<center><h:panelGrid columns="2">
 															<a4j:commandButton
@@ -142,20 +142,20 @@ Secano.</title>
 																styleClass="textoPlano" action="cancelar"
 																value="#{text.boton_Cancelar}" />
 														</h:panelGrid></center>
-												
-													
-													<f:facet name="footer">
-														<h:panelGrid>
-															<rich:messages styleClass="mensajeError">
-																<f:facet name="errorMarker">
-																	<h:graphicImage
-																		value="/Recursos/Imagenes/Iconos/error.gif" />
-																</f:facet>
-															</rich:messages>
-															<h:outputText styleClass="textoPlano"
-																value="#{perfilBean.exito}" />
-														</h:panelGrid>
-													</f:facet>
+
+
+														<f:facet name="footer">
+															<h:panelGrid>
+																<rich:messages styleClass="mensajeError">
+																	<f:facet name="errorMarker">
+																		<h:graphicImage
+																			value="/Recursos/Imagenes/Iconos/error.gif" />
+																	</f:facet>
+																</rich:messages>
+																<h:outputText styleClass="textoPlano"
+																	value="#{perfilBean.exito}" />
+															</h:panelGrid>
+														</f:facet>
 													</h:panelGrid>
 												</rich:panel>
 											</h:panelGrid>

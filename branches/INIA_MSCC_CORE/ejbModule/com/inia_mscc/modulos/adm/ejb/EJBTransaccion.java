@@ -22,14 +22,19 @@ public class EJBTransaccion implements ServicioTransaccion {
 	private DAOTransaccion dao = new DAOTransaccion();
 
 	@Override
-	public List<Transaccion> ObtenerTransacciones() {
-		return dao.ObtenerTransacciones();
-	}
-
-	@Override
 	public void ActualizarTransaccion(Transaccion pTransaccion) {
 		dao.ActualizarTransaccion(pTransaccion);
 	}
 
+	@Override
+	public List<Transaccion> ObtenerTransaccionesActiva() {
+		return dao.ObtenerTransaccionesActivas();
+	}
 
+	@Override
+	public List<Transaccion> ObtenerTransacciones() {
+		return dao.ObtenerTransacciones();
+	}
+
+	
 }
