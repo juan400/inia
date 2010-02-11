@@ -1,15 +1,19 @@
 package com.inia_mscc.modulos.gem.entidades;
 
-import java.net.URL;
+import java.net.URI;
 import java.util.Date;
 
-import com.inia_mscc.modulos.comun.entidades.Objeto;
+import com.inia_mscc.modulos.comun.entidades.Enumerados;
 
-public class Ubicacion extends Objeto {
-	
+public class Ubicacion {
+	/**
+	 * 
+	 */
+	private long _id; 
+	private Enumerados.Estado _estado;
 	private String _descripcion;
 	private Date _fecha;
-	private URL _urlPaht;
+	private URI _urlPaht;
 
 	public Ubicacion() {
 		super();
@@ -34,12 +38,13 @@ public class Ubicacion extends Objeto {
 		_fecha = fecha;
 	}
 
-	public URL get_urlPaht() {
+	public URI get_urlPaht() {
 		return _urlPaht;
 	}
 
-	public void set_urlPaht(URL urlPaht) {
+	public void set_urlPaht(URI urlPaht) {
 		_urlPaht = urlPaht;
 	}
+
 
 }

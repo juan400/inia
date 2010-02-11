@@ -118,9 +118,6 @@ public abstract class ArchivosTexto {
 			for (String linea : s) {
 				fileOut.println(linea);
 			}
-			// for (int i = 0; i < s.length; i++) {
-			// fileOut.println(s[i]);
-			// }
 			/**
 			 * * Aqui puedo seguir guardando y guardando mas lineas o caracteres
 			 * * hasta que el archivo contenga lo que me interesa
@@ -131,4 +128,21 @@ public abstract class ArchivosTexto {
 			throw ex;
 		}
 	}
+	
+	
+	public static void copiarArchio(File pArchivoBase, File file)throws Exception {
+		try {
+			BufferedReader fileIn = new BufferedReader(new FileReader(pArchivoBase));
+			PrintWriter fileOut = new PrintWriter(new FileWriter(file, true));
+			String linea = "";
+			while ((linea = fileIn.readLine()) != null) {
+				fileOut.println(linea.trim());
+			}
+			fileOut.close();
+			fileIn.close();
+		} catch (Exception ex) {
+			throw ex;
+		}
+	}
+	
 }
