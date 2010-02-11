@@ -47,30 +47,30 @@ public class ResultadoMSCC extends Objeto {
 	@Transient
 	public HashedMap get_matrizDatos() throws Exception {
 		try {
-			InputStream is = _archivo.get_ubicacion().get_urlPaht()
-					.openStream(); // Abro InputStream desde URL
-			BufferedReader entrada = new BufferedReader(new InputStreamReader(
-					is));
+//			InputStream is = _archivo.get_ubicacion().get_urlPaht()
+//					.openStream(); // Abro InputStream desde URL
+//			BufferedReader entrada = new BufferedReader(new InputStreamReader(
+//					is));
 			// File f = new File(_archivo.get_ubicacion().get_urlPaht()
 			// + _archivo.get_nombre());
 			// BufferedReader entrada = new BufferedReader(new FileReader(f));
 			// if (f.exists()) {
 			// if (f.canRead()) {
 			// entrada.read();
-			String archivo = entrada.readLine();
-			if (archivo.isEmpty()) {
-				String[] lineas = archivo.split("\n");
-				for (int i = 1; i < lineas.length; i++) {
-					String[] columnas = lineas[1].split(" ");
-
-					String[] datos = lineas[i].split(" ");
-					HashedMap registro = new HashedMap();
-					for (int j = 0; j < datos.length; j++) {
-						registro.put(columnas[j].toString(), Double.parseDouble(datos[j].toString()));
-					}
-					_matrizDatos.put(i, registro);
-				}
-			}
+//			String archivo = entrada.readLine();
+//			if (archivo.isEmpty()) {
+//				String[] lineas = archivo.split("\n");
+//				for (int i = 1; i < lineas.length; i++) {
+//					String[] columnas = lineas[1].split(" ");
+//
+//					String[] datos = lineas[i].split(" ");
+//					HashedMap registro = new HashedMap();
+//					for (int j = 0; j < datos.length; j++) {
+//						registro.put(columnas[j].toString(), Double.parseDouble(datos[j].toString()));
+//					}
+//					_matrizDatos.put(i, registro);
+//				}
+//			}
 			// }
 			// }
 		} catch (Exception ex) {

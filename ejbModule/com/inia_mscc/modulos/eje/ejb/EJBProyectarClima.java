@@ -288,7 +288,6 @@ public class EJBProyectarClima {
 		boolean resultado = false;
 		try {
 			if (pfxml.canRead()) {
-				System.out.println("Puede leer!!!");
 				ArrayList<String> archivo = ArchivosTexto.leerArchivo(pfxml);
 				double[][] dryCargado = new double[3][8];
 				double[][] wetCargado = new double[3][8];
