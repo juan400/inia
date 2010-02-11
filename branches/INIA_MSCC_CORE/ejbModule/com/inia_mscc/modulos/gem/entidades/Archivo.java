@@ -1,9 +1,17 @@
 package com.inia_mscc.modulos.gem.entidades;
 
+import java.io.File;
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+
+import javax.persistence.Transient;
 
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.EstadoArchivo;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.TipoArchivo;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.TipoExtencionArchivo;
 
 public class Archivo implements Serializable {
 
@@ -11,32 +19,53 @@ public class Archivo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private String _nombre;
 	private Enumerados.TipoArchivo _tipo;
 	private Date _fechaHora;
 	private Enumerados.EstadoArchivo _estadoArchivo;
 	private Enumerados.TipoExtencionArchivo _extencion;
 	private Ubicacion _ubicacion;
-	private byte[] _data;
-	private long _length;
+	@Transient
+	private File _datos;
 
 	public Archivo() {
 		super();
 		_nombre = null;
-		_tipo = Enumerados.TipoArchivo.Ninguno;
 		_fechaHora = new Date();
 		_estadoArchivo = Enumerados.EstadoArchivo.Ninguno;
-		_extencion = Enumerados.TipoExtencionArchivo.txt;
+	}
 
+	public Archivo(String pNombreLogin, TipoArchivo tipo, Date fechaHora,
+			EstadoArchivo estadoArchivo, TipoExtencionArchivo extencion,
+			Ubicacion ubicacion) {
+		super();
+		set_nombre(pNombreLogin);
+		_tipo = tipo;
+		_fechaHora = fechaHora;
+		_estadoArchivo = estadoArchivo;
+		_extencion = extencion;
+		_ubicacion = ubicacion;
 	}
 
 	public String get_nombre() {
 		return _nombre;
 	}
 
-	public void set_nombre(String nombre) {
-		_nombre = nombre;
+	public void set_nombre(String pNombreLogin) {
+		Calendar pFecha = new GregorianCalendar();
+		// pFecha.add(Calendar.MONTH, 1);
+//		pFecha.set(_fechaHora.getYear(), _fechaHora.getMonth(), _fechaHora.getDay(), _fechaHora
+//				.getHours(), _fechaHora.getMinutes(), _fechaHora.getSeconds());
+		String fechaEscrita = pFecha.get(Calendar.YEAR) + "-"
+				+ (pFecha.get(Calendar.MONTH) + 1) + ""
+				+ pFecha.get(Calendar.DAY_OF_MONTH) + " "
+				+ pFecha.get(Calendar.HOUR_OF_DAY) + ""
+				+ pFecha.get(Calendar.MINUTE) + ""
+				+ pFecha.get(Calendar.SECOND);
+		String nombreArchivo = "C:/Biblioteca/Cajón/Proyecto/INIA/Archivos Versionados/ArchivosSubidos/mscc_"
+				+ pNombreLogin + ".py";
+		_nombre = nombreArchivo;
 	}
 
 	public Enumerados.TipoArchivo get_tipo() {
@@ -79,20 +108,12 @@ public class Archivo implements Serializable {
 		_ubicacion = ubicacion;
 	}
 
-	public byte[] get_data() {
-		return _data;
+	public File get_datos() {
+		return _datos;
 	}
 
-	public void set_data(byte[] data) {
-		_data = data;
+	public void set_datos(File datos) {
+		_datos = datos;
 	}
 
-	public long get_length() {
-		return _length;
-	}
-
-	public void set_length(long length) {
-		_length = length;
-	}
-	
 }

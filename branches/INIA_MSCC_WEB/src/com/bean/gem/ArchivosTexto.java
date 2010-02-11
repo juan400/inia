@@ -131,4 +131,22 @@ public abstract class ArchivosTexto {
 			throw ex;
 		}
 	}
+	
+	public static void copiarArchio(File pArchivoBase, File pArchivoNuevo) throws IOException{
+		try {
+			BufferedReader fileIn = new BufferedReader(new FileReader(pArchivoBase));
+			PrintWriter fileOut = new PrintWriter(new FileWriter(pArchivoNuevo, true));
+			String linea = "";
+			while ((linea = fileIn.readLine()) != null) {
+				fileOut.println(linea.trim());
+			}
+			fileOut.close();
+			fileIn.close();
+		} catch (FileNotFoundException ex) {
+			throw ex;
+		} catch (IOException ex) {
+			throw ex;
+		}
+	}
+	
 }

@@ -72,7 +72,14 @@ public class Enumerados {
 	 * @author Juan Andres Pio
 	 */
 	static public enum TipoArchivo {
-		Ninguno, Climatologico, Escenario, Gecros, Wgen, Climate_Parameters, K_Wgen_Prep
+		ModeloSimulacion, Climatologico , Escenario, ParametrosClimaticos, Resultados,
+	}
+	
+	/**
+	 * @author Juan Andres Pio
+	 */
+	static public enum NobresDeArchivos {
+		mscc_, weather_data , scenario, climate_parameters_,
 	}
 
 	/**
