@@ -9,15 +9,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import wox.serial.Easy;
-
 public class EJBArchivos {
 	public EJBArchivos() {
 
 	}
 
 	public void salvarObjetoEnXMLArchivo(Object datos, String nombreArchivo) {
-		Easy.save(datos, nombreArchivo);
+//		Easy.save(datos, nombreArchivo);
 	}
 	
 	/**
