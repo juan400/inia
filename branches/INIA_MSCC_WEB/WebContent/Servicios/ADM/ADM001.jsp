@@ -105,7 +105,7 @@ Secano.</title>
 																<h:outputText value="Modificar" />
 															</f:facet>
 															<center><a4j:commandButton
-																action="#{transaccionBean.verConsulta}"
+																action="#{transaccionBean.verTransaccion}"
 																image="/Recursos/Imagenes/Iconos/edit.gif"
 																style="width : 27px; height : 21px;">
 																<a4j:actionparam name="transaccionElegida"

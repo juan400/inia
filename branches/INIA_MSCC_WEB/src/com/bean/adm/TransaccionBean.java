@@ -53,7 +53,7 @@ public class TransaccionBean extends MaestroBean implements Serializable {
 		return retorno;
 	}
 	
-	public String verConsulta() {
+	public String verTransaccion() {
 		Map paramMap = FacesContext.getCurrentInstance().getExternalContext()
 				.getRequestParameterMap();
 		String transaccionElegida = (String) paramMap.get("transaccionElegida");
