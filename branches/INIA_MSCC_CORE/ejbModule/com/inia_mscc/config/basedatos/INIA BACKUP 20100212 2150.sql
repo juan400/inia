@@ -1,7 +1,7 @@
 -- MySQL Administrator dump 1.4
 --
 -- ------------------------------------------------------
--- Server version	5.1.40-community
+-- Server version	5.1.41-community
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -668,13 +668,9 @@ CREATE TABLE `tl_adm_licr_listascriterio` (
   `licr_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `licr_str_codigo` varchar(3) NOT NULL,
   `licr_str_descripcion` varchar(220) NOT NULL,
-  `licr_str_tabla` varchar(220) NOT NULL,
   `licr_num_id_estado` int(11) NOT NULL,
-  `licr_num_id_lista_dependencia` bigint(20) NOT NULL,
   PRIMARY KEY (`licr_num_id`),
-  UNIQUE KEY `codigo` (`licr_str_codigo`,`licr_str_tabla`),
-  KEY `FK_licr_num_id_lista_dependencia` (`licr_num_id_lista_dependencia`) USING BTREE,
-  CONSTRAINT `fk_TL_ADM_LICR_ListasCriterio_TL_ADM_LICR_ListasCriterio1` FOREIGN KEY (`licr_num_id_lista_dependencia`) REFERENCES `tl_adm_licr_listascriterio` (`licr_num_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  UNIQUE KEY `codigo` (`licr_str_codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -756,7 +752,7 @@ CREATE TABLE `tl_adm_tran_transaccion` (
   `tran_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `tran_num_id_estado` varchar(10) NOT NULL DEFAULT 'Inactivo',
   `tran_str_codigo` varchar(6) DEFAULT NULL,
-  `tran_str_descirpcion` varchar(220) DEFAULT NULL,
+  `tran_str_descripcion` varchar(220) DEFAULT NULL,
   `tran_bol_definida` tinyint(1) NOT NULL DEFAULT '0',
   `tran_str_uri` varchar(250) NOT NULL,
   `tran_str_codigo_base` varchar(6) NOT NULL,
@@ -771,18 +767,18 @@ CREATE TABLE `tl_adm_tran_transaccion` (
 --
 
 /*!40000 ALTER TABLE `tl_adm_tran_transaccion` DISABLE KEYS */;
-INSERT INTO `tl_adm_tran_transaccion` (`tran_num_id`,`tran_num_id_estado`,`tran_str_codigo`,`tran_str_descirpcion`,`tran_bol_definida`,`tran_str_uri`,`tran_str_codigo_base`,`tran_str_descripcion_base`,`tran_dte_timestamp`) VALUES 
- (1,'Inactivo',NULL,NULL,0,'/Servicios/SEG/SEG001.jsp','SEG001','Login','2010-02-02 13:12:20'),
- (2,'Inactivo',NULL,NULL,0,'/Servicios/SEG/SEG002.jsp','SEG002','Registro Usuario','2010-02-02 13:12:20'),
- (3,'Inactivo',NULL,NULL,0,'/Servicios/SEG/SEG003.jsp','SEG003','Activar Usuario','2010-02-02 13:12:20'),
- (4,'Inactivo',NULL,NULL,0,'/Servicios/SEG/SEG004.jsp','SEG004','Modificar Usuario','2010-02-02 13:12:20'),
- (5,'Inactivo',NULL,NULL,0,'/Servicios/SEG/SEG005.jsp','SEG005','Baja Usuario','2010-02-02 13:12:20'),
- (6,'Inactivo',NULL,NULL,0,'/Servicios/SEG/SEG006.jsp','SEG006','Recuperar Contraseña','2010-02-02 13:12:20'),
- (7,'Inactivo',NULL,NULL,0,'/Servicios/SEG/SEG007.jsp','SEG007','Cambiar Contraseña','2010-02-02 13:12:20'),
- (8,'Inactivo',NULL,NULL,0,'/Servicios/SEG/SEG008.jsp','SEG008','Ver Perfiles','2010-02-02 13:12:20'),
- (9,'Inactivo',NULL,NULL,0,'/Servicios/SEG/SEG009.jsp','SEG009','Crear Perfil Usuario','2010-02-02 13:12:20'),
- (10,'Inactivo',NULL,NULL,0,'/Servicios/SEG/SEG010.jsp','SEG010','Modificar Perfil Usuario','2010-02-02 13:12:20'),
- (11,'Inactivo',NULL,NULL,0,'/Servicios/SEG/SEG011.jsp','SEG011','Solicitud Privilegios','2010-02-02 13:12:20'),
+INSERT INTO `tl_adm_tran_transaccion` (`tran_num_id`,`tran_num_id_estado`,`tran_str_codigo`,`tran_str_descripcion`,`tran_bol_definida`,`tran_str_uri`,`tran_str_codigo_base`,`tran_str_descripcion_base`,`tran_dte_timestamp`) VALUES 
+ (1,'Activo','1','Login',0,'/Servicios/SEG/SEG001.jsp','SEG001','Login','2010-02-02 13:12:20'),
+ (2,'Activo','2','Registro de Usuarios',0,'/Servicios/SEG/SEG002.jsp','SEG002','Registro Usuario','2010-02-02 13:12:20'),
+ (3,'Activo','3','Activar cuenta de usuario',0,'/Servicios/SEG/SEG003.jsp','SEG003','Activar Usuario','2010-02-02 13:12:20'),
+ (4,'Activo','4','Modificar datos ',0,'/Servicios/SEG/SEG004.jsp','SEG004','Modificar Usuario','2010-02-02 13:12:20'),
+ (5,'Activo','5','Dar de baja usuario',0,'/Servicios/SEG/SEG005.jsp','SEG005','Baja Usuario','2010-02-02 13:12:20'),
+ (6,'Activo','6','Recuperar Contraseña',0,'/Servicios/SEG/SEG006.jsp','SEG006','Recuperar Contraseña','2010-02-02 13:12:20'),
+ (7,'Activo','7','Cambiar Contraseña',0,'/Servicios/SEG/SEG007.jsp','SEG007','Cambiar Contraseña','2010-02-02 13:12:20'),
+ (8,'Activo','8','Listado de Perfiles',0,'/Servicios/SEG/SEG008.jsp','SEG008','Ver Perfiles','2010-02-02 13:12:20'),
+ (9,'Activo','9','Crear Perfil',0,'/Servicios/SEG/SEG009.jsp','SEG009','Crear Perfil Usuario','2010-02-02 13:12:20'),
+ (10,'Activo','10','Modificar Perfil',0,'/Servicios/SEG/SEG010.jsp','SEG010','Modificar Perfil Usuario','2010-02-02 13:12:20'),
+ (11,'Activo','11','Solicitud de Privilegios',0,'/Servicios/SEG/SEG011.jsp','SEG011','Solicitud Privilegios','2010-02-02 13:12:20'),
  (12,'Inactivo',NULL,NULL,0,'/Servicios/SEG/SEG011.jsp','SEG012','Autorizar Solicitud Privilegios','2010-02-02 13:12:20'),
  (13,'Inactivo',NULL,NULL,0,'/Servicios/SEG/SEG011.jsp','SEG013','Denegar Solicitud Privilegios','2010-02-02 13:12:20'),
  (14,'Inactivo',NULL,NULL,0,'/Servicios/ADM/ADM001.jsp','ADM001','Identificar Transacción','2010-02-02 13:12:20'),
@@ -802,6 +798,30 @@ INSERT INTO `tl_adm_tran_transaccion` (`tran_num_id`,`tran_num_id_estado`,`tran_
  (28,'Inactivo',NULL,NULL,0,'/Servicios/EJE/EJE001.jsp','EJE001','Ejecución de MSCC','2010-02-02 13:12:20'),
  (29,'Inactivo',NULL,NULL,0,'/Servicios/EJE/EJE002.jsp','EJE002','Ejecución de MSCC','2010-02-02 13:12:20');
 /*!40000 ALTER TABLE `tl_adm_tran_transaccion` ENABLE KEYS */;
+
+
+--
+-- Definition of table `tl_adm_vase_valorseleccion`
+--
+
+DROP TABLE IF EXISTS `tl_adm_vase_valorseleccion`;
+CREATE TABLE `tl_adm_vase_valorseleccion` (
+  `vase_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `vase_str_codigo` varchar(6) NOT NULL,
+  `vase_str_descripcion` varchar(220) NOT NULL,
+  `vase_str_unidad` varchar(45) NOT NULL,
+  `vase_num_id_listacriterio` bigint(20) NOT NULL,
+  PRIMARY KEY (`vase_num_id`),
+  KEY `FK_vase_num_id_listacriterio` (`vase_num_id_listacriterio`),
+  CONSTRAINT `FK_vase_num_id_listacriterio` FOREIGN KEY (`vase_num_id_listacriterio`) REFERENCES `tl_adm_licr_listascriterio` (`licr_num_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tl_adm_vase_valorseleccion`
+--
+
+/*!40000 ALTER TABLE `tl_adm_vase_valorseleccion` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tl_adm_vase_valorseleccion` ENABLE KEYS */;
 
 
 --
@@ -1145,7 +1165,7 @@ CREATE TABLE `tl_seg_usua_usuario` (
 
 /*!40000 ALTER TABLE `tl_seg_usua_usuario` DISABLE KEYS */;
 INSERT INTO `tl_seg_usua_usuario` (`usua_num_id`,`usua_str_login`,`usua_str_password`,`usua_bol_activado`,`usua_dte_ultimo_acceso`,`usua_str_estado_usuario`,`usua_num_id_dato_usuario`,`usua_str_frase`,`usua_str_codigo_activacion`) VALUES 
- (1,'juan400','juan4003',1,'2010-02-08 21:02:14','Activo',1,'jojojojo','81373981'),
+ (1,'juan400','juan4003',1,'2010-02-12 20:43:07','Activo',1,'jojojojo','81373981'),
  (2,'juan400_4','jojojo',1,'2010-02-02 19:03:22','Activo',2,'Ingrese su frase secreta','32317168'),
  (3,'mgayol','85400880',0,'2010-02-07 18:15:00','Registrado',3,'Ingrese su frase secreta','85400880'),
  (5,'juan400','17568942',0,'2010-02-07 18:20:32','Registrado',5,'Ingrese su frase secreta','17568942'),
@@ -1156,6 +1176,23 @@ INSERT INTO `tl_seg_usua_usuario` (`usua_num_id`,`usua_str_login`,`usua_str_pass
  (10,'jjkljh','02102240',0,'2010-02-07 19:13:28','Registrado',10,'Ingrese su frase secreta','02102240');
 /*!40000 ALTER TABLE `tl_seg_usua_usuario` ENABLE KEYS */;
 
+
+--
+-- Definition of procedure `todos`
+--
+
+DROP PROCEDURE IF EXISTS `todos`;
+
+DELIMITER $$
+
+/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ $$
+CREATE DEFINER=`inia_db`@`%` PROCEDURE `todos`()
+BEGIN
+select * from user;
+END $$
+/*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
+
+DELIMITER ;
 
 
 
