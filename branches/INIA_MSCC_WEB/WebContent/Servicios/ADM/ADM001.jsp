@@ -29,7 +29,7 @@ Secano.</title>
 			</thead>
 			<tbody>
 				<tr>
-					<td align="center" valign="top" class="contenido"><a4j:region
+					<td align="center" class="contenido"><a4j:region
 						id="contenido">
 						<h:panelGroup rendered="#{loginBean.init}" />
 						<h:panelGrid width="956" cellpadding="0" cellspacing="0">
@@ -40,16 +40,15 @@ Secano.</title>
 										value="Bienvenido #{loginBean.usuario._datos._nombre} #{loginBean.usuario._datos._apellido}. Ultimo acceso #{loginBean.usuario._ultimoAcceso}" />
 								</f:facet>
 								<center><h:panelGrid rendered="#{!loginBean.logged}">
-									<h:panelGrid>
-										<center><h:outputText styleClass="mensajeError"
-											style="font-size: 12pt" value="#{text.login_notLogged}" /></center>
-									</h:panelGrid>
-									<h:panelGrid columns="2">
-										<center><a4j:commandButton
-											style="font-size: 10pt; color: #2d77c2;"
-											styleClass="textoPlano" action="#{loginBean.logout}"
-											value="#{text.login_login}" /></center>
-									</h:panelGrid>
+									<h:outputText styleClass="mensajeError" style="font-size: 12pt"
+										value="#{text.login_notLogged}" />
+									<center><a4j:commandButton
+										style="font-size: 10pt; color: #2d77c2;"
+										styleClass="textoPlano" action="#{loginBean.logout}"
+										immediate="true" value="#{text.login_login}" /> <a4j:commandButton
+										style="font-size: 10pt; color: #2d77c2;"
+										styleClass="textoPlano" action="navegar" immediate="true"
+										value="Ingresar" /></center>
 								</h:panelGrid></center>
 								<h:panelGroup rendered="#{loginBean.logged}">
 									<h:panelGrid columns="2" rendered="#{loginBean.logged}"
@@ -58,76 +57,85 @@ Secano.</title>
 											<h:panelGroup rendered="#{menuBean.init}" />
 											<rich:panelMenu binding="#{menuBean.panelMenu}" />
 										</h:column>
-										<h:column>
-											<h:panelGrid>
 
+										<h:column>
+											<h:panelGroup rendered="#{transaccionBean.init}" />
+											<h:panelGrid>
 												<rich:panel headerClass="tituloPantalla"
 													style="background-color: #ebf3fd;">
 													<f:facet name="header">
-														<h:outputText value="#{text.transaccion_Actualizar}" />
+														<h:outputText
+															value="#{text.transaccion_ListaTransacciones}" />
 													</f:facet>
 
-													<h:panelGrid columns="2"
-														columnClasses="textoPlano,textoDataTable">
-														<h:outputText value="#{text.transaccion_Codigo}" />
-														<h:inputText label="Name" id="codigo" required="true"
-															requiredMessage="Debe ingresar el Código."
-															value="#{transaccionBean.codigo}"
-															onkeypress="ValidarCampoLetras(this, event)"
-															style=" width : 245px;">
-															<f:validateLength maximum="6">
-															</f:validateLength>
-														</h:inputText>
+													<center><rich:dataTable border="2" width="600px"
+														id="tablaTransaccion" rows="10"
+														styleClass="textoDataTable"
+														value="#{transaccionBean.transaccion}" var="transaccion"
+														rowKeyVar="row" headerClass="columnHeader"
+														rowClasses="oddRow,evenRow">
+														<f:facet name="header">
+															<h:outputText value="Transacciones" />
+														</f:facet>
 
-														<h:outputText value="#{text.transaccion_Descripcion}" />
-														<h:inputText label="Name" id="descripcion" required="true"
-															requiredMessage="Debe ingresar la Descripción."
-															value="#{transaccionBean.descripcion}"
-															onkeypress="ValidarCampoLetras(this, event)"
-															style=" width : 245px;">
-															<f:validateLength maximum="220">
-															</f:validateLength>
-														</h:inputText>
+														<rich:column width="100px">
+															<f:facet name="header">
+																<h:outputText value="Código" />
+															</f:facet>
+															<h:outputText value="#{transaccion._codigo}" id="codigo" />
+														</rich:column>
 
-														<h:outputText value="#{text.transaccion_Estado}" />
-														<rich:comboBox styleClass="textoDataTable"
-															value="#{transaccionBean.estado}" width="245px">
-															<f:selectItem itemValue="Activo" />
-															<f:selectItem itemValue="Inactivo" />
-														</rich:comboBox>
+														<rich:column width="400">
+															<f:facet name="header">
+																<h:outputText value="Descripción" />
+															</f:facet>
+															<h:outputText value="#{transaccion._descripcion}"
+																id="descripcion" />
+														</rich:column>
 
-														<td style="width: 2px;"></td>
-														<h:outputText value="" />
-													</h:panelGrid>
+														<rich:column width="100">
+															<f:facet name="header">
+																<h:outputText value="Estado" />
+															</f:facet>
+															<h:outputText value="#{transaccion._estado}" id="estado" />
+														</rich:column>
 
+														<rich:column>
+															<f:facet name="header">
+																<h:outputText value="Modificar" />
+															</f:facet>
+															<center><a4j:commandButton
+																action="#{transaccionBean.verConsulta}"
+																image="/Recursos/Imagenes/Iconos/edit.gif"
+																style="width : 27px; height : 21px;">
+																<a4j:actionparam name="transaccionElegida"
+																	value="#{transaccion._id}" />
+																<rich:toolTip value="Modificar" />
+															</a4j:commandButton></center>
+														</rich:column>
+													</rich:dataTable></center>
 
 													<CENTER><h:panelGrid columns="2">
-														<a4j:commandButton
-															style="font-size: 10pt; color: #2d77c2; width : 71px;"
-															styleClass="textoPlano"
-															action="#{transaccionBean.actualizar}"
-															value="#{text.boton_Aceptar}" />
 														<a4j:commandButton immediate="true"
 															style="font-size: 10pt; color: #2d77c2; width : 71px;"
-															styleClass="textoPlano" action="salir"
+															styleClass="textoPlano" action="cancelar"
 															value="#{text.boton_Cancelar}" />
 													</h:panelGrid></center>
-
-													<f:facet name="footer">
-														<h:panelGrid>
-															<rich:messages styleClass="mensajeError">
-																<f:facet name="errorMarker">
-																	<h:graphicImage
-																		value="/Recursos/Imagenes/Iconos/error.gif" />
-																</f:facet>
-															</rich:messages>
-															<h:outputText styleClass="textoPlano"
-																value="#{transaccionBean.exito}" />
-														</h:panelGrid>
-													</f:facet>
-
 												</rich:panel>
+
 											</h:panelGrid>
+											<f:facet name="footer">
+												<h:panelGrid>
+													<rich:messages styleClass="mensajeError">
+														<f:facet name="errorMarker">
+															<h:graphicImage
+																value="/Recursos/Imagenes/Iconos/error.gif" />
+														</f:facet>
+													</rich:messages>
+													<h:outputText styleClass="textoPlano"
+														value="#{transaccion.exito}" />
+												</h:panelGrid>
+											</f:facet>
 										</h:column>
 									</h:panelGrid>
 								</h:panelGroup>
