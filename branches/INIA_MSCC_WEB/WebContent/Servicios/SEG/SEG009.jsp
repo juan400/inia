@@ -139,7 +139,7 @@ Secano.</title>
 																value="#{text.boton_Aceptar}" />
 															<a4j:commandButton immediate="true"
 																style="font-size: 10pt; color: #2d77c2; width : 71px;"
-																styleClass="textoPlano" action="cancelar"
+																styleClass="textoPlano" action="salir"
 																value="#{text.boton_Cancelar}" />
 														</h:panelGrid></center>
 
