@@ -6,7 +6,7 @@ ALTER TABLE `inia_mscc_db`.`tl_adm_tran_transaccion` AUTO_INCREMENT = 1;
 INSERT INTO `inia_mscc_db`.`tl_adm_tran_transaccion`
 (`tran_num_id_estado`,
 `tran_str_codigo`,
-`tran_str_descirpcion`,
+`tran_str_descripcion`,
 `tran_bol_definida`,
 `tran_str_uri`,
 `tran_str_codigo_base`,
