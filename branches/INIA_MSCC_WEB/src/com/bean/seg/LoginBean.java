@@ -73,7 +73,7 @@ public class LoginBean extends MaestroBean implements Serializable {
 				}
 			} else {
 				this
-						.addGlobalMessage("El nombre de usuario o password no conciden."+EncriptacionSHA1BASE64.encriptar(password));
+						.addGlobalMessage("El nombre de usuario o password no conciden.");
 				intentos++;
 				if (intentos == 5) {
 					this
