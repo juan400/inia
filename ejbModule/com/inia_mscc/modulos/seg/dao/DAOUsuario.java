@@ -204,7 +204,7 @@ public class DAOUsuario implements Serializable {
 					.getCurrentSession();
 			Criteria c = session.createCriteria(Usuario.class);
 			c.add(Restrictions.eq("_login", loginNombre));
-			c.add(Restrictions.eq("_password", new String(EncriptacionSHA1BASE64.encriptar(password))));
+			c.add(Restrictions.eq("_password", EncriptacionSHA1BASE64.encriptar(password)));
 			usuario = (Usuario) c.uniqueResult();
 			if (usuario != null) {
 				usuario.get_datos().get_perfil().get_transaccionesSistema()
