@@ -6,6 +6,7 @@ import com.inia_mscc.modulos.comun.entidades.Objeto;
 public class Propiedad extends Objeto {
 	private String _codigo;
 	private String _nombre;
+	private String _valor;
 	private Enumerados.TipoPropiedadCultivo _tipo;
 	
 	public Propiedad() {
@@ -31,6 +32,12 @@ public class Propiedad extends Objeto {
 	}
 	public void set_tipo(Enumerados.TipoPropiedadCultivo tipo) {
 		_tipo = tipo;
+	}
+	public void set_valor(String _valor) {
+		this._valor = _valor;
+	}
+	public String get_valor() {
+		return _valor;
 	}
 
 }
