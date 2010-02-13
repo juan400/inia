@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import com.bean.comun.MaestroBean;
+import com.inia_mscc.modulos.comun.entidades.EncriptacionSHA1BASE64;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.EstadoUsuario;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.Servicio;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
@@ -32,8 +33,7 @@ public class LoginBean extends MaestroBean implements Serializable {
 	public String login() {
 		String mensaje = "login-error";
 		Usuario u = null;
-		try {
-
+		try {		
 			u = this.getSegFachada(Servicio.Usuario)
 					.Login(loginName, password);
 			if (u != null) {
@@ -73,7 +73,7 @@ public class LoginBean extends MaestroBean implements Serializable {
 				}
 			} else {
 				this
-						.addGlobalMessage("El nombre de usuario o password no conciden");
+						.addGlobalMessage("El nombre de usuario o password no conciden."+EncriptacionSHA1BASE64.encriptar(password));
 				intentos++;
 				if (intentos == 5) {
 					this

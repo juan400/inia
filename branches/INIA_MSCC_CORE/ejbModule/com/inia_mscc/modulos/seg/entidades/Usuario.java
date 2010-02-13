@@ -19,6 +19,7 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.ForeignKey;
 
+import com.inia_mscc.modulos.comun.entidades.EncriptacionSHA1BASE64;
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
 
 @Entity(name = "Usuario")
@@ -35,7 +36,7 @@ public class Usuario implements Serializable {
 	private long _id;
 	@Column(name = "usua_str_login", nullable = false, columnDefinition = "VARCHAR(20)")
 	private String _login;
-	@Column(name = "usua_str_password", nullable = false, columnDefinition = "VARCHAR(13)")
+	@Column(name = "usua_str_password", nullable = false, columnDefinition = "VARCHAR(220)")
 	private String _password;
 	@Column(name = "usua_bol_activado", nullable = false, columnDefinition = "TINYINT(1)")
 	private boolean _activado; 
@@ -57,7 +58,7 @@ public class Usuario implements Serializable {
 	public Usuario() {
 		super();
 		_login = null;
-		_password = null;
+		_password = EncriptacionSHA1BASE64.encriptar("NoTeOlvidesMas");
 		_activado = false;
 		_ultimoAcceso = new Date(); 
 		_estadoUsuario = Enumerados.EstadoUsuario.Registrado;
@@ -85,7 +86,7 @@ public class Usuario implements Serializable {
 	}
 
 	public void set_password(String password) {
-		_password = password;
+		_password = EncriptacionSHA1BASE64.encriptar(password);
 	}
 
 	public void set_activado(boolean _activado) {
