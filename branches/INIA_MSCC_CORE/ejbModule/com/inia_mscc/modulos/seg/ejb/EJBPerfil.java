@@ -46,7 +46,7 @@ public class EJBPerfil implements ServicioPerfil {
 		if (!dao.ComprobarPerfilEnUso(pPerfil)) {
 			dao.EliminarPerfil(pPerfil);
 		} else {
-			return "No es pocible eliminar este perfil,"
+			return "No es posible eliminar este perfil,"
 					+ " actualmente esta siendo usado por uno o más "
 					+ "usuario en el sistema.";
 		}
