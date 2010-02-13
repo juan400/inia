@@ -1,7 +1,7 @@
 -- MySQL Administrator dump 1.4
 --
 -- ------------------------------------------------------
--- Server version	5.1.41-community
+-- Server version	5.1.40-community
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -1152,7 +1152,7 @@ DROP TABLE IF EXISTS `tl_seg_usua_usuario`;
 CREATE TABLE `tl_seg_usua_usuario` (
   `usua_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `usua_str_login` varchar(20) NOT NULL,
-  `usua_str_password` varchar(13) NOT NULL,
+  `usua_str_password` varchar(220) NOT NULL,
   `usua_bol_activado` tinyint(1) NOT NULL DEFAULT '0',
   `usua_dte_ultimo_acceso` datetime NOT NULL DEFAULT '1970-01-01 00:00:01',
   `usua_str_estado_usuario` varchar(45) NOT NULL DEFAULT 'Ninguno',
