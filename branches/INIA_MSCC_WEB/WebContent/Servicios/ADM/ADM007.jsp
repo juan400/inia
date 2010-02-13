@@ -63,47 +63,48 @@ Secano.</title>
 												<rich:panel headerClass="tituloPantalla"
 													style="background-color: #ebf3fd;">
 													<f:facet name="header">
-														<h:outputText value="#{text.transaccion_Actualizar}" />
+														<h:outputText value="#{text.region_ActRegion}" />
 													</f:facet>
+													<h:panelGrid>
+														<h:panelGrid columns="2"
+															columnClasses="textoPlano,textoDataTable">
 
-													<h:panelGrid columns="2"
-														columnClasses="textoPlano,textoDataTable">
-														<h:outputText value="#{text.transaccion_Codigo}" />
-														<h:inputText label="Name" id="codigo" required="true"
-															requiredMessage="Debe ingresar el Código."
-															value="#{transaccionBean.codigo}"
-															onkeypress="ValidarCampoParaCodigo(this, event)"
-															style=" width : 245px;">
-															<f:validateLength maximum="6">
-															</f:validateLength>
-														</h:inputText>
+															<h:outputText value="#{text.region_Codigo}" />
+															<h:inputText label="Name" id="codigo" required="true"
+																requiredMessage="Debe ingresar el Código."
+																value="#{regionBean.codigo}" disabled="true"
+																onkeypress="ValidarCampoParaCodigo(this, event)"
+																style=" width : 245px;">
+																<f:validateLength maximum="6">
+																</f:validateLength>
+															</h:inputText>
 
-														<h:outputText value="#{text.transaccion_Descripcion}" />
-														<h:inputText label="Name" id="descripcion" required="true"
-															requiredMessage="Debe ingresar la Descripción."
-															value="#{transaccionBean.descripcion}"
-															onkeypress="ValidarCampoLetras(this, event)"
-															style=" width : 245px;">
-															<f:validateLength maximum="220">
-															</f:validateLength>
-														</h:inputText>
+															<h:outputText value="#{text.region_Nombre}" />
+															<h:inputText label="Name" id="name" required="true"
+																requiredMessage="Debe ingresar el Nombre."
+																value="#{regionBean.nombre}"
+																onkeypress="ValidarCampoLetras(this, event)"
+																style=" width : 245px;">
+																<f:validateLength maximum="45">
+																</f:validateLength>
+															</h:inputText>
 
-														<h:outputText value="#{text.transaccion_Estado}" />
-														<rich:comboBox styleClass="textoDataTable"
-															value="#{transaccionBean.estado}" width="245px">
-															<f:selectItem itemValue="Activo" />
-															<f:selectItem itemValue="Inactivo" />
-														</rich:comboBox>
+															<h:outputText value="#{text.region_Descripcion}" />
+															<h:inputTextarea id="descripcion"
+																value="#{regionBean.descripcion}"
+																onkeypress="ValidarLargoMultiline(this, event, 220)"
+																style=" width : 245px; height : 71px;" />
 
-														<td style="width: 2px;"></td>
-														<h:outputText value="" />
+															<td style="width: 2px;"></td>
+															<h:outputText value="" />
+														</h:panelGrid>
 
 
-
-														<center><h:panelGrid columns="2">
+														<CENTER><h:panelGrid columns="2">
 															<a4j:commandButton
 																style="font-size: 10pt; color: #2d77c2; width : 71px;"
-																styleClass="textoPlano" action="#{regionBean.registrar}"
+																styleClass="textoPlano"
+																action="#{regionBean.actualizar}"
 																value="#{text.boton_Aceptar}" />
 															<a4j:commandButton immediate="true"
 																style="font-size: 10pt; color: #2d77c2; width : 71px;"

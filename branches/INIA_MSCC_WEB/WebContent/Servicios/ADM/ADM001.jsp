@@ -75,19 +75,19 @@ Secano.</title>
 														rowKeyVar="row" headerClass="columnHeader"
 														rowClasses="oddRow,evenRow">
 														<f:facet name="header">
-															<h:outputText value="Transacciones" />
+															<h:outputText value="#{text.transaccion_ListaTransacciones}"/>
 														</f:facet>
 
 														<rich:column width="100px">
 															<f:facet name="header">
-																<h:outputText value="Código" />
+																<h:outputText value="#{text.transaccion_Codigo}"/>
 															</f:facet>
 															<h:outputText value="#{transaccion._codigo}" id="codigo" />
 														</rich:column>
 
 														<rich:column width="400">
 															<f:facet name="header">
-																<h:outputText value="Descripción" />
+																<h:outputText value="#{text.transaccion_Descripcion}"/>
 															</f:facet>
 															<h:outputText value="#{transaccion._descripcion}"
 																id="descripcion" />
@@ -95,7 +95,7 @@ Secano.</title>
 
 														<rich:column width="100">
 															<f:facet name="header">
-																<h:outputText value="Estado" />
+																<h:outputText value="#{text.transaccion_Estado}"/>
 															</f:facet>
 															<h:outputText value="#{transaccion._estado}" id="estado" />
 														</rich:column>
@@ -113,6 +113,10 @@ Secano.</title>
 																<rich:toolTip value="Modificar" />
 															</a4j:commandButton></center>
 														</rich:column>
+														<f:facet name="footer">
+															<rich:datascroller renderIfSinglePage="false"
+																maxPages="6" />
+														</f:facet>
 													</rich:dataTable></center>
 
 													<CENTER><h:panelGrid columns="2">
