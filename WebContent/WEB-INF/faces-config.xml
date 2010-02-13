@@ -241,7 +241,7 @@
 			<redirect />
 		</navigation-case>
 		<navigation-case>
-			<from-outcome>cancelar</from-outcome>
+			<from-outcome>salir</from-outcome>
 			<to-view-id>/Servicios/SEG/SEG008.jsp</to-view-id>
 			<redirect />
 		</navigation-case>
@@ -261,7 +261,7 @@
 			<redirect />
 		</navigation-case>
 		<navigation-case>
-			<from-outcome>cancelar</from-outcome>
+			<from-outcome>salir</from-outcome>
 			<to-view-id>/Servicios/SEG/SEG008.jsp</to-view-id>
 			<redirect />
 		</navigation-case>
@@ -434,11 +434,6 @@
 		<navigation-case>
 			<from-outcome>resultados</from-outcome>
 			<to-view-id>/Servicios/ADM/ADM002.jsp</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>salir</from-outcome>
-			<to-view-id>/Servicios/ADM/ADM001.jsp</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
