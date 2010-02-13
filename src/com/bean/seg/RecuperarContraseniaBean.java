@@ -13,6 +13,7 @@ import javax.mail.internet.MimeMessage;
 import javax.naming.NamingException;
 
 import com.bean.comun.MaestroBean;
+import com.inia_mscc.modulos.comun.entidades.EncriptacionSHA1BASE64;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.Servicio;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
@@ -77,6 +78,9 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 		try {
 			if (this.getUsuario() != null) {
 				// if (!this.salvarNombre(this.getUsuario())) {
+//				this.getUsuario().set_password(EncriptacionSHA1BASE64.encriptar("NoTeOlvides"));
+				this.getUsuario().set_password("NoTeOlvides");
+				this.getSegFachada(Servicio.Usuario).CambiarPassword(this.getUsuario());
 				if (!this.enviarMailConfirmacion(this.getUsuario())) {
 					this.setError("No ha sido posible enviar el e-mail, "
 							+ "el e-mail proporcionado no esta disponible.");
@@ -277,11 +281,8 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 					+ " su usuario es "
 					+ pUsuario.get_login()
 					+ " en INIA - MSCC,</br>"
-					+ "<br>para acceder al sistema su contraseña es "
-					+ pUsuario.get_password()
-					+ "</b></i></br><br>"
+					+ "<br>para acceder al sistema su contraseña es: NoTeOlvidesMas</b></i></br><br>"
 					+ "<br><i><b>Muchas gracias por registrarse!</b></i></center><br></br><br></br><br></br>";
-
 			this.getComunFachada(Servicio.MailSender).enviarMailTextoPlano(
 					pUsuario.get_datos().get_mail(),
 					"INIA - MSCC Administración", body);
@@ -344,6 +345,6 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 	}
 
 	public void setActual(String actual) {
-		this.actual = actual;
+		this.actual = EncriptacionSHA1BASE64.encriptar(actual);
 	}
 }
