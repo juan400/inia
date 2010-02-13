@@ -12,6 +12,7 @@ import org.hibernate.criterion.Restrictions;
 import com.inia_mscc.config.hibernate.HibernateUtil;
 import com.inia_mscc.config.util.LoggingUtilities;
 import com.inia_mscc.excepciones.IniaPersistenciaException;
+import com.inia_mscc.modulos.comun.entidades.EncriptacionSHA1BASE64;
 import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
 import com.inia_mscc.modulos.seg.entidades.Perfil;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
@@ -203,7 +204,7 @@ public class DAOUsuario implements Serializable {
 					.getCurrentSession();
 			Criteria c = session.createCriteria(Usuario.class);
 			c.add(Restrictions.eq("_login", loginNombre));
-			c.add(Restrictions.eq("_password", password));
+			c.add(Restrictions.eq("_password", new String(EncriptacionSHA1BASE64.encriptar(password))));
 			usuario = (Usuario) c.uniqueResult();
 			if (usuario != null) {
 				usuario.get_datos().get_perfil().get_transaccionesSistema()
