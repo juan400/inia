@@ -33,6 +33,12 @@ public class RegionBean extends MaestroBean implements Serializable {
 		codigo = "";
 	}
 
+	public String Alta() {
+		this.setError("");
+		this.setExito("");
+		return "Alta";
+	}
+	
 	public String actualizar() throws Exception {
 		String retorno = "registro-error";
 		try {
@@ -90,16 +96,12 @@ public class RegionBean extends MaestroBean implements Serializable {
 				} else {
 					this
 							.setError("No ha sido posible crear la Región, revise los datos ingresados y intentelo nuevamente.");
-					MaestroBean.getInstance().setOpcion(
-							"/Servicios/ADM/ADM006.jsp");
-					retorno = "registro-error";
+					retorno = "";
 				}
 			} else {
 				this
 						.setError("Ya existe una Región con igual nombre, Por favor ingrese otro nombre.");
-				MaestroBean.getInstance()
-						.setOpcion("/Servicios/ADM/ADM006.jsp");
-				retorno = "registro-error";
+				retorno = "";
 			}
 		} catch (Exception ex) {
 			setError(ex.getMessage());
@@ -125,7 +127,8 @@ public class RegionBean extends MaestroBean implements Serializable {
 				}
 			}
 			this.getAdmFachada(Servicio.Region).EliminarRegion(region);
-				retorno = "eliminado";
+			this.setExito("Se ha eliminado exitosamente la región.");	
+			retorno = "eliminado";
 			
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
