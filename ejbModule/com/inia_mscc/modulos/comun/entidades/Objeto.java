@@ -21,11 +21,14 @@ public class Objeto{
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id")
 	private long _id; 
+	
 	@Enumerated(EnumType.STRING)
 	@Column (name="estado")
 	private Enumerados.Estado _estado;
+	
 	@Transient
 	private Enumerados.EstadoModificacion _estadoModificacion;
+	
 	@Version
     @Column(name="timestamp")
 	private Timestamp _timeStamp;
