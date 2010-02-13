@@ -27,12 +27,12 @@ public class PerfilBean extends MaestroBean implements Serializable {
 	private Perfil perfil = new Perfil();
 	private List<Transaccion> transaccionesActivas;
 
-	public String Alta(){
+	public String Alta() {
 		this.setError("");
 		this.setExito("");
 		return "Alta";
 	}
-	
+
 	public String eliminar() {
 		String retorno = "";
 		try {
@@ -114,7 +114,8 @@ public class PerfilBean extends MaestroBean implements Serializable {
 			perfil.set_estado(Enumerados.Estado.valueOf(estado));
 			List<Transaccion> asociadas = new ArrayList<Transaccion>();
 			for (int i = 0; i < transaccionesActivas.toArray().length; i++) {
-				Transaccion transaccion = (Transaccion) transaccionesActivas.toArray()[i];
+				Transaccion transaccion = (Transaccion) transaccionesActivas
+						.toArray()[i];
 				if (transaccion != null) {
 					if (transaccion.get_asociada()) {
 						asociadas.add(transaccion);
@@ -133,14 +134,18 @@ public class PerfilBean extends MaestroBean implements Serializable {
 	}
 
 	public String registrar() throws Exception {
+		Boolean transaccionAsociada = false;
 		String retorno = "";
 		try {
 			List<Transaccion> asociadas = new ArrayList<Transaccion>();
 			for (int i = 0; i < transaccionesActivas.toArray().length; i++) {
-				Transaccion transaccion = (Transaccion) transaccionesActivas.toArray()[i];
+				Transaccion transaccion = (Transaccion) transaccionesActivas
+						.toArray()[i];
 				if (transaccion != null) {
+
 					if (transaccion.get_asociada()) {
 						asociadas.add(transaccion);
+						transaccionAsociada = true;
 					}
 				}
 			}
@@ -153,29 +158,30 @@ public class PerfilBean extends MaestroBean implements Serializable {
 
 			Perfil per = this.getSegFachada(Servicio.Perfil).ComprobarPerfil(
 					datosPerfil);
-			if (per == null) {
-				setError("");
-				Perfil p = this.getSegFachada(Servicio.Perfil).RegistrarPerfil(
-						datosPerfil);
-				if (p != null) {
-					this.setError("");
-					MaestroBean.getInstance().setOpcion(
-							"/Servicios/SEG/SEG009.jsp");
-					retorno = "registro-ok";
-					LimpiarBean();
+			if (transaccionAsociada) {
+				if (per == null) {
+					setError("");
+					Perfil p = this.getSegFachada(Servicio.Perfil)
+							.RegistrarPerfil(datosPerfil);
+					if (p != null) {
+						this.setError("");
+						MaestroBean.getInstance().setOpcion(
+								"/Servicios/SEG/SEG009.jsp");
+						retorno = "registro-ok";
+						LimpiarBean();
+					} else {
+						this
+								.setError("No ha sido posible crear el perfil, revise los datos ingresados y intentelo nuevamente.");
+						retorno = "";
+					}
 				} else {
 					this
-							.setError("No ha sido posible crear el perfil, revise los datos ingresados y intentelo nuevamente.");
-					MaestroBean.getInstance().setOpcion(
-							"/Servicios/SEG/SEG009.jsp");
-					retorno = "registro-error";
+							.setError("Ya existe un Perfil con igual nombre, Por favor ingrese otro nombre.");
+					retorno = "";
 				}
 			} else {
-				this
-						.setError("Ya existe un Perfil con igual nombre, Por favor ingrese otro nombre.");
-				MaestroBean.getInstance()
-						.setOpcion("/Servicios/SEG/SEG009.jsp");
-				retorno = "registro-error";
+				this.setError("Debe asociar al menos una transaccion.");
+				retorno = "";
 			}
 		} catch (Exception ex) {
 			setError(ex.getMessage());

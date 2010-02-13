@@ -143,8 +143,6 @@ Secano.</title>
 													</h:panelGrid></center>
 
 													<center><h:panelGrid>
-														<h:outputText styleClass="mensajeError"
-															value="#{perfilBean.error}" />
 														<h:outputText styleClass="textoPlano"
 															value="#{perfilBean.exito}" />
 													</h:panelGrid></center>

@@ -97,9 +97,9 @@ Secano.</title>
 														<center><rich:dataTable border="2" width="400px"
 															id="tablaTransaccion" rows="10"
 															styleClass="textoDataTable"
-															value="#{perfilBean.transaccionesActivas}" var="transaccion"
-															rowKeyVar="row" headerClass="columnHeader"
-															rowClasses="oddRow,evenRow">
+															value="#{perfilBean.transaccionesActivas}"
+															var="transaccion" rowKeyVar="row"
+															headerClass="columnHeader" rowClasses="oddRow,evenRow">
 															<f:facet name="header">
 																<h:outputText value="Transacciones" />
 															</f:facet>
@@ -130,7 +130,7 @@ Secano.</title>
 																	renderIfSinglePage="false" maxPages="6" />
 															</f:facet>
 														</rich:dataTable></center>
-														
+
 
 														<center><h:panelGrid columns="2">
 															<a4j:commandButton
@@ -143,7 +143,6 @@ Secano.</title>
 																value="#{text.boton_Cancelar}" />
 														</h:panelGrid></center>
 
-
 														<f:facet name="footer">
 															<h:panelGrid>
 																<rich:messages styleClass="mensajeError">
@@ -152,8 +151,10 @@ Secano.</title>
 																			value="/Recursos/Imagenes/Iconos/error.gif" />
 																	</f:facet>
 																</rich:messages>
-																<h:outputText styleClass="textoPlano"
-																	value="#{perfilBean.exito}" />
+																<center><h:panelGrid>
+																	<h:outputText styleClass="textoPlano"
+																		value="#{perfilBean.exito}" />
+																</h:panelGrid></center>
 															</h:panelGrid>
 														</f:facet>
 													</h:panelGrid>
