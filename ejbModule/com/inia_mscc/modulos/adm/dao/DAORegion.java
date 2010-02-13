@@ -12,20 +12,20 @@ import org.hibernate.criterion.Restrictions;
 import com.inia_mscc.config.hibernate.HibernateUtil;
 import com.inia_mscc.config.util.LoggingUtilities;
 import com.inia_mscc.excepciones.IniaPersistenciaException;
-import com.inia_mscc.modulos.adm.entidades.Transaccion;
-import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
+import com.inia_mscc.modulos.adm.entidades.Region;
+import com.inia_mscc.modulos.seg.entidades.Perfil;
 
-public class DAOTransaccion implements Serializable {
+public class DAORegion implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private static final Logger logger = Logger.getLogger(DAOTransaccion.class);
+	private static final Logger logger = Logger.getLogger(DAORegion.class);
 
-	public List<Transaccion> ObtenerTransacciones() {
-		List<Transaccion> retorno = null;
+	public List<Region> ObtenerRegiones() {
+		List<Region> retorno = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
-			Criteria c = session.createCriteria(Transaccion.class);
-			retorno = (List<Transaccion>) c.list();
+			Criteria c = session.createCriteria(Region.class);
+			retorno = (List<Region>) c.list();
 		} catch (Exception e) { // catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
@@ -34,44 +34,56 @@ public class DAOTransaccion implements Serializable {
 		return retorno;
 	}
 
-	public List<Transaccion> ObtenerTransaccionesActivas() {
-		List<Transaccion> retorno = null;
+	public void ActualizarRegiones(Region pRegion) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
-			Criteria c = session.createCriteria(Transaccion.class);
-			c.add(Restrictions.eq("_estado", Estado.Activo));
-			retorno = (List<Transaccion>) c.list();
-		} catch (Exception e) { // catch (StaleObjectStateException e) {
-			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
-			logger.error(stackTrace);
-			throw new IniaPersistenciaException(e.getMessage(), e);
-		}
-		return retorno;
-	}
-
-	public void ActualizarTransaccion(Transaccion pTransaccion) {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.update("Transaccion", pTransaccion);
+			session.update("Region", pRegion);
 		} catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);
 		}
 	}
-	
-	public Transaccion ComprobarTransaccion(Transaccion pTransaccion) {
-		Transaccion retorno = null;
+
+	public Region RegistrarRegion(Region pRegion) {
+		Region region = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
-			Criteria c = session.createCriteria(Transaccion.class);
-			c.add(Restrictions.ilike("_codigo", pTransaccion.get_codigo()));
-			retorno = (Transaccion) c.uniqueResult();
+			Long id = (Long) session.save("Region", pRegion);
+			Criteria c = session.createCriteria(Region.class);
+			c.add(Restrictions.eq("_id", id));
+			region = (Region) c.uniqueResult();
+		} catch (StaleObjectStateException e) {
+			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
+			logger.error(stackTrace);
+			throw new IniaPersistenciaException(e.getMessage(), e);
+		}
+		return region;
+	}
+
+	public Region ComprobarRegion(Region pRegion) {
+		Region retorno = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			Criteria c = session.createCriteria(Region.class);
+			c.add(Restrictions.ilike("_nombre", pRegion.get_nombre()));
+			retorno = (Region) c.uniqueResult();
 		} catch (Exception e) { // catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);
 		}
 		return retorno;
+	}
+	
+	public void EliminarRegion(Region pRegion) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.delete("Region", pRegion);
+		} catch (StaleObjectStateException e) {
+			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
+			logger.error(stackTrace);
+			throw new IniaPersistenciaException("No se puede eliminar la región, porque esta siendo utilizada.");
+		}
 	}
 }

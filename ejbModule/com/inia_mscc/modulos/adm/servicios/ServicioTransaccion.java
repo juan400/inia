@@ -9,6 +9,6 @@ public interface ServicioTransaccion {
 	public List<Transaccion> ObtenerTransacciones();
 	public void ActualizarTransaccion(Transaccion pTransaccion);
 	public List<Transaccion> ObtenerTransaccionesActiva();
-	
+	public Transaccion ComprobarTransaccion(Transaccion pTransaccion);
 		
 }
