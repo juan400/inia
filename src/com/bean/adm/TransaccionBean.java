@@ -1,7 +1,6 @@
 package com.bean.adm;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -36,23 +35,35 @@ public class TransaccionBean extends MaestroBean implements Serializable {
 	public TransaccionBean() {
 		this.estado = Estado.Activo.name();
 	}
-	
+
 	public String actualizar() throws Exception {
 		String retorno = "registro-error";
 		try {
 			trans.set_codigo(codigo);
 			trans.set_descripcion(descripcion);
 			trans.set_estado(Enumerados.Estado.valueOf(estado));
-		
-			this.getAdmFachada(Servicio.Transaccion).ActualizarTransaccion(trans);
-			retorno = "registro-ok";
+
+			Transaccion tran = this.getAdmFachada(Servicio.Transaccion)
+					.ComprobarTransaccion(trans);
+			if (tran == null) {
+				setError("");
+				this.getAdmFachada(Servicio.Transaccion).ActualizarTransaccion(
+						trans);
+				retorno = "registro-ok";
+			} else {
+				this
+						.setError("Ya existe una Transacción con igual código, Por favor ingrese otro código.");
+				MaestroBean.getInstance()
+						.setOpcion("/Servicios/ADM/ADM002.jsp");
+				retorno = "registro-error";
+			}
 		} catch (Exception ex) {
 			this
 					.setError("Se ha producido un error, por favor intente nuevamente.");
 		}
 		return retorno;
 	}
-	
+
 	public String verTransaccion() {
 		Map paramMap = FacesContext.getCurrentInstance().getExternalContext()
 				.getRequestParameterMap();

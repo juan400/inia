@@ -127,7 +127,7 @@ Secano.</title>
 
 															<f:facet name="footer">
 																<rich:datascroller for="tablaTransaccion"
-																	renderIfSinglePage="false" maxPages="5" />
+																	renderIfSinglePage="false" maxPages="6" />
 															</f:facet>
 														</rich:dataTable></center>
 														
