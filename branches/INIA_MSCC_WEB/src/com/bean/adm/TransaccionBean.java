@@ -53,9 +53,7 @@ public class TransaccionBean extends MaestroBean implements Serializable {
 			} else {
 				this
 						.setError("Ya existe una Transacción con igual código, Por favor ingrese otro código.");
-				MaestroBean.getInstance()
-						.setOpcion("/Servicios/ADM/ADM002.jsp");
-				retorno = "registro-error";
+				retorno = "";
 			}
 		} catch (Exception ex) {
 			this

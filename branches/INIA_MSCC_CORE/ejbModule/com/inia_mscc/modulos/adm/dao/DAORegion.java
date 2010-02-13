@@ -13,7 +13,6 @@ import com.inia_mscc.config.hibernate.HibernateUtil;
 import com.inia_mscc.config.util.LoggingUtilities;
 import com.inia_mscc.excepciones.IniaPersistenciaException;
 import com.inia_mscc.modulos.adm.entidades.Region;
-import com.inia_mscc.modulos.seg.entidades.Perfil;
 
 public class DAORegion implements Serializable {
 
