@@ -134,7 +134,7 @@ Secano.</title>
 													<center><h:panelGrid columns="3">
 														<a4j:commandButton immediate="true"
 															style="font-size: 10pt; color: #2d77c2; width : 87px;"
-															styleClass="textoPlano" action="Alta"
+															styleClass="textoPlano" action="#{perfilBean.Alta}"
 															value="#{text.boton_Registrar}" />
 														<a4j:commandButton immediate="true"
 															style="font-size: 10pt; color: #2d77c2; width : 87px;"
