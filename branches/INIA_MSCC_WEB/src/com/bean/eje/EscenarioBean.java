@@ -46,6 +46,16 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 	private double nnuli = 20;
 	private double nnlli = 20;
 	
+	public String ejecutarEscenario(){
+		String resultado = "";
+		//TODO llamada a los métodos relacionados con la ejecucion del MSCC
+		return resultado; 
+	}
+	
+	private boolean generarEscenario(){
+		//TODO llamar al método para armar el template
+		return false;
+	}
 	
 	
 	public Date getfSiembra() {

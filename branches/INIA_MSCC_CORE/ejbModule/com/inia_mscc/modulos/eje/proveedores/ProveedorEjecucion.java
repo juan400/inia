@@ -7,6 +7,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import com.inia_mscc.excepciones.ProviderException;
+import com.inia_mscc.modulos.eje.entidades.EjecucionMSCC;
 import com.inia_mscc.modulos.eje.servicios.ServicioEjecucionMSCC;
 import com.inia_mscc.modulos.seg.servicios.ServicioPerfil;
 
@@ -22,7 +23,10 @@ public class ProveedorEjecucion implements ServicioEjecucionMSCC {
 			throw new ProviderException(e);
 		}
 	}
-	
-	
+
+	@Override
+	public void generarArchivoEscenario(EjecucionMSCC ejecucionMSCC) throws Exception {
+		ejbEjeccucion.generarArchivoEscenario(ejecucionMSCC);
+	}
 	
 }
