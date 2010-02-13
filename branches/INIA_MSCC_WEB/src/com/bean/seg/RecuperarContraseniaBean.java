@@ -99,7 +99,7 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 
 	public void validarContrasenia() {
 		try {
-			if (!this.getUsuario().get_password().equals(getActual())) {
+			if (!this.getUsuario().get_password().equals(EncriptacionSHA1BASE64.encriptar(getActual()))) {
 				this.setError("La contraseña actual que "
 						+ "ingreso no es correcta.");
 				this.setActual("");
@@ -114,16 +114,16 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 	public void confirmacionIngreso() {
 		try {
 			if (this.getUsuario() != null) {
-				if (this.actual.equals(this.getUsuario().get_password())) {
-					if (this.contrasenia.equals(confirmacion)) {
+				if (EncriptacionSHA1BASE64.encriptar(this.getActual()).equals(this.getUsuario().get_password())) {
+					if (this.getContrasenia().equals(getConfirmacion())) {
 						if (!this.getUsuario().get_login().equalsIgnoreCase(
-								confirmacion)
+								getConfirmacion())
 								|| !this.getUsuario().get_login()
-										.equalsIgnoreCase(contrasenia)) {
+										.equalsIgnoreCase(getContrasenia())) {
 							if (this.getUsuario().get_datos().get_mail()
-									.equalsIgnoreCase(confirmacion)
+									.equalsIgnoreCase(getConfirmacion())
 									|| this.getUsuario().get_datos().get_mail()
-											.equalsIgnoreCase(contrasenia)) {
+											.equalsIgnoreCase(getContrasenia())) {
 								this
 										.setError("La contraseña nueva no puede ser "
 												+ "igual a su correo electrónico.");
@@ -153,18 +153,18 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 		String retorno = "";
 		try {
 			if (this.getUsuario() != null) {
-				if (this.actual.equals(this.getUsuario().get_password())) {
-					if (this.contrasenia.equals(confirmacion)) {
+				if (EncriptacionSHA1BASE64.encriptar(this.getActual()).equals(this.getUsuario().get_password())) {
+					if (this.getContrasenia().equals(getConfirmacion())) {
 						if (!this.getUsuario().get_login().equalsIgnoreCase(
-								confirmacion)
+								getConfirmacion())
 								|| !this.getUsuario().get_login()
-										.equalsIgnoreCase(contrasenia)) {
+										.equalsIgnoreCase(getContrasenia())) {
 							if (!this.getUsuario().get_datos().get_mail()
-									.equalsIgnoreCase(confirmacion)
+									.equalsIgnoreCase(getConfirmacion())
 									|| !this.getUsuario().get_datos()
 											.get_mail().equalsIgnoreCase(
-													contrasenia)) {
-								this.getUsuario().set_password(confirmacion);
+													getContrasenia())) {
+								this.getUsuario().set_password(getConfirmacion());
 								this.getSegFachada(Servicio.Usuario)
 										.CambiarPassword(this.getUsuario());
 								retorno = "SEG001";
@@ -345,6 +345,6 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 	}
 
 	public void setActual(String actual) {
-		this.actual = EncriptacionSHA1BASE64.encriptar(actual);
+		this.actual = actual;
 	}
 }

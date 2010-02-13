@@ -27,7 +27,6 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Archivo archivoSubido = new Archivo();
-	// private ArrayList<File> files = new ArrayList<File>();
 	private int uploadsAvailable = 1;
 	private boolean autoUpload = false;
 	private boolean useFlash = false;
@@ -39,14 +38,6 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 	public boolean isInit() {
 		return false;
 	}
-
-//	public int getSize() {
-//		if (getFiles().size() > 0) {
-//			return getFiles().size();
-//		} else {
-//			return 0;
-//		}
-//	}
 
 	/**
 	 * @param event
@@ -86,14 +77,6 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 	public long getTimeStamp() {
 		return System.currentTimeMillis();
 	}
-
-//	public ArrayList<File> getFiles() {
-//		return files;
-//	}
-//
-//	public void setFiles(ArrayList<File> files) {
-//		this.files = files;
-//	}
 
 	public int getUploadsAvailable() {
 		return uploadsAvailable;
