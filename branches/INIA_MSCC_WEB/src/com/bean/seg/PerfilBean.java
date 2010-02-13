@@ -27,6 +27,11 @@ public class PerfilBean extends MaestroBean implements Serializable {
 	private Perfil perfil = new Perfil();
 	private List<Transaccion> transaccionesActivas;
 
+	public String Alta(){
+		this.setError("");
+		this.setExito("");
+		return "Alta";
+	}
 	
 	public String eliminar() {
 		String retorno = "";
