@@ -60,62 +60,76 @@ Secano.</title>
 										</h:column>
 										<h:column>
 											<h:panelGrid>
-												<h:panelGroup rendered="#{subirEscenarioBean.init}" />
-												<h:panelGrid columns="2">
-												<h:outputLabel value="#{text.registro_Pais}" />
-											<rich:comboBox value="#{registroBean.paisElegido}"
-												enableManualInput="false" styleClass="combo">
-												<f:selectItems value="#{registroBean.paises}" />
-												<a4j:support action="#{registroBean.takeSelectionPais}"
-													event="onchange" ajaxSingle="true"
-													reRender="cmbDepartamentos" />
-											</rich:comboBox>
-												</h:panelGrid>
+												<h:panelGroup rendered="#{cultivoBean.init}" />
 												<h:panelGrid>
 													<rich:panel headerClass="tituloPantalla"
 														style="background-color: #ebf3fd;">
 														<f:facet name="header">
-															<h:outputText value="Ingresar Escenario" />
+															<h:outputText value="Ingresar Cultivos" />
 														</f:facet>
+														<h:panelGrid>
+															<h:panelGrid columns="2"
+																columnClasses="textoPlano,textoPlano" width="400">
+																<h:outputLabel value="#{text.registro_Pais}" />
+																<rich:comboBox value="#{registroBean.paisElegido}"
+																	enableManualInput="false" styleClass="combo">
+																	<f:selectItems value="#{registroBean.paises}" />
+																	<a4j:support action="#{registroBean.takeSelectionPais}"
+																		event="onchange" ajaxSingle="true"
+																		reRender="cmbDepartamentos" />
+																</rich:comboBox>
+																
+																<h:outputText value="Ingrese nombre" />
+																<h:inputText value="#{cultivoBean.nombre}"
+																	required="true"
+																	requiredMessage="Ingrese un nombre para el cultivo"
+																	styleClass="textoPlano" maxlength="50"
+																	onkeypress="ValidarCampoLetras(this, event)" />
 
-														<h:outputText value="Seleccionar " />
+																<h:outputText value="Ingresar descripción" />
+																<h:inputTextarea value="#{cultivoBean.descripcion}"
+																	required="true"
+																	requiredMessage="Ingrese la descripcion del cultivo"
+																	styleClass="textoPlano"
+																	onkeypress="ValidarCampoLetras(this, event)">
+																	<f:validateLength maximum="220" />
+																</h:inputTextarea>
 
-														<rich:fileUpload
-															requiredMessage="Debe de subir un archivo"
-															fileUploadListener="#{subirEscenarioBean.listener}"
-															maxFilesQuantity="#{subirEscenarioBean.uploadsAvailable}"
-															required="true" id="upload"
-															immediateUpload="#{subirEscenarioBean.autoUpload}"
-															acceptedTypes="py" allowFlash="true" listHeight="60">
-															<a4j:support event="onuploadcomplete" reRender="mensages" />
-														</rich:fileUpload>
+																<h:outputLabel value="Seleccionar un estado" />
+																<rich:comboBox value="#{cultivoBean.estado}"
+																	enableManualInput="false" styleClass="combo">
+																	<f:selectItems value="#{cultivoBean.estados}" />
+																</rich:comboBox>
 
-														<center><h:panelGrid columns="3">
-															<a4j:commandButton immediate="true"
-																style="font-size: 10pt; color: #2d77c2; width : 87px;"
-																styleClass="textoPlano" action="Alta"
-																value="#{text.boton_Registrar}" />
-
-															<a4j:commandButton immediate="true"
-																style="font-size: 10pt; color: #2d77c2; width : 87px;"
-																styleClass="textoPlano" action="cancelar"
-																value="#{text.perfil_Cerrar}" />
-														</h:panelGrid></center>
-														<h:panelGrid id="mensages">
-															<rich:messages styleClass="mensajeError">
-																<f:facet name="passedMarker">
-																	<h:graphicImage
-																		value="/Recursos/Imagenes/Iconos/passed.gif" />
-																</f:facet>
-																<f:facet name="errorMarker">
-																	<h:graphicImage
-																		value="/Recursos/Imagenes/Iconos/error.gif" />
-																</f:facet>
-															</rich:messages>
-															<h:outputText styleClass="mensajeError"
-																value="#{subirEscenarioBean.error}" />
-															<h:outputText styleClass="textoPlano"
-																value="#{subirEscenarioBean.exito}" />
+															</h:panelGrid>
+															<center><h:panelGrid columns="3"
+																columnClasses="textoPlano,textoPlano,textoPlano">
+																<a4j:commandButton
+																	style="font-size: 10pt; color: #2d77c2; width : 87px;"
+																	styleClass="textoPlano"
+																	action="#{cultivoBean.Registrar}"
+																	value="#{text.boton_Registrar}" />
+																<a4j:commandButton
+																	style="font-size: 10pt; color: #2d77c2; width : 120px;"
+																	styleClass="textoPlano"
+																	action="#{cultivoBean.Propiedades}" value="Propiedades" />
+																<a4j:commandButton immediate="true"
+																	style="font-size: 10pt; color: #2d77c2; width : 87px;"
+																	styleClass="textoPlano" action="cancelar"
+																	value="#{text.perfil_Cerrar}" />
+															</h:panelGrid></center>
+															<f:facet name="footer">
+																<h:panelGrid>
+																	<rich:messages styleClass="mensajeError">
+																		<f:facet name="errorMarker">
+																			<h:graphicImage
+																				value="/Recursos/Imagenes/Iconos/error.gif" />
+																		</f:facet>
+																	</rich:messages>
+																	<h:outputText styleClass="textoPlano"
+																		value="#{cultivoBean.exito}" />
+																</h:panelGrid>
+															</f:facet>
 														</h:panelGrid>
 													</rich:panel>
 												</h:panelGrid>
