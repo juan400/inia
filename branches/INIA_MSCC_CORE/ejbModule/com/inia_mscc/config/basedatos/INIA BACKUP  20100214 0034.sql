@@ -905,7 +905,8 @@ DROP TABLE IF EXISTS `tl_gem_cult_cultivo`;
 CREATE TABLE `tl_gem_cult_cultivo` (
   `cult_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `cult_str_descripcion` varchar(220) NOT NULL,
-  `cult_num_id_esta` bigint(20) NOT NULL,
+  `cult_num_id_estado` varchar(10) NOT NULL,
+  `cult_str_nombre` varchar(50) NOT NULL,
   PRIMARY KEY (`cult_num_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -918,29 +919,6 @@ CREATE TABLE `tl_gem_cult_cultivo` (
 
 
 --
--- Definition of table `tl_gem_pasc_propiedadesasociadas`
---
-
-DROP TABLE IF EXISTS `tl_gem_pasc_propiedadesasociadas`;
-CREATE TABLE `tl_gem_pasc_propiedadesasociadas` (
-  `pasc_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `pasc_num_orden` int(11) NOT NULL,
-  `pasc_num_id_cultivo` bigint(20) NOT NULL,
-  `pasc_num_id_propiedad` bigint(20) NOT NULL,
-  `pasc_bol_en_uso` tinyint(1) NOT NULL,
-  PRIMARY KEY (`pasc_num_id`),
-  UNIQUE KEY `unica` (`pasc_num_id_cultivo`,`pasc_num_id_propiedad`,`pasc_num_orden`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `tl_gem_pasc_propiedadesasociadas`
---
-
-/*!40000 ALTER TABLE `tl_gem_pasc_propiedadesasociadas` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tl_gem_pasc_propiedadesasociadas` ENABLE KEYS */;
-
-
---
 -- Definition of table `tl_gem_prcu_propiedadescultivo`
 --
 
@@ -948,10 +926,14 @@ DROP TABLE IF EXISTS `tl_gem_prcu_propiedadescultivo`;
 CREATE TABLE `tl_gem_prcu_propiedadescultivo` (
   `prcu_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `prcu_str_codigo` varchar(10) NOT NULL,
-  `prcu_str_descripcion` varchar(220) NOT NULL,
+  `prcu_str_nombre` varchar(220) NOT NULL,
   `prcu_str_unidad_medida` varchar(220) DEFAULT NULL,
+  `pruc_str_tipo` varchar(45) DEFAULT NULL,
+  `pruc_num_id_cultivo` bigint(20) NOT NULL,
   PRIMARY KEY (`prcu_num_id`),
-  UNIQUE KEY `unique_codigo` (`prcu_str_codigo`)
+  UNIQUE KEY `unique_codigo` (`prcu_str_codigo`,`pruc_num_id_cultivo`) USING BTREE,
+  KEY `FK_pruc_num_id_cultivo` (`pruc_num_id_cultivo`),
+  CONSTRAINT `FK_pruc_num_id_cultivo` FOREIGN KEY (`pruc_num_id_cultivo`) REFERENCES `tl_gem_cult_cultivo` (`cult_num_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -1064,7 +1046,7 @@ CREATE TABLE `tl_seg_perf_perfil` (
   `perf_str_descripcion` varchar(220) DEFAULT NULL,
   `perf_bol_fijo` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`perf_num_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tl_seg_perf_perfil`
@@ -1074,8 +1056,7 @@ CREATE TABLE `tl_seg_perf_perfil` (
 INSERT INTO `tl_seg_perf_perfil` (`perf_num_id`,`perf_str_estado`,`perf_str_nombre`,`perf_str_descripcion`,`perf_bol_fijo`) VALUES 
  (1,'Activo','Administrador','Administrador del sistema',1),
  (2,'Activo','Investigador','Investigadores de MSCC',1),
- (3,'Activo','Publico','Público en general',1),
- (8,'Activo','Perfil de Juan','asdfaf',0);
+ (3,'Activo','Publico','Público en general',1);
 /*!40000 ALTER TABLE `tl_seg_perf_perfil` ENABLE KEYS */;
 
 
@@ -1106,16 +1087,10 @@ INSERT INTO `tl_seg_trpe_transaccionperfil` (`trpe_num_id_perfile`,`trpe_num_id_
  (1,5),
  (1,6),
  (1,7),
- (8,7),
  (1,8),
- (8,8),
  (1,9),
- (8,9),
  (1,10),
- (8,10),
- (8,11),
  (1,12),
- (8,12),
  (1,13),
  (1,14),
  (1,15),
@@ -1170,7 +1145,7 @@ CREATE TABLE `tl_seg_usua_usuario` (
 
 /*!40000 ALTER TABLE `tl_seg_usua_usuario` DISABLE KEYS */;
 INSERT INTO `tl_seg_usua_usuario` (`usua_num_id`,`usua_str_login`,`usua_str_password`,`usua_bol_activado`,`usua_dte_ultimo_acceso`,`usua_str_estado_usuario`,`usua_num_id_dato_usuario`,`usua_str_frase`,`usua_str_codigo_activacion`) VALUES 
- (1,'juan400','juan4003',1,'2010-02-13 12:08:56','Activo',1,'jojojojo','81373981'),
+ (1,'juan400','6BU9xNyb8/OWnf5nUQxTRA4wyEk=',1,'2010-02-13 22:53:12','Activo',1,'jojojojo','81373981'),
  (2,'juan400_4','jojojo',1,'2010-02-02 19:03:22','Activo',2,'Ingrese su frase secreta','32317168'),
  (3,'mgayol','85400880',0,'2010-02-07 18:15:00','Registrado',3,'Ingrese su frase secreta','85400880'),
  (5,'juan400','17568942',0,'2010-02-07 18:20:32','Registrado',5,'Ingrese su frase secreta','17568942'),
