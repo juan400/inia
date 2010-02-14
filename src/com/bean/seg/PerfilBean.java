@@ -12,7 +12,8 @@ import com.bean.comun.MaestroBean;
 import com.inia_mscc.modulos.adm.entidades.Transaccion;
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
-import com.inia_mscc.modulos.comun.entidades.Enumerados.Servicio;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioADM;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioSEG;
 import com.inia_mscc.modulos.seg.entidades.Perfil;
 
 public class PerfilBean extends MaestroBean implements Serializable {
@@ -51,7 +52,7 @@ public class PerfilBean extends MaestroBean implements Serializable {
 							.set_transaccionesSistema(new ArrayList<Transaccion>());
 				}
 			}
-			if (this.getSegFachada(Servicio.Perfil).EliminarPerfil(perfil)
+			if (this.getSegFachada(ServicioSEG.Perfil).EliminarPerfil(perfil)
 					.isEmpty()) {
 				this.setExito("Se ha eliminado exitosamente el perfil.");
 				retorno = "eliminado";
@@ -76,7 +77,7 @@ public class PerfilBean extends MaestroBean implements Serializable {
 			if (perfilSeleccionado.get_id() == (long) Long
 					.parseLong(consultaElegida)) {
 				perfil = perfilSeleccionado;
-				perfil = this.getSegFachada(Servicio.Perfil)
+				perfil = this.getSegFachada(ServicioSEG.Perfil)
 						.ObtenerPerfilConTransAsociadas(perfilSeleccionado);
 				nombre = perfil.get_nombre();
 				descripcion = perfil.get_descripcion();
@@ -101,8 +102,8 @@ public class PerfilBean extends MaestroBean implements Serializable {
 
 	public boolean isInit() {
 		this.limpiarBean();
-		this.perfiles = this.getSegFachada(Servicio.Perfil).ObtenerPerfiles();
-		this.transaccionesActivas = this.getAdmFachada(Servicio.Transaccion)
+		this.perfiles = this.getSegFachada(ServicioSEG.Perfil).ObtenerPerfiles();
+		this.transaccionesActivas = this.getAdmFachada(ServicioADM.Transaccion)
 				.ObtenerTransaccionesActiva();
 		return false;
 	}
@@ -125,7 +126,7 @@ public class PerfilBean extends MaestroBean implements Serializable {
 			}
 			List<Transaccion> lista = asociadas;
 			perfil.set_transaccionesSistema(lista);
-			this.getSegFachada(Servicio.Perfil).ActualizarPerfil(perfil);
+			this.getSegFachada(ServicioSEG.Perfil).ActualizarPerfil(perfil);
 			retorno = "registro-ok";
 		} catch (Exception ex) {
 			this
@@ -157,12 +158,12 @@ public class PerfilBean extends MaestroBean implements Serializable {
 			datosPerfil.set_descripcion(descripcion);
 			datosPerfil.set_estado(Enumerados.Estado.valueOf(estado));
 
-			Perfil per = this.getSegFachada(Servicio.Perfil).ComprobarPerfil(
+			Perfil per = this.getSegFachada(ServicioSEG.Perfil).ComprobarPerfil(
 					datosPerfil);
 			if (transaccionAsociada) {
 				if (per == null) {
 					setError("");
-					Perfil p = this.getSegFachada(Servicio.Perfil)
+					Perfil p = this.getSegFachada(ServicioSEG.Perfil)
 							.RegistrarPerfil(datosPerfil);
 					if (p != null) {
 						this.setError("");

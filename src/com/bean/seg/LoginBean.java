@@ -4,9 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 import com.bean.comun.MaestroBean;
-import com.inia_mscc.modulos.comun.entidades.EncriptacionSHA1BASE64;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.EstadoUsuario;
-import com.inia_mscc.modulos.comun.entidades.Enumerados.Servicio;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioSEG;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
 public class LoginBean extends MaestroBean implements Serializable {
@@ -34,7 +33,7 @@ public class LoginBean extends MaestroBean implements Serializable {
 		String mensaje = "login-error";
 		Usuario u = null;
 		try {		
-			u = this.getSegFachada(Servicio.Usuario)
+			u = this.getSegFachada(ServicioSEG.Usuario)
 					.Login(loginName, password);
 			if (u != null) {
 				if (u.is_activado()) {
@@ -44,7 +43,7 @@ public class LoginBean extends MaestroBean implements Serializable {
 							this.setUsuario(u);
 							Date fecha = u.get_ultimoAcceso();
 							u.set_ultimoAcceso(new Date());
-							this.getSegFachada(Servicio.Usuario)
+							this.getSegFachada(ServicioSEG.Usuario)
 									.ActualizarUltimoAccesoUsuario(u);
 							u.set_ultimoAcceso(fecha);
 							this.setSesion(Usuario.class.toString(), u);

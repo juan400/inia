@@ -15,7 +15,8 @@ import com.inia_mscc.modulos.adm.entidades.Departamento;
 import com.inia_mscc.modulos.adm.entidades.Pais;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.EstadoUsuario;
-import com.inia_mscc.modulos.comun.entidades.Enumerados.Servicio;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioADM;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioSEG;
 import com.inia_mscc.modulos.seg.entidades.Perfil;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
@@ -53,7 +54,7 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 	private Usuario usuario = new Usuario();
 
 	public boolean isInit() {
-		this.usuarios = this.getSegFachada(Servicio.Usuario).ObtenerUsuarios();
+		this.usuarios = this.getSegFachada(ServicioSEG.Usuario).ObtenerUsuarios();
 		return false;
 	}
 
@@ -104,23 +105,23 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 				telefono = this.getUsuario().get_datos().get_tele();
 				celular = this.getUsuario().get_datos().get_cel();
 
-				listPaises = this.getAdmFachada(Servicio.RelacionPCD)
+				listPaises = this.getAdmFachada(ServicioADM.RelacionPCD)
 						.ObtenerPaises();
 				if (pais != null) {
 					listDepartamentos = this
-							.getAdmFachada(Servicio.RelacionPCD)
+							.getAdmFachada(ServicioADM.RelacionPCD)
 							.ObtenerDepartamentosXPais(pais);
 					if (depto != null) {
-						listCiudades = this.getAdmFachada(Servicio.RelacionPCD)
+						listCiudades = this.getAdmFachada(ServicioADM.RelacionPCD)
 								.ObtenerCiudadesXDeptos(depto);
 					} else {
-						listCiudades = this.getAdmFachada(Servicio.RelacionPCD)
+						listCiudades = this.getAdmFachada(ServicioADM.RelacionPCD)
 								.ObtenerCiudades();
 					}
 				} else {
 					listDepartamentos = super.getAdmFachada(
-							Servicio.RelacionPCD).ObtenerDepartamentos();
-					listCiudades = super.getAdmFachada(Servicio.RelacionPCD)
+							ServicioADM.RelacionPCD).ObtenerDepartamentos();
+					listCiudades = super.getAdmFachada(ServicioADM.RelacionPCD)
 							.ObtenerCiudades();
 				}
 				paises = new SelectItem[listPaises.size() + 1];
@@ -184,7 +185,7 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 	public void takeSelectionEmail() {
 		try {
 			if (!this.getUsuario().get_datos().get_mail().equals(email)) {
-				if (!this.getSegFachada(Servicio.Usuario).ComprobarEmail(email)) {
+				if (!this.getSegFachada(ServicioSEG.Usuario).ComprobarEmail(email)) {
 					this
 							.setError("El e-mail ingresado ya esta registrado en el sistema.");
 					this.email = this.getUsuario().get_datos().get_mail();
@@ -201,7 +202,7 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 		try {
 			ciudad = new Ciudad();
 			ciudad.set_nombre(getCiudadElegido());
-			ciudad = this.getAdmFachada(Servicio.RelacionPCD).ObtenerCiudad(
+			ciudad = this.getAdmFachada(ServicioADM.RelacionPCD).ObtenerCiudad(
 					ciudad);
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
@@ -212,9 +213,9 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 		try {
 			depto = new Departamento();
 			depto.set_nombre(getDepartamentoElegido());
-			depto = this.getAdmFachada(Servicio.RelacionPCD)
+			depto = this.getAdmFachada(ServicioADM.RelacionPCD)
 					.ObtenerDepartamento(depto);
-			listCiudades = this.getAdmFachada(Servicio.RelacionPCD)
+			listCiudades = this.getAdmFachada(ServicioADM.RelacionPCD)
 					.ObtenerCiudadesXDeptos(depto);
 			ciudades = new SelectItem[listCiudades.size() + 1];
 			ciudades[0] = new SelectItem(this
@@ -236,8 +237,8 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 		try {
 			pais = new Pais();
 			pais.set_nombre(getPaisElegido());
-			pais = this.getAdmFachada(Servicio.RelacionPCD).ObtenerPais(pais);
-			listDepartamentos = this.getAdmFachada(Servicio.RelacionPCD)
+			pais = this.getAdmFachada(ServicioADM.RelacionPCD).ObtenerPais(pais);
+			listDepartamentos = this.getAdmFachada(ServicioADM.RelacionPCD)
 					.ObtenerDepartamentosXPais(pais);
 			departamentos = new SelectItem[listDepartamentos.size() + 1];
 			departamentos[0] = new SelectItem(this
@@ -269,7 +270,7 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 			this.getUsuario().get_datos().set_tele(telefono);
 			this.getUsuario().get_datos().set_fechaRegistro(new Date());
 			this.getUsuario().get_datos().set_timeStamp(new Date());
-			this.getSegFachada(Servicio.Usuario).ActualizarDatosUsuario(
+			this.getSegFachada(ServicioSEG.Usuario).ActualizarDatosUsuario(
 					this.getUsuario().get_datos());
 			if (this.getUsuario().get_datos() != null) {
 				this.setError("");
@@ -292,7 +293,7 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 		try {
 			this.getUsuario().set_estadoUsuario(EstadoUsuario.Inactivo);
 			this.getUsuario().get_datos().set_estado(Estado.Inactivo);
-			this.getSegFachada(Servicio.Usuario).DarBajaBloquearUsuario(
+			this.getSegFachada(ServicioSEG.Usuario).DarBajaBloquearUsuario(
 					this.getUsuario());
 			if (this.getUsuario().get_estadoUsuario().equals(
 					EstadoUsuario.Inactivo)) {

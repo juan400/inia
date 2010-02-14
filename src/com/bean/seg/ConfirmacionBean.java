@@ -9,7 +9,7 @@ import javax.faces.context.FacesContext;
 import com.bean.comun.MaestroBean;
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.EstadoUsuario;
-import com.inia_mscc.modulos.comun.entidades.Enumerados.Servicio;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioSEG;
 
 public class ConfirmacionBean extends MaestroBean implements Serializable {
 
@@ -49,7 +49,7 @@ public class ConfirmacionBean extends MaestroBean implements Serializable {
 							this.getUsuario().set_activado(true);
 							this.getUsuario().set_estadoUsuario(
 									EstadoUsuario.Activo);
-							this.getSegFachada(Servicio.Usuario)
+							this.getSegFachada(ServicioSEG.Usuario)
 									.CambiarPassword(this.getUsuario());
 							retorno = "confirmar-ok";
 						} else {
@@ -97,7 +97,7 @@ public class ConfirmacionBean extends MaestroBean implements Serializable {
 				codigoActivacion = null;
 			}
 			if (codigoActivacion != null) {
-				this.setUsuario(this.getSegFachada(Servicio.Usuario)
+				this.setUsuario(this.getSegFachada(ServicioSEG.Usuario)
 						.ComprobarClaveReigstro(codigoActivacion.toString()));
 				if (this.getUsuario() != null) {
 					nombre = this.getUsuario().get_datos().get_nombre() + " "

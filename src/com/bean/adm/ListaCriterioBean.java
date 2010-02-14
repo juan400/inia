@@ -1,18 +1,13 @@
 package com.bean.adm;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import javax.faces.model.SelectItem;
 
 import com.bean.comun.MaestroBean;
-import com.inia_mscc.modulos.adm.entidades.Ciudad;
-import com.inia_mscc.modulos.adm.entidades.Departamento;
 import com.inia_mscc.modulos.adm.entidades.ListaCriterioSeleccion;
-import com.inia_mscc.modulos.adm.entidades.Pais;
 import com.inia_mscc.modulos.adm.entidades.ValorSeleccion;
-import com.inia_mscc.modulos.comun.entidades.Enumerados.Servicio;
 
 public class ListaCriterioBean extends MaestroBean implements Serializable {
 

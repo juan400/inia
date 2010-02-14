@@ -9,7 +9,7 @@ import com.inia_mscc.modulos.seg.entidades.Usuario;
 public class LoginAction
 {
     
-    private SEGFachada segFachada = new SEGFachada(Enumerados.Servicio.Perfil);
+    private SEGFachada segFachada = new SEGFachada(Enumerados.ServicioSEG.Perfil);
 	private Bean bean; 
     
     public void listener(ActionEvent event) {
