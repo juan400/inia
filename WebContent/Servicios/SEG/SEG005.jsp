@@ -64,6 +64,7 @@ Secano.</title>
 													<f:facet name="header">
 														<h:outputText value="Dar de baja su cuenta de usuario" />
 													</f:facet>
+													<h:panelGrid>
 													<h:panelGrid columns="2"
 														columnClasses="textoPlano,textoPlano" width="500px">
 
@@ -124,7 +125,7 @@ Secano.</title>
 															styleClass="textoPlano" action="cancelar"
 															immediate="true" value="Cancelar" />
 													</h:panelGrid></center>
-												</rich:panel>
+													
 												<f:facet name="footer">
 													<h:panelGrid>
 														<rich:messages styleClass="mensajeError">
@@ -137,6 +138,8 @@ Secano.</title>
 															value="#{datosUsuarioBean.exito}" />
 													</h:panelGrid>
 												</f:facet>
+												</h:panelGrid>
+												</rich:panel>
 											</h:panelGrid>
 										</h:column>
 									</h:panelGrid>
