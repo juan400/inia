@@ -59,67 +59,85 @@ Secano.</title>
 											<rich:panelMenu binding="#{menuBean.panelMenu}" />
 										</h:column>
 										<h:column>
+											<h:panelGroup rendered="#{usuarioBean.init}" />
 											<h:panelGrid>
 												<rich:panel headerClass="tituloPantalla"
 													style="background-color: #ebf3fd;">
 													<f:facet name="header">
-														<h:outputText value="#{text.transaccion_Actualizar}" />
+														<h:outputText value="#{text.usuario_ListaUsuarios}" />
 													</f:facet>
-													<h:panelGrid>
-														<h:panelGrid columns="2"
-															columnClasses="textoPlano,textoDataTable">
 
-															<h:outputText value="#{text.transaccion_Codigo}" />
-															<h:inputText label="Name" id="codigo"
-																value="#{transaccionBean.codigo}" disabled="true"
-																style=" width : 245px;">
-																<f:validateLength maximum="6">
-																</f:validateLength>
-															</h:inputText>
+													<center><rich:dataTable border="2" width="650px"
+														rows="6" styleClass="textoDataTable" id="tablaUsuarios"
+														value="#{usuarioBean.usuarios}" var="usuario"
+														rowKeyVar="row" headerClass="columnHeader"
+														rowClasses="oddRow,evenRow">
 
-															<h:outputText value="#{text.transaccion_Descripcion}" />
-															<h:inputTextarea id="descripcion"
-																value="#{transaccionBean.descripcion}"
-																onkeypress="ValidarLargoMultiline(this, event, 220)"
-																style=" width : 245px; height : 71px;">
-															</h:inputTextarea>
+														<f:facet name="header">
+															<h:outputText value="Usuarios Registrados" />
+														</f:facet>
 
-															<h:outputText value="#{text.transaccion_Estado}" />
-															<rich:comboBox styleClass="textoDataTable"
-																value="#{transaccionBean.estado}" width="245px">
-																<f:selectItem itemValue="Activo" />
-																<f:selectItem itemValue="Inactivo" />
-															</rich:comboBox>
+														<rich:column width="150">
+															<f:facet name="header">
+																<h:outputText value="#{text.usuario_Nombre}" />
+															</f:facet>
+															<h:outputText value="#{usuario._nombre}" id="nombre" />
+														</rich:column>
 
-															<td style="width: 2px;"></td>
-															<h:outputText value="" />
-														</h:panelGrid>
+														<rich:column width="150">
+															<f:facet name="header">
+																<h:outputText value="#{text.usuario_Apellido}" />
+															</f:facet>
+															<h:outputText value="#{usuario._apellido}" id="apellido" />
+														</rich:column>
 
-														<CENTER><h:panelGrid columns="2">
-															<a4j:commandButton
-																style="font-size: 10pt; color: #2d77c2; width : 71px;"
-																styleClass="textoPlano"
-																action="#{transaccionBean.actualizar}"
-																value="#{text.boton_Aceptar}" />
-															<a4j:commandButton immediate="true"
-																style="font-size: 10pt; color: #2d77c2; width : 71px;"
-																styleClass="textoPlano" action="salir"
-																value="#{text.boton_Cancelar}" />
-														</h:panelGrid></center>
+														<rich:column width="100">
+															<f:facet name="header">
+																<h:outputText value="#{text.usuario_Estado}" />
+															</f:facet>
+															<h:outputText value="#{usuario._estado}" id="estado" />
+														</rich:column>
+
+														<rich:column width="100">
+															<f:facet name="header">
+																<h:outputText value="#{text.usuario_Perfil}" />
+															</f:facet>
+															<h:outputText value="#{usuario._perfil}" id="perfil" />
+														</rich:column>
+
+														<rich:column width="20">
+															<f:facet name="header">
+																<h:outputText value="Modificar" />
+															</f:facet>
+
+															<center><a4j:commandButton
+																action="#{regionBean.verRegiones}"
+																image="/Recursos/Imagenes/Iconos/edit.gif"
+																style="width : 27px; height : 21px;">
+																<a4j:actionparam name="regionElegida"
+																	value="#{region._id}" />
+																<rich:toolTip value="Modificar" />
+															</a4j:commandButton></center>
+														</rich:column>
 
 														<f:facet name="footer">
-															<h:panelGrid>
-																<rich:messages styleClass="mensajeError">
-																	<f:facet name="errorMarker">
-																		<h:graphicImage
-																			value="/Recursos/Imagenes/Iconos/error.gif" />
-																	</f:facet>
-																</rich:messages>
-																<h:outputText styleClass="textoPlano"
-																	value="#{transaccionBean.exito}" />
-															</h:panelGrid>
+															<rich:datascroller renderIfSinglePage="false"
+																maxPages="6" />
 														</f:facet>
-													</h:panelGrid>
+													</rich:dataTable></center>
+													<br></br>
+
+													<center><h:panelGrid columns="1">
+														<a4j:commandButton immediate="true"
+															style="font-size: 10pt; color: #2d77c2; width : 87px;"
+															styleClass="textoPlano" action="cancelar"
+															value="#{text.perfil_Cerrar}" />
+													</h:panelGrid></center>
+
+													<center><h:panelGrid>
+														<h:outputText styleClass="textoPlano"
+															value="#{usuarioBean.exito}" />
+													</h:panelGrid></center>
 												</rich:panel>
 											</h:panelGrid>
 										</h:column>

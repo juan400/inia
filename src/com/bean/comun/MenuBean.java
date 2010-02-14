@@ -86,10 +86,21 @@ public class MenuBean extends MaestroBean implements Serializable {
 				for (Transaccion unaTransa : transacciones) {
 					if (unaTransa.get_codigoBase().startsWith(
 							Proceso.ADM.name())) {
-						// TODO Se agregar los items de manejo de usuario y
-						// sacar los que no van en la contenedora.
-						menuGroupADM.getChildren().add(
-								cargarItemMenu(unaTransa));
+						if (!unaTransa.get_codigoBase().equalsIgnoreCase(
+								TransaccionesNoContenidas.ADM002.name())
+								&& !unaTransa
+										.get_codigoBase()
+										.equalsIgnoreCase(
+												TransaccionesNoContenidas.ADM006
+														.name())
+								&& !unaTransa
+										.get_codigoBase()
+										.equalsIgnoreCase(
+												TransaccionesNoContenidas.ADM007
+														.name())) {
+							menuGroupADM.getChildren().add(
+									cargarItemMenu(unaTransa));
+						}
 					}
 					if (unaTransa.get_codigoBase().startsWith(
 							Proceso.SEG.name())) {
@@ -109,6 +120,16 @@ public class MenuBean extends MaestroBean implements Serializable {
 										.get_codigoBase()
 										.equalsIgnoreCase(
 												TransaccionesNoContenidas.SEG006
+														.name())
+								&& !unaTransa
+										.get_codigoBase()
+										.equalsIgnoreCase(
+												TransaccionesNoContenidas.SEG009
+														.name())
+								&& !unaTransa
+										.get_codigoBase()
+										.equalsIgnoreCase(
+												TransaccionesNoContenidas.SEG010
 														.name())) {
 							menuGroupSEG.getChildren().add(
 									cargarItemMenu(unaTransa));
@@ -155,7 +176,7 @@ public class MenuBean extends MaestroBean implements Serializable {
 	private HtmlPanelMenuItem cargarItemMenu(Transaccion pTransa) {
 		HtmlPanelMenuItem menuItem = new HtmlPanelMenuItem();
 		menuItem.setName(pTransa.get_codigoBase());
-		menuItem.setLabel(pTransa.get_descripcionBase());
+		menuItem.setLabel(pTransa.get_descripcion());
 		menuItem.setStyleClass("textoMenuSecundario");
 		menuItem.setImmediate(true);
 		menuItem.setReRender("contenido");
