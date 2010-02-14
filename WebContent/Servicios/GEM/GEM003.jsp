@@ -60,35 +60,119 @@ Secano.</title>
 										</h:column>
 										<h:column>
 											<h:panelGrid>
-												<h:panelGroup rendered="#{subirEscenarioBean.init}" />
-												<h:panelGrid columns="2">
-												<h:outputLabel value="#{text.registro_Pais}" />
-											<rich:comboBox value="#{registroBean.paisElegido}"
-												enableManualInput="false" styleClass="combo">
-												<f:selectItems value="#{registroBean.paises}" />
-												<a4j:support action="#{registroBean.takeSelectionPais}"
-													event="onchange" ajaxSingle="true"
-													reRender="cmbDepartamentos" />
-											</rich:comboBox>
-												</h:panelGrid>
+												<h:panelGroup rendered="#{propiedadesBean.init}" />
 												<h:panelGrid>
 													<rich:panel headerClass="tituloPantalla"
 														style="background-color: #ebf3fd;">
 														<f:facet name="header">
-															<h:outputText value="Ingresar Escenario" />
+															<h:outputText value="Ingresar Propiedades a un Cultivo" />
 														</f:facet>
+														<h:panelGrid columns="2"
+															columnClasses="textoPlano,tectoPlano" width="400px">
 
-														<h:outputText value="Seleccionar " />
 
-														<rich:fileUpload
-															requiredMessage="Debe de subir un archivo"
-															fileUploadListener="#{subirEscenarioBean.listener}"
-															maxFilesQuantity="#{subirEscenarioBean.uploadsAvailable}"
-															required="true" id="upload"
-															immediateUpload="#{subirEscenarioBean.autoUpload}"
-															acceptedTypes="py" allowFlash="true" listHeight="60">
-															<a4j:support event="onuploadcomplete" reRender="mensages" />
-														</rich:fileUpload>
+
+															<h:outputLabel value="Seleccione el cultivo"
+																styleClass="textoPlano" />
+															<rich:comboBox
+																value="#{propiedadesBean.cultivoSeleccionado}"
+																enableManualInput="false" styleClass="combo"
+																disabled="#{propiedadesBean.deshabilitarSeleccionCultivo}">
+																<f:selectItems value="#{propiedadesBean.cultivos}" />
+																<a4j:support
+																	action="#{propiedadesBean.TakeSelectionCultivo}"
+																	event="onchange" ajaxSingle="true"
+																	reRender="cmbDepartamentos" />
+															</rich:comboBox>
+														</h:panelGrid>
+
+														<h:panelGrid>
+															<center><rich:dataTable border="2" width="400px"
+																rows="5" styleClass="textoDataTable" id="tablaPropiedades"
+																value="#{propiedadesBean.listaPropiedades}" var="propiedad"
+																rowKeyVar="row" headerClass="columnHeader"
+																rowClasses="oddRow,evenRow">
+
+																<f:facet name="header">
+																	<h:outputText value="Propiedades ingresadas" />
+																</f:facet>
+
+																<rich:column>
+																	<f:facet name="header">
+																		<h:outputText value="#{text.region_Codigo}" />
+																	</f:facet>
+																	<h:outputText value="#{propiedad._codigo}" id="codigo" />
+																</rich:column>
+
+																<rich:column width="220">
+																	<f:facet name="header">
+																		<h:outputText value="Nombre" />
+																	</f:facet>
+																	<h:outputText value="#{propiedad._nombre}" id="nombre" />
+																</rich:column>
+
+																<rich:column width="320">
+																	<f:facet name="header">
+																		<h:outputText value="#{text.region_Descripcion}" />
+																	</f:facet>
+																	<h:outputText value="#{propiedad._unidadMedida}"
+																		id="descripcion" />
+																</rich:column>
+
+																<rich:column width="60">
+																	<f:facet name="header">
+																		<h:outputText value="Modificar" />
+																	</f:facet>
+
+																	<a4j:commandButton action="#{propiedadesBean.VerPropiedad}"
+																		image="/Recursos/Imagenes/Iconos/edit.gif"
+																		style="width : 27px; height : 21px;">
+																		<a4j:actionparam name="propiedadElegida"
+																			value="#{propiedad._codigo}" />
+																		<rich:toolTip value="Modificar" />
+																	</a4j:commandButton>
+
+																	<a4j:commandButton action="#{propiedadesBean.Eliminar}"
+																		image="/Recursos/Imagenes/Iconos/delete.gif"
+																		style=" border:0; width : 27px; height : 21px;">
+																		<a4j:actionparam name="propiedadEliminar"
+																			value="#{propiedad._codigo}" />
+																		<rich:toolTip value="Eliminar" />
+																	</a4j:commandButton>
+
+																</rich:column>
+																<f:facet name="footer">
+																	<rich:datascroller renderIfSinglePage="false"
+																		maxPages="6" />
+																</f:facet>
+															</rich:dataTable></center>
+														</h:panelGrid>
+
+														<h:panelGrid>
+
+															<h:outputText value="Ingrese nombre" />
+															<h:inputText value="#{cultivoBean.nombre}"
+																required="true"
+																requiredMessage="Ingrese un nombre para el cultivo"
+																styleClass="textoPlano" maxlength="50"
+																onkeypress="ValidarCampoLetras(this, event)" />
+
+															<h:outputText value="Ingresar descripción" />
+															<h:inputTextarea value="#{cultivoBean.descripcion}"
+																required="true"
+																requiredMessage="Ingrese la descripcion del cultivo"
+																styleClass="textoPlano"
+																onkeypress="ValidarCampoLetras(this, event)">
+																<f:validateLength maximum="220" />
+															</h:inputTextarea>
+
+															<h:outputLabel value="Seleccionar un estado" />
+															<rich:comboBox value="#{cultivoBean.estado}"
+																enableManualInput="false" styleClass="combo">
+																<f:selectItems value="#{cultivoBean.estados}" />
+															</rich:comboBox>
+
+														</h:panelGrid>
 
 														<center><h:panelGrid columns="3">
 															<a4j:commandButton immediate="true"

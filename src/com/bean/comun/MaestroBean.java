@@ -19,7 +19,11 @@ import com.inia_mscc.modulos.adm.ADMFachada;
 import com.inia_mscc.modulos.comun.ComunFachada;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioADM;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioComun;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioEJE;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioGEM;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioSEG;
+import com.inia_mscc.modulos.eje.EJEFachada;
+import com.inia_mscc.modulos.gem.GEMFachada;
 import com.inia_mscc.modulos.seg.SEGFachada;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
@@ -206,7 +210,15 @@ public class MaestroBean implements Serializable {
 	public ADMFachada getAdmFachada(ServicioADM servicio) {
 		return new ADMFachada(servicio);
 	}
+	
+	public GEMFachada getGEMFachada(ServicioGEM servicio) {
+		return new GEMFachada(servicio);
+	}
 
+	public EJEFachada getEJEFachada(ServicioEJE servicio) {
+		return new EJEFachada(servicio);
+	}
+	
 	public ComunFachada getComunFachada(ServicioComun servicio) throws IOException {
 		return new ComunFachada(servicio);
 	}
