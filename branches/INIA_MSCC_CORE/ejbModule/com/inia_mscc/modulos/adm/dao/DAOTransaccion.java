@@ -59,13 +59,14 @@ public class DAOTransaccion implements Serializable {
 			throw new IniaPersistenciaException(e.getMessage(), e);
 		}
 	}
-	
+
 	public Transaccion ComprobarTransaccion(Transaccion pTransaccion) {
 		Transaccion retorno = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			Criteria c = session.createCriteria(Transaccion.class);
-			c.add(Restrictions.ilike("_codigo", pTransaccion.get_codigo()));
+			c.add(Restrictions.ilike("_descripcion", pTransaccion
+					.get_descripcion()));
 			retorno = (Transaccion) c.uniqueResult();
 		} catch (Exception e) { // catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);

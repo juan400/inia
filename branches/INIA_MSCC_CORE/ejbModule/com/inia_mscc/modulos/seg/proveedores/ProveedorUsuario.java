@@ -2,6 +2,7 @@ package com.inia_mscc.modulos.seg.proveedores;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -73,5 +74,15 @@ public class ProveedorUsuario implements ServicioUsuario {
 	@Override
 	public void DarBajaBloquearUsuario(Usuario pUsuario) {
 		ejbUsuario.DarBajaBloquearUsuario(pUsuario);
+	}
+	
+	@Override
+	public void ActualizarUsuario(Usuario pUsuario) {
+		ejbUsuario.ActualizarUsuario(pUsuario);
+	}
+	
+	@Override
+	public List<Usuario> ObtenerUsuarios() {
+		return ejbUsuario.ObtenerUsuarios();
 	}
 }

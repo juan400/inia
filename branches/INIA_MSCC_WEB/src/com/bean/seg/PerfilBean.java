@@ -27,7 +27,7 @@ public class PerfilBean extends MaestroBean implements Serializable {
 	private Perfil perfil = new Perfil();
 	private List<Transaccion> transaccionesActivas;
 
-	public String Alta() {
+	public String alta() {
 		this.setError("");
 		this.setExito("");
 		return "Alta";
@@ -66,6 +66,7 @@ public class PerfilBean extends MaestroBean implements Serializable {
 	}
 
 	public String verConsulta() {
+		this.alta();
 		Map paramMap = FacesContext.getCurrentInstance().getExternalContext()
 				.getRequestParameterMap();
 		String consultaElegida = (String) paramMap.get("consultaElegida");
@@ -99,7 +100,7 @@ public class PerfilBean extends MaestroBean implements Serializable {
 	}
 
 	public boolean isInit() {
-		this.LimpiarBean();
+		this.limpiarBean();
 		this.perfiles = this.getSegFachada(Servicio.Perfil).ObtenerPerfiles();
 		this.transaccionesActivas = this.getAdmFachada(Servicio.Transaccion)
 				.ObtenerTransaccionesActiva();
@@ -168,7 +169,7 @@ public class PerfilBean extends MaestroBean implements Serializable {
 						MaestroBean.getInstance().setOpcion(
 								"/Servicios/SEG/SEG009.jsp");
 						retorno = "registro-ok";
-						LimpiarBean();
+						limpiarBean();
 					} else {
 						this
 								.setError("No ha sido posible crear el perfil, revise los datos ingresados y intentelo nuevamente.");
@@ -189,7 +190,7 @@ public class PerfilBean extends MaestroBean implements Serializable {
 		return retorno;
 	}
 
-	private void LimpiarBean() {
+	private void limpiarBean() {
 		nombre = "";
 		descripcion = "";
 		estado = "";

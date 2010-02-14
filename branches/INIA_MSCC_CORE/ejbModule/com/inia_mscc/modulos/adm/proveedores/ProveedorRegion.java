@@ -43,6 +43,11 @@ public class ProveedorRegion implements ServicioRegion {
 	public Region ComprobarRegion(Region pRegion) {
 		return ejbRegion.ComprobarRegion(pRegion);
 	}
+	
+	@Override
+	public Region ComprobarRegionCodigo(Region pRegion) {
+		return ejbRegion.ComprobarRegionCodigo(pRegion);
+	}
 
 	@Override
 	public void EliminarRegion(Region pRegion) {

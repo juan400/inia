@@ -2,6 +2,7 @@ package com.inia_mscc.modulos.seg.dao;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
@@ -229,5 +230,29 @@ public class DAOUsuario implements Serializable {
 			throw new IniaPersistenciaException(e.getMessage(), e);
 		}
 	}
+	
+	public List<Usuario> ObtenerUsuarios() {
+		List<Usuario> retorno = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			Criteria c = session.createCriteria(Usuario.class);
+			retorno = (List<Usuario>) c.list();
+		} catch (Exception e) { // catch (StaleObjectStateException e) {
+			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
+			logger.error(stackTrace);
+			throw new IniaPersistenciaException(e.getMessage(), e);
+		}
+		return retorno;
+	}
 
+	public void ActualizarUsuario(Usuario pUsuario) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.saveOrUpdate("Usuario", pUsuario);
+		} catch (StaleObjectStateException e) {
+			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
+			logger.error(stackTrace);
+			throw new IniaPersistenciaException(e.getMessage(), e);
+		}
+	}
 }

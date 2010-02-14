@@ -52,7 +52,7 @@ public class TransaccionBean extends MaestroBean implements Serializable {
 				retorno = "registro-ok";
 			} else {
 				this
-						.setError("Ya existe una Transacción con igual código, Por favor ingrese otro código.");
+						.setError("Ya existe una Transacción con igual nombre, Por favor ingrese otro nombre.");
 				retorno = "";
 			}
 		} catch (Exception ex) {
