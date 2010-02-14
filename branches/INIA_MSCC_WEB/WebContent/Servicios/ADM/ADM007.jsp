@@ -99,7 +99,6 @@ Secano.</title>
 															<h:outputText value="" />
 														</h:panelGrid>
 
-
 														<CENTER><h:panelGrid columns="2">
 															<a4j:commandButton
 																style="font-size: 10pt; color: #2d77c2; width : 71px;"

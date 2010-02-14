@@ -22,23 +22,23 @@ public class RegionBean extends MaestroBean implements Serializable {
 	private List<Region> regiones;
 
 	public boolean isInit() {
-		this.LimpiarBean();
+		this.limpiarBean();
 		this.setRegiones(this.getAdmFachada(Servicio.Region).ObtenerRegiones());
 		return false;
 	}
-	
-	private void LimpiarBean() {
+
+	private void limpiarBean() {
 		nombre = "";
 		descripcion = "";
 		codigo = "";
 	}
 
-	public String Alta() {
+	public String alta() {
 		this.setError("");
 		this.setExito("");
 		return "Alta";
 	}
-	
+
 	public String actualizar() throws Exception {
 		String retorno = "registro-error";
 		try {
@@ -55,6 +55,7 @@ public class RegionBean extends MaestroBean implements Serializable {
 	}
 
 	public String verRegiones() {
+		this.alta();
 		Map paramMap = FacesContext.getCurrentInstance().getExternalContext()
 				.getRequestParameterMap();
 		String regionElegida = (String) paramMap.get("regionElegida");
@@ -81,26 +82,35 @@ public class RegionBean extends MaestroBean implements Serializable {
 			datosRegion.set_descripcion(descripcion);
 			datosRegion.set_nombre(nombre);
 
-			Region reg = this.getAdmFachada(Servicio.Region).ComprobarRegion(
-					datosRegion);
-			if (reg == null) {
-				setError("");
-				Region r = this.getAdmFachada(Servicio.Region).RegistrarRegion(
-						datosRegion);
-				if (r != null) {
-					this.setError("");
-					MaestroBean.getInstance().setOpcion(
-							"/Servicios/ADM/ADM005.jsp");
-					retorno = "registro-ok";
-					LimpiarBean();
+			Region regCod = this.getAdmFachada(Servicio.Region)
+					.ComprobarRegionCodigo(datosRegion);
+			Region regNom = this.getAdmFachada(Servicio.Region)
+					.ComprobarRegion(datosRegion);
+
+			if (regCod == null) {
+				if (regNom == null) {
+					setError("");
+					Region r = this.getAdmFachada(Servicio.Region)
+							.RegistrarRegion(datosRegion);
+					if (r != null) {
+						this.setError("");
+						MaestroBean.getInstance().setOpcion(
+								"/Servicios/ADM/ADM005.jsp");
+						retorno = "registro-ok";
+						limpiarBean();
+					} else {
+						this
+								.setError("No ha sido posible crear la Región, revise los datos ingresados y intentelo nuevamente.");
+						retorno = "";
+					}
 				} else {
 					this
-							.setError("No ha sido posible crear la Región, revise los datos ingresados y intentelo nuevamente.");
+							.setError("Ya existe una Región con igual nombre, Por favor ingrese otro nombre.");
 					retorno = "";
 				}
 			} else {
 				this
-						.setError("Ya existe una Región con igual nombre, Por favor ingrese otro nombre.");
+						.setError("Ya existe una Región con igual código, Por favor ingrese otro código.");
 				retorno = "";
 			}
 		} catch (Exception ex) {
@@ -108,8 +118,7 @@ public class RegionBean extends MaestroBean implements Serializable {
 		}
 		return retorno;
 	}
-	
-	
+
 	public String eliminar() {
 		String retorno = "";
 		try {
@@ -127,9 +136,9 @@ public class RegionBean extends MaestroBean implements Serializable {
 				}
 			}
 			this.getAdmFachada(Servicio.Region).EliminarRegion(region);
-			this.setExito("Se ha eliminado exitosamente la región.");	
+			this.setExito("Se ha eliminado exitosamente la región.");
 			retorno = "eliminado";
-			
+
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
 		}

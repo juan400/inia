@@ -94,4 +94,12 @@ public class SEGFachada {
 		return srvPerfil.ObtenerPerfilConTransAsociadas(pPerfil);
 	}
 	
+	public void ActualizarUsuario(Usuario pUsuario) {
+		srvUsuario.ActualizarUsuario(pUsuario);
+	}
+	
+	public List<Usuario> ObtenerUsuarios() {
+		return srvUsuario.ObtenerUsuarios();
+	}
+	
 }

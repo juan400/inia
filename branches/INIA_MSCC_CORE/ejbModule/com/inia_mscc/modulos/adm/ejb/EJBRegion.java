@@ -12,7 +12,6 @@ import javax.ejb.TransactionManagementType;
 import com.inia_mscc.modulos.adm.dao.DAORegion;
 import com.inia_mscc.modulos.adm.entidades.Region;
 import com.inia_mscc.modulos.adm.servicios.ServicioRegion;
-import com.inia_mscc.modulos.seg.entidades.Perfil;
 
 @Stateless(name = "EJBRegion", mappedName = "EJBRegion")
 @Remote(ServicioRegion.class)
@@ -42,6 +41,11 @@ public class EJBRegion implements ServicioRegion {
 		return dao.ComprobarRegion(pRegion);
 	}
 
+	@Override
+	public Region ComprobarRegionCodigo(Region pRegion) {
+		return dao.ComprobarRegionCodigo(pRegion);
+	}
+	
 	@Override
 	public void EliminarRegion(Region pRegion){
 		dao.EliminarRegion(pRegion);

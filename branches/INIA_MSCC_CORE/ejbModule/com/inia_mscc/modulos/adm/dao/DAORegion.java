@@ -75,6 +75,21 @@ public class DAORegion implements Serializable {
 		return retorno;
 	}
 	
+	public Region ComprobarRegionCodigo(Region pRegion) {
+		Region retorno = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			Criteria c = session.createCriteria(Region.class);
+			c.add(Restrictions.ilike("_codigo", pRegion.get_codigo()));
+			retorno = (Region) c.uniqueResult();
+		} catch (Exception e) { // catch (StaleObjectStateException e) {
+			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
+			logger.error(stackTrace);
+			throw new IniaPersistenciaException(e.getMessage(), e);
+		}
+		return retorno;
+	}
+	
 	public void EliminarRegion(Region pRegion) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
