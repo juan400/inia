@@ -10,7 +10,7 @@ import com.inia_mscc.modulos.comun.servicios.MailSenderServices;
 public class ComunFachada {
 	private MailSenderServices srvMailSender;
 
-	public ComunFachada(Enumerados.Servicio servicio) throws IOException {
+	public ComunFachada(Enumerados.ServicioComun servicio) throws IOException {
 		switch (servicio) {
 		case MailSender:
 			srvMailSender = new MailSenderProvider();

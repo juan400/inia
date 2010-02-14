@@ -17,7 +17,7 @@ public class SEGFachada {
 	private ServicioUsuario srvUsuario;
 	private ServicioPerfil srvPerfil;
 	
-	public SEGFachada(Enumerados.Servicio servicio) {
+	public SEGFachada(Enumerados.ServicioSEG servicio) {
 		try {
 			switch (servicio) {
 			case Usuario:

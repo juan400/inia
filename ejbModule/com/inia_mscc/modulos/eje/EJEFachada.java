@@ -12,7 +12,7 @@ public class EJEFachada {
 	
 	private ServicioEjecucionMSCC srvEjecucion;
 
-	public EJEFachada(Enumerados.Servicio servicio) {
+	public EJEFachada(Enumerados.ServicioEJE servicio) {
 		try {
 			switch (servicio) {
 			case Ejecucion:

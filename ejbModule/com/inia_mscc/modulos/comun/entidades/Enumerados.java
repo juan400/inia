@@ -18,10 +18,26 @@ public class Enumerados {
 		Ninguno, Activo, Inactivo, Registrado, Bloqueado
 	}
 
-	static public enum Servicio {
-		Usuario, Perfil, RelacionPCD, Transaccion, MailSender, Ejecucion, Region
+	static public enum ServicioComun{
+		MailSender
+	}
+	
+	static public enum ServicioADM {
+		RelacionPCD, Transaccion, Region
 	}
 
+	static public enum ServicioSEG {
+		Usuario, Perfil
+	}
+
+	static public enum ServicioGEM {
+		Cultivo, Propiedad, Escenario
+	}
+
+	static public enum ServicioEJE {
+		Ejecucion
+	}
+	
 	static public enum Estado {
 		Activo, Inactivo
 	}
