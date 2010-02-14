@@ -66,7 +66,7 @@ Secano.</title>
 													<rich:panel headerClass="tituloPantalla"
 														style="background-color: #ebf3fd;">
 														<f:facet name="header">
-															<h:outputText value="Ingresar Cultivos" />
+															<h:outputText value="Ingresar Cultivo" />
 														</f:facet>
 														<h:panelGrid>
 															<h:panelGrid columns="2" columnClasses="textoPlano,textoPlano" width="400">
