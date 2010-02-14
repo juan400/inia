@@ -95,12 +95,12 @@ Secano.</title>
 																	</rich:comboBox>
 
 																	<h:outputText value="Seleccionar estacion climatica" />
-																	<rich:comboBox>
+																	<rich:comboBox value="#{escenarioBean.estacionClimatica}">
 
 																	</rich:comboBox>
 
 																	<h:outputText value="Seleccionar cultivar" />
-																	<rich:comboBox>
+																	<rich:comboBox value="#{escenarioBean.cultivar}">
 
 																	</rich:comboBox>
 
@@ -109,10 +109,11 @@ Secano.</title>
 																<h:panelGrid columns="3"
 																	columnClasses="textoPlano,textoPlano">
 																	<rich:panel headerClass="tituloPantalla"
-																		style="background-color: #ebf3fd; ">
+																		style="background-color: #ebf3fd; width:203px;">
 																		<f:facet name="header">
-																			<h:outputText value="Fertilizacion de Siembra" />
+																			<h:outputText value="Fertilizacion" />
 																		</f:facet>
+																		<h:panelGrid styleClass="textoPlano">
 																		<h:outputText value="Fecha" />
 																		<rich:calendar id="calFechaSiembra"
 																			value="#{escenarioBean.fFertilizacionSiembra}"
@@ -125,23 +126,25 @@ Secano.</title>
 																		</rich:calendar>
 
 																		<h:outputText value="Fuente" />
-																		<rich:comboBox>
+																		<rich:comboBox id="comboFuente1" value="#{escenarioBean.fuenteFertilizacionSiembra}">
 
 																		</rich:comboBox>
 
-																		<h:outputText value="rate" />
-																		<rich:comboBox>
+																		<h:outputText value="Rate" />
+																		<rich:comboBox id="comboRate1" value="#{escenarioBean.rateFertilizacionSiembra}">
 
 																		</rich:comboBox>
+																		</h:panelGrid>
 																	</rich:panel>
-																	<rich:panel headerClass="tituloPantalla"
-																		style="background-color: #ebf3fd; ">
+																	<rich:panel headerClass="tituloPantalla" 
+																		style="background-color: #ebf3fd; ; width:203px;">
 																		<f:facet name="header">
 																			<h:outputText value="Refertilizacion 1" />
 																		</f:facet>
+																		<h:panelGrid styleClass="textoPlano">
 																		<h:outputText value="Fecha" />
 																		<rich:calendar id="calFechaRefer1"
-																			value="#{escenarioBean.fFertilizacionSiembra}"
+																			value="#{escenarioBean.fRefertilizacion1}"
 																			enableManualInput="false" locale="ES"
 																			showApplyButton="false"
 																			datePattern="dd/MM/yyyy hh:mm a" popup="true"
@@ -150,22 +153,24 @@ Secano.</title>
 
 																		</rich:calendar>
 																		<h:outputText value="Fuente" />
-																		<rich:comboBox>
+																		<rich:comboBox id="comboFuente2"  value="#{escenarioBean.fuenteRefertilizacion1}">
 
 																		</rich:comboBox>
-																		<h:outputText value="rate" />
-																		<rich:comboBox>
+																		<h:outputText value="Rate" />
+																		<rich:comboBox id="comboRate2" value="#{escenarioBean.rateRefertilizacion1}">
 
 																		</rich:comboBox>
+																		</h:panelGrid>
 																	</rich:panel>
 																	<rich:panel headerClass="tituloPantalla"
-																		style="background-color: #ebf3fd; ">
+																		style="background-color: #ebf3fd; width:203px;">
 																		<f:facet name="header">
 																			<h:outputText value="Refertilizacion 2" />
 																		</f:facet>
+																		<h:panelGrid styleClass="textoPlano">
 																		<h:outputText value="Fecha" />
 																		<rich:calendar id="calFechaRefer2"
-																			value="#{escenarioBean.fFertilizacionSiembra}"
+																			value="#{escenarioBean.fRefertilizacion2}"
 																			enableManualInput="false" locale="ES"
 																			showApplyButton="false"
 																			datePattern="dd/MM/yyyy hh:mm a" popup="true"
@@ -175,46 +180,49 @@ Secano.</title>
 																		</rich:calendar>
 
 																		<h:outputText value="Fuente" />
-																		<rich:comboBox>
+																		<rich:comboBox id="comboFuente3"  value="#{escenarioBean.fuenteRefertilizacion2}">
 
 																		</rich:comboBox>
 
-																		<h:outputText value="rate" />
-																		<rich:comboBox>
+																		<h:outputText value="Rate" />
+																		<rich:comboBox id="comboRate3" value="#{escenarioBean.rateRefertilizacion2}">
 
 																		</rich:comboBox>
+																		</h:panelGrid>
 																	</rich:panel>
 																</h:panelGrid>
-																<h:panelGrid columns="2"
-																	columnClasses="textoPlano,textoPlano">
-
-																	<h:outputText value="NombreSuelo" />
-																	<h:inputText />
-																	<h:outputText value="ProfundidadA" />
-																	<h:inputText />
-																	<h:outputText value="ProfundidadB" />
-																	<h:inputText />
-																	<h:outputText value="DensidadPlantas" />
-																	<h:inputText />
+																<h:panelGrid columns="4" width="650px"
+																	columnClasses="textoPlano,textoPlano,textoPlano,textoPlano">
+																	
+																	<h:outputText value="Nombre Suelo" />
+																	<h:inputText value="#{escenarioBean.nombreSueloConeat}"/>
+																	<h:outputText value="Profundidad A" />
+																	<h:inputText value="#{escenarioBean.profundidadA}"/>
+																	<h:outputText value="Profundidad B" />
+																	<h:inputText value="#{escenarioBean.profundidadB}"/>
+																	<h:outputText value="Densidad Plantas" />
+																	<h:inputText value="#{escenarioBean.densidadPlantas}"/>
 																	<h:outputText value="WULI" />
-																	<h:inputText />
+																	<h:inputText value="#{escenarioBean.wuli}"/>
 																	<h:outputText value="WLLI" />
-																	<h:inputText />
+																	<h:inputText value="#{escenarioBean.wlli}"/>
 																	<h:outputText value="DPMI" />
-																	<h:inputText />
+																	<h:inputText value="#{escenarioBean.dpmi}"/>
 																	<h:outputText value="RPMI" />
-																	<h:inputText />
+																	<h:inputText value="#{escenarioBean.rpmi}"/>
 																	<h:outputText value="HUMI" />
-																	<h:inputText />
+																	<h:inputText value="#{escenarioBean.humi}"/>
 																	<h:outputText value="NAULI" />
-																	<h:inputText />
+																	<h:inputText value="#{escenarioBean.nauli}"/>
 																	<h:outputText value="NALLI" />
-																	<h:inputText />
+																	<h:inputText value="#{escenarioBean.nalli}"/>
 																	<h:outputText value="NNULI" />
-																	<h:inputText />
+																	<h:inputText value="#{escenarioBean.nnuli}"/>
 																	<h:outputText value="NNLLI" />
-																	<h:inputText />
-																	<h:panelGrid>
+																	<h:inputText value="#{escenarioBean.nnlli}"/>
+																	
+																</h:panelGrid>
+																<h:panelGrid>
 																		<h:outputText styleClass="mensajeError"
 																			value="#{confirmacionBean.error}" />
 																		<h:outputText styleClass="textoPlano"
@@ -240,7 +248,6 @@ Secano.</title>
 																		<h:outputText styleClass="textoPlano"
 																			value="#{registroBean.exito}" />
 																	</f:facet>
-																</h:panelGrid>
 															</h:panelGroup>
 														</rich:panel>
 													</h:panelGrid>

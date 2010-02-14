@@ -49,6 +49,7 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 	public String ejecutarEscenario(){
 		String resultado = "";
 		//TODO llamada a los métodos relacionados con la ejecucion del MSCC
+		System.out.println("######### EJECUCION ###########");
 		return resultado; 
 	}
 	
