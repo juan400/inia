@@ -43,7 +43,7 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 	public boolean isInit() {
 		return false;
 	}
-
+	
 	public PropiedadesBean() {
 		this.setCultivo((Cultivo) this.getSesion(Cultivo.class.toString()));
 		if (this.getCultivo() != null) {

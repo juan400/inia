@@ -151,14 +151,14 @@ Secano.</title>
 														<h:panelGrid>
 
 															<h:outputText value="Ingrese nombre" />
-															<h:inputText value="#{cultivoBean.nombre}"
+															<h:inputText value="#{propiedadesBean.nombre}"
 																required="true"
 																requiredMessage="Ingrese un nombre para el cultivo"
 																styleClass="textoPlano" maxlength="50"
 																onkeypress="ValidarCampoLetras(this, event)" />
 
 															<h:outputText value="Ingresar descripción" />
-															<h:inputTextarea value="#{cultivoBean.descripcion}"
+															<h:inputTextarea value="#{propiedadesBean.descripcion}"
 																required="true"
 																requiredMessage="Ingrese la descripcion del cultivo"
 																styleClass="textoPlano"
@@ -167,9 +167,9 @@ Secano.</title>
 															</h:inputTextarea>
 
 															<h:outputLabel value="Seleccionar un estado" />
-															<rich:comboBox value="#{cultivoBean.estado}"
+															<rich:comboBox value="#{propiedadesBean.estado}"
 																enableManualInput="false" styleClass="combo">
-																<f:selectItems value="#{cultivoBean.estados}" />
+																<f:selectItems value="#{propiedadesBean.estados}" />
 															</rich:comboBox>
 
 														</h:panelGrid>
@@ -187,34 +187,16 @@ Secano.</title>
 														</h:panelGrid></center>
 														<h:panelGrid id="mensages">
 															<rich:messages styleClass="mensajeError">
-																<f:facet name="passedMarker">
-																	<h:graphicImage
-																		value="/Recursos/Imagenes/Iconos/passed.gif" />
-																</f:facet>
 																<f:facet name="errorMarker">
 																	<h:graphicImage
 																		value="/Recursos/Imagenes/Iconos/error.gif" />
 																</f:facet>
 															</rich:messages>
-															<h:outputText styleClass="mensajeError"
-																value="#{subirEscenarioBean.error}" />
 															<h:outputText styleClass="textoPlano"
-																value="#{subirEscenarioBean.exito}" />
+																value="#{propiedadesBean.exito}" />
 														</h:panelGrid>
 													</rich:panel>
 												</h:panelGrid>
-												<f:facet name="footer">
-													<h:panelGrid>
-														<rich:messages styleClass="mensajeError">
-															<f:facet name="errorMarker">
-																<h:graphicImage
-																	value="/Recursos/Imagenes/Iconos/error.gif" />
-															</f:facet>
-														</rich:messages>
-														<h:outputText styleClass="textoPlano"
-															value="#{recuperarContraseniaBean.exito}" />
-													</h:panelGrid>
-												</f:facet>
 											</h:panelGrid>
 										</h:column>
 									</h:panelGrid>
