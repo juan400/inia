@@ -38,9 +38,9 @@ public class Cultivo implements Serializable {
 	private Estado _estado;
 	@Column(name = "cult_str_nombre", nullable = true, columnDefinition = "VARCHAR(50)")
 	private String _nombre;
-//	@OneToMany(targetEntity = Propiedad.class, cascade = CascadeType.ALL)
+	@OneToMany(targetEntity = Propiedad.class, cascade = CascadeType.ALL)
 //	@JoinColumn(name = "cult_num_id", referencedColumnName = "pruc_num_id_cultivo", updatable = true, nullable = false, columnDefinition = "BIGINT(20)")
-	@Transient
+//	@Transient
 	private List<Propiedad> _listaPropiedades;
 
 	public Cultivo() {
