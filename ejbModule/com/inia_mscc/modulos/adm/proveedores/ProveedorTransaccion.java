@@ -43,4 +43,5 @@ public class ProveedorTransaccion implements ServicioTransaccion {
 	public Transaccion ComprobarTransaccion(Transaccion pTransaccion) {
 		return ejbTransaccion.ComprobarTransaccion(pTransaccion);
 	}
+	
 }

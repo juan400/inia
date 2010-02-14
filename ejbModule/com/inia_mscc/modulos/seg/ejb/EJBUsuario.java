@@ -1,6 +1,7 @@
 package com.inia_mscc.modulos.seg.ejb;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -79,6 +80,14 @@ public class EJBUsuario implements ServicioUsuario {
 		dao.DarBajaBloquearUsuario(pUsuario);
 	}
 	
-	
+	@Override
+	public void ActualizarUsuario(Usuario pUsuario) {
+		dao.ActualizarUsuario(pUsuario);
+	}
+
+	@Override
+	public List<Usuario> ObtenerUsuarios() {
+		return dao.ObtenerUsuarios();
+	}
 	
 }

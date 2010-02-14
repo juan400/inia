@@ -1,6 +1,7 @@
 package com.inia_mscc.modulos.seg.servicios;
 
 import java.util.Date;
+import java.util.List;
 
 import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
 import com.inia_mscc.modulos.seg.entidades.Perfil;
@@ -17,5 +18,7 @@ public interface ServicioUsuario {
 	public boolean ComprobarEmail(String pEmail);
 	public Usuario ObtenerUsuarioXDatos(String pLoginName, Date pUltimoAcceso,
 			Perfil pPerfil, String pEmail, String pFrase);
+	public void ActualizarUsuario(Usuario pUsuario);
+	public List<Usuario> ObtenerUsuarios();
 	
 }

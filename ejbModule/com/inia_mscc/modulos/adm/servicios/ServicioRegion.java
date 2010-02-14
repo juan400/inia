@@ -10,5 +10,6 @@ public interface ServicioRegion {
 	public void ActualizarRegion(Region pRegion);
 	public List<Region> ObtenerRegiones();
 	public Region ComprobarRegion(Region pRegion);
+	public Region ComprobarRegionCodigo(Region pRegion);
 	public void EliminarRegion(Region pRegion);
 }

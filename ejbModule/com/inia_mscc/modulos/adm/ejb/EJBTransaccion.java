@@ -40,4 +40,5 @@ public class EJBTransaccion implements ServicioTransaccion {
 	public Transaccion ComprobarTransaccion(Transaccion pTransaccion) {
 		return dao.ComprobarTransaccion(pTransaccion);
 	}
+	
 }

@@ -105,6 +105,10 @@ public class ADMFachada {
 		return srvRegion.ComprobarRegion(pRegion);
 	}
 	
+	public Region ComprobarRegionCodigo(Region pRegion){
+		return srvRegion.ComprobarRegionCodigo(pRegion);
+	}
+	
 	public void EliminarRegion(Region pRegion) {
 		srvRegion.EliminarRegion(pRegion);
 	}
