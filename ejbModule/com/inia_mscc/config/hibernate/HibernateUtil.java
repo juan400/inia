@@ -39,7 +39,7 @@ public class HibernateUtil {
         	.addAnnotatedClass(Transaccion.class)
         	.addAnnotatedClass(Region.class)
         	.addAnnotatedClass(Cultivo.class)
-        	.addAnnotatedClass(Propiedad.class)
+//        	.addAnnotatedClass(Propiedad.class)
         	.configure("hibernate.cfg.xml")
         	.buildSessionFactory();
             
