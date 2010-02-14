@@ -11,7 +11,7 @@ import com.bean.comun.MaestroBean;
 import com.inia_mscc.modulos.adm.entidades.Transaccion;
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
-import com.inia_mscc.modulos.comun.entidades.Enumerados.Servicio;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioADM;
 
 public class TransaccionBean extends MaestroBean implements Serializable {
 
@@ -25,9 +25,9 @@ public class TransaccionBean extends MaestroBean implements Serializable {
 	private List<Transaccion> transaccionesActivas;
 
 	public boolean isInit() {
-		this.setTransaccionesActivas(this.getAdmFachada(Servicio.Transaccion)
+		this.setTransaccionesActivas(this.getAdmFachada(ServicioADM.Transaccion)
 				.ObtenerTransaccionesActiva());
-		this.setTransaccion(this.getAdmFachada(Servicio.Transaccion)
+		this.setTransaccion(this.getAdmFachada(ServicioADM.Transaccion)
 				.ObtenerTransacciones());
 		return false;
 	}
@@ -43,11 +43,11 @@ public class TransaccionBean extends MaestroBean implements Serializable {
 			trans.set_descripcion(descripcion);
 			trans.set_estado(Enumerados.Estado.valueOf(estado));
 
-			Transaccion tran = this.getAdmFachada(Servicio.Transaccion)
+			Transaccion tran = this.getAdmFachada(ServicioADM.Transaccion)
 					.ComprobarTransaccion(trans);
 			if (tran == null) {
 				setError("");
-				this.getAdmFachada(Servicio.Transaccion).ActualizarTransaccion(
+				this.getAdmFachada(ServicioADM.Transaccion).ActualizarTransaccion(
 						trans);
 				retorno = "registro-ok";
 			} else {

@@ -17,7 +17,9 @@ import javax.faces.context.FacesContext;
 
 import com.inia_mscc.modulos.adm.ADMFachada;
 import com.inia_mscc.modulos.comun.ComunFachada;
-import com.inia_mscc.modulos.comun.entidades.Enumerados.Servicio;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioADM;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioComun;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioSEG;
 import com.inia_mscc.modulos.seg.SEGFachada;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
@@ -197,15 +199,15 @@ public class MaestroBean implements Serializable {
 		return config;
 	}
 
-	public SEGFachada getSegFachada(Servicio servicio) {
+	public SEGFachada getSegFachada(ServicioSEG servicio) {
 		return new SEGFachada(servicio);
 	}
 
-	public ADMFachada getAdmFachada(Servicio servicio) {
+	public ADMFachada getAdmFachada(ServicioADM servicio) {
 		return new ADMFachada(servicio);
 	}
 
-	public ComunFachada getComunFachada(Servicio servicio) throws IOException {
+	public ComunFachada getComunFachada(ServicioComun servicio) throws IOException {
 		return new ComunFachada(servicio);
 	}
 
