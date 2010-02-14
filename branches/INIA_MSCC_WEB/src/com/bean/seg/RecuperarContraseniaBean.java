@@ -14,7 +14,8 @@ import javax.naming.NamingException;
 
 import com.bean.comun.MaestroBean;
 import com.inia_mscc.modulos.comun.entidades.EncriptacionSHA1BASE64;
-import com.inia_mscc.modulos.comun.entidades.Enumerados.Servicio;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioComun;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioSEG;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
 public class RecuperarContraseniaBean extends MaestroBean implements
@@ -42,7 +43,7 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 
 	public void validarEmail() {
 		try {
-			if (this.getSegFachada(Servicio.Usuario).ComprobarEmail(email)) {
+			if (this.getSegFachada(ServicioSEG.Usuario).ComprobarEmail(email)) {
 				this
 						.setError("El e-mail ingresado no esta registrado en el sistema.");
 				this.setUsuario(null);
@@ -56,7 +57,7 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 
 	public void validarFrase() {
 		try {
-			this.setUsuario(this.getSegFachada(Servicio.Usuario)
+			this.setUsuario(this.getSegFachada(ServicioSEG.Usuario)
 					.ObtenerUsuarioXDatos(null, null, null, email, frase));
 			if (this.getUsuario() != null) {
 				this.setError("");
@@ -80,7 +81,7 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 				// if (!this.salvarNombre(this.getUsuario())) {
 //				this.getUsuario().set_password(EncriptacionSHA1BASE64.encriptar("NoTeOlvides"));
 				this.getUsuario().set_password("NoTeOlvides");
-				this.getSegFachada(Servicio.Usuario).CambiarPassword(this.getUsuario());
+				this.getSegFachada(ServicioSEG.Usuario).CambiarPassword(this.getUsuario());
 				if (!this.enviarMailConfirmacion(this.getUsuario())) {
 					this.setError("No ha sido posible enviar el e-mail, "
 							+ "el e-mail proporcionado no esta disponible.");
@@ -165,7 +166,7 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 											.get_mail().equalsIgnoreCase(
 													getContrasenia())) {
 								this.getUsuario().set_password(getConfirmacion());
-								this.getSegFachada(Servicio.Usuario)
+								this.getSegFachada(ServicioSEG.Usuario)
 										.CambiarPassword(this.getUsuario());
 								retorno = "SEG001";
 								this.setUsuario(null);
@@ -283,7 +284,7 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 					+ " en INIA - MSCC,</br>"
 					+ "<br>para acceder al sistema su contraseña es: NoTeOlvidesMas</b></i></br><br>"
 					+ "<br><i><b>Muchas gracias por registrarse!</b></i></center><br></br><br></br><br></br>";
-			this.getComunFachada(Servicio.MailSender).enviarMailTextoPlano(
+			this.getComunFachada(ServicioComun.MailSender).enviarMailTextoPlano(
 					pUsuario.get_datos().get_mail(),
 					"INIA - MSCC Administración", body);
 		} catch (Exception ex) {

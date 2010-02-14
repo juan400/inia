@@ -94,11 +94,11 @@ public class DAOCultivo implements Serializable {
 	 * 
 	 * @param pDatosCultivo
 	 */
-	public void ActualizarCultivo(Cultivo pDatosCultivo) {
+	public void ActualizarCultivo(Cultivo pCultivo) {
 		try {
 			Session session = HibernateUtil.getSessionFactory()
 					.getCurrentSession();
-			session.update("DatoCultivo", pDatosCultivo);
+			session.update("Cultivo", pCultivo);
 		} catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);

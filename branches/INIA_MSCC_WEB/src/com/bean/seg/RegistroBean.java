@@ -21,7 +21,9 @@ import com.inia_mscc.modulos.adm.entidades.Ciudad;
 import com.inia_mscc.modulos.adm.entidades.Departamento;
 import com.inia_mscc.modulos.adm.entidades.Pais;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.EstadoUsuario;
-import com.inia_mscc.modulos.comun.entidades.Enumerados.Servicio;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioADM;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioComun;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioSEG;
 import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
@@ -58,7 +60,7 @@ public class RegistroBean extends MaestroBean implements Serializable {
 	public void takeSelectionEmail() {
 		try {
 			if (this.getUsuario() == null) {
-				if (!this.getSegFachada(Servicio.Usuario)
+				if (!this.getSegFachada(ServicioSEG.Usuario)
 						.ComprobarEmail(email)) {
 					this
 							.setError("El e-mail ingresado ya esta registrado en el sistema.");
@@ -67,7 +69,7 @@ public class RegistroBean extends MaestroBean implements Serializable {
 					this.setError("");
 				}
 			} else if (this.getUsuario().get_datos().get_mail().equals(email)) {
-				if (!this.getSegFachada(Servicio.Usuario)
+				if (!this.getSegFachada(ServicioSEG.Usuario)
 						.ComprobarEmail(email)) {
 					this
 							.setError("El e-mail ingresado ya esta registrado en el sistema.");
@@ -102,7 +104,7 @@ public class RegistroBean extends MaestroBean implements Serializable {
 					+ "Concluir el registro de usuario</a></br><br></br>"
 					+ "<br><i><b>Muchas gracias por registrarse!</b></i></center><br></br><br></br><br></br>";
 
-			this.getComunFachada(Servicio.MailSender).enviarMailTextoPlano(
+			this.getComunFachada(ServicioComun.MailSender).enviarMailTextoPlano(
 					pUsuario.get_datos().get_mail(), "INIA - MSCC Registro",
 					body);
 		} catch (Exception ex) {
@@ -115,7 +117,7 @@ public class RegistroBean extends MaestroBean implements Serializable {
 		try {
 			ciudad = new Ciudad();
 			ciudad.set_nombre(getCiudadElegido());
-			ciudad = this.getAdmFachada(Servicio.RelacionPCD).ObtenerCiudad(
+			ciudad = this.getAdmFachada(ServicioADM.RelacionPCD).ObtenerCiudad(
 					ciudad);
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
@@ -126,9 +128,9 @@ public class RegistroBean extends MaestroBean implements Serializable {
 		try {
 			depto = new Departamento();
 			depto.set_nombre(getDepartamentoElegido());
-			depto = this.getAdmFachada(Servicio.RelacionPCD)
+			depto = this.getAdmFachada(ServicioADM.RelacionPCD)
 					.ObtenerDepartamento(depto);
-			listCiudades = this.getAdmFachada(Servicio.RelacionPCD)
+			listCiudades = this.getAdmFachada(ServicioADM.RelacionPCD)
 					.ObtenerCiudadesXDeptos(depto);
 			ciudades = new SelectItem[listCiudades.size() + 1];
 			ciudades[0] = new SelectItem(this
@@ -150,8 +152,8 @@ public class RegistroBean extends MaestroBean implements Serializable {
 		try {
 			pais = new Pais();
 			pais.set_nombre(getPaisElegido());
-			pais = this.getAdmFachada(Servicio.RelacionPCD).ObtenerPais(pais);
-			listDepartamentos = this.getAdmFachada(Servicio.RelacionPCD)
+			pais = this.getAdmFachada(ServicioADM.RelacionPCD).ObtenerPais(pais);
+			listDepartamentos = this.getAdmFachada(ServicioADM.RelacionPCD)
 					.ObtenerDepartamentosXPais(pais);
 			departamentos = new SelectItem[listDepartamentos.size() + 1];
 			departamentos[0] = new SelectItem(this
@@ -171,7 +173,7 @@ public class RegistroBean extends MaestroBean implements Serializable {
 
 	public RegistroBean() throws Exception {
 		try {
-			listPaises = this.getAdmFachada(Servicio.RelacionPCD)
+			listPaises = this.getAdmFachada(ServicioADM.RelacionPCD)
 					.ObtenerPaises();
 			paises = new SelectItem[listPaises.size() + 1];
 			paises[0] = new SelectItem(this
@@ -182,7 +184,7 @@ public class RegistroBean extends MaestroBean implements Serializable {
 				paises[i] = si;
 				i++;
 			}
-			listDepartamentos = this.getAdmFachada(Servicio.RelacionPCD)
+			listDepartamentos = this.getAdmFachada(ServicioADM.RelacionPCD)
 					.ObtenerDepartamentos();
 			departamentos = new SelectItem[listDepartamentos.size() + 1];
 			departamentos[0] = new SelectItem(this
@@ -193,7 +195,7 @@ public class RegistroBean extends MaestroBean implements Serializable {
 				departamentos[j] = si;
 				j++;
 			}
-			listCiudades = this.getAdmFachada(Servicio.RelacionPCD)
+			listCiudades = this.getAdmFachada(ServicioADM.RelacionPCD)
 					.ObtenerCiudades();
 			ciudades = new SelectItem[listCiudades.size() + 1];
 			ciudades[0] = new SelectItem(this
@@ -225,7 +227,7 @@ public class RegistroBean extends MaestroBean implements Serializable {
 	public String registrar() {
 		String retorno = "";
 		try {
-			if (this.getSegFachada(Servicio.Usuario).ComprobarEmail(email)) {
+			if (this.getSegFachada(ServicioSEG.Usuario).ComprobarEmail(email)) {
 				DatoUsuario datos = new DatoUsuario();
 				datos.set_nombre(nombre);
 				datos.set_apellido(apellido);
@@ -252,7 +254,7 @@ public class RegistroBean extends MaestroBean implements Serializable {
 				pUsuario.set_estadoUsuario(EstadoUsuario.Registrado);
 				pUsuario.set_ultimoAcceso(new Date());
 				pUsuario.set_frase("Ingrese su frase secreta");
-				Usuario u = this.getSegFachada(Servicio.Usuario)
+				Usuario u = this.getSegFachada(ServicioSEG.Usuario)
 						.RegistrarUsuario(pUsuario);
 				if (u != null) {
 					// if (!this.salvarNombre(pUsuario)) {

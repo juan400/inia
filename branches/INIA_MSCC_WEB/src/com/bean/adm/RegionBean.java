@@ -9,7 +9,7 @@ import javax.faces.context.FacesContext;
 
 import com.bean.comun.MaestroBean;
 import com.inia_mscc.modulos.adm.entidades.Region;
-import com.inia_mscc.modulos.comun.entidades.Enumerados.Servicio;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioADM;
 
 public class RegionBean extends MaestroBean implements Serializable {
 
@@ -23,7 +23,7 @@ public class RegionBean extends MaestroBean implements Serializable {
 
 	public boolean isInit() {
 		this.limpiarBean();
-		this.setRegiones(this.getAdmFachada(Servicio.Region).ObtenerRegiones());
+		this.setRegiones(this.getAdmFachada(ServicioADM.Region).ObtenerRegiones());
 		return false;
 	}
 
@@ -45,7 +45,7 @@ public class RegionBean extends MaestroBean implements Serializable {
 			region.set_codigo(codigo);
 			region.set_descripcion(descripcion);
 			region.set_nombre(nombre);
-			this.getAdmFachada(Servicio.Region).ActualizarRegion(region);
+			this.getAdmFachada(ServicioADM.Region).ActualizarRegion(region);
 			retorno = "registro-ok";
 		} catch (Exception ex) {
 			this
@@ -82,15 +82,15 @@ public class RegionBean extends MaestroBean implements Serializable {
 			datosRegion.set_descripcion(descripcion);
 			datosRegion.set_nombre(nombre);
 
-			Region regCod = this.getAdmFachada(Servicio.Region)
+			Region regCod = this.getAdmFachada(ServicioADM.Region)
 					.ComprobarRegionCodigo(datosRegion);
-			Region regNom = this.getAdmFachada(Servicio.Region)
+			Region regNom = this.getAdmFachada(ServicioADM.Region)
 					.ComprobarRegion(datosRegion);
 
 			if (regCod == null) {
 				if (regNom == null) {
 					setError("");
-					Region r = this.getAdmFachada(Servicio.Region)
+					Region r = this.getAdmFachada(ServicioADM.Region)
 							.RegistrarRegion(datosRegion);
 					if (r != null) {
 						this.setError("");
@@ -135,7 +135,7 @@ public class RegionBean extends MaestroBean implements Serializable {
 					codigo = region.get_codigo();
 				}
 			}
-			this.getAdmFachada(Servicio.Region).EliminarRegion(region);
+			this.getAdmFachada(ServicioADM.Region).EliminarRegion(region);
 			this.setExito("Se ha eliminado exitosamente la región.");
 			retorno = "eliminado";
 

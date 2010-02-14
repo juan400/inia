@@ -22,7 +22,7 @@ public class ADMFachada {
 	private ServicioTransaccion srvTransaccion;
 	private ServicioRegion srvRegion;
 
-	public ADMFachada(Enumerados.Servicio servicio) {
+	public ADMFachada(Enumerados.ServicioADM servicio) {
 		try {
 			switch (servicio) {
 			case RelacionPCD:

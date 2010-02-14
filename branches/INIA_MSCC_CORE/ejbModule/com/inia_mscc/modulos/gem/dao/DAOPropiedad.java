@@ -21,19 +21,21 @@ public class DAOPropiedad implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	private static final Logger logger = Logger.getLogger(DAOPropiedad.class);
 
+	private static final Logger logger = Logger.getLogger(DAOPropiedad.class);
 
 	/**
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Propiedad> ObtenerCultivoes() {
+	public List<Propiedad> ObtenerPropiedades(Propiedad pPropiedad) {
 		List<Propiedad> listaPropiedad = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			Criteria c = session.createCriteria(Propiedad.class);
+			if (pPropiedad.get_tipo() != null) {
+				c.add(Restrictions.eq("_tipo", pPropiedad.get_tipo()));
+			}
 			listaPropiedad = (List<Propiedad>) c.list();
 		} catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
@@ -42,7 +44,7 @@ public class DAOPropiedad implements Serializable {
 		}
 		return listaPropiedad;
 	}
-	
+
 	/**
 	 * @return
 	 */
@@ -51,11 +53,11 @@ public class DAOPropiedad implements Serializable {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			Criteria c = session.createCriteria(Propiedad.class);
-			if (pPropiedad.get_id()!= 0){
+			if (pPropiedad.get_id() != 0) {
 				c.add(Restrictions.eq("_id", pPropiedad.get_id()));
 			}
-			if (!pPropiedad.get_nombre().isEmpty()){
-				c.add(Restrictions.eq("_nombre", pPropiedad.get_nombre()));
+			if (!pPropiedad.get_nombre().isEmpty()) {
+				c.add(Restrictions.eq("_codigo", pPropiedad.get_codigo()));
 			}
 			unPropiedad = (Propiedad) c.uniqueResult();
 		} catch (StaleObjectStateException e) {
@@ -65,7 +67,7 @@ public class DAOPropiedad implements Serializable {
 		}
 		return unPropiedad;
 	}
-	
+
 	/**
 	 * Actualiza los datos de una propiedad de un cultivoa en el sitema.
 	 * 
