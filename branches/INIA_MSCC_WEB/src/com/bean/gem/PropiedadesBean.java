@@ -28,8 +28,8 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 	private SelectItem[] cultivos;
 	private Cultivo cultivo;
 	private String cultivoSeleccionado;
-	private boolean deshabilitarSeleccionCultivo;
-	private boolean deshabilitarModificar;
+	private boolean disableSeleccionCultivo = false;
+	private boolean disableAceptarPropiedad = true;
 	private List<Propiedad> listaPropiedades;
 	private SelectItem[] tipoPropiedades;
 	private String tipoSeleccionado;
@@ -40,10 +40,6 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 	private String unidadedida;
 
 	public boolean isInit() {
-		return false;
-	}
-
-	public PropiedadesBean() {
 		try {
 			tipoPropiedades = new SelectItem[TipoPropiedadCultivo.values().length];
 			for (int i = 0; i < TipoPropiedadCultivo.values().length; i++) {
@@ -51,15 +47,22 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 				SelectItem si = new SelectItem(tipo.name());
 				tipoPropiedades[i] = si;
 			}
+			tipoSeleccionado = TipoPropiedadCultivo.Ninguno.name();
 			this.setCultivo(null);
 			this.setCultivo((Cultivo) this.getSesion(Cultivo.class.toString()));
 			if (this.getCultivo() != null) {
 				cultivos = new SelectItem[1];
 				cultivos[0] = new SelectItem(this.getCultivo().get_nombre());
 				this.setCultivoSeleccionado(this.getCultivo().get_nombre());
-				this.setListaPropiedades(this.getCultivo()
-						.get_listaPropiedades());
-				this.setDeshabilitarSeleccionCultivo(true);
+				if (this.getCultivo().get_listaPropiedades() != null
+						&& !this.getCultivo().get_listaPropiedades().isEmpty()) {
+					this.setListaPropiedades(this.getCultivo()
+							.get_listaPropiedades());
+				} else {
+					this.setListaPropiedades(new ArrayList<Propiedad>());
+				}
+				cultivoSeleccionado = this.getCultivo().get_nombre();
+				this.setDisableSeleccionCultivo(true);
 			} else {
 				List<Cultivo> listaCultivos = this.getGEMFachada(
 						ServicioGEM.Cultivo).ObtenerCultivos(null);
@@ -72,7 +75,16 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 					cultivos[i] = si;
 					i++;
 				}
+				cultivoSeleccionado = this.getTextBundleKey("combo_seleccione");
 			}
+		} catch (Exception ex) {
+			this.setError(ex.getMessage());
+		}
+		return false;
+	}
+
+	public PropiedadesBean() {
+		try {
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
 		}
@@ -99,7 +111,7 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 		}
 	}
 
-	public String VerPropiedad() {
+	public String ModificarPropiedad() {
 		Map paramMap = FacesContext.getCurrentInstance().getExternalContext()
 				.getRequestParameterMap();
 		String propiedadElegida = (String) paramMap.get("propiedadElegida");
@@ -108,21 +120,20 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 			Propiedad propiedadSeleccionada = (Propiedad) it.next();
 			if (propiedadSeleccionada.get_codigo().equalsIgnoreCase(
 					propiedadElegida)) {
-
-				deshabilitarModificar = true;
+				disableAceptarPropiedad = false;
 				this.setPropiedad(propiedadSeleccionada);
-
 				this.setCodigo(this.getPropiedad().get_codigo());
 				this.setNombre(this.getPropiedad().get_nombre());
 				this.setTipoSeleccionado(this.getPropiedad().get_tipo().name());
 				this.setUnidadedida(this.getPropiedad().get_unidadMedida());
+				break;
 			}
 		}
 
 		return "GEM003";
 	}
 
-	public String Eliminar() {
+	public String EliminarPropiedad() {
 		Map paramMap = FacesContext.getCurrentInstance().getExternalContext()
 				.getRequestParameterMap();
 		String propiedadElegida = (String) paramMap.get("propiedadElegida");
@@ -132,7 +143,7 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 			Propiedad propiedadSeleccionada = (Propiedad) it.next();
 			if (propiedadSeleccionada.get_codigo().equalsIgnoreCase(
 					propiedadElegida)) {
-				deshabilitarModificar = true;
+				disableAceptarPropiedad = true;
 				prop = propiedadSeleccionada;
 				break;
 			}
@@ -143,33 +154,61 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 	}
 
 	public String AceptarPropiedad() {
-		Iterator<Propiedad> it = this.getListaPropiedades().iterator();
-		Propiedad propiedadSeleccionada = null;
-		while (it.hasNext()) {
-			propiedadSeleccionada = (Propiedad) it.next();
-			if (propiedadSeleccionada.get_codigo().equalsIgnoreCase(
-					this.getPropiedad().get_codigo())) {
-				deshabilitarModificar = true;
-				propiedadSeleccionada.set_codigo(this.getCodigo());
-				propiedadSeleccionada.set_nombre(this.getNombre());
-				propiedadSeleccionada.set_unidadMedida(this.getUnidadedida());
-				this.setPropiedad(propiedadSeleccionada);
-				this.setCodigo("");
-				this.setNombre("");
-				this.setUnidadedida("");
-				this.setTipoSeleccionado(Enumerados.TipoPropiedadCultivo.Ninguno
-								.name());
-				this.setExito("Se realizarion los comabios "
-						+ "correctamente la propiedada para el cultivo.");
-			}
-		}
-		if (propiedadSeleccionada != null) {
-			this.getListaPropiedades().add(propiedadSeleccionada);
-			this.setExito("Se agrego correctamente la propiedad al cultivo");
+		if (this.getPropiedad() != null) {
+			this.getPropiedad().set_codigo(this.getCodigo());
+			this.getPropiedad().set_nombre(this.getNombre());
+			this.getPropiedad().set_unidadMedida(this.getUnidadedida());
+			this.getPropiedad().set_tipo(
+					TipoPropiedadCultivo.valueOf(this.getTipoSeleccionado()));
+			this.setCodigo("");
+			this.setNombre("");
+			this.setUnidadedida("");
+			this.setTipoSeleccionado(Enumerados.TipoPropiedadCultivo.Ninguno
+					.name());
+			this.setExito("Se realizarion los comabios "
+					+ "correctamente la propiedada del cultivo.");
+			disableAceptarPropiedad = true;
 		} else {
-
+			this.setPropiedad(new Propiedad());
+			this.getPropiedad().set_codigo(this.getCodigo());
+			this.getPropiedad().set_nombre(this.getNombre());
+			this.getPropiedad().set_unidadMedida(this.getUnidadedida());
+			this.getPropiedad().set_tipo(
+					TipoPropiedadCultivo.valueOf(this.getTipoSeleccionado()));
+			this.setCodigo("");
+			this.setNombre("");
+			this.setUnidadedida("");
+			this.getListaPropiedades().add(this.getPropiedad());
+			this.setExito("Se agrego correctamente la propiedad al cultivo");
 		}
-		return "GEM003";
+//		Iterator<Propiedad> it = this.getListaPropiedades().iterator();
+//		Propiedad propiedadSeleccionada = null;
+//		while (it.hasNext()) {
+//			propiedadSeleccionada = (Propiedad) it.next();
+//			if (propiedadSeleccionada.get_codigo().equalsIgnoreCase(
+//					this.getPropiedad().get_codigo())) {
+//				disableAceptarPropiedad = false;
+//				propiedadSeleccionada.set_codigo(this.getCodigo());
+//				propiedadSeleccionada.set_nombre(this.getNombre());
+//				propiedadSeleccionada.set_unidadMedida(this.getUnidadedida());
+//				this.setPropiedad(propiedadSeleccionada);
+//				this.setCodigo("");
+//				this.setNombre("");
+//				this.setUnidadedida("");
+//				this
+//						.setTipoSeleccionado(Enumerados.TipoPropiedadCultivo.Ninguno
+//								.name());
+//				this.setExito("Se realizarion los comabios "
+//						+ "correctamente la propiedada para el cultivo.");
+//			}
+//		}
+//		if (propiedadSeleccionada != null) {
+//			this.getListaPropiedades().add(propiedadSeleccionada);
+//			this.setExito("Se agrego correctamente la propiedad al cultivo");
+//		} else {
+//
+//		}
+		return "";
 	}
 
 	public List<Cultivo> getListaCultivos() {
@@ -204,13 +243,12 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 		this.cultivoSeleccionado = cultivoSeleccionado;
 	}
 
-	public boolean isDeshabilitarSeleccionCultivo() {
-		return deshabilitarSeleccionCultivo;
+	public boolean isDisableSeleccionCultivo() {
+		return disableSeleccionCultivo;
 	}
 
-	public void setDeshabilitarSeleccionCultivo(
-			boolean deshabilitarSeleccionCultivo) {
-		this.deshabilitarSeleccionCultivo = deshabilitarSeleccionCultivo;
+	public void setDisableSeleccionCultivo(boolean disableSeleccionCultivo) {
+		this.disableSeleccionCultivo = disableSeleccionCultivo;
 	}
 
 	public List<Propiedad> getListaPropiedades() {
@@ -277,11 +315,11 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 		this.tipoSeleccionado = tipoSeleccionado;
 	}
 
-	public boolean isDeshabilitarModificar() {
-		return deshabilitarModificar;
+	public boolean isDisableAceptarPropiedad() {
+		return disableAceptarPropiedad;
 	}
 
-	public void setDeshabilitarModificar(boolean deshabilitarModificar) {
-		this.deshabilitarModificar = deshabilitarModificar;
+	public void setDisableAceptarPropiedad(boolean disableAceptarPropiedad) {
+		this.disableAceptarPropiedad = disableAceptarPropiedad;
 	}
 }

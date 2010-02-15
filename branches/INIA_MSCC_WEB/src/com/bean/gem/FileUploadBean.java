@@ -1,20 +1,13 @@
 package com.bean.gem;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import org.apache.tomcat.util.http.fileupload.FileUpload;
 import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
-
-import sun.text.resources.FormatData;
 
 import com.bean.comun.MaestroBean;
 import com.inia_mscc.modulos.gem.entidades.ArchivosTexto;

@@ -61,7 +61,6 @@ Secano.</title>
 										<h:column>
 											<h:panelGrid>
 												<h:panelGroup rendered="#{cultivoBean.init}" />
-
 												<h:panelGrid>
 													<rich:panel headerClass="tituloPantalla"
 														style="background-color: #ebf3fd;">
@@ -69,32 +68,37 @@ Secano.</title>
 															<h:outputText value="Ingresar Cultivo" />
 														</f:facet>
 														<h:panelGrid>
-															<h:panelGrid columns="2" columnClasses="textoPlano,textoPlano" width="400">
+															<h:panelGrid columns="2"
+																columnClasses="textoPlano,textoPlano" width="400">
 
 																<h:outputText value="Ingrese nombre" />
 																<h:inputText value="#{cultivoBean.nombre}"
 																	required="true"
 																	requiredMessage="Ingrese un nombre para el cultivo"
 																	styleClass="textoPlano" maxlength="50"
-																	onkeypress="ValidarCampoLetras(this, event)" />
+																	onkeypress="ValidarCampoLetras(this, event)"
+																	style=" width : 180px;" />
 
 																<h:outputText value="Ingresar descripción" />
 																<h:inputTextarea value="#{cultivoBean.descripcion}"
 																	required="true"
 																	requiredMessage="Ingrese la descripcion del cultivo"
 																	styleClass="textoPlano"
-																	onkeypress="ValidarCampoLetras(this, event)">
-																	<f:validateLength maximum="220"/>
+																	onkeypress="ValidarCampoLetras(this, event)"
+																	style=" width : 180px;">
+																	<f:validateLength maximum="220" />
 																</h:inputTextarea>
 
 																<h:outputLabel value="Seleccionar un estado" />
 																<rich:comboBox value="#{cultivoBean.estado}"
-																	enableManualInput="false" styleClass="combo">
+																	style=" higth : 18px;" enableManualInput="false"
+																	styleClass="combo" width="180px">
 																	<f:selectItems value="#{cultivoBean.estados}" />
 																</rich:comboBox>
 
 															</h:panelGrid>
-															<center><h:panelGrid columns="3" columnClasses="textoPlano,textoPlano,textoPlano">
+															<center><h:panelGrid columns="3"
+																columnClasses="textoPlano,textoPlano,textoPlano">
 																<a4j:commandButton
 																	style="font-size: 10pt; color: #2d77c2; width : 87px;"
 																	styleClass="textoPlano"
@@ -103,6 +107,7 @@ Secano.</title>
 																<a4j:commandButton
 																	style="font-size: 10pt; color: #2d77c2; width : 120px;"
 																	styleClass="textoPlano"
+																	disabled="#{cultivoBean.disableBtnProp}"
 																	action="#{cultivoBean.Propiedades}" value="Propiedades" />
 																<a4j:commandButton immediate="true"
 																	style="font-size: 10pt; color: #2d77c2; width : 87px;"

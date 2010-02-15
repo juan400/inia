@@ -3,8 +3,6 @@ package com.inia_mscc.modulos.gem.dao;
 import java.io.Serializable;
 import java.util.List;
 
-import javassist.bytecode.LineNumberAttribute.Pc;
-
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -15,8 +13,6 @@ import com.inia_mscc.config.hibernate.HibernateUtil;
 import com.inia_mscc.config.util.LoggingUtilities;
 import com.inia_mscc.excepciones.IniaPersistenciaException;
 import com.inia_mscc.modulos.gem.entidades.Cultivo;
-import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
-import com.inia_mscc.modulos.seg.entidades.Usuario;
 
 public class DAOCultivo implements Serializable {
 
@@ -62,9 +58,9 @@ public class DAOCultivo implements Serializable {
 				System.out.println(pCultivo.get_nombre());
 			}
 			unCultivo = (Cultivo) c.uniqueResult();
-			if (unCultivo != null) {
-				unCultivo.get_listaPropiedades().get(0);
-			}
+//			if (unCultivo != null) {
+//				unCultivo.get_listaPropiedades();
+//			}
 		} catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
