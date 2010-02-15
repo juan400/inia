@@ -59,7 +59,7 @@ Secano.</title>
 											<rich:panelMenu binding="#{menuBean.panelMenu}" />
 										</h:column>
 										<h:column>
-											<h:panelGroup rendered="#{usuarioBean.init}" />
+											<h:panelGroup rendered="#{administrarUsuarioBean.init}" />
 											<h:panelGrid>
 												<rich:panel headerClass="tituloPantalla"
 													style="background-color: #ebf3fd;">
@@ -67,55 +67,55 @@ Secano.</title>
 														<h:outputText value="#{text.usuario_ListaUsuarios}" />
 													</f:facet>
 
-													<center><rich:dataTable border="2" width="650px"
+													<center><rich:dataTable border="2" width="550px"
 														rows="6" styleClass="textoDataTable" id="tablaUsuarios"
-														value="#{usuarioBean.usuarios}" var="usuario"
+														value="#{administrarUsuarioBean.usuarios}" var="usuario"
 														rowKeyVar="row" headerClass="columnHeader"
 														rowClasses="oddRow,evenRow">
 
 														<f:facet name="header">
-															<h:outputText value="Usuarios Registrados" />
+															<h:outputText value="#{text.usuario_ListaUsuarios}" />
 														</f:facet>
 
-														<rich:column width="150">
+														<rich:column width="170px">
 															<f:facet name="header">
 																<h:outputText value="#{text.usuario_Nombre}" />
 															</f:facet>
-															<h:outputText value="#{usuario._nombre}" id="nombre" />
+															<h:outputText value="#{usuario._datos._nombre}" id="nombre" />
 														</rich:column>
 
-														<rich:column width="150">
+														<rich:column width="170px">
 															<f:facet name="header">
 																<h:outputText value="#{text.usuario_Apellido}" />
 															</f:facet>
-															<h:outputText value="#{usuario._apellido}" id="apellido" />
+															<h:outputText value="#{usuario._datos._apellido}" id="apellido" />
 														</rich:column>
 
-														<rich:column width="100">
+														<rich:column width="80px">
 															<f:facet name="header">
 																<h:outputText value="#{text.usuario_Estado}" />
 															</f:facet>
-															<h:outputText value="#{usuario._estado}" id="estado" />
+															<h:outputText value="#{usuario._estadoUsuario}" id="estado" />
 														</rich:column>
 
-														<rich:column width="100">
+														<rich:column width="80px">
 															<f:facet name="header">
 																<h:outputText value="#{text.usuario_Perfil}" />
 															</f:facet>
-															<h:outputText value="#{usuario._perfil}" id="perfil" />
+															<h:outputText value="#{usuario._datos._perfil._nombre}" id="perfil" />
 														</rich:column>
 
-														<rich:column width="20">
+														<rich:column width="50px">
 															<f:facet name="header">
 																<h:outputText value="Modificar" />
 															</f:facet>
 
 															<center><a4j:commandButton
-																action="#{regionBean.verRegiones}"
+																action="#{administrarUsuarioBean.verUsuario}"
 																image="/Recursos/Imagenes/Iconos/edit.gif"
 																style="width : 27px; height : 21px;">
-																<a4j:actionparam name="regionElegida"
-																	value="#{region._id}" />
+																<a4j:actionparam name="usuarioElegido"
+																	value="#{usuario._datos._id}" />
 																<rich:toolTip value="Modificar" />
 															</a4j:commandButton></center>
 														</rich:column>
@@ -127,16 +127,16 @@ Secano.</title>
 													</rich:dataTable></center>
 													<br></br>
 
-													<center><h:panelGrid columns="1">
+													<center><h:panelGrid columns="1" >
 														<a4j:commandButton immediate="true"
 															style="font-size: 10pt; color: #2d77c2; width : 87px;"
 															styleClass="textoPlano" action="cancelar"
-															value="#{text.perfil_Cerrar}" />
+															value="#{text.usuario_Cerrar}" />
 													</h:panelGrid></center>
 
 													<center><h:panelGrid>
 														<h:outputText styleClass="textoPlano"
-															value="#{usuarioBean.exito}" />
+															value="#{administrarUsuarioBean.exito}" />
 													</h:panelGrid></center>
 												</rich:panel>
 											</h:panelGrid>

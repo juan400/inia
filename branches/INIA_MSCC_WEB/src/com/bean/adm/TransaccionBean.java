@@ -25,7 +25,8 @@ public class TransaccionBean extends MaestroBean implements Serializable {
 	private List<Transaccion> transaccionesActivas;
 
 	public boolean isInit() {
-		this.setTransaccionesActivas(this.getAdmFachada(ServicioADM.Transaccion)
+		this.setTransaccionesActivas(this
+				.getAdmFachada(ServicioADM.Transaccion)
 				.ObtenerTransaccionesActiva());
 		this.setTransaccion(this.getAdmFachada(ServicioADM.Transaccion)
 				.ObtenerTransacciones());
@@ -39,21 +40,30 @@ public class TransaccionBean extends MaestroBean implements Serializable {
 	public String actualizar() throws Exception {
 		String retorno = "registro-error";
 		try {
-			trans.set_codigo(codigo);
-			trans.set_descripcion(descripcion);
-			trans.set_estado(Enumerados.Estado.valueOf(estado));
-
-			Transaccion tran = this.getAdmFachada(ServicioADM.Transaccion)
-					.ComprobarTransaccion(trans);
-			if (tran == null) {
-				setError("");
-				this.getAdmFachada(ServicioADM.Transaccion).ActualizarTransaccion(
-						trans);
+			if (trans.get_descripcion()
+					.equalsIgnoreCase(this.getDescripcion())) {
+				trans.set_codigo(codigo);
+				trans.set_descripcion(descripcion);
+				trans.set_estado(Enumerados.Estado.valueOf(estado));
+				this.getAdmFachada(ServicioADM.Transaccion)
+						.ActualizarTransaccion(trans);
 				retorno = "registro-ok";
 			} else {
-				this
-						.setError("Ya existe una Transacción con igual nombre, Por favor ingrese otro nombre.");
-				retorno = "";
+				trans.set_codigo(codigo);
+				trans.set_descripcion(descripcion);
+				trans.set_estado(Enumerados.Estado.valueOf(estado));
+				Transaccion tran = this.getAdmFachada(ServicioADM.Transaccion)
+						.ComprobarTransaccion(trans);
+				if (tran == null) {
+					setError("");
+					this.getAdmFachada(ServicioADM.Transaccion)
+							.ActualizarTransaccion(trans);
+					retorno = "registro-ok";
+				} else {
+					this
+							.setError("Ya existe una Transacción con igual nombre, Por favor ingrese otro nombre.");
+					retorno = "";
+				}
 			}
 		} catch (Exception ex) {
 			this

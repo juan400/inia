@@ -70,13 +70,9 @@ Secano.</title>
 															columnClasses="textoPlano,textoDataTable">
 
 															<h:outputText value="#{text.region_Codigo}" />
-															<h:inputText label="Name" id="codigo" required="true"
-																requiredMessage="Debe ingresar el Código."
+															<h:inputText label="Name" id="codigo" 
 																value="#{regionBean.codigo}" disabled="true"
-																onkeypress="ValidarCampoParaCodigo(this, event)"
 																style=" width : 245px;">
-																<f:validateLength maximum="6">
-																</f:validateLength>
 															</h:inputText>
 
 															<h:outputText value="#{text.region_Nombre}" />
