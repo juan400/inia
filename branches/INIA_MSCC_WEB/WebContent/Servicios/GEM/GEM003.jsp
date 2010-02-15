@@ -138,7 +138,7 @@ Secano.</title>
 																	<a4j:commandButton action="#{propiedadesBean.Eliminar}"
 																		image="/Recursos/Imagenes/Iconos/delete.gif" immediate="true"
 																		style=" border:0; width : 27px; height : 21px;" reRender="tablaPropiedades">
-																		<a4j:actionparam name="propiedadEliminar"
+																		<a4j:actionparam name="propiedadElegida"
 																			value="#{propiedad._codigo}" />
 																		<rich:toolTip value="Eliminar" />
 																	</a4j:commandButton>
@@ -151,7 +151,7 @@ Secano.</title>
 															</rich:dataTable></center>
 														</h:panelGrid>
 
-														<h:panelGrid columns="2" id="datosPropiedad">
+														<h:panelGrid columns="2" id="datosPropiedad" columnClasses="textoPlano,textoPlano" width="100%"> 
 
 															<h:outputText value="Código" />
 															<h:inputText value="#{propiedadesBean.codigo}"
@@ -186,7 +186,7 @@ Secano.</title>
 															<a4j:commandButton
 																style="font-size: 10pt; color: #2d77c2; width : 125px;"
 																styleClass="textoPlano"
-																action="#{propiedadesBean.Modifica}"
+																action="#{propiedadesBean.AceptarPropiedad}"
 																value="Aceptar propiedad" />
 														</h:panelGrid>
 														
