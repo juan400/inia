@@ -13,6 +13,7 @@ import org.richfaces.component.html.HtmlPanelMenuGroup;
 import org.richfaces.component.html.HtmlPanelMenuItem;
 
 import com.inia_mscc.modulos.adm.entidades.Transaccion;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.Proceso;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.NombreProceso;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.TransaccionesNoContenidas;
@@ -46,7 +47,6 @@ public class MenuBean extends MaestroBean implements Serializable {
 	public MenuBean() {
 		singleMode = true;
 		current = "/Servicios/Contenedora.jsp";
-		// current = "/Servicios/Precentacion.jsp";
 		panelMenu = new HtmlPanelMenu();
 		panelMenu.setStyleClass("menu");
 		panelMenu.setStyle("width:200px");
@@ -84,77 +84,79 @@ public class MenuBean extends MaestroBean implements Serializable {
 				menuGroupHPE.setLabel(NombreProceso.Historial.name());
 				menuGroupHPE.setStyleClass("textoMenu");
 				for (Transaccion unaTransa : transacciones) {
-					if (unaTransa.get_codigoBase().startsWith(
-							Proceso.ADM.name())) {
-						if (!unaTransa.get_codigoBase().equalsIgnoreCase(
-								TransaccionesNoContenidas.ADM002.name())
-								&& !unaTransa
-										.get_codigoBase()
-										.equalsIgnoreCase(
-												TransaccionesNoContenidas.ADM006
-														.name())
+					if (unaTransa.get_estado().equals(Estado.Activo)) {
+						if (unaTransa.get_codigoBase().startsWith(
+								Proceso.ADM.name())) {
+							if (!unaTransa.get_codigoBase().equalsIgnoreCase(
+									TransaccionesNoContenidas.ADM002.name())
+									&& !unaTransa
+											.get_codigoBase()
+											.equalsIgnoreCase(
+													TransaccionesNoContenidas.ADM006
+															.name())
 
-								&& !unaTransa
-										.get_codigoBase()
-										.equalsIgnoreCase(
-												TransaccionesNoContenidas.ADM007
-														.name())
-								&& !unaTransa
-										.get_codigoBase()
-										.equalsIgnoreCase(
-												TransaccionesNoContenidas.ADM009
-														.name())) {
-							menuGroupADM.getChildren().add(
+									&& !unaTransa
+											.get_codigoBase()
+											.equalsIgnoreCase(
+													TransaccionesNoContenidas.ADM007
+															.name())
+									&& !unaTransa
+											.get_codigoBase()
+											.equalsIgnoreCase(
+													TransaccionesNoContenidas.ADM009
+															.name())) {
+								menuGroupADM.getChildren().add(
+										cargarItemMenu(unaTransa));
+							}
+						}
+						if (unaTransa.get_codigoBase().startsWith(
+								Proceso.SEG.name())) {
+							if (!unaTransa.get_codigoBase().equalsIgnoreCase(
+									TransaccionesNoContenidas.SEG001.name())
+									&& !unaTransa
+											.get_codigoBase()
+											.equalsIgnoreCase(
+													TransaccionesNoContenidas.SEG002
+															.name())
+									&& !unaTransa
+											.get_codigoBase()
+											.equalsIgnoreCase(
+													TransaccionesNoContenidas.SEG003
+															.name())
+									&& !unaTransa
+											.get_codigoBase()
+											.equalsIgnoreCase(
+													TransaccionesNoContenidas.SEG006
+															.name())
+									&& !unaTransa
+											.get_codigoBase()
+											.equalsIgnoreCase(
+													TransaccionesNoContenidas.SEG009
+															.name())
+									&& !unaTransa
+											.get_codigoBase()
+											.equalsIgnoreCase(
+													TransaccionesNoContenidas.SEG010
+															.name())) {
+								menuGroupSEG.getChildren().add(
+										cargarItemMenu(unaTransa));
+							}
+						}
+						if (unaTransa.get_codigoBase().startsWith(
+								Proceso.GEM.name())) {
+							menuGroupGEM.getChildren().add(
 									cargarItemMenu(unaTransa));
 						}
-					}
-					if (unaTransa.get_codigoBase().startsWith(
-							Proceso.SEG.name())) {
-						if (!unaTransa.get_codigoBase().equalsIgnoreCase(
-								TransaccionesNoContenidas.SEG001.name())
-								&& !unaTransa
-										.get_codigoBase()
-										.equalsIgnoreCase(
-												TransaccionesNoContenidas.SEG002
-														.name())
-								&& !unaTransa
-										.get_codigoBase()
-										.equalsIgnoreCase(
-												TransaccionesNoContenidas.SEG003
-														.name())
-								&& !unaTransa
-										.get_codigoBase()
-										.equalsIgnoreCase(
-												TransaccionesNoContenidas.SEG006
-														.name())
-								&& !unaTransa
-										.get_codigoBase()
-										.equalsIgnoreCase(
-												TransaccionesNoContenidas.SEG009
-														.name())
-								&& !unaTransa
-										.get_codigoBase()
-										.equalsIgnoreCase(
-												TransaccionesNoContenidas.SEG010
-														.name())) {
-							menuGroupSEG.getChildren().add(
+						if (unaTransa.get_codigoBase().startsWith(
+								Proceso.EJE.name())) {
+							menuGroupEJE.getChildren().add(
 									cargarItemMenu(unaTransa));
 						}
-					}
-					if (unaTransa.get_codigoBase().startsWith(
-							Proceso.GEM.name())) {
-						menuGroupGEM.getChildren().add(
-								cargarItemMenu(unaTransa));
-					}
-					if (unaTransa.get_codigoBase().startsWith(
-							Proceso.EJE.name())) {
-						menuGroupEJE.getChildren().add(
-								cargarItemMenu(unaTransa));
-					}
-					if (unaTransa.get_codigoBase().startsWith(
-							Proceso.HPE.name())) {
-						menuGroupHPE.getChildren().add(
-								cargarItemMenu(unaTransa));
+						if (unaTransa.get_codigoBase().startsWith(
+								Proceso.HPE.name())) {
+							menuGroupHPE.getChildren().add(
+									cargarItemMenu(unaTransa));
+						}
 					}
 				}
 			}

@@ -86,7 +86,7 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 	
 	private boolean generarEscenario(EjecucionMSCC ejecucionMSCC){
 		try {
-			this.getEjeFachada(ServicioEJE.Ejecucion).generarArchivoEjecucion(ejecucionMSCC);
+			this.getEJEFachada(ServicioEJE.Ejecucion).generarArchivoEjecucion(ejecucionMSCC);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
