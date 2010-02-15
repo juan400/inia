@@ -59,90 +59,72 @@ Secano.</title>
 											<rich:panelMenu binding="#{menuBean.panelMenu}" />
 										</h:column>
 										<h:column>
-											<h:panelGroup rendered="#{regionBean.init}" />
 											<h:panelGrid>
 												<rich:panel headerClass="tituloPantalla"
 													style="background-color: #ebf3fd;">
 													<f:facet name="header">
-														<h:outputText value="#{text.region_ListaRegiones}" />
+														<h:outputText value="#{text.usuario_ActUsuario}" />
 													</f:facet>
+													<h:panelGrid>
+														<h:panelGrid columns="2"
+															columnClasses="textoPlano,textoDataTable">
 
-													<center><rich:dataTable border="2" width="650px"
-														rows="6" styleClass="textoDataTable" id="tablaRegiones"
-														value="#{regionBean.regiones}" var="region"
-														rowKeyVar="row" headerClass="columnHeader"
-														rowClasses="oddRow,evenRow">
+															<h:outputText value="#{text.usuario_Nombre}" />
+															<h:inputText label="Name" id="nombre"
+																value="#{administrarUsuarioBean.nombre}" disabled="true"
+																style=" width : 245px;">
+															</h:inputText>
 
-														<f:facet name="header">
-															<h:outputText value="#{text.region_ListaRegiones}" />
-														</f:facet>
+															<h:outputText value="#{text.usuario_Apellido}" />
+															<h:inputText label="Name" id="apellido"
+																value="#{administrarUsuarioBean.apellido}" disabled="true"
+																style=" width : 245px;">
+															</h:inputText>
 
-														<rich:column width="50">
-															<f:facet name="header">
-																<h:outputText value="#{text.region_Codigo}" />
-															</f:facet>
-															<h:outputText value="#{region._codigo}" id="codigo" />
-														</rich:column>
+															<h:outputText value="#{text.usuario_Estado}" />
+															<rich:comboBox styleClass="textoDataTable" id="estado"
+																value="#{administrarUsuarioBean.estado}" width="245px">
+																<f:selectItem itemValue="Activo" />
+																<f:selectItem itemValue="Inactivo" />
+																<f:selectItem itemValue="Registrado" />
+																<f:selectItem itemValue="Bloqueado" />
+															</rich:comboBox>
 
-														<rich:column width="220">
-															<f:facet name="header">
-																<h:outputText value="#{text.region_Nombre}" />
-															</f:facet>
-															<h:outputText value="#{region._nombre}" id="nombre" />
-														</rich:column>
+															<h:outputText value="#{text.usuario_Perfil}" />
+															<rich:comboBox styleClass="textoDataTable" id="perfil"
+																value="#{administrarUsuarioBean.perfil._nombre}" width="245px">
+																<f:selectItems value="#{administrarUsuarioBean.perfiles}" />
+															</rich:comboBox>
 
-														<rich:column width="320">
-															<f:facet name="header">
-																<h:outputText value="#{text.region_Descripcion}" />
-															</f:facet>
-															<h:outputText value="#{region._descripcion}"
-																id="descripcion" />
-														</rich:column>
+															<td style="width: 2px;"></td>
+															<h:outputText value="" />
+														</h:panelGrid>
 
-														<rich:column width="60">
-															<f:facet name="header">
-																<h:outputText value="Acciones" />
-															</f:facet>
+														<CENTER><h:panelGrid columns="2">
+															<a4j:commandButton
+																style="font-size: 10pt; color: #2d77c2; width : 71px;"
+																styleClass="textoPlano"
+																action="#{administrarUsuarioBean.actualizar}"
+																value="#{text.boton_Aceptar}" />
+															<a4j:commandButton immediate="true"
+																style="font-size: 10pt; color: #2d77c2; width : 71px;"
+																styleClass="textoPlano" action="salir"
+																value="#{text.boton_Cancelar}" />
+														</h:panelGrid></center>
 
-															<a4j:commandButton action="#{regionBean.verRegiones}"
-																image="/Recursos/Imagenes/Iconos/edit.gif"
-																style="width : 27px; height : 21px;">
-																<a4j:actionparam name="regionElegida"
-																	value="#{region._id}" />
-																<rich:toolTip value="Modificar" />
-															</a4j:commandButton>
-
-															<a4j:commandButton action="#{regionBean.eliminar}"
-																image="/Recursos/Imagenes/Iconos/delete.gif"
-																style=" border:0; width : 27px; height : 21px;">
-																<a4j:actionparam name="regionEliminar"
-																	value="#{region._id}" />
-																<rich:toolTip value="Eliminar" />
-															</a4j:commandButton>
-
-														</rich:column>
 														<f:facet name="footer">
-															<rich:datascroller renderIfSinglePage="false"
-																maxPages="6" />
+															<h:panelGrid>
+																<rich:messages styleClass="mensajeError">
+																	<f:facet name="errorMarker">
+																		<h:graphicImage
+																			value="/Recursos/Imagenes/Iconos/error.gif" />
+																	</f:facet>
+																</rich:messages>
+																<h:outputText styleClass="textoPlano"
+																	value="#{datosUsuarioBean.exito}" />
+															</h:panelGrid>
 														</f:facet>
-													</rich:dataTable></center>
-													<br></br>
-
-													<center><h:panelGrid columns="3">
-														<a4j:commandButton immediate="true"
-															style="font-size: 10pt; color: #2d77c2; width : 87px;"
-															styleClass="textoPlano" action="#{regionBean.alta}"
-															value="#{text.boton_Registrar}" />
-														<a4j:commandButton immediate="true"
-															style="font-size: 10pt; color: #2d77c2; width : 87px;"
-															styleClass="textoPlano" action="cancelar"
-															value="#{text.perfil_Cerrar}" />
-													</h:panelGrid></center>
-
-													<center><h:panelGrid>
-														<h:outputText styleClass="textoPlano"
-															value="#{regionBean.exito}" />
-													</h:panelGrid></center>
+													</h:panelGrid>
 												</rich:panel>
 											</h:panelGrid>
 										</h:column>
