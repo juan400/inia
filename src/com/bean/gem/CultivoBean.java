@@ -23,12 +23,9 @@ public class CultivoBean extends MaestroBean implements Serializable {
 	private String estado;
 	private SelectItem[] estados;
 	private Cultivo cultivo;
+	private boolean disableBtnProp = true;
 
 	public boolean isInit() {
-		return false;
-	}
-
-	public CultivoBean() {
 		estados = new SelectItem[Estado.values().length];
 		SelectItem si = new SelectItem(Estado.Activo.name());
 		estados[0] = si;
@@ -36,6 +33,10 @@ public class CultivoBean extends MaestroBean implements Serializable {
 		estados[1] = si;
 		estado = estados[1].getValue().toString();
 		this.setCultivo(null);
+		return false;
+	}
+
+	public CultivoBean() {
 	}
 
 	public String Registrar() {
@@ -47,9 +48,11 @@ public class CultivoBean extends MaestroBean implements Serializable {
 		this.setCultivo(this.getGEMFachada(ServicioGEM.Cultivo)
 				.RegistrarCultivo(this.getCultivo()));
 		if (this.getCultivo() != null) {
-			
-			this.setExito("Se registro exitosamente el cultivo");
-		}else{
+			this.setCultivo(null);
+			this.setDisableBtnProp(false);
+			this
+					.setExito("Se registro exitosamente el cultivo, puede continuar realizando el ingreso de propiedades.");
+		} else {
 			this.setError("No se pudo registrar el cultivo.");
 		}
 		return retorno;
@@ -57,12 +60,14 @@ public class CultivoBean extends MaestroBean implements Serializable {
 
 	public String Propiedades() {
 		String retorno = "GEM003";
-		if (cultivo != null) {
-			this.setSesion(Cultivo.class.toString(), this.getCultivo());
-		} else {
-
-			this.setError("Se registro exitosamente el cultivo");
-		}
+		this.setCultivo(new Cultivo());
+		this.getCultivo().set_descripcion(getDescripcion());
+		this.getCultivo().set_nombre(getNombre());
+		this.getCultivo().set_estado(Estado.valueOf(estado));
+		this.setSesion(Cultivo.class.toString(), this.getCultivo());
+		this.setError("Debe ingresar los datos del cultivo y registrarlo "
+				+ "previamente a realizar ingreso de propiedades.");
+		this.setCultivo(null);
 		return retorno;
 	}
 
@@ -112,6 +117,14 @@ public class CultivoBean extends MaestroBean implements Serializable {
 
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+
+	public boolean isDisableBtnProp() {
+		return disableBtnProp;
+	}
+
+	public void setDisableBtnProp(boolean disableBtnProp) {
+		this.disableBtnProp = disableBtnProp;
 	}
 
 }
