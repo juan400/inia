@@ -1,9 +1,20 @@
 package com.bean.eje;
 
+import java.io.File;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 import com.bean.comun.MaestroBean;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioEJE;
+import com.inia_mscc.modulos.eje.entidades.EjecucionMSCC;
+import com.inia_mscc.modulos.gem.entidades.Archivo;
+import com.inia_mscc.modulos.gem.entidades.Cultivo;
+import com.inia_mscc.modulos.gem.entidades.Escenario;
+import com.inia_mscc.modulos.gem.entidades.Propiedad;
 
 public class EscenarioBean extends MaestroBean implements Serializable {
 
@@ -48,16 +59,185 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 	
 	public String ejecutarEscenario(){
 		String resultado = "";
-		//TODO llamada a los métodos relacionados con la ejecucion del MSCC
-		System.out.println("######### EJECUCION ###########");
+		
+		EjecucionMSCC ejecucionMSCC = new EjecucionMSCC();
+		Escenario escenario = new Escenario();
+		Cultivo cultivo = new Cultivo();
+		
+		escenario.set_cultivo(cultivo);
+		ejecucionMSCC.set_escenario(escenario);
+		
+		cultivo.set_listaPropiedades(this.armarListaPropiedades());
+		
+		//TODO Reemplazar rutas de los archivos por las que correspondan.
+		Archivo archivoTemplate = new Archivo();
+		archivoTemplate.set_datos(new File("C:/INIA/Templates/TemplateEscenario.py"));
+		
+		Archivo archivoResultado = new Archivo();
+		archivoResultado.set_datos(new File("C:/INIA/resultado.py"));
+		
+		ejecucionMSCC.set_archivoEjecucion(archivoTemplate);
+		ejecucionMSCC.get_escenario().set_archivoEscenario(archivoResultado);
+		
+		this.generarEscenario(ejecucionMSCC);
+		
 		return resultado; 
 	}
 	
-	private boolean generarEscenario(){
-		//TODO llamar al método para armar el template
+	private boolean generarEscenario(EjecucionMSCC ejecucionMSCC){
+		try {
+			this.getEjeFachada(ServicioEJE.Ejecucion).generarArchivoEjecucion(ejecucionMSCC);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 	
+	private List<Propiedad> armarListaPropiedades(){
+		List<Propiedad> propiedades = new ArrayList<Propiedad>();
+		
+		Propiedad propiedad = new Propiedad();
+		propiedad.set_codigo("Key_de_corrida");
+		propiedad.set_valor("Key_de_corrida");
+		propiedades.add(propiedad);
+		
+		propiedad = new Propiedad();
+		propiedad.set_codigo("FSirmbra");
+		propiedad.set_valor(this.formatearFecha(fSiembra));
+		propiedades.add(propiedad);
+		
+		propiedad = new Propiedad();
+		propiedad.set_codigo("EstacionClimatica");
+		propiedad.set_valor(this.estacionClimatica);
+		propiedades.add(propiedad);
+		
+		propiedad = new Propiedad();
+		propiedad.set_codigo("Cultivar");
+		propiedad.set_valor(this.cultivar);
+		propiedades.add(propiedad);
+		
+		propiedad = new Propiedad();
+		propiedad.set_codigo("Fecha1");
+		propiedad.set_valor(this.formatearFecha(fFertilizacionSiembra));
+		propiedades.add(propiedad);
+		
+		propiedad = new Propiedad();
+		propiedad.set_codigo("Fuente1");
+		propiedad.set_valor(this.fuenteFertilizacionSiembra);
+		propiedades.add(propiedad);
+		
+		propiedad = new Propiedad();
+		propiedad.set_codigo("Rate1");
+		propiedad.set_valor(this.rateFertilizacionSiembra);
+		propiedades.add(propiedad);
+		
+		propiedad = new Propiedad();
+		propiedad.set_codigo("Fecha2");
+		propiedad.set_valor(this.formatearFecha(fRefertilizacion1));
+		propiedades.add(propiedad);
+		
+		propiedad = new Propiedad();
+		propiedad.set_codigo("Fuente2");
+		propiedad.set_valor(this.fuenteRefertilizacion1);
+		propiedades.add(propiedad);
+		
+		propiedad = new Propiedad();
+		propiedad.set_codigo("Rate2");
+		propiedad.set_valor(this.rateRefertilizacion1);
+		propiedades.add(propiedad);
+		
+		propiedad = new Propiedad();
+		propiedad.set_codigo("Fecha3");
+		propiedad.set_valor(this.formatearFecha(fRefertilizacion2));
+		propiedades.add(propiedad);
+		
+		propiedad = new Propiedad();
+		propiedad.set_codigo("Fuente3");
+		propiedad.set_valor(this.fuenteRefertilizacion2);
+		propiedades.add(propiedad);
+		
+		propiedad = new Propiedad();
+		propiedad.set_codigo("Rate3");
+		propiedad.set_valor(this.rateRefertilizacion2);
+		propiedades.add(propiedad);
+		
+		propiedad = new Propiedad();
+		propiedad.set_codigo("NombreSuelo");
+		propiedad.set_valor(this.nombreSueloConeat);
+		propiedades.add(propiedad);
+		
+		propiedad = new Propiedad();
+		propiedad.set_codigo("ProfundidadA");
+		propiedad.set_valor(String.valueOf(this.profundidadA));
+		propiedades.add(propiedad);
+		
+		propiedad = new Propiedad();
+		propiedad.set_codigo("ProfundidadB");
+		propiedad.set_valor(String.valueOf(this.profundidadB));
+		propiedades.add(propiedad);
+		
+		propiedad = new Propiedad();
+		propiedad.set_codigo("DensidadPlantas");
+		propiedad.set_valor(String.valueOf(this.densidadPlantas));
+		propiedades.add(propiedad);
+		
+		propiedad = new Propiedad();
+		propiedad.set_codigo("WULI");
+		propiedad.set_valor(String.valueOf(this.wuli));
+		propiedades.add(propiedad);
+		
+		propiedad = new Propiedad();
+		propiedad.set_codigo("WLLI");
+		propiedad.set_valor(String.valueOf(this.wlli));
+		propiedades.add(propiedad);
+		
+		propiedad = new Propiedad();
+		propiedad.set_codigo("DPMI");
+		propiedad.set_valor(String.valueOf(this.dpmi));
+		propiedades.add(propiedad);
+		
+		propiedad = new Propiedad();
+		propiedad.set_codigo("RPMI");
+		propiedad.set_valor(String.valueOf(this.rpmi));
+		propiedades.add(propiedad);
+		
+		propiedad = new Propiedad();
+		propiedad.set_codigo("HUMI");
+		propiedad.set_valor(String.valueOf(this.humi));
+		propiedades.add(propiedad);
+		
+		propiedad = new Propiedad();
+		propiedad.set_codigo("NAULI");
+		propiedad.set_valor(String.valueOf(this.nauli));
+		propiedades.add(propiedad);
+		
+		propiedad = new Propiedad();
+		propiedad.set_codigo("NALLI");
+		propiedad.set_valor(String.valueOf(this.nalli));
+		propiedades.add(propiedad);
+		
+		propiedad = new Propiedad();
+		propiedad.set_codigo("NNULI");
+		propiedad.set_valor(String.valueOf(this.nnuli));
+		propiedades.add(propiedad);
+		
+		propiedad = new Propiedad();
+		propiedad.set_codigo("NNLLI");
+		propiedad.set_valor(String.valueOf(this.nnlli));
+		propiedades.add(propiedad);
+		
+		return propiedades;
+	}
+	
+	private String formatearFecha(Date fecha){
+		String fechaFormateada = "";
+		Calendar gc = new GregorianCalendar();
+		gc.setTime(fecha);
+		
+		fechaFormateada = gc.get(Calendar.YEAR) + "," + (gc.get(Calendar.MONTH)+1) + "," + gc.get(Calendar.DAY_OF_MONTH); 
+		
+		return fechaFormateada;
+	}
 	
 	public Date getfSiembra() {
 		return fSiembra;
