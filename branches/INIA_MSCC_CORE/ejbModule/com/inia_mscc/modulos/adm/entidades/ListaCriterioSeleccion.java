@@ -2,6 +2,7 @@
  * 
  */
 package com.inia_mscc.modulos.adm.entidades;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -15,21 +16,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
+import com.inia_mscc.modulos.gem.entidades.Propiedad;
 
+@Entity(name = "ListaCriterioSeleccion")
+@Table(name = "tl_adm_licr_listascriterio")
+public class ListaCriterioSeleccion implements Serializable {
 
-@Entity(name="ListaCriterioSeleccion")
-@Table(name="tl_adm_licr_listascriterio")
-public class ListaCriterioSeleccion implements Serializable{
-	
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "licr_num_id", nullable = false, columnDefinition = "BIGINT(20)")
@@ -39,35 +38,31 @@ public class ListaCriterioSeleccion implements Serializable{
 	private Enumerados.Estado _estado;
 	@Column(name = "licr_str_descripcion", nullable = false, columnDefinition = "VARCHAR(220)")
 	private String _descripcion;
-	@Column(name="licr_str_codigo", nullable = false, columnDefinition = "VARCHAR(3)")
+	@Column(name = "licr_str_codigo", nullable = false, columnDefinition = "VARCHAR(3)")
 	private String _codigo;
-	@OneToMany(targetEntity = ValorSeleccion.class, cascade = CascadeType.ALL, fetch= FetchType.LAZY)
-	@JoinTable(name = "vase_num_id_listacriterio", 
-			uniqueConstraints={@UniqueConstraint(columnNames={"licr_num_id_listacriterio", "vase_num_id_valorseleccion"})},
-			joinColumns = { @JoinColumn(name = "licr_num_id_listacriterio",nullable=false, referencedColumnName = "licr_num_id", columnDefinition = "BIGINT(20)") }, 
-			inverseJoinColumns = { @JoinColumn(name = "vase_num_id_valorseleccion",nullable=false, referencedColumnName = "vase_num_id", columnDefinition = "BIGINT(20)") })
+
+	@OneToMany(targetEntity = Propiedad.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "prcu_num_id_cultivo", referencedColumnName = "cult_num_id")
 	private List<ValorSeleccion> _listaValores;
-    
-    
+
 	public ListaCriterioSeleccion() {
 		super();
-		_id = 0;
 		_estado = Estado.Activo;
-		_codigo = null;
-		_descripcion = null;
 		_listaValores = null;
 	}
-	
+
 	public String get_codigo() {
 		return _codigo;
 	}
+
 	public void set_codigo(String codigo) {
 		_codigo = codigo;
 	}
-	
+
 	public List<ValorSeleccion> get_listaValores() {
 		return _listaValores;
 	}
+
 	public void set_listaValores(List<ValorSeleccion> listaValores) {
 		_listaValores = listaValores;
 	}
@@ -95,5 +90,5 @@ public class ListaCriterioSeleccion implements Serializable{
 	public void set_descripcion(String descripcion) {
 		_descripcion = descripcion;
 	}
-	
+
 }

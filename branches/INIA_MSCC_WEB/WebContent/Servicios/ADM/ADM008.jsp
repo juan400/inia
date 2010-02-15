@@ -68,7 +68,7 @@ Secano.</title>
 													</f:facet>
 
 													<center><rich:dataTable border="2" width="550px"
-														rows="6" styleClass="textoDataTable" id="tablaUsuarios"
+														rows="10" styleClass="textoDataTable" id="tablaUsuarios"
 														value="#{administrarUsuarioBean.usuarios}" var="usuario"
 														rowKeyVar="row" headerClass="columnHeader"
 														rowClasses="oddRow,evenRow">
@@ -81,28 +81,32 @@ Secano.</title>
 															<f:facet name="header">
 																<h:outputText value="#{text.usuario_Nombre}" />
 															</f:facet>
-															<h:outputText value="#{usuario._datos._nombre}" id="nombre" />
+															<h:outputText value="#{usuario._datos._nombre}"
+																id="nombre" />
 														</rich:column>
 
 														<rich:column width="170px">
 															<f:facet name="header">
 																<h:outputText value="#{text.usuario_Apellido}" />
 															</f:facet>
-															<h:outputText value="#{usuario._datos._apellido}" id="apellido" />
+															<h:outputText value="#{usuario._datos._apellido}"
+																id="apellido" />
 														</rich:column>
 
 														<rich:column width="80px">
 															<f:facet name="header">
 																<h:outputText value="#{text.usuario_Estado}" />
 															</f:facet>
-															<h:outputText value="#{usuario._estadoUsuario}" id="estado" />
+															<h:outputText value="#{usuario._estadoUsuario}"
+																id="estado" />
 														</rich:column>
 
 														<rich:column width="80px">
 															<f:facet name="header">
 																<h:outputText value="#{text.usuario_Perfil}" />
 															</f:facet>
-															<h:outputText value="#{usuario._datos._perfil._nombre}" id="perfil" />
+															<h:outputText value="#{usuario._datos._perfil._nombre}"
+																id="perfil" />
 														</rich:column>
 
 														<rich:column width="50px">
@@ -121,13 +125,12 @@ Secano.</title>
 														</rich:column>
 
 														<f:facet name="footer">
-															<rich:datascroller renderIfSinglePage="false"
-																maxPages="6" />
+															<rich:datascroller renderIfSinglePage="false" />
 														</f:facet>
 													</rich:dataTable></center>
 													<br></br>
 
-													<center><h:panelGrid columns="1" >
+													<center><h:panelGrid columns="1">
 														<a4j:commandButton immediate="true"
 															style="font-size: 10pt; color: #2d77c2; width : 87px;"
 															styleClass="textoPlano" action="cancelar"
