@@ -3,7 +3,7 @@
 ALTER TABLE `inia_mscc_db`.`tl_seg_trpe_transaccionperfil` AUTO_INCREMENT = 1;
 
 INSERT INTO `inia_mscc_db`.`tl_seg_trpe_transaccionperfil`
-(`trpe_num_id_perfile`,
+(`trpe_num_id_perfil`,
 `trpe_num_id_transaccion`)
 
 VALUES

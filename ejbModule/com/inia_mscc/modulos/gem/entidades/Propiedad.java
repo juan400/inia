@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,7 +33,8 @@ public class Propiedad implements Serializable {
 	private String _nombre;
 	@Column(name = "prcu_str_unidad_medida", nullable = true, columnDefinition = "VARCHAR(220)")
 	private String _unidadMedida;
-	@Column(name = "pruc_str_tipo", nullable = true, columnDefinition = "VARCHAR(45)")
+	@Enumerated(EnumType.STRING)
+	@Column(name = "prcu_str_tipo", nullable = true, columnDefinition = "VARCHAR(45)")
 	private Enumerados.TipoPropiedadCultivo _tipo;
 	@Transient
 	private String _valor;

@@ -13,7 +13,6 @@ import com.inia_mscc.config.hibernate.HibernateUtil;
 import com.inia_mscc.config.util.LoggingUtilities;
 import com.inia_mscc.excepciones.IniaPersistenciaException;
 import com.inia_mscc.modulos.gem.entidades.Propiedad;
-import com.inia_mscc.modulos.seg.entidades.Usuario;
 
 public class DAOPropiedad implements Serializable {
 

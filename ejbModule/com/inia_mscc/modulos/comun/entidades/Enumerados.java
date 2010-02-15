@@ -23,7 +23,7 @@ public class Enumerados {
 	}
 	
 	static public enum ServicioADM {
-		RelacionPCD, Transaccion, Region
+		RelacionPCD, Transaccion, Region, ValorSeleccion, ListaCriterio
 	}
 
 	static public enum ServicioSEG {
@@ -51,6 +51,10 @@ public class Enumerados {
 
 	static public enum TipoPropiedadCultivo {
 		Ninguno, Fenotipica, Genotipica, Ambiente
+	}
+	
+	static public enum ListaCriterio {
+		Ninguno, Fertilizante, IndiceConeat, ParametrosSalida
 	}
 
 	static public enum EstadoArchivo {

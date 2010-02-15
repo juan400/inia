@@ -27,10 +27,7 @@ public class DAOPerfil implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(DAOPerfil.class);
 
-	/**
-	 * @param pClave
-	 * @return
-	 */
+	
 	public boolean ComprobarPerfilEnUso(Perfil pPeril) {
 		boolean retorno = false;
 		try {
@@ -99,12 +96,6 @@ public class DAOPerfil implements Serializable {
 		return retorno;
 	}
 
-	/**
-	 * Este metodo registra el perfil en el sistema.
-	 * 
-	 * @param pPerfil
-	 *            *@return Devuelve el perfil con la clave generada.
-	 */
 	public Perfil RegistrarPerfil(Perfil pPerfil) {
 		Perfil perfil = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -121,11 +112,6 @@ public class DAOPerfil implements Serializable {
 		return perfil;
 	}
 
-	/**
-	 * Este metodo actualiza el perfil en el sistema.
-	 * 
-	 * @param pPerfil
-	 */
 	public void ActualizarPerfil(Perfil pPerfil) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {

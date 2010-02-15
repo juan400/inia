@@ -15,7 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
 
@@ -40,7 +39,7 @@ public class Cultivo implements Serializable {
 	@Column(name = "cult_str_nombre", nullable = true, columnDefinition = "VARCHAR(50)")
 	private String _nombre;
 	@OneToMany(targetEntity = Propiedad.class, cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name = "pruc_num_id_cultivo", referencedColumnName = "cult_num_id")
+	@JoinColumn(name = "prcu_num_id_cultivo", referencedColumnName = "cult_num_id")
 	private List<Propiedad> _listaPropiedades;
 
 	public Cultivo() {
