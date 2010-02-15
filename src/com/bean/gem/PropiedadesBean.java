@@ -11,6 +11,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import com.bean.comun.MaestroBean;
+import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioGEM;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.TipoPropiedadCultivo;
 import com.inia_mscc.modulos.gem.entidades.Cultivo;
@@ -28,11 +29,11 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 	private Cultivo cultivo;
 	private String cultivoSeleccionado;
 	private boolean deshabilitarSeleccionCultivo;
+	private boolean deshabilitarModificar;
 	private List<Propiedad> listaPropiedades;
 	private SelectItem[] tipoPropiedades;
 	private String tipoSeleccionado;
 	private Propiedad propiedad;
-	private String propiedadSeleccionada;
 	private Date fecha;
 	private String codigo;
 	private String nombre;
@@ -107,6 +108,8 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 			Propiedad propiedadSeleccionada = (Propiedad) it.next();
 			if (propiedadSeleccionada.get_codigo().equalsIgnoreCase(
 					propiedadElegida)) {
+
+				deshabilitarModificar = true;
 				this.setPropiedad(propiedadSeleccionada);
 
 				this.setCodigo(this.getPropiedad().get_codigo());
@@ -129,12 +132,43 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 			Propiedad propiedadSeleccionada = (Propiedad) it.next();
 			if (propiedadSeleccionada.get_codigo().equalsIgnoreCase(
 					propiedadElegida)) {
+				deshabilitarModificar = true;
 				prop = propiedadSeleccionada;
 				break;
 			}
 		}
 		this.getListaPropiedades().remove(prop);
 		this.setExito("Se elimino la propiedad de la lista acutla");
+		return "GEM003";
+	}
+
+	public String AceptarPropiedad() {
+		Iterator<Propiedad> it = this.getListaPropiedades().iterator();
+		Propiedad propiedadSeleccionada = null;
+		while (it.hasNext()) {
+			propiedadSeleccionada = (Propiedad) it.next();
+			if (propiedadSeleccionada.get_codigo().equalsIgnoreCase(
+					this.getPropiedad().get_codigo())) {
+				deshabilitarModificar = true;
+				propiedadSeleccionada.set_codigo(this.getCodigo());
+				propiedadSeleccionada.set_nombre(this.getNombre());
+				propiedadSeleccionada.set_unidadMedida(this.getUnidadedida());
+				this.setPropiedad(propiedadSeleccionada);
+				this.setCodigo("");
+				this.setNombre("");
+				this.setUnidadedida("");
+				this.setTipoSeleccionado(Enumerados.TipoPropiedadCultivo.Ninguno
+								.name());
+				this.setExito("Se realizarion los comabios "
+						+ "correctamente la propiedada para el cultivo.");
+			}
+		}
+		if (propiedadSeleccionada != null) {
+			this.getListaPropiedades().add(propiedadSeleccionada);
+			this.setExito("Se agrego correctamente la propiedad al cultivo");
+		} else {
+
+		}
 		return "GEM003";
 	}
 
@@ -203,14 +237,6 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 		this.propiedad = propiedad;
 	}
 
-	public String getPropiedadSeleccionada() {
-		return propiedadSeleccionada;
-	}
-
-	public void setPropiedadSeleccionada(String propiedadSeleccionada) {
-		this.propiedadSeleccionada = propiedadSeleccionada;
-	}
-
 	public Date getFecha() {
 		return fecha;
 	}
@@ -249,5 +275,13 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 
 	public void setTipoSeleccionado(String tipoSeleccionado) {
 		this.tipoSeleccionado = tipoSeleccionado;
+	}
+
+	public boolean isDeshabilitarModificar() {
+		return deshabilitarModificar;
+	}
+
+	public void setDeshabilitarModificar(boolean deshabilitarModificar) {
+		this.deshabilitarModificar = deshabilitarModificar;
 	}
 }
