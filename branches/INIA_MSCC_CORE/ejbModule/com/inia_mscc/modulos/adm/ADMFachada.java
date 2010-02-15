@@ -5,15 +5,21 @@ import java.util.List;
 
 import com.inia_mscc.modulos.adm.entidades.Ciudad;
 import com.inia_mscc.modulos.adm.entidades.Departamento;
+import com.inia_mscc.modulos.adm.entidades.ListaCriterioSeleccion;
 import com.inia_mscc.modulos.adm.entidades.Pais;
 import com.inia_mscc.modulos.adm.entidades.Region;
 import com.inia_mscc.modulos.adm.entidades.Transaccion;
+import com.inia_mscc.modulos.adm.entidades.ValorSeleccion;
+import com.inia_mscc.modulos.adm.proveedores.ProveedorListaCriterio;
 import com.inia_mscc.modulos.adm.proveedores.ProveedorRegion;
 import com.inia_mscc.modulos.adm.proveedores.ProveedorRelacionPCD;
 import com.inia_mscc.modulos.adm.proveedores.ProveedorTransaccion;
+import com.inia_mscc.modulos.adm.proveedores.ProveedorValorSeleccion;
+import com.inia_mscc.modulos.adm.servicios.ServicioListaCriterio;
 import com.inia_mscc.modulos.adm.servicios.ServicioRegion;
 import com.inia_mscc.modulos.adm.servicios.ServicioRelacionPCD;
 import com.inia_mscc.modulos.adm.servicios.ServicioTransaccion;
+import com.inia_mscc.modulos.adm.servicios.ServicioValorSeleccion;
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
 
 public class ADMFachada {
@@ -21,6 +27,8 @@ public class ADMFachada {
 	private ServicioRelacionPCD srvRelacionPCD;
 	private ServicioTransaccion srvTransaccion;
 	private ServicioRegion srvRegion;
+	private ServicioValorSeleccion srvValorSeleccion;
+	private ServicioListaCriterio srvListaCriterio;
 
 	public ADMFachada(Enumerados.ServicioADM servicio) {
 		try {
@@ -33,6 +41,12 @@ public class ADMFachada {
 				break;
 			case Region:
 				srvRegion = new ProveedorRegion();
+				break;
+			case ValorSeleccion:
+				srvValorSeleccion = new ProveedorValorSeleccion();
+				break;
+			case ListaCriterio:
+				srvListaCriterio = new ProveedorListaCriterio();
 				break;
 			}
 
@@ -84,32 +98,61 @@ public class ADMFachada {
 	public void ActualizarTransaccion(Transaccion pTransaccion) {
 		srvTransaccion.ActualizarTransaccion(pTransaccion);
 	}
-	
-	public Transaccion ComprobarTransaccion(Transaccion pTransaccion){
+
+	public Transaccion ComprobarTransaccion(Transaccion pTransaccion) {
 		return srvTransaccion.ComprobarTransaccion(pTransaccion);
 	}
-	
+
 	public void ActualizarRegion(Region pRegion) {
 		srvRegion.ActualizarRegion(pRegion);
 	}
-	
+
 	public Region RegistrarRegion(Region pRegion) {
 		return srvRegion.RegistrarRegion(pRegion);
 	}
-	
+
 	public List<Region> ObtenerRegiones() {
 		return srvRegion.ObtenerRegiones();
 	}
-	
-	public Region ComprobarRegion(Region pRegion){
+
+	public Region ComprobarRegion(Region pRegion) {
 		return srvRegion.ComprobarRegion(pRegion);
 	}
-	
-	public Region ComprobarRegionCodigo(Region pRegion){
+
+	public Region ComprobarRegionCodigo(Region pRegion) {
 		return srvRegion.ComprobarRegionCodigo(pRegion);
 	}
-	
+
 	public void EliminarRegion(Region pRegion) {
 		srvRegion.EliminarRegion(pRegion);
+	}
+
+	public ValorSeleccion RegistrarValorSeleccion(ValorSeleccion pValor) {
+		return srvValorSeleccion.RegistrarValorSeleccion(pValor);
+	}
+
+	public void ActualizarValorSeleccion(ValorSeleccion pValor) {
+		srvValorSeleccion.ActualizarValorSeleccion(pValor);
+	}
+
+	public List<ValorSeleccion> ObtenerValores() {
+		return srvValorSeleccion.ObtenerValores();
+	}
+
+	public ValorSeleccion ComprobarValorSeleccion(ValorSeleccion pValor) {
+		return srvValorSeleccion.ComprobarValorSeleccion(pValor);
+	}
+
+	public void ActualizarCriterio(ListaCriterioSeleccion pCriterio) {
+		srvListaCriterio.ActualizarCriterio(pCriterio);
+	}
+
+	public List<ListaCriterioSeleccion> ObtenerCriterios() {
+		return srvListaCriterio.ObtenerCriterios();
+	}
+
+	public ListaCriterioSeleccion ObtenerCriterioConValores(
+			ListaCriterioSeleccion pCriterio) {
+		return srvListaCriterio.ObtenerCriterioConValores(pCriterio);
 	}
 }

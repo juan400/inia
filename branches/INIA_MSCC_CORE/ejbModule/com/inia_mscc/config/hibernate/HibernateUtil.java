@@ -10,9 +10,12 @@ import com.inia_mscc.config.util.LoggingUtilities;
 import com.inia_mscc.excepciones.IniaPersistenciaException;
 import com.inia_mscc.modulos.adm.entidades.Ciudad;
 import com.inia_mscc.modulos.adm.entidades.Departamento;
+import com.inia_mscc.modulos.adm.entidades.ListaCriterioSeleccion;
 import com.inia_mscc.modulos.adm.entidades.Pais;
 import com.inia_mscc.modulos.adm.entidades.Region;
 import com.inia_mscc.modulos.adm.entidades.Transaccion;
+import com.inia_mscc.modulos.adm.entidades.ValorSeleccion;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.ListaCriterio;
 import com.inia_mscc.modulos.gem.entidades.Cultivo;
 import com.inia_mscc.modulos.gem.entidades.Propiedad;
 import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
@@ -40,6 +43,8 @@ public class HibernateUtil {
         	.addAnnotatedClass(Region.class)
         	.addAnnotatedClass(Cultivo.class)
         	.addAnnotatedClass(Propiedad.class)
+        	.addAnnotatedClass(ValorSeleccion.class)
+        	.addAnnotatedClass(ListaCriterioSeleccion.class)
         	.configure("hibernate.cfg.xml")
         	.buildSessionFactory();
             
