@@ -67,7 +67,8 @@ public class PerfilBean extends MaestroBean implements Serializable {
 	}
 
 	public String verConsulta() {
-		this.alta();
+		this.setError("");
+		this.setExito("");
 		Map paramMap = FacesContext.getCurrentInstance().getExternalContext()
 				.getRequestParameterMap();
 		String consultaElegida = (String) paramMap.get("consultaElegida");

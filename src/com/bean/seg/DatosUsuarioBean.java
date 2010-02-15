@@ -2,11 +2,8 @@ package com.bean.seg;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
-import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import com.bean.comun.MaestroBean;
@@ -17,7 +14,6 @@ import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.EstadoUsuario;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioADM;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioSEG;
-import com.inia_mscc.modulos.seg.entidades.Perfil;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
 public class DatosUsuarioBean extends MaestroBean implements Serializable {
@@ -39,8 +35,6 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 	private String departamentoElegido;
 	private String ciudadElegido;
 	private String codigoPostal;
-	private String estado;
-	private Perfil perfil;
 	private SelectItem[] paises;
 	private SelectItem[] departamentos;
 	private SelectItem[] ciudades;
@@ -50,40 +44,7 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 	private Pais pais;
 	private Departamento depto;
 	private Ciudad ciudad;
-	private List<Usuario> usuarios;
-	private Usuario usuario = new Usuario();
 
-	public boolean isInit() {
-		this.usuarios = this.getSegFachada(ServicioSEG.Usuario).ObtenerUsuarios();
-		return false;
-	}
-
-	public String alta() {
-		this.setError("");
-		this.setExito("");
-		return "Alta";
-	}
-
-	public String verUsuario() {
-		this.alta();
-		Map paramMap = FacesContext.getCurrentInstance().getExternalContext()
-				.getRequestParameterMap();
-		String usuarioElegido = (String) paramMap.get("usuarioElegido");
-		Iterator<Usuario> it = usuarios.iterator();
-		while (it.hasNext()) {
-			Usuario usuarioSeleccionado = (Usuario) it.next();
-			if (usuarioSeleccionado.get_id() == (long) Long
-					.parseLong(usuarioElegido)) {
-				usuario = usuarioSeleccionado;
-
-				nombre = usuario.get_datos().get_nombre();
-				apellido = usuario.get_datos().get_apellido();
-				estado = usuario.get_datos().get_estado().toString();
-				perfil = usuario.get_datos().get_perfil();
-			}
-		}
-		return "resultados";
-	}
 
 	public DatosUsuarioBean() throws Exception {
 		try {
@@ -481,30 +442,6 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 
 	public void setCiudad(Ciudad ciudad) {
 		this.ciudad = ciudad;
-	}
-
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
-	}
-
-	public List<Usuario> getUsuarios() {
-		return usuarios;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setPerfil(Perfil perfil) {
-		this.perfil = perfil;
-	}
-
-	public Perfil getPerfil() {
-		return perfil;
 	}
 
 }
