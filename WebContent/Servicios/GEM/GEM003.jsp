@@ -85,7 +85,7 @@ Secano.</title>
 																<a4j:support
 																	action="#{propiedadesBean.TakeSelectionCultivo}"
 																	event="onchange" ajaxSingle="true"
-																	reRender="tablaPropiedades" />
+																	reRender="panelPropiedades" />
 															</rich:comboBox>
 														</h:panelGrid>
 
@@ -198,8 +198,9 @@ Secano.</title>
 																<h:outputText />
 																<a4j:commandButton
 																	style="font-size: 10pt; color: #2d77c2; width : 125px;"
-																	styleClass="textoPlano" value="Aceptar propiedad">
-																	<a4j:support event="onclick" ajaxSingle="true"
+																	styleClass="textoPlano" value="Aceptar propiedad"
+																	disabled="#{propiedadesBean.disableAceptarPropiedad}">
+																	<a4j:support event="onclick" ajaxSingle="false"
 																		reRender="tablaPropiedades"
 																		action="#{propiedadesBean.AceptarPropiedad}" />
 																</a4j:commandButton>
