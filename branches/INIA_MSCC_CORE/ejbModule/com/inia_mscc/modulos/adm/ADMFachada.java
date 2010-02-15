@@ -127,32 +127,31 @@ public class ADMFachada {
 		srvRegion.EliminarRegion(pRegion);
 	}
 
-	public ValorSeleccion RegistrarValorSeleccion(ValorSeleccion pValor) {
-		return srvValorSeleccion.RegistrarValorSeleccion(pValor);
-	}
-
 	public void ActualizarValorSeleccion(ValorSeleccion pValor) {
 		srvValorSeleccion.ActualizarValorSeleccion(pValor);
 	}
 
-	public List<ValorSeleccion> ObtenerValores() {
-		return srvValorSeleccion.ObtenerValores();
+	public ValorSeleccion ObtenerValorSeleccion(ValorSeleccion pValor) {
+		return srvValorSeleccion.ObtenerValorSeleccion(pValor);
 	}
 
-	public ValorSeleccion ComprobarValorSeleccion(ValorSeleccion pValor) {
-		return srvValorSeleccion.ComprobarValorSeleccion(pValor);
-	}
-
-	public void ActualizarCriterio(ListaCriterioSeleccion pCriterio) {
-		srvListaCriterio.ActualizarCriterio(pCriterio);
-	}
-
-	public List<ListaCriterioSeleccion> ObtenerCriterios() {
-		return srvListaCriterio.ObtenerCriterios();
-	}
-
-	public ListaCriterioSeleccion ObtenerCriterioConValores(
+	public ListaCriterioSeleccion ObtenerCriterio(
 			ListaCriterioSeleccion pCriterio) {
-		return srvListaCriterio.ObtenerCriterioConValores(pCriterio);
+		return srvListaCriterio.ObtenerCriterio(pCriterio);
 	}
+
+	public List<ListaCriterioSeleccion> ObtenerListaCriterio(
+			ListaCriterioSeleccion pCriterio) {
+		return srvListaCriterio.ObtenerListaCriterio(pCriterio);
+	}
+
+	public ListaCriterioSeleccion RegistrarListaCriterio(
+			ListaCriterioSeleccion pCriterio) {
+		return srvListaCriterio.RegistrarListaCriterio(pCriterio);
+	}
+
+	public void ActualizarListaCriterio(ListaCriterioSeleccion pCriterio) {
+		srvListaCriterio.ActualizarListaCriterio(pCriterio);
+	}
+
 }

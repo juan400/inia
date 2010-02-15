@@ -1,7 +1,6 @@
 package com.inia_mscc.modulos.adm.proveedores;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -25,22 +24,12 @@ public class ProveedorValorSeleccion implements ServicioValorSeleccion {
 	}
 
 	@Override
-	public ValorSeleccion RegistrarValorSeleccion(ValorSeleccion pValor) {
-		return ejbValorSeleccion.RegistrarValorSeleccion(pValor);
-	}
-
-	@Override
 	public void ActualizarValorSeleccion(ValorSeleccion pValor) {
 		ejbValorSeleccion.ActualizarValorSeleccion(pValor);
 	}
-
-	@Override
-	public List<ValorSeleccion> ObtenerValores() {
-		return ejbValorSeleccion.ObtenerValores();
-	}
 	
 	@Override
-	public ValorSeleccion ComprobarValorSeleccion(ValorSeleccion pValor) {
-		return ejbValorSeleccion.ComprobarValorSeleccion(pValor);
+	public  ValorSeleccion ObtenerValorSeleccion(ValorSeleccion pValor){
+		return ejbValorSeleccion.ObtenerValorSeleccion(pValor);
 	}
 }
