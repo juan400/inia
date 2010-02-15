@@ -50,8 +50,8 @@ public class Perfil implements Serializable {
 
 	@OneToMany(targetEntity = Transaccion.class, cascade = CascadeType.ALL, fetch= FetchType.LAZY)
 	@JoinTable(name = "tl_seg_trpe_transaccionperfil", 
-			uniqueConstraints={@UniqueConstraint(columnNames={"trpe_num_id_perfile", "trpe_num_id_transaccion"})},
-			joinColumns = { @JoinColumn(name = "trpe_num_id_perfile",nullable=false, referencedColumnName = "perf_num_id", columnDefinition = "BIGINT(20)") }, 
+			uniqueConstraints={@UniqueConstraint(columnNames={"trpe_num_id_perfil", "trpe_num_id_transaccion"})},
+			joinColumns = { @JoinColumn(name = "trpe_num_id_perfil",nullable=false, referencedColumnName = "perf_num_id", columnDefinition = "BIGINT(20)") }, 
 			inverseJoinColumns = { @JoinColumn(name = "trpe_num_id_transaccion",nullable=false, referencedColumnName = "tran_num_id", columnDefinition = "BIGINT(20)") })
 	private List<Transaccion> _transaccionesSistema;
 
