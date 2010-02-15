@@ -35,6 +35,7 @@ public class Propiedad implements Serializable {
 	private Enumerados.TipoPropiedadCultivo _tipo;
 	@Transient
 	private String _valor;
+	
 
 	public Propiedad() {
 		super();

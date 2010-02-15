@@ -40,8 +40,8 @@ public class GEMFachada {
 		return srvCultivo.ObtenerCultivo(pCultivo);
 	}
 
-	public List<Cultivo> ObtenerCultivoes(Propiedad pPropiedad) {
-		return srvCultivo.ObtenerCultivoes(pPropiedad);
+	public List<Cultivo> ObtenerCultivos(Cultivo pCultivo) {
+		return srvCultivo.ObtenerCultivos(pCultivo);
 	}
 
 	public Cultivo RegistrarCultivo(Cultivo pCultivo) {
