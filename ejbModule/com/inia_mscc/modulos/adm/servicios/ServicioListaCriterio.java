@@ -6,7 +6,14 @@ import com.inia_mscc.modulos.adm.entidades.ListaCriterioSeleccion;
 
 public interface ServicioListaCriterio {
 
-	public void ActualizarCriterio(ListaCriterioSeleccion pCriterio);
-	public List<ListaCriterioSeleccion> ObtenerCriterios();
-	public ListaCriterioSeleccion ObtenerCriterioConValores(ListaCriterioSeleccion pCriterio);
+	public ListaCriterioSeleccion ObtenerCriterio(
+			ListaCriterioSeleccion pCriterio);
+
+	public List<ListaCriterioSeleccion> ObtenerListaCriterio(
+			ListaCriterioSeleccion pCriterio);
+
+	public ListaCriterioSeleccion RegistrarListaCriterio(
+			ListaCriterioSeleccion pCriterio);
+
+	public void ActualizarListaCriterio(ListaCriterioSeleccion pCriterio);
 }

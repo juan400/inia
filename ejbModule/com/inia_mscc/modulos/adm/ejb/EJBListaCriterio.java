@@ -11,17 +11,19 @@ public class EJBListaCriterio implements ServicioListaCriterio {
 	private DAOListaCriterio dao = new DAOListaCriterio();
 
 	@Override
-	public void ActualizarCriterio(ListaCriterioSeleccion pCriterio) {
-		dao.ActualizarCriterio(pCriterio);
+	public ListaCriterioSeleccion ObtenerCriterio(ListaCriterioSeleccion pCriterio){
+		return dao.ObtenerCriterio(pCriterio);
 	}
 
-	@Override
-	public List<ListaCriterioSeleccion> ObtenerCriterios() {
-		return dao.ObtenerCriterios();
+	public List<ListaCriterioSeleccion> ObtenerListaCriterio(ListaCriterioSeleccion pCriterio){
+		return dao.ObtenerListaCriterio(pCriterio);
 	}
 
-	public ListaCriterioSeleccion ObtenerCriterioConValores(
-			ListaCriterioSeleccion pCriterio) {
-		return dao.ObtenerCriterioConValores(pCriterio);
+	public ListaCriterioSeleccion RegistrarListaCriterio(ListaCriterioSeleccion pCriterio){
+		return dao.RegistrarListaCriterio(pCriterio);
+	}
+	
+	public void ActualizarListaCriterio(ListaCriterioSeleccion pCriterio) {
+		dao.ActualizarListaCriterio(pCriterio);
 	}
 }

@@ -26,17 +26,25 @@ public class ProveedorListaCriterio implements ServicioListaCriterio {
 	}
 
 	@Override
-	public void ActualizarCriterio(ListaCriterioSeleccion pCriterio) {
-		ejbListaCriterio.ActualizarCriterio(pCriterio);
+	public ListaCriterioSeleccion ObtenerCriterio(
+			ListaCriterioSeleccion pCriterio) {
+		return ejbListaCriterio.ObtenerCriterio(pCriterio);
 	}
 
 	@Override
-	public List<ListaCriterioSeleccion> ObtenerCriterios() {
-		return ejbListaCriterio.ObtenerCriterios();
+	public List<ListaCriterioSeleccion> ObtenerListaCriterio(
+			ListaCriterioSeleccion pCriterio) {
+		return ejbListaCriterio.ObtenerListaCriterio(pCriterio);
 	}
 
-	public ListaCriterioSeleccion ObtenerCriterioConValores(
+	@Override
+	public ListaCriterioSeleccion RegistrarListaCriterio(
 			ListaCriterioSeleccion pCriterio) {
-		return ejbListaCriterio.ObtenerCriterioConValores(pCriterio);
+		return ejbListaCriterio.RegistrarListaCriterio(pCriterio);
+	}
+
+	@Override
+	public void ActualizarListaCriterio(ListaCriterioSeleccion pCriterio) {
+		ejbListaCriterio.ActualizarListaCriterio(pCriterio);
 	}
 }
