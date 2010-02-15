@@ -3,6 +3,8 @@ package com.inia_mscc.modulos.gem.dao;
 import java.io.Serializable;
 import java.util.List;
 
+import javassist.bytecode.LineNumberAttribute.Pc;
+
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -29,13 +31,13 @@ public class DAOCultivo implements Serializable {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Cultivo> ObtenerCultivoes() {
+	public List<Cultivo> ObtenerCultivos(Cultivo pCultivo) {
 		List<Cultivo> listaCultivo = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			Criteria c = session.createCriteria(Cultivo.class);
 			listaCultivo = (List<Cultivo>) c.list();
-		} catch (StaleObjectStateException e) {
+		} catch (Exception e) {// catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);
@@ -53,11 +55,16 @@ public class DAOCultivo implements Serializable {
 			Criteria c = session.createCriteria(Cultivo.class);
 			if (pCultivo.get_id() != 0) {
 				c.add(Restrictions.eq("_id", pCultivo.get_id()));
+				System.out.println(pCultivo.get_id());
 			}
 			if (!pCultivo.get_nombre().isEmpty()) {
 				c.add(Restrictions.eq("_nombre", pCultivo.get_nombre()));
+				System.out.println(pCultivo.get_nombre());
 			}
 			unCultivo = (Cultivo) c.uniqueResult();
+			if (unCultivo != null) {
+				unCultivo.get_listaPropiedades().get(0);
+			}
 		} catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
@@ -65,7 +72,7 @@ public class DAOCultivo implements Serializable {
 		}
 		return unCultivo;
 	}
-	
+
 	/**
 	 * Este metodo registra el cultivo en el sistema.
 	 * 

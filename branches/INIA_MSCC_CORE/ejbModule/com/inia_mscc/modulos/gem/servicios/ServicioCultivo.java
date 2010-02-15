@@ -7,7 +7,7 @@ import com.inia_mscc.modulos.gem.entidades.Propiedad;
 
 public interface ServicioCultivo {
 
-	public List<Cultivo> ObtenerCultivoes(Propiedad pPropiedad);
+	public List<Cultivo> ObtenerCultivos(Cultivo pCultivo);
 	public Cultivo ObtenerCultivo(Cultivo pCultivo);
 	public Cultivo RegistrarCultivo(Cultivo pCultivo);
 	public void ActualizarCultivo(Cultivo pCultivo);

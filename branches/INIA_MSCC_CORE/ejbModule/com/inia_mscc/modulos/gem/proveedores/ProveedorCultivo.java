@@ -37,8 +37,8 @@ public class ProveedorCultivo implements ServicioCultivo {
 	}
 
 	@Override
-	public List<Cultivo> ObtenerCultivoes(Propiedad pPropiedad) {
-		return ejbCultivo.ObtenerCultivoes(pPropiedad);
+	public List<Cultivo> ObtenerCultivos(Cultivo pCultivo) {
+		return ejbCultivo.ObtenerCultivos(pCultivo);
 	}
 
 	@Override

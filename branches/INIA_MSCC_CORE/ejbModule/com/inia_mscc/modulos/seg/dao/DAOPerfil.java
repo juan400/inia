@@ -60,7 +60,7 @@ public class DAOPerfil implements Serializable {
 			retorno = (Perfil) c.uniqueResult();
 			if (retorno != null) {
 				retorno.get_transaccionesSistema()
-						.get(1);
+						.get(0);
 			}
 		} catch (Exception e) { // catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
