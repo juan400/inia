@@ -60,7 +60,7 @@ Secano.</title>
 										</h:column>
 										<h:column>
 											<h:panelGrid>
-												<h:panelGroup rendered="#{propiedadesBean.init}" />
+												
 												<h:panelGrid>
 													<rich:panel headerClass="tituloPantalla"
 														style="background-color: #ebf3fd;">
@@ -82,16 +82,17 @@ Secano.</title>
 																<a4j:support
 																	action="#{propiedadesBean.TakeSelectionCultivo}"
 																	event="onchange" ajaxSingle="true"
-																	reRender="cmbDepartamentos" />
+																	reRender="tablaPropiedades" />
 															</rich:comboBox>
 														</h:panelGrid>
 
 														<h:panelGrid>
 															<center><rich:dataTable border="2" width="400px"
-																rows="5" styleClass="textoDataTable" id="tablaPropiedades"
-																value="#{propiedadesBean.listaPropiedades}" var="propiedad"
-																rowKeyVar="row" headerClass="columnHeader"
-																rowClasses="oddRow,evenRow">
+																rows="5" styleClass="textoDataTable"
+																id="tablaPropiedades"
+																value="#{propiedadesBean.listaPropiedades}"
+																var="propiedad" rowKeyVar="row"
+																headerClass="columnHeader" rowClasses="oddRow,evenRow">
 
 																<f:facet name="header">
 																	<h:outputText value="Propiedades ingresadas" />
@@ -119,22 +120,24 @@ Secano.</title>
 																		id="descripcion" />
 																</rich:column>
 
-																<rich:column width="60">
+																<rich:column width="80">
 																	<f:facet name="header">
 																		<h:outputText value="Modificar" />
 																	</f:facet>
 
-																	<a4j:commandButton action="#{propiedadesBean.VerPropiedad}"
-																		image="/Recursos/Imagenes/Iconos/edit.gif"
-																		style="width : 27px; height : 21px;">
+																	<a4j:commandButton
+																		action="#{propiedadesBean.VerPropiedad}"
+																		image="/Recursos/Imagenes/Iconos/edit.gif" immediate="true"
+																		style="width : 27px; height : 21px;" reRender="datosPropiedad" >
 																		<a4j:actionparam name="propiedadElegida"
-																			value="#{propiedad._codigo}" />
+																			value="#{propiedad._codigo}"/>
+																		
 																		<rich:toolTip value="Modificar" />
 																	</a4j:commandButton>
 
 																	<a4j:commandButton action="#{propiedadesBean.Eliminar}"
-																		image="/Recursos/Imagenes/Iconos/delete.gif"
-																		style=" border:0; width : 27px; height : 21px;">
+																		image="/Recursos/Imagenes/Iconos/delete.gif" immediate="true"
+																		style=" border:0; width : 27px; height : 21px;" reRender="tablaPropiedades">
 																		<a4j:actionparam name="propiedadEliminar"
 																			value="#{propiedad._codigo}" />
 																		<rich:toolTip value="Eliminar" />
@@ -148,32 +151,47 @@ Secano.</title>
 															</rich:dataTable></center>
 														</h:panelGrid>
 
-														<h:panelGrid>
+														<h:panelGrid columns="2" id="datosPropiedad">
 
-															<h:outputText value="Ingrese nombre" />
-															<h:inputText value="#{propiedadesBean.nombre}"
+															<h:outputText value="Código" />
+															<h:inputText value="#{propiedadesBean.codigo}"
 																required="true"
-																requiredMessage="Ingrese un nombre para el cultivo"
+																requiredMessage="Ingrese un código para la propiedad"
 																styleClass="textoPlano" maxlength="50"
 																onkeypress="ValidarCampoLetras(this, event)" />
 
-															<h:outputText value="Ingresar descripción" />
-															<h:inputTextarea value="#{propiedadesBean.descripcion}"
+															<h:outputText value="Nombre" />
+															<h:inputText value="#{propiedadesBean.nombre}"
 																required="true"
-																requiredMessage="Ingrese la descripcion del cultivo"
-																styleClass="textoPlano"
+																requiredMessage="Ingrese un nombre para la propiedad"
+																styleClass="textoPlano" maxlength="50"
 																onkeypress="ValidarCampoLetras(this, event)">
-																<f:validateLength maximum="220" />
-															</h:inputTextarea>
+															</h:inputText>
+
+															<h:outputText value="Unidad de Medida" />
+															<h:inputText value="#{propiedadesBean.unidadedida}"
+																styleClass="textoPlano" maxlength="50"
+																onkeypress="ValidarCampoLetras(this, event)">
+															</h:inputText>
 
 															<h:outputLabel value="Seleccionar un estado" />
-															<rich:comboBox value="#{propiedadesBean.estado}"
+															<rich:comboBox
+																value="#{propiedadesBean.tipoSeleccionado}"
 																enableManualInput="false" styleClass="combo">
-																<f:selectItems value="#{propiedadesBean.estados}" />
+																<f:selectItems
+																	value="#{propiedadesBean.tipoPropiedades}" />
 															</rich:comboBox>
 
+															<h:outputText />
+															<a4j:commandButton
+																style="font-size: 10pt; color: #2d77c2; width : 125px;"
+																styleClass="textoPlano"
+																action="#{propiedadesBean.Modifica}"
+																value="Aceptar propiedad" />
 														</h:panelGrid>
-
+														
+														<td></td>
+														
 														<center><h:panelGrid columns="3">
 															<a4j:commandButton immediate="true"
 																style="font-size: 10pt; color: #2d77c2; width : 87px;"
