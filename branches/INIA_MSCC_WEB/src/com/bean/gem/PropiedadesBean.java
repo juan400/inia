@@ -116,7 +116,7 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 			}
 		}
 
-		return "";
+		return "GEM003";
 	}
 
 	public String Eliminar() {
@@ -134,7 +134,8 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 			}
 		}
 		this.getListaPropiedades().remove(prop);
-		return "";
+		this.setExito("Se elimino la propiedad de la lista acutla");
+		return "GEM003";
 	}
 
 	public List<Cultivo> getListaCultivos() {
