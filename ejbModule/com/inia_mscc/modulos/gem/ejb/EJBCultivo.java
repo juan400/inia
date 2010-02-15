@@ -32,8 +32,8 @@ public class EJBCultivo implements ServicioCultivo {
 	}
 
 	@Override
-	public List<Cultivo> ObtenerCultivoes(Propiedad pPropiedad) {
-		return dao.ObtenerCultivoes();
+	public List<Cultivo> ObtenerCultivos(Cultivo pCultivo) {
+		return dao.ObtenerCultivos(pCultivo);
 	}
 
 	@Override

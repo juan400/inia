@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,8 +40,7 @@ public class Cultivo implements Serializable {
 	@Column(name = "cult_str_nombre", nullable = true, columnDefinition = "VARCHAR(50)")
 	private String _nombre;
 	@OneToMany(targetEntity = Propiedad.class, cascade = CascadeType.ALL)
-//	@JoinColumn(name = "cult_num_id", referencedColumnName = "pruc_num_id_cultivo", updatable = true, nullable = false, columnDefinition = "BIGINT(20)")
-//	@Transient
+	@JoinColumn(name = "pruc_num_id_cultivo", referencedColumnName = "cult_num_id")
 	private List<Propiedad> _listaPropiedades;
 
 	public Cultivo() {
