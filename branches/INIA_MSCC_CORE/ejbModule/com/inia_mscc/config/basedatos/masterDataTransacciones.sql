@@ -41,10 +41,10 @@ VALUES
 (default,'024','Modificar Cultivo',default,'/Servicios/GEM/GEM002.jsp','GEM002','Modificar Cultivo',NOW()),
 (default,'025','Crear Propiedades Cultivo',default,'/Servicios/GEM/GEM003.jsp','GEM003','Crear Propiedades Cultivo',NOW()),
 (default,'026','Modificar Propiedades de un Cultivo',default,'/Servicios/GEM/GEM004.jsp','GEM004','Modificar Propiedades de un Cultivo',NOW()),
-(default,'026','Ingresar Escenario',default,'/Servicios/GEM/GEM005.jsp','GEM005','Ingresar Escenario',NOW()),
-(default,'027','Modificar Escenario',default,'/Servicios/GEM/GEM006.jsp','GEM006','Modificar Escenario',NOW()),
-(default,'028','Ingresar Python de MSCC',default,'/Servicios/GEM/GEM007.jsp','GEM007','Ingresar Python de MSCC',NOW()),
-(default,'029','Modificar Python de MSCC',default,'/Servicios/GEM/GEM008.jsp','GEM008','Modificar Python de MSCC',NOW()),
-(default,'030','Anular Python de MSCC',default,'/Servicios/GEM/GEM009.jsp','GEM009','Anular Python de MSCC',NOW()),
-(default,'031','Ejecución de MSCC',default,'/Servicios/EJE/EJE001.jsp','EJE001','Ejecución de MSCC',NOW()),
-(default,'032','Ejecución de MSCC',default,'/Servicios/EJE/EJE002.jsp','EJE002','Ejecución de MSCC',NOW());
+(default,'027','Ingresar Escenario',default,'/Servicios/GEM/GEM005.jsp','GEM005','Ingresar Escenario',NOW()),
+(default,'028','Modificar Escenario',default,'/Servicios/GEM/GEM006.jsp','GEM006','Modificar Escenario',NOW()),
+(default,'029','Ingresar Python de MSCC',default,'/Servicios/GEM/GEM007.jsp','GEM007','Ingresar Python de MSCC',NOW()),
+(default,'030','Modificar Python de MSCC',default,'/Servicios/GEM/GEM008.jsp','GEM008','Modificar Python de MSCC',NOW()),
+(default,'031','Anular Python de MSCC',default,'/Servicios/GEM/GEM009.jsp','GEM009','Anular Python de MSCC',NOW()),
+(default,'032','Ejecución de MSCC',default,'/Servicios/EJE/EJE001.jsp','EJE001','Ejecución de MSCC',NOW()),
+(default,'033','Ejecución de MSCC',default,'/Servicios/EJE/EJE002.jsp','EJE002','Ejecución de MSCC',NOW());
