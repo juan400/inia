@@ -133,7 +133,7 @@ Secano.</title>
 																			action="#{propiedadesBean.ModificarPropiedad}"
 																			image="/Recursos/Imagenes/Iconos/edit.gif"
 																			immediate="true" style="width : 27px; height : 21px;"
-																			reRender="datosPropiedad">
+																			>
 																			<a4j:actionparam name="propiedadElegida"
 																				value="#{propiedad._codigo}" />
 
@@ -143,9 +143,9 @@ Secano.</title>
 																		<a4j:commandButton
 																			action="#{propiedadesBean.EliminarPropiedad}"
 																			image="/Recursos/Imagenes/Iconos/delete.gif"
-																			immediate="true"
+																			immediate="true" 
 																			style=" border:0; width : 27px; height : 21px;"
-																			reRender="tablaPropiedades">
+																			reRender="panelPropiedades">
 																			<a4j:actionparam name="propiedadElegida"
 																				value="#{propiedad._codigo}" />
 																			<rich:toolTip value="Eliminar" />
@@ -164,9 +164,9 @@ Secano.</title>
 
 																<h:outputText value="Código" />
 																<h:inputText value="#{propiedadesBean.codigo}"
-																	required="true"
+																	required="true" 
 																	requiredMessage="Ingrese un código para la propiedad"
-																	styleClass="textoPlano" maxlength="50"
+																	styleClass="textoPlano" maxlength="10"
 																	onkeypress="ValidarCampoLetras(this, event)"
 																	style=" width : 230px;" />
 
@@ -174,14 +174,14 @@ Secano.</title>
 																<h:inputText value="#{propiedadesBean.nombre}"
 																	required="true"
 																	requiredMessage="Ingrese un nombre para la propiedad"
-																	styleClass="textoPlano" maxlength="50"
+																	styleClass="textoPlano" maxlength="220"
 																	onkeypress="ValidarCampoLetras(this, event)"
 																	style=" width : 230px;">
 																</h:inputText>
 
 																<h:outputText value="Unidad de Medida" />
 																<h:inputText value="#{propiedadesBean.unidadedida}"
-																	styleClass="textoPlano" maxlength="50"
+																	styleClass="textoPlano" maxlength="220"
 																	onkeypress="ValidarCampoLetras(this, event)"
 																	style=" width : 230px;">
 																</h:inputText>
@@ -201,7 +201,7 @@ Secano.</title>
 																	styleClass="textoPlano" value="Aceptar propiedad"
 																	disabled="#{propiedadesBean.disableAceptarPropiedad}">
 																	<a4j:support event="onclick" ajaxSingle="false"
-																		reRender="tablaPropiedades"
+																		reRender="panelPropiedades"
 																		action="#{propiedadesBean.AceptarPropiedad}" />
 																</a4j:commandButton>
 															</h:panelGrid>
@@ -209,7 +209,7 @@ Secano.</title>
 														<td></td>
 
 														<center><h:panelGrid columns="3">
-															<a4j:commandButton immediate="true"
+															<a4j:commandButton 
 																style="font-size: 10pt; color: #2d77c2; width : 87px;"
 																styleClass="textoPlano" action="Alta"
 																value="#{text.boton_Registrar}" />

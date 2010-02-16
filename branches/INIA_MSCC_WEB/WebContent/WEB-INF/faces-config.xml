@@ -627,13 +627,13 @@
 	<navigation-rule>
 		<from-view-id>/Servicios/GEM/GEM003.jsp</from-view-id>
 		<navigation-case>
-			<from-action>#{propiedadesBean.VerPropiedad}</from-action>
+			<from-action>#{propiedadesBean.ModificarPropiedad}</from-action>
 			<from-outcome>GEM003</from-outcome>
 			<to-view-id>/Servicios/GEM/GEM003.jsp</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
-			<from-action>#{propiedadesBean.Eliminar}</from-action>
+			<from-action>#{propiedadesBean.EliminarPropiedad}</from-action>
 			<from-outcome>GEM003</from-outcome>
 			<to-view-id>/Servicios/GEM/GEM003.jsp</to-view-id>
 		</navigation-case>
