@@ -2,27 +2,34 @@ package com.inia_mscc.modulos.gem.entidades;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import org.hibernate.annotations.ForeignKey;
 
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
 
 @Entity(name = "Propiedad")
 @Table(name = "tl_gem_prcu_propiedadescultivo")
+@ForeignKey(name = "FK_prcu_num_id_cultivo")
 public class Propiedad implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "prcu_num_id", updatable = false, nullable = false, columnDefinition = "BIGINT(20)")
@@ -38,7 +45,25 @@ public class Propiedad implements Serializable {
 	private Enumerados.TipoPropiedadCultivo _tipo;
 	@Transient
 	private String _valor;
-	
+	// @OneToOne(cascade = CascadeType.ALL, targetEntity=Cultivo.class,
+	// mappedBy="_id")
+	// @OneToOne(targetEntity = Cultivo.class, cascade = CascadeType.ALL,
+	// fetch=FetchType.EAGER)
+	// @ForeignKey(name = "FK_prcu_num_id_cultivo")
+	// @JoinColumn(name = "prcu_num_id_cultivo", nullable = false,
+	// columnDefinition = "BIGINT(20)")
+	// @ManyToOne(targetEntity = Cultivo.class, cascade = CascadeType.ALL,
+	// fetch=FetchType.EAGER)
+	// @JoinColumn
+	// (name="prcu_num_id_cultivo",referencedColumnName="cult_num_id", nullable
+	// = false, updatable = false, insertable = false)
+	// @OneToOne(targetEntity = Cultivo.class, mappedBy = "_id", cascade =
+	// CascadeType.ALL)
+	// @JoinColumn(name = "prcu_num_id_cultivo", referencedColumnName =
+	// "cult_num_id", updatable = true)
+	@ManyToOne(targetEntity = Cultivo.class, cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+	@JoinColumn(name = "prcu_num_id_cultivo", referencedColumnName = "cult_num_id")
+	private Cultivo _cultivo;
 
 	public Propiedad() {
 		super();
@@ -93,5 +118,13 @@ public class Propiedad implements Serializable {
 
 	public void set_valor(String valor) {
 		_valor = valor;
+	}
+
+	public Cultivo get_cultivo() {
+		return _cultivo;
+	}
+
+	public void set_cultivo(Cultivo cultivo) {
+		_cultivo = cultivo;
 	}
 }

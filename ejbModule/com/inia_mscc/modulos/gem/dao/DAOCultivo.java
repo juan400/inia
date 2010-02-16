@@ -58,9 +58,10 @@ public class DAOCultivo implements Serializable {
 				System.out.println(pCultivo.get_nombre());
 			}
 			unCultivo = (Cultivo) c.uniqueResult();
-//			if (unCultivo != null) {
-//				unCultivo.get_listaPropiedades();
-//			}
+			if (unCultivo != null
+					&& unCultivo.get_listaPropiedades().size() != 0) {
+				unCultivo.get_listaPropiedades().get(0);
+			}
 		} catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
@@ -102,7 +103,7 @@ public class DAOCultivo implements Serializable {
 			Session session = HibernateUtil.getSessionFactory()
 					.getCurrentSession();
 			session.update("Cultivo", pCultivo);
-		} catch (StaleObjectStateException e) {
+		} catch (Exception e) {// catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);

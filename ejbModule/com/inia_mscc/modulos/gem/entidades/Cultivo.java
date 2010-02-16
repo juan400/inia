@@ -3,6 +3,7 @@ package com.inia_mscc.modulos.gem.entidades;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.jws.Oneway;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,8 +39,8 @@ public class Cultivo implements Serializable {
 	private Estado _estado;
 	@Column(name = "cult_str_nombre", nullable = true, columnDefinition = "VARCHAR(50)")
 	private String _nombre;
-	@OneToMany(targetEntity = Propiedad.class, cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name = "prcu_num_id_cultivo", referencedColumnName = "cult_num_id")
+	@OneToMany(targetEntity = Propiedad.class, mappedBy="_cultivo", cascade = CascadeType.ALL)
+	@JoinColumn(name = "prcu_num_id_cultivo", referencedColumnName = "cult_num_id", insertable = true, updatable = true, nullable = false)
 	private List<Propiedad> _listaPropiedades;
 
 	public Cultivo() {
