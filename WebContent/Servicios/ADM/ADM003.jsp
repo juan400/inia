@@ -60,83 +60,177 @@ Secano.</title>
 										</h:column>
 										<h:column>
 											<h:panelGrid>
-												<rich:panel headerClass="tituloPantalla"
-													style="background-color: #ebf3fd;">
-													<f:facet name="header">
-														<h:outputText value="#{text.confiramcion_Titulo}" />
-													</f:facet>
-													<h:panelGrid>
-														<h:panelGroup>
 
-															<h:panelGrid columns="2" width="480"
-																columnClasses="textoPlano,textoPlano">
-																<h:outputText value="#{text.reenvioPassword_Actual}"
-																	styleClass="textoPlano" />
-																<rich:comboBox value="#{registroBean.paisElegido}"
-																	enableManualInput="false" styleClass="combo">
-																	<f:selectItems value="#{registroBean.paises}" />
-																	<a4j:support action="#{registroBean.takeSelectionPais}"
-																		event="onchange" ajaxSingle="true"
-																		reRender="cmbDepartamentos" />
-																</rich:comboBox>
-
-																<h:outputText value="#{text.registro_Contrasenia}"
-																	styleClass="textoPlano" />
-																<h:inputText id="txtContrasenia"
-																	label="Debe ingresar Contraseña"
-																	value="#{recuperarContraseniaBean.contrasenia}"
-																	required="true"
-																	requiredMessage="Debe ingresar la contraseña nueva"
-																	onkeypress="ValidarCampoLetras(this, event)"
-																	styleClass="textoPlano" tabindex="2" maxlength="13">
-																	<f:validateLength minimum="6" maximum="13" />
-																</h:inputText>
-
-																<h:outputText
-																	value="#{text.registro_ConfirmacionContrasenia}"
-																	styleClass="textoPlano" />
-																<h:inputText id="txtConfirmarContrasenia"
-																	label="Debe ingresar confirmación de contraseña"
-																	value="#{recuperarContraseniaBean.confirmacion}"
-																	required="true"
-																	onkeypress="ValidarCampoLogin(this, event)"
-																	requiredMessage="Debe ingresar confirmación de contraseña"
-																	styleClass="textoPlano" tabindex="3" maxlength="13">
-																	<f:validateLength minimum="6" maximum="13" />
-																	<a4j:support
-																		action="#{recuperarContraseniaBean.confirmacionIngreso}"
-																		event="onblur" />
-																</h:inputText>
-
-
-															</h:panelGrid>
-															<center><h:panelGrid columns="2"
-																columnClasses="textoPlano,textoPlano">
-																<a4j:commandButton
-																	style="font-size: 10pt; color: #2d77c2;"
-																	styleClass="textoPlano" tabindex="4"
-																	action="#{recuperarContraseniaBean.confirmar}"
-																	value="#{text.boton_Guardar}" />
-																<a4j:commandButton
-																	style="font-size: 10pt; color: #2d77c2;"
-																	styleClass="textoPlano" tabindex="5" action="cancelar"
-																	immediate="true" value="#{text.boton_Cancelar}" />
-															</h:panelGrid></center>
-														</h:panelGroup>
-														<f:facet name="footer">
-															<h:panelGrid>
-																<rich:messages styleClass="mensajeError">
-																	<f:facet name="errorMarker">
-																		<h:graphicImage
-																			value="/Recursos/Imagenes/Iconos/error.gif" />
-																	</f:facet>
-																</rich:messages>
-																<h:outputText styleClass="textoPlano"
-																	value="#{recuperarContraseniaBean.exito}" />
-															</h:panelGrid>
+												<h:panelGroup rendered="#{valorSeleccionBean.init}" />
+												<h:panelGrid>
+													<rich:panel headerClass="tituloPantalla"
+														style="background-color: #ebf3fd;">
+														<f:facet name="header">
+															<h:outputText
+																value="#{text.valorSeleccion_ListaCriterios}" />
 														</f:facet>
-													</h:panelGrid>
-												</rich:panel>
+														<center><h:panelGrid columns="2"
+															columnClasses="textoPlano,tectoPlano"
+															style=" width : 408px;">
+
+															<h:outputText
+																value="#{text.valorSeleccion_ComboCriterios}"
+																styleClass="textoPlano" />
+															<rich:comboBox
+																value="#{valorSeleccionBean.criterioSeleccionado}"
+																enableManualInput="false" styleClass="combo"
+																disabled="#{valorSeleccionBean.disableSeleccionCriterio}"
+																width="214">
+																<f:selectItems value="#{valorSeleccionBean.criterio}" />
+																<a4j:support
+																	action="#{valorSeleccionBean.TakeSelectionListaCriterio}"
+																	event="onchange" ajaxSingle="true"
+																	reRender="panelValoresSeleccion" />
+															</rich:comboBox>
+														</h:panelGrid></center>
+
+														<h:panelGrid id="panelValoresSeleccion">
+															<h:panelGrid>
+																<center><rich:dataTable border="2" rows="5"
+																	styleClass="textoDataTable" id="tablaValorSeleccion"
+																	value="#{valorSeleccionBean.listaValores}" var="valor"
+																	rowKeyVar="row" headerClass="columnHeader"
+																	rowClasses="oddRow,evenRow" style=" width : 500px;">
+
+																	<f:facet name="header">
+																		<h:outputText
+																			value="#{text.valorSeleccion_TablaValores}" />
+																	</f:facet>
+
+																	<rich:column width="50px">
+																		<f:facet name="header">
+																			<h:outputText value="#{text.valorSeleccion_Codigo}" />
+																		</f:facet>
+																		<h:outputText value="#{valor._codigo}" id="codigo" />
+																	</rich:column>
+
+																	<rich:column width="250px">
+																		<f:facet name="header">
+																			<h:outputText
+																				value="#{text.valorSeleccion_Descripcion}" />
+																		</f:facet>
+																		<h:outputText value="#{valor._descripcion}"
+																			id="descripcion" />
+																	</rich:column>
+
+																	<rich:column width="100px">
+																		<f:facet name="header">
+																			<h:outputText value="#{text.valorSeleccion_Unidad}" />
+																		</f:facet>
+																		<h:outputText value="#{valor._unidadMedida}"
+																			id="unidad" />
+																	</rich:column>
+
+																	<rich:column>
+																		<f:facet name="header">
+																			<h:outputText value="Acciones" />
+																		</f:facet>
+
+																		<a4j:commandButton
+																			action="#{valorSeleccionBean.ModificarValorSeleccion}"
+																			image="/Recursos/Imagenes/Iconos/edit.gif"
+																			immediate="true" style="width : 27px; height : 21px;">
+																			<a4j:actionparam name="valorElegido"
+																				value="#{valor._codigo}" />
+																			<rich:toolTip value="Modificar" />
+																		</a4j:commandButton>
+
+																		<a4j:commandButton
+																			action="#{valorSeleccionBean.EliminarValorSeleccion}"
+																			image="/Recursos/Imagenes/Iconos/delete.gif"
+																			immediate="true"
+																			style=" border:0; width : 27px; height : 21px;"
+																			reRender="panelValoresSeleccion">
+																			<a4j:actionparam name="valorElegido"
+																				value="#{valor._codigo}" />
+																			<rich:toolTip value="Eliminar" />
+																		</a4j:commandButton>
+
+																	</rich:column>
+																	<f:facet name="footer">
+																		<rich:datascroller renderIfSinglePage="false"
+																			maxPages="6" />
+																	</f:facet>
+																</rich:dataTable></center>
+															</h:panelGrid>
+														</h:panelGrid>
+														<td></td>
+														<br>
+														<rich:panel headerClass="tituloPantalla"
+															style="background-color: #ebf3fd;  width : 500px;">
+															<f:facet name="header">
+																<h:outputText value="#{text.valorSeleccion_Valor}" />
+															</f:facet>
+															<center><h:panelGrid columns="2"
+																id="datosPropiedad"
+																columnClasses="textoPlano,textoPlano">
+
+																<h:outputText value="#{text.valorSeleccion_Codigo}" />
+																<h:inputText value="#{valorSeleccionBean.codigo}"
+																	required="true"
+																	requiredMessage="Debe Ingresar el código"
+																	styleClass="textoPlano" maxlength="6"
+																	onkeypress="ValidarCampoLetras(this, event)"
+																	style=" width : 230px;" />
+
+																<h:outputText value="#{text.valorSeleccion_Descripcion}" />
+																<h:inputText value="#{valorSeleccionBean.descripcion}"
+																	required="true"
+																	requiredMessage="Debe Ingresar descripción"
+																	styleClass="textoPlano" maxlength="220"
+																	onkeypress="ValidarCampoLetras(this, event)"
+																	style=" width : 230px;">
+																</h:inputText>
+
+																<h:outputText value="#{text.valorSeleccion_Unidad}" />
+																<h:inputText value="#{valorSeleccionBean.unidadMedida}"
+																	styleClass="textoPlano" maxlength="45"
+																	onkeypress="ValidarCampoLetras(this, event)"
+																	style=" width : 230px;">
+																</h:inputText>
+																<h:outputText />
+															</h:panelGrid> <h:panelGrid columns="2">
+																<a4j:commandButton
+																	style="font-size: 10pt; color: #2d77c2; width : 125px;"
+																	styleClass="textoPlano"
+																	value="#{text.valorSeleccion_BotonAceptar}"
+																	disabled="#{propiedadesBean.disableAceptarPropiedad}">
+																	<a4j:support event="onclick" ajaxSingle="false"
+																		reRender="panelPropiedades"
+																		action="#{valorSeleccionBean.AceptarValorSeleccion}" />
+																</a4j:commandButton>
+															</h:panelGrid></center>
+														</rich:panel>
+														<br></br>
+
+														<center><h:panelGrid columns="2">
+															<a4j:commandButton
+																style="font-size: 10pt; color: #2d77c2; width : 87px;"
+																styleClass="textoPlano" action="Alta"
+																value="#{text.boton_Registrar}" />
+
+															<a4j:commandButton immediate="true"
+																style="font-size: 10pt; color: #2d77c2; width : 87px;"
+																styleClass="textoPlano" action="cancelar"
+																value="#{text.boton_Cancelar}" />
+														</h:panelGrid></center>
+														<h:panelGrid id="mensages">
+															<rich:messages styleClass="mensajeError">
+																<f:facet name="errorMarker">
+																	<h:graphicImage
+																		value="/Recursos/Imagenes/Iconos/error.gif" />
+																</f:facet>
+															</rich:messages>
+															<h:outputText styleClass="textoPlano"
+																value="#{valorSeleccionBean.exito}" />
+														</h:panelGrid>
+													</rich:panel>
+												</h:panelGrid>
 											</h:panelGrid>
 										</h:column>
 									</h:panelGrid>
