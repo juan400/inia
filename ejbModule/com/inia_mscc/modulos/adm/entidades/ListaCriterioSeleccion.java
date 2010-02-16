@@ -40,9 +40,8 @@ public class ListaCriterioSeleccion implements Serializable {
 	private String _descripcion;
 	@Column(name = "licr_str_codigo", nullable = false, columnDefinition = "VARCHAR(3)")
 	private String _codigo;
-
-	@OneToMany(targetEntity = Propiedad.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "prcu_num_id_cultivo", referencedColumnName = "cult_num_id")
+	@OneToMany(targetEntity = ValorSeleccion.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "vase_num_id_listacriterio", referencedColumnName = "licr_num_id")
 	private List<ValorSeleccion> _listaValores;
 
 	public ListaCriterioSeleccion() {
