@@ -61,7 +61,7 @@ Secano.</title>
 										<h:column>
 											<h:panelGrid>
 
-												<h:panelGroup rendered="#{propiedadesBean.init}" />
+												<h:panelGroup rendered="#{propiedadesBean.initPantalla}" />
 												<h:panelGrid>
 													<rich:panel headerClass="tituloPantalla"
 														style="background-color: #ebf3fd;">
@@ -126,29 +126,18 @@ Secano.</title>
 
 																	<rich:column width="80">
 																		<f:facet name="header">
-																			<h:outputText value="Modificar" />
+																			<h:outputText value="Eliminar ingreso" />
 																		</f:facet>
-
-																		<a4j:commandButton
-																			action="#{propiedadesBean.ModificarPropiedad}"
-																			image="/Recursos/Imagenes/Iconos/edit.gif"
-																			immediate="true" style="width : 27px; height : 21px;"
-																			>
-																			<a4j:actionparam name="propiedadElegida"
-																				value="#{propiedad._codigo}" />
-
-																			<rich:toolTip value="Modificar" />
-																		</a4j:commandButton>
 
 																		<a4j:commandButton
 																			action="#{propiedadesBean.EliminarPropiedad}"
 																			image="/Recursos/Imagenes/Iconos/delete.gif"
-																			immediate="true" 
+																			immediate="true" disabled="#{propiedad._grabada}"
 																			style=" border:0; width : 27px; height : 21px;"
 																			reRender="panelPropiedades">
 																			<a4j:actionparam name="propiedadElegida"
 																				value="#{propiedad._codigo}" />
-																			<rich:toolTip value="Eliminar" />
+																			<rich:toolTip value="Elimina solo las agregadas" />
 																		</a4j:commandButton>
 
 																	</rich:column>
