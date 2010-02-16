@@ -10,5 +10,6 @@ public interface ServicioPropiedad {
 	public List<Propiedad> ObtenerPropiedades(Propiedad pPropiedad);
 	public Propiedad ObtenerPropiedad(Propiedad pPropiedad);
 	public void ActualizarPropiedad(Propiedad pPropiedad);
-	
+	public void EliminarPropiedad(Propiedad pPropiedad);
+	public void EliminarPropiedades(List<Propiedad> pPropiedades);
 }

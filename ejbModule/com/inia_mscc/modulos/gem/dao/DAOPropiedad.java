@@ -84,4 +84,22 @@ public class DAOPropiedad implements Serializable {
 		}
 	}
 
+
+	/**
+	 * Actualiza los datos de una propiedad de un cultivoa en el sitema.
+	 * 
+	 * @param pDatosUsuario
+	 */
+	public void EliminarPropiedad(Propiedad pPropiedad) {
+		try {
+			Session session = HibernateUtil.getSessionFactory()
+					.getCurrentSession();
+			session.delete("Propiedad", pPropiedad);
+		} catch (StaleObjectStateException e) {
+			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
+			logger.error(stackTrace);
+			throw new IniaPersistenciaException(e.getMessage(), e);
+		}
+	}
+	
 }
