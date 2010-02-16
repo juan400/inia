@@ -43,22 +43,21 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 
 	public boolean isInitPantalla() {
 		try {
-			if (recargo) {
-				this.setError("");
-				this.setExito("");
-				this.setCodigo("");
-				this.setNombre("");
-				this.setUnidadedida("");
-				this.setTipoSeleccionado("Ninguno");
-				this.setListaPropEliminadas(null);
-				this.setListaPropiedades(null);
-				tipoPropiedades = new SelectItem[TipoPropiedadCultivo.values().length];
-				for (int i = 0; i < TipoPropiedadCultivo.values().length; i++) {
-					TipoPropiedadCultivo tipo = TipoPropiedadCultivo.values()[i];
-					SelectItem si = new SelectItem(tipo.name());
-					tipoPropiedades[i] = si;
+			if (this.getSesion(Cultivo.class.toString()) == null && this.getCultivo() == null) {
+				this.setDisableSeleccionCultivo(false);
+				this.setDisableAceptarPropiedad(true);
+				List<Cultivo> listaCultivos = this.getGEMFachada(
+						ServicioGEM.Cultivo).ObtenerCultivos(null);
+				cultivos = new SelectItem[listaCultivos.size() + 1];
+				cultivos[0] = new SelectItem(this
+						.getTextBundleKey("combo_seleccione"));
+				int i = 1;
+				for (Cultivo c : listaCultivos) {
+					SelectItem si = new SelectItem(c.get_nombre());
+					cultivos[i] = si;
+					i++;
 				}
-				tipoSeleccionado = TipoPropiedadCultivo.Ninguno.name();
+				cultivoSeleccionado = this.getTextBundleKey("combo_seleccione");
 			}
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
@@ -69,6 +68,21 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 	public PropiedadesBean() {
 		try {
 			recargo = true;
+			this.setError("");
+			this.setExito("");
+			this.setCodigo("");
+			this.setNombre("");
+			this.setUnidadedida("");
+			this.setTipoSeleccionado("Ninguno");
+			this.setListaPropEliminadas(null);
+			this.setListaPropiedades(null);
+			tipoPropiedades = new SelectItem[TipoPropiedadCultivo.values().length];
+			for (int i = 0; i < TipoPropiedadCultivo.values().length; i++) {
+				TipoPropiedadCultivo tipo = TipoPropiedadCultivo.values()[i];
+				SelectItem si = new SelectItem(tipo.name());
+				tipoPropiedades[i] = si;
+			}
+			tipoSeleccionado = TipoPropiedadCultivo.Ninguno.name();
 			Cultivo unCul = (Cultivo) this.getSesion(Cultivo.class.toString());
 			if (unCul != null) {
 				this.setCultivo(null);
@@ -116,10 +130,10 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 				this.getCultivo().set_nombre(this.getCultivoSeleccionado());
 				this.setCultivo(this.getGEMFachada(ServicioGEM.Cultivo)
 						.ObtenerCultivo(this.getCultivo()));
+				this.setDisableAceptarPropiedad(false);
 				if (this.getCultivo().get_listaPropiedades() != null) {
 					this.setListaPropiedades(this.getCultivo()
 							.get_listaPropiedades());
-					this.setDisableAceptarPropiedad(false);
 				} else {
 					this.setListaPropiedades(new ArrayList<Propiedad>());
 				}
@@ -212,8 +226,8 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 						TipoPropiedadCultivo
 								.valueOf(this.getTipoSeleccionado()));
 				this.getListaPropiedades().add(this.getPropiedad());
-				this
-						.setExito("Se agrego correctamente la propiedad al cultivo");
+				this.setExito("Se agrego correctamente la "
+						+ "propiedad al cultivo");
 				this.setPropiedad(null);
 				this.setCodigo("");
 				this.setNombre("");
@@ -293,9 +307,9 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 			this.setRecargo(true);
 			this
 					.setExito("Se grabo exitosamente el cultivo y sus propiedades.");
-			// if (this.getSesion(Cultivo.class.toString()) != null) {
-			// this.removerSesion(Cultivo.class.toString());
-			// }
+			if (this.getSesion(Cultivo.class.toString()) != null) {
+				this.removerSesion(Cultivo.class.toString());
+			}
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
 		}
@@ -314,9 +328,9 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 			this.setRecargo(true);
 			this
 					.setExito("Se grabo exitosamente el cultivo y sus propiedades.");
-			// if (this.getSesion(Cultivo.class.toString()) != null) {
-			// this.removerSesion(Cultivo.class.toString());
-			// }
+			if (this.getSesion(Cultivo.class.toString()) != null) {
+				this.removerSesion(Cultivo.class.toString());
+			}
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
 		}

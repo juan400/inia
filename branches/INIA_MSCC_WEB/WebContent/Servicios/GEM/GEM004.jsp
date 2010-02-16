@@ -66,7 +66,7 @@ Secano.</title>
 													<rich:panel headerClass="tituloPantalla"
 														style="background-color: #ebf3fd;">
 														<f:facet name="header">
-															<h:outputText value="Ingresar Propiedades a un Cultivo" />
+															<h:outputText value="Modificar o Eliminar Propiedades a un Cultivo" />
 														</f:facet>
 														<h:panelGrid columns="2"
 															columnClasses="textoPlano,tectoPlano"
