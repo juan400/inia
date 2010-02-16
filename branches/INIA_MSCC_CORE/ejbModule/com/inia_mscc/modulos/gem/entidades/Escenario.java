@@ -1,13 +1,15 @@
 package com.inia_mscc.modulos.gem.entidades;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.inia_mscc.modulos.adm.entidades.Region;
 import com.inia_mscc.modulos.comun.entidades.Objeto;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
-public class Escenario extends Objeto {
+public class Escenario implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private Date _fechaHora;
 	private Usuario _usuarioInvestigador;
 	private Region _region;

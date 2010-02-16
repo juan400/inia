@@ -76,8 +76,8 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 		Archivo archivoResultado = new Archivo();
 		archivoResultado.set_datos(new File("C:/INIA/resultado.py"));
 		
-		ejecucionMSCC.set_archivoEjecucion(archivoTemplate);
-		ejecucionMSCC.get_escenario().set_archivoEscenario(archivoResultado);
+		ejecucionMSCC.set_archivoEjecucion(archivoResultado);
+		ejecucionMSCC.get_escenario().set_archivoEscenario(archivoTemplate);
 		
 		this.generarEscenario(ejecucionMSCC);
 		
@@ -97,7 +97,7 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 		List<Propiedad> propiedades = new ArrayList<Propiedad>();
 		
 		Propiedad propiedad = new Propiedad();
-		propiedad.set_codigo("Key_de_corrida");
+		propiedad.set_codigo("KeyCorrida");
 		propiedad.set_valor("Key_de_corrida");
 		propiedades.add(propiedad);
 		

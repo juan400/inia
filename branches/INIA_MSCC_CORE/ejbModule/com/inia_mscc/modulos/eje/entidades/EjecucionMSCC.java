@@ -1,14 +1,18 @@
 package com.inia_mscc.modulos.eje.entidades;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import com.inia_mscc.modulos.comun.entidades.Objeto;
 import com.inia_mscc.modulos.gem.entidades.Archivo;
 import com.inia_mscc.modulos.gem.entidades.Escenario;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
-public class EjecucionMSCC extends Objeto {
+public class EjecucionMSCC implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Date _fechaHora;
 	private Usuario _usuarioEjecutante;
 	private Archivo _archivoEjecucion;
