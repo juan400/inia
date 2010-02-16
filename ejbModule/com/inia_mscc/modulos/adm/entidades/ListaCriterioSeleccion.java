@@ -21,7 +21,6 @@ import javax.persistence.Table;
 
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
-import com.inia_mscc.modulos.gem.entidades.Propiedad;
 
 @Entity(name = "ListaCriterioSeleccion")
 @Table(name = "tl_adm_licr_listascriterio")
@@ -34,7 +33,7 @@ public class ListaCriterioSeleccion implements Serializable {
 	@Column(name = "licr_num_id", nullable = false, columnDefinition = "BIGINT(20)")
 	private long _id;
 	@Enumerated(EnumType.STRING)
-	@Column(name = "licr_str_estado", nullable = false, columnDefinition = "VARCHAR(45)")
+	@Column(name = "licr_str_estado", nullable = false, columnDefinition = "VARCHAR(10)")
 	private Enumerados.Estado _estado;
 	@Column(name = "licr_str_descripcion", nullable = false, columnDefinition = "VARCHAR(220)")
 	private String _descripcion;

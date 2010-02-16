@@ -2,10 +2,21 @@ package com.inia_mscc.modulos.adm.ejb;
 
 import java.util.List;
 
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
+
 import com.inia_mscc.modulos.adm.dao.DAOListaCriterio;
 import com.inia_mscc.modulos.adm.entidades.ListaCriterioSeleccion;
 import com.inia_mscc.modulos.adm.servicios.ServicioListaCriterio;
 
+@Stateless(name = "EJBListaCriterio", mappedName = "EJBListaCriterio")
+@Remote(ServicioListaCriterio.class)
+@TransactionManagement(value = TransactionManagementType.CONTAINER)
+@TransactionAttribute(value = TransactionAttributeType.REQUIRED)
 public class EJBListaCriterio implements ServicioListaCriterio {
 
 	private DAOListaCriterio dao = new DAOListaCriterio();
@@ -15,14 +26,17 @@ public class EJBListaCriterio implements ServicioListaCriterio {
 		return dao.ObtenerCriterio(pCriterio);
 	}
 
-	public List<ListaCriterioSeleccion> ObtenerListaCriterio(ListaCriterioSeleccion pCriterio){
-		return dao.ObtenerListaCriterio(pCriterio);
+	@Override
+	public List<ListaCriterioSeleccion> ObtenerListaCriterio(){
+		return dao.ObtenerListaCriterio();
 	}
 
-	public ListaCriterioSeleccion RegistrarListaCriterio(ListaCriterioSeleccion pCriterio){
+	@Override
+	public  ListaCriterioSeleccion RegistrarListaCriterio(ListaCriterioSeleccion pCriterio){
 		return dao.RegistrarListaCriterio(pCriterio);
 	}
 	
+	@Override
 	public void ActualizarListaCriterio(ListaCriterioSeleccion pCriterio) {
 		dao.ActualizarListaCriterio(pCriterio);
 	}

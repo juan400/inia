@@ -2,19 +2,22 @@ package com.inia_mscc.modulos.adm.entidades;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
+import org.hibernate.annotations.ForeignKey;
 
 @Entity(name="ValorSeleccion")
 @Table(name="tl_adm_vase_valorseleccion")
+@ForeignKey(name = "FK_vase_num_id_listacriterio")
 public class ValorSeleccion implements Serializable {
 
 	/**
@@ -27,25 +30,23 @@ public class ValorSeleccion implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="vase_num_id", nullable = false, columnDefinition = "BIGINT(20)")
 	private long _id;
-	
-	@Enumerated(EnumType.STRING)
-	@Column(name = "licr_num_id_estado", nullable = false, columnDefinition = "VARCHAR(10)")
-	private Estado _estado;
-	
+		
 	@Column(name = "vase_str_codigo", nullable = false, columnDefinition = "VARCHAR(6)")
 	private String _codigo;
 	
 	@Column(name = "vase_str_descripcion", nullable = false, columnDefinition = "VARCHAR(220)")
 	private String _descripcion;
 	
-	@Column(name = "vase_str_unidad", nullable = false, columnDefinition = "VARCHAR(46)")
+	@Column(name = "vase_str_unidad", nullable = true, columnDefinition = "VARCHAR(45)")
 	private String _unidadMedida;
 
+	@ManyToOne(targetEntity = ListaCriterioSeleccion.class, cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+	@JoinColumn(name = "vase_num_id_listacriterio", referencedColumnName = "licr_num_id")
+	private ListaCriterioSeleccion _criterio;
 	
 	public ValorSeleccion() {
 		super();
 		_id = 0;
-		_estado = Estado.Activo;
 		_codigo = null;
         _descripcion = null;
         _unidadMedida = null;
@@ -78,12 +79,12 @@ public class ValorSeleccion implements Serializable {
 		_id = id;
 	}
 
-	public Estado get_estado() {
-		return _estado; 
+	public ListaCriterioSeleccion get_criterio() {
+		return _criterio;
 	}
 
-	public void set_estado(Estado estado) {
-		_estado = estado;
+	public void set_criterio(ListaCriterioSeleccion criterio) {
+		_criterio = criterio;
 	}
 
 }

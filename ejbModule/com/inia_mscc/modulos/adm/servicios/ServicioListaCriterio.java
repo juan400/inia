@@ -9,8 +9,7 @@ public interface ServicioListaCriterio {
 	public ListaCriterioSeleccion ObtenerCriterio(
 			ListaCriterioSeleccion pCriterio);
 
-	public List<ListaCriterioSeleccion> ObtenerListaCriterio(
-			ListaCriterioSeleccion pCriterio);
+	public List<ListaCriterioSeleccion> ObtenerListaCriterio();
 
 	public ListaCriterioSeleccion RegistrarListaCriterio(
 			ListaCriterioSeleccion pCriterio);
