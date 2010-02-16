@@ -37,6 +37,7 @@ public class CultivoBean extends MaestroBean implements Serializable {
 	}
 
 	public CultivoBean() {
+		this.removerSesion(Cultivo.class.toString());
 	}
 
 	public String Registrar() {
@@ -48,7 +49,10 @@ public class CultivoBean extends MaestroBean implements Serializable {
 		this.setCultivo(this.getGEMFachada(ServicioGEM.Cultivo)
 				.RegistrarCultivo(this.getCultivo()));
 		if (this.getCultivo() != null) {
-			this.setCultivo(null);
+			this.setSesion(Cultivo.class.toString(), this.getCultivo());
+			nombre = "";
+			descripcion = "";
+			estado = estados[1].getValue().toString();
 			this.setDisableBtnProp(false);
 			this
 					.setExito("Se registro exitosamente el cultivo, puede continuar realizando el ingreso de propiedades.");
@@ -59,15 +63,14 @@ public class CultivoBean extends MaestroBean implements Serializable {
 	}
 
 	public String Propiedades() {
-		String retorno = "GEM003";
-		this.setCultivo(new Cultivo());
-		this.getCultivo().set_descripcion(getDescripcion());
-		this.getCultivo().set_nombre(getNombre());
-		this.getCultivo().set_estado(Estado.valueOf(estado));
-		this.setSesion(Cultivo.class.toString(), this.getCultivo());
-		this.setError("Debe ingresar los datos del cultivo y registrarlo "
-				+ "previamente a realizar ingreso de propiedades.");
-		this.setCultivo(null);
+		String retorno = "";
+		this.setCultivo((Cultivo) this.getSesion(Cultivo.class.toString()));
+		if (this.getCultivo() != null && this.getCultivo().get_id() == 0) {
+			this.setError("Debe ingresar los datos del cultivo y registrarlo "
+					+ "previamente a realizar ingreso de propiedades.");
+		} else {
+			retorno = "GEM003";
+		}
 		return retorno;
 	}
 

@@ -106,7 +106,7 @@ Secano.</title>
 																	value="#{text.boton_Registrar}" />
 																<a4j:commandButton
 																	style="font-size: 10pt; color: #2d77c2; width : 120px;"
-																	styleClass="textoPlano"
+																	styleClass="textoPlano" immediate="true"
 																	disabled="#{cultivoBean.disableBtnProp}"
 																	action="#{cultivoBean.Propiedades}" value="Propiedades" />
 																<a4j:commandButton immediate="true"
