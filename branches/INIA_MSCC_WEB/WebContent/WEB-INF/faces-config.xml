@@ -637,6 +637,11 @@
 			<from-outcome>GEM003</from-outcome>
 			<to-view-id>/Servicios/GEM/GEM003.jsp</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-action>#{propiedadesBean.ReigstrarPropiedades}</from-action>
+			<from-outcome>GEM003</from-outcome>
+			<to-view-id>/Servicios/GEM/GEM003.jsp</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 	<application>
 		<navigation-handler>org.richfaces.ui.application.StateNavigationHandler</navigation-handler>
