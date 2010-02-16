@@ -38,5 +38,15 @@ public class ProveedorPropiedad implements ServicioPropiedad {
 	public List<Propiedad> ObtenerPropiedades(Propiedad pPropiedad) {
 		return ejbPropiedad.ObtenerPropiedades(pPropiedad);
 	}
-	
+
+	@Override
+	public void EliminarPropiedad(Propiedad pPropiedad) {
+		ejbPropiedad.EliminarPropiedad(pPropiedad);
+	}
+
+	@Override
+	public void EliminarPropiedades(List<Propiedad> pPropiedades) {
+		ejbPropiedad.EliminarPropiedades(pPropiedades);
+	}
+
 }

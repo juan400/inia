@@ -61,4 +61,13 @@ public class GEMFachada {
 	public List<Propiedad> ObtenerPropiedades(Propiedad pPropiedad) {
 		return srvPropiedad.ObtenerPropiedades(pPropiedad);
 	}
+
+	public void EliminarPropiedad(Propiedad pPropiedad) {
+		srvPropiedad.EliminarPropiedad(pPropiedad);
+	}
+
+	public void EliminarPropiedades(List<Propiedad> pPropiedades) {
+		srvPropiedad.EliminarPropiedades(pPropiedades);
+	}
+	
 }
