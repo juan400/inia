@@ -662,20 +662,44 @@
 	<navigation-rule>
 		<from-view-id>/Servicios/GEM/GEM003.jsp</from-view-id>
 		<navigation-case>
-			<from-action>#{propiedadesBean.ModificarPropiedad}</from-action>
-			<from-outcome>GEM003</from-outcome>
+			<from-action>#{propiedadesBean.AceptarPropiedad}</from-action>
+			<from-outcome>aceptar</from-outcome>
 			<to-view-id>/Servicios/GEM/GEM003.jsp</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
 			<from-action>#{propiedadesBean.EliminarPropiedad}</from-action>
-			<from-outcome>GEM003</from-outcome>
+			<from-outcome>eliminar</from-outcome>
 			<to-view-id>/Servicios/GEM/GEM003.jsp</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-action>#{propiedadesBean.ReigstrarPropiedades}</from-action>
 			<from-outcome>GEM003</from-outcome>
 			<to-view-id>/Servicios/GEM/GEM003.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/Servicios/GEM/GEM004.jsp</from-view-id>
+			<navigation-case>
+			<from-action>#{propiedadesBean.ModificarPropiedad}</from-action>
+			<from-outcome>modificar</from-outcome>
+			<to-view-id>/Servicios/GEM/GEM004.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{propiedadesBean.EliminarPropiedad}</from-action>
+			<from-outcome>eliminar</from-outcome>
+			<to-view-id>/Servicios/GEM/GEM004.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{propiedadesBean.AceptarModificacion}</from-action>
+			<from-outcome>GEM004</from-outcome>
+			<to-view-id>/Servicios/GEM/GEM004.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{propiedadesBean.ModificarPropiedades}</from-action>
+			<from-outcome>GEM004</from-outcome>
+			<to-view-id>/Servicios/GEM/GEM004.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<application>

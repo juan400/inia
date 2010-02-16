@@ -45,31 +45,18 @@ public class Propiedad implements Serializable {
 	private Enumerados.TipoPropiedadCultivo _tipo;
 	@Transient
 	private String _valor;
-	// @OneToOne(cascade = CascadeType.ALL, targetEntity=Cultivo.class,
-	// mappedBy="_id")
-	// @OneToOne(targetEntity = Cultivo.class, cascade = CascadeType.ALL,
-	// fetch=FetchType.EAGER)
-	// @ForeignKey(name = "FK_prcu_num_id_cultivo")
-	// @JoinColumn(name = "prcu_num_id_cultivo", nullable = false,
-	// columnDefinition = "BIGINT(20)")
-	// @ManyToOne(targetEntity = Cultivo.class, cascade = CascadeType.ALL,
-	// fetch=FetchType.EAGER)
-	// @JoinColumn
-	// (name="prcu_num_id_cultivo",referencedColumnName="cult_num_id", nullable
-	// = false, updatable = false, insertable = false)
-	// @OneToOne(targetEntity = Cultivo.class, mappedBy = "_id", cascade =
-	// CascadeType.ALL)
-	// @JoinColumn(name = "prcu_num_id_cultivo", referencedColumnName =
-	// "cult_num_id", updatable = true)
 	@ManyToOne(targetEntity = Cultivo.class, cascade = CascadeType.ALL,fetch=FetchType.LAZY)
 	@JoinColumn(name = "prcu_num_id_cultivo", referencedColumnName = "cult_num_id")
 	private Cultivo _cultivo;
+	@Transient
+	private boolean _grabada;
 
 	public Propiedad() {
 		super();
 		_codigo = null;
 		_nombre = null;
 		_tipo = Enumerados.TipoPropiedadCultivo.Ninguno;
+		_grabada = true;
 	}
 
 	public long get_id() {
@@ -126,5 +113,13 @@ public class Propiedad implements Serializable {
 
 	public void set_cultivo(Cultivo cultivo) {
 		_cultivo = cultivo;
+	}
+
+	public boolean is_grabada() {
+		return _grabada;
+	}
+
+	public void set_grabada(boolean grabada) {
+		_grabada = grabada;
 	}
 }

@@ -36,4 +36,17 @@ public class EJBPropiedad implements ServicioPropiedad {
 	public List<Propiedad> ObtenerPropiedades(Propiedad pPropiedad) {
 		return dao.ObtenerPropiedades(pPropiedad);
 	}
+
+	@Override
+	public void EliminarPropiedad(Propiedad pPropiedad) {
+			dao.EliminarPropiedad(pPropiedad);
+	}
+
+	@Override
+	public void EliminarPropiedades(List<Propiedad> pPropiedades) {
+		for (Propiedad propiedad : pPropiedades) {
+			dao.EliminarPropiedad(propiedad);
+		}
+	}
+	
 }
