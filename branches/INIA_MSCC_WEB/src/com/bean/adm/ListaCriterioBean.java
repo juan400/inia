@@ -38,8 +38,6 @@ public class ListaCriterioBean extends MaestroBean implements Serializable {
 		try {
 			listaCriterio = new ListaCriterioSeleccion();
 			listaCriterio.set_codigo(getListaCriterioSeleccionada());
-//			listaValorSeleccion = this.getAdmFachada(Servicio.RelacionPCD)
-//					.ObtenerListaCriterioSeleccion(listaCriterio);
 			valoresSeleccion = new SelectItem[listaValorSeleccion.size() + 1];
 			valoresSeleccion[0] = new SelectItem(this
 					.getTextBundleKey("combo_seleccione"));

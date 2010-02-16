@@ -136,7 +136,7 @@ Secano.</title>
 														<a4j:commandButton immediate="true"
 															style="font-size: 10pt; color: #2d77c2; width : 87px;"
 															styleClass="textoPlano" action="cancelar"
-															value="#{text.perfil_Cerrar}" />
+															value="#{text.boton_Cerrar}" />
 													</h:panelGrid></center>
 
 													<center><h:panelGrid>
