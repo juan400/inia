@@ -15,7 +15,6 @@ import com.inia_mscc.modulos.adm.entidades.Pais;
 import com.inia_mscc.modulos.adm.entidades.Region;
 import com.inia_mscc.modulos.adm.entidades.Transaccion;
 import com.inia_mscc.modulos.adm.entidades.ValorSeleccion;
-import com.inia_mscc.modulos.comun.entidades.Enumerados.ListaCriterio;
 import com.inia_mscc.modulos.gem.entidades.Cultivo;
 import com.inia_mscc.modulos.gem.entidades.Propiedad;
 import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
