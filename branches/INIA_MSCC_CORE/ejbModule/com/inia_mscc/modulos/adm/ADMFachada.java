@@ -140,9 +140,8 @@ public class ADMFachada {
 		return srvListaCriterio.ObtenerCriterio(pCriterio);
 	}
 
-	public List<ListaCriterioSeleccion> ObtenerListaCriterio(
-			ListaCriterioSeleccion pCriterio) {
-		return srvListaCriterio.ObtenerListaCriterio(pCriterio);
+	public List<ListaCriterioSeleccion> ObtenerListaCriterio() {
+		return srvListaCriterio.ObtenerListaCriterio();
 	}
 
 	public ListaCriterioSeleccion RegistrarListaCriterio(

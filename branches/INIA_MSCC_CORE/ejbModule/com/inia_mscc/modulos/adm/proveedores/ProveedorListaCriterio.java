@@ -18,8 +18,7 @@ public class ProveedorListaCriterio implements ServicioListaCriterio {
 	public ProveedorListaCriterio() throws IOException {
 		try {
 			Context ctx = new InitialContext();
-			ejbListaCriterio = (ServicioListaCriterio) ctx
-					.lookup("EJBListaCriterio");
+			ejbListaCriterio = (ServicioListaCriterio) ctx.lookup("EJBListaCriterio");
 		} catch (NamingException e) {
 			throw new ProviderException(e);
 		}
@@ -32,9 +31,8 @@ public class ProveedorListaCriterio implements ServicioListaCriterio {
 	}
 
 	@Override
-	public List<ListaCriterioSeleccion> ObtenerListaCriterio(
-			ListaCriterioSeleccion pCriterio) {
-		return ejbListaCriterio.ObtenerListaCriterio(pCriterio);
+	public List<ListaCriterioSeleccion> ObtenerListaCriterio() {
+		return ejbListaCriterio.ObtenerListaCriterio();
 	}
 
 	@Override

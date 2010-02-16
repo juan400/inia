@@ -9,7 +9,6 @@ import javax.naming.NamingException;
 
 import com.inia_mscc.excepciones.ProviderException;
 import com.inia_mscc.modulos.gem.entidades.Cultivo;
-import com.inia_mscc.modulos.gem.entidades.Propiedad;
 import com.inia_mscc.modulos.gem.servicios.ServicioCultivo;
 
 public class ProveedorCultivo implements ServicioCultivo {

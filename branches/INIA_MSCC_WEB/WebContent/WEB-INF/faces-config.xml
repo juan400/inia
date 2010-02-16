@@ -88,6 +88,17 @@
 		<managed-bean-class>com.bean.gem.PropiedadesBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>valorSeleccionBean</managed-bean-name>
+		<managed-bean-class>com.bean.adm.ValorSeleccionBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>listaCriterioBean</managed-bean-name>
+		<managed-bean-class>com.bean.adm.ListaCriterioBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
@@ -479,6 +490,30 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/Servicios/ADM/ADM003.jsp</from-view-id>
+		<navigation-case>
+			<from-action>#{valorSeleccionBean.ModificarValorSeleccion}</from-action>
+			<from-outcome>ADM003</from-outcome>
+			<to-view-id>/Servicios/ADM/ADM003.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{valorSeleccionBean.EliminarValorSeleccion}</from-action>
+			<from-outcome>ADM003</from-outcome>
+			<to-view-id>/Servicios/ADM/ADM003.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+		<from-action>#{valorSeleccionBean.AceptarValorSeleccion}</from-action>
+		<from-outcome>ADM003</from-outcome>
+		<to-view-id>/Servicios/ADM/ADM003.lsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
 	<navigation-rule>
 		<from-view-id>/Servicios/ADM/ADM005.jsp</from-view-id>
 		<navigation-case>
