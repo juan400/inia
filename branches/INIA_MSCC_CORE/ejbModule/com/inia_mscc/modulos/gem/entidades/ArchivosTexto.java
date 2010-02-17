@@ -136,7 +136,7 @@ public abstract class ArchivosTexto {
 			PrintWriter fileOut = new PrintWriter(new FileWriter(file, true));
 			String linea = "";
 			while ((linea = fileIn.readLine()) != null) {
-				fileOut.println(linea.trim());
+				fileOut.println(linea);
 			}
 			fileOut.close();
 			fileIn.close();

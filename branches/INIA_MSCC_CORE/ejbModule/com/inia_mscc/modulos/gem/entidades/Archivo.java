@@ -40,12 +40,13 @@ public class Archivo implements Serializable {
 			EstadoArchivo estadoArchivo, TipoExtencionArchivo extencion,
 			Ubicacion ubicacion) {
 		super();
-		set_nombre(pNombreLogin);
 		_tipo = tipo;
 		_fechaHora = fechaHora;
 		_estadoArchivo = estadoArchivo;
 		_extencion = extencion;
 		_ubicacion = ubicacion;
+		_nombre = pNombreLogin;
+		set_nombre(pNombreLogin);
 	}
 
 	public String get_nombre() {
@@ -54,14 +55,17 @@ public class Archivo implements Serializable {
 
 	public void set_nombre(String pNombreLogin) {
 		Calendar pFecha = new GregorianCalendar();
+		if (_fechaHora != null) {
+			pFecha.setTime(_fechaHora);
+		}
 		String fechaEscrita = pFecha.get(Calendar.YEAR) + "-"
 				+ (pFecha.get(Calendar.MONTH) + 1) + "-"
 				+ pFecha.get(Calendar.DAY_OF_MONTH) + " "
-				+ pFecha.get(Calendar.HOUR_OF_DAY) + ":"
-				+ pFecha.get(Calendar.MINUTE) + ":"
+				+ pFecha.get(Calendar.HOUR_OF_DAY) + ""
+				+ pFecha.get(Calendar.MINUTE) + ""
 				+ pFecha.get(Calendar.SECOND);
 		String nombreArchivo = _ubicacion.get_urlPaht().toString()
-				+ pNombreLogin + "_" + fechaEscrita + ".py";
+				+ _tipo + "_" +  pNombreLogin + "_" + fechaEscrita + ".py";
 		_nombre = nombreArchivo;
 	}
 
