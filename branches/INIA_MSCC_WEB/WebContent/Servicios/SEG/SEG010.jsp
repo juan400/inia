@@ -35,7 +35,7 @@ Secano.</title>
 						<h:panelGrid width="956" cellpadding="0" cellspacing="0">
 							<rich:panel headerClass="tituloPantalla"
 								style="background-color: #ebf3fd;">
-<f:facet name="header">
+								<f:facet name="header">
 									<h:panelGrid columns="2" width="900px">
 										<h:column>
 											<h:outputText
@@ -59,7 +59,7 @@ Secano.</title>
 									</h:panelGrid>
 									<h:panelGrid columns="2">
 										<center><a4j:commandButton
-											style="font-size: 10pt; color: #2d77c2;"
+											style="font-size: 10pt; color: #2d77c2; width : 120px;"
 											styleClass="textoPlano" action="#{loginBean.logout}"
 											value="#{text.login_Login}" /></center>
 									</h:panelGrid>
@@ -106,17 +106,18 @@ Secano.</title>
 
 															<td style="width: 2px;"></td>
 															<h:outputText value="" />
-															
+
 														</h:panelGrid>
 
 														<center><rich:dataTable border="2" width="400px"
 															id="tablaTransaccion" rows="6"
 															styleClass="textoDataTable"
-															value="#{perfilBean.transaccionesActivas}" var="transaccion"
-															rowKeyVar="row" headerClass="columnHeader"
-															rowClasses="oddRow,evenRow">
+															value="#{perfilBean.transaccionesActivas}"
+															var="transaccion" rowKeyVar="row"
+															headerClass="columnHeader" rowClasses="oddRow,evenRow">
 															<f:facet name="header">
-																<h:outputText value="#{text.transaccion_TransaccionAsociada}" />
+																<h:outputText
+																	value="#{text.transaccion_TransaccionAsociada}" />
 															</f:facet>
 
 															<rich:column width="20">
@@ -145,16 +146,16 @@ Secano.</title>
 																	maxPages="5" />
 															</f:facet>
 														</rich:dataTable></center>
-														
+
 
 														<CENTER><h:panelGrid columns="2">
 															<a4j:commandButton
-																style="font-size: 10pt; color: #2d77c2; width : 71px;"
+																style="font-size: 10pt; color: #2d77c2; width : 120px;"
 																styleClass="textoPlano"
 																action="#{perfilBean.actualizar}"
 																value="#{text.boton_Aceptar}" />
 															<a4j:commandButton immediate="true"
-																style="font-size: 10pt; color: #2d77c2; width : 71px;"
+																style="font-size: 10pt; color: #2d77c2; width : 120px;"
 																styleClass="textoPlano" action="salir"
 																value="#{text.boton_Cancelar}" />
 														</h:panelGrid></center>

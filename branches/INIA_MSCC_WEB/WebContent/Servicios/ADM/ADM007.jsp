@@ -58,7 +58,7 @@ Secano.</title>
 											style="font-size: 12pt" value="#{text.login_notLogged}" /></center>
 							
 										<center><a4j:commandButton
-											style="font-size: 10pt; color: #2d77c2;"
+											style="font-size: 10pt; color: #2d77c2; width : 120px;"
 											styleClass="textoPlano" action="#{loginBean.logout}"
 											value="#{text.login_Login}" /></center>
 									</h:panelGrid>
@@ -109,12 +109,12 @@ Secano.</title>
 
 														<CENTER><h:panelGrid columns="2">
 															<a4j:commandButton
-																style="font-size: 10pt; color: #2d77c2; width : 71px;"
+															style="font-size: 10pt; color: #2d77c2; width : 120px;"
 																styleClass="textoPlano"
 																action="#{regionBean.actualizar}"
 																value="#{text.boton_Aceptar}" />
 															<a4j:commandButton immediate="true"
-																style="font-size: 10pt; color: #2d77c2; width : 71px;"
+																style="font-size: 10pt; color: #2d77c2; width : 120px;"
 																styleClass="textoPlano" action="salir"
 																value="#{text.boton_Cancelar}" />
 														</h:panelGrid></center>

@@ -69,11 +69,11 @@ Secano.</title>
 											</h:inputText>
 										</h:panelGrid>
 										<center><h:panelGrid columns="2">
-											<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
-												styleClass="textoPlano" tabindex="3"
+											<a4j:commandButton style="font-size: 10pt; color: #2d77c2; width : 120px;"
+												style="font-size: 10pt; color: #2d77c2; width : 120px;"tabindex="3"
 												action="#{recuperarContraseniaBean.enviarPassword}"
 												value="#{text.boton_Guardar}" />
-											<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
+											<a4j:commandButton style="font-size: 10pt; color: #2d77c2; width : 120px;"
 												styleClass="textoPlano" tabindex="4" action="cancelar"
 												immediate="true" value="#{text.boton_Cancelar}" />
 										</h:panelGrid></center>
