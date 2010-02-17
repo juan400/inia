@@ -36,20 +36,29 @@ Secano.</title>
 							<rich:panel headerClass="tituloPantalla"
 								style="background-color: #ebf3fd;">
 								<f:facet name="header">
-									<h:outputText
-										value="Bienvenido #{loginBean.usuario._datos._nombre} #{loginBean.usuario._datos._apellido}. Ultimo acceso #{loginBean.usuario._ultimoAcceso}" />
+									<h:panelGrid columns="2" width="900px">
+										<h:column>
+											<h:outputText
+												style="font-size: 9pt; color: #2d77c2; width: 750; aling: left"
+												value="Usuario #{loginBean.usuario._datos._nombre} #{loginBean.usuario._datos._apellido}  -  Ultimo acceso #{loginBean.usuario._ultimoAcceso}">
+											</h:outputText>
+										</h:column>
+										<h:column>
+											<h:commandLink
+												style="font-size: 8pt; color: #2d77c2; width: 100; aling: right"
+												styleClass="textoPlano" action="#{loginBean.logout}"
+												immediate="true" value="Cerrar Cesión">
+											</h:commandLink>
+										</h:column>
+									</h:panelGrid>
 								</f:facet>
 								<center><h:panelGrid rendered="#{!loginBean.logged}">
-									<h:panelGrid>
-										<center><h:outputText styleClass="mensajeError"
-											style="font-size: 12pt" value="#{text.login_notLogged}" /></center>
-									</h:panelGrid>
-									<h:panelGrid columns="2">
-										<center><a4j:commandButton
-											style="font-size: 10pt; color: #2d77c2;"
-											styleClass="textoPlano" action="#{loginBean.logout}"
-											value="#{text.login_login}" /></center>
-									</h:panelGrid>
+									<h:outputText styleClass="mensajeError" style="font-size: 12pt"
+										value="#{text.login_notLogged}" />
+									<center><a4j:commandButton
+										style="font-size: 10pt; color: #2d77c2;"
+										styleClass="textoPlano" action="#{loginBean.logout}"
+										immediate="true" value="#{text.login_Login}" /></center>
 								</h:panelGrid></center>
 								<h:panelGroup rendered="#{loginBean.logged}">
 									<h:panelGrid columns="2" rendered="#{loginBean.logged}"
@@ -61,16 +70,6 @@ Secano.</title>
 										<h:column>
 											<h:panelGrid>
 												<h:panelGroup rendered="#{subirEscenarioBean.init}" />
-												<h:panelGrid columns="2">
-												<h:outputLabel value="#{text.registro_Pais}" />
-											<rich:comboBox value="#{registroBean.paisElegido}"
-												enableManualInput="false" styleClass="combo">
-												<f:selectItems value="#{registroBean.paises}" />
-												<a4j:support action="#{registroBean.takeSelectionPais}"
-													event="onchange" ajaxSingle="true"
-													reRender="cmbDepartamentos" />
-											</rich:comboBox>
-												</h:panelGrid>
 												<h:panelGrid>
 													<rich:panel headerClass="tituloPantalla"
 														style="background-color: #ebf3fd;">
@@ -78,14 +77,51 @@ Secano.</title>
 															<h:outputText value="Ingresar Escenario" />
 														</f:facet>
 
+														<h:panelGrid columns="2" width="500px" columnClasses="textoPlano,textoPlano">
+
+															<h:outputText value="#{text.registro_Fecha}" />
+															<rich:calendar id="calFecha"
+																inputClass="rich-calendar-input"
+																value="#{subirEscenarioBean.fecha}" enableManualInput="false"
+																locale="ES" disabled="true" showApplyButton="false"
+																datePattern="dd/MM/yyyy" popup="true" cellWidth="24px"
+																cellHeight="22px" style="width:200px" />
+
+															<h:outputLabel value="Seleccionar cultivo" />
+															<rich:comboBox requiredMessage="Debe seleccionar un cultivo"
+																value="#{subirEscenarioBean.cultivoElegido}" required="true"
+																enableManualInput="false" styleClass="combo" width="220">
+																<f:selectItems value="#{subirEscenarioBean.cultivos}" />
+																<a4j:support
+																	action="#{subirEscenarioBean.takeSelectionCultivo}"
+																	event="onchange" ajaxSingle="true"
+																	reRender="upload,cmdRegiones" />
+																<rich:toolTip
+																	value="Seleccionar el cultivo al cual asociar el escenario que va a registrar." />
+															</rich:comboBox>
+
+															<h:outputLabel value="Seleccionar región climática" />
+															<rich:comboBox disabled="#{subirEscenarioBean.disableRegion}"
+																value="#{subirEscenarioBean.regionElegida}" required="true"
+																enableManualInput="false" styleClass="combo" requiredMessage="Debe seleccionar una región climática"
+																id="cmdRegiones" width="220">
+																<f:selectItems value="#{subirEscenarioBean.regiones}" />
+																<a4j:support
+																	action="#{subirEscenarioBean.takeSelectionRegion}"
+																	event="onchange" ajaxSingle="true" reRender="upload" />
+																<rich:toolTip
+																	value="Seleccionar el cultivo al cual asosciar el escenario que va a registrar." />
+															</rich:comboBox>
+														</h:panelGrid>
+
 														<h:outputText value="Seleccionar " />
 
-														<rich:fileUpload
-															requiredMessage="Debe de subir un archivo"
+														<rich:fileUpload disabled="#{subirEscenarioBean.disableUpload}"
+															requiredMessage="Debe subir un archivo"
 															fileUploadListener="#{subirEscenarioBean.listener}"
-															maxFilesQuantity="#{subirEscenarioBean.uploadsAvailable}"
+															maxFilesQuantity="1"
 															required="true" id="upload"
-															immediateUpload="#{subirEscenarioBean.autoUpload}"
+															immediateUpload="false"
 															acceptedTypes="py" allowFlash="true" listHeight="60">
 															<a4j:support event="onuploadcomplete" reRender="mensages" />
 														</rich:fileUpload>
@@ -99,38 +135,20 @@ Secano.</title>
 															<a4j:commandButton immediate="true"
 																style="font-size: 10pt; color: #2d77c2; width : 87px;"
 																styleClass="textoPlano" action="cancelar"
-																value="#{text.perfil_Cerrar}" />
+																value="#{text.boton_Cancelar}" />
 														</h:panelGrid></center>
-														<h:panelGrid id="mensages">
+														<center><h:panelGrid id="mensages">
 															<rich:messages styleClass="mensajeError">
-																<f:facet name="passedMarker">
-																	<h:graphicImage
-																		value="/Recursos/Imagenes/Iconos/passed.gif" />
-																</f:facet>
 																<f:facet name="errorMarker">
 																	<h:graphicImage
 																		value="/Recursos/Imagenes/Iconos/error.gif" />
 																</f:facet>
 															</rich:messages>
-															<h:outputText styleClass="mensajeError"
-																value="#{subirEscenarioBean.error}" />
 															<h:outputText styleClass="textoPlano"
 																value="#{subirEscenarioBean.exito}" />
-														</h:panelGrid>
+														</h:panelGrid></center>
 													</rich:panel>
 												</h:panelGrid>
-												<f:facet name="footer">
-													<h:panelGrid>
-														<rich:messages styleClass="mensajeError">
-															<f:facet name="errorMarker">
-																<h:graphicImage
-																	value="/Recursos/Imagenes/Iconos/error.gif" />
-															</f:facet>
-														</rich:messages>
-														<h:outputText styleClass="textoPlano"
-															value="#{recuperarContraseniaBean.exito}" />
-													</h:panelGrid>
-												</f:facet>
 											</h:panelGrid>
 										</h:column>
 									</h:panelGrid>
