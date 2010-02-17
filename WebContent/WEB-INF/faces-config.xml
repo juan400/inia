@@ -70,7 +70,7 @@
 	<managed-bean>
 		<managed-bean-name>subirEscenarioBean</managed-bean-name>
 		<managed-bean-class>com.bean.gem.SubirEscenarioBean</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
+		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>transaccionBean</managed-bean-name>
@@ -695,6 +695,15 @@
 			<from-action>#{propiedadesBean.ModificarPropiedades}</from-action>
 			<from-outcome>GEM004</from-outcome>
 			<to-view-id>/Servicios/GEM/GEM004.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/Servicios/GEM/GEM005.jsp</from-view-id>
+			<navigation-case>
+			<from-action>#{subirEscenarioBean.RegistrarEscenario}</from-action>
+			<from-outcome>GEM005</from-outcome>
+			<to-view-id>/Servicios/GEM/GEM005.jsp</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<application>
