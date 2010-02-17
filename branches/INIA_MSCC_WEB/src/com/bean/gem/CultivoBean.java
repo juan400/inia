@@ -6,7 +6,10 @@ import java.util.Date;
 import javax.faces.model.SelectItem;
 
 import com.bean.comun.MaestroBean;
+import com.inia_mscc.modulos.adm.entidades.Transaccion;
+import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioADM;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioGEM;
 import com.inia_mscc.modulos.gem.entidades.Cultivo;
 
@@ -54,10 +57,10 @@ public class CultivoBean extends MaestroBean implements Serializable {
 			descripcion = "";
 			estado = estados[1].getValue().toString();
 			this.setDisableBtnProp(false);
-			this
-					.setExito("Se registro exitosamente el cultivo.");
+			this.setExito("Se registro exitosamente el cultivo.");
 		} else {
-			this.setError("No se pudo registrar el cultivo, por favor intente nuevamente.");
+			this
+					.setError("No se pudo registrar el cultivo, por favor intente nuevamente.");
 		}
 		return retorno;
 	}
@@ -73,6 +76,46 @@ public class CultivoBean extends MaestroBean implements Serializable {
 					+ "previamente a realizar el ingreso de la propiedades.");
 		} else {
 			retorno = "GEM003";
+		}
+		return retorno;
+	}
+
+	private void limpiarBean() {
+		nombre = "";
+		descripcion = "";
+		estado = "";
+	}
+
+	public String Actualizar() {
+		String retorno = "GEM002";
+		try {
+			if (cultivo.get_nombre().equalsIgnoreCase(
+					this.getNombre())) {
+				cultivo.set_nombre(nombre);
+				cultivo.set_descripcion(descripcion);
+				cultivo.set_estado(Enumerados.Estado.valueOf(estado));
+
+				this.getGEMFachada(ServicioGEM.Cultivo).ActualizarCultivo(
+						this.getCultivo());
+			} else {
+				cultivo.set_nombre(nombre);
+				cultivo.set_descripcion(descripcion);
+				cultivo.set_estado(Enumerados.Estado.valueOf(estado));
+
+				Cultivo cul = this.getGEMFachada(ServicioGEM.Cultivo)
+						.ComprobarCultivo(this.getCultivo());
+				if (cul == null) {
+					setError("");
+					this.getGEMFachada(ServicioGEM.Cultivo).ActualizarCultivo(
+							this.getCultivo());
+				} else {
+					this
+							.setError("Ya existe un Cultivo con igual nombre, Por favor ingrese otro nombre.");
+				}
+			}
+		} catch (Exception ex) {
+			this
+					.setError("Se ha producido un error, por favor intente nuevamente.");
 		}
 		return retorno;
 	}

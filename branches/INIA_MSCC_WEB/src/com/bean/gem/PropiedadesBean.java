@@ -351,6 +351,9 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 		this.cultivos = cultivos;
 	}
 
+	
+	
+	
 	public Cultivo getCultivo() {
 		return cultivo;
 	}

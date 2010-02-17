@@ -48,16 +48,17 @@ public class GEMFachada {
 		return srvCultivo.RegistrarCultivo(pCultivo);
 	}
 	
+	public Cultivo ComprobarCultivo(Cultivo pCultivo){
+		return srvCultivo.ComprobarCultivo(pCultivo);
+	}
 	public void ActualizarPropiedad(Propiedad pPropiedad) {
 		srvPropiedad.ActualizarPropiedad(pPropiedad);
 	}
 
-	
 	public Propiedad ObtenerPropiedad(Propiedad pPropiedad) {
 		return srvPropiedad.ObtenerPropiedad(pPropiedad);
 	}
 
-	
 	public List<Propiedad> ObtenerPropiedades(Propiedad pPropiedad) {
 		return srvPropiedad.ObtenerPropiedades(pPropiedad);
 	}

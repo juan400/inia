@@ -45,4 +45,8 @@ public class ProveedorCultivo implements ServicioCultivo {
 		return ejbCultivo.RegistrarCultivo(pCultivo);
 	}
 
+	@Override
+	public Cultivo ComprobarCultivo(Cultivo pCultivo){
+		return ejbCultivo.ComprobarCultivo(pCultivo);
+	}
 }
