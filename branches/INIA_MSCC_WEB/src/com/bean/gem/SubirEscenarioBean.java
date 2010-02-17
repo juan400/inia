@@ -48,7 +48,7 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 	private Archivo archivoSubido = new Archivo();
 	private boolean useFlash = false;
 	private boolean disableUpload = true;
-	private List<File> files;
+	private List<UploadItem> files;
 
 	private boolean recargo = true;
 
@@ -57,12 +57,13 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 				.ObtenerCultivos(null));
 		this.setListaRegiones(this.getAdmFachada(ServicioADM.Region)
 				.ObtenerRegiones());
+		files = new ArrayList<UploadItem>();
 	}
 
 	public boolean isInit() {
 		try {
 			if (recargo) {
-				files = new ArrayList<File>();
+				files = new ArrayList<UploadItem>();
 				this.setListaCultivos(this.getGEMFachada(ServicioGEM.Cultivo)
 						.ObtenerCultivos(null));
 				if (this.getListaCultivos() == null) {
@@ -190,21 +191,22 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 	public void listener(UploadEvent event) {
 		try {
 			UploadItem item = event.getUploadItem();
-			files.add(item.getFile());
-			setUsuario((Usuario) getSesion(Usuario.class.toString()));
-			Ubicacion ubicacion = new Ubicacion();
-			ubicacion.set_urlPaht(new URI("C:/ArchivosSubidos/"));
-			archivoSubido = new Archivo(getUsuario().get_login(),
-					TipoArchivo.Escenario, new Date(), EstadoArchivo.Cargado,
-					TipoExtencionArchivo.py, ubicacion);
-			File file = new File(archivoSubido.get_nombre());
-			file.setExecutable(true);
-			if (file.createNewFile()) {
-				this.setDisableUpload(true);
-				this.setExito("Se a subido el archivo");
-			}
-			ArchivosTexto.copiarArchio(item.getFile(), file);
-			archivoSubido.set_datos(file);
+			files.add(item);
+			// setUsuario((Usuario) getSesion(Usuario.class.toString()));
+			// Ubicacion ubicacion = new Ubicacion();
+			// ubicacion.set_urlPaht(new URI("C:/ArchivosSubidos/"));
+			// archivoSubido = new Archivo(getUsuario().get_login(),
+			// TipoArchivo.Escenario, new Date(), EstadoArchivo.Cargado,
+			// TipoExtencionArchivo.py, ubicacion);
+			// File file = new File(archivoSubido.get_nombre());
+			// file.setExecutable(true);
+			// if (file.createNewFile()) {
+			// this.setDisableUpload(true);
+			// this.setExito("Se a subido el archivo");
+			// }
+			// ArchivosTexto.copiarArchio(item.getFile(), file);
+			// archivoSubido.set_datos(file);
+			recargo = false;
 		} catch (Exception ex) {
 			setError(ex.getMessage());
 		}
@@ -213,26 +215,40 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 	public String RegistrarEscenario() {
 		String retorno = "";
 		try {
-			if (this.getFiles() != null && !this.getFiles().isEmpty()) {
-				setUsuario((Usuario) getSesion(Usuario.class.toString()));
-				Ubicacion ubicacion = new Ubicacion();
-				ubicacion.set_urlPaht(new URI("C:/ArchivosSubidos/"));
-				archivoSubido = new Archivo(getUsuario().get_login(),
-						TipoArchivo.Escenario, new Date(),
-						EstadoArchivo.Cargado, TipoExtencionArchivo.py,
-						ubicacion);
-				File file = new File(archivoSubido.get_nombre());
-				file.setExecutable(true);
-				if (file.createNewFile()) {
-					this.setDisableUpload(true);
-					this.setExito("Se a subido el archivo");
+			if (this.getCultivo() != null) {
+				if (this.getRegion() != null) {
+					if (this.getFiles() != null && !this.getFiles().isEmpty()) {
+						setUsuario((Usuario) getSesion(Usuario.class.toString()));
+						Ubicacion ubicacion = new Ubicacion();
+						ubicacion.set_urlPaht(new URI("C:/ArchivosSubidos/"));
+						archivoSubido = new Archivo(getUsuario().get_login(),
+								TipoArchivo.Escenario, new Date(),
+								EstadoArchivo.Cargado, TipoExtencionArchivo.py,
+								ubicacion);
+						File file = new File(archivoSubido.get_nombre());
+						file.setExecutable(true);
+						if (file.createNewFile()) {
+							this.setDisableUpload(true);
+							this.setExito("Se a subido el archivo");
+						}
+						ArchivosTexto.copiarArchio(this.getFiles().get(0)
+								.getFile(), file);
+						archivoSubido.set_datos(file);
+						recargo = true;
+						this.setExito("Se guardo el archivo para "
+								+ "el escenario exitosamente.");
+						retorno = "GEM005";
+					} else {
+						this
+								.setError("No se subieron archivos, seleccione y cargue el archivo para el escenario.");
+					}
+				} else {
+					this.setError("Debe seleccionar una región climática.");
 				}
-				ArchivosTexto.copiarArchio(this.getFiles().get(0), file);
-				archivoSubido.set_datos(file);
-			}else{
-				this.setError("No se subieron archivos, seleccione y cargue el archivo para el escenario.");
+			} else {
+				this.setError("Debe seleccionar un cultivo.");
 			}
-			
+
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
 		}
@@ -241,7 +257,7 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 
 	public String clearUploadData() {
 		archivoSubido = null;
-		files = new ArrayList<File>();
+		files = new ArrayList<UploadItem>();
 		return null;
 	}
 
@@ -353,11 +369,11 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 		this.disableUpload = disableUpload;
 	}
 
-	public void setFiles(List<File> files) {
+	public void setFiles(List<UploadItem> files) {
 		this.files = files;
 	}
 
-	public List<File> getFiles() {
+	public List<UploadItem> getFiles() {
 		return files;
 	}
 

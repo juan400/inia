@@ -77,20 +77,24 @@ Secano.</title>
 															<h:outputText value="Modificar Escenario" />
 														</f:facet>
 
-														<h:panelGrid columns="2" width="500px" columnClasses="textoPlano,textoPlano">
+														<h:panelGrid columns="2" width="500px"
+															columnClasses="textoPlano,textoPlano">
 
 															<h:outputText value="#{text.registro_Fecha}" />
 															<rich:calendar id="calFecha"
 																inputClass="rich-calendar-input"
-																value="#{subirEscenarioBean.fecha}" enableManualInput="false"
-																locale="ES" disabled="true" showApplyButton="false"
-																datePattern="dd/MM/yyyy" popup="true" cellWidth="24px"
-																cellHeight="22px" style="width:200px" />
+																value="#{subirEscenarioBean.fecha}"
+																enableManualInput="false" locale="ES" disabled="true"
+																showApplyButton="false" datePattern="dd/MM/yyyy"
+																popup="true" cellWidth="24px" cellHeight="22px"
+																style="width:200px" />
 
 															<h:outputLabel value="Seleccionar cultivo" />
-															<rich:comboBox requiredMessage="Debe seleccionar un cultivo"
-																value="#{subirEscenarioBean.cultivoElegido}" required="true"
-																enableManualInput="false" styleClass="combo" width="220">
+															<rich:comboBox
+																requiredMessage="Debe seleccionar un cultivo"
+																value="#{subirEscenarioBean.cultivoElegido}"
+																required="true" enableManualInput="false"
+																styleClass="combo" width="220">
 																<f:selectItems value="#{subirEscenarioBean.cultivos}" />
 																<a4j:support
 																	action="#{subirEscenarioBean.takeSelectionCultivo}"
@@ -101,9 +105,12 @@ Secano.</title>
 															</rich:comboBox>
 
 															<h:outputLabel value="Seleccionar región climática" />
-															<rich:comboBox disabled="#{subirEscenarioBean.disableRegion}"
-																value="#{subirEscenarioBean.regionElegida}" required="true"
-																enableManualInput="false" styleClass="combo" requiredMessage="Debe seleccionar una región climática"
+															<rich:comboBox
+																disabled="#{subirEscenarioBean.disableRegion}"
+																value="#{subirEscenarioBean.regionElegida}"
+																required="true" enableManualInput="false"
+																styleClass="combo"
+																requiredMessage="Debe seleccionar una región climática"
 																id="cmdRegiones" width="220">
 																<f:selectItems value="#{subirEscenarioBean.regiones}" />
 																<a4j:support
@@ -113,23 +120,26 @@ Secano.</title>
 																	value="Seleccionar el cultivo al cual asosciar el escenario que va a registrar." />
 															</rich:comboBox>
 														</h:panelGrid>
-														<br></br>	
+														<br></br>
 														<h:outputText />
 
-														<rich:fileUpload disabled="#{subirEscenarioBean.disableUpload}"
+														<rich:fileUpload
+															disabled="#{subirEscenarioBean.disableUpload}"
 															requiredMessage="Debe subir un archivo"
 															fileUploadListener="#{subirEscenarioBean.listener}"
-															maxFilesQuantity="1" uploadData="#{subirEscenarioBean.files}"
-															required="true" id="upload"
-															immediateUpload="false" listWidth="457px"
+															maxFilesQuantity="1" 
+															uploadData="#{subirEscenarioBean.files}" required="true"
+															id="upload" immediateUpload="false" listWidth="457px"
 															acceptedTypes="py" allowFlash="true" listHeight="60">
-															<a4j:support event="onuploadcomplete" ajaxSingle="true" reRender="mensajes" />
+															<a4j:support event="onuploadcomplete" ajaxSingle="true"
+																reRender="mensajes" />
 														</rich:fileUpload>
-
+														<br></br>
 														<center><h:panelGrid columns="3">
 															<a4j:commandButton immediate="true"
 																style="font-size: 10pt; color: #2d77c2; width : 87px;"
-																styleClass="textoPlano" action="#{{subirEscenarioBean.RegistrarEscenario}"
+																styleClass="textoPlano"
+																action="#{subirEscenarioBean.RegistrarEscenario}"
 																value="#{text.boton_Registrar}" />
 
 															<a4j:commandButton immediate="true"
