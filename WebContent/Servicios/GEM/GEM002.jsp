@@ -107,10 +107,10 @@ Secano.</title>
 																styleClass="combo" width="180px">
 																<f:selectItems value="#{cultivoBean.estados}" />
 															</rich:comboBox>
-
 														</h:panelGrid>
 														<br></br>
-														<center><h:panelGrid columns="3"
+														
+														<center><h:panelGrid columns="2"
 															columnClasses="textoPlano,textoPlano,textoPlano">
 															<a4j:commandButton
 																style="font-size: 10pt; color: #2d77c2; width : 120px;"
