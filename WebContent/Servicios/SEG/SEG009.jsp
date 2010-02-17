@@ -36,7 +36,7 @@ Secano.</title>
 							<rich:panel headerClass="tituloPantalla"
 								style="background-color: #ebf3fd;">
 								<f:facet name="header">
-									<h:outputText
+									<h:outputText styleClass="UsuarioHora"
 										value="Bienvenido #{loginBean.usuario._datos._nombre} #{loginBean.usuario._datos._apellido}. Ultimo acceso #{loginBean.usuario._ultimoAcceso}" />
 								</f:facet>
 								<center><h:panelGrid rendered="#{!loginBean.logged}">
