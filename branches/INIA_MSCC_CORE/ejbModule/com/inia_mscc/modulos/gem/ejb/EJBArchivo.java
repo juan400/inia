@@ -23,7 +23,7 @@ public class EJBArchivo implements ServicioArchivo{
 
 	@Override
 	public void ActualizarArchivo(Archivo pArchivo) {
-		
+		dao.ActualizarArchivo(pArchivo);
 	}
 
 	@Override
