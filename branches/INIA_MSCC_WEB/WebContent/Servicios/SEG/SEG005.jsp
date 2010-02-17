@@ -136,7 +136,7 @@ Secano.</title>
 																immediate="true" value="#{text.boton_Cancelar}" />
 														</h:panelGrid></center>
 
-														<f:facet name="footer">
+														<center><f:facet name="footer">
 															<h:panelGrid>
 																<rich:messages styleClass="mensajeError">
 																	<f:facet name="errorMarker">
@@ -147,7 +147,7 @@ Secano.</title>
 																<h:outputText styleClass="textoPlano"
 																	value="#{datosUsuarioBean.exito}" />
 															</h:panelGrid>
-														</f:facet>
+														</f:facet></center>
 													</h:panelGrid>
 												</rich:panel>
 											</h:panelGrid>

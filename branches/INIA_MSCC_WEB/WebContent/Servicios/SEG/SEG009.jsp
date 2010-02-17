@@ -35,7 +35,7 @@ Secano.</title>
 						<h:panelGrid width="956" cellpadding="0" cellspacing="0">
 							<rich:panel headerClass="tituloPantalla"
 								style="background-color: #ebf3fd;">
-<f:facet name="header">
+								<f:facet name="header">
 									<h:panelGrid columns="2" width="900px">
 										<h:column>
 											<h:outputText
@@ -57,7 +57,7 @@ Secano.</title>
 										<center><h:outputText styleClass="mensajeError"
 											style="font-size: 12pt" value="#{text.login_notLogged}" /></center>
 									</h:panelGrid>
-									<h:panelGrid >
+									<h:panelGrid>
 										<center><a4j:commandButton
 											style="font-size: 10pt; color: #2d77c2;"
 											styleClass="textoPlano" action="#{loginBean.logout}"
@@ -114,7 +114,8 @@ Secano.</title>
 															var="transaccion" rowKeyVar="row"
 															headerClass="columnHeader" rowClasses="oddRow,evenRow">
 															<f:facet name="header">
-																<h:outputText value="#{text.transaccion_TablaTransaccion}" />
+																<h:outputText
+																	value="#{text.transaccion_TablaTransaccion}" />
 															</f:facet>
 
 															<rich:column width="20">
@@ -156,7 +157,7 @@ Secano.</title>
 																value="#{text.boton_Cancelar}" />
 														</h:panelGrid></center>
 
-														<f:facet name="footer">
+														<center><f:facet name="footer">
 															<h:panelGrid>
 																<rich:messages styleClass="mensajeError">
 																	<f:facet name="errorMarker">
@@ -169,7 +170,7 @@ Secano.</title>
 																		value="#{perfilBean.exito}" />
 																</h:panelGrid></center>
 															</h:panelGrid>
-														</f:facet>
+														</f:facet></center>
 													</h:panelGrid>
 												</rich:panel>
 											</h:panelGrid>

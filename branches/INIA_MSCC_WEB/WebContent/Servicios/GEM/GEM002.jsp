@@ -36,115 +36,108 @@ Secano.</title>
 							<rich:panel headerClass="tituloPantalla"
 								style="background-color: #ebf3fd;">
 								<f:facet name="header">
-									<h:outputText
-										value="Bienvenido #{loginBean.usuario._datos._nombre} #{loginBean.usuario._datos._apellido}. Ultimo acceso #{loginBean.usuario._ultimoAcceso}" />
+									<h:panelGrid columns="2" width="900px">
+										<h:column>
+											<h:outputText
+												style="font-size: 9pt; color: #2d77c2; width: 750; aling: left"
+												value="Usuario #{loginBean.usuario._datos._nombre} #{loginBean.usuario._datos._apellido}  -  Ultimo acceso #{loginBean.usuario._ultimoAcceso}">
+											</h:outputText>
+										</h:column>
+										<h:column>
+											<h:commandLink
+												style="font-size: 8pt; color: #2d77c2; width: 100; aling: right"
+												styleClass="textoPlano" action="#{loginBean.logout}"
+												immediate="true" value="Cerrar Cesión">
+											</h:commandLink>
+										</h:column>
+									</h:panelGrid>
 								</f:facet>
 								<center><h:panelGrid rendered="#{!loginBean.logged}">
 									<h:panelGrid>
 										<center><h:outputText styleClass="mensajeError"
 											style="font-size: 12pt" value="#{text.login_notLogged}" /></center>
-									</h:panelGrid>
-									<h:panelGrid columns="2">
+
 										<center><a4j:commandButton
 											style="font-size: 10pt; color: #2d77c2;"
 											styleClass="textoPlano" action="#{loginBean.logout}"
-											value="#{text.login_login}" /></center>
+											value="#{text.login_Login}" /></center>
 									</h:panelGrid>
 								</h:panelGrid></center>
+
 								<h:panelGroup rendered="#{loginBean.logged}">
-									<h:panelGrid columns="2" rendered="#{loginBean.logged}"
-										columnClasses="cols" width="200">
+									<h:panelGrid columns="2" columnClasses="cols" width="200">
 										<h:column>
 											<h:panelGroup rendered="#{menuBean.init}" />
 											<rich:panelMenu binding="#{menuBean.panelMenu}" />
 										</h:column>
+
 										<h:column>
+											<h:panelGroup rendered="#{cultivoBean.init}" />
 											<h:panelGrid>
-												<h:panelGroup rendered="#{cultivoBean.init}" />
-												<h:panelGrid>
-													<rich:panel headerClass="tituloPantalla"
-														style="background-color: #ebf3fd;">
-														<f:facet name="header">
-															<h:outputText value="Ingresar Cultivos" />
-														</f:facet>
-														<h:panelGrid>
-															<h:panelGrid columns="2"
-																columnClasses="textoPlano,textoPlano" width="400">
-																<h:outputLabel value="#{text.registro_Pais}" />
-																<rich:comboBox value="#{registroBean.paisElegido}"
-																	enableManualInput="false" styleClass="combo">
-																	<f:selectItems value="#{registroBean.paises}" />
-																	<a4j:support action="#{registroBean.takeSelectionPais}"
-																		event="onchange" ajaxSingle="true"
-																		reRender="cmbDepartamentos" />
-																</rich:comboBox>
-																
-																<h:outputText value="Ingrese nombre" />
-																<h:inputText value="#{cultivoBean.nombre}"
-																	required="true"
-																	requiredMessage="Ingrese un nombre para el cultivo"
-																	styleClass="textoPlano" maxlength="50"
-																	onkeypress="ValidarCampoLetras(this, event)" />
-
-																<h:outputText value="Ingresar descripción" />
-																<h:inputTextarea value="#{cultivoBean.descripcion}"
-																	required="true"
-																	requiredMessage="Ingrese la descripcion del cultivo"
-																	styleClass="textoPlano"
-																	onkeypress="ValidarCampoLetras(this, event)">
-																	<f:validateLength maximum="220" />
-																</h:inputTextarea>
-
-																<h:outputLabel value="Seleccionar un estado" />
-																<rich:comboBox value="#{cultivoBean.estado}"
-																	enableManualInput="false" styleClass="combo">
-																	<f:selectItems value="#{cultivoBean.estados}" />
-																</rich:comboBox>
-
-															</h:panelGrid>
-															<center><h:panelGrid columns="3"
-																columnClasses="textoPlano,textoPlano,textoPlano">
-																<a4j:commandButton
-																	style="font-size: 10pt; color: #2d77c2; width : 87px;"
-																	styleClass="textoPlano"
-																	action="#{cultivoBean.Registrar}"
-																	value="#{text.boton_Registrar}" />
-																<a4j:commandButton
-																	style="font-size: 10pt; color: #2d77c2; width : 120px;"
-																	styleClass="textoPlano"
-																	action="#{cultivoBean.Propiedades}" value="Propiedades" />
-																<a4j:commandButton immediate="true"
-																	style="font-size: 10pt; color: #2d77c2; width : 87px;"
-																	styleClass="textoPlano" action="cancelar"
-																	value="#{text.perfil_Cerrar}" />
-															</h:panelGrid></center>
-															<f:facet name="footer">
-																<h:panelGrid>
-																	<rich:messages styleClass="mensajeError">
-																		<f:facet name="errorMarker">
-																			<h:graphicImage
-																				value="/Recursos/Imagenes/Iconos/error.gif" />
-																		</f:facet>
-																	</rich:messages>
-																	<h:outputText styleClass="textoPlano"
-																		value="#{cultivoBean.exito}" />
-																</h:panelGrid>
-															</f:facet>
-														</h:panelGrid>
-													</rich:panel>
-												</h:panelGrid>
-												<f:facet name="footer">
+												<rich:panel headerClass="tituloPantalla"
+													style="background-color: #ebf3fd;">
+													<f:facet name="header">
+														<h:outputText value="#{text.cultivo_Actualizar}" />
+													</f:facet>
 													<h:panelGrid>
-														<rich:messages styleClass="mensajeError">
-															<f:facet name="errorMarker">
-																<h:graphicImage
-																	value="/Recursos/Imagenes/Iconos/error.gif" />
-															</f:facet>
-														</rich:messages>
-														<h:outputText styleClass="textoPlano"
-															value="#{recuperarContraseniaBean.exito}" />
+														<h:panelGrid columns="2"
+															columnClasses="textoPlano,textoPlano" width="400">
+
+															<h:outputText value="#{text.cultivo_Nombre}" />
+															<h:inputText value="#{cultivoBean.nombre}"
+																required="true"
+																requiredMessage="Debe Ingresar un nombre para el cultivo"
+																styleClass="textoPlano" maxlength="50"
+																onkeypress="ValidarCampoLetras(this, event)"
+																style=" width : 180px;" />
+
+															<h:outputText value="#{text.cultivo_Descripcion}" />
+															<h:inputTextarea value="#{cultivoBean.descripcion}"
+																required="true"
+																requiredMessage="Debe Ingresar la descripción del cultivo"
+																styleClass="textoPlano"
+																onkeypress="ValidarCampoLetras(this, event)"
+																style=" width : 180px;">
+																<f:validateLength maximum="220" />
+															</h:inputTextarea>
+
+															<h:outputLabel value="#{text.cultivo_Estado}" />
+															<rich:comboBox value="#{cultivoBean.estado}"
+																style=" higth : 18px;" enableManualInput="false"
+																styleClass="combo" width="180px">
+																<f:selectItems value="#{cultivoBean.estados}" />
+															</rich:comboBox>
+
+														</h:panelGrid>
+														<br></br>
+														<center><h:panelGrid columns="3"
+															columnClasses="textoPlano,textoPlano,textoPlano">
+															<a4j:commandButton
+																style="font-size: 10pt; color: #2d77c2; width : 120px;"
+																styleClass="textoPlano"
+																action="#{cultivoBean.Actualizar}"
+																value="#{text.boton_Actualizar}" />
+
+															<a4j:commandButton immediate="true"
+																style="font-size: 10pt; color: #2d77c2; width : 120px;"
+																styleClass="textoPlano" action="cancelar"
+																value="#{text.boton_Cerrar}" />
+														</h:panelGrid></center>
+
+														<center><f:facet name="footer">
+															<h:panelGrid>
+																<rich:messages styleClass="mensajeError">
+																	<f:facet name="errorMarker">
+																		<h:graphicImage
+																			value="/Recursos/Imagenes/Iconos/error.gif" />
+																	</f:facet>
+																</rich:messages>
+																<h:outputText styleClass="textoPlano"
+																	value="#{cultivoBean.exito}" />
+															</h:panelGrid>
+														</f:facet></center>
 													</h:panelGrid>
-												</f:facet>
+												</rich:panel>
 											</h:panelGrid>
 										</h:column>
 									</h:panelGrid>
