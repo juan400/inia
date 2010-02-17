@@ -56,8 +56,6 @@ Secano.</title>
 									<h:panelGrid>
 										<center><h:outputText styleClass="mensajeError"
 											style="font-size: 12pt" value="#{text.login_notLogged}" /></center>
-									</h:panelGrid>
-									<h:panelGrid columns="2">
 										<center><a4j:commandButton
 											style="font-size: 10pt; color: #2d77c2;"
 											styleClass="textoPlano" action="#{loginBean.logout}"
@@ -127,7 +125,7 @@ Secano.</title>
 																value="#{text.boton_Cancelar}" />
 														</h:panelGrid></center>
 
-														<f:facet name="footer">
+														<center><f:facet name="footer">
 															<h:panelGrid>
 																<rich:messages styleClass="mensajeError">
 																	<f:facet name="errorMarker">
@@ -138,7 +136,7 @@ Secano.</title>
 																<h:outputText styleClass="textoPlano"
 																	value="#{datosUsuarioBean.exito}" />
 															</h:panelGrid>
-														</f:facet>
+														</f:facet></center>
 													</h:panelGrid>
 												</rich:panel>
 											</h:panelGrid>

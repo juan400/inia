@@ -60,10 +60,7 @@ Secano.</title>
 									<center><a4j:commandButton
 										style="font-size: 10pt; color: #2d77c2;"
 										styleClass="textoPlano" action="#{loginBean.logout}"
-										immediate="true" value="#{text.login_login}" /> <a4j:commandButton
-										style="font-size: 10pt; color: #2d77c2;"
-										styleClass="textoPlano" action="navegar" immediate="true"
-										value="Ingresar" /></center>
+										immediate="true" value="#{text.login_Login}" /></center>
 								</h:panelGrid></center>
 								<h:panelGroup rendered="#{loginBean.logged}">
 									<h:panelGrid columns="2" rendered="#{loginBean.logged}"
@@ -88,7 +85,7 @@ Secano.</title>
 														styleClass="textoPlano" tabindex="4" action="EJE003"
 														value="Ver Historico" />
 												</h:panelGrid></center>
-												<f:facet name="footer">
+												<center><f:facet name="footer">
 													<h:panelGrid>
 														<rich:messages styleClass="mensajeError">
 															<f:facet name="errorMarker">
@@ -99,7 +96,7 @@ Secano.</title>
 														<h:outputText styleClass="textoPlano"
 															value="#{maestroBean.exito}" />
 													</h:panelGrid>
-												</f:facet>
+												</f:facet></center>
 											</h:panelGrid>
 										</h:column>
 									</h:panelGrid>

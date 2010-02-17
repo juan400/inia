@@ -139,7 +139,7 @@ Secano.</title>
 												</rich:panel>
 
 											</h:panelGrid>
-											<f:facet name="footer">
+											<center><f:facet name="footer">
 												<h:panelGrid>
 													<rich:messages styleClass="mensajeError">
 														<f:facet name="errorMarker">
@@ -150,7 +150,7 @@ Secano.</title>
 													<h:outputText styleClass="textoPlano"
 														value="#{transaccion.exito}" />
 												</h:panelGrid>
-											</f:facet>
+											</f:facet></center>
 										</h:column>
 									</h:panelGrid>
 								</h:panelGroup>
