@@ -1,4 +1,4 @@
-﻿delete from tl_seg_usua_usuario;
+﻿delete FROM tl_seg_usua_usuario ;
 
 ALTER TABLE `inia_mscc_db`.`tl_seg_usua_usuario` AUTO_INCREMENT = 1;
 
@@ -14,4 +14,4 @@ INSERT INTO `inia_mscc_db`.`tl_seg_usua_usuario`
 
 VALUES
 
-('admin','alDQjL1pvLdpXRlvbJ9HLeF5XLo=',1,default,'Activo',1,'Proyecto Final',default);
+('admin','+GW1NiOxIf007lQmx5Llwzr4wic=',1,default,'Activo',1,'ProyectoFinal',54032683);
