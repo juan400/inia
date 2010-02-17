@@ -107,42 +107,34 @@ Secano.</title>
 																styleClass="combo" width="220">
 																<f:selectItems value="#{cultivoBean.estados}" />
 															</rich:comboBox>
-
 														</h:panelGrid>
-														<br></br>
-														<center><h:panelGrid columns="3"
-															columnClasses="textoPlano,textoPlano,textoPlano">
-															<a4j:commandButton
-																style="font-size: 10pt; color: #2d77c2; width : 120px;"
-																styleClass="textoPlano"
-																action="#{cultivoBean.Registrar}"
-																value="#{text.boton_Registrar}" />
-															<a4j:commandButton
-																style="font-size: 10pt; color: #2d77c2; width : 120px;"
-																styleClass="textoPlano" immediate="true"
-																disabled="#{cultivoBean.disableBtnProp}"
-																action="#{cultivoBean.Propiedades}" value="#{text.cultivo_Propiedad}" />
-															<a4j:commandButton immediate="true"
-																style="font-size: 10pt; color: #2d77c2; width : 120px;"
-																styleClass="textoPlano" action="cancelar"
-																value="#{text.boton_Cerrar}" />
-														</h:panelGrid></center>
-														
-														<center><f:facet name="footer">
-															<h:panelGrid>
-																<rich:messages styleClass="mensajeError">
-																	<f:facet name="errorMarker">
-																		<h:graphicImage
-																			value="/Recursos/Imagenes/Iconos/error.gif" />
-																	</f:facet>
-																</rich:messages>
-																<h:outputText styleClass="textoPlano"
-																	value="#{cultivoBean.exito}" />
-															</h:panelGrid>
-														</f:facet></center>
-														
 													</h:panelGrid>
 												</rich:panel>
+												<br></br>
+												<center><h:panelGrid columns="2"
+													columnClasses="textoPlano,textoPlano,textoPlano">
+													<a4j:commandButton
+														style="font-size: 10pt; color: #2d77c2; width : 120px;"
+														styleClass="textoPlano" action="#{cultivoBean.Registrar}"
+														value="#{text.boton_Registrar}" />
+
+													<a4j:commandButton immediate="true"
+														style="font-size: 10pt; color: #2d77c2; width : 120px;"
+														styleClass="textoPlano" action="cancelar"
+														value="#{text.boton_Cerrar}" />
+												</h:panelGrid></center>
+												<center><f:facet name="footer">
+													<h:panelGrid>
+														<rich:messages styleClass="mensajeError">
+															<f:facet name="errorMarker">
+																<h:graphicImage
+																	value="/Recursos/Imagenes/Iconos/error.gif" />
+															</f:facet>
+														</rich:messages>
+														<h:outputText styleClass="textoPlano"
+															value="#{cultivoBean.exito}" />
+													</h:panelGrid>
+												</f:facet></center>
 											</h:panelGrid>
 										</h:column>
 									</h:panelGrid>
