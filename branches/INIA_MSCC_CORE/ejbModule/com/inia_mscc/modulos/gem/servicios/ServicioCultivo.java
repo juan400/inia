@@ -10,5 +10,5 @@ public interface ServicioCultivo {
 	public Cultivo ObtenerCultivo(Cultivo pCultivo);
 	public Cultivo RegistrarCultivo(Cultivo pCultivo);
 	public void ActualizarCultivo(Cultivo pCultivo);
-	
+	public Cultivo ComprobarCultivo(Cultivo pCultivo);
 }
