@@ -220,7 +220,7 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 					if (this.getFiles() != null && !this.getFiles().isEmpty()) {
 						setUsuario((Usuario) getSesion(Usuario.class.toString()));
 						Ubicacion ubicacion = new Ubicacion();
-						ubicacion.set_urlPaht(new URI("C:/ArchivosSubidos/"));
+						ubicacion.set_urlPaht("C:/ArchivosSubidos/");
 						archivoSubido = new Archivo(getUsuario().get_login(),
 								TipoArchivo.Escenario, new Date(),
 								EstadoArchivo.Cargado, TipoExtencionArchivo.py,
