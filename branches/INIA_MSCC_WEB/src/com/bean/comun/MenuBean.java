@@ -20,9 +20,7 @@ import com.inia_mscc.modulos.comun.entidades.Enumerados.TransaccionesNoContenida
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
 public class MenuBean extends MaestroBean implements Serializable {
-	/**
-		 * 
-		 */
+
 	private static final long serialVersionUID = 1L;
 
 	private String current;
@@ -229,10 +227,6 @@ public class MenuBean extends MaestroBean implements Serializable {
 		}
 		return getPagina();
 	}
-
-	// public void updateCurrent(ActionEvent event) {
-	// setCurrent(URI.create(((UIPanelMenuItem)event.getComponent()).getLabel().toString()).toString());
-	// }
 
 	public String getPagina() {
 		return pagina;

@@ -36,16 +36,16 @@ Secano.</title>
 							<rich:panel headerClass="tituloPantalla"
 								style="background-color: #ebf3fd;">
 								<f:facet name="header">
-									<h:outputText value="#{text.confiramcion_Titulo}" />
+									<h:outputText value="#{text.confirmacion_Titulo}" />
 								</f:facet>
 								<h:panelGrid>
-									<h:panelGrid rendered="#{confirmacionBean.activado}">
+									<center><h:panelGrid rendered="#{confirmacionBean.activado}">
 										<h:outputText styleClass="mensajeError"
 											value="#{confirmacionBean.error}" />
 										<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
 											styleClass="textoPlano" action="#{loginBean.logout}"
-											immediate="true" tabindex="1" value="#{text.login_login}" />
-									</h:panelGrid>
+											immediate="true" tabindex="1" value="#{text.login_Login}" />
+									</h:panelGrid></center>
 
 									<h:panelGroup rendered="#{!confirmacionBean.activado}">
 										<h:panelGrid columns="2" width="480">
@@ -90,7 +90,7 @@ Secano.</title>
 												<f:validateLength minimum="5" maximum="250" />
 											</h:inputText>
 										</h:panelGrid>
-<br></br>
+										<br></br>
 										<center><h:panelGrid columns="2">
 											<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
 												styleClass="textoPlano" tabindex="3"

@@ -36,25 +36,37 @@ Secano.</title>
 							<rich:panel headerClass="tituloPantalla"
 								style="background-color: #ebf3fd;">
 								<f:facet name="header">
-									<h:outputText
-										value="Bienvenido #{loginBean.usuario._datos._nombre} #{loginBean.usuario._datos._apellido}. Ultimo acceso #{loginBean.usuario._ultimoAcceso}" />
+									<h:panelGrid columns="2" width="900px">
+										<h:column>
+											<h:outputText
+												style="font-size: 9pt; color: #2d77c2; width: 750; aling: left"
+												value="Usuario #{loginBean.usuario._datos._nombre} #{loginBean.usuario._datos._apellido}  -  Ultimo acceso #{loginBean.usuario._ultimoAcceso}">
+											</h:outputText>
+										</h:column>
+										<h:column>
+											<h:commandLink
+												style="font-size: 8pt; color: #2d77c2; width: 100; aling: right"
+												styleClass="textoPlano" action="#{loginBean.logout}"
+												immediate="true" value="Cerrar Cesión">
+											</h:commandLink>
+										</h:column>
+									</h:panelGrid>
 								</f:facet>
 								<center><h:panelGrid rendered="#{!loginBean.logged}">
 									<h:outputText styleClass="mensajeError" style="font-size: 12pt"
 										value="#{text.login_notLogged}" />
-									<center><a4j:commandButton
-										style="font-size: 10pt; color: #2d77c2;"
+									<a4j:commandButton
+										style="font-size: 10pt; color: #2d77c2; width : 105px;"
 										styleClass="textoPlano" action="#{loginBean.logout}"
-										immediate="true" value="#{text.login_login}" /> <a4j:commandButton
-										style="font-size: 10pt; color: #2d77c2;"
-										styleClass="textoPlano" action="navegar" immediate="true"
-										value="Ingresar" /></center>
+										immediate="true" value="#{text.login_Login}" /> 
 								</h:panelGrid></center>
+
 								<h:panelGroup rendered="#{loginBean.logged}">
 									<h:panelGrid columns="2" rendered="#{loginBean.logged}"
 										columnClasses="cols" width="200">
 										<h:column>
-											<h:panelGroup rendered="#{menuBean.init}" />
+											<h:panelGroup style="aling: top"
+												rendered="#{menuBean.init}" />
 											<rich:panelMenu binding="#{menuBean.panelMenu}" />
 										</h:column>
 										<h:column>
@@ -63,7 +75,7 @@ Secano.</title>
 													style="background-color: #ebf3fd; ">
 													<f:facet name="header">
 														<h:outputText
-															value="Modificar datos de su cuenta de usuario" />
+															value="#{text.usuario_ModDatos}" />
 													</f:facet>
 													<h:panelGrid columns="2"
 														columnClasses="textoPlano,textoPlano" width="500px">
@@ -130,7 +142,7 @@ Secano.</title>
 															requiredMessage="Debe ingresar su dirección de domicilio"
 															onkeypress="ValidarCampoConCaracteresEspeciales(this, event)" />
 
-														<h:outputText value="#{text.registro_Teléfono}" />
+														<h:outputText value="#{text.registro_Telefono}" />
 														<h:inputText value="#{datosUsuarioBean.telefono}"
 															styleClass="textoPlano"
 															onkeypress="ValidarCampoNumerico(this, event)" />

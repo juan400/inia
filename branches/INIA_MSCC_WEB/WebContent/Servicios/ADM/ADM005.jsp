@@ -61,7 +61,7 @@ Secano.</title>
 										<center><a4j:commandButton
 											style="font-size: 10pt; color: #2d77c2;"
 											styleClass="textoPlano" action="#{loginBean.logout}"
-											value="#{text.login_login}" /></center>
+											value="#{text.login_Login}" /></center>
 									</h:panelGrid>
 								</h:panelGrid></center>
 								<h:panelGroup rendered="#{loginBean.logged}">
@@ -87,7 +87,7 @@ Secano.</title>
 														rowClasses="oddRow,evenRow">
 
 														<f:facet name="header">
-															<h:outputText value="#{text.region_ListaRegiones}" />
+															<h:outputText value="#{text.region_TablaRegiones}" />
 														</f:facet>
 
 														<rich:column width="50">

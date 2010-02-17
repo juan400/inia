@@ -69,7 +69,6 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 
 	public String clearUploadData() {
 		archivoSubido = null;
-//		file.clean();
 		setUploadsAvailable(5);
 		return null;
 	}

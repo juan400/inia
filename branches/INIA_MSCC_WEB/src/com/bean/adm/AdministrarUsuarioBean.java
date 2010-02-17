@@ -10,7 +10,6 @@ import javax.faces.model.SelectItem;
 
 import com.bean.comun.MaestroBean;
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
-import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioADM;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioSEG;
 import com.inia_mscc.modulos.seg.entidades.Perfil;
 import com.inia_mscc.modulos.seg.entidades.Usuario;

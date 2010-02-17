@@ -35,9 +35,22 @@ Secano.</title>
 						<h:panelGrid width="956" cellpadding="0" cellspacing="0">
 							<rich:panel headerClass="tituloPantalla"
 								style="background-color: #ebf3fd;">
-								<f:facet name="header">
-									<h:outputText styleClass="UsuarioHora"
-										value="Bienvenido #{loginBean.usuario._datos._nombre} #{loginBean.usuario._datos._apellido}. Ultimo acceso #{loginBean.usuario._ultimoAcceso}" />
+<f:facet name="header">
+									<h:panelGrid columns="2" width="900px">
+										<h:column>
+											<h:outputText
+												style="font-size: 9pt; color: #2d77c2; width: 750; aling: left"
+												value="Usuario #{loginBean.usuario._datos._nombre} #{loginBean.usuario._datos._apellido}  -  Ultimo acceso #{loginBean.usuario._ultimoAcceso}">
+											</h:outputText>
+										</h:column>
+										<h:column>
+											<h:commandLink
+												style="font-size: 8pt; color: #2d77c2; width: 100; aling: right"
+												styleClass="textoPlano" action="#{loginBean.logout}"
+												immediate="true" value="Cerrar Cesión">
+											</h:commandLink>
+										</h:column>
+									</h:panelGrid>
 								</f:facet>
 								<center><h:panelGrid rendered="#{!loginBean.logged}">
 									<h:panelGrid>
@@ -48,7 +61,7 @@ Secano.</title>
 										<center><a4j:commandButton
 											style="font-size: 10pt; color: #2d77c2;"
 											styleClass="textoPlano" action="#{loginBean.logout}"
-											value="#{text.login_login}" /></center>
+											value="#{text.login_Login}" /></center>
 									</h:panelGrid>
 								</h:panelGrid></center>
 								<h:panelGroup rendered="#{loginBean.logged}">
@@ -103,7 +116,7 @@ Secano.</title>
 															rowKeyVar="row" headerClass="columnHeader"
 															rowClasses="oddRow,evenRow">
 															<f:facet name="header">
-																<h:outputText value="Transacciones" />
+																<h:outputText value="#{text.transaccion_TransaccionAsociada}" />
 															</f:facet>
 
 															<rich:column width="20">
@@ -114,7 +127,7 @@ Secano.</title>
 
 															<rich:column width="300">
 																<f:facet name="header">
-																	<h:outputText value="Descripción" />
+																	<h:outputText value="#{text.transaccion_Descripcion}" />
 																</f:facet>
 																<h:outputText value="#{transaccion._descripcionBase}"
 																	id="descripcion" />
@@ -122,7 +135,7 @@ Secano.</title>
 
 															<rich:column width="80">
 																<f:facet name="header">
-																	<h:outputText value="Estado" />
+																	<h:outputText value="#{text.transaccion_Estado}" />
 																</f:facet>
 																<h:outputText value="#{transaccion._estado}" id="estado" />
 															</rich:column>

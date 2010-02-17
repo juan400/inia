@@ -58,7 +58,7 @@ public class PerfilBean extends MaestroBean implements Serializable {
 				retorno = "eliminado";
 			} else {
 				this.setError("No se puedo eliminar el perfil, porque "
-						+ "esta asignado en uno o mas usuarios del sistema.");
+						+ "está asignado en uno o mas usuarios del sistema.");
 			}
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
@@ -103,7 +103,8 @@ public class PerfilBean extends MaestroBean implements Serializable {
 
 	public boolean isInit() {
 		this.limpiarBean();
-		this.perfiles = this.getSegFachada(ServicioSEG.Perfil).ObtenerPerfiles();
+		this.perfiles = this.getSegFachada(ServicioSEG.Perfil)
+				.ObtenerPerfiles();
 		this.transaccionesActivas = this.getAdmFachada(ServicioADM.Transaccion)
 				.ObtenerTransaccionesActiva();
 		return false;
@@ -159,8 +160,8 @@ public class PerfilBean extends MaestroBean implements Serializable {
 			datosPerfil.set_descripcion(descripcion);
 			datosPerfil.set_estado(Enumerados.Estado.valueOf(estado));
 
-			Perfil per = this.getSegFachada(ServicioSEG.Perfil).ComprobarPerfil(
-					datosPerfil);
+			Perfil per = this.getSegFachada(ServicioSEG.Perfil)
+					.ComprobarPerfil(datosPerfil);
 			if (transaccionAsociada) {
 				if (per == null) {
 					setError("");
@@ -174,7 +175,7 @@ public class PerfilBean extends MaestroBean implements Serializable {
 						limpiarBean();
 					} else {
 						this
-								.setError("No ha sido posible crear el perfil, revise los datos ingresados y intentelo nuevamente.");
+								.setError("No ha sido posible crear el perfil, revise los datos ingresados e intentelo nuevamente.");
 						retorno = "";
 					}
 				} else {
@@ -183,7 +184,7 @@ public class PerfilBean extends MaestroBean implements Serializable {
 					retorno = "";
 				}
 			} else {
-				this.setError("Debe asociar al menos una transaccion.");
+				this.setError("Debe asociar como mínimo una transacción.");
 				retorno = "";
 			}
 		} catch (Exception ex) {
