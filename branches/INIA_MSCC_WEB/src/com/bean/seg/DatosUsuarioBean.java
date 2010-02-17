@@ -136,7 +136,7 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 				}
 			} else {
 				this
-						.setError("Se a perdido la sesion de su usuario, vuelva a ingresar.");
+						.setError("Se a perdido la Sesion del usuario, por favor vuelva a ingresar.");
 			}
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
@@ -260,11 +260,11 @@ public class DatosUsuarioBean extends MaestroBean implements Serializable {
 					EstadoUsuario.Inactivo)) {
 				this.setError("");
 				this
-						.setExito("Se a inactivado su cuenta, de esta manera queda dado de baja.");
+						.setExito("Se a Dado de Baja la Cuenta.");
 				retorno = "ok";
 			} else {
 				this
-						.setError("No ha sido posible inactivar su cuenta, intentelo nuevamente.");
+						.setError("No ha sido posible Dar de Baja su Cuenta, intentelo nuevamente.");
 			}
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());

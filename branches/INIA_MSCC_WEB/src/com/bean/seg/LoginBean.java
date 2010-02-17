@@ -52,7 +52,7 @@ public class LoginBean extends MaestroBean implements Serializable {
 						} else {
 							this
 									.setError(u.get_datos().get_nombre()
-											+ " su cuenta esta "
+											+ " su cuenta está "
 											+ u.get_estadoUsuario().toString()
 													.toLowerCase()
 											+ " aún, recuerde chequear su correo, se le a enviado un e-mail para concluir con el registro.");
@@ -61,13 +61,13 @@ public class LoginBean extends MaestroBean implements Serializable {
 					} else {
 						this
 								.setError(u.get_datos().get_nombre()
-										+ " su cuenta esta a sido inactivada.");
+										+ " su cuenta a sido Inactivada.");
 						mensaje = "";// "login-error";
 					}
 				} else {
 					this
 							.setError(u.get_datos().get_nombre()
-									+ " su cuenta no esta activa aún, recuerde chequear su correo, se le a enviado un e-mail para concluir con el registro.");
+									+ " su cuenta no está activa aún, recuerde chequear su correo, se le a enviado un e-mail para concluir con el registro.");
 					mensaje = "";// "login-error";
 				}
 			} else {
@@ -78,8 +78,6 @@ public class LoginBean extends MaestroBean implements Serializable {
 					this
 							.setError("Este es el quinto intento en logearse, por favor verifique sus datos e intente nuevamente.");
 					intentos = 0;
-					// u.set_estadoUsuario(EstadoUsuario.Bloqueado);
-					// this.getSegFachada(Servicio.Usuario).CambiarPassword(u);
 				}
 				mensaje = "";// "login-error";
 			}

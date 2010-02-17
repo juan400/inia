@@ -45,7 +45,7 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 		try {
 			if (this.getSegFachada(ServicioSEG.Usuario).ComprobarEmail(email)) {
 				this
-						.setError("El e-mail ingresado no esta registrado en el sistema.");
+						.setError("El e-mail ingresado no está registrado en el sistema.");
 				this.setUsuario(null);
 			} else {
 				this.setError("");
@@ -66,7 +66,7 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 						+ " su login es " + this.getUsuario().get_login());
 			} else {
 				this
-						.setError("Lamentablemente no hay un usuario registrado con el e-mail y frase secretaingresada.");
+						.setError("No existe Usuario registrado con este e-mail y Frase Secreta.");
 				this.setExito("");
 			}
 		} catch (Exception ex) {
@@ -78,19 +78,17 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 		String retorno = "";
 		try {
 			if (this.getUsuario() != null) {
-				// if (!this.salvarNombre(this.getUsuario())) {
-//				this.getUsuario().set_password(EncriptacionSHA1BASE64.encriptar("NoTeOlvides"));
 				this.getUsuario().set_password("NoTeOlvides");
 				this.getSegFachada(ServicioSEG.Usuario).CambiarPassword(this.getUsuario());
 				if (!this.enviarMailConfirmacion(this.getUsuario())) {
 					this.setError("No ha sido posible enviar el e-mail, "
-							+ "el e-mail proporcionado no esta disponible.");
+							+ "el e-mail proporcionado no está disponible.");
 					retorno = "registro-error";
 				}
 			}
 			this.setError("");
 			this.setExito("Se a enviado un e-mail a su casilla "
-					+ "de correo, lea el correo ver su clave.");
+					+ "de correo, con la nueva Clave.");
 			retorno = "EnvioPassword";
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
@@ -126,16 +124,15 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 									|| this.getUsuario().get_datos().get_mail()
 											.equalsIgnoreCase(getContrasenia())) {
 								this
-										.setError("La contraseña nueva no puede ser "
+										.setError("La nueva contraseña no puede ser "
 												+ "igual a su correo electrónico.");
 							}
 						} else {
-							this.setError("La contraseña nueva no puede ser "
-									+ "igual a su usuario de login.");
+							this.setError("La nueva contraseña no puede ser "
+									+ "igual al nombre del usuario logueado.");
 						}
 					} else {
-						this.setError("Ingrese la contraseña nueva y "
-								+ "su confirmación iguales.");
+						this.setError("Ingrese la nueva contraseña y la confirmación.");
 					}
 				} else {
 					this.setError("La contrasena actual ingresada "
@@ -173,20 +170,19 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 								this.setSesion(Usuario.class.toString(), null);
 							} else {
 								this
-										.setError("La contraseña nueva no puede ser "
+										.setError("La nueva contraseña no puede ser "
 												+ "igual a su correo electrónico.");
 								this.setContrasenia("");
 								this.setConfirmacion("");
 							}
 						} else {
-							this.setError("La contraseña nueva no puede ser "
-									+ "igual a su usuario de login.");
+							this.setError("La nueva contraseña no puede ser "
+									+ "igual al nombre del usuario logueado.");
 							this.setContrasenia("");
 							this.setConfirmacion("");
 						}
 					} else {
-						this.setError("Ingrese la contraseña nueva y "
-								+ "su confirmación iguales.");
+						this.setError("Ingrese la nueva contraseña y la confirmación.");
 						this.setContrasenia("");
 						this.setConfirmacion("");
 					}
@@ -205,12 +201,7 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 		return retorno;
 	}
 
-	/**
-	 * @return
-	 * @throws IOException
-	 * @throws NamingException
-	 * @throws MessagingException
-	 */
+
 	public Boolean salvarNombre(Usuario pUsuario) throws IOException,
 			NamingException, MessagingException {
 		try {

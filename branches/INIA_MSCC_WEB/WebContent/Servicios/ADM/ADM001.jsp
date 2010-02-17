@@ -58,10 +58,7 @@ Secano.</title>
 									<center><a4j:commandButton
 										style="font-size: 10pt; color: #2d77c2;"
 										styleClass="textoPlano" action="#{loginBean.logout}"
-										immediate="true" value="#{text.login_login}" /> <a4j:commandButton
-										style="font-size: 10pt; color: #2d77c2;"
-										styleClass="textoPlano" action="navegar" immediate="true"
-										value="Ingresar" /></center>
+										immediate="true" value="#{text.login_Login}" /> </center>
 								</h:panelGrid></center>
 								<h:panelGroup rendered="#{loginBean.logged}">
 									<h:panelGrid columns="2" rendered="#{loginBean.logged}"
@@ -89,7 +86,7 @@ Secano.</title>
 														rowClasses="oddRow,evenRow">
 														<f:facet name="header">
 															<h:outputText
-																value="#{text.transaccion_ListaTransacciones}" />
+																value="#{text.transaccion_TablaTransacciones}" />
 														</f:facet>
 
 														<rich:column width="100px">

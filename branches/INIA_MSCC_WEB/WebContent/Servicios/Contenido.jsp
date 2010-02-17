@@ -69,7 +69,7 @@ Secano.</title>
 									<h:panelGrid columns="2" rendered="#{loginBean.logged}"
 										columnClasses="cols" width="200">
 										<h:column>
-											<h:panelGroup rendered="#{menuBean.init}" />
+											<h:panelGroup style="aling: top" rendered="#{menuBean.init}" />
 											<rich:panelMenu binding="#{menuBean.panelMenu}" />
 										</h:column>
 

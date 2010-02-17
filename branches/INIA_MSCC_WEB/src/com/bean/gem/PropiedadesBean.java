@@ -19,9 +19,6 @@ import com.inia_mscc.modulos.gem.entidades.Propiedad;
 
 public class PropiedadesBean extends MaestroBean implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private List<Cultivo> listaCultivos;
@@ -43,7 +40,8 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 
 	public boolean isInitPantalla() {
 		try {
-			if (this.getSesion(Cultivo.class.toString()) == null && this.getCultivo() == null) {
+			if (this.getSesion(Cultivo.class.toString()) == null
+					&& this.getCultivo() == null) {
 				this.setDisableSeleccionCultivo(false);
 				this.setDisableAceptarPropiedad(true);
 				List<Cultivo> listaCultivos = this.getGEMFachada(
@@ -199,7 +197,7 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 		}
 		this.getListaPropEliminadas().add(this.getPropiedad());
 		this.getListaPropiedades().remove(this.getPropiedad());
-		this.setExito("Se elimino la propiedad de la lista acutla");
+		this.setExito("Se elimino la Propiedad de la lista.");
 		this.setPropiedad(null);
 		this.setCodigo("");
 		this.setNombre("");
@@ -226,8 +224,8 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 						TipoPropiedadCultivo
 								.valueOf(this.getTipoSeleccionado()));
 				this.getListaPropiedades().add(this.getPropiedad());
-				this.setExito("Se agrego correctamente la "
-						+ "propiedad al cultivo");
+				this
+						.setExito("Se ingresó correctamente la Propiedad al cultivo.");
 				this.setPropiedad(null);
 				this.setCodigo("");
 				this.setNombre("");
@@ -236,8 +234,8 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 						.setTipoSeleccionado(Enumerados.TipoPropiedadCultivo.Ninguno
 								.name());
 			} else {
-				this.setError("Existe una propiedad en la lista "
-						+ "actual que tiene código ingresado.");
+				this
+						.setError("Ya Existe una Propiedad agregada en la lista con el mismo Código.");
 			}
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
@@ -257,8 +255,8 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 				this.getPropiedad().set_tipo(
 						TipoPropiedadCultivo
 								.valueOf(this.getTipoSeleccionado()));
-				this.setExito("Se realizarion los comabios "
-						+ "correctamente la propiedada del cultivo.");
+				this
+						.setExito("Se modifico correctamente la Propiedada del cultivo.");
 				this.setPropiedad(null);
 				this.setCodigo("");
 				this.setNombre("");
@@ -268,10 +266,10 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 								.name());
 			} else {
 				this
-						.setError("Existe una propiedad en la lista actual que tiene código ingresado.");
+						.setError("Ya Existe una Propiedad agregada en la lista con el mismo Código.");
 			}
 		} else {
-			this.setError("Debe seleccionar una propiedad para modificar.");
+			this.setError("Debe seleccionar una Propiedad para modificar.");
 		}
 		return "GEM004";
 	}
@@ -306,7 +304,7 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 					this.getCultivo());
 			this.setRecargo(true);
 			this
-					.setExito("Se grabo exitosamente el cultivo y sus propiedades.");
+					.setExito("Se ingresó exitosamente el Cultivo y sus Propiedades.");
 			if (this.getSesion(Cultivo.class.toString()) != null) {
 				this.removerSesion(Cultivo.class.toString());
 			}
@@ -327,7 +325,7 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 					this.getCultivo());
 			this.setRecargo(true);
 			this
-					.setExito("Se grabo exitosamente el cultivo y sus propiedades.");
+					.setExito("Se ingresó exitosamente el Cultivo y sus Propiedades.");
 			if (this.getSesion(Cultivo.class.toString()) != null) {
 				this.removerSesion(Cultivo.class.toString());
 			}

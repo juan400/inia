@@ -19,4 +19,4 @@ INSERT INTO `inia_mscc_db`.`tl_seg_daus_datosusuario`
 
 VALUES
 
-('Activo','admin',default,'admin','admin@inia.com',null,null,'-',21,474,2,default,1);
+('Activo','admin','2010-01-01 00:00:01','admin','admin@inia.com',null,null,'-',21,474,2,default,1);

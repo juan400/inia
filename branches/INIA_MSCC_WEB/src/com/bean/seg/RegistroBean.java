@@ -60,19 +60,19 @@ public class RegistroBean extends MaestroBean implements Serializable {
 	public void takeSelectionEmail() {
 		try {
 			if (this.getUsuario() == null) {
-				if (!this.getSegFachada(ServicioSEG.Usuario)
-						.ComprobarEmail(email)) {
+				if (!this.getSegFachada(ServicioSEG.Usuario).ComprobarEmail(
+						email)) {
 					this
-							.setError("El e-mail ingresado ya esta registrado en el sistema.");
+							.setError("El e-mail ingresado ya está registrado en el sistema.");
 					this.setEmail("");
 				} else {
 					this.setError("");
 				}
 			} else if (this.getUsuario().get_datos().get_mail().equals(email)) {
-				if (!this.getSegFachada(ServicioSEG.Usuario)
-						.ComprobarEmail(email)) {
+				if (!this.getSegFachada(ServicioSEG.Usuario).ComprobarEmail(
+						email)) {
 					this
-							.setError("El e-mail ingresado ya esta registrado en el sistema.");
+							.setError("El e-mail ingresado ya está registrado en el sistema.");
 					this.setEmail("");
 				} else {
 					this.setError("");
@@ -94,8 +94,8 @@ public class RegistroBean extends MaestroBean implements Serializable {
 			StringBuffer path = request.getRequestURL();// http://localhost:8081/INIA_MSCC/Servicios/SEG/SEG002.jsf
 			String server = path.toString().replaceFirst("SEG002", "SEG003")
 					.toString();
-			String body = "<br></br><br></br><br><center><i><b>Usted se a registrado stisfactoriamente en INIA - MSCC,</br>"
-					+ "<br>para concluir con el registro aceda al siguiente link </b></i>.</br>"
+			String body = "<br></br><br></br><br><center><i><b>Usted se a registrado satisfactoriamente en INIA - MSCC,</br>"
+					+ "<br>para concluir con el registro acceda al siguiente link </b></i>.</br>"
 					+ "<br><a href='"
 					+ server
 					+ "?codigoActivacion="
@@ -104,9 +104,9 @@ public class RegistroBean extends MaestroBean implements Serializable {
 					+ "Concluir el registro de usuario</a></br><br></br>"
 					+ "<br><i><b>Muchas gracias por registrarse!</b></i></center><br></br><br></br><br></br>";
 
-			this.getComunFachada(ServicioComun.MailSender).enviarMailTextoPlano(
-					pUsuario.get_datos().get_mail(), "INIA - MSCC Registro",
-					body);
+			this.getComunFachada(ServicioComun.MailSender)
+					.enviarMailTextoPlano(pUsuario.get_datos().get_mail(),
+							"INIA - MSCC Registro", body);
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
 		}
@@ -152,7 +152,8 @@ public class RegistroBean extends MaestroBean implements Serializable {
 		try {
 			pais = new Pais();
 			pais.set_nombre(getPaisElegido());
-			pais = this.getAdmFachada(ServicioADM.RelacionPCD).ObtenerPais(pais);
+			pais = this.getAdmFachada(ServicioADM.RelacionPCD)
+					.ObtenerPais(pais);
 			listDepartamentos = this.getAdmFachada(ServicioADM.RelacionPCD)
 					.ObtenerDepartamentosXPais(pais);
 			departamentos = new SelectItem[listDepartamentos.size() + 1];

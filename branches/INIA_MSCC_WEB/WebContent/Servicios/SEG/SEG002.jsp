@@ -35,17 +35,18 @@ Secano.</title>
 							<rich:panel headerClass="tituloPantalla"
 								style="background-color: #ebf3fd; ">
 								<f:facet name="header">
-									<h:outputText value="#{text.login_newUser}" />
+									<h:outputText value="#{text.login_NuevoUsuario}" />
 								</f:facet>
 								<h:panelGrid>
-									<h:panelGrid rendered="#{loginBean.logged}">
+									<center><h:panelGrid rendered="#{loginBean.logged}">
 										<h:outputText styleClass="mensajeError"
-											value="#{loginBean.loginName} #{text.login_alreadyLogged}" />
+											value="#{loginBean.loginName} #{text.login_YaEstaLogueado}" />
 										<center><a4j:commandButton
 											style="font-size: 10pt; color: #2d77c2;"
-											styleClass="textoPlano" action="cancelar" immediate="true"
-											value="#{text.boton_Cancelar}" /></center>
-									</h:panelGrid>
+											styleClass="textoPlano" action="#{loginBean.logout}"
+											immediate="true" value="#{text.login_LogOut}" /></center>
+									</h:panelGrid></center>
+
 									<h:panelGroup rendered="#{!loginBean.logged}">
 										<h:panelGrid columns="2" columnClasses="textoPlano,textoPlano">
 
@@ -114,7 +115,7 @@ Secano.</title>
 												requiredMessage="Debe ingresar su dirección de domicilio"
 												onkeypress="ValidarCampoConCaracteresEspeciales(this, event)" />
 
-											<h:outputText value="#{text.registro_Teléfono}" />
+											<h:outputText value="#{text.registro_Telefono}" />
 											<h:inputText value="#{registroBean.telefono}"
 												styleClass="textoPlano"
 												onkeypress="ValidarCampoNumerico(this, event)" />
@@ -124,6 +125,7 @@ Secano.</title>
 												styleClass="textoPlano"
 												onkeypress="ValidarCampoNumerico(this, event)" maxlength="9" />
 										</h:panelGrid>
+										<br></br>
 										<center><h:panelGrid columns="2">
 											<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
 												styleClass="textoPlano" tabindex="3"
