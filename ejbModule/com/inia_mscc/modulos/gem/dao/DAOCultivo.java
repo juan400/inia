@@ -16,16 +16,10 @@ import com.inia_mscc.modulos.gem.entidades.Cultivo;
 
 public class DAOCultivo implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = Logger.getLogger(DAOCultivo.class);
 
-	/**
-	 * @return
-	 */
 	@SuppressWarnings("unchecked")
 	public List<Cultivo> ObtenerCultivos(Cultivo pCultivo) {
 		List<Cultivo> listaCultivo = null;
@@ -41,9 +35,6 @@ public class DAOCultivo implements Serializable {
 		return listaCultivo;
 	}
 
-	/**
-	 * @return
-	 */
 	public Cultivo ObtenerCultivo(Cultivo pCultivo) {
 		Cultivo unCultivo = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -70,12 +61,6 @@ public class DAOCultivo implements Serializable {
 		return unCultivo;
 	}
 
-	/**
-	 * Este metodo registra el cultivo en el sistema.
-	 * 
-	 * @param pCultivo
-	 * @return Devuelve el cultivo con la clave generada.
-	 */
 	public Cultivo RegistrarCultivo(Cultivo pCultivo) {
 		Cultivo cultivo = null;
 		try {
@@ -93,11 +78,6 @@ public class DAOCultivo implements Serializable {
 		return cultivo;
 	}
 
-	/**
-	 * Actualiza los datos de un cultivo registrado en el sitema.
-	 * 
-	 * @param pDatosCultivo
-	 */
 	public void ActualizarCultivo(Cultivo pCultivo) {
 		try {
 			Session session = HibernateUtil.getSessionFactory()
@@ -108,5 +88,21 @@ public class DAOCultivo implements Serializable {
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);
 		}
+	}
+
+	public Cultivo ComprobarCultivo(Cultivo pCultivo) {
+		Cultivo retorno = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			Criteria c = session.createCriteria(Cultivo.class);
+			c.add(Restrictions.ilike("_nombre", pCultivo
+					.get_nombre()));
+			retorno = (Cultivo) c.uniqueResult();
+		} catch (Exception e) { // catch (StaleObjectStateException e) {
+			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
+			logger.error(stackTrace);
+			throw new IniaPersistenciaException(e.getMessage(), e);
+		}
+		return retorno;
 	}
 }
