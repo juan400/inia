@@ -56,7 +56,10 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 	private boolean recargo = true;
 
 	public SubirEscenarioBean() {
-
+		this.setListaCultivos(this.getGEMFachada(ServicioGEM.Cultivo)
+				.ObtenerCultivos(null));
+		this.setListaRegiones(this.getAdmFachada(ServicioADM.Region)
+				.ObtenerRegiones());
 	}
 
 	public boolean isInit() {
@@ -89,7 +92,7 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 				for (Region c : listaRegiones) {
 					SelectItem si = new SelectItem(c.get_codigo(), c
 							.get_nombre(), c.get_descripcion());
-					cultivos[i] = si;
+					regiones[i] = si;
 					i++;
 				}
 				regionElegida = this.getTextBundleKey("combo_seleccione");
@@ -107,15 +110,29 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 					&& !this.getCultivoElegido().equals(
 							this.getTextBundleKey("combo_seleccione"))) {
 				this.setCultivo(BuscarCultivo(this.getCultivoElegido()));
+				this.setDisableRegion(false);
 				this.setDisableUpload(false);
 				this.setError("");
 				this.setExito("");
+				recargo = false;
 			} else {
 				this.setCultivo(null);
+				this.setDisableRegion(true);
 				this.setDisableUpload(true);
 				this.setError("");
 				this.setExito("");
 			}
+			regiones = new SelectItem[listaRegiones.size() + 1];
+			regiones[0] = new SelectItem(this
+					.getTextBundleKey("combo_seleccione"));
+			int i = 1;
+			for (Region c : listaRegiones) {
+				SelectItem si = new SelectItem(c.get_codigo(), c
+						.get_nombre(), c.get_descripcion());
+				regiones[i] = si;
+				i++;
+			}
+			regionElegida = this.getTextBundleKey("combo_seleccione");
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
 		}
@@ -131,6 +148,7 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 				this.setDisableUpload(false);
 				this.setError("");
 				this.setExito("");
+				recargo = false;
 			} else {
 				this.setRegion(null);
 				this.setDisableUpload(true);
