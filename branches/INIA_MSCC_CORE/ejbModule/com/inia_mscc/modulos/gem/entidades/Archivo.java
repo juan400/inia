@@ -54,17 +54,14 @@ public class Archivo implements Serializable {
 
 	public void set_nombre(String pNombreLogin) {
 		Calendar pFecha = new GregorianCalendar();
-		// pFecha.add(Calendar.MONTH, 1);
-//		pFecha.set(_fechaHora.getYear(), _fechaHora.getMonth(), _fechaHora.getDay(), _fechaHora
-//				.getHours(), _fechaHora.getMinutes(), _fechaHora.getSeconds());
 		String fechaEscrita = pFecha.get(Calendar.YEAR) + "-"
-				+ (pFecha.get(Calendar.MONTH) + 1) + ""
+				+ (pFecha.get(Calendar.MONTH) + 1) + "-"
 				+ pFecha.get(Calendar.DAY_OF_MONTH) + " "
-				+ pFecha.get(Calendar.HOUR_OF_DAY) + ""
-				+ pFecha.get(Calendar.MINUTE) + ""
+				+ pFecha.get(Calendar.HOUR_OF_DAY) + ":"
+				+ pFecha.get(Calendar.MINUTE) + ":"
 				+ pFecha.get(Calendar.SECOND);
-		String nombreArchivo = "C:/Biblioteca/Cajón/Proyecto/INIA/Archivos Versionados/ArchivosSubidos/mscc_"
-				+ pNombreLogin + ".py";
+		String nombreArchivo = _ubicacion.get_urlPaht().toString()
+				+ pNombreLogin + "_" + fechaEscrita + ".py";
 		_nombre = nombreArchivo;
 	}
 
