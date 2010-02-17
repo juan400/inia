@@ -111,7 +111,7 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 							this.getTextBundleKey("combo_seleccione"))) {
 				this.setCultivo(BuscarCultivo(this.getCultivoElegido()));
 				this.setDisableRegion(false);
-				this.setDisableUpload(false);
+				this.setDisableUpload(true);
 				this.setError("");
 				this.setExito("");
 				recargo = false;
@@ -127,8 +127,8 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 					.getTextBundleKey("combo_seleccione"));
 			int i = 1;
 			for (Region c : listaRegiones) {
-				SelectItem si = new SelectItem(c.get_codigo(), c
-						.get_nombre(), c.get_descripcion());
+				SelectItem si = new SelectItem(c.get_codigo(), c.get_nombre(),
+						c.get_descripcion());
 				regiones[i] = si;
 				i++;
 			}
@@ -160,27 +160,26 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 		}
 	}
 
-
 	private Cultivo BuscarCultivo(String pCodigo) {
-		Cultivo cultivoBuscado=null;
+		Cultivo cultivoBuscado = null;
 		if (this.getListaCultivos() != null
 				&& !this.getListaCultivos().isEmpty()) {
 			for (Cultivo cultivo : this.getListaCultivos()) {
-				if (cultivo.get_nombre().equals(pCodigo)){
-					cultivoBuscado=cultivo;
+				if (cultivo.get_nombre().equals(pCodigo)) {
+					cultivoBuscado = cultivo;
 				}
 			}
 		}
 		return cultivoBuscado;
 	}
-	
+
 	private Region BuscarRegion(String pCodigo) {
-		Region regionBuscada=null;
+		Region regionBuscada = null;
 		if (this.getListaRegiones() != null
 				&& !this.getListaRegiones().isEmpty()) {
 			for (Region region : this.getListaRegiones()) {
-				if (region.get_codigo().equals(pCodigo)){
-					regionBuscada=region;
+				if (region.get_codigo().equals(pCodigo)) {
+					regionBuscada = region;
 				}
 			}
 		}
@@ -203,9 +202,11 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 			file.setExecutable(true);
 
 			if (file.createNewFile()) {
-				ArchivosTexto.copiarArchio(item.getFile(), archivoSubido
-						.get_datos());
+				this.setDisableUpload(true);
+				this.setExito("Se a subido el archivo");
 			}
+			ArchivosTexto.copiarArchio(item.getFile(), archivoSubido
+					.get_datos());
 			archivoSubido.set_datos(file);
 
 		} catch (Exception ex) {

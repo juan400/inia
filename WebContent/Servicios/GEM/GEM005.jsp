@@ -36,20 +36,29 @@ Secano.</title>
 							<rich:panel headerClass="tituloPantalla"
 								style="background-color: #ebf3fd;">
 								<f:facet name="header">
-									<h:outputText
-										value="Bienvenido #{loginBean.usuario._datos._nombre} #{loginBean.usuario._datos._apellido}. Ultimo acceso #{loginBean.usuario._ultimoAcceso}" />
+									<h:panelGrid columns="2" width="900px">
+										<h:column>
+											<h:outputText
+												style="font-size: 9pt; color: #2d77c2; width: 750; aling: left"
+												value="Usuario #{loginBean.usuario._datos._nombre} #{loginBean.usuario._datos._apellido}  -  Ultimo acceso #{loginBean.usuario._ultimoAcceso}">
+											</h:outputText>
+										</h:column>
+										<h:column>
+											<h:commandLink
+												style="font-size: 8pt; color: #2d77c2; width: 100; aling: right"
+												styleClass="textoPlano" action="#{loginBean.logout}"
+												immediate="true" value="Cerrar Cesión">
+											</h:commandLink>
+										</h:column>
+									</h:panelGrid>
 								</f:facet>
 								<center><h:panelGrid rendered="#{!loginBean.logged}">
-									<h:panelGrid>
-										<center><h:outputText styleClass="mensajeError"
-											style="font-size: 12pt" value="#{text.login_notLogged}" /></center>
-									</h:panelGrid>
-									<h:panelGrid columns="2">
-										<center><a4j:commandButton
-											style="font-size: 10pt; color: #2d77c2;"
-											styleClass="textoPlano" action="#{loginBean.logout}"
-											value="#{text.login_login}" /></center>
-									</h:panelGrid>
+									<h:outputText styleClass="mensajeError" style="font-size: 12pt"
+										value="#{text.login_notLogged}" />
+									<center><a4j:commandButton
+										style="font-size: 10pt; color: #2d77c2;"
+										styleClass="textoPlano" action="#{loginBean.logout}"
+										immediate="true" value="#{text.login_Login}" /></center>
 								</h:panelGrid></center>
 								<h:panelGroup rendered="#{loginBean.logged}">
 									<h:panelGrid columns="2" rendered="#{loginBean.logged}"
@@ -68,17 +77,17 @@ Secano.</title>
 															<h:outputText value="Ingresar Escenario" />
 														</f:facet>
 
-														<h:panelGrid columns="2" width="500px">
+														<h:panelGrid columns="2" width="500px" columnClasses="textoPlano,textoPlano">
 
 															<h:outputText value="#{text.registro_Fecha}" />
-															<rich:calendar id="calFechaEjecucion"
+															<rich:calendar id="calFecha"
 																inputClass="rich-calendar-input"
 																value="#{subirEscenarioBean.fecha}" enableManualInput="false"
 																locale="ES" disabled="true" showApplyButton="false"
 																datePattern="dd/MM/yyyy" popup="true" cellWidth="24px"
 																cellHeight="22px" style="width:200px" />
 
-															<h:outputLabel value="Seleccionar un cultivo" />
+															<h:outputLabel value="Seleccionar cultivo" />
 															<rich:comboBox requiredMessage="Debe seleccionar un cultivo"
 																value="#{subirEscenarioBean.cultivoElegido}" required="true"
 																enableManualInput="false" styleClass="combo" width="220">
@@ -86,16 +95,16 @@ Secano.</title>
 																<a4j:support
 																	action="#{subirEscenarioBean.takeSelectionCultivo}"
 																	event="onchange" ajaxSingle="true"
-																	reRender="upload,cmdReiones" />
+																	reRender="upload,cmdRegiones" />
 																<rich:toolTip
-																	value="Seleccionar el cultivo al cual asosciar el escenario que va a registrar." />
+																	value="Seleccionar el cultivo al cual asociar el escenario que va a registrar." />
 															</rich:comboBox>
 
-															<h:outputLabel value="Seleccionar una región climática" />
+															<h:outputLabel value="Seleccionar región climática" />
 															<rich:comboBox disabled="#{subirEscenarioBean.disableRegion}"
 																value="#{subirEscenarioBean.regionElegida}" required="true"
 																enableManualInput="false" styleClass="combo" requiredMessage="Debe seleccionar una región climática"
-																id="cmdReiones" width="220">
+																id="cmdRegiones" width="220">
 																<f:selectItems value="#{subirEscenarioBean.regiones}" />
 																<a4j:support
 																	action="#{subirEscenarioBean.takeSelectionRegion}"
@@ -105,16 +114,16 @@ Secano.</title>
 															</rich:comboBox>
 														</h:panelGrid>
 
-														<h:outputText value="Seleccionar " />
+														<h:outputText value="Seleccionar y subir el archivo de escenario" styleClass="textoPlano" />
 
-														<rich:fileUpload disabled="#{subirEscenarioBean.disableRegion}"
-															requiredMessage="Debe de subir un archivo"
+														<rich:fileUpload disabled="#{subirEscenarioBean.disableUpload}"
+															requiredMessage="Debe subir un archivo"
 															fileUploadListener="#{subirEscenarioBean.listener}"
 															maxFilesQuantity="1"
 															required="true" id="upload"
 															immediateUpload="false"
 															acceptedTypes="py" allowFlash="true" listHeight="60">
-															<a4j:support event="onuploadcomplete" reRender="mensages" />
+															<a4j:support event="onuploadcomplete" reRender="upload,mensages" />
 														</rich:fileUpload>
 
 														<center><h:panelGrid columns="3">
@@ -128,7 +137,7 @@ Secano.</title>
 																styleClass="textoPlano" action="cancelar"
 																value="#{text.boton_Cancelar}" />
 														</h:panelGrid></center>
-														<h:panelGrid id="mensages">
+														<center><h:panelGrid id="mensages">
 															<rich:messages styleClass="mensajeError">
 																<f:facet name="errorMarker">
 																	<h:graphicImage
@@ -137,7 +146,7 @@ Secano.</title>
 															</rich:messages>
 															<h:outputText styleClass="textoPlano"
 																value="#{subirEscenarioBean.exito}" />
-														</h:panelGrid>
+														</h:panelGrid></center>
 													</rich:panel>
 												</h:panelGrid>
 											</h:panelGrid>
