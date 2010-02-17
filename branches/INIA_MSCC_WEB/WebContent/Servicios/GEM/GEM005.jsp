@@ -74,7 +74,7 @@ Secano.</title>
 													<rich:panel headerClass="tituloPantalla"
 														style="background-color: #ebf3fd;">
 														<f:facet name="header">
-															<h:outputText value="Ingresar Escenario" />
+															<h:outputText value="Modificar Escenario" />
 														</f:facet>
 
 														<h:panelGrid columns="2" width="500px" columnClasses="textoPlano,textoPlano">
@@ -113,23 +113,23 @@ Secano.</title>
 																	value="Seleccionar el cultivo al cual asosciar el escenario que va a registrar." />
 															</rich:comboBox>
 														</h:panelGrid>
-
-														<h:outputText value="Seleccionar y subir el archivo de escenario" styleClass="textoPlano" />
+														<br></br>	
+														<h:outputText />
 
 														<rich:fileUpload disabled="#{subirEscenarioBean.disableUpload}"
 															requiredMessage="Debe subir un archivo"
 															fileUploadListener="#{subirEscenarioBean.listener}"
-															maxFilesQuantity="1"
+															maxFilesQuantity="1" uploadData="#{subirEscenarioBean.files}"
 															required="true" id="upload"
-															immediateUpload="false"
+															immediateUpload="false" listWidth="457px"
 															acceptedTypes="py" allowFlash="true" listHeight="60">
-															<a4j:support event="onuploadcomplete" reRender="upload,mensages" />
+															<a4j:support event="onuploadcomplete" ajaxSingle="true" reRender="mensajes" />
 														</rich:fileUpload>
 
 														<center><h:panelGrid columns="3">
 															<a4j:commandButton immediate="true"
 																style="font-size: 10pt; color: #2d77c2; width : 87px;"
-																styleClass="textoPlano" action="Alta"
+																styleClass="textoPlano" action="#{{subirEscenarioBean.RegistrarEscenario}"
 																value="#{text.boton_Registrar}" />
 
 															<a4j:commandButton immediate="true"
@@ -137,7 +137,7 @@ Secano.</title>
 																styleClass="textoPlano" action="cancelar"
 																value="#{text.boton_Cancelar}" />
 														</h:panelGrid></center>
-														<center><h:panelGrid id="mensages">
+														<center><h:panelGrid id="mensajes">
 															<rich:messages styleClass="mensajeError">
 																<f:facet name="errorMarker">
 																	<h:graphicImage

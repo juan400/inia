@@ -113,17 +113,17 @@ Secano.</title>
 																	value="Seleccionar el cultivo al cual asosciar el escenario que va a registrar." />
 															</rich:comboBox>
 														</h:panelGrid>
-
-														<h:outputText value="Seleccionar " />
+														<br></br>	
+														<h:outputText />
 
 														<rich:fileUpload disabled="#{subirEscenarioBean.disableUpload}"
 															requiredMessage="Debe subir un archivo"
 															fileUploadListener="#{subirEscenarioBean.listener}"
-															maxFilesQuantity="1"
+															maxFilesQuantity="1" uploadData="#{subirEscenarioBean.files}"
 															required="true" id="upload"
-															immediateUpload="false"
+															immediateUpload="false" listWidth="457px"
 															acceptedTypes="py" allowFlash="true" listHeight="60">
-															<a4j:support event="onuploadcomplete" reRender="mensages" />
+															<a4j:support event="onuploadcomplete" ajaxSingle="true" reRender="mensajes" />
 														</rich:fileUpload>
 
 														<center><h:panelGrid columns="3">
@@ -137,7 +137,7 @@ Secano.</title>
 																styleClass="textoPlano" action="cancelar"
 																value="#{text.boton_Cancelar}" />
 														</h:panelGrid></center>
-														<center><h:panelGrid id="mensages">
+														<center><h:panelGrid id="mensajes">
 															<rich:messages styleClass="mensajeError">
 																<f:facet name="errorMarker">
 																	<h:graphicImage
