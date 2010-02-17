@@ -59,7 +59,6 @@ Secano.</title>
 												styleClass="textoPlano" />
 											<h:inputText id="txtfrase"
 												value="#{recuperarContraseniaBean.frase}"
-												label="Debe ingresar una frase secreta"
 												styleClass="textoPlano" tabindex="2" required="true"
 												onkeypress="ValidarCampoLetras(this,event)"
 												requiredMessage="Debe ingresar frase secreta">

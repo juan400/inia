@@ -36,19 +36,29 @@ Secano.</title>
 							<rich:panel headerClass="tituloPantalla"
 								style="background-color: #ebf3fd;">
 								<f:facet name="header">
-									<h:outputText
-										value="Bienvenido #{loginBean.usuario._datos._nombre} #{loginBean.usuario._datos._apellido}. Ultimo acceso #{loginBean.usuario._ultimoAcceso}" />
+									<h:panelGrid columns="2" width="900px">
+										<h:column>
+											<h:outputText
+												style="font-size: 9pt; color: #2d77c2; width: 750; aling: left"
+												value="Usuario #{loginBean.usuario._datos._nombre} #{loginBean.usuario._datos._apellido}  -  Ultimo acceso #{loginBean.usuario._ultimoAcceso}">
+											</h:outputText>
+										</h:column>
+										<h:column>
+											<h:commandLink
+												style="font-size: 8pt; color: #2d77c2; width: 100; aling: right"
+												styleClass="textoPlano" action="#{loginBean.logout}"
+												immediate="true" value="Cerrar Cesión">
+											</h:commandLink>
+										</h:column>
+									</h:panelGrid>
 								</f:facet>
 								<center><h:panelGrid rendered="#{!loginBean.logged}">
 									<h:outputText styleClass="mensajeError" style="font-size: 12pt"
 										value="#{text.login_notLogged}" />
-									<center><a4j:commandButton
-										style="font-size: 10pt; color: #2d77c2;"
+									<a4j:commandButton
+										style="font-size: 10pt; color: #2d77c2; width : 105px;"
 										styleClass="textoPlano" action="#{loginBean.logout}"
-										immediate="true" value="#{text.login_login}" /> <a4j:commandButton
-										style="font-size: 10pt; color: #2d77c2;"
-										styleClass="textoPlano" action="navegar" immediate="true"
-										value="Ingresar" /></center>
+										immediate="true" value="#{text.login_Login}" /> 
 								</h:panelGrid></center>
 								<h:panelGroup rendered="#{loginBean.logged}">
 									<h:panelGrid columns="2" rendered="#{loginBean.logged}"
@@ -62,83 +72,83 @@ Secano.</title>
 												<rich:panel headerClass="tituloPantalla"
 													style="background-color: #ebf3fd; ">
 													<f:facet name="header">
-														<h:outputText value="Dar de baja su cuenta de usuario" />
+														<h:outputText value="#{text.usuario_Eliminar}" />
 													</f:facet>
 													<h:panelGrid>
-													<h:panelGrid columns="2"
-														columnClasses="textoPlano,textoPlano" width="500px">
+														<h:panelGrid columns="2"
+															columnClasses="textoPlano,textoPlano" width="500px">
 
-														<h:outputText value="Su nombre" />
-														<h:inputText value="#{datosUsuarioBean.nombre}"
-															styleClass="textoPlano" disabled="true" />
+															<h:outputText value="#{text.usuario_Nombre}" />
+															<h:inputText value="#{datosUsuarioBean.nombre}"
+																styleClass="textoPlano" disabled="true" />
 
-														<h:outputText value="Su apellido" />
-														<h:inputText value="#{datosUsuarioBean.apellido}"
-															styleClass="textoPlano" disabled="true" />
+															<h:outputText value="#{text.usuario_Apellido}" />
+															<h:inputText value="#{datosUsuarioBean.apellido}"
+																styleClass="textoPlano" disabled="true" />
 
-														<h:outputText value="Su e-mail" />
-														<h:inputText value="#{datosUsuarioBean.email}"
-															disabled="true" styleClass="textoPlano">
-														</h:inputText>
+															<h:outputText value="#{text.usuario_Mail" />
+															<h:inputText value="#{datosUsuarioBean.email}"
+																disabled="true" styleClass="textoPlano">
+															</h:inputText>
 
-														<h:outputLabel value="Su país" />
-														<rich:comboBox value="#{datosUsuarioBean.paisElegido}"
-															disabled="true" enableManualInput="false"
-															styleClass="combo">
-															<f:selectItems value="#{datosUsuarioBean.paises}" />
-														</rich:comboBox>
+															<h:outputLabel value="#{text.usuario_Pais}" />
+															<rich:comboBox value="#{datosUsuarioBean.paisElegido}"
+																disabled="true" enableManualInput="false"
+																styleClass="combo">
+																<f:selectItems value="#{datosUsuarioBean.paises}" />
+															</rich:comboBox>
 
-														<h:outputText
-															value="Su departamento, estado o provincia" />
-														<rich:comboBox id="cmbDepartamentos"
-															enableManualInput="false" disabled="true"
-															value="#{datosUsuarioBean.departamentoElegido}">
-															<f:selectItems value="#{datosUsuarioBean.departamentos}" />
-														</rich:comboBox>
+															<h:outputText value="#{text.usuario_Dpto}" />
+															<rich:comboBox id="cmbDepartamentos"
+																enableManualInput="false" disabled="true"
+																value="#{datosUsuarioBean.departamentoElegido}">
+																<f:selectItems value="#{datosUsuarioBean.departamentos}" />
+															</rich:comboBox>
 
-														<h:outputText value="Su ciudad" />
-														<rich:comboBox id="cmbCiudad" disabled="true"
-															value="#{datosUsuarioBean.ciudadElegido}"
-															enableManualInput="false">
-															<f:selectItems value="#{datosUsuarioBean.ciudades}" />
-														</rich:comboBox>
+															<h:outputText value="#{text.usuario_Ciudad}" />
+															<rich:comboBox id="cmbCiudad" disabled="true"
+																value="#{datosUsuarioBean.ciudadElegido}"
+																enableManualInput="false">
+																<f:selectItems value="#{datosUsuarioBean.ciudades}" />
+															</rich:comboBox>
 
-														<h:outputText value="Su dirección" />
-														<h:inputText value="#{datosUsuarioBean.direccion}"
-															styleClass="textoPlano" disabled="true" />
+															<h:outputText value="#{text.usuario_Direccion}" />
+															<h:inputText value="#{datosUsuarioBean.direccion}"
+																styleClass="textoPlano" disabled="true" />
 
-														<h:outputText value="Su teléfono" />
-														<h:inputText value="#{datosUsuarioBean.telefono}"
-															styleClass="textoPlano" disabled="true"/>
+															<h:outputText value="#{text.usuario_Telefono}" />
+															<h:inputText value="#{datosUsuarioBean.telefono}"
+																styleClass="textoPlano" disabled="true" />
 
-														<h:outputText value="Su celular" />
-														<h:inputText value="#{datosUsuarioBean.celular}"
-															styleClass="textoPlano" disabled="true"/>
+															<h:outputText value="Su celular" />
+															<h:inputText value="#{datosUsuarioBean.celular}"
+																styleClass="textoPlano" disabled="true" />
+														</h:panelGrid>
+														<center><h:panelGrid columns="2">
+															<a4j:commandButton
+																style="font-size: 10pt; color: #2d77c2;"
+																styleClass="textoPlano" tabindex="1" immediate="true"
+																action="#{datosUsuarioBean.baja}"
+																value="#{text.usuario_BtnBaja}" />
+															<a4j:commandButton
+																style="font-size: 10pt; color: #2d77c2;" tabindex="2"
+																styleClass="textoPlano" action="cancelar"
+																immediate="true" value="#{text.boton_Cancelar}" />
+														</h:panelGrid></center>
+
+														<f:facet name="footer">
+															<h:panelGrid>
+																<rich:messages styleClass="mensajeError">
+																	<f:facet name="errorMarker">
+																		<h:graphicImage
+																			value="/Recursos/Imagenes/Iconos/error.gif" />
+																	</f:facet>
+																</rich:messages>
+																<h:outputText styleClass="textoPlano"
+																	value="#{datosUsuarioBean.exito}" />
+															</h:panelGrid>
+														</f:facet>
 													</h:panelGrid>
-													<center><h:panelGrid columns="2">
-														<a4j:commandButton
-															style="font-size: 10pt; color: #2d77c2;"
-															styleClass="textoPlano" tabindex="1" immediate="true"
-															action="#{datosUsuarioBean.baja}" value="Dar de Baja" />
-														<a4j:commandButton
-															style="font-size: 10pt; color: #2d77c2;" tabindex="2"
-															styleClass="textoPlano" action="cancelar"
-															immediate="true" value="Cancelar" />
-													</h:panelGrid></center>
-													
-												<f:facet name="footer">
-													<h:panelGrid>
-														<rich:messages styleClass="mensajeError">
-															<f:facet name="errorMarker">
-																<h:graphicImage
-																	value="/Recursos/Imagenes/Iconos/error.gif" />
-															</f:facet>
-														</rich:messages>
-														<h:outputText styleClass="textoPlano"
-															value="#{datosUsuarioBean.exito}" />
-													</h:panelGrid>
-												</f:facet>
-												</h:panelGrid>
 												</rich:panel>
 											</h:panelGrid>
 										</h:column>

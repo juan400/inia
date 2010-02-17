@@ -45,13 +45,6 @@ public class MaestroBean implements Serializable {
 	private static final String PATH_Texto = "com.bean.text";
 
 	
-	/**
-	 * Add a message
-	 * 
-	 * @param key
-	 * @param bundle
-	 * @param mySeverity
-	 */
 	protected void addGlobalMessage(String myBundle, String key,
 			Severity mySeverity) {
 		// Agrego los mensajes correspondientes al resultado de la operacion.
@@ -63,35 +56,17 @@ public class MaestroBean implements Serializable {
 
 	}
 	
-	/**
-	 * Add a message
-	 * 
-	 * @param key
-	 * @param bundle
-	 * @param mySeverity
-	 */
 	protected void addGlobalMessage( String miMensaje) {
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage(miMensaje));
 	}
 
-	/**
-	 * Search for the value of a given key in the application loaded bundle
-	 * 
-	 * @param key
-	 * @return the description for the key
-	 */
 	protected String getTextBundleKey(String key) {
 		ResourceBundle bundle = ResourceBundle.getBundle(PATH_Texto,
 				getFacesContext().getExternalContext().getRequestLocale());
 		return bundle.getString(key);
 	}
 
-	/**
-	 * Obtain the application faces context
-	 * 
-	 * @return the FacesContext
-	 */
 	public FacesContext getFacesContext() {
 		return FacesContext.getCurrentInstance();
 	}
@@ -109,10 +84,6 @@ public class MaestroBean implements Serializable {
 		return g;
 	}
 
-
-	/**
-	 * @return the time zone for the application
-	 */
 	public TimeZone getTz() {
 		Calendar cal = new GregorianCalendar();
 		cal.setTime(new Date());
@@ -129,9 +100,6 @@ public class MaestroBean implements Serializable {
 		return g;
 	}
 
-	/**
-	 * @param tz
-	 */
 	public void setTz(TimeZone tz) {
 		this.tz = tz;
 	}
@@ -160,25 +128,9 @@ public class MaestroBean implements Serializable {
 		session.clear();
 	}
 	
-	/**
-	 * Returns the default Locale according to the ISO 3166
-	 * 
-	 * @return the country code
-	 */
 	public Locale getLocale() {
 		return getFacesContext().getExternalContext().getRequestLocale();
 	}
-//
-//	/**
-//	 * Gets the error Business Error Messages Localized for the Base Back Bean
-//	 * 
-//	 * @param be
-//	 * @return
-//	 * @MCUnnn
-//	 */
-//	public String getErrorMessage(String be) {
-//		return getMensajesBundleKey(be);
-//	}
 
 	public void setActivado(boolean activado) {
 		this.activado = activado;

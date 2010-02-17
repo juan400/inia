@@ -54,20 +54,20 @@ public class ConfirmacionBean extends MaestroBean implements Serializable {
 							retorno = "confirmar-ok";
 						} else {
 							this
-									.setError("Ingrese la clave secreta y recuerde que no sea igual a su contraseña o nombre de usuario.");
+									.setError("Ingrese la Clave Secreta y recuerde que no sea igual a su contraseña o nombre de usuario.");
 							retorno = "confirmar-error";
 						}
 					} else {
 						this
-								.setError("La contraseña ingresada no es igual a su confirmación.");
+								.setError("La contraseña ingresada no es igual a la confirmación.");
 						retorno = "confirmar-error";
 					}
 				} else {
 					this
-							.setError("La contraseña ingresada no puede ser igual al usuario.");
+							.setError("La contraseña ingresada no puede ser igual al Nombre de usuario.");
 					retorno = "confirmar-error";
 				}
-				// TODO Poner el metod de la fachada que confira el usuario.
+
 			} else {
 				this.setError("El usuario no esta registrado en el sistema.");
 				retorno = "confirmar-error";
@@ -119,14 +119,14 @@ public class ConfirmacionBean extends MaestroBean implements Serializable {
 						this
 								.setError("Estiamdo usuario "
 										+ nombre
-										+ " su cuenta está bloqueada, ingrese a recuperar su contraseña.");
+										+ " su cuenta está BLOQUEADA, ingrese a Recuperar Contraseña para activarla.");
 						setActivado(true);
 					} else if (this.getUsuario().get_estadoUsuario().equals(
 							Enumerados.EstadoUsuario.Inactivo)) {
 						this
 								.setError("Estiamdo usuario "
 										+ nombre
-										+ " su cuenta está momentaneamente inactivada, consulte a su administrador.");
+										+ " su cuenta está momentaneamente INACTIVA, consulte al administrador del sistema.");
 						setActivado(true);
 					} else {
 						this.setError("");
@@ -134,7 +134,7 @@ public class ConfirmacionBean extends MaestroBean implements Serializable {
 					}
 				} else {
 					this
-							.setError("Estiamdo usuario, realize previamente el paso Registro de usuario.");
+							.setError("Estiamdo usuario, debe Registrarse previamente.");
 					setActivado(true);
 				}
 			}

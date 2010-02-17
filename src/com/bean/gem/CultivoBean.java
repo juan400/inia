@@ -55,9 +55,9 @@ public class CultivoBean extends MaestroBean implements Serializable {
 			estado = estados[1].getValue().toString();
 			this.setDisableBtnProp(false);
 			this
-					.setExito("Se registro exitosamente el cultivo, puede continuar realizando el ingreso de propiedades.");
+					.setExito("Se registro exitosamente el cultivo.");
 		} else {
-			this.setError("No se pudo registrar el cultivo.");
+			this.setError("No se pudo registrar el cultivo, por favor intente nuevamente.");
 		}
 		return retorno;
 	}
@@ -67,10 +67,10 @@ public class CultivoBean extends MaestroBean implements Serializable {
 		this.setCultivo((Cultivo) this.getSesion(Cultivo.class.toString()));
 		if (this.getCultivo() == null) {
 			this.setError("Debe ingresar los datos del cultivo y registrarlo "
-					+ "previamente a realizar ingreso de propiedades.");
+					+ "previamente a realizar el ingreso de la propiedades.");
 		} else if (this.getCultivo().get_id() == 0) {
 			this.setError("Debe ingresar los datos del cultivo y registrarlo "
-					+ "previamente a realizar ingreso de propiedades.");
+					+ "previamente a realizar el ingreso de la propiedades.");
 		} else {
 			retorno = "GEM003";
 		}
