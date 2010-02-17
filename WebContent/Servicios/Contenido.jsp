@@ -58,7 +58,7 @@ Secano.</title>
 									<h:outputText styleClass="mensajeError" style="font-size: 12pt"
 										value="#{text.login_notLogged}" />
 									<center><a4j:commandButton
-										style="font-size: 10pt; color: #2d77c2;"
+										style="font-size: 10pt; color: #2d77c2; width : 120px;"
 										styleClass="textoPlano" action="#{loginBean.logout}"
 										immediate="true" value="#{text.login_Login}" /></center>
 								</h:panelGrid></center>
@@ -78,10 +78,10 @@ Secano.</title>
 														style=" width : 197px; height : 61px;" /></center>
 												</h:panelGrid>
 												<center><h:panelGrid columns="2">
-													<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
+													<a4j:commandButton style="font-size: 10pt; color: #2d77c2; width : 120px;"
 														styleClass="textoPlano" tabindex="3" action="EJE001"
 														value="Ejecutar MSCC" />
-													<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
+													<a4j:commandButton style="font-size: 10pt; color: #2d77c2; width : 120px;"
 														styleClass="textoPlano" tabindex="4" action="EJE003"
 														value="Ver Historico" />
 												</h:panelGrid></center>

@@ -58,7 +58,7 @@ Secano.</title>
 											style="font-size: 12pt" value="#{text.login_notLogged}" /></center>
 
 										<center><a4j:commandButton
-											style="font-size: 10pt; color: #2d77c2;"
+											style="font-size: 10pt; color: #2d77c2; width : 120px;"
 											styleClass="textoPlano" action="#{loginBean.logout}"
 											value="#{text.login_Login}" /></center>
 									</h:panelGrid>
@@ -89,7 +89,7 @@ Secano.</title>
 																requiredMessage="Debe Ingresar un nombre para el cultivo"
 																styleClass="textoPlano" maxlength="50"
 																onkeypress="ValidarCampoLetras(this, event)"
-																style=" width : 180px;" />
+																style=" width : 220px;" />
 
 															<h:outputText value="#{text.cultivo_Descripcion}" />
 															<h:inputTextarea value="#{cultivoBean.descripcion}"
@@ -97,14 +97,14 @@ Secano.</title>
 																requiredMessage="Debe Ingresar la descripción del cultivo"
 																styleClass="textoPlano"
 																onkeypress="ValidarCampoLetras(this, event)"
-																style=" width : 180px;">
+																style=" width : 220px; height : 56px;">
 																<f:validateLength maximum="220" />
 															</h:inputTextarea>
 
 															<h:outputLabel value="#{text.cultivo_Estado}" />
 															<rich:comboBox value="#{cultivoBean.estado}"
 																style=" higth : 18px;" enableManualInput="false"
-																styleClass="combo" width="180px">
+																styleClass="combo" width="220">
 																<f:selectItems value="#{cultivoBean.estados}" />
 															</rich:comboBox>
 
@@ -140,6 +140,7 @@ Secano.</title>
 																	value="#{cultivoBean.exito}" />
 															</h:panelGrid>
 														</f:facet></center>
+														
 													</h:panelGrid>
 												</rich:panel>
 											</h:panelGrid>

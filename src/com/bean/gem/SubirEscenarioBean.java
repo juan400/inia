@@ -4,9 +4,7 @@ import java.io.File;
 import java.io.Serializable;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.faces.model.SelectItem;
@@ -16,7 +14,6 @@ import org.richfaces.model.UploadItem;
 
 import com.bean.comun.MaestroBean;
 import com.inia_mscc.modulos.adm.entidades.Region;
-import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.EstadoArchivo;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioADM;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioGEM;
@@ -25,7 +22,6 @@ import com.inia_mscc.modulos.comun.entidades.Enumerados.TipoExtencionArchivo;
 import com.inia_mscc.modulos.gem.entidades.Archivo;
 import com.inia_mscc.modulos.gem.entidades.ArchivosTexto;
 import com.inia_mscc.modulos.gem.entidades.Cultivo;
-import com.inia_mscc.modulos.gem.entidades.Propiedad;
 import com.inia_mscc.modulos.gem.entidades.Ubicacion;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 

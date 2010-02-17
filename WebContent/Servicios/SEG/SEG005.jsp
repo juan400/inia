@@ -56,7 +56,7 @@ Secano.</title>
 									<h:outputText styleClass="mensajeError" style="font-size: 12pt"
 										value="#{text.login_notLogged}" />
 									<a4j:commandButton
-										style="font-size: 10pt; color: #2d77c2; width : 105px;"
+										style="font-size: 10pt; color: #2d77c2; width : 120px;"
 										styleClass="textoPlano" action="#{loginBean.logout}"
 										immediate="true" value="#{text.login_Login}" /> 
 								</h:panelGrid></center>
@@ -126,12 +126,12 @@ Secano.</title>
 														</h:panelGrid>
 														<center><h:panelGrid columns="2">
 															<a4j:commandButton
-																style="font-size: 10pt; color: #2d77c2;"
+																style="font-size: 10pt; color: #2d77c2; width : 120px;"
 																styleClass="textoPlano" tabindex="1" immediate="true"
 																action="#{datosUsuarioBean.baja}"
 																value="#{text.usuario_BtnBaja}" />
 															<a4j:commandButton
-																style="font-size: 10pt; color: #2d77c2;" tabindex="2"
+																style="font-size: 10pt; color: #2d77c2; width : 120px;" tabindex="2"
 																styleClass="textoPlano" action="cancelar"
 																immediate="true" value="#{text.boton_Cancelar}" />
 														</h:panelGrid></center>
