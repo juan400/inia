@@ -354,11 +354,6 @@
 			<to-view-id>/Servicios/SEG/SEG004.jsp</to-view-id>
 			<redirect />
 		</navigation-case>
-		<navigation-case>
-			<from-outcome>cancelar</from-outcome>
-			<to-view-id>/Servicios/SEG/SEG001.jsp</to-view-id>
-			<redirect />
-		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
 		<from-view-id>/Servicios/SEG/SEG005.jsp</from-view-id>
