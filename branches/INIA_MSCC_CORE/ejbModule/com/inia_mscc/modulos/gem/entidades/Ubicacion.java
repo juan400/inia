@@ -1,50 +1,75 @@
 package com.inia_mscc.modulos.gem.entidades;
 
+import java.io.Serializable;
 import java.net.URI;
 import java.util.Date;
 
-import com.inia_mscc.modulos.comun.entidades.Enumerados;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-public class Ubicacion {
+import com.inia_mscc.modulos.comun.entidades.Enumerados;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.TipoArchivo;
+
+@Entity(name = "Ubicacion")
+@Table(name = "tl_gem_ubar_ubicacionarchivo")
+public class Ubicacion implements Serializable {
 	/**
 	 * 
 	 */
-	private long _id; 
-	private Enumerados.Estado _estado;
-	private String _descripcion;
-	private Date _fecha;
-	private URI _urlPaht;
+	private static final long serialVersionUID = 1L;
 
-	public Ubicacion() {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ubar_num_id", updatable = false, nullable = false, columnDefinition = "BIGINT(20)")
+	private long _id;
+ 
+	@Enumerated(EnumType.STRING)
+	@Column(name = "ubar_str_tipo_archivo", nullable = false, columnDefinition = "VARCHAR(220)")
+	private Enumerados.TipoArchivo _tipoArchivo;
+
+	@Column(name = "ubar_str_path", nullable = false, columnDefinition = "TEXT")
+	private String _urlPaht;
+
+	public Ubicacion(long id, TipoArchivo tipoArchivo, String urlPaht) {
 		super();
-		_descripcion = null;
-		_fecha = null;
-		_urlPaht = null;
+		_id = id;
+		_tipoArchivo = tipoArchivo;
+		_urlPaht = urlPaht;
+	}
+	
+	public Ubicacion() {
 	}
 
-	public String get_descripcion() {
-		return _descripcion;
+	public long get_id() {
+		return _id;
 	}
 
-	public void set_descripcion(String descripcion) {
-		_descripcion = descripcion;
+	public void set_id(long id) {
+		_id = id;
 	}
 
-	public Date get_fecha() {
-		return _fecha;
+	public Enumerados.TipoArchivo get_tipoArchivo() {
+		return _tipoArchivo;
 	}
 
-	public void set_fecha(Date fecha) {
-		_fecha = fecha;
+	public void set_tipoArchivo(Enumerados.TipoArchivo tipoArchivo) {
+		_tipoArchivo = tipoArchivo;
 	}
 
-	public URI get_urlPaht() {
+	public String get_urlPaht() {
 		return _urlPaht;
 	}
 
-	public void set_urlPaht(URI urlPaht) {
+	public void set_urlPaht(String urlPaht) {
 		_urlPaht = urlPaht;
 	}
-
 
 }

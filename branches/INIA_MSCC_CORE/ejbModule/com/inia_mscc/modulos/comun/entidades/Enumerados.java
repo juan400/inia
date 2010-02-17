@@ -18,10 +18,10 @@ public class Enumerados {
 		Ninguno, Activo, Inactivo, Registrado, Bloqueado
 	}
 
-	static public enum ServicioComun{
+	static public enum ServicioComun {
 		MailSender
 	}
-	
+
 	static public enum ServicioADM {
 		RelacionPCD, Transaccion, Region, ValorSeleccion, ListaCriterio
 	}
@@ -31,13 +31,13 @@ public class Enumerados {
 	}
 
 	static public enum ServicioGEM {
-		Cultivo, Propiedad, Escenario
+		Cultivo, Propiedad, Escenario, Ubicacion, Archivo
 	}
 
 	static public enum ServicioEJE {
 		Ejecucion
 	}
-	
+
 	static public enum Estado {
 		Activo, Inactivo
 	}
@@ -52,7 +52,7 @@ public class Enumerados {
 	static public enum TipoPropiedadCultivo {
 		Ninguno, Fenotipica, Genotipica, Ambiente
 	}
-	
+
 	static public enum ListaCriterio {
 		Ninguno, Fertilizante, IndiceConeat, ParametrosSalida
 	}
