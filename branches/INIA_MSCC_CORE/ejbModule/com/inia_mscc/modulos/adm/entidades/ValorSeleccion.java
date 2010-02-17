@@ -31,10 +31,10 @@ public class ValorSeleccion implements Serializable {
 	@Column(name="vase_num_id", nullable = false, columnDefinition = "BIGINT(20)")
 	private long _id;
 		
-	@Column(name = "vase_str_codigo", nullable = false, columnDefinition = "VARCHAR(6)")
+	@Column(name = "vase_str_codigo", nullable = false, columnDefinition = "VARCHAR(10)")
 	private String _codigo;
 	
-	@Column(name = "vase_str_descripcion", nullable = false, columnDefinition = "VARCHAR(220)")
+	@Column(name = "vase_str_descripcion", nullable = true, columnDefinition = "VARCHAR(220)")
 	private String _descripcion;
 	
 	@Column(name = "vase_str_unidad", nullable = true, columnDefinition = "VARCHAR(45)")
