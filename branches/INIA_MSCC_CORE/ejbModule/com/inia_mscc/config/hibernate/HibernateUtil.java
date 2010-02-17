@@ -15,8 +15,10 @@ import com.inia_mscc.modulos.adm.entidades.Pais;
 import com.inia_mscc.modulos.adm.entidades.Region;
 import com.inia_mscc.modulos.adm.entidades.Transaccion;
 import com.inia_mscc.modulos.adm.entidades.ValorSeleccion;
+import com.inia_mscc.modulos.gem.entidades.Archivo;
 import com.inia_mscc.modulos.gem.entidades.Cultivo;
 import com.inia_mscc.modulos.gem.entidades.Propiedad;
+import com.inia_mscc.modulos.gem.entidades.Ubicacion;
 import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
 import com.inia_mscc.modulos.seg.entidades.Perfil;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
@@ -44,6 +46,8 @@ public class HibernateUtil {
         	.addAnnotatedClass(Propiedad.class)
         	.addAnnotatedClass(ValorSeleccion.class)
         	.addAnnotatedClass(ListaCriterioSeleccion.class)
+        	.addAnnotatedClass(Archivo.class)
+        	.addAnnotatedClass(Ubicacion.class)
         	.configure("hibernate.cfg.xml")
         	.buildSessionFactory();
             
