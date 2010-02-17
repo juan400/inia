@@ -58,7 +58,7 @@ Secano.</title>
 											style="font-size: 12pt" value="#{text.login_notLogged}" /></center>
 
 										<center><a4j:commandButton
-											style="font-size: 10pt; color: #2d77c2;"
+											style="font-size: 10pt; color: #2d77c2; width : 120px;"
 											styleClass="textoPlano" action="#{loginBean.logout}"
 											value="#{text.login_Login}" /></center>
 									</h:panelGrid>
@@ -83,41 +83,52 @@ Secano.</title>
 														<h:panelGrid columns="2"
 															columnClasses="textoPlano,textoPlano" width="400">
 
+															<h:outputText value="#{text.cultivo_SelCultivo}" />
+															<rich:comboBox id="Combo"
+																requiredMessage="Debe seleccionar un cultivo"
+																value="#{cultivoBean.cultivoElegido}" required="true"
+																enableManualInput="false" styleClass="combo" width="220">
+																<f:selectItems value="#{cultivoBean.cultivos}" />
+																<a4j:support
+																	action="#{cultivoBean.TakeSelectionCultivo}"
+																	event="onchange" ajaxSingle="true"
+																	reRender="Combo,Nombre,Descripcion,Estado" />
+																<rich:toolTip value="Cultivo que desea Modificar" />
+															</rich:comboBox>
+
+
 															<h:outputText value="#{text.cultivo_Nombre}" />
-															<h:inputText value="#{cultivoBean.nombre}"
+															<h:inputText value="#{cultivoBean.nombre}" id="Nombre"
 																required="true"
 																requiredMessage="Debe Ingresar un nombre para el cultivo"
 																styleClass="textoPlano" maxlength="50"
 																onkeypress="ValidarCampoLetras(this, event)"
-																style=" width : 180px;" />
+																style=" width : 220px;" />
 
 															<h:outputText value="#{text.cultivo_Descripcion}" />
 															<h:inputTextarea value="#{cultivoBean.descripcion}"
-																required="true"
+																id="Descripcion" required="true"
 																requiredMessage="Debe Ingresar la descripción del cultivo"
 																styleClass="textoPlano"
 																onkeypress="ValidarCampoLetras(this, event)"
-																style=" width : 180px;">
+																style=" width : 220px;">
 																<f:validateLength maximum="220" />
 															</h:inputTextarea>
 
 															<h:outputLabel value="#{text.cultivo_Estado}" />
-															<rich:comboBox value="#{cultivoBean.estado}"
+															<rich:comboBox value="#{cultivoBean.estado}" id="Estado"
 																style=" higth : 18px;" enableManualInput="false"
-																styleClass="combo" width="180px">
+																styleClass="combo" width="220px">
 																<f:selectItems value="#{cultivoBean.estados}" />
 															</rich:comboBox>
 														</h:panelGrid>
 														<br></br>
-														
-														<center><h:panelGrid columns="2"
-															columnClasses="textoPlano,textoPlano,textoPlano">
+
+														<center><h:panelGrid columns="2">
 															<a4j:commandButton
 																style="font-size: 10pt; color: #2d77c2; width : 120px;"
-																styleClass="textoPlano"
-																action="#{cultivoBean.Actualizar}"
+																styleClass="textoPlano" action="#{cultivoBean.Actualizar}"
 																value="#{text.boton_Actualizar}" />
-
 															<a4j:commandButton immediate="true"
 																style="font-size: 10pt; color: #2d77c2; width : 120px;"
 																styleClass="textoPlano" action="cancelar"

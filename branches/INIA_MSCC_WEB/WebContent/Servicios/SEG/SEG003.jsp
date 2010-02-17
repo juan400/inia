@@ -42,7 +42,7 @@ Secano.</title>
 									<center><h:panelGrid rendered="#{confirmacionBean.activado}">
 										<h:outputText styleClass="mensajeError"
 											value="#{confirmacionBean.error}" />
-										<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
+										<a4j:commandButton style="font-size: 10pt; color: #2d77c2; width : 120px;"
 											styleClass="textoPlano" action="#{loginBean.logout}"
 											immediate="true" tabindex="1" value="#{text.login_Login}" />
 									</h:panelGrid></center>
@@ -92,11 +92,11 @@ Secano.</title>
 										</h:panelGrid>
 										<br></br>
 										<center><h:panelGrid columns="2">
-											<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
+											<a4j:commandButton style="font-size: 10pt; color: #2d77c2; width : 120px;"
 												styleClass="textoPlano" tabindex="3"
 												action="#{confirmacionBean.Confirmar}"
 												value="#{text.boton_Guardar}" />
-											<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
+											<a4j:commandButton style="font-size: 10pt; color: #2d77c2; width : 120px;"
 												styleClass="textoPlano" tabindex="4" action="Cancelar"
 												immediate="true" value="#{text.boton_Cancelar}" />
 										</h:panelGrid></center>
