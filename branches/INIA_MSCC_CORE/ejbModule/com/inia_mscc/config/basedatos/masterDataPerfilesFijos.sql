@@ -4,4 +4,4 @@ INSERT INTO `tl_seg_perf_perfil` (`perf_str_estado`, `perf_str_nombre`, `perf_st
 VALUES
 ('Activo', 'Administrador', 'Administrador del sistema',1),
 ('Activo', 'Investigador', 'Investigadores de MSCC',1),
-('Activo', 'Publico', 'Público en general',1);
+('Activo', 'Publico', 'Publico en general',1);

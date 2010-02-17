@@ -90,8 +90,8 @@ Secano.</title>
 												<f:validateLength minimum="5" maximum="250" />
 											</h:inputText>
 										</h:panelGrid>
-
-										<h:panelGrid columns="2">
+<br></br>
+										<center><h:panelGrid columns="2">
 											<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
 												styleClass="textoPlano" tabindex="3"
 												action="#{confirmacionBean.Confirmar}"
@@ -99,7 +99,7 @@ Secano.</title>
 											<a4j:commandButton style="font-size: 10pt; color: #2d77c2;"
 												styleClass="textoPlano" tabindex="4" action="Cancelar"
 												immediate="true" value="#{text.boton_Cancelar}" />
-										</h:panelGrid>
+										</h:panelGrid></center>
 									</h:panelGroup>
 									<f:facet name="footer">
 										<h:panelGrid>
