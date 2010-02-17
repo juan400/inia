@@ -33,7 +33,6 @@ public class CultivoBean extends MaestroBean implements Serializable {
 	private boolean recargo = true;
 
 	public boolean isInit() {
-		this.limpiarBean();
 		if (recargo) {
 			this.setListaCultivo(this.getGEMFachada(ServicioGEM.Cultivo)
 					.ObtenerCultivos(null));
@@ -57,7 +56,8 @@ public class CultivoBean extends MaestroBean implements Serializable {
 			si = new SelectItem(Estado.Inactivo.name());
 			estados[1] = si;
 			estado = estados[0].getValue().toString();
-			this.setCultivo(null);
+			this.cultivo = new Cultivo();
+			this.recargo = false;
 		}
 		return false;
 	}
@@ -81,16 +81,18 @@ public class CultivoBean extends MaestroBean implements Serializable {
 			if (cul == null) {
 				this.getGEMFachada(ServicioGEM.Cultivo).RegistrarCultivo(
 						this.getCultivo());
-				limpiarBean();
-				this.setDisableBtnProp(false);
 				this.setExito("Se registro exitosamente el cultivo.");
+				this.LimpiarBean();
+				this.recargo = true;
 			} else {
 				this
 						.setError("Ya existe un Cultivo con igual nombre, Por favor ingrese otro nombre.");
+				retorno = "";
 			}
 		} catch (Exception ex) {
 			this
 					.setError("Se ha producido un error, por favor intente nuevamente.");
+			retorno = "";
 		}
 		return retorno;
 	}
@@ -110,12 +112,10 @@ public class CultivoBean extends MaestroBean implements Serializable {
 		return retorno;
 	}
 
-	private void limpiarBean() {
+	private void LimpiarBean() {
 		nombre = "";
 		descripcion = "";
 		estado = "";
-		this.setError("");
-		this.setExito("");
 	}
 
 	public String Actualizar() {
@@ -128,7 +128,8 @@ public class CultivoBean extends MaestroBean implements Serializable {
 
 				this.getGEMFachada(ServicioGEM.Cultivo).ActualizarCultivo(
 						this.getCultivo());
-				limpiarBean();
+				this.LimpiarBean();
+				this.recargo = true;
 			} else {
 				cultivo.set_nombre(nombre);
 				cultivo.set_descripcion(descripcion);
@@ -137,18 +138,20 @@ public class CultivoBean extends MaestroBean implements Serializable {
 				Cultivo cul = this.getGEMFachada(ServicioGEM.Cultivo)
 						.ComprobarCultivo(this.getCultivo());
 				if (cul == null) {
-					setError("");
 					this.getGEMFachada(ServicioGEM.Cultivo).ActualizarCultivo(
 							this.getCultivo());
-					limpiarBean();
+					this.LimpiarBean();
+					this.recargo = true;
 				} else {
 					this
 							.setError("Ya existe un Cultivo con igual nombre, Por favor ingrese otro nombre.");
+					retorno = "";
 				}
 			}
 		} catch (Exception ex) {
 			this
 					.setError("Se ha producido un error, por favor intente nuevamente.");
+			retorno = "";
 		}
 		return retorno;
 	}
@@ -172,9 +175,6 @@ public class CultivoBean extends MaestroBean implements Serializable {
 				this.setError("");
 				this.setExito("");
 			} else {
-				this.setNombre("");
-				this.setDescripcion("");
-				this.setEstado("");
 				this.setError("");
 				this.setExito("");
 			}
