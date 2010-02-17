@@ -485,7 +485,6 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
-
 	<navigation-rule>
 		<from-view-id>/Servicios/ADM/ADM003.jsp</from-view-id>
 		<navigation-case>
@@ -500,15 +499,11 @@
 			<to-view-id>/Servicios/ADM/ADM003.jsp</to-view-id>
 		</navigation-case>
 		<navigation-case>
-		<from-action>#{valorSeleccionBean.AceptarValorSeleccion}</from-action>
-		<from-outcome>ADM003</from-outcome>
-		<to-view-id>/Servicios/ADM/ADM003.lsp</to-view-id>
+			<from-action>#{valorSeleccionBean.AceptarValorSeleccion}</from-action>
+			<from-outcome>ADM003</from-outcome>
+			<to-view-id>/Servicios/ADM/ADM003.lsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-
-
-
-
 	<navigation-rule>
 		<from-view-id>/Servicios/ADM/ADM005.jsp</from-view-id>
 		<navigation-case>
@@ -614,20 +609,28 @@
 	<navigation-rule>
 		<from-view-id>/Servicios/GEM/GEM001.jsp</from-view-id>
 		<navigation-case>
-			<from-outcome>contenedora</from-outcome>
+			<from-outcome>cancelar</from-outcome>
 			<to-view-id>/Servicios/Contenido.jsp</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-action>#{cultivoBean.Propiedades}</from-action>
-			<from-outcome>GEM003</from-outcome>
-			<to-view-id>/Servicios/GEM/GEM003.jsp</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
 			<from-action>#{cultivoBean.Registrar}</from-action>
 			<from-outcome>GEM001</from-outcome>
 			<to-view-id>/Servicios/GEM/GEM001.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/Servicios/GEM/GEM002.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>cancelar</from-outcome>
+			<to-view-id>/Servicios/Contenido.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{cultivoBean.Actualizar}</from-action>
+			<from-outcome>GEM002</from-outcome>
+			<to-view-id>/Servicios/GEM/GEM002.jsp</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -675,7 +678,7 @@
 	</navigation-rule>
 	<navigation-rule>
 		<from-view-id>/Servicios/GEM/GEM004.jsp</from-view-id>
-			<navigation-case>
+		<navigation-case>
 			<from-action>#{propiedadesBean.ModificarPropiedad}</from-action>
 			<from-outcome>modificar</from-outcome>
 			<to-view-id>/Servicios/GEM/GEM004.jsp</to-view-id>
@@ -706,6 +709,7 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	
 	<application>
 		<navigation-handler>org.richfaces.ui.application.StateNavigationHandler</navigation-handler>
 		<el-resolver>org.richfaces.el.StateELResolver</el-resolver>
