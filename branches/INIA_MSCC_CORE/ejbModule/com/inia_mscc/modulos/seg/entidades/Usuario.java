@@ -58,7 +58,7 @@ public class Usuario implements Serializable {
 	public Usuario() {
 		super();
 		_login = null;
-		_password = EncriptacionSHA1BASE64.encriptar("NoTeOlvidesMas");
+		_password = EncriptacionSHA1BASE64.encriptar("NoTeOlvides");
 		_activado = false;
 		_ultimoAcceso = new Date(); 
 		_estadoUsuario = Enumerados.EstadoUsuario.Registrado;

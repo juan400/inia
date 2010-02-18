@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 import com.inia_mscc.modulos.adm.entidades.Region;
-import com.inia_mscc.modulos.comun.entidades.Objeto;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
 public class Escenario implements Serializable {

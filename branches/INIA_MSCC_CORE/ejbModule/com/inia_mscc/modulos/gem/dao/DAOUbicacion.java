@@ -30,7 +30,7 @@ public class DAOUbicacion implements Serializable {
 				}
 			}
 			listaUbicacion = (List<Ubicacion>) c.list();
-		} catch (Exception e) {// catch (StaleObjectStateException e) {
+		} catch (Exception e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);
@@ -53,7 +53,7 @@ public class DAOUbicacion implements Serializable {
 				}
 			}
 			unUbicacion = (Ubicacion) c.uniqueResult();
-		} catch (Exception e) {// catch (StaleObjectStateException e) {
+		} catch (Exception e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);
@@ -70,7 +70,7 @@ public class DAOUbicacion implements Serializable {
 			Criteria c = session.createCriteria(Ubicacion.class);
 			c.add(Restrictions.eq("_id", id));
 			cultivo = (Ubicacion) c.uniqueResult();
-		} catch (Exception e) {// catch (StaleObjectStateException e) {
+		} catch (Exception e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);
@@ -83,7 +83,7 @@ public class DAOUbicacion implements Serializable {
 			Session session = HibernateUtil.getSessionFactory()
 					.getCurrentSession();
 			session.update("Ubicacion", pUbicacion);
-		} catch (Exception e) {// catch (StaleObjectStateException e) {
+		} catch (Exception e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);

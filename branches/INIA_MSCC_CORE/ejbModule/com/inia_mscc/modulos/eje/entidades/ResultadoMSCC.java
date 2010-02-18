@@ -1,23 +1,18 @@
 package com.inia_mscc.modulos.eje.entidades;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Date;
-import java.util.Map;
 
 import javax.persistence.Transient;
 
 import org.apache.commons.collections.map.HashedMap;
 
-import com.inia_mscc.modulos.comun.entidades.Objeto;
 import com.inia_mscc.modulos.gem.entidades.Archivo;
 import com.inia_mscc.modulos.gem.entidades.Escenario;
 
-public class ResultadoMSCC extends Objeto {
+public class ResultadoMSCC {
 	private Date _fecha;
 	private Archivo _archivo;
-	private HashedMap _matrizDatos;// : Map<dia, registro<ValorSeleccion, dato>>
+	private HashedMap _matrizDatos;
 	private Escenario _escenario;
 
 	public ResultadoMSCC() {

@@ -39,7 +39,7 @@ public class Transaccion implements Serializable {
 	private String _descripcion;
 	@Column(name = "tran_bol_definida", nullable = false, columnDefinition = "TINYINT(1)")
 	private Boolean _definida;
-	@Column(name = "tran_str_uri", nullable = false, columnDefinition = "VARCHAR(250)")
+	@Column(name = "tran_str_url", nullable = false, columnDefinition = "VARCHAR(250)")
 	private String _url;
 	@Column(name = "tran_str_codigo_base", nullable = false, columnDefinition = "VARCHAR(6)")
 	private String _codigoBase;

@@ -21,9 +21,6 @@ import org.hibernate.annotations.ForeignKey;
 @ForeignKey(name = "FK_vase_num_id_listacriterio")
 public class ValorSeleccion implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
