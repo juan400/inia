@@ -3,8 +3,6 @@
 	<name>INIA_MSCC_EAR</name>
 	<comment></comment>
 	<projects>
-		<project>INIA_MSCC_CORE</project>
-		<project>INIA_MSCC_WEB</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
