@@ -1,7 +1,6 @@
 package com.inia_mscc.modulos.gem.ejb;
 
 import java.util.List;
-
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -12,6 +11,7 @@ import javax.ejb.TransactionManagementType;
 import com.inia_mscc.modulos.gem.dao.DAOCultivo;
 import com.inia_mscc.modulos.gem.entidades.Cultivo;
 import com.inia_mscc.modulos.gem.servicios.ServicioCultivo;
+
 @Stateless(name = "EJBCultivo", mappedName = "EJBCultivo")
 @Remote(ServicioCultivo.class)
 @TransactionManagement(value = TransactionManagementType.CONTAINER)
@@ -39,9 +39,9 @@ public class EJBCultivo implements ServicioCultivo {
 	public Cultivo RegistrarCultivo(Cultivo pCultivo) {
 		return dao.RegistrarCultivo(pCultivo);
 	}
-	
+
 	@Override
-	public Cultivo ComprobarCultivo(Cultivo pCultivo){
+	public Cultivo ComprobarCultivo(Cultivo pCultivo) {
 		return dao.ComprobarCultivo(pCultivo);
 	}
 }

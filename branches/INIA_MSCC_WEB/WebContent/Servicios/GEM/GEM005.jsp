@@ -74,7 +74,7 @@ Secano.</title>
 													<rich:panel headerClass="tituloPantalla"
 														style="background-color: #ebf3fd;">
 														<f:facet name="header">
-															<h:outputText value="#{text.escenario_Modificar}" />
+															<h:outputText value="#{text.escenario_Ingresar}" />
 														</f:facet>
 
 														<h:panelGrid columns="2" width="500px"
