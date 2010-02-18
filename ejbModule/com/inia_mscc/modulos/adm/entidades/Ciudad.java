@@ -18,9 +18,6 @@ import org.hibernate.annotations.ForeignKey;
 @Table(name = "tl_adm_ciud_ciudad")
 public class Ciudad implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -29,8 +26,6 @@ public class Ciudad implements Serializable {
 	private long _id;
 	@Column(name = "ciud_str_nombre", nullable = false, columnDefinition = "VARCHAR(220)")
 	private String _nombre;
-//	@OneToOne(cascade = CascadeType.ALL, targetEntity = Departamento.class)
-//	@PrimaryKeyJoinColumn(name = "ciud_num_id_departamento", columnDefinition = "BIGINT(20)")
 	@OneToOne(cascade = CascadeType.ALL, targetEntity=Departamento.class)
 	@ForeignKey (name="FK_deto_num_id")
 	@JoinColumn(name="ciud_num_id_departamento", nullable=true, columnDefinition="BIGINT(20)")

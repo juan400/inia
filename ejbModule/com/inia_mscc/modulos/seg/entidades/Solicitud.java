@@ -6,13 +6,9 @@ import java.util.Date;
 import com.inia_mscc.modulos.adm.entidades.Transaccion;
 import com.inia_mscc.modulos.adm.entidades.ValorSeleccion;
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
-import com.inia_mscc.modulos.comun.entidades.Objeto;
 
-public class Solicitud extends Objeto implements Serializable
-{
-	/**
-	 * 
-	 */
+public class Solicitud implements Serializable {
+
 	private static final long serialVersionUID = -4460742038189538337L;
 	
 	private String _codigo;

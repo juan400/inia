@@ -27,9 +27,7 @@ import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
 @Entity(name = "Perfil")
 @Table(name = "tl_seg_perf_perfil")
 public class Perfil implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
