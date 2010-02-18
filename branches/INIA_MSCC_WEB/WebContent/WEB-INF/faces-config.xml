@@ -489,20 +489,53 @@
 	<navigation-rule>
 		<from-view-id>/Servicios/ADM/ADM003.jsp</from-view-id>
 		<navigation-case>
-			<from-action>#{valorSeleccionBean.ModificarValorSeleccion}</from-action>
-			<from-outcome>ADM003</from-outcome>
+			<from-action>#{valorSeleccionBean.EliminarValor}</from-action>
+			<from-outcome>eliminar</from-outcome>
 			<to-view-id>/Servicios/ADM/ADM003.jsp</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
-			<from-action>#{valorSeleccionBean.EliminarValorSeleccion}</from-action>
-			<from-outcome>ADM003</from-outcome>
+			<from-action>#{valorSeleccionBean.AceptarValor}</from-action>
+			<from-outcome>aceptar</from-outcome>
 			<to-view-id>/Servicios/ADM/ADM003.jsp</to-view-id>
 		</navigation-case>
 		<navigation-case>
-			<from-action>#{valorSeleccionBean.AceptarValorSeleccion}</from-action>
+			<from-action>#{valorSeleccionBean.RegistrarValores}</from-action>
 			<from-outcome>ADM003</from-outcome>
 			<to-view-id>/Servicios/ADM/ADM003.lsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancelar</from-outcome>
+			<to-view-id>/Servicios/Contenido.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/Servicios/ADM/ADM004.jsp</from-view-id>
+		<navigation-case>
+			<from-action>#{valorSeleccionBean.ModificarValor}</from-action>
+			<from-outcome>modificar</from-outcome>
+			<to-view-id>/Servicios/ADM/ADM004.lsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{valorSeleccionBean.EliminarValor}</from-action>
+			<from-outcome>eliminar</from-outcome>
+			<to-view-id>/Servicios/ADM/ADM004.lsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{valorSeleccionBean.AceptarModificacion}</from-action>
+			<from-outcome>ADM004</from-outcome>
+			<to-view-id>/Servicios/ADM/ADM004.lsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{valorSeleccionBean.ModificarValores}</from-action>
+			<from-outcome>ADM004</from-outcome>
+			<to-view-id>/Servicios/ADM/ADM004.lsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancelar</from-outcome>
+			<to-view-id>/Servicios/Contenido.jsp</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>

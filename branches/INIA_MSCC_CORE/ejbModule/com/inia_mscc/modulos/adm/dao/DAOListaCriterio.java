@@ -21,13 +21,14 @@ public class DAOListaCriterio implements Serializable {
 	private static final Logger logger = Logger.getLogger(DAOListaCriterio.class);
 	
 	
+	@SuppressWarnings("unchecked")
 	public List<ListaCriterioSeleccion> ObtenerListaCriterio() {
 		List<ListaCriterioSeleccion> listaCriterio = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			Criteria c = session.createCriteria(ListaCriterioSeleccion.class);
 			listaCriterio = (List<ListaCriterioSeleccion>) c.list();
-		} catch (Exception e) {
+		} catch (Exception e) {// catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);
@@ -42,11 +43,9 @@ public class DAOListaCriterio implements Serializable {
 			Criteria c = session.createCriteria(ListaCriterioSeleccion.class);
 			if (pCriterio.get_id() != 0) {
 				c.add(Restrictions.eq("_id", pCriterio.get_id()));
-				System.out.println(pCriterio.get_id());
 			}
 			if (!pCriterio.get_descripcion().isEmpty()) {
 				c.add(Restrictions.eq("_descripcion", pCriterio.get_descripcion()));
-				System.out.println(pCriterio.get_descripcion());
 			}
 			unCriterio = (ListaCriterioSeleccion) c.uniqueResult();
 			if (unCriterio != null

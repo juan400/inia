@@ -87,11 +87,6 @@ public class MenuBean extends MaestroBean implements Serializable {
 								Proceso.ADM.name())) {
 							if (!unaTransa.get_codigoBase().equalsIgnoreCase(
 									TransaccionesNoContenidas.ADM002.name())
-									&& !unaTransa
-											.get_codigoBase()
-											.equalsIgnoreCase(
-													TransaccionesNoContenidas.ADM004
-															.name())
 
 									&& !unaTransa
 											.get_codigoBase()
