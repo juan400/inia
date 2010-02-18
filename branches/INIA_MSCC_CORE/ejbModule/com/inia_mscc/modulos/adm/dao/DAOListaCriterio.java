@@ -20,9 +20,6 @@ public class DAOListaCriterio implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(DAOListaCriterio.class);
 	
-	/**
-	 * @return
-	 */
 	
 	public List<ListaCriterioSeleccion> ObtenerListaCriterio() {
 		List<ListaCriterioSeleccion> listaCriterio = null;
@@ -38,11 +35,6 @@ public class DAOListaCriterio implements Serializable {
 		return listaCriterio;
 	}
 
-	
-	/**
-	 * @param pCriterio
-	 * @return
-	 */
 	public ListaCriterioSeleccion ObtenerCriterio(ListaCriterioSeleccion pCriterio) {
 		ListaCriterioSeleccion unCriterio = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -68,25 +60,6 @@ public class DAOListaCriterio implements Serializable {
 		}
 		return unCriterio;
 	}
-
-	
-	public ListaCriterioSeleccion RegistrarListaCriterio(ListaCriterioSeleccion pCriterio) {
-		ListaCriterioSeleccion criterio = null;
-		try {
-			Session session = HibernateUtil.getSessionFactory()
-					.getCurrentSession();
-			Long id = (Long) session.save("ListaCriterioSeleccion", pCriterio);
-			Criteria c = session.createCriteria(ListaCriterioSeleccion.class);
-			c.add(Restrictions.eq("_id", id));
-			criterio = (ListaCriterioSeleccion) c.uniqueResult();
-		} catch (StaleObjectStateException e) {
-			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
-			logger.error(stackTrace);
-			throw new IniaPersistenciaException(e.getMessage(), e);
-		}
-		return criterio;
-	}
-
 
 	public void ActualizarListaCriterio(ListaCriterioSeleccion pCriterio) {
 		try {

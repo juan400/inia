@@ -11,8 +11,5 @@ public interface ServicioListaCriterio {
 
 	public List<ListaCriterioSeleccion> ObtenerListaCriterio();
 
-	public ListaCriterioSeleccion RegistrarListaCriterio(
-			ListaCriterioSeleccion pCriterio);
-
 	public void ActualizarListaCriterio(ListaCriterioSeleccion pCriterio);
 }

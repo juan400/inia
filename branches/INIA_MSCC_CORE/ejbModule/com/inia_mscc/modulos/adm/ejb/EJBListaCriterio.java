@@ -30,14 +30,10 @@ public class EJBListaCriterio implements ServicioListaCriterio {
 	public List<ListaCriterioSeleccion> ObtenerListaCriterio(){
 		return dao.ObtenerListaCriterio();
 	}
-
-	@Override
-	public  ListaCriterioSeleccion RegistrarListaCriterio(ListaCriterioSeleccion pCriterio){
-		return dao.RegistrarListaCriterio(pCriterio);
-	}
 	
 	@Override
 	public void ActualizarListaCriterio(ListaCriterioSeleccion pCriterio) {
 		dao.ActualizarListaCriterio(pCriterio);
 	}
+	
 }

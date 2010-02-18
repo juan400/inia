@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.ForeignKey;
 
@@ -42,6 +43,9 @@ public class ValorSeleccion implements Serializable {
 	@ManyToOne(targetEntity = ListaCriterioSeleccion.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "vase_num_id_listacriterio", referencedColumnName = "licr_num_id")
 	private ListaCriterioSeleccion _criterio;
+	
+	@Transient
+	private boolean _grabada;
 
 	public ValorSeleccion() {
 		super();
@@ -49,6 +53,7 @@ public class ValorSeleccion implements Serializable {
 		_codigo = null;
 		_descripcion = null;
 		_unidadMedida = null;
+		_grabada = true;
 	}
 
 	public String get_codigo() {
@@ -89,6 +94,14 @@ public class ValorSeleccion implements Serializable {
 
 	public void set_criterio(ListaCriterioSeleccion criterio) {
 		_criterio = criterio;
+	}
+
+	public void set_grabada(boolean _grabada) {
+		this._grabada = _grabada;
+	}
+
+	public boolean is_grabada() {
+		return _grabada;
 	}
 
 }

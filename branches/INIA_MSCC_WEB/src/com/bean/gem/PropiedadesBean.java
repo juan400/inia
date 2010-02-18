@@ -35,7 +35,7 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 	private Date fecha;
 	private String codigo;
 	private String nombre;
-	private String unidadedida;
+	private String unidadMedida;
 	private boolean recargo;
 
 	public boolean isInitPantalla() {
@@ -351,9 +351,6 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 		this.cultivos = cultivos;
 	}
 
-	
-	
-	
 	public Cultivo getCultivo() {
 		return cultivo;
 	}
@@ -427,11 +424,11 @@ public class PropiedadesBean extends MaestroBean implements Serializable {
 	}
 
 	public String getUnidadedida() {
-		return unidadedida;
+		return unidadMedida;
 	}
 
 	public void setUnidadedida(String unidadedida) {
-		this.unidadedida = unidadedida;
+		this.unidadMedida = unidadedida;
 	}
 
 	public String getTipoSeleccionado() {
