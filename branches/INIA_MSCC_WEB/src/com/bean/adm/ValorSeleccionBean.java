@@ -14,8 +14,6 @@ import com.inia_mscc.modulos.adm.entidades.ListaCriterioSeleccion;
 import com.inia_mscc.modulos.adm.entidades.ValorSeleccion;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ListaCriterio;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioADM;
-import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioGEM;
-import com.inia_mscc.modulos.gem.entidades.Cultivo;
 
 public class ValorSeleccionBean extends MaestroBean implements Serializable {
 
@@ -115,7 +113,7 @@ public class ValorSeleccionBean extends MaestroBean implements Serializable {
 		}
 	}
 
-	public void TakeSelectionCultivo() {
+	public void TakeSelectionCriterio() {
 		try {
 			setRecargo(false);
 			criterio = new ListaCriterioSeleccion();
@@ -224,7 +222,7 @@ public class ValorSeleccionBean extends MaestroBean implements Serializable {
 				this.setUnidad("");
 			} else {
 				this
-						.setError("Ya Existe un Valor de Selección agregada en la lista con el mismo Código.");
+						.setError("Ya Existe un Valor de Selección agregado en la lista con el mismo Código.");
 			}
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
@@ -257,7 +255,7 @@ public class ValorSeleccionBean extends MaestroBean implements Serializable {
 	}
 
 	public String AceptarModificacion() {
-		String retorno = "ADM003";
+		String retorno = "ADM004";
 		setRecargo(false);
 		this.setError("");
 		this.setExito("");
@@ -312,14 +310,14 @@ public class ValorSeleccionBean extends MaestroBean implements Serializable {
 			this.getAdmFachada(ServicioADM.ListaCriterio).ActualizarListaCriterio(this.getCriterio());
 			this.setRecargo(true);
 			this
-					.setExito("Se ingresó exitosamente la Lista de Criterios y sus Valores de Selección.");
+					.setExito("Se actualizó correctamente la Lista de Criterios y sus Valores de Selección.");
 			if (this.getSesion(ListaCriterioSeleccion.class.toString()) != null) {
 				this.removerSesion(ListaCriterioSeleccion.class.toString());
 			}
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
 		}
-		return "ADM003";
+		return "ADM004";
 	}
 	
 	public List<ListaCriterioSeleccion> getListaCriterio() {

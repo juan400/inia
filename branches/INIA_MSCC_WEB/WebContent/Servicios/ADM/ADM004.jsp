@@ -19,7 +19,7 @@ Secano.</title>
 <f:view>
 	<h:form>
 		<f:loadBundle basename="com.bean.text" var="text" />
-		<table align="center" width="950px">
+		<table align="center" width="956px">
 			<thead>
 				<tr>
 					<td>
@@ -32,7 +32,7 @@ Secano.</title>
 					<td align="center" valign="top" class="contenido"><a4j:region
 						id="contenido">
 						<h:panelGroup rendered="#{loginBean.init}" />
-						<h:panelGrid width="950" cellpadding="0" cellspacing="0">
+						<h:panelGrid width="956" cellpadding="0" cellspacing="0">
 							<rich:panel headerClass="tituloPantalla"
 								style="background-color: #ebf3fd;">
 								<f:facet name="header">
@@ -55,7 +55,8 @@ Secano.</title>
 								<center><h:panelGrid rendered="#{!loginBean.logged}">
 									<h:panelGrid>
 										<center><h:outputText styleClass="mensajeError"
-											style="font-size: 12pt" value="#{text.login_notLogged}" /></center>
+											style="font-size: 10pt; color: #2d77c2; width : 120px;"
+											value="#{text.login_notLogged}" /></center>
 										<center><a4j:commandButton
 											style="font-size: 10pt; color: #2d77c2; width : 120px;"
 											styleClass="textoPlano" action="#{loginBean.logout}"
@@ -77,19 +78,21 @@ Secano.</title>
 													<rich:panel headerClass="tituloPantalla"
 														style="background-color: #ebf3fd;">
 														<f:facet name="header">
-															<h:outputText value="#{text.valorSeleccion_Valor}" />
+															<h:outputText value="#{text.valorSeleccion_Modificar}" />
 														</f:facet>
+
 														<center><h:panelGrid columns="2"
 															columnClasses="textoPlano,tectoPlano"
 															style=" width : 408px;">
-									
-															<h:outputLabel value="#{text.valorSeleccion_ListaCriterios}"
+
+															<h:outputLabel
+																value="#{text.valorSeleccion_ListaCriterios}"
 																styleClass="textoPlano" />
 															<rich:comboBox
 																value="#{valorSeleccionBean.criterioSeleccionado}"
 																enableManualInput="false" styleClass="combo"
 																disabled="#{valorSeleccionBean.disableSeleccionCriterio}"
-																width="229">
+																width="248px">
 																<f:selectItems value="#{valorSeleccionBean.criterios}" />
 																<a4j:support
 																	action="#{valorSeleccionBean.TakeSelectionCriterio}"
@@ -102,13 +105,14 @@ Secano.</title>
 															<h:panelGrid>
 																<center><rich:dataTable border="2"
 																	width="400px" rows="5" styleClass="textoDataTable"
-																	id="tablaPropiedades"
-																	value="#{valorSeleccionBean.listaValores}"
-																	var="valor" rowKeyVar="row"
-																	headerClass="columnHeader" rowClasses="oddRow,evenRow">
+																	id="tablaCriterios"
+																	value="#{valorSeleccionBean.listaValores}" var="valor"
+																	rowKeyVar="row" headerClass="columnHeader"
+																	rowClasses="oddRow,evenRow">
 
 																	<f:facet name="header">
-																		<h:outputText value="#{text.valorSeleccion_TablaValores}" />
+																		<h:outputText
+																			value="#{text.valorSeleccion_TablaValores}" />
 																	</f:facet>
 
 																	<rich:column>
@@ -120,9 +124,11 @@ Secano.</title>
 
 																	<rich:column width="220">
 																		<f:facet name="header">
-																			<h:outputText value="#{text.valorSeleccion_Descripcion}" />
+																			<h:outputText
+																				value="#{text.valorSeleccion_Descripcion}" />
 																		</f:facet>
-																		<h:outputText value="#{valor._descripcion}" id="descripcion" />
+																		<h:outputText value="#{valor._descripcion}"
+																			id="descripcion" />
 																	</rich:column>
 
 																	<rich:column width="320">
@@ -135,19 +141,29 @@ Secano.</title>
 
 																	<rich:column width="80">
 																		<f:facet name="header">
-																			<h:outputText value="Eliminar ingreso" />
+																			<h:outputText value="Acciones" />
 																		</f:facet>
 
-																		<center><a4j:commandButton
+																		<a4j:commandButton
+																			action="#{valorSeleccionBean.ModificarValor}"
+																			image="/Recursos/Imagenes/Iconos/edit.gif"
+																			immediate="true" style="width : 27px; height : 21px;"
+																			reRender="datosValor">
+																			<a4j:actionparam name="valorElegido"
+																				value="#{valor._codigo}" />
+																			<rich:toolTip value="Modificar" />
+																		</a4j:commandButton>
+
+																		<a4j:commandButton
 																			action="#{valorSeleccionBean.EliminarValor}"
 																			image="/Recursos/Imagenes/Iconos/delete.gif"
-																			immediate="true" disabled="#{valor._grabada}"
+																			immediate="true"
 																			style=" border:0; width : 27px; height : 21px;"
 																			reRender="panelValores">
 																			<a4j:actionparam name="valorElegido"
 																				value="#{valor._codigo}" />
-																			<rich:toolTip value="Elimina solo las agregadas" />
-																		</a4j:commandButton></center>
+																			<rich:toolTip value="Eliminar" />
+																		</a4j:commandButton>
 
 																	</rich:column>
 																	<f:facet name="footer">
@@ -186,12 +202,12 @@ Secano.</title>
 
 																<h:outputText />
 																<a4j:commandButton
-																	style="font-size: 10pt; color: #2d77c2; width : 123px;"
-																	styleClass="textoPlano" value="#{text.valorSeleccion_BotonAceptar}"
+																	style="font-size: 10pt; color: #2d77c2; width : 125px;"
+																	styleClass="textoPlano" value="Aceptar valor"
 																	disabled="#{valorSeleccionBean.disableAceptarValor}">
 																	<a4j:support event="onclick" ajaxSingle="false"
 																		reRender="panelValores"
-																		action="#{valorSeleccionBean.AceptarValor}" />
+																		action="#{valorSeleccionBean.AceptarModificacion}" />
 																</a4j:commandButton>
 															</h:panelGrid></center>
 														</h:panelGrid>
@@ -201,16 +217,16 @@ Secano.</title>
 															<a4j:commandButton immediate="true"
 																style="font-size: 10pt; color: #2d77c2; width : 120px;"
 																styleClass="textoPlano"
-																action="#{valorSeleccionBean.RegistrarValores}"
-																value="#{text.boton_Registrar}" />
+																action="#{valorSeleccionBean.ModificarValores}"
+																value="#{text.boton_Actualizar}" />
 
 															<a4j:commandButton immediate="true"
 																style="font-size: 10pt; color: #2d77c2; width : 120px;"
 																styleClass="textoPlano" action="cancelar"
 																value="#{text.boton_Cerrar}" />
 														</h:panelGrid></center>
-														
-														<center><h:panelGrid id="mensajes">
+
+														<center><h:panelGrid id="mensages">
 															<rich:messages styleClass="mensajeError">
 																<f:facet name="errorMarker">
 																	<h:graphicImage
