@@ -8,8 +8,6 @@ public interface ServicioListaCriterio {
 
 	public ListaCriterioSeleccion ObtenerCriterio(
 			ListaCriterioSeleccion pCriterio);
-
 	public List<ListaCriterioSeleccion> ObtenerListaCriterio();
-
 	public void ActualizarListaCriterio(ListaCriterioSeleccion pCriterio);
 }

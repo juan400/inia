@@ -30,7 +30,7 @@ public class ListaCriterioSeleccion implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "licr_num_id", nullable = false, columnDefinition = "BIGINT(20)")
+	@Column(name = "licr_num_id", updatable = false, nullable = false, columnDefinition = "BIGINT(20)")
 	private long _id;
 	@Enumerated(EnumType.STRING)
 	@Column(name = "licr_str_estado", nullable = false, columnDefinition = "VARCHAR(10)")
@@ -39,13 +39,12 @@ public class ListaCriterioSeleccion implements Serializable {
 	private String _descripcion;
 	@Column(name = "licr_str_codigo", nullable = false, columnDefinition = "VARCHAR(3)")
 	private String _codigo;
-	@OneToMany(targetEntity = ValorSeleccion.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(targetEntity = ValorSeleccion.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "vase_num_id_listacriterio", referencedColumnName = "licr_num_id")
 	private List<ValorSeleccion> _listaValores;
 
 	public ListaCriterioSeleccion() {
 		super();
-		_estado = Estado.Activo;
 		_listaValores = null;
 	}
 
