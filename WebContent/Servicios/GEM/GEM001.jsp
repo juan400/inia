@@ -110,19 +110,20 @@ Secano.</title>
 														</h:panelGrid>
 													</h:panelGrid>
 												</rich:panel>
-												<br></br>
-												<center><h:panelGrid columns="2"
-													columnClasses="textoPlano,textoPlano,textoPlano">
+
+												<td></td>
+												<center><h:panelGrid columns="3">
 													<a4j:commandButton
 														style="font-size: 10pt; color: #2d77c2; width : 120px;"
-														styleClass="textoPlano" action="#{cultivoBean.Registrar}"
-														value="#{text.boton_Registrar}" />
-
+														styleClass="textoPlano"
+														action="#{administrarUsuarioBean.actualizar}"
+														value="#{text.boton_Aceptar}" />
 													<a4j:commandButton immediate="true"
 														style="font-size: 10pt; color: #2d77c2; width : 120px;"
-														styleClass="textoPlano" action="cancelar"
-														value="#{text.boton_Cerrar}" />
+														styleClass="textoPlano" action="salir"
+														value="#{text.boton_Cancelar}" />
 												</h:panelGrid></center>
+
 												<center><f:facet name="footer">
 													<h:panelGrid>
 														<rich:messages styleClass="mensajeError">

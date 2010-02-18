@@ -77,15 +77,13 @@ Secano.</title>
 													<rich:panel headerClass="tituloPantalla"
 														style="background-color: #ebf3fd;">
 														<f:facet name="header">
-															<h:outputText value="Ingresar Propiedades a un Cultivo" />
+															<h:outputText value="#{text.propCul_Ingresar}" />
 														</f:facet>
-														<h:panelGrid columns="2"
+														<center><h:panelGrid columns="2"
 															columnClasses="textoPlano,tectoPlano"
 															style=" width : 408px;">
-
-
-
-															<h:outputLabel value="Seleccione el cultivo"
+									
+															<h:outputLabel value="#{text.propCul_ComboCultivo}"
 																styleClass="textoPlano" />
 															<rich:comboBox
 																value="#{propiedadesBean.cultivoSeleccionado}"
@@ -98,7 +96,7 @@ Secano.</title>
 																	event="onchange" ajaxSingle="true"
 																	reRender="panelPropiedades" />
 															</rich:comboBox>
-														</h:panelGrid>
+														</h:panelGrid></center>
 
 														<h:panelGrid id="panelPropiedades">
 															<h:panelGrid>
@@ -110,26 +108,26 @@ Secano.</title>
 																	headerClass="columnHeader" rowClasses="oddRow,evenRow">
 
 																	<f:facet name="header">
-																		<h:outputText value="Propiedades ingresadas" />
+																		<h:outputText value="#{text.propCul_ListaProp}" />
 																	</f:facet>
 
 																	<rich:column>
 																		<f:facet name="header">
-																			<h:outputText value="#{text.region_Codigo}" />
+																			<h:outputText value="#{text.propiedad_Codigo}" />
 																		</f:facet>
 																		<h:outputText value="#{propiedad._codigo}" id="codigo" />
 																	</rich:column>
 
 																	<rich:column width="220">
 																		<f:facet name="header">
-																			<h:outputText value="Nombre" />
+																			<h:outputText value="#{text.propiedad_Nombre}" />
 																		</f:facet>
 																		<h:outputText value="#{propiedad._nombre}" id="nombre" />
 																	</rich:column>
 
 																	<rich:column width="320">
 																		<f:facet name="header">
-																			<h:outputText value="#{text.region_Descripcion}" />
+																			<h:outputText value="#{text.propiedad_UnidadMedida}" />
 																		</f:facet>
 																		<h:outputText value="#{propiedad._unidadMedida}"
 																			id="descripcion" />
@@ -159,7 +157,7 @@ Secano.</title>
 																</rich:dataTable></center>
 															</h:panelGrid>
 
-															<h:panelGrid columns="2" id="datosPropiedad"
+															<center><h:panelGrid columns="2" id="datosPropiedad"
 																columnClasses="textoPlano,textoPlano">
 
 																<h:outputText value="Código" />
@@ -197,14 +195,14 @@ Secano.</title>
 
 																<h:outputText />
 																<a4j:commandButton
-																	style="font-size: 10pt; color: #2d77c2; width : 120px;"
-																	styleClass="textoPlano" value="Aceptar propiedad"
+																	style="font-size: 10pt; color: #2d77c2; width : 123px;"
+																	styleClass="textoPlano" value="#{text.boton_IngresarProp}"
 																	disabled="#{propiedadesBean.disableAceptarPropiedad}">
 																	<a4j:support event="onclick" ajaxSingle="false"
 																		reRender="panelPropiedades"
 																		action="#{propiedadesBean.AceptarPropiedad}" />
 																</a4j:commandButton>
-															</h:panelGrid>
+															</h:panelGrid></center>
 														</h:panelGrid>
 														<td></td>
 

@@ -473,9 +473,10 @@
 			<to-view-id>/Servicios/ADM/ADM001.jsp</to-view-id>
 			<redirect />
 		</navigation-case>
+
 		<navigation-case>
 			<from-action>#{transaccionBean.actualizar}</from-action>
-			<from-outcome>registro-error</from-outcome>
+			<from-outcome>error</from-outcome>
 			<to-view-id>/Servicios/ADM/ADM002.jsp</to-view-id>
 			<redirect />
 		</navigation-case>
@@ -702,14 +703,14 @@
 	</navigation-rule>
 	<navigation-rule>
 		<from-view-id>/Servicios/GEM/GEM005.jsp</from-view-id>
-			<navigation-case>
+		<navigation-case>
 			<from-action>#{subirEscenarioBean.RegistrarEscenario}</from-action>
 			<from-outcome>GEM005</from-outcome>
 			<to-view-id>/Servicios/GEM/GEM005.jsp</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
-	
+
 	<application>
 		<navigation-handler>org.richfaces.ui.application.StateNavigationHandler</navigation-handler>
 		<el-resolver>org.richfaces.el.StateELResolver</el-resolver>

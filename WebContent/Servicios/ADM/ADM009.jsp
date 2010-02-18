@@ -112,33 +112,34 @@ Secano.</title>
 															<td style="width: 2px;"></td>
 															<h:outputText value="" />
 														</h:panelGrid>
-
-														<CENTER><h:panelGrid columns="2">
-															<a4j:commandButton
-																style="font-size: 10pt; color: #2d77c2; width : 120px;"
-																styleClass="textoPlano"
-																action="#{administrarUsuarioBean.actualizar}"
-																value="#{text.boton_Aceptar}" />
-															<a4j:commandButton immediate="true"
-																style="font-size: 10pt; color: #2d77c2; width : 120px;"
-																styleClass="textoPlano" action="salir"
-																value="#{text.boton_Cancelar}" />
-														</h:panelGrid></center>
-
-														<center><f:facet name="footer">
-															<h:panelGrid>
-																<rich:messages styleClass="mensajeError">
-																	<f:facet name="errorMarker">
-																		<h:graphicImage
-																			value="/Recursos/Imagenes/Iconos/error.gif" />
-																	</f:facet>
-																</rich:messages>
-																<h:outputText styleClass="textoPlano"
-																	value="#{datosUsuarioBean.exito}" />
-															</h:panelGrid>
-														</f:facet></center>
 													</h:panelGrid>
 												</rich:panel>
+
+												<center><h:panelGrid columns="3">
+													<a4j:commandButton
+														style="font-size: 10pt; color: #2d77c2; width : 120px;"
+														styleClass="textoPlano"
+														action="#{administrarUsuarioBean.actualizar}"
+														value="#{text.boton_Aceptar}" />
+
+													<a4j:commandButton immediate="true"
+														style="font-size: 10pt; color: #2d77c2; width : 120px;"
+														styleClass="textoPlano" action="salir"
+														value="#{text.boton_Cancelar}" />
+												</h:panelGrid></center>
+
+												<center><f:facet name="footer">
+													<h:panelGrid>
+														<rich:messages styleClass="mensajeError">
+															<f:facet name="errorMarker">
+																<h:graphicImage
+																	value="/Recursos/Imagenes/Iconos/error.gif" />
+															</f:facet>
+														</rich:messages>
+														<h:outputText styleClass="textoPlano"
+															value="#{datosUsuarioBean.exito}" />
+													</h:panelGrid>
+												</f:facet></center>
 											</h:panelGrid>
 										</h:column>
 									</h:panelGrid>

@@ -115,7 +115,7 @@ Secano.</title>
 															headerClass="columnHeader" rowClasses="oddRow,evenRow">
 															<f:facet name="header">
 																<h:outputText
-																	value="#{text.transaccion_TablaTransaccion}" />
+																	value="#{text.transaccion_TablaTransacciones}" />
 															</f:facet>
 
 															<rich:column width="20">
