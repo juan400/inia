@@ -15,9 +15,7 @@ import javax.persistence.Table;
 @Entity(name = "Pais")
 @Table(name = "tl_adm_pais_pais")
 public class Pais implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	@Id

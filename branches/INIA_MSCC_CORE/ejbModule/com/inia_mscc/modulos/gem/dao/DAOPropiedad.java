@@ -16,16 +16,11 @@ import com.inia_mscc.modulos.gem.entidades.Propiedad;
 
 public class DAOPropiedad implements Serializable {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = Logger.getLogger(DAOPropiedad.class);
 
-	/**
-	 * @return
-	 */
 	@SuppressWarnings("unchecked")
 	public List<Propiedad> ObtenerPropiedades(Propiedad pPropiedad) {
 		List<Propiedad> listaPropiedad = null;
@@ -44,9 +39,6 @@ public class DAOPropiedad implements Serializable {
 		return listaPropiedad;
 	}
 
-	/**
-	 * @return
-	 */
 	public Propiedad ObtenerPropiedad(Propiedad pPropiedad) {
 		Propiedad unPropiedad = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -67,11 +59,6 @@ public class DAOPropiedad implements Serializable {
 		return unPropiedad;
 	}
 
-	/**
-	 * Actualiza los datos de una propiedad de un cultivoa en el sitema.
-	 * 
-	 * @param pDatosUsuario
-	 */
 	public void ActualizarPropiedad(Propiedad pPropiedad) {
 		try {
 			Session session = HibernateUtil.getSessionFactory()
@@ -85,11 +72,6 @@ public class DAOPropiedad implements Serializable {
 	}
 
 
-	/**
-	 * Actualiza los datos de una propiedad de un cultivoa en el sitema.
-	 * 
-	 * @param pDatosUsuario
-	 */
 	public void EliminarPropiedad(Propiedad pPropiedad) {
 		try {
 			Session session = HibernateUtil.getSessionFactory()

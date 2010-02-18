@@ -25,7 +25,7 @@ public class DAOArchivo  implements Serializable {
 		try {
 			Criteria c = session.createCriteria(Archivo.class);
 			listaArchivo = (List<Archivo>) c.list();
-		} catch (Exception e) {// catch (StaleObjectStateException e) {
+		} catch (Exception e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);
@@ -45,7 +45,7 @@ public class DAOArchivo  implements Serializable {
 				c.add(Restrictions.eq("_nombre", pArchivo.get_nombre()));
 			}
 			unArchivo = (Archivo) c.uniqueResult();
-		}catch (Exception e) {// catch (StaleObjectStateException e) {
+		}catch (Exception e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);
@@ -62,7 +62,7 @@ public class DAOArchivo  implements Serializable {
 			Criteria c = session.createCriteria(Archivo.class);
 			c.add(Restrictions.eq("_id", id));
 			cultivo = (Archivo) c.uniqueResult();
-		}catch (Exception e) {// catch (StaleObjectStateException e) {
+		}catch (Exception e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);
@@ -75,7 +75,7 @@ public class DAOArchivo  implements Serializable {
 			Session session = HibernateUtil.getSessionFactory()
 					.getCurrentSession();
 			session.update("Archivo", pArchivo);
-		} catch (Exception e) {// catch (StaleObjectStateException e) {
+		} catch (Exception e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);
