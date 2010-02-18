@@ -97,7 +97,7 @@ public class GEMFachada {
 		return srvArchivo.ObtenerArchivos(pArchivo);
 	}
 
-	public Archivo RegistrarArchivo(Archivo pArchivo) {
+	public Archivo RegistrarArchivo(Archivo pArchivo) throws Exception {
 		return srvArchivo.RegistrarArchivo(pArchivo);
 	}
 

@@ -19,7 +19,7 @@ public class ProveedorArchivo implements ServicioArchivo {
 	public ProveedorArchivo() throws IOException {
 		try {
 			Context ctx = new InitialContext();
-			ejbArchivo = (ProveedorArchivo) ctx.lookup("EJBArchivo");
+			ejbArchivo = (ServicioArchivo) ctx.lookup("EJBArchivo");
 		} catch (NamingException e) {
 			throw new ProviderException(e);
 		}
@@ -41,7 +41,7 @@ public class ProveedorArchivo implements ServicioArchivo {
 	}
 
 	@Override
-	public Archivo RegistrarArchivo(Archivo pArchivo) {
+	public Archivo RegistrarArchivo(Archivo pArchivo) throws Exception {
 		return ejbArchivo.RegistrarArchivo(pArchivo);
 	}
 

@@ -6,29 +6,29 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 import org.hibernate.annotations.ForeignKey;
 
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
-import com.inia_mscc.modulos.comun.entidades.Enumerados.EstadoArchivo;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.TipoArchivo;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.TipoExtencionArchivo;
-import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
 @Entity(name = "Archivo")
@@ -66,20 +66,22 @@ public class Archivo implements Serializable {
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REFRESH }, targetEntity = Ubicacion.class)
 	@ForeignKey(name = "FK_arch_num_id_ubicacion_archivo")
-	@JoinColumn(name = "arch_num_id_ubicacion_archivo",referencedColumnName="ubar_num_id", updatable = true, nullable = false, columnDefinition = "BIGINT(20)")
+	@JoinColumn(name = "arch_num_id_ubicacion_archivo", referencedColumnName = "ubar_num_id", updatable = true, nullable = false, columnDefinition = "BIGINT(20)")
 	private Ubicacion _ubicacion;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REFRESH }, targetEntity = Cultivo.class)
 	@ForeignKey(name = "FK_arch_num_id_cultivo")
-	@JoinColumn(name = "arch_num_id_cultivo",referencedColumnName="cult_num_id", updatable = true, nullable = false, columnDefinition = "BIGINT(20)")
+	@JoinColumn(name = "arch_num_id_cultivo", referencedColumnName = "cult_num_id", updatable = true, nullable = false, columnDefinition = "BIGINT(20)")
 	private Cultivo _cultivo;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REFRESH }, targetEntity = Usuario.class)
 	@ForeignKey(name = "FK_arch_num_id_usuario")
-	@JoinColumn(name = "arch_num_id_usuario",referencedColumnName="usua_num_id", updatable = true, nullable = false, columnDefinition = "BIGINT(20)")
+	@JoinColumn(name = "arch_num_id_usuario", referencedColumnName = "usua_num_id", updatable = true, nullable = false, columnDefinition = "BIGINT(20)")
 	private Usuario _usuario;
-
-	@Transient
+	
+	@Lob
+    @Basic(fetch=FetchType.EAGER)
+	@Column(name = "arch_dat_dato", nullable = false, columnDefinition = "blob NOT NULL")
 	private File _datos;
 
 	public Archivo() {
@@ -90,11 +92,11 @@ public class Archivo implements Serializable {
 	}
 
 	public Archivo(String pNombreLogin, TipoArchivo tipo, Date fechaHora,
-			EstadoArchivo estadoArchivo, TipoExtencionArchivo extencion,
+			Estado estadoArchivo, TipoExtencionArchivo extencion,
 			Ubicacion ubicacion) {
 		super();
 		_tipo = tipo;
-		_estado = Estado.Activo;
+		_estado = estadoArchivo;
 		_fechaHora = fechaHora;
 		_extencion = extencion;
 		_ubicacion = ubicacion;
@@ -113,12 +115,13 @@ public class Archivo implements Serializable {
 		}
 		String fechaEscrita = pFecha.get(Calendar.YEAR) + "-"
 				+ (pFecha.get(Calendar.MONTH) + 1) + "-"
-				+ pFecha.get(Calendar.DAY_OF_MONTH) + " "
+				+ pFecha.get(Calendar.DAY_OF_MONTH) + "_"
 				+ pFecha.get(Calendar.HOUR_OF_DAY) + ""
 				+ pFecha.get(Calendar.MINUTE) + ""
-				+ pFecha.get(Calendar.SECOND);
-		String nombreArchivo = _ubicacion.get_urlPaht().toString() + _tipo
-				+ "_" + pNombreLogin + "_" + fechaEscrita + ".py";
+				+ pFecha.get(Calendar.SECOND) + ""
+				+ pFecha.get(Calendar.MILLISECOND);
+		String nombreArchivo = _tipo + "_" + pNombreLogin + "_" + fechaEscrita
+				+ ".py";
 		_nombre = nombreArchivo;
 	}
 
