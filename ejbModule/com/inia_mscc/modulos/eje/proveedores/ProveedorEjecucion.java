@@ -1,6 +1,8 @@
 package com.inia_mscc.modulos.eje.proveedores;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -8,6 +10,7 @@ import javax.naming.NamingException;
 
 import com.inia_mscc.excepciones.ProviderException;
 import com.inia_mscc.modulos.eje.entidades.EjecucionMSCC;
+import com.inia_mscc.modulos.eje.entidades.ResultadoMSCC;
 import com.inia_mscc.modulos.eje.servicios.ServicioEjecucionMSCC;
 import com.inia_mscc.modulos.seg.servicios.ServicioPerfil;
 
@@ -27,6 +30,11 @@ public class ProveedorEjecucion implements ServicioEjecucionMSCC {
 	@Override
 	public void generarArchivoEscenario(EjecucionMSCC ejecucionMSCC) throws Exception {
 		ejbEjeccucion.generarArchivoEscenario(ejecucionMSCC);
+	}
+
+	@Override
+	public Map<String, ArrayList> obtenerMapaResultado(ResultadoMSCC resultadoMSCC) throws Exception {
+		return ejbEjeccucion.obtenerMapaResultado(resultadoMSCC);
 	}
 	
 }
