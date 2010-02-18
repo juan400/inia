@@ -36,19 +36,31 @@ Secano.</title>
 							<rich:panel headerClass="tituloPantalla"
 								style="background-color: #ebf3fd;">
 								<f:facet name="header">
-									<h:outputText
-										value="Bienvenido #{loginBean.usuario._datos._nombre} #{loginBean.usuario._datos._apellido}. Ultimo acceso #{loginBean.usuario._ultimoAcceso}" />
+									<h:panelGrid columns="2" width="900px">
+										<h:column>
+											<h:outputText
+												style="font-size: 9pt; color: #2d77c2; width: 750; aling: left"
+												value="Usuario #{loginBean.usuario._datos._nombre} #{loginBean.usuario._datos._apellido}  -  Ultimo acceso #{loginBean.usuario._ultimoAcceso}">
+											</h:outputText>
+										</h:column>
+										<h:column>
+											<h:commandLink
+												style="font-size: 8pt; color: #2d77c2; width: 100; aling: right"
+												styleClass="textoPlano" action="#{loginBean.logout}"
+												immediate="true" value="Cerrar Cesión">
+											</h:commandLink>
+										</h:column>
+									</h:panelGrid>
 								</f:facet>
 								<center><h:panelGrid rendered="#{!loginBean.logged}">
 									<h:panelGrid>
 										<center><h:outputText styleClass="mensajeError"
-											style="font-size: 12pt" value="#{text.login_notLogged}" /></center>
-									</h:panelGrid>
-									<h:panelGrid columns="2">
+											style="font-size: 10pt; color: #2d77c2; width : 120px;"
+											value="#{text.login_notLogged}" /></center>
 										<center><a4j:commandButton
-											style="font-size: 10pt; color: #2d77c2;"
+											style="font-size: 10pt; color: #2d77c2; width : 120px;"
 											styleClass="textoPlano" action="#{loginBean.logout}"
-											value="#{text.login_login}" /></center>
+											value="#{text.login_Login}" /></center>
 									</h:panelGrid>
 								</h:panelGrid></center>
 								<h:panelGroup rendered="#{loginBean.logged}">
@@ -66,15 +78,14 @@ Secano.</title>
 													<rich:panel headerClass="tituloPantalla"
 														style="background-color: #ebf3fd;">
 														<f:facet name="header">
-															<h:outputText value="Modificar o Eliminar Propiedades a un Cultivo" />
+															<h:outputText value="#{text.propiedad_Modificar}" />
 														</f:facet>
-														<h:panelGrid columns="2"
+
+														<center><h:panelGrid columns="2"
 															columnClasses="textoPlano,tectoPlano"
 															style=" width : 408px;">
 
-
-
-															<h:outputLabel value="Seleccione el cultivo"
+															<h:outputLabel value="#{text.cultivo_Combo}"
 																styleClass="textoPlano" />
 															<rich:comboBox
 																value="#{propiedadesBean.cultivoSeleccionado}"
@@ -87,7 +98,7 @@ Secano.</title>
 																	event="onchange" ajaxSingle="true"
 																	reRender="panelPropiedades" />
 															</rich:comboBox>
-														</h:panelGrid>
+														</h:panelGrid></center>
 
 														<h:panelGrid id="panelPropiedades">
 															<h:panelGrid>
@@ -99,26 +110,26 @@ Secano.</title>
 																	headerClass="columnHeader" rowClasses="oddRow,evenRow">
 
 																	<f:facet name="header">
-																		<h:outputText value="Propiedades ingresadas" />
+																		<h:outputText value="#{text.propCul_ListaProp}" />
 																	</f:facet>
 
 																	<rich:column>
 																		<f:facet name="header">
-																			<h:outputText value="#{text.region_Codigo}" />
+																			<h:outputText value="#{text.propiedad_Codigo}" />
 																		</f:facet>
 																		<h:outputText value="#{propiedad._codigo}" id="codigo" />
 																	</rich:column>
 
 																	<rich:column width="220">
 																		<f:facet name="header">
-																			<h:outputText value="Nombre" />
+																			<h:outputText value="#{text.propiedad_Nombre}" />
 																		</f:facet>
 																		<h:outputText value="#{propiedad._nombre}" id="nombre" />
 																	</rich:column>
 
 																	<rich:column width="320">
 																		<f:facet name="header">
-																			<h:outputText value="#{text.region_Descripcion}" />
+																			<h:outputText value="#{text.propiedad_UnidadMedida}" />
 																		</f:facet>
 																		<h:outputText value="#{propiedad._unidadMedida}"
 																			id="descripcion" />
@@ -126,14 +137,14 @@ Secano.</title>
 
 																	<rich:column width="80">
 																		<f:facet name="header">
-																			<h:outputText value="Modificar" />
+																			<h:outputText value="Acciones" />
 																		</f:facet>
 
 																		<a4j:commandButton
 																			action="#{propiedadesBean.ModificarPropiedad}"
 																			image="/Recursos/Imagenes/Iconos/edit.gif"
 																			immediate="true" style="width : 27px; height : 21px;"
-																			reRender="datosPropiedad">
+																			reRender="Modificar">
 																			<a4j:actionparam name="propiedadElegida"
 																				value="#{propiedad._codigo}" />
 																			<rich:toolTip value="Modificar" />
@@ -142,7 +153,7 @@ Secano.</title>
 																		<a4j:commandButton
 																			action="#{propiedadesBean.EliminarPropiedad}"
 																			image="/Recursos/Imagenes/Iconos/delete.gif"
-																			immediate="true" 
+																			immediate="true"
 																			style=" border:0; width : 27px; height : 21px;"
 																			reRender="panelPropiedades">
 																			<a4j:actionparam name="propiedadElegida"
@@ -158,12 +169,13 @@ Secano.</title>
 																</rich:dataTable></center>
 															</h:panelGrid>
 
-															<h:panelGrid columns="2" id="datosPropiedad"
+															<center><h:panelGrid columns="2"
+																id="datosPropiedad"
 																columnClasses="textoPlano,textoPlano">
 
 																<h:outputText value="Código" />
 																<h:inputText value="#{propiedadesBean.codigo}"
-																	required="true" 
+																	required="true"
 																	requiredMessage="Ingrese un código para la propiedad"
 																	styleClass="textoPlano" maxlength="10"
 																	onkeypress="ValidarCampoLetras(this, event)"
@@ -203,22 +215,24 @@ Secano.</title>
 																		reRender="panelPropiedades"
 																		action="#{propiedadesBean.AceptarModificacion}" />
 																</a4j:commandButton>
-															</h:panelGrid>
+															</h:panelGrid></center>
 														</h:panelGrid>
 														<td></td>
 
 														<center><h:panelGrid columns="3">
 															<a4j:commandButton immediate="true"
-																style="font-size: 10pt; color: #2d77c2; width : 87px;"
-																styleClass="textoPlano" action="#{propiedadesBean.ModificarPropiedades}"
+																style="font-size: 10pt; color: #2d77c2; width : 120px;"
+																styleClass="textoPlano"
+																action="#{propiedadesBean.ModificarPropiedades}"
 																value="#{text.boton_Registrar}" />
 
 															<a4j:commandButton immediate="true"
-																style="font-size: 10pt; color: #2d77c2; width : 87px;"
+																style="font-size: 10pt; color: #2d77c2; width : 120px;"
 																styleClass="textoPlano" action="cancelar"
-																value="#{text.perfil_Cerrar}" />
+																value="#{text.boton_Cerrar}" />
 														</h:panelGrid></center>
-														<h:panelGrid id="mensages">
+														
+														<center><h:panelGrid id="mensages">
 															<rich:messages styleClass="mensajeError">
 																<f:facet name="errorMarker">
 																	<h:graphicImage
@@ -227,7 +241,7 @@ Secano.</title>
 															</rich:messages>
 															<h:outputText styleClass="textoPlano"
 																value="#{propiedadesBean.exito}" />
-														</h:panelGrid>
+														</h:panelGrid></center>
 													</rich:panel>
 												</h:panelGrid>
 											</h:panelGrid>

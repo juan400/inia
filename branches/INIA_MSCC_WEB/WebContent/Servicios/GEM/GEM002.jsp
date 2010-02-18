@@ -124,33 +124,33 @@ Secano.</title>
 														</h:panelGrid>
 													</h:panelGrid>
 												</rich:panel>
+
+												<td></td>
+												<center><h:panelGrid columns="3">
+													<a4j:commandButton
+														style="font-size: 10pt; color: #2d77c2; width : 120px;"
+														styleClass="textoPlano"
+														action="#{administrarUsuarioBean.actualizar}"
+														value="#{text.boton_Aceptar}" />
+													<a4j:commandButton immediate="true"
+														style="font-size: 10pt; color: #2d77c2; width : 120px;"
+														styleClass="textoPlano" action="salir"
+														value="#{text.boton_Cancelar}" />
+												</h:panelGrid></center>
+
+												<center><f:facet name="footer">
+													<h:panelGrid>
+														<rich:messages styleClass="mensajeError">
+															<f:facet name="errorMarker">
+																<h:graphicImage
+																	value="/Recursos/Imagenes/Iconos/error.gif" />
+															</f:facet>
+														</rich:messages>
+														<h:outputText styleClass="textoPlano"
+															value="#{cultivoBean.exito}" />
+													</h:panelGrid>
+												</f:facet></center>
 											</h:panelGrid>
-
-											<br></br>
-											<center><h:panelGrid columns="2"
-												columnClasses="textoPlano,textoPlano,textoPlano">
-												<a4j:commandButton
-													style="font-size: 10pt; color: #2d77c2; width : 120px;"
-													styleClass="textoPlano" action="#{cultivoBean.Actualizar}"
-													value="#{text.boton_Actualizar}" />
-
-												<a4j:commandButton immediate="true"
-													style="font-size: 10pt; color: #2d77c2; width : 120px;"
-													styleClass="textoPlano" action="cancelar"
-													value="#{text.boton_Cerrar}" />
-											</h:panelGrid></center>
-											<center><f:facet name="footer">
-												<h:panelGrid>
-													<rich:messages styleClass="mensajeError">
-														<f:facet name="errorMarker">
-															<h:graphicImage
-																value="/Recursos/Imagenes/Iconos/error.gif" />
-														</f:facet>
-													</rich:messages>
-													<h:outputText styleClass="textoPlano"
-														value="#{cultivoBean.exito}" />
-												</h:panelGrid>
-											</f:facet></center>
 										</h:column>
 									</h:panelGrid>
 								</h:panelGroup>

@@ -56,7 +56,7 @@ Secano.</title>
 									<h:outputText styleClass="mensajeError" style="font-size: 12pt"
 										value="#{text.login_notLogged}" />
 									<center><a4j:commandButton
-										style="font-size: 10pt; color: #2d77c2;"
+										style="font-size: 10pt; color: #2d77c2; width : 120px;"
 										styleClass="textoPlano" action="#{loginBean.logout}"
 										immediate="true" value="#{text.login_Login}" /></center>
 								</h:panelGrid></center>
@@ -74,13 +74,13 @@ Secano.</title>
 													<rich:panel headerClass="tituloPantalla"
 														style="background-color: #ebf3fd;">
 														<f:facet name="header">
-															<h:outputText value="Modificar Escenario" />
+															<h:outputText value="#{text.escenario_Modificar}" />
 														</f:facet>
 
 														<h:panelGrid columns="2" width="500px"
 															columnClasses="textoPlano,textoPlano">
 
-															<h:outputText value="#{text.registro_Fecha}" />
+															<h:outputText value="#{text.escenario_Fecha}" />
 															<rich:calendar id="calFecha"
 																inputClass="rich-calendar-input"
 																value="#{subirEscenarioBean.fecha}"
@@ -89,7 +89,7 @@ Secano.</title>
 																popup="true" cellWidth="24px" cellHeight="22px"
 																style="width:200px" />
 
-															<h:outputLabel value="Seleccionar cultivo" />
+															<h:outputLabel value="#{text.escenario_SelecCultivo}" />
 															<rich:comboBox
 																requiredMessage="Debe seleccionar un cultivo"
 																value="#{subirEscenarioBean.cultivoElegido}"
@@ -104,20 +104,20 @@ Secano.</title>
 																	value="Seleccionar el cultivo al cual asociar el escenario que va a registrar." />
 															</rich:comboBox>
 
-															<h:outputLabel value="Seleccionar región climática" />
+															<h:outputLabel value="#{text.escenario_Region}" />
 															<rich:comboBox
 																disabled="#{subirEscenarioBean.disableRegion}"
 																value="#{subirEscenarioBean.regionElegida}"
 																required="true" enableManualInput="false"
 																styleClass="combo"
-																requiredMessage="Debe seleccionar una región climática"
+																requiredMessage="Debe seleccionar una Región"
 																id="cmdRegiones" width="220">
 																<f:selectItems value="#{subirEscenarioBean.regiones}" />
 																<a4j:support
 																	action="#{subirEscenarioBean.takeSelectionRegion}"
 																	event="onchange" ajaxSingle="true" reRender="upload" />
 																<rich:toolTip
-																	value="Seleccionar el cultivo al cual asosciar el escenario que va a registrar." />
+																	value="Seleccionar el cultivo al cual asociar el escenario que va a registrar." />
 															</rich:comboBox>
 														</h:panelGrid>
 														<br></br>
@@ -137,13 +137,13 @@ Secano.</title>
 														<br></br>
 														<center><h:panelGrid columns="3">
 															<a4j:commandButton immediate="true"
-																style="font-size: 10pt; color: #2d77c2; width : 87px;"
+																style="font-size: 10pt; color: #2d77c2; width : 120px;"
 																styleClass="textoPlano"
 																action="#{subirEscenarioBean.RegistrarEscenario}"
 																value="#{text.boton_Registrar}" />
 
 															<a4j:commandButton immediate="true"
-																style="font-size: 10pt; color: #2d77c2; width : 87px;"
+																style="font-size: 10pt; color: #2d77c2; width : 120px;"
 																styleClass="textoPlano" action="cancelar"
 																value="#{text.boton_Cancelar}" />
 														</h:panelGrid></center>
