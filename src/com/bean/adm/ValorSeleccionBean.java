@@ -12,47 +12,51 @@ import javax.faces.model.SelectItem;
 import com.bean.comun.MaestroBean;
 import com.inia_mscc.modulos.adm.entidades.ListaCriterioSeleccion;
 import com.inia_mscc.modulos.adm.entidades.ValorSeleccion;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.ListaCriterio;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioADM;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioGEM;
+import com.inia_mscc.modulos.gem.entidades.Cultivo;
 
 public class ValorSeleccionBean extends MaestroBean implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	private String codigo;
-	private String descripcion;
-	private String unidadMedida;
 	private List<ListaCriterioSeleccion> listaCriterio;
-	private SelectItem[] criterio;
-	private ListaCriterioSeleccion criterios;
+	private SelectItem[] criterios;
 	private String criterioSeleccionado;
 	private boolean disableSeleccionCriterio = false;
-	private boolean disableAceptarValorSeleccion = true;
+	private boolean disableAceptarValor = true;
 	private List<ValorSeleccion> listaValores;
+	private List<ValorSeleccion> listaValorEliminadas;
 	private ValorSeleccion valor;
-	private boolean recargo = true;
+	private String codigo;
+	private String descripcion;
+	private String unidad;
+	private boolean recargo;
+	private ListaCriterioSeleccion criterio;
 
-	public boolean isInit() {
+	public boolean isInitPantalla() {
 		try {
-			this.setError("");
-			this.setExito("");
-
+			if (this.getSesion(ListaCriterioSeleccion.class.toString()) == null
+					&& this.getCriterio() == null) {
+				this.setDisableSeleccionCriterio(false);
+				this.setDisableAceptarValor(true);
 				List<ListaCriterioSeleccion> listaCriterio = this
-						.getAdmFachada(ServicioADM.ListaCriterio).ObtenerListaCriterio();
-						
-				criterio = new SelectItem[listaCriterio.size() + 1];
-				criterio[0] = new SelectItem(this
+						.getAdmFachada(ServicioADM.ListaCriterio)
+						.ObtenerListaCriterio();
+
+				criterios = new SelectItem[listaCriterio.size() + 1];
+				criterios[0] = new SelectItem(this
 						.getTextBundleKey("combo_seleccione"));
 				int i = 1;
 				for (ListaCriterioSeleccion c : listaCriterio) {
 					SelectItem si = new SelectItem(c.get_descripcion());
-					criterio[i] = si;
+					criterios[i] = si;
 					i++;
 				}
 				criterioSeleccionado = this
 						.getTextBundleKey("combo_seleccione");
+			}
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
 		}
@@ -61,38 +65,87 @@ public class ValorSeleccionBean extends MaestroBean implements Serializable {
 
 	public ValorSeleccionBean() {
 		try {
+			setRecargo(true);
+			this.setError("");
+			this.setExito("");
+			this.setCodigo("");
+			this.setDescripcion("");
+			this.setUnidad("");
+			this.setListaValorEliminadas(null);
+			this.setListaValores(null);
+
+			ListaCriterioSeleccion unCriterio = (ListaCriterioSeleccion) this
+					.getSesion(ListaCriterioSeleccion.class.toString());
+			if (unCriterio != null) {
+				this.setCriterio(null);
+				this.setCriterio(unCriterio);
+				criterios = new SelectItem[1];
+				criterios[0] = new SelectItem(this.getCriterio()
+						.get_descripcion());
+				this.setCriterioSeleccionado(this.getCriterio()
+						.get_descripcion());
+				if (this.getCriterio().get_listaValores() != null
+						&& this.getCriterio().get_listaValores().size() != 0) {
+					this.setListaValores(this.getCriterio().get_listaValores());
+				} else {
+					this.setListaValores(new ArrayList<ValorSeleccion>());
+				}
+				criterioSeleccionado = this.getCriterio().get_descripcion();
+				this.setDisableSeleccionCriterio(true);
+				this.setDisableAceptarValor(false);
+			} else {
+				List<ListaCriterioSeleccion> listaCriterios = this
+						.getAdmFachada(ServicioADM.ListaCriterio)
+						.ObtenerListaCriterio();
+
+				criterios = new SelectItem[listaCriterios.size() + 1];
+				criterios[0] = new SelectItem(this
+						.getTextBundleKey("combo_seleccione"));
+				int i = 1;
+				for (ListaCriterioSeleccion c : listaCriterios) {
+					SelectItem si = new SelectItem(c.get_descripcion());
+					criterios[i] = si;
+					i++;
+				}
+				criterioSeleccionado = this
+						.getTextBundleKey("combo_seleccione");
+			}
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
 		}
 	}
 
-	public void TakeSelectionListaCriterio() {
+	public void TakeSelectionCultivo() {
 		try {
-			criterios = new ListaCriterioSeleccion();
+			setRecargo(false);
+			criterio = new ListaCriterioSeleccion();
 			if (!this.getCriterioSeleccionado().isEmpty()
 					&& !this.getCriterioSeleccionado().equals(
 							this.getTextBundleKey("combo_seleccione"))) {
-
-				this.getCriterios().set_descripcion(
+				this.setListaValorEliminadas(new ArrayList<ValorSeleccion>());
+				this.getCriterio().set_descripcion(
 						this.getCriterioSeleccionado());
-				this.setCriterios(this.getAdmFachada(ServicioADM.ListaCriterio)
-						.ObtenerCriterio(this.getCriterios()));
-				if (this.getCriterios().get_listaValores() != null) {
-					this
-							.setListaValores(this.getCriterios()
-									.get_listaValores());
-					this.setDisableAceptarValorSeleccion(false);
+				this.setCriterio(this.getAdmFachada(ServicioADM.ListaCriterio)
+						.ObtenerCriterio(this.getCriterio()));
+
+				this.setDisableAceptarValor(false);
+
+				if (this.getCriterio().get_listaValores() != null) {
+					this.setListaValores(this.getCriterio().get_listaValores());
 				} else {
 					this.setListaValores(new ArrayList<ValorSeleccion>());
 				}
 				this.setError("");
 				this.setExito("");
 			} else {
-				this.setDisableAceptarValorSeleccion(true);
+				this.setDisableAceptarValor(true);
 				this.setCodigo("");
 				this.setDescripcion("");
-				this.setUnidadMedida("");
+				this.setUnidad("");
+
 				this.setListaValores(new ArrayList<ValorSeleccion>());
+				this.setListaValorEliminadas(new ArrayList<ValorSeleccion>());
+				this.setValor(null);
 				this.setError("");
 				this.setExito("");
 			}
@@ -101,7 +154,8 @@ public class ValorSeleccionBean extends MaestroBean implements Serializable {
 		}
 	}
 
-	public String ModificarValorSeleccion() {
+	public String ModificarValor() {
+		setRecargo(false);
 		this.setError("");
 		this.setExito("");
 		Map paramMap = FacesContext.getCurrentInstance().getExternalContext()
@@ -112,16 +166,18 @@ public class ValorSeleccionBean extends MaestroBean implements Serializable {
 			ValorSeleccion valorSeleccionado = (ValorSeleccion) it.next();
 			if (valorSeleccionado.get_codigo().equalsIgnoreCase(valorElegido)) {
 				this.setValor(valorSeleccionado);
+
 				this.setCodigo(this.getValor().get_codigo());
 				this.setDescripcion(this.getValor().get_descripcion());
-				this.setUnidadMedida(this.getValor().get_unidadMedida());
+				this.setUnidad(this.getValor().get_unidadMedida());
 				break;
 			}
 		}
-		return "ADM003";
+		return "modificar";
 	}
 
-	public String EliminarValorSeleccion() {
+	public String EliminarValor() {
+		setRecargo(false);
 		this.setError("");
 		this.setExito("");
 		Map paramMap = FacesContext.getCurrentInstance().getExternalContext()
@@ -135,84 +191,137 @@ public class ValorSeleccionBean extends MaestroBean implements Serializable {
 				break;
 			}
 		}
+		this.getListaValorEliminadas().add(this.getValor());
 		this.getListaValores().remove(this.getValor());
 		this.setExito("Se elimino el Valor de Selección de la lista.");
 		this.setValor(null);
 		this.setCodigo("");
 		this.setDescripcion("");
-		this.setUnidadMedida("");
+		this.setUnidad("");
 
-		return "ADM003";
+		return "eliminar";
 	}
 
-	public String AceptarValorSeleccion() {
-		this.setError("");
-		this.setExito("");
-		if (this.getValor() != null) {
-			this.getValor().set_codigo(this.getCodigo());
-			this.getValor().set_descripcion(this.getDescripcion());
-			this.getValor().set_unidadMedida(this.getUnidadMedida());
+	public String AceptarValor() {
+		try {
+			setRecargo(false);
+			this.setError("");
+			this.setExito("");
+			if (!ExisteValor(this.getCodigo())) {
+				this.setValor(new ValorSeleccion());
+				this.getValor().set_grabada(false);
+				this.getValor().set_criterio(this.getCriterio());
+				this.getValor().set_codigo(this.getCodigo());
+				this.getValor().set_descripcion(this.getDescripcion());
+				this.getValor().set_unidadMedida(this.getUnidad());
 
-			this.setExito("Se modifico correctamente el Valor de Selección.");
-			this.setValor(null);
-			this.setCodigo("");
-			this.setDescripcion("");
-			this.setUnidadMedida("");
-		} else if (!ExisteValorSeleccion(this.getCodigo())) {
-			this.setValor(new ValorSeleccion());
-			this.getValor().set_codigo(this.getCodigo());
-			this.getValor().set_descripcion(this.getDescripcion());
-			this.getValor().set_unidadMedida(this.getUnidadMedida());
-
-			this.getListaValores().add(this.getValor());
-			this.setExito("Se agrego correctamente el Valor de Selección.");
-			this.setValor(null);
-			this.setCodigo("");
-			this.setDescripcion("");
-			this.setUnidadMedida("");
-		} else {
-			this
-					.setError("Ya existe un Valor de Selección ingresado con igual Código");
+				this.getListaValores().add(this.getValor());
+				this
+						.setExito("Se ingresó correctamente el Valor de Selección a la Lista de Criterios.");
+				this.setValor(null);
+				this.setCodigo("");
+				this.setDescripcion("");
+				this.setUnidad("");
+			} else {
+				this
+						.setError("Ya Existe un Valor de Selección agregada en la lista con el mismo Código.");
+			}
+		} catch (Exception ex) {
+			this.setError(ex.getMessage());
 		}
-		return "ADM003";
+		return "aceptar";
 	}
 
-	private boolean ExisteValorSeleccion(String pValor) {
+	private boolean ExisteValor(String pCodigo) {
 		boolean existe = false;
-		for (ValorSeleccion val : this.getListaValores()) {
-			if (val.get_codigo().equalsIgnoreCase(pValor)) {
-				existe = true;
-				break;
+		if (this.getValor() != null) {
+			if (!this.getValor().get_codigo().equals(pCodigo)) {
+				for (ValorSeleccion val : this.getListaValores()) {
+					if (val.get_codigo().equalsIgnoreCase(pCodigo)) {
+						existe = true;
+						break;
+					}
+				}
+			}
+		} else {
+			if (this.getListaValores() != null) {
+				for (ValorSeleccion val : this.getListaValores()) {
+					if (val.get_codigo().equalsIgnoreCase(pCodigo)) {
+						existe = true;
+						break;
+					}
+				}
 			}
 		}
 		return existe;
 	}
 
+	public String AceptarModificacion() {
+		String retorno = "ADM003";
+		setRecargo(false);
+		this.setError("");
+		this.setExito("");
+		if (this.getValor() != null) {
+			if (!ExisteValor(this.getCodigo())) {
+				this.getValor().set_codigo(this.getCodigo());
+				this.getValor().set_descripcion(this.getDescripcion());
+				this.getValor().set_unidadMedida(this.getUnidad());
+
+				this
+						.setExito("Se modifico correctamente el Valor de Seleccion.");
+				this.setValor(null);
+				this.setCodigo("");
+				this.setDescripcion("");
+				this.setUnidad("");
+			} else {
+				this
+						.setError("Ya Existe un Valor de Selección agregado en la lista con el mismo Código.");
+				retorno = "";
+			}
+		} else {
+			this.setError("Debe seleccionar un Valor para modificar.");
+			retorno = "";
+		}
+		return retorno;
+	}
+
+	public String RegistrarValores() {
+		try {
+			this.getAdmFachada(ServicioADM.ListaCriterio).ActualizarListaCriterio(this.getCriterio());
+			
+			this.setRecargo(true);
+			this
+					.setExito("Se ingresó exitosamente la Lista de Criterios y sus Valores de Selección.");
+			
+			if (this.getSesion(ListaCriterio.class.toString()) !=null){
+				this.removerSesion(ListaCriterio.class.toString());
+			}
+		} catch (Exception ex) {
+			this.setError(ex.getMessage());
+		}
+		return "ADM003";
+	}
 	
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
+	public String ModificarValores() {
+		try {
+			if (this.getListaValorEliminadas()!= null
+					&& !this.getListaValorEliminadas().isEmpty()) {
+				
+				this.getAdmFachada(ServicioADM.ValorSeleccion).EliminarValores(this.getListaValorEliminadas());
+			}
+			this.getAdmFachada(ServicioADM.ListaCriterio).ActualizarListaCriterio(this.getCriterio());
+			this.setRecargo(true);
+			this
+					.setExito("Se ingresó exitosamente la Lista de Criterios y sus Valores de Selección.");
+			if (this.getSesion(ListaCriterioSeleccion.class.toString()) != null) {
+				this.removerSesion(ListaCriterioSeleccion.class.toString());
+			}
+		} catch (Exception ex) {
+			this.setError(ex.getMessage());
+		}
+		return "ADM003";
 	}
-
-	public String getCodigo() {
-		return codigo;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public String getUnidadMedida() {
-		return unidadMedida;
-	}
-
-	public void setUnidadMedida(String unidadMedida) {
-		this.unidadMedida = unidadMedida;
-	}
-
+	
 	public List<ListaCriterioSeleccion> getListaCriterio() {
 		return listaCriterio;
 	}
@@ -221,19 +330,11 @@ public class ValorSeleccionBean extends MaestroBean implements Serializable {
 		this.listaCriterio = listaCriterio;
 	}
 
-	public SelectItem[] getCriterio() {
-		return criterio;
-	}
-
-	public void setCriterio(SelectItem[] criterio) {
-		this.criterio = criterio;
-	}
-
-	public ListaCriterioSeleccion getCriterios() {
+	public SelectItem[] getCriterios() {
 		return criterios;
 	}
 
-	public void setCriterios(ListaCriterioSeleccion criterios) {
+	public void setCriterios(SelectItem[] criterios) {
 		this.criterios = criterios;
 	}
 
@@ -253,15 +354,6 @@ public class ValorSeleccionBean extends MaestroBean implements Serializable {
 		this.disableSeleccionCriterio = disableSeleccionCriterio;
 	}
 
-	public boolean isDisableAceptarValorSeleccion() {
-		return disableAceptarValorSeleccion;
-	}
-
-	public void setDisableAceptarValorSeleccion(
-			boolean disableAceptarValorSeleccion) {
-		this.disableAceptarValorSeleccion = disableAceptarValorSeleccion;
-	}
-
 	public List<ValorSeleccion> getListaValores() {
 		return listaValores;
 	}
@@ -270,12 +362,69 @@ public class ValorSeleccionBean extends MaestroBean implements Serializable {
 		this.listaValores = listaValores;
 	}
 
+	public List<ValorSeleccion> getListaValorEliminadas() {
+		return listaValorEliminadas;
+	}
+
+	public void setListaValorEliminadas(
+			List<ValorSeleccion> listaValorEliminadas) {
+		this.listaValorEliminadas = listaValorEliminadas;
+	}
+
 	public ValorSeleccion getValor() {
 		return valor;
 	}
 
 	public void setValor(ValorSeleccion valor) {
 		this.valor = valor;
+	}
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public String getUnidad() {
+		return unidad;
+	}
+
+	public void setUnidad(String unidad) {
+		this.unidad = unidad;
+	}
+
+	public ListaCriterioSeleccion getCriterio() {
+		return criterio;
+	}
+
+	public void setCriterio(ListaCriterioSeleccion criterio) {
+		this.criterio = criterio;
+	}
+
+	public void setDisableAceptarValor(boolean disableAceptaValor) {
+		this.disableAceptarValor = disableAceptaValor;
+	}
+
+	public boolean isDisableAceptarValor() {
+		return disableAceptarValor;
+	}
+
+	public void setRecargo(boolean recargo) {
+		this.recargo = recargo;
+	}
+
+	public boolean isRecargo() {
+		return recargo;
 	}
 
 }
