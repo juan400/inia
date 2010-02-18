@@ -69,12 +69,12 @@ Secano.</title>
 										</h:column>
 										<h:column>
 											<h:panelGrid>
-												<h:panelGroup rendered="#{subirEscenarioBean.init}" />
+												<h:panelGroup rendered="#{subirEscenarioBean.modificacion}" />
 												<h:panelGrid>
 													<rich:panel headerClass="tituloPantalla"
 														style="background-color: #ebf3fd;">
 														<f:facet name="header">
-															<h:outputText value="#{text.escenario_Ingresar}" />
+															<h:outputText value="#{text.escenario_Modificar}" />
 														</f:facet>
 
 														<h:panelGrid columns="2" width="500px" columnClasses="textoPlano,textoPlano">

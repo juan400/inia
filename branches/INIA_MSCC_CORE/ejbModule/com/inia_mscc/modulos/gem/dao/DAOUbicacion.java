@@ -26,7 +26,7 @@ public class DAOUbicacion implements Serializable {
 			if (pUbicacion != null) {
 				if (pUbicacion.get_tipoArchivo() != null) {
 					c.add(Restrictions
-							.eq("_tipo", pUbicacion.get_tipoArchivo()));
+							.eq("_tipoArchivo", pUbicacion.get_tipoArchivo()));
 				}
 			}
 			listaUbicacion = (List<Ubicacion>) c.list();
@@ -49,7 +49,7 @@ public class DAOUbicacion implements Serializable {
 				}
 				if (pUbicacion.get_tipoArchivo() != null) {
 					c.add(Restrictions
-							.eq("_tipo", pUbicacion.get_tipoArchivo()));
+							.eq("_tipoArchivo", pUbicacion.get_tipoArchivo()));
 				}
 			}
 			unUbicacion = (Ubicacion) c.uniqueResult();

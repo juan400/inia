@@ -18,7 +18,7 @@ public class ProveedorUbicacion implements ServicioUbicacion {
 	public ProveedorUbicacion() throws IOException {
 		try {
 			Context ctx = new InitialContext();
-			ejbUbicacion = (ProveedorUbicacion) ctx.lookup("EJBUbicacion");
+			ejbUbicacion = (ServicioUbicacion) ctx.lookup("EJBUbicacion");
 		} catch (NamingException e) {
 			throw new ProviderException(e);
 		}

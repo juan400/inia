@@ -14,6 +14,7 @@ import org.richfaces.model.UploadItem;
 
 import com.bean.comun.MaestroBean;
 import com.inia_mscc.modulos.adm.entidades.Region;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.EstadoArchivo;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioADM;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioGEM;
@@ -58,6 +59,58 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 		this.setListaRegiones(this.getAdmFachada(ServicioADM.Region)
 				.ObtenerRegiones());
 		files = new ArrayList<UploadItem>();
+	}
+
+	public boolean isModificacion() {
+		try {
+			if (recargo) {
+				Archivo archi = new Archivo();
+				archi.set_usuario((Usuario) this.getSesion(Usuario.class
+						.toString()));
+				archi.set_tipo(TipoArchivo.Escenario);
+				List<Archivo> listArchivos = this.getGEMFachada(
+						ServicioGEM.Archivo).ObtenerArchivos(archi);
+				for (Archivo archivo : listArchivos) {
+					UploadItem item = new UploadItem(archivo.get_datos().getName(),(int) archivo.get_datos().getTotalSpace(), "py", archivo.get_datos());
+					files.add(item);
+				}
+//				files = new ArrayList<UploadItem>();
+//				this.setListaCultivos(this.getGEMFachada(ServicioGEM.Cultivo)
+//						.ObtenerCultivos(null));
+//				if (this.getListaCultivos() == null) {
+//					this.setListaCultivos(new ArrayList<Cultivo>());
+//				}
+//				cultivos = new SelectItem[listaCultivos.size() + 1];
+//				cultivos[0] = new SelectItem(this
+//						.getTextBundleKey("combo_seleccione"));
+//				int i = 1;
+//				for (Cultivo c : listaCultivos) {
+//					SelectItem si = new SelectItem(c.get_nombre());
+//					cultivos[i] = si;
+//					i++;
+//				}
+//				cultivoElegido = this.getTextBundleKey("combo_seleccione");
+//				this.setListaRegiones(this.getAdmFachada(ServicioADM.Region)
+//						.ObtenerRegiones());
+//				if (this.getListaRegiones() == null) {
+//					this.setListaRegiones(new ArrayList<Region>());
+//				}
+//				regiones = new SelectItem[listaRegiones.size() + 1];
+//				regiones[0] = new SelectItem(this
+//						.getTextBundleKey("combo_seleccione"));
+//				i = 1;
+//				for (Region c : listaRegiones) {
+//					SelectItem si = new SelectItem(c.get_codigo(), c
+//							.get_nombre(), c.get_descripcion());
+//					regiones[i] = si;
+//					i++;
+//				}
+//				regionElegida = this.getTextBundleKey("combo_seleccione");
+			}
+		} catch (Exception ex) {
+			this.setError(ex.getMessage());
+		}
+		return false;
 	}
 
 	public boolean isInit() {
@@ -192,20 +245,6 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 		try {
 			UploadItem item = event.getUploadItem();
 			files.add(item);
-			// setUsuario((Usuario) getSesion(Usuario.class.toString()));
-			// Ubicacion ubicacion = new Ubicacion();
-			// ubicacion.set_urlPaht(new URI("C:/ArchivosSubidos/"));
-			// archivoSubido = new Archivo(getUsuario().get_login(),
-			// TipoArchivo.Escenario, new Date(), EstadoArchivo.Cargado,
-			// TipoExtencionArchivo.py, ubicacion);
-			// File file = new File(archivoSubido.get_nombre());
-			// file.setExecutable(true);
-			// if (file.createNewFile()) {
-			// this.setDisableUpload(true);
-			// this.setExito("Se a subido el archivo");
-			// }
-			// ArchivosTexto.copiarArchio(item.getFile(), file);
-			// archivoSubido.set_datos(file);
 			recargo = false;
 		} catch (Exception ex) {
 			setError(ex.getMessage());
@@ -218,26 +257,31 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 			if (this.getCultivo() != null) {
 				if (this.getRegion() != null) {
 					if (this.getFiles() != null && !this.getFiles().isEmpty()) {
-						setUsuario((Usuario) getSesion(Usuario.class.toString()));
+						this.setUsuario((Usuario) getSesion(Usuario.class
+								.toString()));
 						Ubicacion ubicacion = new Ubicacion();
-						ubicacion.set_urlPaht("C:/ArchivosSubidos/");
+						ubicacion.set_tipoArchivo(TipoArchivo.Escenario);
+						ubicacion = this.getGEMFachada(ServicioGEM.Ubicacion)
+								.ObtenerUbicacion(ubicacion);
 						archivoSubido = new Archivo(getUsuario().get_login(),
 								TipoArchivo.Escenario, new Date(),
-								EstadoArchivo.Cargado, TipoExtencionArchivo.py,
+								Estado.Activo, TipoExtencionArchivo.py,
 								ubicacion);
-						File file = new File(archivoSubido.get_nombre());
-						file.setExecutable(true);
-						if (file.createNewFile()) {
+						archivoSubido.set_datos(this.getFiles().get(0)
+								.getFile());
+						archivoSubido.set_cultivo(this.getCultivo());
+						archivoSubido.set_usuario(this.getUsuario());
+						archivoSubido = this.getGEMFachada(ServicioGEM.Archivo)
+								.RegistrarArchivo(archivoSubido);
+						if (archivoSubido != null) {
 							this.setDisableUpload(true);
-							this.setExito("Se a subido el archivo");
+							recargo = true;
+							this.setExito("Se guardo el archivo para "
+									+ "el escenario exitosamente.");
+							retorno = "GEM005";
+						} else {
+							this.setError("No se pudo registrar el archivo");
 						}
-						ArchivosTexto.copiarArchio(this.getFiles().get(0)
-								.getFile(), file);
-						archivoSubido.set_datos(file);
-						recargo = true;
-						this.setExito("Se guardo el archivo para "
-								+ "el escenario exitosamente.");
-						retorno = "GEM005";
 					} else {
 						this
 								.setError("No se subieron archivos, seleccione y cargue el archivo para el escenario.");

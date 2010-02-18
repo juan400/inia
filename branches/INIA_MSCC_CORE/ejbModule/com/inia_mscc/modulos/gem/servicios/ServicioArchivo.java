@@ -8,7 +8,7 @@ public interface ServicioArchivo {
 
 	public List<Archivo> ObtenerArchivos(Archivo pArchivo);
 	public Archivo ObtenerArchivo(Archivo pArchivo);
-	public Archivo RegistrarArchivo(Archivo pArchivo);
+	public Archivo RegistrarArchivo(Archivo pArchivo) throws Exception;
 	public void ActualizarArchivo(Archivo pArchivo);
 	
 }
