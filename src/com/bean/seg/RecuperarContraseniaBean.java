@@ -135,8 +135,8 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 						this.setError("Ingrese la nueva contraseña y la confirmación.");
 					}
 				} else {
-					this.setError("La contrasena actual ingresada "
-							+ "no corresponde.");
+					this.setError("La contraseña actual ingresada "
+							+ "no coincide.");
 				}
 			} else {
 				this.setError("");
@@ -187,8 +187,8 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 						this.setConfirmacion("");
 					}
 				} else {
-					this.setError("La contrasena actual ingresada "
-							+ "no corresponde.");
+					this.setError("La contraseña actual ingresada "
+							+ "no coincide.");
 					this.setActual("");
 				}
 			} else {
