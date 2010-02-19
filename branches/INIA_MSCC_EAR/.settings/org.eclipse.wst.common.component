@@ -2,5 +2,13 @@
 <project-modules id="moduleCoreId" project-version="1.5.0">
     <wb-module deploy-name="INIA_MSCC_EAR">
         <wb-resource deploy-path="/" source-path="/EarContent"/>
+        <dependent-module deploy-path="/" handle="module:/resource/INIA_MSCC_CORE/INIA_MSCC_CORE">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module deploy-path="/" handle="module:/resource/INIA_MSCC_WEB/INIA_MSCC_WEB">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
     </wb-module>
 </project-modules>
