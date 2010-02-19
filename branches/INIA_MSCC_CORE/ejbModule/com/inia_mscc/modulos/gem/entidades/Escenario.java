@@ -9,6 +9,8 @@ import com.inia_mscc.modulos.seg.entidades.Usuario;
 public class Escenario implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	
+	private long id;
 	private Date _fechaHora;
 	private Usuario _usuarioInvestigador;
 	private Region _region;
