@@ -19,7 +19,7 @@ Secano.</title>
 <f:view>
 	<h:form>
 		<f:loadBundle basename="com.bean.text" var="text" />
-		<table align="center" width="950px">
+		<table align="center" width="956px">
 			<thead>
 				<tr>
 					<td>
@@ -32,7 +32,7 @@ Secano.</title>
 					<td align="center" valign="top" class="contenido"><a4j:region
 						id="contenido">
 						<h:panelGroup rendered="#{loginBean.init}" />
-						<h:panelGrid width="956" cellpadding="0" cellspacing="0">
+						<h:panelGrid width="950" cellpadding="0" cellspacing="0">
 							<rich:panel headerClass="tituloPantalla"
 								style="background-color: #ebf3fd;">
 								<f:facet name="header">
@@ -77,78 +77,49 @@ Secano.</title>
 												<rich:panel headerClass="tituloPantalla"
 													style="background-color: #ebf3fd;">
 													<f:facet name="header">
-														<h:outputText value="#{text.cultivo_Actualizar}" />
+														<h:outputText value="#{text.cultivo_Ingresar}" />
 													</f:facet>
 													<h:panelGrid>
 														<h:panelGrid columns="2"
-															columnClasses="textoPlano,textoPlano" width="400">
-
-															<h:outputText value="#{text.cultivo_SelCultivo}" />
-															<rich:comboBox id="Combo"
-																requiredMessage="Debe seleccionar un cultivo"
-																value="#{cultivoBean.cultivoElegido}" required="true"
-																enableManualInput="false" styleClass="combo" width="220">
-																<f:selectItems value="#{cultivoBean.cultivos}" />
-																<a4j:support
-																	action="#{cultivoBean.TakeSelectionCultivo}"
-																	event="onchange" ajaxSingle="true"
-																	reRender="Combo,Nombre,Descripcion,Estado" />
-																<rich:toolTip value="Cultivo que desea Modificar" />
-															</rich:comboBox>
-
-
-															<h:outputText value="#{text.cultivo_Nombre}" />
-															<h:inputText value="#{cultivoBean.nombre}" id="Nombre"
-																required="true"
-																requiredMessage="Debe Ingresar un nombre para el cultivo"
-																styleClass="textoPlano" maxlength="50"
-																onkeypress="ValidarCampoLetras(this, event)"
-																style=" width : 220px;" />
-
-															<h:outputText value="#{text.cultivo_Descripcion}" />
-															<h:inputTextarea value="#{cultivoBean.descripcion}"
-																id="Descripcion" required="true"
-																requiredMessage="Debe Ingresar la descripción del cultivo"
-																styleClass="textoPlano"
-																onkeypress="ValidarCampoLetras(this, event)"
-																style=" width : 220px;">
-																<f:validateLength maximum="220" />
-															</h:inputTextarea>
-
-															<h:outputLabel value="#{text.cultivo_Estado}" />
-															<rich:comboBox value="#{cultivoBean.estado}" id="Estado"
+															columnClasses="textoPlano,textoPlano" width="500px">
+															
+															<h:outputLabel value="Seleccione variable inicial" />
+															<rich:comboBox value="#{cultivoBean.estado}"
 																style=" higth : 18px;" enableManualInput="false"
-																styleClass="combo" width="220px">
+																styleClass="combo" width="220">
 																<f:selectItems value="#{cultivoBean.estados}" />
 															</rich:comboBox>
-														</h:panelGrid>
-													</h:panelGrid>
-													
-												<td></td>
-												<center><h:panelGrid columns="2">
-													<a4j:commandButton
-														style="font-size: 10pt; color: #2d77c2; width : 120px;"
-														styleClass="textoPlano"
-														action="#{administrarUsuarioBean.actualizar}"
-														value="#{text.boton_Aceptar}" />
-													<a4j:commandButton immediate="true"
-														style="font-size: 10pt; color: #2d77c2; width : 120px;"
-														styleClass="textoPlano" action="salir"
-														value="#{text.boton_Cancelar}" />
-												</h:panelGrid></center>
+															
+															<h:outputLabel value="Seleccione variable referencia" />
+															<rich:comboBox value="#{cultivoBean.estado}"
+																style=" higth : 18px;" enableManualInput="false"
+																styleClass="combo" width="220">
+																<f:selectItems value="#{cultivoBean.estados}" />
+															</rich:comboBox>
+															
 
-												<center><f:facet name="footer">
-													<h:panelGrid>
-														<rich:messages styleClass="mensajeError">
-															<f:facet name="errorMarker">
-																<h:graphicImage
-																	value="/Recursos/Imagenes/Iconos/error.gif" />
-															</f:facet>
-														</rich:messages>
-														<h:outputText styleClass="textoPlano"
-															value="#{cultivoBean.exito}" />
+
+															<h:commandLink action="/servletGeneradorGraficaDinamica">Ver Eurodollar Graphic</h:commandLink>
+															<h:outputLink  value="/servletGeneradorGraficaDinamica" >Ver Eurodollar Graphic</h:outputLink>
+															
+														</h:panelGrid>
+														<center><h:panelGrid >
+															<a4j:commandButton immediate="true"
+																style="font-size: 10pt; color: #2d77c2; width : 120px;"
+																styleClass="textoPlano" action="cancelar"
+																value="#{text.boton_Cerrar}" />
+														</h:panelGrid></center>
+														<center><h:panelGrid id="mensages">
+															<rich:messages styleClass="mensajeError">
+																<f:facet name="errorMarker">
+																	<h:graphicImage
+																		value="/Recursos/Imagenes/Iconos/error.gif" />
+																</f:facet>
+															</rich:messages>
+															<h:outputText styleClass="textoPlano"
+																value="#{propiedadesBean.exito}" />
+														</h:panelGrid></center>
 													</h:panelGrid>
-												</f:facet></center>
 												</rich:panel>
 											</h:panelGrid>
 										</h:column>

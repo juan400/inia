@@ -108,11 +108,9 @@ Secano.</title>
 																<f:selectItems value="#{cultivoBean.estados}" />
 															</rich:comboBox>
 														</h:panelGrid>
-													</h:panelGrid>
-												</rich:panel>
-
-												<td></td>
-												<center><h:panelGrid columns="3">
+														
+																										<td></td>
+												<center><h:panelGrid columns="2">
 													<a4j:commandButton
 														style="font-size: 10pt; color: #2d77c2; width : 120px;"
 														styleClass="textoPlano"
@@ -136,6 +134,8 @@ Secano.</title>
 															value="#{cultivoBean.exito}" />
 													</h:panelGrid>
 												</f:facet></center>
+													</h:panelGrid>
+												</rich:panel>
 											</h:panelGrid>
 										</h:column>
 									</h:panelGrid>

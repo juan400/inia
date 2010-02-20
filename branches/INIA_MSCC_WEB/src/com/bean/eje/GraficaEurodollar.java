@@ -67,7 +67,7 @@ public class GraficaEurodollar extends ApplicationFrame {
      *
      * @return a chart.
      */
-    private static JFreeChart createChart() {
+    public static JFreeChart createChart() {
 
         XYDataset priceData = createPriceDataset();
 
