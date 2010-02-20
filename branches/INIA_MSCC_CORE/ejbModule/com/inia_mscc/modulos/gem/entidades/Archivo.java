@@ -47,7 +47,7 @@ public class Archivo implements Serializable {
 
 	@Column(name = "arch_str_nombre", nullable = true, columnDefinition = "VARCHAR(220)")
 	private String _nombre;
-
+	
 	@Column(name = "arch_dte_fecha", nullable = false, columnDefinition = "DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date _fechaHora;
