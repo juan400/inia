@@ -206,7 +206,7 @@ Secano.</title>
 														</h:panelGrid>
 														<td></td>
 
-														<center><h:panelGrid columns="3">
+														<center><h:panelGrid columns="2">
 															<a4j:commandButton immediate="true"
 																style="font-size: 10pt; color: #2d77c2; width : 120px;"
 																styleClass="textoPlano"
