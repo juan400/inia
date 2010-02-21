@@ -102,6 +102,9 @@ Secano.</title>
 															<h:commandLink action="/servletGeneradorGraficaDinamica">Ver Eurodollar Graphic</h:commandLink>
 															<h:outputLink  value="/servletGeneradorGraficaDinamica" >Ver Eurodollar Graphic</h:outputLink>
 															
+                   <rich:paint2D id="painter" width="300" height="120"
+            data="#{paintData}" format="png" paint="#{paintBean.paint}" />
+															
 														</h:panelGrid>
 														<center><h:panelGrid >
 															<a4j:commandButton immediate="true"
