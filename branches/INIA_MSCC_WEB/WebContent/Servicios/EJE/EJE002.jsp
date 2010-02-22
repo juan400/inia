@@ -82,31 +82,28 @@ Secano.</title>
 													<h:panelGrid>
 														<h:panelGrid columns="2"
 															columnClasses="textoPlano,textoPlano" width="500px">
-															
+
 															<h:outputLabel value="Seleccione variable inicial" />
 															<rich:comboBox value="#{cultivoBean.estado}"
 																style=" higth : 18px;" enableManualInput="false"
 																styleClass="combo" width="220">
 																<f:selectItems value="#{cultivoBean.estados}" />
 															</rich:comboBox>
-															
+
 															<h:outputLabel value="Seleccione variable referencia" />
 															<rich:comboBox value="#{cultivoBean.estado}"
 																style=" higth : 18px;" enableManualInput="false"
 																styleClass="combo" width="220">
 																<f:selectItems value="#{cultivoBean.estados}" />
 															</rich:comboBox>
-															
-
-
-															<h:commandLink action="/servletGeneradorGraficaDinamica">Ver Eurodollar Graphic</h:commandLink>
-															<h:outputLink  value="/servletGeneradorGraficaDinamica" >Ver Eurodollar Graphic</h:outputLink>
-															
-                   <rich:paint2D id="painter" width="300" height="120"
-            data="#{paintData}" format="png" paint="#{paintBean.paint}" />
-															
 														</h:panelGrid>
-														<center><h:panelGrid >
+														<h:panelGrid>
+															<rich:paint2D id="painter" width="500" height="400"
+																data="#{paintData}" format="png"
+																paint="#{paintBean.paint}" />
+
+														</h:panelGrid>
+														<center><h:panelGrid>
 															<a4j:commandButton immediate="true"
 																style="font-size: 10pt; color: #2d77c2; width : 120px;"
 																styleClass="textoPlano" action="cancelar"
