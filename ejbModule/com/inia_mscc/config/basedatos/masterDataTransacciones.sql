@@ -8,7 +8,7 @@ INSERT INTO `inia_mscc_db`.`tl_adm_tran_transaccion`
 `tran_str_codigo`,
 `tran_str_descripcion`,
 `tran_bol_definida`,
-`tran_str_uri`,
+`tran_str_url`,
 `tran_str_codigo_base`,
 `tran_str_descripcion_base`,
 `tran_dte_timestamp`)
@@ -34,7 +34,7 @@ VALUES
 (default,'017','Modificar Valores de la Lista de Criterios',default,'/Servicios/ADM/ADM004.jsp','ADM004','Modificar Valores de la Lista de Criterios',NOW()),
 (default,'018','Ver Regiones',default,'/Servicios/ADM/ADM005.jsp','ADM005','Ver Regiones',NOW()),
 (default,'019','Crear Regiones',default,'/Servicios/ADM/ADM005.jsp','ADM006','Crear Regiones',NOW()),
-(default,'020','Modificar Región',default,'/Servicios/ADM/ADM005.jsp','ADM007','Modificar Regiones',NOW()),
+(default,'020','Modificar Regin',default,'/Servicios/ADM/ADM005.jsp','ADM007','Modificar Regiones',NOW()),
 (default,'021','Ver Usuarios',default,'/Servicios/ADM/ADM005.jsp','ADM008','Ver Usuarios',NOW()),
 (default,'022','Modificar Perfil Usuario',default,'/Servicios/ADM/ADM005.jsp','ADM009','Modificar Perfil Usuario',NOW()),
 (default,'023','Crear Cultivo',default,'/Servicios/GEM/GEM001.jsp','GEM001','Crear Cultivo',NOW()),
