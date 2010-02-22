@@ -98,10 +98,24 @@ Secano.</title>
 															</rich:comboBox>
 														</h:panelGrid>
 														<h:panelGrid>
-															<rich:paint2D id="painter" width="500" height="400"
+															<rich:simpleTogglePanel switchType="client" label="Grilla eurodolar">
+															<rich:paint2D width="500" height="400"
 																data="#{paintData}" format="png"
 																paint="#{paintBean.paint}" />
-
+															</rich:simpleTogglePanel>
+															<div class="div_near_spacer" />
+															<rich:simpleTogglePanel switchType="client" opened="false" label="Grilla eurodolar">
+															<rich:paint2D width="500" height="400"
+																data="#{paintData}" format="png"
+																paint="#{paintBean.paint}" />
+															</rich:simpleTogglePanel>
+															<div class="div_near_spacer" />
+															<rich:simpleTogglePanel switchType="client" opened="false" label="Grilla eurodolar">
+															<rich:paint2D width="500" height="400"
+																data="#{paintData}" format="png"
+																paint="#{paintBean.paint}" />
+															</rich:simpleTogglePanel>
+															<div class="div_near_spacer" />
 														</h:panelGrid>
 														<center><h:panelGrid>
 															<a4j:commandButton immediate="true"

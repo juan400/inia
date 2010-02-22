@@ -200,3 +200,12 @@ comboBox {
 	font-family: Arial, Verdana;
 	font-weight: bolder;
 }
+
+.div_near_spacer {
+        border-top-width: 0px;
+        border-left-width: 0px;
+        font-size: 0px;
+        border-bottom-width: 0px;
+        height: 2px;
+        border-right-width: 0px;
+}
