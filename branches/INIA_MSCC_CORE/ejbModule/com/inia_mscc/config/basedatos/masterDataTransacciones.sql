@@ -34,7 +34,7 @@ VALUES
 (default,'017','Modificar Valores de la Lista de Criterios',default,'/Servicios/ADM/ADM004.jsp','ADM004','Modificar Valores de la Lista de Criterios',NOW()),
 (default,'018','Ver Regiones',default,'/Servicios/ADM/ADM005.jsp','ADM005','Ver Regiones',NOW()),
 (default,'019','Crear Regiones',default,'/Servicios/ADM/ADM005.jsp','ADM006','Crear Regiones',NOW()),
-(default,'020','Modificar Regin',default,'/Servicios/ADM/ADM005.jsp','ADM007','Modificar Regiones',NOW()),
+(default,'020','Modificar Regi髇',default,'/Servicios/ADM/ADM005.jsp','ADM007','Modificar Regiones',NOW()),
 (default,'021','Ver Usuarios',default,'/Servicios/ADM/ADM005.jsp','ADM008','Ver Usuarios',NOW()),
 (default,'022','Modificar Perfil Usuario',default,'/Servicios/ADM/ADM005.jsp','ADM009','Modificar Perfil Usuario',NOW()),
 (default,'023','Crear Cultivo',default,'/Servicios/GEM/GEM001.jsp','GEM001','Crear Cultivo',NOW()),
@@ -47,4 +47,4 @@ VALUES
 (default,'030','Modificar Python de MSCC',default,'/Servicios/GEM/GEM008.jsp','GEM008','Modificar Python de MSCC',NOW()),
 (default,'031','Anular Python de MSCC',default,'/Servicios/GEM/GEM009.jsp','GEM009','Anular Python de MSCC',NOW()),
 (default,'032','Ejecuci贸n de MSCC',default,'/Servicios/EJE/EJE001.jsp','EJE001','Ejecuci贸n de MSCC',NOW()),
-(default,'033','Ejecuci贸n de MSCC',default,'/Servicios/EJE/EJE002.jsp','EJE002','Ejecuci贸n de MSCC',NOW());
+(default,'033','Resultados de MSCC',default,'/Servicios/EJE/EJE002.jsp','EJE002','Resultado de MSCC',NOW());
