@@ -213,8 +213,14 @@
   </navigation-case>
   <navigation-case>
    <from-action>#{menuBean.updateCurrent}</from-action>
-   <from-outcome>ADM0099</from-outcome>
+   <from-outcome>ADM009</from-outcome>
    <to-view-id>/Servicios/ADM/ADM009.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+    <navigation-case>
+   <from-action>#{menuBean.updateCurrent}</from-action>
+   <from-outcome>ADM010</from-outcome>
+   <to-view-id>/Servicios/ADM/ADM010.jsp</to-view-id>
    <redirect/>
   </navigation-case>
   <navigation-case>
