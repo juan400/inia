@@ -1,15 +1,20 @@
 package com.bean.eje;
 
 import java.awt.Color;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.AxisLocation;
 import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.labels.StandardXYToolTipGenerator;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYBarRenderer;
+import org.jfree.chart.renderer.xy.XYItemRenderer;
+import org.jfree.chart.renderer.xy.XYLine3DRenderer;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.chart.title.TextTitle;
 import org.jfree.data.time.Minute;
@@ -43,7 +48,7 @@ public class MultipleAxisDemo1 extends ApplicationFrame {
         super(title);
         JFreeChart chart = createChart();
         ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new java.awt.Dimension(600, 270));
+        chartPanel.setPreferredSize(new java.awt.Dimension(600, 500));
         chartPanel.setHorizontalAxisTrace(true);
         chartPanel.setVerticalAxisTrace(true);
         setContentPane(chartPanel);
@@ -74,12 +79,19 @@ public class MultipleAxisDemo1 extends ApplicationFrame {
         XYPlot plot = chart.getXYPlot();
         plot.setOrientation(PlotOrientation.VERTICAL);
         plot.setBackgroundPaint(Color.lightGray);
-        plot.setDomainGridlinePaint(Color.white);
-        plot.setRangeGridlinePaint(Color.white);
+        plot.setDomainGridlinePaint(Color.GREEN);
+        plot.setRangeGridlinePaint(Color.GREEN);
         
         plot.setAxisOffset(new RectangleInsets(5.0, 5.0, 5.0, 5.0));
         
-        XYLineAndShapeRenderer renderer = (XYLineAndShapeRenderer) plot.getRenderer();
+//        XYLineAndShapeRenderer renderer = (XYLineAndShapeRenderer) plot.getRenderer();
+        XYItemRenderer renderer = plot.getRenderer();
+        renderer.setToolTipGenerator(
+                new StandardXYToolTipGenerator(
+                    StandardXYToolTipGenerator.DEFAULT_TOOL_TIP_FORMAT,
+                    new SimpleDateFormat("d-MMM-yyyy"), new DecimalFormat("0,000.00")
+                )
+            );
         renderer.setPaint(Color.black);
        
         // AXIS 2
@@ -93,13 +105,13 @@ public class MultipleAxisDemo1 extends ApplicationFrame {
         XYDataset dataset2 = createDataset("Series 2", 1000.0, new Minute(), 170);
         plot.setDataset(0, dataset2);
         plot.mapDatasetToRangeAxis(0, new Integer(0));
-        plot.setRenderer(0, new XYLineAndShapeRenderer());
+        plot.setRenderer(0, new XYLine3DRenderer());
         plot.getRenderer(0).setSeriesPaint(0, Color.red);
         
         // AXIS 3
         NumberAxis axis3 = new NumberAxis("Range Axis 3");
-        axis3.setLabelPaint(Color.blue);
-        axis3.setTickLabelPaint(Color.blue);
+        axis3.setLabelPaint(Color.darkGray);
+        axis3.setTickLabelPaint(Color.darkGray);
         plot.setRangeAxis(1, axis3);
 
         XYDataset dataset3 = createDataset("Series 3", 10000.0, new Minute(), 170);
@@ -107,7 +119,7 @@ public class MultipleAxisDemo1 extends ApplicationFrame {
         plot.mapDatasetToRangeAxis(1, new Integer(1));
         
         plot.setRenderer(1, new XYBarRenderer());
-        plot.getRenderer(1).setSeriesPaint(0, Color.blue);
+        plot.getRenderer(1).setSeriesPaint(0, Color.darkGray);
 
         // AXIS 4        
 //        NumberAxis axis4 = new NumberAxis("Range Axis 4");
