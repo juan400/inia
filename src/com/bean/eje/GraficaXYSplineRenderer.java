@@ -6,7 +6,9 @@ package com.bean.eje;
  * Created on 9 de agosto de 2003, 9:11
  */
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
 import javax.swing.JFrame;
 
@@ -17,10 +19,7 @@ import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.StandardXYItemRenderer;
 import org.jfree.chart.renderer.xy.XYSplineRenderer;
-//import org.jfree.chart.renderer.xy.XYSplineRenderer;
-
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
@@ -29,10 +28,14 @@ import org.jfree.data.xy.XYSeriesCollection;
  * 
  * @author Roberto Canales
  */
-public class GraficaXYSplineRenderer extends java.awt.Frame {
+public class GraficaXYSplineRenderer implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	Graphics2D g;
 	BufferedImage grafica = null;
-
 	/** Creates new form ventanaGrafica */
 	public GraficaXYSplineRenderer() {
 		initComponents();
@@ -45,13 +48,13 @@ public class GraficaXYSplineRenderer extends java.awt.Frame {
 	 */
 	private void initComponents() {
 
-		addWindowListener(new java.awt.event.WindowAdapter() {
-			public void windowClosing(java.awt.event.WindowEvent evt) {
-				exitForm(evt);
-			}
-		});
-
-		pack();
+//		addWindowListener(new java.awt.event.WindowAdapter() {
+//			public void windowClosing(java.awt.event.WindowEvent evt) {
+//				exitForm(evt);
+//			}
+//		});
+//
+//		pack();
 	}
 
 	/** Exit the Application */
@@ -159,6 +162,14 @@ public class GraficaXYSplineRenderer extends java.awt.Frame {
 			grafica = this.creaImagen();
 		}
 		g.drawImage(grafica, 30, 30, null);
+	}
+
+	public Graphics2D getG() {
+		return g;
+	}
+
+	public void setG(Graphics2D g) {
+		this.g = g;
 	}
 
 }

@@ -8,6 +8,8 @@ package com.bean.eje;
  */
 
 import java.awt.Color;
+import java.awt.Graphics2D;
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -33,12 +35,13 @@ import org.jfree.date.MonthConstants;
 /**
  * A demonstration application showing how to create a price-volume chart.
  */
-public abstract class GraficaEurodollar {
+public abstract class GraficaEurodollar  implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	Graphics2D g;
 	private static final float FIRST_LINE_LENGTH = 10.0f;
 	private static final float SECOND_LINE_LENGTH = 6.0f;
 
@@ -123,4 +126,15 @@ public abstract class GraficaEurodollar {
 		return coleccionSeries;
 	}
 
+	public Graphics2D getG() {
+		return g;
+	}
+
+	public void setG(Graphics2D g) {
+		this.g = g;
+	}
+
 }
+
+
+
