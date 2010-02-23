@@ -24,18 +24,21 @@ public class OpusXYZDataset extends AbstractXYZDataset
 	private static final long serialVersionUID = 1L;
 
 	/** The x values. */
-    private double[] xVal;
+    private double[] xVal = {2.1, 2.375625, 2.375625, 2.232928726, 2.232928726, 1.860415253,
+                             1.840842668, 1.905415253, 2.336029412, 3.8};
 
     /** The y values. */
-    private double[] yVal;
+    private double[] yVal = {14.168, 11.156, 10.089, 8.884, 8.719, 8.466, 5.489,
+                             4.107, 4.101, 25};
 
     /** The z values. */
-    private double[] zVal;
+    private double[] zVal = {2.45, 2.791285714, 2.791285714, 2.2125, 2.2125, 2.22, 2.1, 2.22,
+                             1.64875, 4};
 
     public OpusXYZDataset(double[] xVal,double[] yVal,double[] zVal){
-        this.xVal = xVal;
-        this.yVal = yVal;
-        this.zVal = zVal;
+//        this.xVal = xVal;
+//        this.yVal = yVal;
+//        this.zVal = zVal;
     }
     /**
      * Returns the number of series in the dataset.

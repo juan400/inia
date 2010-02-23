@@ -9,6 +9,8 @@ package com.bean.eje;
 
 
 import java.awt.Color;
+import java.awt.Graphics2D;
+import java.io.Serializable;
 
 import javax.swing.JPanel;
 
@@ -30,12 +32,13 @@ import org.jfree.ui.RefineryUtilities;
 /**
  * A demo scatter plot.
  */
-public class GraficaScatterPlot extends ApplicationFrame {
+public class GraficaScatterPlot implements Serializable {
 
-    /**
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	Graphics2D g;
 
 	/**
      * A demonstration application showing a scatter plot.
@@ -43,10 +46,10 @@ public class GraficaScatterPlot extends ApplicationFrame {
      * @param title  the frame title.
      */
     public GraficaScatterPlot(String title) {
-        super(title);
+//        super(title);
         JPanel chartPanel = createDemoPanel();
         chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
-        setContentPane(chartPanel);
+//        setContentPane(chartPanel);
     }
 
     private static JFreeChart createChart(XYDataset dataset) {
@@ -363,10 +366,18 @@ public class GraficaScatterPlot extends ApplicationFrame {
      * @param args  ignored.
      */
     public static void main(String[] args) {
-    	GraficaScatterPlot demo = new GraficaScatterPlot("Scatter Plot Demo 1");
-        demo.pack();
-        RefineryUtilities.centerFrameOnScreen(demo);
-        demo.setVisible(true);
+//    	GraficaScatterPlot demo = new GraficaScatterPlot("Scatter Plot Demo 1");
+//        demo.pack();
+//        RefineryUtilities.centerFrameOnScreen(demo);
+//        demo.setVisible(true);
     }
+
+	public Graphics2D getG() {
+		return g;
+	}
+
+	public void setG(Graphics2D g) {
+		this.g = g;
+	}
 
 }

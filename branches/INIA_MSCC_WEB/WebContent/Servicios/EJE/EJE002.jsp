@@ -131,34 +131,30 @@ Contenido de proteína del grano: 12%
 <br />
 															<rich:simpleTogglePanel switchType="client"
 																label="Acumulación de biomasa y Indice de area foliar">
-															Grafica las variables CSH y LAI vs TIME en grafica tipo XYSplineRenderer
 															<rich:paint2D width="500" height="400"
 																	data="#{paintData}" format="png"
-																	paint="#{paintBean.paint}" />
+																	paint="#{paintBean.paintXYSplineRendererCSH_LAI}" />
 															</rich:simpleTogglePanel>
 															<div class="div_near_spacer" /><rich:simpleTogglePanel
 																switchType="client" opened="false"
 																label="Balance de agua en el suelo">
-															Grafica WUL y WLL vs TIME en lineas y RAIN vs TIME en barras de una grafica tipo "Eurodollar futures..."
 															<rich:paint2D width="500" height="400"
 																	data="#{paintData}" format="png"
-																	paint="#{paintBean.paint}" />
+																	paint="#{paintBean.paintEurodollar}" />
 															</rich:simpleTogglePanel>
 															<div class="div_near_spacer" /><rich:simpleTogglePanel
 																switchType="client" opened="false"
 																label="Balance de nitrogeno en suelo">
-															grafica NN y NUPTN vs TIME en grafica tipo XYSplineRenderer
 															<rich:paint2D width="500" height="400"
 																	data="#{paintData}" format="png"
-																	paint="#{paintBean.paint}" />
+																	paint="#{paintBean.paintXYSplineRendererNN_NUPTN}" />
 															</rich:simpleTogglePanel>
 															<div class="div_near_spacer" /><rich:simpleTogglePanel
 																switchType="client" opened="false"
 																label="Garficador generico">
-															que grafique cualquier variable  contra cualquier variable de las disponibles en output_modelo_trigo.txt en graficas tipo "Scatter plot"
 															<rich:paint2D width="500" height="400"
 																	data="#{paintData}" format="png"
-																	paint="#{paintBean.paint}" />
+																	paint="#{paintBean.paintScatterPlot}" />
 															</rich:simpleTogglePanel>
 															<div class="div_near_spacer" />
 														</h:panelGrid>
