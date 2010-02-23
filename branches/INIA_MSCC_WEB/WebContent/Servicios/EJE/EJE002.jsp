@@ -97,23 +97,68 @@ Secano.</title>
 																<f:selectItems value="#{cultivoBean.estados}" />
 															</rich:comboBox>
 														</h:panelGrid>
-														<h:panelGrid>
-															<rich:simpleTogglePanel switchType="client" label="Grilla eurodolar">
+														<h:panelGrid columnClasses="textoPlano">
+														Salida modelo INIA-Trigo
+<br />
+Corrida #xxxx 10/9/2009 11:30
+<br />
+
+Datos de Fenología
+<br />
+
+Siembra: Fecha de siembra
+<br /> 
+Emergencia:
+<br /> 
+Z22:
+<br />
+Z30:
+<br />
+Anthesis:
+<br />
+Madurez fisiologica:
+<br />
+
+Acumulación de materia seca: 8000 kgha-1
+<br />
+Rendimiento en grano (12% humedad): 3000 kgha-1
+<br />
+Indice de cosecha(PS garno/PS rastrojo): 30%
+<br />
+Contenido de nitrogeno del rastrojo: 3%
+<br />
+Contenido de proteína del grano: 12%
+<br />
+															<rich:simpleTogglePanel switchType="client"
+																label="Acumulación de biomasa y Indice de area foliar">
+															Grafica las variables CSH y LAI vs TIME en grafica tipo XYSplineRenderer
 															<rich:paint2D width="500" height="400"
-																data="#{paintData}" format="png"
-																paint="#{paintBean.paint}" />
+																	data="#{paintData}" format="png"
+																	paint="#{paintBean.paint}" />
 															</rich:simpleTogglePanel>
-															<div class="div_near_spacer" />
-															<rich:simpleTogglePanel switchType="client" opened="false" label="Grilla eurodolar">
+															<div class="div_near_spacer" /><rich:simpleTogglePanel
+																switchType="client" opened="false"
+																label="Balance de agua en el suelo">
+															Grafica WUL y WLL vs TIME en lineas y RAIN vs TIME en barras de una grafica tipo "Eurodollar futures..."
 															<rich:paint2D width="500" height="400"
-																data="#{paintData}" format="png"
-																paint="#{paintBean.paint}" />
+																	data="#{paintData}" format="png"
+																	paint="#{paintBean.paint}" />
 															</rich:simpleTogglePanel>
-															<div class="div_near_spacer" />
-															<rich:simpleTogglePanel switchType="client" opened="false" label="Grilla eurodolar">
+															<div class="div_near_spacer" /><rich:simpleTogglePanel
+																switchType="client" opened="false"
+																label="Balance de nitrogeno en suelo">
+															grafica NN y NUPTN vs TIME en grafica tipo XYSplineRenderer
 															<rich:paint2D width="500" height="400"
-																data="#{paintData}" format="png"
-																paint="#{paintBean.paint}" />
+																	data="#{paintData}" format="png"
+																	paint="#{paintBean.paint}" />
+															</rich:simpleTogglePanel>
+															<div class="div_near_spacer" /><rich:simpleTogglePanel
+																switchType="client" opened="false"
+																label="Garficador generico">
+															que grafique cualquier variable  contra cualquier variable de las disponibles en output_modelo_trigo.txt en graficas tipo "Scatter plot"
+															<rich:paint2D width="500" height="400"
+																	data="#{paintData}" format="png"
+																	paint="#{paintBean.paint}" />
 															</rich:simpleTogglePanel>
 															<div class="div_near_spacer" />
 														</h:panelGrid>
