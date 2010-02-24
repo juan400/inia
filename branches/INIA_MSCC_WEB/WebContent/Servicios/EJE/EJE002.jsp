@@ -80,79 +80,80 @@ Secano.</title>
 														<h:outputText value="#{text.cultivo_Ingresar}" />
 													</f:facet>
 													<h:panelGrid>
-														<h:panelGrid columns="2"
-															columnClasses="textoPlano,textoPlano" width="500px">
-
-															<h:outputLabel value="Seleccione variable inicial" />
-															<rich:comboBox value="#{cultivoBean.estado}"
-																style=" higth : 18px;" enableManualInput="false"
-																styleClass="combo" width="220">
-																<f:selectItems value="#{cultivoBean.estados}" />
-															</rich:comboBox>
-
-															<h:outputLabel value="Seleccione variable referencia" />
-															<rich:comboBox value="#{cultivoBean.estado}"
-																style=" higth : 18px;" enableManualInput="false"
-																styleClass="combo" width="220">
-																<f:selectItems value="#{cultivoBean.estados}" />
-															</rich:comboBox>
-														</h:panelGrid>
 														<h:panelGrid columnClasses="textoPlano">
-														Salida modelo INIA-Trigo
-<br />
-Corrida #xxxx 10/9/2009 11:30
-<br />
-
-Datos de Fenología
-<br />
-
-Siembra: Fecha de siembra
-<br /> 
-Emergencia:
-<br /> 
-Z22:
-<br />
-Z30:
-<br />
-Anthesis:
-<br />
-Madurez fisiologica:
-<br />
-
-Acumulación de materia seca: 8000 kgha-1
-<br />
-Rendimiento en grano (12% humedad): 3000 kgha-1
-<br />
-Indice de cosecha(PS garno/PS rastrojo): 30%
-<br />
-Contenido de nitrogeno del rastrojo: 3%
-<br />
-Contenido de proteína del grano: 12%
-<br />
-															<rich:simpleTogglePanel switchType="client"
+															Salida modelo INIA-Trigo
+															<br />
+															Corrida #xxxx 10/9/2009 11:30
+															<br />
+															
+															Datos de Fenología
+															<br />
+															
+															Siembra: Fecha de siembra
+															<br /> 
+															Emergencia:
+															<br /> 
+															Z22:
+															<br />
+															Z30:
+															<br />
+															Anthesis:
+															<br />
+															Madurez fisiologica:
+															<br />
+															
+															Acumulación de materia seca: 8000 kgha-1
+															<br />
+															Rendimiento en grano (12% humedad): 3000 kgha-1
+															<br />
+															Indice de cosecha(PS garno/PS rastrojo): 30%
+															<br />
+															Contenido de nitrogeno del rastrojo: 3%
+															<br />
+															Contenido de proteína del grano: 12%
+															<br />
+															<rich:simpleTogglePanel switchType="client" style="background-color: #ebf3fd;"
 																label="Acumulación de biomasa y Indice de area foliar">
-															<rich:paint2D width="500" height="400"
+																<rich:paint2D width="500" height="400"
 																	data="#{paintData}" format="png"
 																	paint="#{paintBean.paintXYSplineRendererCSH_LAI}" />
 															</rich:simpleTogglePanel>
 															<div class="div_near_spacer" /><rich:simpleTogglePanel
 																switchType="client" opened="false"
 																label="Balance de agua en el suelo">
-															<rich:paint2D width="500" height="400"
+																<rich:paint2D width="500" height="400"
 																	data="#{paintData}" format="png"
 																	paint="#{paintBean.paintEurodollar}" />
 															</rich:simpleTogglePanel>
-															<div class="div_near_spacer" /><rich:simpleTogglePanel
+															<div class="div_near_spacer" /><rich:simpleTogglePanel style="background-color: #ebf3fd;"
 																switchType="client" opened="false"
 																label="Balance de nitrogeno en suelo">
-															<rich:paint2D width="500" height="400"
+																<rich:paint2D width="500" height="400"
 																	data="#{paintData}" format="png"
 																	paint="#{paintBean.paintXYSplineRendererNN_NUPTN}" />
 															</rich:simpleTogglePanel>
 															<div class="div_near_spacer" /><rich:simpleTogglePanel
-																switchType="client" opened="false"
+																switchType="client" opened="false" style="background-color: #ebf3fd;"
 																label="Garficador generico">
-															<rich:paint2D width="500" height="400"
+
+																<h:panelGrid columns="2"
+																	columnClasses="textoPlano,textoPlano" width="500px">
+
+																	<h:outputLabel value="Seleccione variable inicial" />
+																	<rich:comboBox value="#{cultivoBean.estado}"
+																		style=" higth : 18px;" enableManualInput="false"
+																		styleClass="combo" width="220">
+																		<f:selectItems value="#{cultivoBean.estados}" />
+																	</rich:comboBox>
+
+																	<h:outputLabel value="Seleccione variable referencia" />
+																	<rich:comboBox value="#{cultivoBean.estado}"
+																		style=" higth : 18px;" enableManualInput="false"
+																		styleClass="combo" width="220">
+																		<f:selectItems value="#{cultivoBean.estados}" />
+																	</rich:comboBox>
+																</h:panelGrid>
+																<rich:paint2D width="500" height="400"
 																	data="#{paintData}" format="png"
 																	paint="#{paintBean.paintScatterPlot}" />
 															</rich:simpleTogglePanel>
