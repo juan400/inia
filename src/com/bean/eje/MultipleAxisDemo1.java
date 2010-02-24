@@ -78,7 +78,7 @@ public class MultipleAxisDemo1 extends ApplicationFrame {
         chart.addSubtitle(new TextTitle("Four datasets and four range axes."));  
         XYPlot plot = chart.getXYPlot();
         plot.setOrientation(PlotOrientation.VERTICAL);
-        plot.setBackgroundPaint(Color.lightGray);
+        plot.setBackgroundPaint(Color.white);
         plot.setDomainGridlinePaint(Color.GREEN);
         plot.setRangeGridlinePaint(Color.GREEN);
         
@@ -99,40 +99,40 @@ public class MultipleAxisDemo1 extends ApplicationFrame {
         axis2.setAutoRangeIncludesZero(false);
         axis2.setLabelPaint(Color.red);
         axis2.setTickLabelPaint(Color.red);
-        plot.setRangeAxis(0, axis2);
-        plot.setRangeAxisLocation(0, AxisLocation.BOTTOM_OR_LEFT);
+        plot.setRangeAxis(1, axis2);
+        plot.setRangeAxisLocation(1, AxisLocation.BOTTOM_OR_RIGHT);
 
         XYDataset dataset2 = createDataset("Series 2", 1000.0, new Minute(), 170);
-        plot.setDataset(0, dataset2);
-        plot.mapDatasetToRangeAxis(0, new Integer(0));
-        plot.setRenderer(0, new XYLine3DRenderer());
-        plot.getRenderer(0).setSeriesPaint(0, Color.red);
-        
-        // AXIS 3
-        NumberAxis axis3 = new NumberAxis("Range Axis 3");
-        axis3.setLabelPaint(Color.darkGray);
-        axis3.setTickLabelPaint(Color.darkGray);
-        plot.setRangeAxis(1, axis3);
-
-        XYDataset dataset3 = createDataset("Series 3", 10000.0, new Minute(), 170);
-        plot.setDataset(1, dataset3);
-        plot.mapDatasetToRangeAxis(1, new Integer(1));
-        
+        plot.setDataset(1, dataset2);
+        plot.mapDatasetToRangeAxis(1, new Integer(0));
         plot.setRenderer(1, new XYBarRenderer());
-        plot.getRenderer(1).setSeriesPaint(0, Color.darkGray);
-
-        // AXIS 4        
+        plot.getRenderer(1).setSeriesPaint(0, Color.red);
+        
+//        // AXIS 3
+//        NumberAxis axis3 = new NumberAxis("Range Axis 3");
+//        axis3.setLabelPaint(Color.darkGray);
+//        axis3.setTickLabelPaint(Color.darkGray);
+//        plot.setRangeAxis(2, axis3);
+//
+//        XYDataset dataset3 = createDataset("Series 3", 10000.0, new Minute(), 170);
+//        plot.setDataset(2, dataset3);
+//        plot.mapDatasetToRangeAxis(2, new Integer(1));
+//        
+//        plot.setRenderer(2, new XYBarRenderer());
+//        plot.getRenderer(2).setSeriesPaint(0, Color.darkGray);
+//
+////         AXIS 4        
 //        NumberAxis axis4 = new NumberAxis("Range Axis 4");
 //        axis4.setLabelPaint(Color.green);
 //        axis4.setTickLabelPaint(Color.green);
-//        plot.setRangeAxis(2, axis4);
+//        plot.setRangeAxis(3, axis4);
 //        
 //        XYDataset dataset4 = createDataset("Series 4", 25.0, new Minute(), 200);
-//        plot.setDataset(2, dataset4);
-//        plot.mapDatasetToRangeAxis(2, new Integer(2));
+//        plot.setDataset(3, dataset4);
+//        plot.mapDatasetToRangeAxis(3, new Integer(2));
 //        
-//        plot.setRenderer(2, new XYBarRenderer());
-//        plot.getRenderer(2).setSeriesPaint(0, Color.green);        
+//        plot.setRenderer(3, new XYBarRenderer());
+//        plot.getRenderer(3).setSeriesPaint(0, Color.green);        
                 
         return chart;
     }
