@@ -28,10 +28,12 @@ public class PaintBean extends MaestroBean implements Serializable {
 			String pLineas = "WUL,WLL";
 			String pBarras = "RAIN";
 			JFreeChart chart;
-			chart = GraficaEurodollar.crearGrafica(this.getEJEFachada(
-					ServicioEJE.Ejecucion).obtenerMapaResultado(
-					new ResultadoMSCC()), pLineas, pTituloGrafica,
-					pTituloVariables, pTituloEjeY, 600, 500);
+//			chart = GraficaEurodollar.crearGrafica(this.getEJEFachada(
+//					ServicioEJE.Ejecucion).obtenerMapaResultado(
+//					new ResultadoMSCC()), pLineas, pTituloGrafica,
+//					pTituloVariables, pTituloEjeY, 600, 500);
+			chart = GraficaEurodollar.createChart();
+			
 			// crearGrafica(Map<String, ArrayList> pDatos,
 			// String pTituloGrafica, String pTituloVariables, String
 			// pTituloEjeY,
@@ -50,23 +52,23 @@ public class PaintBean extends MaestroBean implements Serializable {
 	// disponibles en output_modelo_trigo.txt en graficas tipo "Scatter plot"
 	public void paintScatterPlot(Graphics2D g2d, Object obj) {
 		try {
-			String pTituloGrafica = "Grafica de nitrogeno";
-			String pTituloVariables = "Variables";
-			String pTituloEjeY = "Calendario";
-			JFreeChart chart;
-			chart = GraficaScatterPlot.crearGrafica(this.getEJEFachada(
-					ServicioEJE.Ejecucion).obtenerMapaResultado(
-					new ResultadoMSCC()), "SHSA,HUMR", pTituloGrafica,
-					pTituloVariables, pTituloEjeY, 600, 500);
-			// crearGrafica(Map<String, ArrayList> pDatos,
-			// String pTituloGrafica, String pTituloVariables, String
-			// pTituloEjeY,
-			// int width, int height)
-			BufferedImage image = chart.createBufferedImage(600, 500,
-					BufferedImage.TYPE_INT_RGB, null);
-			Graphics2D g = image.createGraphics();
-			// PaintData data = (PaintData) obj;
-			g2d.drawImage(image, null, 0, 0);
+//			String pTituloGrafica = "Grafica de nitrogeno";
+//			String pTituloVariables = "Variables";
+//			String pTituloEjeY = "Calendario";
+//			JFreeChart chart;
+//			chart = GraficaScatterPlot.crearGrafica(this.getEJEFachada(
+//					ServicioEJE.Ejecucion).obtenerMapaResultado(
+//					new ResultadoMSCC()), "SHSA,HUMR", pTituloGrafica,
+//					pTituloVariables, pTituloEjeY, 600, 500);
+//			// crearGrafica(Map<String, ArrayList> pDatos,
+//			// String pTituloGrafica, String pTituloVariables, String
+//			// pTituloEjeY,
+//			// int width, int height)
+//			BufferedImage image = chart.createBufferedImage(600, 500,
+//					BufferedImage.TYPE_INT_RGB, null);
+//			Graphics2D g = image.createGraphics();
+//			// PaintData data = (PaintData) obj;
+//			g2d.drawImage(image, null, 0, 0);
 		} catch (Exception e) {
 			this.setError(e.getMessage());
 		}
@@ -75,23 +77,23 @@ public class PaintBean extends MaestroBean implements Serializable {
 	// Grafica las variables CSH y LAI vs TIME en grafica tipo XYSplineRenderer
 	public void paintXYSplineRendererCSH_LAI(Graphics2D g2d, Object obj) {
 		try {
-			String pTituloGrafica = "Grafica de nitrogeno";
-			String pTituloVariables = "Variables";
-			String pTituloEjeY = "Calendario";
-			JFreeChart chart;
-			chart = GraficaXYSplineRenderer.crearGrafica(this.getEJEFachada(
-					ServicioEJE.Ejecucion).obtenerMapaResultado(
-					new ResultadoMSCC()), "SHSA,HUMR", pTituloGrafica,
-					pTituloVariables, pTituloEjeY, 600, 500);
-			// crearGrafica(Map<String, ArrayList> pDatos,
-			// String pTituloGrafica, String pTituloVariables, String
-			// pTituloEjeY,
-			// int width, int height)
-			BufferedImage image = chart.createBufferedImage(600, 500,
-					BufferedImage.TYPE_INT_RGB, null);
-			Graphics2D g = image.createGraphics();
-			// PaintData data = (PaintData) obj;
-			g2d.drawImage(image, null, 0, 0);
+//			String pTituloGrafica = "Grafica de nitrogeno";
+//			String pTituloVariables = "Variables";
+//			String pTituloEjeY = "Calendario";
+//			JFreeChart chart;
+//			chart = GraficaXYSplineRenderer.crearGrafica(this.getEJEFachada(
+//					ServicioEJE.Ejecucion).obtenerMapaResultado(
+//					new ResultadoMSCC()), "SHSA,HUMR", pTituloGrafica,
+//					pTituloVariables, pTituloEjeY, 600, 500);
+//			// crearGrafica(Map<String, ArrayList> pDatos,
+//			// String pTituloGrafica, String pTituloVariables, String
+//			// pTituloEjeY,
+//			// int width, int height)
+//			BufferedImage image = chart.createBufferedImage(600, 500,
+//					BufferedImage.TYPE_INT_RGB, null);
+//			Graphics2D g = image.createGraphics();
+//			// PaintData data = (PaintData) obj;
+//			g2d.drawImage(image, null, 0, 0);
 		} catch (Exception e) {
 			this.setError(e.getMessage());
 		}
@@ -100,23 +102,23 @@ public class PaintBean extends MaestroBean implements Serializable {
 	// grafica NN y NUPTN vs TIME en grafica tipo XYSplineRenderer
 	public void paintXYSplineRendererNN_NUPTN(Graphics2D g2d, Object obj) {
 		try {
-			String pTituloGrafica = "Grafica de nitrogeno";
-			String pTituloVariables = "Variables";
-			String pTituloEjeY = "Calendario";
-			JFreeChart chart;
-			chart = GraficaXYSplineRenderer.crearGrafica(this.getEJEFachada(
-					ServicioEJE.Ejecucion).obtenerMapaResultado(
-					new ResultadoMSCC()), "SHSA,HUMR", pTituloGrafica,
-					pTituloVariables, pTituloEjeY, 600, 500);
-			// crearGrafica(Map<String, ArrayList> pDatos,
-			// String pTituloGrafica, String pTituloVariables, String
-			// pTituloEjeY,
-			// int width, int height)
-			BufferedImage image = chart.createBufferedImage(600, 500,
-					BufferedImage.TYPE_INT_RGB, null);
-			Graphics2D g = image.createGraphics();
-			// PaintData data = (PaintData) obj;
-			g2d.drawImage(image, null, 0, 0);
+//			String pTituloGrafica = "Grafica de nitrogeno";
+//			String pTituloVariables = "Variables";
+//			String pTituloEjeY = "Calendario";
+//			JFreeChart chart;
+//			chart = GraficaXYSplineRenderer.crearGrafica(this.getEJEFachada(
+//					ServicioEJE.Ejecucion).obtenerMapaResultado(
+//					new ResultadoMSCC()), "SHSA,HUMR", pTituloGrafica,
+//					pTituloVariables, pTituloEjeY, 600, 500);
+//			// crearGrafica(Map<String, ArrayList> pDatos,
+//			// String pTituloGrafica, String pTituloVariables, String
+//			// pTituloEjeY,
+//			// int width, int height)
+//			BufferedImage image = chart.createBufferedImage(600, 500,
+//					BufferedImage.TYPE_INT_RGB, null);
+//			Graphics2D g = image.createGraphics();
+//			// PaintData data = (PaintData) obj;
+//			g2d.drawImage(image, null, 0, 0);
 		} catch (Exception e) {
 			this.setError(e.getMessage());
 		}
