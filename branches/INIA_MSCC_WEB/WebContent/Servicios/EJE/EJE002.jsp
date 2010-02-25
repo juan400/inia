@@ -85,6 +85,22 @@ Secano.</title>
 															<br />
 															Corrida #xxxx 10/9/2009 11:30
 															<br />
+															 'FSirmbra': (2009,6,1 ), #ano,mes,dia
+              'EstacionClimatica': 'LE',
+              'Cultivar':'DonAlberto'
+              'FertilizacionSiembra':[ {'fecha': (2009,6,1),
+                          'Fuente': '18-46-0',
+                          'rate': 100},
+              'Refertilizacion1': [ {'fecha': (2009,7,1),
+                          'Fuente': '18-46-0',
+                          'rate': 100},
+              'Refertilizacion2': [ {'fecha': (2009,8,1),
+                          'Fuente': '18-46-0',
+                          'rate': 100},
+              'NombreSuelo': '10.1', #nombre coneat
+              'ProfundidadA':0.2
+              'ProfundidadB':0.3
+              'DensidadPlantas': 200     # plantas m-2
 															<rich:simpleTogglePanel switchType="client" style="background-color: #ebf3fd;"
 																label="Acumulación de biomasa y Indice de area foliar">
 																<rich:paint2D width="600" height="500"
