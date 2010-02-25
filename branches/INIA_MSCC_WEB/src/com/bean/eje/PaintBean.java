@@ -23,23 +23,44 @@ public class PaintBean extends MaestroBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int fontSize;
+
+	private String varUno;
+	private String varDos;
+	
+	public String getVarUno() {
+		return varUno;
+	}
+
+	public void setVarUno(String varUno) {
+		this.varUno = varUno;
+	}
+
+	public String getVarDos() {
+		return varDos;
+	}
+
+	public void setVarDos(String varDos) {
+		this.varDos = varDos;
+	}
 
 	// Grafica WUL y WLL vs TIME en lineas y RAIN vs TIME en barras de una
 	// grafica tipo "Eurodollar futures..."
 	public void paintEurodollar(Graphics2D g2d, Object obj) {
 		try {
-
+			String pTituloGrafica = "Balance de agua en el suelo";
 			JFreeChart chart;
 			ResultadoMSCC resultado = new ResultadoMSCC();
 			Ubicacion ubicacion = new Ubicacion();
 			ubicacion.set_urlPaht("C:\\ArchivosSubidos");
-			Archivo archivo = new Archivo("sss",TipoArchivo.Resultados,new Date(),Estado.Activo,TipoExtencionArchivo.txt,ubicacion);
-			archivo.set_datos(new File("C:\\ArchivosSubidos\\output_modelo_trigo.txt"));
+			Archivo archivo = new Archivo("sss", TipoArchivo.Resultados,
+					new Date(), Estado.Activo, TipoExtencionArchivo.txt,
+					ubicacion);
+			archivo.set_datos(new File(
+					"C:\\ArchivosSubidos\\output_modelo_trigo.txt"));
 			resultado.set_archivo(archivo);
-			chart = Graficador.createTipoEurodollar(this.getEJEFachada(
-					ServicioEJE.Ejecucion).obtenerMapaResultado(
-							resultado), null);
+			chart = Graficador.createTipoEurodollar(pTituloGrafica, this.getEJEFachada(
+					ServicioEJE.Ejecucion).obtenerMapaResultado(resultado),
+					null);
 			BufferedImage image = chart.createBufferedImage(600, 500,
 					BufferedImage.TYPE_INT_RGB, null);
 			g2d.drawImage(image, null, 0, 0);
@@ -57,13 +78,16 @@ public class PaintBean extends MaestroBean implements Serializable {
 			ResultadoMSCC resultado = new ResultadoMSCC();
 			Ubicacion ubicacion = new Ubicacion();
 			ubicacion.set_urlPaht("C:\\ArchivosSubidos");
-			Archivo archivo = new Archivo("sss",TipoArchivo.Resultados,new Date(),Estado.Activo,TipoExtencionArchivo.txt,ubicacion);
-			archivo.set_datos(new File("C:\\ArchivosSubidos\\output_modelo_trigo.txt"));
+			Archivo archivo = new Archivo("sss", TipoArchivo.Resultados,
+					new Date(), Estado.Activo, TipoExtencionArchivo.txt,
+					ubicacion);
+			archivo.set_datos(new File(
+					"C:\\ArchivosSubidos\\output_modelo_trigo.txt"));
 			resultado.set_archivo(archivo);
-			chart = Graficador.createTipoXYSpline(pTituloGrafica, this.getEJEFachada(
-					ServicioEJE.Ejecucion).obtenerMapaResultado(
-							resultado),pLineas);
-			BufferedImage image = chart.createBufferedImage(700, 500,
+			chart = Graficador.createTipoXYSpline(pTituloGrafica, this
+					.getEJEFachada(ServicioEJE.Ejecucion).obtenerMapaResultado(
+							resultado), pLineas);
+			BufferedImage image = chart.createBufferedImage(600, 500,
 					BufferedImage.TYPE_INT_RGB, null);
 			g2d.drawImage(image, null, 0, 0);
 		} catch (Exception e) {
@@ -80,19 +104,22 @@ public class PaintBean extends MaestroBean implements Serializable {
 			ResultadoMSCC resultado = new ResultadoMSCC();
 			Ubicacion ubicacion = new Ubicacion();
 			ubicacion.set_urlPaht("C:\\ArchivosSubidos");
-			Archivo archivo = new Archivo("sss",TipoArchivo.Resultados,new Date(),Estado.Activo,TipoExtencionArchivo.txt,ubicacion);
-			archivo.set_datos(new File("C:\\ArchivosSubidos\\output_modelo_trigo.txt"));
+			Archivo archivo = new Archivo("sss", TipoArchivo.Resultados,
+					new Date(), Estado.Activo, TipoExtencionArchivo.txt,
+					ubicacion);
+			archivo.set_datos(new File(
+					"C:\\ArchivosSubidos\\output_modelo_trigo.txt"));
 			resultado.set_archivo(archivo);
-			
-//			chart = GraficaXYSplineRenderer.crearGrafica(this.getEJEFachada(
-//					ServicioEJE.Ejecucion).obtenerMapaResultado(
-//					new ResultadoMSCC()), "SHSA,HUMR", pTituloGrafica,
-//					pTituloVariables, pTituloEjeY, 600, 500);
-			
-			chart = Graficador.createTipoXYSpline(pTituloGrafica, this.getEJEFachada(
-			ServicioEJE.Ejecucion).obtenerMapaResultado(
-					resultado),pLineas);
-			
+
+			// chart = GraficaXYSplineRenderer.crearGrafica(this.getEJEFachada(
+			// ServicioEJE.Ejecucion).obtenerMapaResultado(
+			// new ResultadoMSCC()), "SHSA,HUMR", pTituloGrafica,
+			// pTituloVariables, pTituloEjeY, 600, 500);
+
+			chart = Graficador.createTipoXYSpline(pTituloGrafica, this
+					.getEJEFachada(ServicioEJE.Ejecucion).obtenerMapaResultado(
+							resultado), pLineas);
+
 			BufferedImage image = chart.createBufferedImage(600, 500,
 					BufferedImage.TYPE_INT_RGB, null);
 			g2d.drawImage(image, null, 0, 0);
@@ -100,32 +127,39 @@ public class PaintBean extends MaestroBean implements Serializable {
 			this.setError(e.getMessage());
 		}
 	}
-	
-	
+
 	// que grafique cualquier variable contra cualquier variable de las
 	// disponibles en output_modelo_trigo.txt en graficas tipo "Scatter plot"
 	public void paintScatterPlot(Graphics2D g2d, Object obj) {
 		try {
-//			String pTituloGrafica = "Grafica de nitrogeno";
-//			String pTituloVariables = "Variables";
-//			String pTituloEjeY = "Calendario";
-//			JFreeChart chart;
-//			chart = GraficaScatterPlot.crearGrafica(this.getEJEFachada(
-//					ServicioEJE.Ejecucion).obtenerMapaResultado(
-//					new ResultadoMSCC()), "SHSA,HUMR", pTituloGrafica,
-//					pTituloVariables, pTituloEjeY, 600, 500);
-//			// crearGrafica(Map<String, ArrayList> pDatos,
-//			// String pTituloGrafica, String pTituloVariables, String
-//			// pTituloEjeY,
-//			// int width, int height)
+			String pTituloGrafica = "Grafica resultante de referencia "+ this.getVarUno()+" comparada con "+this.getVarDos();
+			String pLineas = "NN,NUPTN";
+			JFreeChart chart;
+			ResultadoMSCC resultado = new ResultadoMSCC();
+			Ubicacion ubicacion = new Ubicacion();
+			ubicacion.set_urlPaht("C:\\ArchivosSubidos");
+			Archivo archivo = new Archivo("sss", TipoArchivo.Resultados,
+					new Date(), Estado.Activo, TipoExtencionArchivo.txt,
+					ubicacion);
+			archivo.set_datos(new File(
+					"C:\\ArchivosSubidos\\output_modelo_trigo.txt"));
+			resultado.set_archivo(archivo);
+
+			// chart = GraficaXYSplineRenderer.crearGrafica(this.getEJEFachada(
+			// ServicioEJE.Ejecucion).obtenerMapaResultado(
+			// new ResultadoMSCC()), "SHSA,HUMR", pTituloGrafica,
+			// pTituloVariables, pTituloEjeY, 600, 500);
+
+//			chart = Graficador.createTipoScatter(pTituloGrafica, this
+//					.getEJEFachada(ServicioEJE.Ejecucion).obtenerMapaResultado(
+//							resultado), pLineas);
+
 //			BufferedImage image = chart.createBufferedImage(600, 500,
 //					BufferedImage.TYPE_INT_RGB, null);
-//			Graphics2D g = image.createGraphics();
-//			// PaintData data = (PaintData) obj;
 //			g2d.drawImage(image, null, 0, 0);
 		} catch (Exception e) {
 			this.setError(e.getMessage());
 		}
 	}
-	
+
 }

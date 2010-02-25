@@ -102,7 +102,7 @@ Secano.</title>
               'ProfundidadB':0.3
               'DensidadPlantas': 200     # plantas m-2
 															<rich:simpleTogglePanel switchType="client" style="background-color: #ebf3fd;"
-																label="Acumulación de biomasa y Indice de area foliar">
+																label="Acumulación de biomasa y Indice de area foliar" opened="false">
 																<rich:paint2D width="600" height="500"
 																	data="#{paintData}" format="png"
 																	paint="#{paintBean.paintXYSplineRendererCSH_LAI}" />
@@ -131,15 +131,15 @@ Secano.</title>
 																<h:panelGrid columns="2"
 																	columnClasses="textoPlano,textoPlano" width="500px">
 
-																	<h:outputLabel value="Seleccione variable inicial" />
-																	<rich:comboBox value="#{cultivoBean.estado}"
+																	<h:outputLabel value="Seleccione variable de referencia" />
+																	<rich:comboBox value="#{paintBean.varUno}"
 																		style=" higth : 18px;" enableManualInput="false"
 																		styleClass="combo" width="220">
 																		<f:selectItems value="#{cultivoBean.estados}" />
 																	</rich:comboBox>
 
-																	<h:outputLabel value="Seleccione variable referencia" />
-																	<rich:comboBox value="#{cultivoBean.estado}"
+																	<h:outputLabel value="Seleccione variable de comparación" />
+																	<rich:comboBox value="#{paintBean.varUno}"
 																		style=" higth : 18px;" enableManualInput="false"
 																		styleClass="combo" width="220">
 																		<f:selectItems value="#{cultivoBean.estados}" />
