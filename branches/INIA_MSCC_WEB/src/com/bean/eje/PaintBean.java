@@ -31,10 +31,6 @@ public class PaintBean extends MaestroBean implements Serializable {
 		try {
 
 			JFreeChart chart;
-//			chart = GraficaEurodollar.crearGrafica(this.getEJEFachada(
-//					ServicioEJE.Ejecucion).obtenerMapaResultado(
-//					new ResultadoMSCC()), pLineas, pTituloGrafica,
-//					pTituloVariables, pTituloEjeY, 600, 500);
 			ResultadoMSCC resultado = new ResultadoMSCC();
 			Ubicacion ubicacion = new Ubicacion();
 			ubicacion.set_urlPaht("C:\\ArchivosSubidos");
@@ -46,14 +42,66 @@ public class PaintBean extends MaestroBean implements Serializable {
 							resultado), null);
 			BufferedImage image = chart.createBufferedImage(600, 500,
 					BufferedImage.TYPE_INT_RGB, null);
-			Graphics2D g = image.createGraphics();
-			// PaintData data = (PaintData) obj;
 			g2d.drawImage(image, null, 0, 0);
 		} catch (Exception e) {
 			this.setError(e.getMessage());
 		}
 	}
 
+	// Grafica las variables CSH y LAI vs TIME en grafica tipo XYSplineRenderer
+	public void paintXYSplineRendererCSH_LAI(Graphics2D g2d, Object obj) {
+		try {
+			String pTituloGrafica = "Acumulación de biomasa y Indice de area foliar";
+			String pLineas = "CSH,LAI";
+			JFreeChart chart;
+			ResultadoMSCC resultado = new ResultadoMSCC();
+			Ubicacion ubicacion = new Ubicacion();
+			ubicacion.set_urlPaht("C:\\ArchivosSubidos");
+			Archivo archivo = new Archivo("sss",TipoArchivo.Resultados,new Date(),Estado.Activo,TipoExtencionArchivo.txt,ubicacion);
+			archivo.set_datos(new File("C:\\ArchivosSubidos\\output_modelo_trigo.txt"));
+			resultado.set_archivo(archivo);
+			chart = Graficador.createTipoXYSpline(pTituloGrafica, this.getEJEFachada(
+					ServicioEJE.Ejecucion).obtenerMapaResultado(
+							resultado),pLineas);
+			BufferedImage image = chart.createBufferedImage(700, 500,
+					BufferedImage.TYPE_INT_RGB, null);
+			g2d.drawImage(image, null, 0, 0);
+		} catch (Exception e) {
+			this.setError(e.getMessage());
+		}
+	}
+
+	// grafica NN y NUPTN vs TIME en grafica tipo XYSplineRenderer
+	public void paintXYSplineRendererNN_NUPTN(Graphics2D g2d, Object obj) {
+		try {
+			String pTituloGrafica = "Balance de nitrogeno en suelo";
+			String pLineas = "NN,NUPTN";
+			JFreeChart chart;
+			ResultadoMSCC resultado = new ResultadoMSCC();
+			Ubicacion ubicacion = new Ubicacion();
+			ubicacion.set_urlPaht("C:\\ArchivosSubidos");
+			Archivo archivo = new Archivo("sss",TipoArchivo.Resultados,new Date(),Estado.Activo,TipoExtencionArchivo.txt,ubicacion);
+			archivo.set_datos(new File("C:\\ArchivosSubidos\\output_modelo_trigo.txt"));
+			resultado.set_archivo(archivo);
+			
+//			chart = GraficaXYSplineRenderer.crearGrafica(this.getEJEFachada(
+//					ServicioEJE.Ejecucion).obtenerMapaResultado(
+//					new ResultadoMSCC()), "SHSA,HUMR", pTituloGrafica,
+//					pTituloVariables, pTituloEjeY, 600, 500);
+			
+			chart = Graficador.createTipoXYSpline(pTituloGrafica, this.getEJEFachada(
+			ServicioEJE.Ejecucion).obtenerMapaResultado(
+					resultado),pLineas);
+			
+			BufferedImage image = chart.createBufferedImage(600, 500,
+					BufferedImage.TYPE_INT_RGB, null);
+			g2d.drawImage(image, null, 0, 0);
+		} catch (Exception e) {
+			this.setError(e.getMessage());
+		}
+	}
+	
+	
 	// que grafique cualquier variable contra cualquier variable de las
 	// disponibles en output_modelo_trigo.txt en graficas tipo "Scatter plot"
 	public void paintScatterPlot(Graphics2D g2d, Object obj) {
@@ -79,54 +127,5 @@ public class PaintBean extends MaestroBean implements Serializable {
 			this.setError(e.getMessage());
 		}
 	}
-
-	// Grafica las variables CSH y LAI vs TIME en grafica tipo XYSplineRenderer
-	public void paintXYSplineRendererCSH_LAI(Graphics2D g2d, Object obj) {
-		try {
-//			String pTituloGrafica = "Grafica de nitrogeno";
-//			String pTituloVariables = "Variables";
-//			String pTituloEjeY = "Calendario";
-//			JFreeChart chart;
-//			chart = GraficaXYSplineRenderer.crearGrafica(this.getEJEFachada(
-//					ServicioEJE.Ejecucion).obtenerMapaResultado(
-//					new ResultadoMSCC()), "SHSA,HUMR", pTituloGrafica,
-//					pTituloVariables, pTituloEjeY, 600, 500);
-//			// crearGrafica(Map<String, ArrayList> pDatos,
-//			// String pTituloGrafica, String pTituloVariables, String
-//			// pTituloEjeY,
-//			// int width, int height)
-//			BufferedImage image = chart.createBufferedImage(600, 500,
-//					BufferedImage.TYPE_INT_RGB, null);
-//			Graphics2D g = image.createGraphics();
-//			// PaintData data = (PaintData) obj;
-//			g2d.drawImage(image, null, 0, 0);
-		} catch (Exception e) {
-			this.setError(e.getMessage());
-		}
-	}
-
-	// grafica NN y NUPTN vs TIME en grafica tipo XYSplineRenderer
-	public void paintXYSplineRendererNN_NUPTN(Graphics2D g2d, Object obj) {
-		try {
-//			String pTituloGrafica = "Grafica de nitrogeno";
-//			String pTituloVariables = "Variables";
-//			String pTituloEjeY = "Calendario";
-//			JFreeChart chart;
-//			chart = GraficaXYSplineRenderer.crearGrafica(this.getEJEFachada(
-//					ServicioEJE.Ejecucion).obtenerMapaResultado(
-//					new ResultadoMSCC()), "SHSA,HUMR", pTituloGrafica,
-//					pTituloVariables, pTituloEjeY, 600, 500);
-//			// crearGrafica(Map<String, ArrayList> pDatos,
-//			// String pTituloGrafica, String pTituloVariables, String
-//			// pTituloEjeY,
-//			// int width, int height)
-//			BufferedImage image = chart.createBufferedImage(600, 500,
-//					BufferedImage.TYPE_INT_RGB, null);
-//			Graphics2D g = image.createGraphics();
-//			// PaintData data = (PaintData) obj;
-//			g2d.drawImage(image, null, 0, 0);
-		} catch (Exception e) {
-			this.setError(e.getMessage());
-		}
-	}
+	
 }
