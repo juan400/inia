@@ -1,15 +1,19 @@
 package com.inia_mscc.modulos.eje.entidades;
 
+import java.io.Serializable;
 import java.util.Date;
-
-import javax.persistence.Transient;
 
 import org.apache.commons.collections.map.HashedMap;
 
 import com.inia_mscc.modulos.gem.entidades.Archivo;
 import com.inia_mscc.modulos.gem.entidades.Escenario;
 
-public class ResultadoMSCC {
+public class ResultadoMSCC implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private long _id;
 	private Date _fecha;
 	private Archivo _archivo;
 	private HashedMap _matrizDatos;
@@ -19,7 +23,7 @@ public class ResultadoMSCC {
 		super();
 		_fecha = new Date();
 		_archivo = null;
-		_matrizDatos = null;
+		_matrizDatos = new HashedMap();
 		_escenario = null;
 	}
 
@@ -39,38 +43,7 @@ public class ResultadoMSCC {
 		_archivo = archivo;
 	}
 	
-	@Transient
 	public HashedMap get_matrizDatos() throws Exception {
-		try {
-//			InputStream is = _archivo.get_ubicacion().get_urlPaht()
-//					.openStream(); // Abro InputStream desde URL
-//			BufferedReader entrada = new BufferedReader(new InputStreamReader(
-//					is));
-			// File f = new File(_archivo.get_ubicacion().get_urlPaht()
-			// + _archivo.get_nombre());
-			// BufferedReader entrada = new BufferedReader(new FileReader(f));
-			// if (f.exists()) {
-			// if (f.canRead()) {
-			// entrada.read();
-//			String archivo = entrada.readLine();
-//			if (archivo.isEmpty()) {
-//				String[] lineas = archivo.split("\n");
-//				for (int i = 1; i < lineas.length; i++) {
-//					String[] columnas = lineas[1].split(" ");
-//
-//					String[] datos = lineas[i].split(" ");
-//					HashedMap registro = new HashedMap();
-//					for (int j = 0; j < datos.length; j++) {
-//						registro.put(columnas[j].toString(), Double.parseDouble(datos[j].toString()));
-//					}
-//					_matrizDatos.put(i, registro);
-//				}
-//			}
-			// }
-			// }
-		} catch (Exception ex) {
-			throw ex;
-		}
 		return _matrizDatos;
 	}
 
@@ -84,6 +57,14 @@ public class ResultadoMSCC {
 
 	public void set_escenario(Escenario escenario) {
 		_escenario = escenario;
+	}
+
+	public long get_id() {
+		return _id;
+	}
+
+	public void set_id(long id) {
+		_id = id;
 	}
 
 }
