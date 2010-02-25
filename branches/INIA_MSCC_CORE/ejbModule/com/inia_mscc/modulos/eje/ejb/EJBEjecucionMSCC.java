@@ -67,12 +67,13 @@ public class EJBEjecucionMSCC implements ServicioEjecucionMSCC{
 
 	@Override
 	public Map<String, ArrayList> obtenerMapaResultado(ResultadoMSCC resultadoMSCC) throws Exception {
+		Map<String, ArrayList> resultado = null;
 		if(resultadoMSCC != null && resultadoMSCC.get_archivo() != null){
 			
 			File archivoResultado = resultadoMSCC.get_archivo().get_datos();
 			BufferedReader fileIn = new BufferedReader(new FileReader(archivoResultado));
 			
-			Map<String, ArrayList> resultado = new HashMap<String, ArrayList>();
+			resultado = new HashMap<String, ArrayList>();
 			
 			String linea = "";
 			int numeroLinea = 0;
@@ -103,7 +104,7 @@ public class EJBEjecucionMSCC implements ServicioEjecucionMSCC{
 			throw new Exception("Error al procesar el resultado de la ejecución");
 		}
 		
-		return null;
+		return resultado;
 	}
 
 	private static boolean isNumeric(String cadena){

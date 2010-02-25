@@ -45,64 +45,14 @@ public abstract class GraficaEurodollar  implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	Graphics2D g;
-	private static final float FIRST_LINE_LENGTH = 10.0f;
-	private static final float SECOND_LINE_LENGTH = 6.0f;
 
 	/**
 	 * Creates a chart.
 	 * 
 	 * @return a chart.
 	 */
-	public static JFreeChart crearGrafica(Map<String, ArrayList> pDatos,
-			String pColumnasConcatenadas, String tituloGrafica,
-			String pTituloVariables, String pTituloEjeY, int width, int height) {
-		// Crea el dataset para poblar la grilla
-		XYDataset priceData = crearDataset(pDatos, pColumnasConcatenadas);
-
-		JFreeChart chart = ChartFactory.createTimeSeriesChart(tituloGrafica,
-				pTituloEjeY, pTituloVariables, priceData, true, true, false);
-		XYPlot plot = chart.getXYPlot();
-		NumberAxis rangeAxis1 = (NumberAxis) plot.getRangeAxis();
-		rangeAxis1.setLowerMargin(0.10); // to leave room for volume bars
-		// TODO regvissar el alcanze de los decimal
-		DecimalFormat format = new DecimalFormat("00.00");
-		rangeAxis1.setNumberFormatOverride(format);
-
-		XYItemRenderer renderer1 = plot.getRenderer();
-		renderer1.setToolTipGenerator(new StandardXYToolTipGenerator(
-				StandardXYToolTipGenerator.DEFAULT_TOOL_TIP_FORMAT,
-				new SimpleDateFormat("d-MMM-yyyy"), new DecimalFormat("0.00")));
-
-		// create interval overlay
-
-		// double[] xValue = new double[1];
-		// double[] yStart = new double[1];
-		// double[] yEnd = new double[1];
-		// double[] radius = new double[1];
-		// Date sampleDate = DateUtilities.createDate(2002, MonthConstants.MAY,
-		// 1);
-		//
-		// xValue[0] = (double) sampleDate.getTime();
-		// yStart[0] = 96.345;
-		// yEnd[0] = 96.75;
-		// radius[0] = 31.0;
-
-		// OpusXYZDataset intervalData = new OpusXYZDataset(xValue, yStart,
-		// radius);
-		XYBubbleRenderer renderer = new XYBubbleRenderer(0);
-		renderer.setSeriesPaint(0, new Color(0, 255, 0, 118));
-		// plot.setDataset(1, intervalData);
-		plot.setRenderer(1, renderer);
-		return chart;
-	}
-
-	/**
-	 * Creates a chart.
-	 * 
-	 * @return a chart.
-	 */
-	public static JFreeChart createChart() {
+	public static JFreeChart createChart(Map<String, ArrayList> pDatos,
+			String pColumnasConcatenadas) {
 
 		String title = "Acumulación de biomasa y Indice de area foliar";
 		JFreeChart chart = ChartFactory.createTimeSeriesChart(title, "Fecha",
@@ -741,14 +691,6 @@ public abstract class GraficaEurodollar  implements Serializable {
 		series1.add(new Day(31, MonthConstants.OCTOBER, 2002), 98.560);
 		coleccionSeries.addSeries(series1);
 		return coleccionSeries;
-	}
-
-	public Graphics2D getG() {
-		return g;
-	}
-
-	public void setG(Graphics2D g) {
-		this.g = g;
 	}
 
 }
