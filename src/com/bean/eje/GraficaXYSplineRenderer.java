@@ -19,6 +19,7 @@ import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.chart.renderer.xy.XYSplineRenderer;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
@@ -79,33 +80,33 @@ public class GraficaXYSplineRenderer implements Serializable {
 	        
 	       
 	       XYSeries series1 = new XYSeries("Primero");
-			series1.add(1.0, 1.0);
-			series1.add(2.0, 4.0);
-			series1.add(3.0, 3.0);
-			series1.add(4.0, 5.0);
-			series1.add(5.0, 5.0);
-			series1.add(6.0, 7.0);
-			series1.add(7.0, 7.0);
-			series1.add(8.0, 8.0);
+			series1.add(10.0, 1.0);
+			series1.add(20.0, 24.0);
+			series1.add(30.0, 33.0);
+			series1.add(40.0, 44.0);
+			series1.add(50.0, 55.0);
+			series1.add(60.0, 76.0);
+			series1.add(70.0, 77.70);
+			series1.add(80.0, 87.0);
 			XYSeries series2 = new XYSeries("Segundo");
-			series2.add(1.0, 5.0);
-			series2.add(2.0, 7.0);
-			series2.add(3.0, 6.0);
-			series2.add(4.0, 8.0);
-			series2.add(5.0, 4.0);
-			series2.add(6.0, 4.0);
-			series2.add(7.0, 2.0);
-			series2.add(8.0, 1.0);
+			series2.add(10.0, 25.0);
+			series2.add(20.0, 37.0);
+			series2.add(30.0, 46.0);
+			series2.add(40.0, 58.0);
+			series2.add(50.0, 64.0);
+			series2.add(60.0, 74.0);
+			series2.add(70.0, 82.0);
+			series2.add(80.0, 91.0);
 			XYSeries series3 = new XYSeries("Tercero");
-			series3.add(3.0, 4.0);
-			series3.add(4.0, 3.0);
-			series3.add(5.0, 2.0);
-			series3.add(6.0, 3.0);
-			series3.add(7.0, 6.0);
-			series3.add(8.0, 3.0);
-			series3.add(9.0, 4.0);
-			series3.add(10.0, 3.0);
-//			XYSeriesCollection dataset = new XYSeriesCollection();
+			series3.add(30.0, 4.0);
+			series3.add(40.0, 3.0);
+			series3.add(50.0, 2.0);
+			series3.add(60.0, 3.0);
+			series3.add(70.0, 6.0);
+			series3.add(80.0, 3.0);
+			series3.add(90.0, 4.0);
+			series3.add(100.0, 3.0);
+//			XYSeriesColle0ction dataset = new XYSeriesCollection();
 			dataset.addSeries(series1);
 			dataset.addSeries(series2);
 			dataset.addSeries(series3);
@@ -117,12 +118,26 @@ public class GraficaXYSplineRenderer implements Serializable {
 	        
 	       dataset.addSeries(serie);  
 	       ValueAxis axis1 = new NumberAxis("Eixo X");     
-	        ValueAxis axis2 = new NumberAxis("Tiemp en dias desde la siembra");     
+	        ValueAxis axis2 = new NumberAxis("Tiemp en dias desde la siembra");  
 	        XYSplineRenderer renderer = new XYSplineRenderer();  
+	        renderer.setShapesVisible(false);
 	        renderer.setSeriesPaint(0, Color.BLUE);  
 	        XYPlot plot = new XYPlot(dataset, axis1, axis2, renderer);     
 	        JFreeChart chart = new JFreeChart(plot);     
-	        ChartPanel panel = new ChartPanel(chart);     
+	        
+	        
+
+//			JFreeChart chart2 = ChartFactory.createXYLineChart(
+//					"Sesiones en Adictos al Trabajo", "Meses", "Sesiones",
+//					dataset, PlotOrientation.VERTICAL, false, false, true // Show
+//																				// legend
+//					);
+//	        chart2.getPlot().setRenderer(new XYSplineRenderer());
+	        
+	        ChartPanel panel = new ChartPanel(chart);  
+	        
+	        
+	        
 	        JFrame f = new JFrame("Título da Janela Gráfico");  
 	        f.setSize(640, 480);     
 	        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);     
