@@ -75,12 +75,9 @@ public abstract class GraficaEurodollar  implements Serializable {
 		NumberAxis axis1 = new NumberAxis(pNombreAxis);
 		axis1.setAutoRangeIncludesZero(false);
 		axis1.setLabelPaint(pColor);
-//		axis1.setTickLabelPaint(pColor);
-//		axis1.setTickLabelFont(Font.BOLD);
 		pPlot.setRangeAxis(pNumeroAxis, axis1);
 		pPlot.setRangeAxisLocation(pNumeroAxis, pOrientacion);
 
-//		XYDataset dataset1 = createPriceDataset(pNombreAxis);
 		pPlot.setDataset(pNumeroAxis, datos);
 		pPlot.mapDatasetToRangeAxis(pNumeroAxis, new Integer(pNumeroAxis));
 		pPlot.setRenderer(pNumeroAxis, pTipoCurva);
