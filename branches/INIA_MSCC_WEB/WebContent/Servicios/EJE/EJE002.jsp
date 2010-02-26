@@ -72,12 +72,12 @@ Secano.</title>
 										</h:column>
 
 										<h:column>
-											<h:panelGroup rendered="#{paintBean.init}" />
+											<h:panelGroup rendered="#{resultadoBean.init}" />
 											<h:panelGrid>
 												<rich:panel headerClass="tituloPantalla"
 													style="background-color: #ebf3fd;">
 													<f:facet name="header">
-														<h:outputText value="#{text.cultivo_Ingresar}" />
+														<h:outputText value="Resultados del modelo de simulación" />
 													</f:facet>
 													<h:panelGrid width="700px">
 														<h:panelGrid columnClasses="textoPlano">
@@ -101,53 +101,61 @@ Secano.</title>
               'ProfundidadA':0.2
               'ProfundidadB':0.3
               'DensidadPlantas': 200     # plantas m-2
-															<rich:simpleTogglePanel switchType="client" style="background-color: #ebf3fd;"
-																label="Acumulación de biomasa y Indice de area foliar" opened="false">
+															<rich:simpleTogglePanel switchType="client"
+																style="background-color: #ebf3fd;"
+																label="Acumulación de biomasa y Indice de area foliar"
+																opened="false">
 																<rich:paint2D width="600" height="500"
 																	data="#{paintData}" format="png"
-																	paint="#{paintBean.paintXYSplineRendererCSH_LAI}" />
+																	paint="#{resultadoBean.paintXYSplineRendererCSH_LAI}" />
+															</rich:simpleTogglePanel>
+															<br />
+															<rich:simpleTogglePanel switchType="client"
+																opened="false" label="Balance de agua en el suelo">
+																<rich:paint2D width="600" height="500"
+																	data="#{paintData}" format="png"
+																	paint="#{resultadoBean.paintEurodollar}" />
 															</rich:simpleTogglePanel>
 															<br />
 															<rich:simpleTogglePanel
-																switchType="client" opened="false"
-																label="Balance de agua en el suelo">
+																style="background-color: #ebf3fd;" switchType="client"
+																opened="false" label="Balance de nitrogeno en suelo">
 																<rich:paint2D width="600" height="500"
 																	data="#{paintData}" format="png"
-																	paint="#{paintBean.paintEurodollar}" />
+																	paint="#{resultadoBean.paintXYSplineRendererNN_NUPTN}" />
 															</rich:simpleTogglePanel>
 															<br />
-															<rich:simpleTogglePanel style="background-color: #ebf3fd;"
-																switchType="client" opened="false"
-																label="Balance de nitrogeno en suelo">
-																<rich:paint2D width="600" height="500"
-																	data="#{paintData}" format="png"
-																	paint="#{paintBean.paintXYSplineRendererNN_NUPTN}" />
-															</rich:simpleTogglePanel>
-															<br />
-															<rich:simpleTogglePanel
-																switchType="client" opened="false" style="background-color: #ebf3fd;"
+															<rich:simpleTogglePanel switchType="client"
+																opened="false" style="background-color: #ebf3fd;"
 																label="Garficador generico">
 
 																<h:panelGrid columns="2"
 																	columnClasses="textoPlano,textoPlano" width="500px">
 
-																	<h:outputLabel value="Seleccione variable de referencia" />
-																	<rich:comboBox value="#{paintBean.varUno}"
+																	<h:outputLabel
+																		value="Seleccione variable de referencia" />
+																	<rich:comboBox value="#{paintData.varUno}"
 																		style=" higth : 18px;" enableManualInput="false"
 																		styleClass="combo" width="220">
-																		<f:selectItems value="#{cultivoBean.estados}" />
+																		<f:selectItems value="#{resultadoBean.variables}" />
+																		<a4j:support event="onchange" reRender=":graficaGenerica" />
 																	</rich:comboBox>
 
-																	<h:outputLabel value="Seleccione variable de comparación" />
-																	<rich:comboBox value="#{paintBean.varUno}"
+																	<h:outputLabel
+																		value="Seleccione variable de comparación" />
+																	<rich:comboBox value="#{paintData.varDos}"
 																		style=" higth : 18px;" enableManualInput="false"
 																		styleClass="combo" width="220">
-																		<f:selectItems value="#{cultivoBean.estados}" />
+																		<f:selectItems value="#{resultadoBean.variables}" />
+																		<a4j:support event="onchange" reRender=":graficaGenerica" />
 																	</rich:comboBox>
 																</h:panelGrid>
-																<rich:paint2D width="600" height="500"
-																	data="#{paintData}" format="png"
-																	paint="#{paintBean.paintScatterPlot}" />
+																<h:panelGrid>
+																<a4j:commandButton  />
+																</h:panelGrid>
+																<rich:paint2D id="graficaGenerica" width="600" 
+																	height="500" data="#{paintData}" format="png"
+																	paint="#{resultadoBean.paintScatterPlot}" />
 															</rich:simpleTogglePanel>
 															<br />
 														</h:panelGrid>
@@ -165,7 +173,7 @@ Secano.</title>
 																</f:facet>
 															</rich:messages>
 															<h:outputText styleClass="textoPlano"
-																value="#{propiedadesBean.exito}" />
+																value="#{resultadoBean.exito}" />
 														</h:panelGrid></center>
 													</h:panelGrid>
 												</rich:panel>

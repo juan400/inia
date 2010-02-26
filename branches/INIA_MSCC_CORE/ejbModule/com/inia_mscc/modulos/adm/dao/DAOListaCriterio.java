@@ -14,13 +14,12 @@ import com.inia_mscc.config.util.LoggingUtilities;
 import com.inia_mscc.excepciones.IniaPersistenciaException;
 import com.inia_mscc.modulos.adm.entidades.ListaCriterioSeleccion;
 
-
 public class DAOListaCriterio implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private static final Logger logger = Logger.getLogger(DAOListaCriterio.class);
-	
-	
+	private static final Logger logger = Logger
+			.getLogger(DAOListaCriterio.class);
+
 	@SuppressWarnings("unchecked")
 	public List<ListaCriterioSeleccion> ObtenerListaCriterio() {
 		List<ListaCriterioSeleccion> listaCriterio = null;
@@ -28,7 +27,7 @@ public class DAOListaCriterio implements Serializable {
 		try {
 			Criteria c = session.createCriteria(ListaCriterioSeleccion.class);
 			listaCriterio = (List<ListaCriterioSeleccion>) c.list();
-		} catch (Exception e) {// catch (StaleObjectStateException e) {
+		} catch (StaleObjectStateException e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);
@@ -36,20 +35,28 @@ public class DAOListaCriterio implements Serializable {
 		return listaCriterio;
 	}
 
-	public ListaCriterioSeleccion ObtenerCriterio(ListaCriterioSeleccion pCriterio) {
+	public ListaCriterioSeleccion ObtenerCriterio(
+			ListaCriterioSeleccion pCriterio) {
 		ListaCriterioSeleccion unCriterio = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			Criteria c = session.createCriteria(ListaCriterioSeleccion.class);
-			if (pCriterio.get_id() != 0) {
-				c.add(Restrictions.eq("_id", pCriterio.get_id()));
-			}
-			if (!pCriterio.get_descripcion().isEmpty()) {
-				c.add(Restrictions.eq("_descripcion", pCriterio.get_descripcion()));
+			if (pCriterio != null) {
+				if (pCriterio.get_id() != 0) {
+					c.add(Restrictions.eq("_id", pCriterio.get_id()));
+				}
+				if (pCriterio.get_descripcion() != null
+						&& !pCriterio.get_descripcion().isEmpty()) {
+					c.add(Restrictions.eq("_descripcion", pCriterio
+							.get_descripcion()));
+				}
+				if (pCriterio.get_codigo() != null
+						&& !pCriterio.get_codigo().isEmpty()) {
+					c.add(Restrictions.eq("_codigo", pCriterio.get_codigo()));
+				}
 			}
 			unCriterio = (ListaCriterioSeleccion) c.uniqueResult();
-			if (unCriterio != null
-					&& unCriterio.get_listaValores().size() != 0) {
+			if (unCriterio != null && unCriterio.get_listaValores().size() != 0) {
 				unCriterio.get_listaValores().get(0);
 			}
 		} catch (StaleObjectStateException e) {

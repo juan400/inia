@@ -98,9 +98,9 @@
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
-  <managed-bean-name>paintBean</managed-bean-name>
-  <managed-bean-class>com.bean.eje.PaintBean</managed-bean-class>
-  <managed-bean-scope>request</managed-bean-scope>
+  <managed-bean-name>resultadoBean</managed-bean-name>
+  <managed-bean-class>com.bean.eje.ResultadoBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <navigation-rule>
   <from-view-id>*</from-view-id>
@@ -217,7 +217,7 @@
    <to-view-id>/Servicios/ADM/ADM009.jsp</to-view-id>
    <redirect/>
   </navigation-case>
-    <navigation-case>
+  <navigation-case>
    <from-action>#{menuBean.updateCurrent}</from-action>
    <from-outcome>ADM010</from-outcome>
    <to-view-id>/Servicios/ADM/ADM010.jsp</to-view-id>
@@ -747,6 +747,15 @@
    <from-action>#{subirEscenarioBean.RegistrarEscenario}</from-action>
    <from-outcome>GEM005</from-outcome>
    <to-view-id>/Servicios/GEM/GEM005.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/Servicios/EJE/EJE002.jsp</from-view-id>
+  <navigation-case>
+   <from-action>#{resultadoBean.CargarResultado}</from-action>
+   <from-outcome>EJE002</from-outcome>
+   <to-view-id>/Servicios/EJE/EJE002.jsp</to-view-id>
    <redirect/>
   </navigation-case>
  </navigation-rule>
