@@ -116,7 +116,7 @@ public abstract class Graficador implements Serializable {
 				columnas[0], columnas[1], crearDataset(pDatos,
 						pColumnasConcatenadas), PlotOrientation.VERTICAL, true,
 				false, false);
-
+		
 		XYPlot plot = (XYPlot) chart.getPlot();
 		plot.setNoDataMessage("NO DATA");
 		plot.setDomainZeroBaselineVisible(true);
@@ -174,10 +174,10 @@ public abstract class Graficador implements Serializable {
 		TimeSeriesCollection coleccionSeries = new TimeSeriesCollection();
 		try {
 			for (int i = 0; i < columnas.length; i++) {
-				ArrayList valores = pDatos.get(columnas[i]);
+				ArrayList<Double> valores = pDatos.get(columnas[i]);
 				TimeSeries serie = new TimeSeries(columnas[i], Day.class);
 				if (valores != null) {
-					for (Iterator iterador = valores.iterator(); iterador
+					for (Iterator<Double> iterador = valores.iterator(); iterador
 							.hasNext();) {
 						diaCalendario.add(Calendar.DAY_OF_MONTH, 1);
 						int dia = diaCalendario.get(Calendar.DAY_OF_MONTH);
@@ -213,13 +213,13 @@ public abstract class Graficador implements Serializable {
 		XYSeriesCollection coleccionSeries = new XYSeriesCollection();
 		try {
 			for (int i = 0; i < columnas.length; i++) {
-				ArrayList valores = pDatos.get(columnas[i]);
+				ArrayList<Double> valores = pDatos.get(columnas[i]);
 				XYSeries serie = new XYSeries(columnas[i]);
 				if (valores != null) {
-					for (Iterator iterador = valores.iterator(); iterador
+					for (Iterator<Double> iterador = valores.iterator(); iterador
 							.hasNext();) {
 						if (iterador.next() != null) {
-							Double dato = (Double) iterador.next();
+							Double dato = iterador.next();
 							serie.add(i, dato.doubleValue());
 						}else{
 							serie.add(i,null);

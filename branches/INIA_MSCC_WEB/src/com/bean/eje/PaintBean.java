@@ -27,12 +27,12 @@ public class PaintBean extends MaestroBean implements Serializable {
 	private String varUno;
 	private String varDos;
 
-	public boolean isInit(){
-		varDos="NNLL";
-		varUno="CLVD";
+	public boolean isInit() {
+		varUno = "WLL";
+		varDos = "WUL";
 		return false;
 	}
-	
+
 	/**
 	 * Grafica WUL y WLL vs TIME en lineas y RAIN vs TIME en barras de una
 	 * grafica tipo "Eurodollar futures..."
@@ -137,11 +137,16 @@ public class PaintBean extends MaestroBean implements Serializable {
 	 */
 	public void paintScatterPlot(Graphics2D g2d, Object obj) {
 		try {
+			String pLineas = "";
 			String pTituloGrafica = "Grafica resultante de referencia "
 					+ this.getVarUno() + " comparada con " + this.getVarDos();
-			if (!this.getVarUno().isEmpty() && !this.getVarDos().isEmpty()){}
-			String pLineas = this.getVarUno() + "," + this.getVarDos();
-			pLineas="CLVD,NNLL";
+			if (this.getVarUno() != null && this.getVarDos() != null
+					&& !this.getVarUno().isEmpty()
+					&& !this.getVarDos().isEmpty()) {
+				pLineas = this.getVarUno() + "," + this.getVarDos();
+			} else {
+				pLineas = "WLL,WUL";
+			}
 			JFreeChart chart;
 			ResultadoMSCC resultado = new ResultadoMSCC();
 			Ubicacion ubicacion = new Ubicacion();
