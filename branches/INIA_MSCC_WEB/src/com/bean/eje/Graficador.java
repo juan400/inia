@@ -65,6 +65,10 @@ public abstract class Graficador implements Serializable {
 		} catch (Exception e) {
 			throw e;
 		}
+
+		plot.setNoDataMessage("NO DATA");
+		plot.setDomainZeroBaselineVisible(true);
+		plot.setRangeZeroBaselineVisible(true);
 		return chart;
 	}
 
@@ -95,24 +99,12 @@ public abstract class Graficador implements Serializable {
 						columnas[i], plot, Color.BLUE,
 						AxisLocation.BOTTOM_OR_LEFT);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				throw e;
 			}
 		}
-
-		// // AXIS 0
-		// XYSplineRenderer linea = new XYSplineRenderer();
-		// linea.setShapesVisible(false);
-		// cargarPlot(crearDatasetVsTime(pDatos, "CSH"), linea, 0, "CSH", plot,
-		// Color.BLUE,
-		// AxisLocation.BOTTOM_OR_LEFT);
-		// // AXIS 1
-		// linea = new XYSplineRenderer();
-		// linea.setShapesVisible(false);
-		// cargarPlot(crearDatasetVsTime(pDatos, "LAI"), linea, 1, "LAI", plot,
-		// Color.RED,
-		// AxisLocation.BOTTOM_OR_LEFT);
-
+		plot.setNoDataMessage("NO DATA");
+		plot.setDomainZeroBaselineVisible(true);
+		plot.setRangeZeroBaselineVisible(true);
 		return chart;
 	}
 
@@ -136,46 +128,12 @@ public abstract class Graficador implements Serializable {
 		renderer.setUseOutlinePaint(true);
 		NumberAxis domainAxis = (NumberAxis) plot.getDomainAxis();
 		domainAxis.setAutoRangeIncludesZero(false);
-		domainAxis.setTickMarkInsideLength(2.0f);
+//		domainAxis.setTickMarkInsideLength(2.0f);
 		domainAxis.setTickMarkOutsideLength(0.0f);
 
 		NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
-		rangeAxis.setTickMarkInsideLength(2.0f);
+//		rangeAxis.setTickMarkInsideLength(2.0f);
 		rangeAxis.setTickMarkOutsideLength(0.0f);
-
-		// JFreeChart chart = ChartFactory.createTimeSeriesChart(pTituloGrafica,
-		// null, null, null, true, true, false);
-
-		// chart.addSubtitle(new TextTitle(
-		// "Grafica las variables "+
-		// this.getVarUno()+" comparada con "+this.getVarDos()));
-
-		// XYPlot plot = chart.getXYPlot();
-		// // for (int i = 0; i < columnas.length; i++) {
-		// XYSplineRenderer linea = new XYSplineRenderer();
-		// // linea.setShapesVisible(false);
-		// try {
-		// cargarPlot(crearDataset(pDatos, pColumnasConcatenadas), linea, i,
-		// columnas[i], plot, Color.BLUE,
-		// AxisLocation.BOTTOM_OR_LEFT);
-		// } catch (Exception e) {
-		// throw e;
-		// }
-		// }
-
-		// // AXIS 0
-		// XYSplineRenderer linea = new XYSplineRenderer();
-		// linea.setShapesVisible(false);
-		// cargarPlot(crearDatasetVsTime(pDatos, "CSH"), linea, 0, "CSH", plot,
-		// Color.BLUE,
-		// AxisLocation.BOTTOM_OR_LEFT);
-		// // AXIS 1
-		// linea = new XYSplineRenderer();
-		// linea.setShapesVisible(false);
-		// cargarPlot(crearDatasetVsTime(pDatos, "LAI"), linea, 1, "LAI", plot,
-		// Color.RED,
-		// AxisLocation.BOTTOM_OR_LEFT);
-
 		return chart;
 	}
 
