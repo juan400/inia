@@ -27,6 +27,12 @@ public class PaintBean extends MaestroBean implements Serializable {
 	private String varUno;
 	private String varDos;
 
+	public boolean isInit(){
+		varDos="NNLL";
+		varUno="CLVD";
+		return false;
+	}
+	
 	/**
 	 * Grafica WUL y WLL vs TIME en lineas y RAIN vs TIME en barras de una
 	 * grafica tipo "Eurodollar futures..."
