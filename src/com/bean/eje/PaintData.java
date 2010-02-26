@@ -11,7 +11,9 @@ public class PaintData implements Serializable {
 	Graphics2D g;
 	int color;
 	float scale;
-
+	private String varUno;
+	private String varDos;
+	
 	public int getColor() {
 		return color;
 	}
@@ -34,6 +36,22 @@ public class PaintData implements Serializable {
 
 	public void setG(Graphics2D g) {
 		this.g = g;
+	}
+
+	public void setVarUno(String varUno) {
+		this.varUno = varUno;
+	}
+
+	public String getVarUno() {
+		return varUno;
+	}
+
+	public void setVarDos(String varDos) {
+		this.varDos = varDos;
+	}
+
+	public String getVarDos() {
+		return varDos;
 	}
 
 }
