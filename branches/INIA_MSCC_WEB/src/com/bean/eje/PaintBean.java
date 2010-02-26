@@ -28,8 +28,8 @@ public class PaintBean extends MaestroBean implements Serializable {
 	private String varDos;
 
 	public boolean isInit() {
-		varUno = "WLL";
-		varDos = "WUL";
+		varDos = "NNLL";
+		varUno = "CLVD";
 		return false;
 	}
 
@@ -144,8 +144,6 @@ public class PaintBean extends MaestroBean implements Serializable {
 					&& !this.getVarUno().isEmpty()
 					&& !this.getVarDos().isEmpty()) {
 				pLineas = this.getVarUno() + "," + this.getVarDos();
-			} else {
-				pLineas = "WLL,WUL";
 			}
 			JFreeChart chart;
 			ResultadoMSCC resultado = new ResultadoMSCC();

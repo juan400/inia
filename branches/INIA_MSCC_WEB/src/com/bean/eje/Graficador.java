@@ -112,11 +112,17 @@ public abstract class Graficador implements Serializable {
 			Map<String, ArrayList> pDatos, String pColumnasConcatenadas)
 			throws Exception {
 		String[] columnas = pColumnasConcatenadas.split(",");
+		String ejeX = "";
+		String ejeY = "";
+		if (columnas.length < 1) {
+			ejeX = columnas[0];
+			ejeY = columnas[1];
+		}
 		JFreeChart chart = ChartFactory.createScatterPlot(pTituloGrafica,
-				columnas[0], columnas[1], crearDataset(pDatos,
+				ejeX, ejeY, crearDataset(pDatos,
 						pColumnasConcatenadas), PlotOrientation.VERTICAL, true,
 				false, false);
-		
+
 		XYPlot plot = (XYPlot) chart.getPlot();
 		plot.setNoDataMessage("NO DATA");
 		plot.setDomainZeroBaselineVisible(true);
@@ -128,11 +134,11 @@ public abstract class Graficador implements Serializable {
 		renderer.setUseOutlinePaint(true);
 		NumberAxis domainAxis = (NumberAxis) plot.getDomainAxis();
 		domainAxis.setAutoRangeIncludesZero(false);
-//		domainAxis.setTickMarkInsideLength(2.0f);
-		domainAxis.setTickMarkOutsideLength(0.0f);
+		// domainAxis.setTickMarkInsideLength(2.0f);
+		domainAxis.setTickMarkOutsideLength(0);
 
 		NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
-//		rangeAxis.setTickMarkInsideLength(2.0f);
+		// rangeAxis.setTickMarkInsideLength(2.0f);
 		rangeAxis.setTickMarkOutsideLength(0.0f);
 		return chart;
 	}
@@ -185,9 +191,10 @@ public abstract class Graficador implements Serializable {
 						int anio = diaCalendario.get(Calendar.YEAR);
 						if (iterador.next() != null) {
 							Double dato = (Double) iterador.next();
-							serie.add(new Day(dia, mes, anio), dato.doubleValue());
-						}else{
-							serie.add(new Day(dia, mes, anio),null);
+							serie.add(new Day(dia, mes, anio), dato
+									.doubleValue());
+						} else {
+							serie.add(new Day(dia, mes, anio), null);
 						}
 					}
 				}
@@ -212,21 +219,24 @@ public abstract class Graficador implements Serializable {
 		String[] columnas = pColumnasConcatenadas.split(",");
 		XYSeriesCollection coleccionSeries = new XYSeriesCollection();
 		try {
-			for (int i = 0; i < columnas.length; i++) {
-				ArrayList<Double> valores = pDatos.get(columnas[i]);
-				XYSeries serie = new XYSeries(columnas[i]);
-				if (valores != null) {
-					for (Iterator<Double> iterador = valores.iterator(); iterador
-							.hasNext();) {
-						if (iterador.next() != null) {
-							Double dato = iterador.next();
-							serie.add(i, dato.doubleValue());
-						}else{
-							serie.add(i,null);
+			if (columnas.length < 1) {
+				for (int i = 0; i < columnas.length; i++) {
+					ArrayList<Double> valores = pDatos.get(columnas[i]);
+					XYSeries serie = new XYSeries(columnas[i]);
+					if (valores != null) {
+						for (Iterator<Double> iterador = valores.iterator(); iterador
+								.hasNext();) {
+							if (iterador.next() != null) {
+								Double dato = iterador.next();
+								serie.add(Double.parseDouble("" + i), dato
+										.doubleValue());
+							} else {
+								serie.add(Double.parseDouble("" + i), null);
+							}
 						}
 					}
+					coleccionSeries.addSeries(serie);
 				}
-				coleccionSeries.addSeries(serie);
 			}
 		} catch (Exception e) {
 			throw e;
