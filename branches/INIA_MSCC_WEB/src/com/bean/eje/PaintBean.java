@@ -26,25 +26,13 @@ public class PaintBean extends MaestroBean implements Serializable {
 
 	private String varUno;
 	private String varDos;
-	
-	public String getVarUno() {
-		return varUno;
-	}
 
-	public void setVarUno(String varUno) {
-		this.varUno = varUno;
-	}
-
-	public String getVarDos() {
-		return varDos;
-	}
-
-	public void setVarDos(String varDos) {
-		this.varDos = varDos;
-	}
-
-	// Grafica WUL y WLL vs TIME en lineas y RAIN vs TIME en barras de una
-	// grafica tipo "Eurodollar futures..."
+	/**
+	 * Grafica WUL y WLL vs TIME en lineas y RAIN vs TIME en barras de una
+	 * grafica tipo "Eurodollar futures..."
+	 * @param g2d
+	 * @param obj
+	 */
 	public void paintEurodollar(Graphics2D g2d, Object obj) {
 		try {
 			String pTituloGrafica = "Balance de agua en el suelo";
@@ -69,7 +57,11 @@ public class PaintBean extends MaestroBean implements Serializable {
 		}
 	}
 
-	// Grafica las variables CSH y LAI vs TIME en grafica tipo XYSplineRenderer
+	/**
+	 * Grafica las variables CSH y LAI vs TIME en grafica tipo XYSplineRenderer
+	 * @param g2d
+	 * @param obj
+	 */
 	public void paintXYSplineRendererCSH_LAI(Graphics2D g2d, Object obj) {
 		try {
 			String pTituloGrafica = "Acumulación de biomasa y Indice de area foliar";
@@ -95,7 +87,11 @@ public class PaintBean extends MaestroBean implements Serializable {
 		}
 	}
 
-	// grafica NN y NUPTN vs TIME en grafica tipo XYSplineRenderer
+	/**
+	 * grafica NN y NUPTN vs TIME en grafica tipo XYSplineRenderer
+	 * @param g2d
+	 * @param obj
+	 */
 	public void paintXYSplineRendererNN_NUPTN(Graphics2D g2d, Object obj) {
 		try {
 			String pTituloGrafica = "Balance de nitrogeno en suelo";
@@ -111,11 +107,6 @@ public class PaintBean extends MaestroBean implements Serializable {
 					"C:\\ArchivosSubidos\\output_modelo_trigo.txt"));
 			resultado.set_archivo(archivo);
 
-			// chart = GraficaXYSplineRenderer.crearGrafica(this.getEJEFachada(
-			// ServicioEJE.Ejecucion).obtenerMapaResultado(
-			// new ResultadoMSCC()), "SHSA,HUMR", pTituloGrafica,
-			// pTituloVariables, pTituloEjeY, 600, 500);
-
 			chart = Graficador.createTipoXYSpline(pTituloGrafica, this
 					.getEJEFachada(ServicioEJE.Ejecucion).obtenerMapaResultado(
 							resultado), pLineas);
@@ -128,12 +119,17 @@ public class PaintBean extends MaestroBean implements Serializable {
 		}
 	}
 
-	// que grafique cualquier variable contra cualquier variable de las
-	// disponibles en output_modelo_trigo.txt en graficas tipo "Scatter plot"
+	/**
+	 * Grafica cualquier variable contra cualquier variable de las
+	 * disponibles en output_modelo_trigo.txt en graficas tipo "Scatter plot"
+	 * @param g2d
+	 * @param obj
+	 */
 	public void paintScatterPlot(Graphics2D g2d, Object obj) {
 		try {
 			String pTituloGrafica = "Grafica resultante de referencia "+ this.getVarUno()+" comparada con "+this.getVarDos();
 			String pLineas = "NN,NUPTN";
+			pLineas = "RNNLL,NNLL";
 			JFreeChart chart;
 			ResultadoMSCC resultado = new ResultadoMSCC();
 			Ubicacion ubicacion = new Ubicacion();
@@ -145,21 +141,32 @@ public class PaintBean extends MaestroBean implements Serializable {
 					"C:\\ArchivosSubidos\\output_modelo_trigo.txt"));
 			resultado.set_archivo(archivo);
 
-			// chart = GraficaXYSplineRenderer.crearGrafica(this.getEJEFachada(
-			// ServicioEJE.Ejecucion).obtenerMapaResultado(
-			// new ResultadoMSCC()), "SHSA,HUMR", pTituloGrafica,
-			// pTituloVariables, pTituloEjeY, 600, 500);
+			chart = Graficador.createTipoScatter(pTituloGrafica, this
+					.getEJEFachada(ServicioEJE.Ejecucion).obtenerMapaResultado(
+							resultado), pLineas);
 
-//			chart = Graficador.createTipoScatter(pTituloGrafica, this
-//					.getEJEFachada(ServicioEJE.Ejecucion).obtenerMapaResultado(
-//							resultado), pLineas);
-
-//			BufferedImage image = chart.createBufferedImage(600, 500,
-//					BufferedImage.TYPE_INT_RGB, null);
-//			g2d.drawImage(image, null, 0, 0);
+			BufferedImage image = chart.createBufferedImage(600, 500,
+					BufferedImage.TYPE_INT_RGB, null);
+			g2d.drawImage(image, null, 0, 0);
 		} catch (Exception e) {
 			this.setError(e.getMessage());
 		}
 	}
+	
+	public String getVarUno() {
+		return varUno;
+	}
 
+	public void setVarUno(String varUno) {
+		this.varUno = varUno;
+	}
+
+	public String getVarDos() {
+		return varDos;
+	}
+
+	public void setVarDos(String varDos) {
+		this.varDos = varDos;
+	}
+	
 }
