@@ -74,8 +74,7 @@ Secano.</title>
 											<h:panelGrid>
 												<h:panelGrid columns="2" width="480">
 													<center><h:graphicImage
-														url="/Recursos/Imagenes/logoINIA.gif"
-														style=" width : 197px; height : 61px;" /></center>
+														url="/Recursos/Imagenes/logoINIA20anio.jpg"/></center>
 												</h:panelGrid>
 												<center><h:panelGrid columns="2">
 													<a4j:commandButton style="font-size: 10pt; color: #2d77c2; width : 120px;"
