@@ -30,6 +30,7 @@ public class PaintBean extends MaestroBean implements Serializable {
 	/**
 	 * Grafica WUL y WLL vs TIME en lineas y RAIN vs TIME en barras de una
 	 * grafica tipo "Eurodollar futures..."
+	 * 
 	 * @param g2d
 	 * @param obj
 	 */
@@ -46,9 +47,9 @@ public class PaintBean extends MaestroBean implements Serializable {
 			archivo.set_datos(new File(
 					"C:\\ArchivosSubidos\\output_modelo_trigo.txt"));
 			resultado.set_archivo(archivo);
-			chart = Graficador.createTipoEurodollar(pTituloGrafica, this.getEJEFachada(
-					ServicioEJE.Ejecucion).obtenerMapaResultado(resultado),
-					null);
+			chart = Graficador.createTipoEurodollar(pTituloGrafica, this
+					.getEJEFachada(ServicioEJE.Ejecucion).obtenerMapaResultado(
+							resultado), null);
 			BufferedImage image = chart.createBufferedImage(600, 500,
 					BufferedImage.TYPE_INT_RGB, null);
 			g2d.drawImage(image, null, 0, 0);
@@ -59,6 +60,7 @@ public class PaintBean extends MaestroBean implements Serializable {
 
 	/**
 	 * Grafica las variables CSH y LAI vs TIME en grafica tipo XYSplineRenderer
+	 * 
 	 * @param g2d
 	 * @param obj
 	 */
@@ -89,6 +91,7 @@ public class PaintBean extends MaestroBean implements Serializable {
 
 	/**
 	 * grafica NN y NUPTN vs TIME en grafica tipo XYSplineRenderer
+	 * 
 	 * @param g2d
 	 * @param obj
 	 */
@@ -120,16 +123,19 @@ public class PaintBean extends MaestroBean implements Serializable {
 	}
 
 	/**
-	 * Grafica cualquier variable contra cualquier variable de las
-	 * disponibles en output_modelo_trigo.txt en graficas tipo "Scatter plot"
+	 * Grafica cualquier variable contra cualquier variable de las disponibles
+	 * en output_modelo_trigo.txt en graficas tipo "Scatter plot"
+	 * 
 	 * @param g2d
 	 * @param obj
 	 */
 	public void paintScatterPlot(Graphics2D g2d, Object obj) {
 		try {
-			String pTituloGrafica = "Grafica resultante de referencia "+ this.getVarUno()+" comparada con "+this.getVarDos();
-			String pLineas = "NN,NUPTN";
-			pLineas = "RNNLL,NNLL";
+			String pTituloGrafica = "Grafica resultante de referencia "
+					+ this.getVarUno() + " comparada con " + this.getVarDos();
+			if (!this.getVarUno().isEmpty() && !this.getVarDos().isEmpty()){}
+			String pLineas = this.getVarUno() + "," + this.getVarDos();
+			pLineas="CLVD,NNLL";
 			JFreeChart chart;
 			ResultadoMSCC resultado = new ResultadoMSCC();
 			Ubicacion ubicacion = new Ubicacion();
@@ -152,7 +158,7 @@ public class PaintBean extends MaestroBean implements Serializable {
 			this.setError(e.getMessage());
 		}
 	}
-	
+
 	public String getVarUno() {
 		return varUno;
 	}
@@ -168,5 +174,5 @@ public class PaintBean extends MaestroBean implements Serializable {
 	public void setVarDos(String varDos) {
 		this.varDos = varDos;
 	}
-	
+
 }
