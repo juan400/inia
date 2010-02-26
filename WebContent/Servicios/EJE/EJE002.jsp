@@ -72,7 +72,7 @@ Secano.</title>
 										</h:column>
 
 										<h:column>
-											<h:panelGroup rendered="#{cultivoBean.init}" />
+											<h:panelGroup rendered="#{paintBean.init}" />
 											<h:panelGrid>
 												<rich:panel headerClass="tituloPantalla"
 													style="background-color: #ebf3fd;">
