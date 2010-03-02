@@ -80,37 +80,72 @@ Secano.</title>
 														<h:panelGrid columns="2"
 															columnClasses="textoPlano,textoDataTable">
 
-															<h:outputText value="#{text.usuario_Nombre}" />
-															<h:inputText label="Name" id="nombre"
-																value="#{administrarUsuarioBean.nombre}" disabled="true"
+															<h:outputText value="Direcctorio de archivos" />
+															<h:inputText label="Directorio"
+																value="#{ubicacionBean.pathDirectorio}" required="true"
+																requiredMessage="Debe ingresar un path para el directorio"
 																style=" width : 245px;">
 															</h:inputText>
 
-															<h:outputText value="#{text.usuario_Apellido}" />
-															<h:inputText label="Name" id="apellido"
-																value="#{administrarUsuarioBean.apellido}"
-																disabled="true" style=" width : 245px;">
-															</h:inputText>
-
-															<h:outputText value="#{text.usuario_Estado}" />
-															<rich:comboBox styleClass="textoDataTable" id="estado"
-																value="#{administrarUsuarioBean.estado}" width="245px">
-																<f:selectItem itemValue="Activo" />
-																<f:selectItem itemValue="Inactivo" />
-																<f:selectItem itemValue="Registrado" />
-																<f:selectItem itemValue="Bloqueado" />
-															</rich:comboBox>
-
-															<h:outputText value="#{text.usuario_Perfil}" />
-															<rich:comboBox styleClass="textoDataTable" id="perfil"
-																value="#{administrarUsuarioBean.perfil._nombre}"
-																width="245px">
-																<f:selectItems
-																	value="#{administrarUsuarioBean.perfiles}" />
+															<h:outputText value="Tipos de archivo a almacenar" />
+															<rich:comboBox styleClass="textoDataTable"
+																value="#{ubicacionBean.tipoArchvo}" width="245px"
+																required="true"
+																requiredMessage="Debe seleccionar un tipo de archivo a almacenar">
+																<f:selectItems value="#{ubicacionBean.tipos}" />
 															</rich:comboBox>
 
 															<td style="width: 2px;"></td>
 															<h:outputText value="" />
+														</h:panelGrid>
+														<h:panelGrid>
+															<center><rich:dataTable border="2" width="550px"
+																rows="10" styleClass="textoDataTable"
+																id="tablaUbicaciones"
+																value="#{ubicacionBean.ubicaciones}" var="ubicacion"
+																rowKeyVar="row" headerClass="columnHeader"
+																rowClasses="oddRow,evenRow">
+
+																<f:facet name="header">
+																	<h:outputText
+																		value="Lista de ubicaciones actuales de los archivos" />
+																</f:facet>
+
+																<rich:column width="170px">
+																	<f:facet name="header">
+																		<h:outputText value="Path del directorio" />
+																	</f:facet>
+																	<h:outputText value="#{ubicacion._pathArchivo}"
+																		id="nombre" />
+																</rich:column>
+
+																<rich:column width="170px">
+																	<f:facet name="header">
+																		<h:outputText value="Tipo de archivos" />
+																	</f:facet>
+																	<h:outputText value="#{ubicacion._tipoArchivo.name}"
+																		id="apellido" />
+																</rich:column>
+
+																<rich:column width="50px">
+																	<f:facet name="header">
+																		<h:outputText value="Modificar" />
+																	</f:facet>
+
+																	<center><a4j:commandButton
+																		action="#{ubicacionBean.verUbicacion}"
+																		image="/Recursos/Imagenes/Iconos/edit.gif"
+																		style="width : 27px; height : 21px;">
+																		<a4j:actionparam name="ubicacionEjegida"
+																			value="#{ubicacion._id}" />
+																		<rich:toolTip value="Modificar" />
+																	</a4j:commandButton></center>
+																</rich:column>
+
+																<f:facet name="footer">
+																	<rich:datascroller renderIfSinglePage="false" />
+																</f:facet>
+															</rich:dataTable></center>
 														</h:panelGrid>
 													</h:panelGrid>
 												</rich:panel>
@@ -119,7 +154,7 @@ Secano.</title>
 													<a4j:commandButton
 														style="font-size: 10pt; color: #2d77c2; width : 120px;"
 														styleClass="textoPlano"
-														action="#{administrarUsuarioBean.actualizar}"
+														action="#{ubicacionBean.actualizar}"
 														value="#{text.boton_Aceptar}" />
 
 													<a4j:commandButton immediate="true"
@@ -137,7 +172,7 @@ Secano.</title>
 															</f:facet>
 														</rich:messages>
 														<h:outputText styleClass="textoPlano"
-															value="#{datosUsuarioBean.exito}" />
+															value="#{ubicacionBean.exito}" />
 													</h:panelGrid>
 												</f:facet></center>
 											</h:panelGrid>
