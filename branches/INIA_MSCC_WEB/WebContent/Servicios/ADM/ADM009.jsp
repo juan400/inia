@@ -137,7 +137,7 @@ Secano.</title>
 															</f:facet>
 														</rich:messages>
 														<h:outputText styleClass="textoPlano"
-															value="#{datosUsuarioBean.exito}" />
+															value="#{administrarUsuarioBean.exito}" />
 													</h:panelGrid>
 												</f:facet></center>
 											</h:panelGrid>
