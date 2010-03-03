@@ -9,16 +9,19 @@ import com.inia_mscc.modulos.adm.entidades.ListaCriterioSeleccion;
 import com.inia_mscc.modulos.adm.entidades.Pais;
 import com.inia_mscc.modulos.adm.entidades.Region;
 import com.inia_mscc.modulos.adm.entidades.Transaccion;
+import com.inia_mscc.modulos.adm.entidades.Ubicacion;
 import com.inia_mscc.modulos.adm.entidades.ValorSeleccion;
 import com.inia_mscc.modulos.adm.proveedores.ProveedorListaCriterio;
 import com.inia_mscc.modulos.adm.proveedores.ProveedorRegion;
 import com.inia_mscc.modulos.adm.proveedores.ProveedorRelacionPCD;
 import com.inia_mscc.modulos.adm.proveedores.ProveedorTransaccion;
+import com.inia_mscc.modulos.adm.proveedores.ProveedorUbicacion;
 import com.inia_mscc.modulos.adm.proveedores.ProveedorValorSeleccion;
 import com.inia_mscc.modulos.adm.servicios.ServicioListaCriterio;
 import com.inia_mscc.modulos.adm.servicios.ServicioRegion;
 import com.inia_mscc.modulos.adm.servicios.ServicioRelacionPCD;
 import com.inia_mscc.modulos.adm.servicios.ServicioTransaccion;
+import com.inia_mscc.modulos.adm.servicios.ServicioUbicacion;
 import com.inia_mscc.modulos.adm.servicios.ServicioValorSeleccion;
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
 
@@ -29,6 +32,7 @@ public class ADMFachada {
 	private ServicioRegion srvRegion;
 	private ServicioValorSeleccion srvValorSeleccion;
 	private ServicioListaCriterio srvListaCriterio;
+	private ServicioUbicacion srvUbicacion;
 
 	public ADMFachada(Enumerados.ServicioADM servicio) {
 		try {
@@ -47,6 +51,9 @@ public class ADMFachada {
 				break;
 			case ListaCriterio:
 				srvListaCriterio = new ProveedorListaCriterio();
+				break;
+			case Ubicacion:
+				srvUbicacion = new ProveedorUbicacion();	
 				break;
 			}
 
@@ -158,6 +165,21 @@ public class ADMFachada {
 	public void ActualizarListaCriterio(ListaCriterioSeleccion pCriterio){
 		srvListaCriterio.ActualizarListaCriterio(pCriterio);
 	}
-	
+
+	public void ActualizarUbicacion(Ubicacion pUbicacion) {
+		srvUbicacion.ActualizarUbicacion(pUbicacion);
+	}
+
+	public Ubicacion ObtenerUbicacion(Ubicacion pUbicacion) {
+		return srvUbicacion.ObtenerUbicacion(pUbicacion);
+	}
+
+	public List<Ubicacion> ObtenerUbicacions(Ubicacion pUbicacion) {
+		return srvUbicacion.ObtenerUbicacions(pUbicacion);
+	}
+
+	public Ubicacion RegistrarUbicacion(Ubicacion pUbicacion) {
+		return srvUbicacion.RegistrarUbicacion(pUbicacion);
+	}
 	
 }
