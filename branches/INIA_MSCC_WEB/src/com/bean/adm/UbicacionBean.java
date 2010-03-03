@@ -11,7 +11,7 @@ import javax.faces.model.SelectItem;
 
 import com.bean.comun.MaestroBean;
 import com.inia_mscc.modulos.adm.entidades.Ubicacion;
-import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioSEG;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioADM;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.TipoArchivo;
 
 public class UbicacionBean extends MaestroBean implements Serializable {
@@ -70,7 +70,7 @@ public class UbicacionBean extends MaestroBean implements Serializable {
 
 	public UbicacionBean() {
 		try {
-//			this.setUbicaciones(this.getSegFachada(ServicioADM).ObtenerUsuarios();
+			this.setUbicaciones(this.getAdmFachada(ServicioADM.Ubicacion).ObtenerUbicacions(null));
 			this.setUbicaciones(new ArrayList<Ubicacion>());
 			tipos = new SelectItem[TipoArchivo.values().length];
 			SelectItem si = new SelectItem(TipoArchivo.Climatologico.name());

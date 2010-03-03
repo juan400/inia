@@ -1,4 +1,4 @@
-package com.inia_mscc.modulos.gem.proveedores;
+package com.inia_mscc.modulos.adm.proveedores;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,7 +9,7 @@ import javax.naming.NamingException;
 
 import com.inia_mscc.excepciones.ProviderException;
 import com.inia_mscc.modulos.adm.entidades.Ubicacion;
-import com.inia_mscc.modulos.gem.servicios.ServicioUbicacion;
+import com.inia_mscc.modulos.adm.servicios.ServicioUbicacion;
 
 public class ProveedorUbicacion implements ServicioUbicacion {
 	

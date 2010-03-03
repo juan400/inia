@@ -1,4 +1,4 @@
-package com.inia_mscc.modulos.gem.ejb;
+package com.inia_mscc.modulos.adm.ejb;
 
 import java.util.List;
 
@@ -9,9 +9,9 @@ import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 
+import com.inia_mscc.modulos.adm.dao.DAOUbicacion;
 import com.inia_mscc.modulos.adm.entidades.Ubicacion;
-import com.inia_mscc.modulos.gem.dao.DAOUbicacion;
-import com.inia_mscc.modulos.gem.servicios.ServicioUbicacion;
+import com.inia_mscc.modulos.adm.servicios.ServicioUbicacion;
 
 
 @Stateless(name = "EJBUbicacion", mappedName = "EJBUbicacion")

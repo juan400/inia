@@ -1,4 +1,4 @@
-package com.inia_mscc.modulos.gem.dao;
+package com.inia_mscc.modulos.adm.dao;
 
 import java.io.Serializable;
 import java.util.List;
