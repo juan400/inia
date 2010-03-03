@@ -278,7 +278,7 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 								.toString()));
 						Ubicacion ubicacion = new Ubicacion();
 						ubicacion.set_tipoArchivo(TipoArchivo.Escenario);
-						ubicacion = this.getGEMFachada(ServicioGEM.Ubicacion)
+						ubicacion = this.getAdmFachada(ServicioADM.Ubicacion)
 								.ObtenerUbicacion(ubicacion);
 						archivoSubido = new Archivo(getUsuario().get_login(),
 								TipoArchivo.Escenario, new Date(),

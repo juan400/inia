@@ -3,7 +3,6 @@ package com.inia_mscc.modulos.gem;
 import java.io.IOException;
 import java.util.List;
 
-import com.inia_mscc.modulos.adm.entidades.Ubicacion;
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.gem.entidades.Archivo;
 import com.inia_mscc.modulos.gem.entidades.Cultivo;
@@ -11,17 +10,14 @@ import com.inia_mscc.modulos.gem.entidades.Propiedad;
 import com.inia_mscc.modulos.gem.proveedores.ProveedorArchivo;
 import com.inia_mscc.modulos.gem.proveedores.ProveedorCultivo;
 import com.inia_mscc.modulos.gem.proveedores.ProveedorPropiedad;
-import com.inia_mscc.modulos.gem.proveedores.ProveedorUbicacion;
 import com.inia_mscc.modulos.gem.servicios.ServicioArchivo;
 import com.inia_mscc.modulos.gem.servicios.ServicioCultivo;
 import com.inia_mscc.modulos.gem.servicios.ServicioPropiedad;
-import com.inia_mscc.modulos.gem.servicios.ServicioUbicacion;
 
 public class GEMFachada {
 	private ServicioCultivo srvCultivo;
 	private ServicioPropiedad srvPropiedad;
 	private ServicioArchivo srvArchivo;
-	private ServicioUbicacion srvUbicacion;
 	
 	public GEMFachada(Enumerados.ServicioGEM servicio) {
 		try {
@@ -34,9 +30,6 @@ public class GEMFachada {
 				break;
 			case Archivo:
 				srvArchivo = new ProveedorArchivo();	
-				break;
-			case Ubicacion:
-				srvUbicacion = new ProveedorUbicacion();	
 				break;
 			}
 
@@ -99,21 +92,5 @@ public class GEMFachada {
 
 	public Archivo RegistrarArchivo(Archivo pArchivo) throws Exception {
 		return srvArchivo.RegistrarArchivo(pArchivo);
-	}
-
-	public void ActualizarUbicacion(Ubicacion pUbicacion) {
-		srvUbicacion.ActualizarUbicacion(pUbicacion);
-	}
-
-	public Ubicacion ObtenerUbicacion(Ubicacion pUbicacion) {
-		return srvUbicacion.ObtenerUbicacion(pUbicacion);
-	}
-
-	public List<Ubicacion> ObtenerUbicacions(Ubicacion pUbicacion) {
-		return srvUbicacion.ObtenerUbicacions(pUbicacion);
-	}
-
-	public Ubicacion RegistrarUbicacion(Ubicacion pUbicacion) {
-		return srvUbicacion.RegistrarUbicacion(pUbicacion);
 	}
 }

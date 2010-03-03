@@ -15,7 +15,7 @@ import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.TipoArchivo;
 
 @Entity(name = "Ubicacion")
-@Table(name = "tl_gem_ubar_ubicacionarchivo")
+@Table(name = "tl_adm_ubar_ubicacionarchivo")
 public class Ubicacion implements Serializable {
 	/**
 	 * 
@@ -26,7 +26,7 @@ public class Ubicacion implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ubar_num_id", updatable = false, nullable = false, columnDefinition = "BIGINT(20)")
 	private long _id;
- 
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "ubar_str_tipo_archivo", nullable = false, columnDefinition = "VARCHAR(220)")
 	private Enumerados.TipoArchivo _tipoArchivo;
@@ -40,7 +40,7 @@ public class Ubicacion implements Serializable {
 		_tipoArchivo = tipoArchivo;
 		_urlPaht = urlPaht;
 	}
-	
+
 	public Ubicacion() {
 	}
 

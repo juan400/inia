@@ -1,4 +1,4 @@
-package com.inia_mscc.modulos.gem.servicios;
+package com.inia_mscc.modulos.adm.servicios;
 
 import java.util.List;
 

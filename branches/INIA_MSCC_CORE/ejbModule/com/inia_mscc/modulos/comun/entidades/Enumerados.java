@@ -23,7 +23,7 @@ public class Enumerados {
 	}
 
 	static public enum ServicioADM {
-		RelacionPCD, Transaccion, Region, ValorSeleccion, ListaCriterio
+		RelacionPCD, Transaccion, Region, ValorSeleccion, Ubicacion, ListaCriterio
 	}
 
 	static public enum ServicioSEG {
@@ -31,7 +31,7 @@ public class Enumerados {
 	}
 
 	static public enum ServicioGEM {
-		Cultivo, Propiedad, Escenario, Ubicacion, Archivo
+		Cultivo, Propiedad, Escenario, Archivo
 	}
 
 	static public enum ServicioEJE {
