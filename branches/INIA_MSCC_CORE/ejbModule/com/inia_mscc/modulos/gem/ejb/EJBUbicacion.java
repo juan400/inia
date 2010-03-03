@@ -9,8 +9,8 @@ import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 
+import com.inia_mscc.modulos.adm.entidades.Ubicacion;
 import com.inia_mscc.modulos.gem.dao.DAOUbicacion;
-import com.inia_mscc.modulos.gem.entidades.Ubicacion;
 import com.inia_mscc.modulos.gem.servicios.ServicioUbicacion;
 
 

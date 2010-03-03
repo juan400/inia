@@ -12,6 +12,7 @@ import org.richfaces.model.UploadItem;
 
 import com.bean.comun.MaestroBean;
 import com.inia_mscc.modulos.adm.entidades.Region;
+import com.inia_mscc.modulos.adm.entidades.Ubicacion;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioADM;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioGEM;
@@ -19,7 +20,6 @@ import com.inia_mscc.modulos.comun.entidades.Enumerados.TipoArchivo;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.TipoExtencionArchivo;
 import com.inia_mscc.modulos.gem.entidades.Archivo;
 import com.inia_mscc.modulos.gem.entidades.Cultivo;
-import com.inia_mscc.modulos.gem.entidades.Ubicacion;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
 public class SubirEscenarioBean extends MaestroBean implements Serializable {

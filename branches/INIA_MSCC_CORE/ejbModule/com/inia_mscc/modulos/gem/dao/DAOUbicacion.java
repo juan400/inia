@@ -11,7 +11,7 @@ import org.hibernate.criterion.Restrictions;
 import com.inia_mscc.config.hibernate.HibernateUtil;
 import com.inia_mscc.config.util.LoggingUtilities;
 import com.inia_mscc.excepciones.IniaPersistenciaException;
-import com.inia_mscc.modulos.gem.entidades.Ubicacion;
+import com.inia_mscc.modulos.adm.entidades.Ubicacion;
 
 public class DAOUbicacion implements Serializable {
 	private static final long serialVersionUID = 1L;

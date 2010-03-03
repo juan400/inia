@@ -15,6 +15,7 @@ import org.jfree.chart.JFreeChart;
 
 import com.bean.comun.MaestroBean;
 import com.inia_mscc.modulos.adm.entidades.ListaCriterioSeleccion;
+import com.inia_mscc.modulos.adm.entidades.Ubicacion;
 import com.inia_mscc.modulos.adm.entidades.ValorSeleccion;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioADM;
@@ -23,7 +24,6 @@ import com.inia_mscc.modulos.comun.entidades.Enumerados.TipoArchivo;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.TipoExtencionArchivo;
 import com.inia_mscc.modulos.eje.entidades.ResultadoMSCC;
 import com.inia_mscc.modulos.gem.entidades.Archivo;
-import com.inia_mscc.modulos.gem.entidades.Ubicacion;
 
 public class ResultadoBean extends MaestroBean implements Serializable {
 

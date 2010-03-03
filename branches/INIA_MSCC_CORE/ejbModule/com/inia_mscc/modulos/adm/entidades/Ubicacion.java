@@ -1,4 +1,4 @@
-package com.inia_mscc.modulos.gem.entidades;
+package com.inia_mscc.modulos.adm.entidades;
 
 import java.io.Serializable;
 

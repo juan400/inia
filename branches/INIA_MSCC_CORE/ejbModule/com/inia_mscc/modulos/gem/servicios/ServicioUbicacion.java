@@ -2,7 +2,7 @@ package com.inia_mscc.modulos.gem.servicios;
 
 import java.util.List;
 
-import com.inia_mscc.modulos.gem.entidades.Ubicacion;
+import com.inia_mscc.modulos.adm.entidades.Ubicacion;
 
 public interface ServicioUbicacion {
 
