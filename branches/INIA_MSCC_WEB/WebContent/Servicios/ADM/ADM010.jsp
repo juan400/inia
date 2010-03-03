@@ -81,10 +81,13 @@ Secano.</title>
 															columnClasses="textoPlano,textoDataTable">
 
 															<h:outputText value="Direcctorio de archivos" />
-															<h:inputText label="Directorio"
+															<h:inputText id="txtDirectorio"
 																value="#{ubicacionBean.pathDirectorio}" required="true"
 																requiredMessage="Debe ingresar un path para el directorio"
 																style=" width : 245px;">
+																<a4j:support event="onchange"
+																	action="#{ubicacionBean.validarURL}" ajaxSingle="true"
+																	reRender="txtDirectorio" />
 															</h:inputText>
 
 															<h:outputText value="Tipos de archivo a almacenar" />
@@ -94,7 +97,20 @@ Secano.</title>
 																requiredMessage="Debe seleccionar un tipo de archivo a almacenar">
 																<f:selectItems value="#{ubicacionBean.tipos}" />
 															</rich:comboBox>
+														</h:panelGrid>
+														<h:panelGrid>
+															<a4j:commandButton
+																style="font-size: 10pt; color: #2d77c2; width : 120px;"
+																styleClass="textoPlano"
+																action="#{ubicacionBean.nuevo}"
+																value="Ingresar" />
 
+															<a4j:commandButton
+																style="font-size: 10pt; color: #2d77c2; width : 120px;"
+																styleClass="textoPlano"
+																action="#{ubicacionBean.actualizar}"
+																value="Atualizar" />
+																
 															<td style="width: 2px;"></td>
 															<h:outputText value="" />
 														</h:panelGrid>
@@ -154,7 +170,7 @@ Secano.</title>
 													<a4j:commandButton
 														style="font-size: 10pt; color: #2d77c2; width : 120px;"
 														styleClass="textoPlano"
-														action="#{ubicacionBean.actualizar}"
+														action="#{ubicacionBean.registrar}"
 														value="#{text.boton_Aceptar}" />
 
 													<a4j:commandButton immediate="true"
