@@ -10,9 +10,9 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import com.bean.comun.MaestroBean;
+import com.inia_mscc.modulos.adm.entidades.Ubicacion;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioSEG;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.TipoArchivo;
-import com.inia_mscc.modulos.gem.entidades.Ubicacion;
 
 public class UbicacionBean extends MaestroBean implements Serializable {
 
