@@ -81,7 +81,7 @@ Secano.</title>
 												<f:validateLength minimum="6" maximum="13" />
 											</h:inputSecret>
 
-											<h:outputText value="#{text.registro_Frase}"
+											<h:outputText value="Ingrese la frase secreta"
 												styleClass="textoPlano" />
 											<h:inputText id="txtfrase" value="#{confirmacionBean.frase}"
 												styleClass="textoPlano" tabindex="3" required="true"

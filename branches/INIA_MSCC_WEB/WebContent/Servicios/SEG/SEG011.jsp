@@ -56,89 +56,86 @@ Secano.</title>
 									<h:panelGrid>
 										<center><h:outputText styleClass="mensajeError"
 											style="font-size: 12pt" value="#{text.login_notLogged}" /></center>
-
 										<center><a4j:commandButton
 											style="font-size: 10pt; color: #2d77c2; width : 120px;"
 											styleClass="textoPlano" action="#{loginBean.logout}"
 											value="#{text.login_Login}" /></center>
 									</h:panelGrid>
 								</h:panelGrid></center>
-
 								<h:panelGroup rendered="#{loginBean.logged}">
-									<h:panelGrid columns="2" columnClasses="cols" width="200">
-										<h:column>
-											<h:panelGroup rendered="#{menuBean.init}" />
-											<rich:panelMenu binding="#{menuBean.panelMenu}" />
-										</h:column>
 
-										<h:column>
-											<h:panelGroup rendered="#{cultivoBean.init}" />
-											<h:panelGrid>
-												<rich:panel headerClass="tituloPantalla"
-													style="background-color: #ebf3fd;">
-													<f:facet name="header">
-														<h:outputText value="#{text.cultivo_Ingresar}" />
-													</f:facet>
-													<h:panelGrid>
-														<h:panelGrid columns="2"
-															columnClasses="textoPlano,textoPlano" width="400">
+									<rich:panel headerClass="tituloPantalla"
+										style="background-color: #ebf3fd;">
+										<f:facet name="header">
+											<h:outputText value="Envio Solicitud de Permisos" />
+										</f:facet>
 
-															<h:outputText value="#{text.cultivo_Nombre}" />
-															<h:inputText value="#{cultivoBean.nombre}"
-																required="true"
-																requiredMessage="Debe Ingresar un nombre para el cultivo"
-																styleClass="textoPlano" maxlength="50"
-																onkeypress="ValidarCampoLetras(this, event)"
-																style=" width : 220px;" />
+										<h:panelGrid columns="2" rendered="#{loginBean.logged}"
+											columnClasses="cols">
+											<h:column>
+												<h:panelGroup rendered="#{menuBean.init}" />
+												<rich:panelMenu binding="#{menuBean.panelMenu}" />
+											</h:column>
+											<h:column>
+												<h:panelGrid>
+													<h:panelGrid columns="2" width="400px"
+														columnClasses="textoPlano,textoDataTable">
 
-															<h:outputText value="#{text.cultivo_Descripcion}" />
-															<h:inputTextarea value="#{cultivoBean.descripcion}"
-																required="true"
-																requiredMessage="Debe Ingresar la descripción del cultivo"
-																styleClass="textoPlano"
-																onkeypress="ValidarCampoLetras(this, event)"
-																style=" width : 220px; height : 56px;">
-																<f:validateLength maximum="220" />
-															</h:inputTextarea>
+														<h:outputText value="#{text.perfil_Nombre}" />
+														<h:inputText label="Name" id="name" 
+															style=" width : 245px;">
+														</h:inputText>
 
-															<h:outputLabel value="#{text.cultivo_Estado}" />
-															<rich:comboBox value="#{cultivoBean.estado}"
-																style=" higth : 18px;" enableManualInput="false"
-																styleClass="combo" width="220">
-																<f:selectItems value="#{cultivoBean.estados}" />
-															</rich:comboBox>
+														<h:outputText value="E-Mail" />
+														<h:inputText label="Name" id="name"
+															style=" width : 245px;">
+														</h:inputText>
+
+														<h:outputText value="#{text.perfil_Descripcion}" />
+														<h:inputTextarea id="Detalle Solicitud"
+															style=" width : 245px; height : 71px;" />
+
+														<h:outputText value="Fecha Solicitud" />
+														<rich:calendar id="calFecha"
+															inputClass="rich-calendar-input"
+															enableManualInput="false" locale="ES" disabled="true"
+															showApplyButton="false" datePattern="dd/MM/yyyy"
+															popup="true" cellWidth="24px" cellHeight="22px"
+															style="width:245px" />
+
+														<td style="width: 2px;"></td>
+														<h:outputText value="" />
+
+													</h:panelGrid>
+
+													<center><h:panelGrid columns="3">
+														<a4j:commandButton
+															style="font-size: 10pt; color: #2d77c2; width : 120px;"
+															styleClass="textoPlano" action="#{}"
+															value="Enviar Solicitud" />
+
+														<a4j:commandButton immediate="true"
+															style="font-size: 10pt; color: #2d77c2; width : 120px;"
+															styleClass="textoPlano" action="salir"
+															value="#{text.boton_Cancelar}" />
+													</h:panelGrid></center>
+
+													<center><f:facet name="footer">
+														<h:panelGrid>
+															<rich:messages styleClass="mensajeError">
+																<f:facet name="errorMarker">
+																	<h:graphicImage
+																		value="/Recursos/Imagenes/Iconos/error.gif" />
+																</f:facet>
+															</rich:messages>
+															<h:outputText styleClass="textoPlano"
+																value="#{datosUsuarioBean.exito}" />
 														</h:panelGrid>
-														
-																										<td></td>
-												<center><h:panelGrid columns="2">
-													<a4j:commandButton
-														style="font-size: 10pt; color: #2d77c2; width : 120px;"
-														styleClass="textoPlano"
-														action="#{cultivoBean.registrar}"
-														value="#{text.boton_Aceptar}" />
-													<a4j:commandButton immediate="true"
-														style="font-size: 10pt; color: #2d77c2; width : 120px;"
-														styleClass="textoPlano" action="salir"
-														value="#{text.boton_Cancelar}" />
-												</h:panelGrid></center>
-
-												<center><f:facet name="footer">
-													<h:panelGrid>
-														<rich:messages styleClass="mensajeError">
-															<f:facet name="errorMarker">
-																<h:graphicImage
-																	value="/Recursos/Imagenes/Iconos/error.gif" />
-															</f:facet>
-														</rich:messages>
-														<h:outputText styleClass="textoPlano"
-															value="#{cultivoBean.exito}" />
-													</h:panelGrid>
-												</f:facet></center>
-													</h:panelGrid>
-												</rich:panel>
-											</h:panelGrid>
-										</h:column>
-									</h:panelGrid>
+													</f:facet></center>
+												</h:panelGrid>
+											</h:column>
+										</h:panelGrid>
+									</rich:panel>
 								</h:panelGroup>
 							</rich:panel>
 						</h:panelGrid>
