@@ -1,5 +1,6 @@
 package com.bean.adm;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -27,8 +28,65 @@ public class UbicacionBean extends MaestroBean implements Serializable {
 	private List<Ubicacion> ubicaciones;
 	private String ubicacionEjegida;
 	private Ubicacion ubicacion = new Ubicacion();
+	private boolean disableTipoArchivo = false;
+
+	public String registrar(){
+		return "ADM010";
+	}
+	
+	public void validarURL() {
+		String url = pathDirectorio.replace("\\","\\\\");
+//		   File directorio = new File("c:\\ArchivosSubidos\\directorio");
+		   File directorio = new File(url);
+		   if (!directorio.isDirectory()){
+			   this.setError("La ruta ingresada no es un directorio valido.");
+			   System.out.println("La ruta ingresada no es un directorio valido.");
+		   }else{
+			   System.out.println("La ruta ingresada es un directorio valido.");
+		   }
+	}
+
+	public String nuevo() {
+		if (!this.existeUbicacionTipoArchivo()) {
+			this.setUbicacion(new Ubicacion());
+			this.getUbicacion().set_tipoArchivo(TipoArchivo.valueOf(tipoArchvo));
+			this.getUbicacion().set_urlPaht(pathDirectorio);
+		}
+		return "ADM010";
+	}
+
+	private boolean existeUbicacionTipoArchivo() {
+		boolean existe = false;
+		Iterator<Ubicacion> it = ubicaciones.iterator();
+		while (it.hasNext()) {
+			Ubicacion ubicacionSeleccionada = (Ubicacion) it.next();
+			if (ubicacionSeleccionada.get_tipoArchivo().name()
+					.equalsIgnoreCase(tipoArchvo)) {
+				existe = true;
+				break;
+			}
+		}
+		return existe;
+	}
 
 	public String actualizar() {
+		if (this.getUbicacion().get_id() == (long) Long
+				.parseLong(ubicacionEjegida)) {
+			this.getUbicacion()
+					.set_tipoArchivo(TipoArchivo.valueOf(tipoArchvo));
+			this.getUbicacion().set_urlPaht(pathDirectorio);
+			Iterator<Ubicacion> it = ubicaciones.iterator();
+			while (it.hasNext()) {
+				Ubicacion ubicacionSeleccionada = (Ubicacion) it.next();
+				if (ubicacionSeleccionada.get_id() == (long) Long
+						.parseLong(ubicacionEjegida)) {
+					// if (!this.existeUbicacionTipoArchivo()) {
+					ubicacionSeleccionada = this.getUbicacion();
+					this.setDisableTipoArchivo(false);
+					// }
+				}
+			}
+		}
 		return "ADM010";
 	}
 
@@ -42,6 +100,7 @@ public class UbicacionBean extends MaestroBean implements Serializable {
 			if (ubicacionSeleccionada.get_id() == (long) Long
 					.parseLong(ubicacionEjegida)) {
 				this.setUbicacion(ubicacionSeleccionada);
+				this.setDisableTipoArchivo(true);
 			}
 		}
 		return "resultados";
@@ -70,7 +129,8 @@ public class UbicacionBean extends MaestroBean implements Serializable {
 
 	public UbicacionBean() {
 		try {
-			this.setUbicaciones(this.getAdmFachada(ServicioADM.Ubicacion).ObtenerUbicacions(null));
+			this.setUbicaciones(this.getAdmFachada(ServicioADM.Ubicacion)
+					.ObtenerUbicacions(null));
 			this.setUbicaciones(new ArrayList<Ubicacion>());
 			tipos = new SelectItem[TipoArchivo.values().length];
 			SelectItem si = new SelectItem(TipoArchivo.Climatologico.name());
@@ -140,6 +200,14 @@ public class UbicacionBean extends MaestroBean implements Serializable {
 
 	public Ubicacion getUbicacion() {
 		return ubicacion;
+	}
+
+	public void setDisableTipoArchivo(boolean disableTipoArchivo) {
+		this.disableTipoArchivo = disableTipoArchivo;
+	}
+
+	public boolean isDisableTipoArchivo() {
+		return disableTipoArchivo;
 	}
 
 }
