@@ -3,11 +3,11 @@ package com.inia_mscc.modulos.gem;
 import java.io.IOException;
 import java.util.List;
 
+import com.inia_mscc.modulos.adm.entidades.Ubicacion;
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.gem.entidades.Archivo;
 import com.inia_mscc.modulos.gem.entidades.Cultivo;
 import com.inia_mscc.modulos.gem.entidades.Propiedad;
-import com.inia_mscc.modulos.gem.entidades.Ubicacion;
 import com.inia_mscc.modulos.gem.proveedores.ProveedorArchivo;
 import com.inia_mscc.modulos.gem.proveedores.ProveedorCultivo;
 import com.inia_mscc.modulos.gem.proveedores.ProveedorPropiedad;

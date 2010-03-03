@@ -8,7 +8,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import com.inia_mscc.excepciones.ProviderException;
-import com.inia_mscc.modulos.gem.entidades.Ubicacion;
+import com.inia_mscc.modulos.adm.entidades.Ubicacion;
 import com.inia_mscc.modulos.gem.servicios.ServicioUbicacion;
 
 public class ProveedorUbicacion implements ServicioUbicacion {

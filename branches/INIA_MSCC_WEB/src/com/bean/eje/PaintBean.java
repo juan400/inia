@@ -9,13 +9,13 @@ import java.util.Date;
 import org.jfree.chart.JFreeChart;
 
 import com.bean.comun.MaestroBean;
+import com.inia_mscc.modulos.adm.entidades.Ubicacion;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioEJE;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.TipoArchivo;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.TipoExtencionArchivo;
 import com.inia_mscc.modulos.eje.entidades.ResultadoMSCC;
 import com.inia_mscc.modulos.gem.entidades.Archivo;
-import com.inia_mscc.modulos.gem.entidades.Ubicacion;
 
 public class PaintBean extends MaestroBean implements Serializable {
 
