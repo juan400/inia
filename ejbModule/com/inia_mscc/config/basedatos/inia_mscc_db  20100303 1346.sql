@@ -1,7 +1,7 @@
 -- MySQL Administrator dump 1.4
 --
 -- ------------------------------------------------------
--- Server version	5.1.40-community
+-- Server version	5.1.43-community
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -762,6 +762,26 @@ INSERT INTO `tl_adm_tran_transaccion` (`tran_num_id`,`tran_num_id_estado`,`tran_
 
 
 --
+-- Definition of table `tl_adm_ubar_ubicacionarchivo`
+--
+
+DROP TABLE IF EXISTS `tl_adm_ubar_ubicacionarchivo`;
+CREATE TABLE `tl_adm_ubar_ubicacionarchivo` (
+  `ubar_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ubar_str_path` text NOT NULL,
+  `ubar_str_tipo_archivo` varchar(220) NOT NULL,
+  PRIMARY KEY (`ubar_num_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tl_adm_ubar_ubicacionarchivo`
+--
+
+/*!40000 ALTER TABLE `tl_adm_ubar_ubicacionarchivo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tl_adm_ubar_ubicacionarchivo` ENABLE KEYS */;
+
+
+--
 -- Definition of table `tl_adm_vase_valorseleccion`
 --
 
@@ -775,7 +795,7 @@ CREATE TABLE `tl_adm_vase_valorseleccion` (
   PRIMARY KEY (`vase_num_id`),
   KEY `FK_vase_num_id_listacriterio` (`vase_num_id_listacriterio`),
   CONSTRAINT `FK_vase_num_id_listacriterio` FOREIGN KEY (`vase_num_id_listacriterio`) REFERENCES `tl_adm_licr_listascriterio` (`licr_num_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=260 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tl_adm_vase_valorseleccion`
@@ -783,11 +803,265 @@ CREATE TABLE `tl_adm_vase_valorseleccion` (
 
 /*!40000 ALTER TABLE `tl_adm_vase_valorseleccion` DISABLE KEYS */;
 INSERT INTO `tl_adm_vase_valorseleccion` (`vase_num_id`,`vase_str_codigo`,`vase_str_descripcion`,`vase_str_unidad`,`vase_num_id_listacriterio`) VALUES 
- (1,'nombre','prueba juan','litros',1),
- (2,'Prueba','prueba valores ','litros',3),
- (3,'prueba ','prueba valor','metros',3),
- (4,'asd','asd','dsa',3),
- (5,'juan','jua','',2);
+ (1,'18-46-0','Urea',NULL,1),
+ (2,'100',NULL,NULL,2),
+ (3,'50',NULL,NULL,2),
+ (4,'PNPRE',NULL,NULL,3),
+ (5,'SHSA',NULL,NULL,3),
+ (6,'WCMAX',NULL,NULL,3),
+ (7,'DPMRC',NULL,NULL,3),
+ (8,'WLV',NULL,NULL,3),
+ (9,'WLL',NULL,NULL,3),
+ (10,'HUMR',NULL,NULL,3),
+ (11,'DPMR',NULL,NULL,3),
+ (12,'HUMI',NULL,NULL,3),
+ (13,'WULI',NULL,NULL,3),
+ (14,'LNCMIN',NULL,NULL,3),
+ (15,'WRB',NULL,NULL,3),
+ (16,'FOAC',NULL,NULL,3),
+ (17,'CREMRI',NULL,NULL,3),
+ (18,'WINPUT',NULL,NULL,3),
+ (19,'WRT',NULL,NULL,3),
+ (20,'NINPN',NULL,NULL,3),
+ (21,'TTCAN',NULL,NULL,3),
+ (22,'LNCI',NULL,NULL,3),
+ (23,'NPL',NULL,NULL,3),
+ (24,'CO2A',NULL,NULL,3),
+ (25,'RMRE',NULL,NULL,3),
+ (26,'DCST',NULL,NULL,3),
+ (27,'DCSR',NULL,NULL,3),
+ (28,'DCSS',NULL,NULL,3),
+ (29,'IR3A',NULL,NULL,3),
+ (30,'LAT',NULL,NULL,3),
+ (31,'NSWI',NULL,NULL,3),
+ (32,'TLAI',NULL,NULL,3),
+ (33,'WUL',NULL,NULL,3),
+ (34,'TSN',NULL,NULL,3),
+ (35,'CRTI',NULL,NULL,3),
+ (36,'IR2T',NULL,NULL,3),
+ (37,'CRTD',NULL,NULL,3),
+ (38,'DECRPM',NULL,NULL,3),
+ (39,'DECRPN',NULL,NULL,3),
+ (40,'TSW',NULL,NULL,3),
+ (41,'RFIR',NULL,NULL,3),
+ (42,'NLVI',NULL,NULL,3),
+ (43,'HTMX',NULL,NULL,3),
+ (44,'HUM',NULL,NULL,3),
+ (45,'RPMR',NULL,NULL,3),
+ (46,'NLVD',NULL,NULL,3),
+ (47,'RPMI',NULL,NULL,3),
+ (48,'LITN',NULL,NULL,3),
+ (49,'FMIN',NULL,NULL,3),
+ (50,'FNN6T',NULL,NULL,3),
+ (51,'DAPAR',NULL,NULL,3),
+ (52,'LITC',NULL,NULL,3),
+ (53,'IFSH',NULL,NULL,3),
+ (54,'EAJMAX',NULL,NULL,3),
+ (55,'IR5A',NULL,NULL,3),
+ (56,'STTIME',NULL,NULL,3),
+ (57,'NCHK',NULL,NULL,3),
+ (58,'DRPM',NULL,NULL,3),
+ (59,'COEFT',NULL,NULL,3),
+ (60,'BLD',NULL,NULL,3),
+ (61,'IR5T',NULL,NULL,3),
+ (62,'COEFR',NULL,NULL,3),
+ (63,'k',NULL,NULL,3),
+ (64,'DCDT',NULL,NULL,3),
+ (65,'DCDS',NULL,NULL,3),
+ (66,'FNA4T',NULL,NULL,3),
+ (67,'FNN8',NULL,NULL,3),
+ (68,'IR2A',NULL,NULL,3),
+ (69,'FNN2',NULL,NULL,3),
+ (70,'FNN3',NULL,NULL,3),
+ (71,'FNN1',NULL,NULL,3),
+ (72,'FNN6',NULL,NULL,3),
+ (73,'FNN7',NULL,NULL,3),
+ (74,'FNN4',NULL,NULL,3),
+ (75,'FNN5',NULL,NULL,3),
+ (76,'FT',NULL,NULL,3),
+ (77,'MINNUL',NULL,NULL,3),
+ (78,'STEMNC',NULL,NULL,3),
+ (79,'DOY',NULL,NULL,3),
+ (80,'CTOT',NULL,NULL,3),
+ (81,'FM',NULL,NULL,3),
+ (82,'MDN',NULL,NULL,3),
+ (83,'RRMUL',NULL,NULL,3),
+ (84,'FCLV',NULL,NULL,3),
+ (85,'DDTR',NULL,NULL,3),
+ (86,'TPCAN',NULL,NULL,3),
+ (87,'RNRT',NULL,NULL,3),
+ (88,'RWRT',NULL,NULL,3),
+ (89,'RHUM',NULL,NULL,3),
+ (90,'FCRVR',NULL,NULL,3),
+ (91,'FCRVS',NULL,NULL,3),
+ (92,'DFS',NULL,NULL,3),
+ (93,'NRES',NULL,NULL,3),
+ (94,'WCLL',NULL,NULL,3),
+ (95,'INSP',NULL,NULL,3),
+ (96,'SEEDNC',NULL,NULL,3),
+ (97,'NINPA',NULL,NULL,3),
+ (98,'SC',NULL,NULL,3),
+ (99,'TMIN',NULL,NULL,3),
+ (100,'RNNLL',NULL,NULL,3),
+ (101,'CSST',NULL,NULL,3),
+ (102,'FNA7T',NULL,NULL,3),
+ (103,'PSEN',NULL,NULL,3),
+ (104,'KCRN',NULL,NULL,3),
+ (105,'TOC',NULL,NULL,3),
+ (106,'DPN',NULL,NULL,3),
+ (107,'DPM',NULL,NULL,3),
+ (108,'DAVTMP',NULL,NULL,3),
+ (109,'LVDS',NULL,NULL,3),
+ (110,'FNN2T',NULL,NULL,3),
+ (111,'ONC',NULL,NULL,3),
+ (112,'LS',NULL,NULL,3),
+ (113,'NNLLI',NULL,NULL,3),
+ (114,'RAIN',NULL,NULL,3),
+ (115,'WCI',NULL,NULL,3),
+ (116,'CFO',NULL,NULL,3),
+ (117,'SLNT',NULL,NULL,3),
+ (118,'NITRUL',NULL,NULL,3),
+ (119,'BHC',NULL,NULL,3),
+ (120,'DENIUL',NULL,NULL,3),
+ (121,'PPCAN',NULL,NULL,3),
+ (122,'SLNB',NULL,NULL,3),
+ (123,'CFV',NULL,NULL,3),
+ (124,'FVPD',NULL,NULL,3),
+ (125,'PNC',NULL,NULL,3),
+ (126,'RESCO2',NULL,NULL,3),
+ (127,'EPSP',NULL,NULL,3),
+ (128,'RSS',NULL,NULL,3),
+ (129,'APCANN',NULL,NULL,3),
+ (130,'CLVI',NULL,NULL,3),
+ (131,'SHSAN',NULL,NULL,3),
+ (132,'CLVD',NULL,NULL,3),
+ (133,'APCANS',NULL,NULL,3),
+ (134,'CCFIX',NULL,NULL,3),
+ (135,'RMUL',NULL,NULL,3),
+ (136,'RMUN',NULL,NULL,3),
+ (137,'NNLL',NULL,NULL,3),
+ (138,'RMUA',NULL,NULL,3),
+ (139,'RX',NULL,NULL,3),
+ (140,'RD',NULL,NULL,3),
+ (141,'RG',NULL,NULL,3),
+ (142,'RA',NULL,NULL,3),
+ (143,'RM',NULL,NULL,3),
+ (144,'RN',NULL,NULL,3),
+ (145,'RMUS',NULL,NULL,3),
+ (146,'LNLV',NULL,NULL,3),
+ (147,'RTNLV',NULL,NULL,3),
+ (148,'NMINER',NULL,NULL,3),
+ (149,'TNLV',NULL,NULL,3),
+ (150,'LAI',NULL,NULL,3),
+ (151,'MDNUL',NULL,NULL,3),
+ (152,'RHT',NULL,NULL,3),
+ (153,'LEGUME',NULL,NULL,3),
+ (154,'RPNI',NULL,NULL,3),
+ (155,'FMLL',NULL,NULL,3),
+ (156,'MTDR',NULL,NULL,3),
+ (157,'MTDV',NULL,NULL,3),
+ (158,'TMMX',NULL,NULL,3),
+ (159,'IR4A',NULL,NULL,3),
+ (160,'ASSA',NULL,NULL,3),
+ (161,'RDMX',NULL,NULL,3),
+ (162,'TMMN',NULL,NULL,3),
+ (163,'PESOIL',NULL,NULL,3),
+ (164,'MINAUL',NULL,NULL,3),
+ (165,'IR4T',NULL,NULL,3),
+ (166,'NNUL',NULL,NULL,3),
+ (167,'NLV',NULL,NULL,3),
+ (168,'IR3T',NULL,NULL,3),
+ (169,'NRTD',NULL,NULL,3),
+ (170,'FNA3T',NULL,NULL,3),
+ (171,'RMLD',NULL,NULL,3),
+ (172,'NRTI',NULL,NULL,3),
+ (173,'FLWCS',NULL,NULL,3),
+ (174,'FLWCT',NULL,NULL,3),
+ (175,'WSH',NULL,NULL,3),
+ (176,'CSO',NULL,NULL,3),
+ (177,'CSH',NULL,NULL,3),
+ (178,'EG',NULL,NULL,3),
+ (179,'DLAI',NULL,NULL,3),
+ (180,'LWIDTH',NULL,NULL,3),
+ (181,'SEEDW',NULL,NULL,3),
+ (182,'MDNLL',NULL,NULL,3),
+ (183,'FFAT',NULL,NULL,3),
+ (184,'DAYL',NULL,NULL,3),
+ (185,'RBIO',NULL,NULL,3),
+ (186,'DPMR0',NULL,NULL,3),
+ (187,'TIME',NULL,NULL,3),
+ (188,'TBD',NULL,NULL,3),
+ (189,'FCSO',NULL,NULL,3),
+ (190,'BIOI',NULL,NULL,3),
+ (191,'IR1T',NULL,NULL,3),
+ (192,'RDPN',NULL,NULL,3),
+ (193,'TNUPT',NULL,NULL,3),
+ (194,'RDPM',NULL,NULL,3),
+ (195,'NBK',NULL,NULL,3),
+ (196,'TAVSS',NULL,NULL,3),
+ (197,'DDLP',NULL,NULL,3),
+ (198,'RCLV',NULL,NULL,3),
+ (199,'FCSH',NULL,NULL,3),
+ (200,'RDCDTP',NULL,NULL,3),
+ (201,'RDCDTR',NULL,NULL,3),
+ (202,'RMN',NULL,NULL,3),
+ (203,'ESDI',NULL,NULL,3),
+ (204,'LNC',NULL,NULL,3),
+ (205,'LAYNA',NULL,NULL,3),
+ (206,'MINALL',NULL,NULL,3),
+ (207,'AESOIL',NULL,NULL,3),
+ (208,'LAYNN',NULL,NULL,3),
+ (209,'HNCCR',NULL,NULL,3),
+ (210,'NDEM',NULL,NULL,3),
+ (211,'CLV',NULL,NULL,3),
+ (212,'FNA1T',NULL,NULL,3),
+ (213,'KN',NULL,NULL,3),
+ (214,'KL',NULL,NULL,3),
+ (215,'KR',NULL,NULL,3),
+ (216,'KW',NULL,NULL,3),
+ (217,'FNN7T',NULL,NULL,3),
+ (218,'RNDEMP',NULL,NULL,3),
+ (219,'NCR',NULL,NULL,3),
+ (220,'RPMRC',NULL,NULL,3),
+ (221,'CCHK',NULL,NULL,3),
+ (222,'RNCMIN',NULL,NULL,3),
+ (223,'DS',NULL,NULL,3),
+ (224,'BIO',NULL,NULL,3),
+ (225,'RNALL',NULL,NULL,3),
+ (226,'RPM',NULL,NULL,3),
+ (227,'RPN',NULL,NULL,3),
+ (228,'RESTOT',NULL,NULL,3),
+ (229,'SLP',NULL,NULL,3),
+ (230,'NTOT',NULL,NULL,3),
+ (231,'LEAUL',NULL,NULL,3),
+ (232,'SLN',NULL,NULL,3),
+ (233,'SLA',NULL,NULL,3),
+ (234,'RNST',NULL,NULL,3),
+ (235,'RNREOE',NULL,NULL,3),
+ (236,'RNREOF',NULL,NULL,3),
+ (237,'RCSO',NULL,NULL,3),
+ (238,'RPMR0',NULL,NULL,3),
+ (239,'RNSO',NULL,NULL,3),
+ (240,'NRT',NULL,NULL,3),
+ (241,'SINLD',NULL,NULL,3),
+ (242,'NSUPNS',NULL,NULL,3),
+ (243,'FCSST',NULL,NULL,3),
+ (244,'WN',NULL,NULL,3),
+ (245,'RNRES',NULL,NULL,3),
+ (246,'RSFNA',NULL,NULL,3),
+ (247,'RWUG',NULL,NULL,3),
+ (248,'RWUL',NULL,NULL,3),
+ (249,'FNN8T',NULL,NULL,3),
+ (250,'FPRO',NULL,NULL,3),
+ (251,'FCAR',NULL,NULL,3),
+ (252,'IR7A',NULL,NULL,3),
+ (253,'NAI',NULL,NULL,3),
+ (254,'WLLI',NULL,NULL,3),
+ (255,'FNA6T',NULL,NULL,3),
+ (256,'IR7T',NULL,NULL,3),
+ (257,'SLNBC',NULL,NULL,3),
+ (258,'SLNBI',NULL,NULL,3),
+ (259,'FNN3T',NULL,NULL,3);
 /*!40000 ALTER TABLE `tl_adm_vase_valorseleccion` ENABLE KEYS */;
 
 
@@ -904,7 +1178,7 @@ CREATE TABLE `tl_gem_arch_archivo` (
   KEY `FK_arch_num_id_cultivo` (`arch_num_id_cultivo`),
   KEY `FK_arch_num_id_usuario` (`arch_num_id_usuario`),
   CONSTRAINT `FK_arch_num_id_cultivo` FOREIGN KEY (`arch_num_id_cultivo`) REFERENCES `tl_gem_cult_cultivo` (`cult_num_id`),
-  CONSTRAINT `FK_arch_num_id_ubicacion_archivo` FOREIGN KEY (`arch_num_id_ubicacion_archivo`) REFERENCES `tl_gem_ubar_ubicacionarchivo` (`ubar_num_id`),
+  CONSTRAINT `FK_arch_num_id_ubicacion_archivo` FOREIGN KEY (`arch_num_id_ubicacion_archivo`) REFERENCES `tl_adm_ubar_ubicacionarchivo` (`ubar_num_id`),
   CONSTRAINT `FK_arch_num_id_usuario` FOREIGN KEY (`arch_num_id_usuario`) REFERENCES `tl_seg_usua_usuario` (`usua_num_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -996,26 +1270,6 @@ INSERT INTO `tl_gem_prcu_propiedadescultivo` (`prcu_num_id`,`prcu_str_codigo`,`p
  (2,'tarta','asdf','','Ninguno',1,NULL),
  (3,'flor','de','poronga','Fenotipica',1,NULL);
 /*!40000 ALTER TABLE `tl_gem_prcu_propiedadescultivo` ENABLE KEYS */;
-
-
---
--- Definition of table `tl_gem_ubar_ubicacionarchivo`
---
-
-DROP TABLE IF EXISTS `tl_gem_ubar_ubicacionarchivo`;
-CREATE TABLE `tl_gem_ubar_ubicacionarchivo` (
-  `ubar_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `ubar_str_path` text NOT NULL,
-  `ubar_str_tipo_archivo` varchar(220) NOT NULL,
-  PRIMARY KEY (`ubar_num_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `tl_gem_ubar_ubicacionarchivo`
---
-
-/*!40000 ALTER TABLE `tl_gem_ubar_ubicacionarchivo` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tl_gem_ubar_ubicacionarchivo` ENABLE KEYS */;
 
 
 --
@@ -1200,7 +1454,7 @@ CREATE TABLE `tl_seg_usua_usuario` (
 
 /*!40000 ALTER TABLE `tl_seg_usua_usuario` DISABLE KEYS */;
 INSERT INTO `tl_seg_usua_usuario` (`usua_num_id`,`usua_str_login`,`usua_str_password`,`usua_bol_activado`,`usua_dte_ultimo_acceso`,`usua_str_estado_usuario`,`usua_num_id_dato_usuario`,`usua_str_frase`,`usua_str_codigo_activacion`) VALUES 
- (1,'admin','+GW1NiOxIf007lQmx5Llwzr4wic=',1,'2010-02-21 20:59:02','Activo',1,'ProyectoFinal','54032683');
+ (1,'admin','+GW1NiOxIf007lQmx5Llwzr4wic=',1,'2010-03-02 18:39:38','Activo',1,'ProyectoFinal','54032683');
 /*!40000 ALTER TABLE `tl_seg_usua_usuario` ENABLE KEYS */;
 
 
