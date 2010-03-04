@@ -101,16 +101,14 @@ Secano.</title>
 														<h:panelGrid>
 															<a4j:commandButton
 																style="font-size: 10pt; color: #2d77c2; width : 120px;"
-																styleClass="textoPlano"
-																action="#{ubicacionBean.nuevo}"
+																styleClass="textoPlano" action="#{ubicacionBean.nuevo}"
 																value="Ingresar" />
 
 															<a4j:commandButton
 																style="font-size: 10pt; color: #2d77c2; width : 120px;"
 																styleClass="textoPlano"
-																action="#{ubicacionBean.actualizar}"
-																value="Atualizar" />
-																
+																action="#{ubicacionBean.actualizar}" value="Atualizar" />
+
 															<td style="width: 2px;"></td>
 															<h:outputText value="" />
 														</h:panelGrid>
@@ -131,7 +129,7 @@ Secano.</title>
 																	<f:facet name="header">
 																		<h:outputText value="Path del directorio" />
 																	</f:facet>
-																	<h:outputText value="#{ubicacion._pathArchivo}"
+																	<h:outputText value="#{ubicacion._urlPaht}"
 																		id="nombre" />
 																</rich:column>
 
@@ -139,7 +137,7 @@ Secano.</title>
 																	<f:facet name="header">
 																		<h:outputText value="Tipo de archivos" />
 																	</f:facet>
-																	<h:outputText value="#{ubicacion._tipoArchivo.name}"
+																	<h:outputText value="#{ubicacion._tipoArchivo}"
 																		id="apellido" />
 																</rich:column>
 
@@ -153,9 +151,28 @@ Secano.</title>
 																		image="/Recursos/Imagenes/Iconos/edit.gif"
 																		style="width : 27px; height : 21px;">
 																		<a4j:actionparam name="ubicacionEjegida"
-																			value="#{ubicacion._id}" />
+																			value="#{ubicacion._tipoArchivo}" />
 																		<rich:toolTip value="Modificar" />
 																	</a4j:commandButton></center>
+
+																</rich:column>
+
+																<rich:column width="80">
+																	<f:facet name="header">
+																		<h:outputText value="Eliminar ingreso" />
+																	</f:facet>
+
+																	<a4j:commandButton
+																		action="#{ubicacionBean.eliminar}"
+																		image="/Recursos/Imagenes/Iconos/delete.gif"
+																		immediate="true" 
+																		style=" border:0; width : 27px; height : 21px;"
+																		reRender="panelPropiedades">
+																		<a4j:actionparam name="propiedadElegida"
+																			value="#{ubicacion._tipoArchivo}" />
+																		<rich:toolTip value="Elimina solo las agregadas" />
+																	</a4j:commandButton>
+
 																</rich:column>
 
 																<f:facet name="footer">
