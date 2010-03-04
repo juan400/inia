@@ -47,7 +47,7 @@ Secano.</title>
 											<h:commandLink
 												style="font-size: 8pt; color: #2d77c2; width: 100; aling: right"
 												styleClass="textoPlano" action="#{loginBean.logout}"
-												immediate="true" value="Cerrar Cesión">
+												immediate="true" value="Cerrar Sesión">
 											</h:commandLink>
 										</h:column>
 									</h:panelGrid>
@@ -108,19 +108,20 @@ Secano.</title>
 																<f:selectItems value="#{cultivoBean.estados}" />
 															</rich:comboBox>
 														</h:panelGrid>
-														
-																										<td></td>
-												<center><h:panelGrid columns="2">
-													<a4j:commandButton
-														style="font-size: 10pt; color: #2d77c2; width : 120px;"
-														styleClass="textoPlano"
-														action="#{cultivoBean.registrar}"
-														value="#{text.boton_Aceptar}" />
-													<a4j:commandButton immediate="true"
-														style="font-size: 10pt; color: #2d77c2; width : 120px;"
-														styleClass="textoPlano" action="salir"
-														value="#{text.boton_Cancelar}" />
-												</h:panelGrid></center>
+													</h:panelGrid>
+
+													<td></td>
+													<center><h:panelGrid columns="2">
+														<a4j:commandButton
+															style="font-size: 10pt; color: #2d77c2; width : 120px;"
+															styleClass="textoPlano" action="#{cultivoBean.registrar}"
+															value="#{text.boton_Aceptar}" />
+														<a4j:commandButton immediate="true"
+															style="font-size: 10pt; color: #2d77c2; width : 120px;"
+															styleClass="textoPlano" action="salir"
+															value="#{text.boton_Cancelar}" />
+													</h:panelGrid></center>
+												</rich:panel>
 
 												<center><f:facet name="footer">
 													<h:panelGrid>
@@ -134,8 +135,7 @@ Secano.</title>
 															value="#{cultivoBean.exito}" />
 													</h:panelGrid>
 												</f:facet></center>
-													</h:panelGrid>
-												</rich:panel>
+
 											</h:panelGrid>
 										</h:column>
 									</h:panelGrid>
