@@ -47,7 +47,7 @@ Secano.</title>
 											<h:commandLink
 												style="font-size: 8pt; color: #2d77c2; width: 100; aling: right"
 												styleClass="textoPlano" action="#{loginBean.logout}"
-												immediate="true" value="Cerrar Cesión">
+												immediate="true" value="Cerrar Sesión">
 											</h:commandLink>
 										</h:column>
 									</h:panelGrid>
@@ -77,7 +77,7 @@ Secano.</title>
 												<rich:panel headerClass="tituloPantalla"
 													style="background-color: #ebf3fd;">
 													<f:facet name="header">
-														<h:outputText value="#{text.login_newUser}" />
+														<h:outputText value="#{text.ejecucion_Nueva}" />
 													</f:facet>
 													<h:panelGroup>
 														<h:panelGrid columns="2" styleClass="textoPlano">

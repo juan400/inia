@@ -19,7 +19,7 @@ Secano.</title>
 <f:view>
 	<h:form>
 		<f:loadBundle basename="com.bean.text" var="text" />
-		<table align="center" width="950px">
+		<table align="center" width="956px">
 			<thead>
 				<tr>
 					<td>
@@ -47,7 +47,7 @@ Secano.</title>
 											<h:commandLink
 												style="font-size: 8pt; color: #2d77c2; width: 100; aling: right"
 												styleClass="textoPlano" action="#{loginBean.logout}"
-												immediate="true" value="Cerrar Cesión">
+												immediate="true" value="Cerrar Sesión">
 											</h:commandLink>
 										</h:column>
 									</h:panelGrid>
@@ -123,20 +123,20 @@ Secano.</title>
 															</rich:comboBox>
 														</h:panelGrid>
 													</h:panelGrid>
-													
-												<td></td>
-												<center><h:panelGrid columns="2">
-													<a4j:commandButton
-														style="font-size: 10pt; color: #2d77c2; width : 120px;"
-														styleClass="textoPlano"
-														action="#{administrarUsuarioBean.actualizar}"
-														value="#{text.boton_Aceptar}" />
-													<a4j:commandButton immediate="true"
-														style="font-size: 10pt; color: #2d77c2; width : 120px;"
-														styleClass="textoPlano" action="salir"
-														value="#{text.boton_Cancelar}" />
-												</h:panelGrid></center>
 
+													<td></td>
+													<center><h:panelGrid columns="2">
+														<a4j:commandButton
+															style="font-size: 10pt; color: #2d77c2; width : 120px;"
+															styleClass="textoPlano"
+															action="#{administrarUsuarioBean.actualizar}"
+															value="#{text.boton_Aceptar}" />
+														<a4j:commandButton immediate="true"
+															style="font-size: 10pt; color: #2d77c2; width : 120px;"
+															styleClass="textoPlano" action="salir"
+															value="#{text.boton_Cancelar}" />
+													</h:panelGrid></center>
+												</rich:panel>
 												<center><f:facet name="footer">
 													<h:panelGrid>
 														<rich:messages styleClass="mensajeError">
@@ -149,7 +149,6 @@ Secano.</title>
 															value="#{cultivoBean.exito}" />
 													</h:panelGrid>
 												</f:facet></center>
-												</rich:panel>
 											</h:panelGrid>
 										</h:column>
 									</h:panelGrid>
@@ -170,7 +169,7 @@ Secano.</title>
 						</rich:panel>
 					</rich:modalPanel></td>
 				</tr>
-			</tbody>
+				</tbody>
 			<tfoot>
 				<tr>
 					<td>
@@ -178,6 +177,7 @@ Secano.</title>
 					</td>
 				</tr>
 			</tfoot>
+			
 		</table>
 	</h:form>
 </f:view>

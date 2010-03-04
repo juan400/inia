@@ -47,7 +47,7 @@ Secano.</title>
 											<h:commandLink
 												style="font-size: 8pt; color: #2d77c2; width: 100; aling: right"
 												styleClass="textoPlano" action="#{loginBean.logout}"
-												immediate="true" value="Cerrar Cesión">
+												immediate="true" value="Cerrar Sesión">
 											</h:commandLink>
 										</h:column>
 									</h:panelGrid>
@@ -58,7 +58,7 @@ Secano.</title>
 									<a4j:commandButton
 										style="font-size: 10pt; color: #2d77c2; width : 120px;"
 										styleClass="textoPlano" action="#{loginBean.logout}"
-										immediate="true" value="#{text.login_Login}" /> 
+										immediate="true" value="#{text.login_Login}" />
 								</h:panelGrid></center>
 								<h:panelGroup rendered="#{loginBean.logged}">
 									<h:panelGrid columns="2" rendered="#{loginBean.logged}"
@@ -86,7 +86,7 @@ Secano.</title>
 															<h:inputText value="#{datosUsuarioBean.apellido}"
 																styleClass="textoPlano" disabled="true" />
 
-															<h:outputText value="#{text.usuario_Mail" />
+															<h:outputText value="#{text.usuario_Mail}" />
 															<h:inputText value="#{datosUsuarioBean.email}"
 																disabled="true" styleClass="textoPlano">
 															</h:inputText>
@@ -124,32 +124,33 @@ Secano.</title>
 															<h:inputText value="#{datosUsuarioBean.celular}"
 																styleClass="textoPlano" disabled="true" />
 														</h:panelGrid>
-														<center><h:panelGrid columns="2">
-															<a4j:commandButton
-																style="font-size: 10pt; color: #2d77c2; width : 120px;"
-																styleClass="textoPlano" tabindex="1" immediate="true"
-																action="#{datosUsuarioBean.baja}"
-																value="#{text.usuario_BtnBaja}" />
-															<a4j:commandButton
-																style="font-size: 10pt; color: #2d77c2; width : 120px;" tabindex="2"
-																styleClass="textoPlano" action="cancelar"
-																immediate="true" value="#{text.boton_Cancelar}" />
-														</h:panelGrid></center>
-
-														<center><f:facet name="footer">
-															<h:panelGrid>
-																<rich:messages styleClass="mensajeError">
-																	<f:facet name="errorMarker">
-																		<h:graphicImage
-																			value="/Recursos/Imagenes/Iconos/error.gif" />
-																	</f:facet>
-																</rich:messages>
-																<h:outputText styleClass="textoPlano"
-																	value="#{datosUsuarioBean.exito}" />
-															</h:panelGrid>
-														</f:facet></center>
 													</h:panelGrid>
+
+													<center><h:panelGrid columns="2">
+														<a4j:commandButton
+															style="font-size: 10pt; color: #2d77c2; width : 120px;"
+															styleClass="textoPlano" tabindex="1" immediate="true"
+															action="#{datosUsuarioBean.baja}"
+															value="#{text.usuario_BtnBaja}" />
+														<a4j:commandButton
+															style="font-size: 10pt; color: #2d77c2; width : 120px;"
+															tabindex="2" styleClass="textoPlano" action="cancelar"
+															immediate="true" value="#{text.boton_Cancelar}" />
+													</h:panelGrid></center>
 												</rich:panel>
+
+												<center><f:facet name="footer">
+													<h:panelGrid>
+														<rich:messages styleClass="mensajeError">
+															<f:facet name="errorMarker">
+																<h:graphicImage
+																	value="/Recursos/Imagenes/Iconos/error.gif" />
+															</f:facet>
+														</rich:messages>
+														<h:outputText styleClass="textoPlano"
+															value="#{datosUsuarioBean.exito}" />
+													</h:panelGrid>
+												</f:facet></center>
 											</h:panelGrid>
 										</h:column>
 									</h:panelGrid>

@@ -47,7 +47,7 @@ Secano.</title>
 											<h:commandLink
 												style="font-size: 8pt; color: #2d77c2; width: 100; aling: right"
 												styleClass="textoPlano" action="#{loginBean.logout}"
-												immediate="true" value="Cerrar Cesión">
+												immediate="true" value="Cerrar Sesión">
 											</h:commandLink>
 										</h:column>
 									</h:panelGrid>
@@ -59,7 +59,7 @@ Secano.</title>
 									</h:panelGrid>
 									<h:panelGrid>
 										<center><a4j:commandButton
-								style="font-size: 10pt; color: #2d77c2; width : 120px;"
+											style="font-size: 10pt; color: #2d77c2; width : 120px;"
 											styleClass="textoPlano" action="#{loginBean.logout}"
 											value="#{text.login_Login}" /></center>
 									</h:panelGrid>
@@ -144,35 +144,34 @@ Secano.</title>
 																	renderIfSinglePage="false" maxPages="6" />
 															</f:facet>
 														</rich:dataTable></center>
-
-
-														<center><h:panelGrid columns="2">
-															<a4j:commandButton
-																style="font-size: 10pt; color: #2d77c2; width : 120px;"
-																styleClass="textoPlano" action="#{perfilBean.registrar}"
-																value="#{text.boton_Aceptar}" />
-															<a4j:commandButton immediate="true"
-																style="font-size: 10pt; color: #2d77c2; width : 120px;"
-																styleClass="textoPlano" action="salir"
-																value="#{text.boton_Cancelar}" />
-														</h:panelGrid></center>
-
-														<center><f:facet name="footer">
-															<h:panelGrid>
-																<rich:messages styleClass="mensajeError">
-																	<f:facet name="errorMarker">
-																		<h:graphicImage
-																			value="/Recursos/Imagenes/Iconos/error.gif" />
-																	</f:facet>
-																</rich:messages>
-																<center><h:panelGrid>
-																	<h:outputText styleClass="textoPlano"
-																		value="#{perfilBean.exito}" />
-																</h:panelGrid></center>
-															</h:panelGrid>
-														</f:facet></center>
 													</h:panelGrid>
+
+													<center><h:panelGrid columns="2">
+														<a4j:commandButton
+															style="font-size: 10pt; color: #2d77c2; width : 120px;"
+															styleClass="textoPlano" action="#{perfilBean.registrar}"
+															value="#{text.boton_Aceptar}" />
+														<a4j:commandButton immediate="true"
+															style="font-size: 10pt; color: #2d77c2; width : 120px;"
+															styleClass="textoPlano" action="salir"
+															value="#{text.boton_Cancelar}" />
+													</h:panelGrid></center>
 												</rich:panel>
+
+												<center><f:facet name="footer">
+													<h:panelGrid>
+														<rich:messages styleClass="mensajeError">
+															<f:facet name="errorMarker">
+																<h:graphicImage
+																	value="/Recursos/Imagenes/Iconos/error.gif" />
+															</f:facet>
+														</rich:messages>
+														<center><h:panelGrid>
+															<h:outputText styleClass="textoPlano"
+																value="#{perfilBean.exito}" />
+														</h:panelGrid></center>
+													</h:panelGrid>
+												</f:facet></center>
 											</h:panelGrid>
 										</h:column>
 									</h:panelGrid>
