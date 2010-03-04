@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.TipoArchivo;
@@ -33,12 +34,16 @@ public class Ubicacion implements Serializable {
 
 	@Column(name = "ubar_str_path", nullable = false, columnDefinition = "TEXT")
 	private String _urlPaht;
+	
+	@Transient
+	private boolean _grabada;
 
 	public Ubicacion(long id, TipoArchivo tipoArchivo, String urlPaht) {
 		super();
 		_id = id;
 		_tipoArchivo = tipoArchivo;
 		_urlPaht = urlPaht;
+		_grabada = true;
 	}
 
 	public Ubicacion() {
@@ -66,6 +71,14 @@ public class Ubicacion implements Serializable {
 
 	public void set_urlPaht(String urlPaht) {
 		_urlPaht = urlPaht;
+	}
+
+	public void set_grabada(boolean _grabada) {
+		this._grabada = _grabada;
+	}
+
+	public boolean is_grabada() {
+		return _grabada;
 	}
 
 }
