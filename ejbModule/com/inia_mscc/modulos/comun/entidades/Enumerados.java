@@ -11,7 +11,7 @@ public class Enumerados {
 	}
 
 	static public enum NombreProceso {
-		Administración, Seguridad, Ejecución, Escenarios, Historial
+		Administracion, Seguridad, Ejecucion, Escenarios, Historial
 	}
 
 	static public enum EstadoUsuario {
