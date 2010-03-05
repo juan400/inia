@@ -67,7 +67,7 @@ public class MenuBean extends MaestroBean implements Serializable {
 			HtmlPanelMenuGroup menuGroupHPE = new HtmlPanelMenuGroup();
 			if (transacciones != null) {
 				menuGroupADM.setName(Proceso.ADM.name());
-				menuGroupADM.setLabel(NombreProceso.Administración.name());
+				menuGroupADM.setLabel(NombreProceso.Administracion.name());
 				menuGroupADM.setStyleClass("textoMenu");
 				menuGroupSEG.setName(Proceso.SEG.name());
 				menuGroupSEG.setLabel(NombreProceso.Seguridad.name());
@@ -76,7 +76,7 @@ public class MenuBean extends MaestroBean implements Serializable {
 				menuGroupGEM.setLabel(NombreProceso.Escenarios.name());
 				menuGroupGEM.setStyleClass("textoMenu");
 				menuGroupEJE.setName(Proceso.EJE.name());
-				menuGroupEJE.setLabel(NombreProceso.Ejecución.name());
+				menuGroupEJE.setLabel(NombreProceso.Ejecucion.name());
 				menuGroupEJE.setStyleClass("textoMenu");
 				menuGroupHPE.setName(Proceso.HPE.name());
 				menuGroupHPE.setLabel(NombreProceso.Historial.name());
