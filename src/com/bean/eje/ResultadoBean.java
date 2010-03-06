@@ -51,12 +51,14 @@ public class ResultadoBean extends MaestroBean implements Serializable {
 			// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 			ResultadoMSCC resul = new ResultadoMSCC();
 			Ubicacion ubicacion = new Ubicacion();
-			ubicacion.set_urlPaht("C:\\ArchivosSubidos");
+			ubicacion.set_urlPaht("/home/juan/ArchivosSubidos");// /home/juan/ArchivosSubidos
+			
 			Archivo archivo = new Archivo("sss", TipoArchivo.Resultados,
 					new Date(), Estado.Activo, TipoExtencionArchivo.txt,
 					ubicacion);
 			archivo.set_datos(new File(
-					"C:\\ArchivosSubidos\\output_modelo_trigo.txt"));
+					"/home/juan/ArchivosSubidos/output_modelo_trigo.txt"));// \\home\\juan\\ArchivosSubidos\\
+			
 			resul.set_archivo(archivo);
 			this.setSesion(ResultadoMSCC.class.toString(), resul);
 			// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -182,7 +184,7 @@ public class ResultadoBean extends MaestroBean implements Serializable {
 	 */
 	public void paintXYSplineRendererCSH_LAI(Graphics2D g2d, Object obj) {
 		try {
-			String pTituloGrafica = "Acumulación de biomasa y Indice de area foliar";
+			String pTituloGrafica = "Acumulaciï¿½n de biomasa y Indice de area foliar";
 			String pLineas = "CSH,LAI";
 			JFreeChart chart;
 			// ResultadoMSCC resultado = new ResultadoMSCC();
