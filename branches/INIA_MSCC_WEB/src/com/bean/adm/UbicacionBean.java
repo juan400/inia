@@ -13,6 +13,7 @@ import javax.faces.model.SelectItem;
 import com.bean.comun.MaestroBean;
 import com.inia_mscc.modulos.adm.entidades.Ubicacion;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioADM;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioGEM;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.TipoArchivo;
 
 public class UbicacionBean extends MaestroBean implements Serializable {
@@ -25,18 +26,43 @@ public class UbicacionBean extends MaestroBean implements Serializable {
 	private String tipoArchvo;
 	private SelectItem[] tipos;
 	private String pathDirectorio;
-	private List<Ubicacion> ubicaciones = new ArrayList<Ubicacion>();
-	private List<Ubicacion> ubicacionesEliminadas = new ArrayList<Ubicacion>();
+	private List<Ubicacion> ubicaciones;
+	// private List<Ubicacion> ubicacionesEliminadas = new
+	// ArrayList<Ubicacion>();
 	private String ubicacionEjegida;
 	private Ubicacion ubicacion = new Ubicacion();
 	private boolean disableTipoArchivo = false;
+	private boolean disableActualizar = true;
+	private boolean disableIngresar = true;
 
 	public String registrar() {
-		return "ADM010";
+		this.setError("");
+		this.setExito("");
+		String retorno = "ADM010";
+		try {
+			if (this.getUbicaciones().size() != 6) {
+				this.setError("Debe ingresar ubicaciÃ³n para cada uno de los tipos de archivo.");
+				retorno = "";
+			} else {
+				for (Ubicacion ubicacion : this.getUbicaciones()) {
+					if (ubicacion.get_id() == 0) {
+						this.getAdmFachada(ServicioADM.Ubicacion)
+								.RegistrarUbicacion(ubicacion);
+					} else {
+						this.getAdmFachada(ServicioADM.Ubicacion)
+								.ActualizarUbicacion(ubicacion);
+					}
+				}
+				this.setExito("Se registraron corretamente sus cambios en las ubicaciones.");
+			}
+		} catch (Exception ex) {
+			this.setError(ex.getMessage());
+		}
+		return retorno;
 	}
 
 	public void validarURL() {
-		String url = pathDirectorio.replace("\\", "\\\\");
+		String url = pathDirectorio;// .replace("\\", "\\\\");
 		File directorio = new File(url);
 		if (!directorio.isDirectory()) {
 			this.setError("La ruta ingresada no es un directorio valido.");
@@ -47,10 +73,14 @@ public class UbicacionBean extends MaestroBean implements Serializable {
 	}
 
 	public String nuevo() {
-		String url = pathDirectorio.replace("\\", "\\\\");
+		this.setError("");
+		this.setExito("");
+		String retorno = "ADM010";
+		String url = pathDirectorio;// .replace("\\", "\\\\");
 		File directorio = new File(url);
 		if (!directorio.isDirectory()) {
 			this.setError("La ruta ingresada no es un directorio valido.");
+			retorno = "";
 		} else {
 			if (!this.existeUbicacionTipoArchivo()) {
 				this.setUbicacion(new Ubicacion());
@@ -59,61 +89,47 @@ public class UbicacionBean extends MaestroBean implements Serializable {
 				this.getUbicacion().set_urlPaht(pathDirectorio);
 				this.getUbicacion().set_grabada(false);
 				this.getUbicaciones().add(this.getUbicacion());
+				if(this.getUbicaciones().size() == 6){
+					this.setDisableIngresar(true);
+				}
 			}
 		}
-		return "ADM010";
-	}
-
-	public String eliminar() {
-		Map paramMap = FacesContext.getCurrentInstance().getExternalContext()
-				.getRequestParameterMap();
-		Iterator<Ubicacion> it = ubicaciones.iterator();
-		while (it.hasNext()) {
-			Ubicacion ubicacionSeleccionada = (Ubicacion) it.next();
-			if (ubicacionSeleccionada.get_tipoArchivo().equals(
-					TipoArchivo.valueOf((String) paramMap
-							.get("ubicacionEjegida")))) {
-				this.setUbicacion(ubicacionSeleccionada);
-				this.setPathDirectorio("");
-				this.setTipoArchvo("");
-				this.setDisableTipoArchivo(true);
-			}
-		}
-		this.getUbicaciones().remove(this.getUbicacion());
-		if (this.getUbicacion().get_id() != 0) {
-			this.getUbicacionesEliminadas().add(this.getUbicacion());
-		}
-		this.setUbicacion(new Ubicacion());
-		return "ADM010";
+		return retorno;
 	}
 
 	public String actualizar() {
-		String url = pathDirectorio.replace("\\", "\\\\");
+		this.setError("");
+		this.setExito("");
+		String retorno = "ADM010";
+		String url = pathDirectorio;// .replace("\\", "\\\\");
 		File directorio = new File(url);
 		if (!directorio.isDirectory()) {
 			this.setError("La ruta ingresada no es un directorio valido.");
+			retorno = "";
 		} else {
 			if (this.getUbicacion().get_tipoArchivo().equals(
-					TipoArchivo.valueOf(ubicacionEjegida))) {
-				this.getUbicacion().set_tipoArchivo(
-						TipoArchivo.valueOf(tipoArchvo));
+					TipoArchivo.valueOf(tipoArchvo))) {
+//				this.getUbicacion().set_tipoArchivo(
+//						TipoArchivo.valueOf(tipoArchvo));
 				this.getUbicacion().set_urlPaht(pathDirectorio);
 				Iterator<Ubicacion> it = ubicaciones.iterator();
 				while (it.hasNext()) {
 					Ubicacion ubicacionSeleccionada = (Ubicacion) it.next();
 					if (ubicacionSeleccionada.get_tipoArchivo().equals(
-							TipoArchivo.valueOf(ubicacionEjegida))) {
+							TipoArchivo.valueOf(tipoArchvo))) {
 						// if (!this.existeUbicacionTipoArchivo()) {
 						ubicacionSeleccionada = this.getUbicacion();
 						this.setPathDirectorio("");
 						this.setTipoArchvo("");
 						this.setDisableTipoArchivo(false);
+						this.setDisableActualizar(true);
+						break;
 						// }
 					}
 				}
 			}
 		}
-		return "ADM010";
+		return retorno;
 	}
 
 	private boolean existeUbicacionTipoArchivo() {
@@ -131,6 +147,8 @@ public class UbicacionBean extends MaestroBean implements Serializable {
 	}
 
 	public String verUbicacion() {
+		this.setError("");
+		this.setExito("");
 		Map paramMap = FacesContext.getCurrentInstance().getExternalContext()
 				.getRequestParameterMap();
 		Iterator<Ubicacion> it = ubicaciones.iterator();
@@ -141,51 +159,70 @@ public class UbicacionBean extends MaestroBean implements Serializable {
 							.get("ubicacionEjegida")))) {
 				this.setUbicacion(ubicacionSeleccionada);
 				this.setPathDirectorio(this.getUbicacion().get_urlPaht());
-				this.setTipoArchvo(this.getUbicacion().get_tipoArchivo().name());
+				this
+						.setTipoArchvo(this.getUbicacion().get_tipoArchivo()
+								.name());
 				this.setDisableTipoArchivo(true);
+				this.setDisableActualizar(false);
 			}
 		}
 		return "resultados";
 	}
 
 	public boolean isInit() {
-		tipos = new SelectItem[TipoArchivo.values().length];
-		SelectItem si = new SelectItem(TipoArchivo.Climatologico.name());
-		tipos[0] = si;
-		si = new SelectItem(TipoArchivo.Eejcucion.name(), "Ejecución");
-		tipos[1] = si;
-		si = new SelectItem(TipoArchivo.Escenario.name());
-		tipos[2] = si;
-		si = new SelectItem(TipoArchivo.ModeloSimulacion.name(),
-				"Modelo de simulación");
-		tipos[3] = si;
-		si = new SelectItem(TipoArchivo.ParametrosClimaticos.name(),
-				"Parámetros climáticos");
-		tipos[4] = si;
-		si = new SelectItem(TipoArchivo.Resultados.name());
-		tipos[5] = si;
-		tipoArchvo = tipos[0].getValue().toString();
-		// this.getUbicacion().set_tipoArchivo(TipoArchivo.Eejcucion);
-		return false;
-	}
-
-	public UbicacionBean() {
 		try {
 			this.setUbicaciones(this.getAdmFachada(ServicioADM.Ubicacion)
-					.ObtenerUbicacions(null));
-			this.setUbicaciones(new ArrayList<Ubicacion>());
+					.ObtenerUbicacions(new Ubicacion()));
+			if (this.getUbicaciones() == null) {
+				this.setUbicaciones(new ArrayList<Ubicacion>());
+			}else if(this.getUbicaciones().size() != 6){
+				this.setDisableIngresar(false);
+			}
 			tipos = new SelectItem[TipoArchivo.values().length];
-			SelectItem si = new SelectItem(TipoArchivo.Eejcucion.name(), "Ejecución");
+			SelectItem si = new SelectItem(TipoArchivo.Eejcucion.name());// ,
+			// "Ejecuciï¿½n");
 			tipos[0] = si;
 			si = new SelectItem(TipoArchivo.Climatologico.name());
 			tipos[1] = si;
 			si = new SelectItem(TipoArchivo.Escenario.name());
 			tipos[2] = si;
-			si = new SelectItem(TipoArchivo.ModeloSimulacion.name(),
-					"Modelo de simulación");
+			si = new SelectItem(TipoArchivo.ModeloSimulacion.name());// ,"Modelo de simulaciï¿½n");
 			tipos[3] = si;
-			si = new SelectItem(TipoArchivo.ParametrosClimaticos.name(),
-					"Parámetros climáticos");
+			si = new SelectItem(TipoArchivo.ParametrosClimaticos.name());// ,"Parï¿½metros climï¿½ticos");
+			tipos[4] = si;
+			si = new SelectItem(TipoArchivo.Resultados.name());
+			tipos[5] = si;
+			tipoArchvo = tipos[0].getValue().toString();
+			this.getUbicacion().set_tipoArchivo(TipoArchivo.Eejcucion);
+		} catch (Exception ex) {
+			this.setError(ex.getMessage());
+		}
+		return false;
+	}
+
+	public UbicacionBean() {
+		this.setError("");
+		this.setExito("");
+		try {
+
+			this.setUbicaciones(this.getAdmFachada(ServicioADM.Ubicacion)
+					.ObtenerUbicacions(new Ubicacion()));
+			if (this.getUbicaciones() == null) {
+				this.setUbicaciones(new ArrayList<Ubicacion>());
+			}else if(this.getUbicaciones().size() != 6){
+				this.setDisableIngresar(false);
+			}
+			tipos = new SelectItem[TipoArchivo.values().length];
+			SelectItem si = new SelectItem(TipoArchivo.Eejcucion.name());// ,
+			// "Ejecuciï¿½n");
+			tipos[0] = si;
+			si = new SelectItem(TipoArchivo.Climatologico.name());
+			tipos[1] = si;
+			si = new SelectItem(TipoArchivo.Escenario.name());
+			tipos[2] = si;
+			si = new SelectItem(TipoArchivo.ModeloSimulacion.name());// ,"Modelo de simulaciï¿½n");
+			tipos[3] = si;
+			si = new SelectItem(TipoArchivo.ParametrosClimaticos.name());// ,"Parï¿½metros climï¿½ticos");
 			tipos[4] = si;
 			si = new SelectItem(TipoArchivo.Resultados.name());
 			tipos[5] = si;
@@ -252,12 +289,20 @@ public class UbicacionBean extends MaestroBean implements Serializable {
 		return disableTipoArchivo;
 	}
 
-	public List<Ubicacion> getUbicacionesEliminadas() {
-		return ubicacionesEliminadas;
+	public void setDisableActualizar(boolean disableActualizar) {
+		this.disableActualizar = disableActualizar;
 	}
 
-	public void setUbicacionesEliminadas(List<Ubicacion> ubicacionesEliminadas) {
-		this.ubicacionesEliminadas = ubicacionesEliminadas;
+	public boolean isDisableActualizar() {
+		return disableActualizar;
+	}
+
+	public void setDisableIngresar(boolean disableIngresar) {
+		this.disableIngresar = disableIngresar;
+	}
+
+	public boolean isDisableIngresar() {
+		return disableIngresar;
 	}
 
 }

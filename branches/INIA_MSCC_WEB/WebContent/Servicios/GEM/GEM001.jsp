@@ -79,7 +79,7 @@ Secano.</title>
 													<f:facet name="header">
 														<h:outputText value="#{text.cultivo_Ingresar}" />
 													</f:facet>
-													<h:panelGrid>
+													<h:panelGroup>
 														<h:panelGrid columns="2"
 															columnClasses="textoPlano,textoPlano" width="400">
 
@@ -108,19 +108,19 @@ Secano.</title>
 																<f:selectItems value="#{cultivoBean.estados}" />
 															</rich:comboBox>
 														</h:panelGrid>
-													</h:panelGrid>
 
-													<td></td>
-													<center><h:panelGrid columns="2">
-														<a4j:commandButton
-															style="font-size: 10pt; color: #2d77c2; width : 120px;"
-															styleClass="textoPlano" action="#{cultivoBean.registrar}"
-															value="#{text.boton_Aceptar}" />
-														<a4j:commandButton immediate="true"
-															style="font-size: 10pt; color: #2d77c2; width : 120px;"
-															styleClass="textoPlano" action="salir"
-															value="#{text.boton_Cancelar}" />
-													</h:panelGrid></center>
+														<center><h:panelGrid columns="2">
+															<a4j:commandButton
+																style="font-size: 10pt; color: #2d77c2; width : 120px;"
+																styleClass="textoPlano"
+																action="#{cultivoBean.registrar}"
+																value="#{text.boton_Aceptar}" />
+															<a4j:commandButton immediate="true"
+																style="font-size: 10pt; color: #2d77c2; width : 120px;"
+																styleClass="textoPlano" action="salir"
+																value="#{text.boton_Cancelar}" />
+														</h:panelGrid></center>
+													</h:panelGroup>
 												</rich:panel>
 
 												<center><f:facet name="footer">
