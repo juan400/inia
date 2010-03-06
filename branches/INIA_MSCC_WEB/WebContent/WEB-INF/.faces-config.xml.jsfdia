@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:*" PATH="*" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:0" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="cancelar::#Servicios#Contenido.jsp"
+    NAME="output" PATH="/Servicios/Contenido.jsp"
+    TARGET="rules:#Servicios#Contenido.jsp" TITLE="cancelar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID=":#{loginBean.logout}:#Servicios#SEG#SEG001.jsp" NAME="output1"
+    PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp"
+    TITLE="#{loginBean.logout}:[any]" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID=":#{loginBean.login}:#Servicios#SEG#SEG001.jsp" NAME="output2"
+    PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp"
+    TITLE="#{loginBean.login}:[any]" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="inicio::#Servicios#Contenedora.jsp"
+    NAME="output3" PATH="/Servicios/Contenedora.jsp"
+    TARGET="rules:#Servicios#Contenedora.jsp" TITLE="inicio" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="SEG004:#{menuBean.updateCurrent}:#Servicios#SEG#SEG004.jsp"
+    NAME="output4" PATH="/Servicios/SEG/SEG004.jsp"
+    TARGET="rules:#Servicios#SEG#SEG004.jsp"
+    TITLE="#{menuBean.updateCurrent}:SEG004" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="SEG005:#{menuBean.updateCurrent}:#Servicios#SEG#SEG005.jsp"
+    NAME="output5" PATH="/Servicios/SEG/SEG005.jsp"
+    TARGET="rules:#Servicios#SEG#SEG005.jsp"
+    TITLE="#{menuBean.updateCurrent}:SEG005" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="SEG006:#{menuBean.updateCurrent}:#Servicios#SEG#SEG006.jsp"
+    NAME="output6" PATH="/Servicios/SEG/SEG006.jsp"
+    TARGET="rules:#Servicios#SEG#SEG006.jsp"
+    TITLE="#{menuBean.updateCurrent}:SEG006" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="SEG007:#{menuBean.updateCurrent}:#Servicios#SEG#SEG007.jsp"
+    NAME="output7" PATH="/Servicios/SEG/SEG007.jsp"
+    TARGET="rules:#Servicios#SEG#SEG007.jsp"
+    TITLE="#{menuBean.updateCurrent}:SEG007" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="SEG008:#{menuBean.updateCurrent}:#Servicios#SEG#SEG008.jsp"
+    NAME="output8" PATH="/Servicios/SEG/SEG008.jsp"
+    TARGET="rules:#Servicios#SEG#SEG008.jsp"
+    TITLE="#{menuBean.updateCurrent}:SEG008" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="SEG009:#{menuBean.updateCurrent}:#Servicios#SEG#SEG009.jsp"
+    NAME="output9" PATH="/Servicios/SEG/SEG009.jsp"
+    TARGET="rules:#Servicios#SEG#SEG009.jsp"
+    TITLE="#{menuBean.updateCurrent}:SEG009" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="SEG010:#{menuBean.updateCurrent}:#Servicios#SEG#SEG010.jsp"
+    NAME="output10" PATH="/Servicios/SEG/SEG010.jsp"
+    TARGET="rules:#Servicios#SEG#SEG010.jsp"
+    TITLE="#{menuBean.updateCurrent}:SEG010" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ADM001:#{menuBean.updateCurrent}:#Servicios#ADM#ADM001.jsp"
+    NAME="output11" PATH="/Servicios/ADM/ADM001.jsp"
+    TARGET="rules:#Servicios#ADM#ADM001.jsp"
+    TITLE="#{menuBean.updateCurrent}:ADM001" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ADM002:#{menuBean.updateCurrent}:#Servicios#ADM#ADM002.jsp"
+    NAME="output12" PATH="/Servicios/ADM/ADM002.jsp"
+    TARGET="rules:#Servicios#ADM#ADM002.jsp"
+    TITLE="#{menuBean.updateCurrent}:ADM002" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ADM003:#{menuBean.updateCurrent}:#Servicios#ADM#ADM003.jsp"
+    NAME="output13" PATH="/Servicios/ADM/ADM003.jsp"
+    TARGET="rules:#Servicios#ADM#ADM003.jsp"
+    TITLE="#{menuBean.updateCurrent}:ADM003" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ADM004:#{menuBean.updateCurrent}:#Servicios#ADM#ADM004.jsp"
+    NAME="output14" PATH="/Servicios/ADM/ADM004.jsp"
+    TARGET="rules:#Servicios#ADM#ADM004.jsp"
+    TITLE="#{menuBean.updateCurrent}:ADM004" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ADM005:#{menuBean.updateCurrent}:#Servicios#ADM#ADM005.jsp"
+    NAME="output15" PATH="/Servicios/ADM/ADM005.jsp"
+    TARGET="rules:#Servicios#ADM#ADM005.jsp"
+    TITLE="#{menuBean.updateCurrent}:ADM005" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ADM006:#{menuBean.updateCurrent}:#Servicios#ADM#ADM006.jsp"
+    NAME="output16" PATH="/Servicios/ADM/ADM006.jsp"
+    TARGET="rules:#Servicios#ADM#ADM006.jsp"
+    TITLE="#{menuBean.updateCurrent}:ADM006" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ADM007:#{menuBean.updateCurrent}:#Servicios#ADM#ADM007.jsp"
+    NAME="output17" PATH="/Servicios/ADM/ADM007.jsp"
+    TARGET="rules:#Servicios#ADM#ADM007.jsp"
+    TITLE="#{menuBean.updateCurrent}:ADM007" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ADM008:#{menuBean.updateCurrent}:#Servicios#ADM#ADM008.jsp"
+    NAME="output18" PATH="/Servicios/ADM/ADM008.jsp"
+    TARGET="rules:#Servicios#ADM#ADM008.jsp"
+    TITLE="#{menuBean.updateCurrent}:ADM008" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ADM009:#{menuBean.updateCurrent}:#Servicios#ADM#ADM009.jsp"
+    NAME="output19" PATH="/Servicios/ADM/ADM009.jsp"
+    TARGET="rules:#Servicios#ADM#ADM009.jsp"
+    TITLE="#{menuBean.updateCurrent}:ADM009" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ADM010:#{menuBean.updateCurrent}:#Servicios#ADM#ADM010.jsp"
+    NAME="output20" PATH="/Servicios/ADM/ADM010.jsp"
+    TARGET="rules:#Servicios#ADM#ADM010.jsp"
+    TITLE="#{menuBean.updateCurrent}:ADM010" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="GEM001:#{menuBean.updateCurrent}:#Servicios#GEM#GEM001.jsp"
+    NAME="output21" PATH="/Servicios/GEM/GEM001.jsp"
+    TARGET="rules:#Servicios#GEM#GEM001.jsp"
+    TITLE="#{menuBean.updateCurrent}:GEM001" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="GEM002:#{menuBean.updateCurrent}:#Servicios#GEM#GEM002.jsp"
+    NAME="output22" PATH="/Servicios/GEM/GEM002.jsp"
+    TARGET="rules:#Servicios#GEM#GEM002.jsp"
+    TITLE="#{menuBean.updateCurrent}:GEM002" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="GEM003:#{menuBean.updateCurrent}:#Servicios#GEM#GEM003.jsp"
+    NAME="output23" PATH="/Servicios/GEM/GEM003.jsp"
+    TARGET="rules:#Servicios#GEM#GEM003.jsp"
+    TITLE="#{menuBean.updateCurrent}:GEM003" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="GEM004:#{menuBean.updateCurrent}:#Servicios#GEM#GEM004.jsp"
+    NAME="output24" PATH="/Servicios/GEM/GEM004.jsp"
+    TARGET="rules:#Servicios#GEM#GEM004.jsp"
+    TITLE="#{menuBean.updateCurrent}:GEM004" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="GEM005:#{menuBean.updateCurrent}:#Servicios#GEM#GEM005.jsp"
+    NAME="output25" PATH="/Servicios/GEM/GEM005.jsp"
+    TARGET="rules:#Servicios#GEM#GEM005.jsp"
+    TITLE="#{menuBean.updateCurrent}:GEM005" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="GEM006:#{menuBean.updateCurrent}:#Servicios#GEM#GEM006.jsp"
+    NAME="output26" PATH="/Servicios/GEM/GEM006.jsp"
+    TARGET="rules:#Servicios#GEM#GEM006.jsp"
+    TITLE="#{menuBean.updateCurrent}:GEM006" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="GEM007:#{menuBean.updateCurrent}:#Servicios#GEM#GEM007.jsp"
+    NAME="output27" PATH="/Servicios/GEM/GEM007.jsp"
+    TARGET="rules:#Servicios#GEM#GEM007.jsp"
+    TITLE="#{menuBean.updateCurrent}:GEM007" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="GEM008:#{menuBean.updateCurrent}:#Servicios#GEM#GEM008.jsp"
+    NAME="output28" PATH="/Servicios/GEM/GEM008.jsp"
+    TARGET="rules:#Servicios#GEM#GEM008.jsp"
+    TITLE="#{menuBean.updateCurrent}:GEM008" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="GEM009:#{menuBean.updateCurrent}:#Servicios#GEM#GEM009.jsp"
+    NAME="output29" PATH="/Servicios/GEM/GEM009.jsp"
+    TARGET="rules:#Servicios#GEM#GEM009.jsp"
+    TITLE="#{menuBean.updateCurrent}:GEM009" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="EJE001:#{menuBean.updateCurrent}:#Servicios#EJE#EJE001.jsp"
+    NAME="output30" PATH="/Servicios/EJE/EJE001.jsp"
+    TARGET="rules:#Servicios#EJE#EJE001.jsp"
+    TITLE="#{menuBean.updateCurrent}:EJE001" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="EJE002:#{menuBean.updateCurrent}:#Servicios#EJE#EJE002.jsp"
+    NAME="output31" PATH="/Servicios/EJE/EJE002.jsp"
+    TARGET="rules:#Servicios#EJE#EJE002.jsp"
+    TITLE="#{menuBean.updateCurrent}:EJE002" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#SEG#SEG001.jsp"
+  PATH="/Servicios/SEG/SEG001.jsp" SHAPE="1120,1569,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#SEG#SEG001.jsp:0" NAME="item"
+   PATH="/Servicios/SEG/SEG001.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="login-ok:#{loginBean.login}:#Servicios#Contenido.jsp"
+    NAME="output" PATH="/Servicios/Contenido.jsp"
+    TARGET="rules:#Servicios#Contenido.jsp"
+    TITLE="#{loginBean.login}:login-ok" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="logout:#{loginBean.logout}:#Servicios#SEG#SEG001.jsp"
+    NAME="output1" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp"
+    TITLE="#{loginBean.logout}:logout" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="registrarse:#{loginBean.registrarse}:#Servicios#SEG#SEG002.jsp"
+    NAME="output2" PATH="/Servicios/SEG/SEG002.jsp"
+    TARGET="rules:#Servicios#SEG#SEG002.jsp"
+    TITLE="#{loginBean.registrarse}:registrarse" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cancelar::#Servicios#SEG#SEG001.jsp"
+    NAME="output3" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp" TITLE="cancelar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="login-olvido:#{loginBean.olvidoContrasenia}:#Servicios#SEG#SEG006.jsp"
+    NAME="output4" PATH="/Servicios/SEG/SEG006.jsp"
+    TARGET="rules:#Servicios#SEG#SEG006.jsp"
+    TITLE="#{loginBean.olvidoContrasenia}:login-olvido" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#SEG#SEG002.jsp"
+  PATH="/Servicios/SEG/SEG002.jsp" SHAPE="848,1825,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#SEG#SEG002.jsp:0" NAME="item"
+   PATH="/Servicios/SEG/SEG002.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="registro-ok:#{registroBean.registrar}:#Servicios#SEG#SEG001.jsp"
+    NAME="output" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp"
+    TITLE="#{registroBean.registrar}:registro-ok" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cancelar::#Servicios#SEG#SEG001.jsp"
+    NAME="output1" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp" TITLE="cancelar" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#SEG#SEG003.jsp"
+  PATH="/Servicios/SEG/SEG003.jsp" SHAPE="848,2033,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#SEG#SEG003.jsp:0" NAME="item"
+   PATH="/Servicios/SEG/SEG003.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="confirmar-ok:#{confirmacionBean.Confirmar}:#Servicios#SEG#SEG001.jsp"
+    NAME="output" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp"
+    TITLE="#{confirmacionBean.Confirmar}:confirmar-ok" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="logout::#Servicios#SEG#SEG001.jsp"
+    NAME="output1" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp" TITLE="logout" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cancelar::#Servicios#SEG#SEG001.jsp"
+    NAME="output2" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp" TITLE="cancelar" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#SEG#SEG004.jsp"
+  PATH="/Servicios/SEG/SEG004.jsp" SHAPE="304,1137,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#SEG#SEG004.jsp:0" NAME="item"
+   PATH="/Servicios/SEG/SEG004.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="ok:#{datosUsuarioBean.modificar}:#Servicios#SEG#SEG004.jsp"
+    NAME="output" PATH="/Servicios/SEG/SEG004.jsp"
+    TARGET="rules:#Servicios#SEG#SEG004.jsp"
+    TITLE="#{datosUsuarioBean.modificar}:ok" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#SEG#SEG005.jsp"
+  PATH="/Servicios/SEG/SEG005.jsp" SHAPE="848,1137,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#SEG#SEG005.jsp:0" NAME="item"
+   PATH="/Servicios/SEG/SEG005.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="ok:#{datosUsuarioBean.baja}:#Servicios#SEG#SEG001.jsp"
+    NAME="output" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp"
+    TITLE="#{datosUsuarioBean.baja}:ok" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#SEG#SEG006.jsp"
+  PATH="/Servicios/SEG/SEG006.jsp" SHAPE="848,2273,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#SEG#SEG006.jsp:0" NAME="item"
+   PATH="/Servicios/SEG/SEG006.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="enviar:#{recuperarContraseniaBean.enviarPassword}:#Servicios#SEG#SEG006.jsp"
+    NAME="output" PATH="/Servicios/SEG/SEG006.jsp"
+    TARGET="rules:#Servicios#SEG#SEG006.jsp"
+    TITLE="#{recuperarContraseniaBean.enviarPassword}:enviar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cancelar::#Servicios#SEG#SEG001.jsp"
+    NAME="output1" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp" TITLE="cancelar" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#SEG#SEG007.jsp"
+  PATH="/Servicios/SEG/SEG007.jsp" SHAPE="848,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#SEG#SEG007.jsp:0" NAME="item"
+   PATH="/Servicios/SEG/SEG007.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="SEG001:#{recuperarContraseniaBean.confirmar}:#Servicios#SEG#SEG001.jsp"
+    NAME="output" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp"
+    TITLE="#{recuperarContraseniaBean.confirmar}:SEG001" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#SEG#SEG008.jsp"
+  PATH="/Servicios/SEG/SEG008.jsp" SHAPE="576,1329,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#SEG#SEG008.jsp:0" NAME="item"
+   PATH="/Servicios/SEG/SEG008.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="Alta::#Servicios#SEG#SEG009.jsp"
+    NAME="output" PATH="/Servicios/SEG/SEG009.jsp"
+    TARGET="rules:#Servicios#SEG#SEG009.jsp" TITLE="Alta" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="eliminado:#{perfilBean.eliminar}:#Servicios#SEG#SEG008.jsp"
+    NAME="output1" PATH="/Servicios/SEG/SEG008.jsp"
+    TARGET="rules:#Servicios#SEG#SEG008.jsp"
+    TITLE="#{perfilBean.eliminar}:eliminado" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="Actualizar::#Servicios#SEG#SEG010.jsp"
+    NAME="output2" PATH="/Servicios/SEG/SEG010.jsp"
+    TARGET="rules:#Servicios#SEG#SEG010.jsp" TITLE="Actualizar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="desplegarResultados::#Servicios#SEG#SEG010.jsp" NAME="output3"
+    PATH="/Servicios/SEG/SEG010.jsp"
+    TARGET="rules:#Servicios#SEG#SEG010.jsp" TITLE="desplegarResultados" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cancelar::#Servicios#Contenido.jsp"
+    NAME="output4" PATH="/Servicios/Contenido.jsp"
+    TARGET="rules:#Servicios#Contenido.jsp" TITLE="cancelar" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#SEG#SEG009.jsp"
+  PATH="/Servicios/SEG/SEG009.jsp" SHAPE="304,1345,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#SEG#SEG009.jsp:0" NAME="item"
+   PATH="/Servicios/SEG/SEG009.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="registro-ok:#{perfilBean.registrar}:#Servicios#SEG#SEG008.jsp"
+    NAME="output" PATH="/Servicios/SEG/SEG008.jsp"
+    TARGET="rules:#Servicios#SEG#SEG008.jsp"
+    TITLE="#{perfilBean.registrar}:registro-ok" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="registro-error:#{perfilBean.registrar}:#Servicios#SEG#SEG009.jsp"
+    NAME="output1" PATH="/Servicios/SEG/SEG009.jsp"
+    TARGET="rules:#Servicios#SEG#SEG009.jsp"
+    TITLE="#{perfilBean.registrar}:registro-error" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="salir::#Servicios#SEG#SEG008.jsp"
+    NAME="output2" PATH="/Servicios/SEG/SEG008.jsp"
+    TARGET="rules:#Servicios#SEG#SEG008.jsp" TITLE="salir" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#SEG#SEG010.jsp"
+  PATH="/Servicios/SEG/SEG010.jsp" SHAPE="848,1345,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#SEG#SEG010.jsp:0" NAME="item"
+   PATH="/Servicios/SEG/SEG010.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="registro-ok:#{perfilBean.actualizar}:#Servicios#SEG#SEG008.jsp"
+    NAME="output" PATH="/Servicios/SEG/SEG008.jsp"
+    TARGET="rules:#Servicios#SEG#SEG008.jsp"
+    TITLE="#{perfilBean.actualizar}:registro-ok" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="registro-error:#{perfilBean.actualizar}:#Servicios#SEG#SEG010.jsp"
+    NAME="output1" PATH="/Servicios/SEG/SEG010.jsp"
+    TARGET="rules:#Servicios#SEG#SEG010.jsp"
+    TITLE="#{perfilBean.actualizar}:registro-error" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="salir::#Servicios#SEG#SEG008.jsp"
+    NAME="output2" PATH="/Servicios/SEG/SEG008.jsp"
+    TARGET="rules:#Servicios#SEG#SEG008.jsp" TITLE="salir" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#ADM#ADM001.jsp"
+  PATH="/Servicios/ADM/ADM001.jsp" SHAPE="576,1569,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#ADM#ADM001.jsp:0" NAME="item"
+   PATH="/Servicios/ADM/ADM001.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="resultados::#Servicios#ADM#ADM002.jsp"
+    NAME="output" PATH="/Servicios/ADM/ADM002.jsp"
+    TARGET="rules:#Servicios#ADM#ADM002.jsp" TITLE="resultados" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cancelar::#Servicios#Contenido.jsp"
+    NAME="output1" PATH="/Servicios/Contenido.jsp"
+    TARGET="rules:#Servicios#Contenido.jsp" TITLE="cancelar" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#ADM#ADM002.jsp"
+  PATH="/Servicios/ADM/ADM002.jsp" SHAPE="304,1585,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#ADM#ADM002.jsp:0" NAME="item"
+   PATH="/Servicios/ADM/ADM002.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="registro-ok:#{transaccionBean.actualizar}:#Servicios#ADM#ADM001.jsp"
+    NAME="output" PATH="/Servicios/ADM/ADM001.jsp"
+    TARGET="rules:#Servicios#ADM#ADM001.jsp"
+    TITLE="#{transaccionBean.actualizar}:registro-ok" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="error:#{transaccionBean.actualizar}:#Servicios#ADM#ADM002.jsp"
+    NAME="output1" PATH="/Servicios/ADM/ADM002.jsp"
+    TARGET="rules:#Servicios#ADM#ADM002.jsp"
+    TITLE="#{transaccionBean.actualizar}:error" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="salir::#Servicios#ADM#ADM001.jsp"
+    NAME="output2" PATH="/Servicios/ADM/ADM001.jsp"
+    TARGET="rules:#Servicios#ADM#ADM001.jsp" TITLE="salir" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#ADM#ADM003.jsp"
+  PATH="/Servicios/ADM/ADM003.jsp" SHAPE="304,1825,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#ADM#ADM003.jsp:0" NAME="item"
+   PATH="/Servicios/ADM/ADM003.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="eliminar:#{valorSeleccionBean.EliminarValor}:#Servicios#ADM#ADM003.jsp"
+    NAME="output" PATH="/Servicios/ADM/ADM003.jsp"
+    TARGET="rules:#Servicios#ADM#ADM003.jsp"
+    TITLE="#{valorSeleccionBean.EliminarValor}:eliminar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="aceptar:#{valorSeleccionBean.AceptarValor}:#Servicios#ADM#ADM003.jsp"
+    NAME="output1" PATH="/Servicios/ADM/ADM003.jsp"
+    TARGET="rules:#Servicios#ADM#ADM003.jsp"
+    TITLE="#{valorSeleccionBean.AceptarValor}:aceptar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ADM003:#{valorSeleccionBean.RegistrarValores}:#Servicios#ADM#ADM003.lsp"
+    NAME="output2" PATH="/Servicios/ADM/ADM003.lsp"
+    TARGET="rules:#Servicios#ADM#ADM003.lsp"
+    TITLE="#{valorSeleccionBean.RegistrarValores}:ADM003" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cancelar::#Servicios#Contenido.jsp"
+    NAME="output3" PATH="/Servicios/Contenido.jsp"
+    TARGET="rules:#Servicios#Contenido.jsp" TITLE="cancelar" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#ADM#ADM004.jsp"
+  PATH="/Servicios/ADM/ADM004.jsp" SHAPE="304,2033,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#ADM#ADM004.jsp:0" NAME="item"
+   PATH="/Servicios/ADM/ADM004.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="modificar:#{valorSeleccionBean.ModificarValor}:#Servicios#ADM#ADM004.lsp"
+    NAME="output" PATH="/Servicios/ADM/ADM004.lsp"
+    TARGET="rules:#Servicios#ADM#ADM004.lsp"
+    TITLE="#{valorSeleccionBean.ModificarValor}:modificar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="eliminar:#{valorSeleccionBean.EliminarValor}:#Servicios#ADM#ADM004.lsp"
+    NAME="output1" PATH="/Servicios/ADM/ADM004.lsp"
+    TARGET="rules:#Servicios#ADM#ADM004.lsp"
+    TITLE="#{valorSeleccionBean.EliminarValor}:eliminar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ADM004:#{valorSeleccionBean.AceptarModificacion}:#Servicios#ADM#ADM004.lsp"
+    NAME="output2" PATH="/Servicios/ADM/ADM004.lsp"
+    TARGET="rules:#Servicios#ADM#ADM004.lsp"
+    TITLE="#{valorSeleccionBean.AceptarModificacion}:ADM004" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ADM004:#{valorSeleccionBean.ModificarValores}:#Servicios#ADM#ADM004.lsp"
+    NAME="output3" PATH="/Servicios/ADM/ADM004.lsp"
+    TARGET="rules:#Servicios#ADM#ADM004.lsp"
+    TITLE="#{valorSeleccionBean.ModificarValores}:ADM004" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cancelar::#Servicios#Contenido.jsp"
+    NAME="output4" PATH="/Servicios/Contenido.jsp"
+    TARGET="rules:#Servicios#Contenido.jsp" TITLE="cancelar" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#ADM#ADM005.jsp"
+  PATH="/Servicios/ADM/ADM005.jsp" SHAPE="576,1121,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#ADM#ADM005.jsp:0" NAME="item"
+   PATH="/Servicios/ADM/ADM005.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="Alta::#Servicios#ADM#ADM006.jsp"
+    NAME="output" PATH="/Servicios/ADM/ADM006.jsp"
+    TARGET="rules:#Servicios#ADM#ADM006.jsp" TITLE="Alta" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="eliminado:#{regionBean.eliminar}:#Servicios#ADM#ADM005.jsp"
+    NAME="output1" PATH="/Servicios/ADM/ADM005.jsp"
+    TARGET="rules:#Servicios#ADM#ADM005.jsp"
+    TITLE="#{regionBean.eliminar}:eliminado" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="resultados::#Servicios#ADM#ADM007.jsp"
+    NAME="output2" PATH="/Servicios/ADM/ADM007.jsp"
+    TARGET="rules:#Servicios#ADM#ADM007.jsp" TITLE="resultados" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cancelar::#Servicios#Contenido.jsp"
+    NAME="output3" PATH="/Servicios/Contenido.jsp"
+    TARGET="rules:#Servicios#Contenido.jsp" TITLE="cancelar" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#ADM#ADM006.jsp"
+  PATH="/Servicios/ADM/ADM006.jsp" SHAPE="304,2273,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#ADM#ADM006.jsp:0" NAME="item"
+   PATH="/Servicios/ADM/ADM006.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="registro-ok:#{regionBean.registrar}:#Servicios#ADM#ADM005.jsp"
+    NAME="output" PATH="/Servicios/ADM/ADM005.jsp"
+    TARGET="rules:#Servicios#ADM#ADM005.jsp"
+    TITLE="#{regionBean.registrar}:registro-ok" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="registro-error:#{regionBean.registrar}:#Servicios#ADM#ADM006.jsp"
+    NAME="output1" PATH="/Servicios/ADM/ADM006.jsp"
+    TARGET="rules:#Servicios#ADM#ADM006.jsp"
+    TITLE="#{regionBean.registrar}:registro-error" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="salir::#Servicios#ADM#ADM005.jsp"
+    NAME="output2" PATH="/Servicios/ADM/ADM005.jsp"
+    TARGET="rules:#Servicios#ADM#ADM005.jsp" TITLE="salir" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#ADM#ADM007.jsp"
+  PATH="/Servicios/ADM/ADM007.jsp" SHAPE="304,2449,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#ADM#ADM007.jsp:0" NAME="item"
+   PATH="/Servicios/ADM/ADM007.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="registro-ok:#{regionBean.actualizar}:#Servicios#ADM#ADM005.jsp"
+    NAME="output" PATH="/Servicios/ADM/ADM005.jsp"
+    TARGET="rules:#Servicios#ADM#ADM005.jsp"
+    TITLE="#{regionBean.actualizar}:registro-ok" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="registro-error:#{regionBean.actualizar}:#Servicios#ADM#ADM007.jsp"
+    NAME="output1" PATH="/Servicios/ADM/ADM007.jsp"
+    TARGET="rules:#Servicios#ADM#ADM007.jsp"
+    TITLE="#{regionBean.actualizar}:registro-error" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="salir::#Servicios#ADM#ADM005.jsp"
+    NAME="output2" PATH="/Servicios/ADM/ADM005.jsp"
+    TARGET="rules:#Servicios#ADM#ADM005.jsp" TITLE="salir" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#ADM#ADM008.jsp"
+  PATH="/Servicios/ADM/ADM008.jsp" SHAPE="304,2625,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#ADM#ADM008.jsp:0" NAME="item"
+   PATH="/Servicios/ADM/ADM008.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="administrarUsuarioBean.verUsuario::#Servicios#ADM#ADM009.jsp"
+    NAME="output" PATH="/Servicios/ADM/ADM009.jsp"
+    TARGET="rules:#Servicios#ADM#ADM009.jsp"
+    TITLE="administrarUsuarioBean.verUsuario" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="resultados::#Servicios#ADM#ADM009.jsp"
+    NAME="output1" PATH="/Servicios/ADM/ADM009.jsp"
+    TARGET="rules:#Servicios#ADM#ADM009.jsp" TITLE="resultados" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cancelar::#Servicios#Contenido.jsp"
+    NAME="output2" PATH="/Servicios/Contenido.jsp"
+    TARGET="rules:#Servicios#Contenido.jsp" TITLE="cancelar" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#ADM#ADM009.jsp"
+  PATH="/Servicios/ADM/ADM009.jsp" SHAPE="576,2609,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#ADM#ADM009.jsp:0" NAME="item"
+   PATH="/Servicios/ADM/ADM009.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="registro-ok:#{administrarUsuarioBean.actualizar}:#Servicios#ADM#ADM008.jsp"
+    NAME="output" PATH="/Servicios/ADM/ADM008.jsp"
+    TARGET="rules:#Servicios#ADM#ADM008.jsp"
+    TITLE="#{administrarUsuarioBean.actualizar}:registro-ok" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="registro-error:#{administrarUsuarioBean.actualizar}:#Servicios#ADM#ADM009jsp"
+    NAME="output1" PATH="/Servicios/ADM/ADM009jsp"
+    TARGET="rules:#Servicios#ADM#ADM009jsp"
+    TITLE="#{administrarUsuarioBean.actualizar}:registro-error" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="salir::#Servicios#ADM#ADM008.jsp"
+    NAME="output2" PATH="/Servicios/ADM/ADM008.jsp"
+    TARGET="rules:#Servicios#ADM#ADM008.jsp" TITLE="salir" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#GEM#GEM001.jsp"
+  PATH="/Servicios/GEM/GEM001.jsp" SHAPE="576,2257,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#GEM#GEM001.jsp:0" NAME="item"
+   PATH="/Servicios/GEM/GEM001.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="cancelar::#Servicios#Contenido.jsp"
+    NAME="output" PATH="/Servicios/Contenido.jsp"
+    TARGET="rules:#Servicios#Contenido.jsp" TITLE="cancelar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="GEM001:#{cultivoBean.Registrar}:#Servicios#GEM#GEM001.jsp"
+    NAME="output1" PATH="/Servicios/GEM/GEM001.jsp"
+    TARGET="rules:#Servicios#GEM#GEM001.jsp"
+    TITLE="#{cultivoBean.Registrar}:GEM001" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#GEM#GEM002.jsp"
+  PATH="/Servicios/GEM/GEM002.jsp" SHAPE="576,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#GEM#GEM002.jsp:0" NAME="item"
+   PATH="/Servicios/GEM/GEM002.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="cancelar::#Servicios#Contenido.jsp"
+    NAME="output" PATH="/Servicios/Contenido.jsp"
+    TARGET="rules:#Servicios#Contenido.jsp" TITLE="cancelar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="GEM002:#{cultivoBean.Actualizar}:#Servicios#GEM#GEM002.jsp"
+    NAME="output1" PATH="/Servicios/GEM/GEM002.jsp"
+    TARGET="rules:#Servicios#GEM#GEM002.jsp"
+    TITLE="#{cultivoBean.Actualizar}:GEM002" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#Contenido.jsp"
+  PATH="/Servicios/Contenido.jsp" SHAPE="848,1585,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#Contenido.jsp:0" NAME="item"
+   PATH="/Servicios/Contenido.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="irLogin::#Servicios#SEG#SEG001.jsp"
+    NAME="output" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp" TITLE="irLogin" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="logout:#{loginBean.logout}:#Servicios#SEG#SEG001.jsp"
+    NAME="output1" PATH="/Servicios/SEG/SEG001.jsp"
+    TARGET="rules:#Servicios#SEG#SEG001.jsp"
+    TITLE="#{loginBean.logout}:logout" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="EJE001::#Servicios#EJE#EJE001.jsp"
+    NAME="output2" PATH="/Servicios/EJE/EJE001.jsp"
+    TARGET="rules:#Servicios#EJE#EJE001.jsp" TITLE="EJE001" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="EJE002::#Servicios#EJE#EJE001.jsp"
+    NAME="output3" PATH="/Servicios/EJE/EJE001.jsp"
+    TARGET="rules:#Servicios#EJE#EJE001.jsp" TITLE="EJE002" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#GEM#GEM003.jsp"
+  PATH="/Servicios/GEM/GEM003.jsp" SHAPE="304,2977,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#GEM#GEM003.jsp:0" NAME="item"
+   PATH="/Servicios/GEM/GEM003.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="aceptar:#{propiedadesBean.AceptarPropiedad}:#Servicios#GEM#GEM003.jsp"
+    NAME="output" PATH="/Servicios/GEM/GEM003.jsp"
+    TARGET="rules:#Servicios#GEM#GEM003.jsp"
+    TITLE="#{propiedadesBean.AceptarPropiedad}:aceptar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="eliminar:#{propiedadesBean.EliminarPropiedad}:#Servicios#GEM#GEM003.jsp"
+    NAME="output1" PATH="/Servicios/GEM/GEM003.jsp"
+    TARGET="rules:#Servicios#GEM#GEM003.jsp"
+    TITLE="#{propiedadesBean.EliminarPropiedad}:eliminar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="GEM003:#{propiedadesBean.ReigstrarPropiedades}:#Servicios#GEM#GEM003.jsp"
+    NAME="output2" PATH="/Servicios/GEM/GEM003.jsp"
+    TARGET="rules:#Servicios#GEM#GEM003.jsp"
+    TITLE="#{propiedadesBean.ReigstrarPropiedades}:GEM003" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#GEM#GEM004.jsp"
+  PATH="/Servicios/GEM/GEM004.jsp" SHAPE="304,3153,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#GEM#GEM004.jsp:0" NAME="item"
+   PATH="/Servicios/GEM/GEM004.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="modificar:#{propiedadesBean.ModificarPropiedad}:#Servicios#GEM#GEM004.jsp"
+    NAME="output" PATH="/Servicios/GEM/GEM004.jsp"
+    TARGET="rules:#Servicios#GEM#GEM004.jsp"
+    TITLE="#{propiedadesBean.ModificarPropiedad}:modificar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="eliminar:#{propiedadesBean.EliminarPropiedad}:#Servicios#GEM#GEM004.jsp"
+    NAME="output1" PATH="/Servicios/GEM/GEM004.jsp"
+    TARGET="rules:#Servicios#GEM#GEM004.jsp"
+    TITLE="#{propiedadesBean.EliminarPropiedad}:eliminar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="GEM004:#{propiedadesBean.AceptarModificacion}:#Servicios#GEM#GEM004.jsp"
+    NAME="output2" PATH="/Servicios/GEM/GEM004.jsp"
+    TARGET="rules:#Servicios#GEM#GEM004.jsp"
+    TITLE="#{propiedadesBean.AceptarModificacion}:GEM004" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="GEM004:#{propiedadesBean.ModificarPropiedades}:#Servicios#GEM#GEM004.jsp"
+    NAME="output3" PATH="/Servicios/GEM/GEM004.jsp"
+    TARGET="rules:#Servicios#GEM#GEM004.jsp"
+    TITLE="#{propiedadesBean.ModificarPropiedades}:GEM004" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#GEM#GEM005.jsp"
+  PATH="/Servicios/GEM/GEM005.jsp" SHAPE="304,3361,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#GEM#GEM005.jsp:0" NAME="item"
+   PATH="/Servicios/GEM/GEM005.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="GEM005:#{subirEscenarioBean.RegistrarEscenario}:#Servicios#GEM#GEM005.jsp"
+    NAME="output" PATH="/Servicios/GEM/GEM005.jsp"
+    TARGET="rules:#Servicios#GEM#GEM005.jsp"
+    TITLE="#{subirEscenarioBean.RegistrarEscenario}:GEM005" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#EJE#EJE002.jsp"
+  PATH="/Servicios/EJE/EJE002.jsp" SHAPE="304,3921,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#EJE#EJE002.jsp:0" NAME="item"
+   PATH="/Servicios/EJE/EJE002.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="EJE002:#{resultadoBean.CargarResultado}:#Servicios#EJE#EJE002.jsp"
+    NAME="output" PATH="/Servicios/EJE/EJE002.jsp"
+    TARGET="rules:#Servicios#EJE#EJE002.jsp"
+    TITLE="#{resultadoBean.CargarResultado}:EJE002" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#ADM#ADM010.jsp"
+  PATH="/Servicios/ADM/ADM010.jsp" SHAPE="304,2801,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#ADM#ADM010.jsp:0" NAME="item"
+   PATH="/Servicios/ADM/ADM010.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="ADM010:#{ubicacionBean.nuevo}:#Servicios#ADM#ADM010.jsp"
+    NAME="output" PATH="/Servicios/ADM/ADM010.jsp"
+    TARGET="rules:#Servicios#ADM#ADM010.jsp"
+    TITLE="#{ubicacionBean.nuevo}:ADM010" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ADM010:#{ubicacionBean.actualizar}:#Servicios#ADM#ADM010.jsp"
+    NAME="output1" PATH="/Servicios/ADM/ADM010.jsp"
+    TARGET="rules:#Servicios#ADM#ADM010.jsp"
+    TITLE="#{ubicacionBean.actualizar}:ADM010" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ADM010:#{ubicacionBean.registrar}:#Servicios#ADM#ADM010.jsp"
+    NAME="output2" PATH="/Servicios/ADM/ADM010.jsp"
+    TARGET="rules:#Servicios#ADM#ADM010.jsp"
+    TITLE="#{ubicacionBean.registrar}:ADM010" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="resultados:#{ubicacionBean.verUbicacion}:#Servicios#ADM#ADM010.jsp"
+    NAME="output3" PATH="/Servicios/ADM/ADM010.jsp"
+    TARGET="rules:#Servicios#ADM#ADM010.jsp"
+    TITLE="#{ubicacionBean.verUbicacion}:resultados" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Servicios#GEM#GEM006.jsp"
+  PATH="/Servicios/GEM/GEM006.jsp" SHAPE="304,3473,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#Servicios#ADM#ADM004.lsp"
+  PATH="/Servicios/ADM/ADM004.lsp" SHAPE="576,2017,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#Servicios#GEM#GEM008.jsp"
+  PATH="/Servicios/GEM/GEM008.jsp" SHAPE="304,3697,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#Servicios#EJE#EJE001.jsp"
+  PATH="/Servicios/EJE/EJE001.jsp" SHAPE="1120,1809,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#Servicios#ADM#ADM003.lsp"
+  PATH="/Servicios/ADM/ADM003.lsp" SHAPE="576,1809,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#Servicios#GEM#GEM007.jsp"
+  PATH="/Servicios/GEM/GEM007.jsp" SHAPE="304,3585,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#Servicios#GEM#GEM009.jsp"
+  PATH="/Servicios/GEM/GEM009.jsp" SHAPE="304,3809,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#Servicios#Contenedora.jsp"
+  PATH="/Servicios/Contenedora.jsp" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#Servicios#ADM#ADM009jsp"
+  PATH="/Servicios/ADM/ADM009jsp" SHAPE="848,2625,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

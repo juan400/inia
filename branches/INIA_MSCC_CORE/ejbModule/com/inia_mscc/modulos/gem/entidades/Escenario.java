@@ -53,13 +53,13 @@ public class Escenario implements Serializable {
 	private Cultivo _cultivo;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REFRESH }, targetEntity = Archivo.class)
-	@ForeignKey(name = "FK_arch_num_id_cultivo")
-	@JoinColumn(name = "arch_num_id_cultivo", referencedColumnName = "cult_num_id", updatable = true, nullable = false, columnDefinition = "BIGINT(20)")
+	@ForeignKey(name = "FK_esce_num_id_archivo_escenario")
+	@JoinColumn(name = "esce_num_id_archivo_escenario", referencedColumnName = "arch_num_id", updatable = true, nullable = false, columnDefinition = "BIGINT(20)")
 	private Archivo _archivoEscenario;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REFRESH }, targetEntity = Archivo.class)
 	@ForeignKey(name = "FK_arch_num_id_cultivo")
-	@JoinColumn(name = "arch_num_id_cultivo", referencedColumnName = "cult_num_id", updatable = true, nullable = false, columnDefinition = "BIGINT(20)")
+	@JoinColumn(name = "esce_num_id_archivo_mscc", referencedColumnName = "arch_num_id", updatable = true, nullable = false, columnDefinition = "BIGINT(20)")
 	private Archivo _archivoMSCC;
 	
 	public Escenario() {
