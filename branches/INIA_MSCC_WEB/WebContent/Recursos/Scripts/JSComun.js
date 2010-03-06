@@ -18,15 +18,15 @@ function ValidarCampoLetras(obj, event) {
 		break;
 	}
 
-	if (!validarTexto.match('^[A-Z,a-z,ÑñÁÉÍÓÚáéíóúÜü ]+$')) {
+	if (!validarTexto.match('^[A-Z,a-z,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ]+$')) {
 		event.returnValue = false;
 		event.cancel = true;
 	}
 }
 
 // ***************************************************************************
-// Valida que solo se puedan ingresar caracteres alfanuméricos en un campo
-// incluyendo ñ ,tildes, diéresis y el espacio en blanco.
+// Valida que solo se puedan ingresar caracteres alfanumï¿½ricos en un campo
+// incluyendo ï¿½ ,tildes, diï¿½resis y el espacio en blanco.
 // ***************************************************************************
 function ValidarCampoAlfaNumericoConEspacio(obj, event) {
 	var validarTexto = obj.value;
@@ -44,14 +44,14 @@ function ValidarCampoAlfaNumericoConEspacio(obj, event) {
 		break;
 	}
 
-	if (!validarTexto.match('^[0-9,A-Z,a-z,ÑñÁÉÍÓÚáéíóúÜü´ ]+$')) {
+	if (!validarTexto.match('^[0-9,A-Z,a-z,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ]+$')) {
 		event.returnValue = false;
 		event.cancel = true;
 	}
 }
 
 // ***************************************************************************
-// Valida que solo se puedan ingresar caracteres numéricos en un campo.
+// Valida que solo se puedan ingresar caracteres numï¿½ricos en un campo.
 // ***************************************************************************
 function ValidarCampoNumerico(obj, event) {
 	var validarTexto = obj.value;
@@ -76,9 +76,10 @@ function ValidarCampoNumerico(obj, event) {
 }
 
 // *****************************************************************************
-// Valida que solo se puedan ingresar caracteres numéricos y puntos en un campo.
+// Valida que solo se puedan ingresar caracteres numï¿½ricos y puntos en un campo.
 // *****************************************************************************
 function ValidarCampoNumericoDouble(obj, event) {
+	debugger;
 	var validarTexto = obj.value;
 	switch (event.type) {
 	case "keypress":
@@ -101,8 +102,8 @@ function ValidarCampoNumericoDouble(obj, event) {
 }
 
 // ***************************************************************************
-// Valida que solo se puedan ingresar caracteres alfanuméricos en un campo
-// incluyendo ñ y sin espacio en blanco.
+// Valida que solo se puedan ingresar caracteres alfanumï¿½ricos en un campo
+// incluyendo ï¿½ y sin espacio en blanco.
 // ***************************************************************************
 function ValidarCampoParaCodigo(obj, event) {
 	var validarTexto = obj.value;
@@ -120,15 +121,15 @@ function ValidarCampoParaCodigo(obj, event) {
 		break;
 	}
 
-	if (!validarTexto.match('^[0-9A-Za-zÑñ]+$')) {
+	if (!validarTexto.match('^[0-9A-Za-zï¿½ï¿½]+$')) {
 		event.returnValue = false;
 		event.cancel = true;
 	}
 }
 
 // ***************************************************************************
-// Valida que solo se puedan ingresar caracteres alfanuméricos en un campo
-// incluyendo ñ y sin espacio en blanco.
+// Valida que solo se puedan ingresar caracteres alfanumï¿½ricos en un campo
+// incluyendo ï¿½ y sin espacio en blanco.
 // ***************************************************************************
 function ValidarCampoTelefono(obj, event) {
 	var validarTexto = obj.value;
@@ -178,7 +179,7 @@ function ValidarLargoMultiline(obj, event, largoMaximo) {
 }
 
 // ***************************************************************************
-// Valida que se puedan ingresar caracteres alfanuméricos y caracteres
+// Valida que se puedan ingresar caracteres alfanumï¿½ricos y caracteres
 // especiales incluyendo el espacio en blanco
 // ***************************************************************************
 function ValidarCampoConCaracteresEspeciales(obj, event) {
@@ -198,7 +199,7 @@ function ValidarCampoConCaracteresEspeciales(obj, event) {
 	}
 
 	if (!validarTexto
-			.match('^[0-9,A-Z,a-z,ÑñÁÉÍÓÚáéíóúÜü&#@,-.{}¿?"%&/()=*;:°!¡ ]+$')
+			.match('^[0-9,A-Z,a-z,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½&#@,-.{}ï¿½?"%&/()=*;:ï¿½!ï¿½ ]+$')
 			|| (validarTexto.match('&#'))
 			|| (validarTexto.match('&'))
 			|| (validarTexto.match('#'))) {
@@ -208,7 +209,7 @@ function ValidarCampoConCaracteresEspeciales(obj, event) {
 }
 
 //***************************************************************************
-//Valida que se puedan ingresar caracteres alfanuméricos y caracteres
+//Valida que se puedan ingresar caracteres alfanumï¿½ricos y caracteres
 //especiales incluyendo el espacio en blanco
 //***************************************************************************
 function ValidarCampoUsuarioLogin(obj, event) {
@@ -234,7 +235,7 @@ function ValidarCampoUsuarioLogin(obj, event) {
 }
 
 // ***************************************************************************
-// Valida que se puedan ingresar caracteres alfanuméricos y caracteres
+// Valida que se puedan ingresar caracteres alfanumï¿½ricos y caracteres
 // especiales incluyendo el espacio en blanco
 // ***************************************************************************
 function ValidarCampoLogin(obj, event) {
@@ -295,7 +296,7 @@ function validarEmailBlur(obj, event) {
 		event.returnValue = true;
 		event.cancel = false;
 	} else {
-		alert("La dirección de email es incorrecta.");
+		alert("La direcciï¿½n de email es incorrecta.");
 		event.returnValue = false;
 		event.cancel = true;
 		obj.value = "";

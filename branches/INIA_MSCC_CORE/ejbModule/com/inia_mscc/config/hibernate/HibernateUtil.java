@@ -16,8 +16,12 @@ import com.inia_mscc.modulos.adm.entidades.Region;
 import com.inia_mscc.modulos.adm.entidades.Transaccion;
 import com.inia_mscc.modulos.adm.entidades.Ubicacion;
 import com.inia_mscc.modulos.adm.entidades.ValorSeleccion;
+import com.inia_mscc.modulos.eje.entidades.EjecucionMSCC;
+import com.inia_mscc.modulos.eje.entidades.Proyeccion;
+import com.inia_mscc.modulos.eje.entidades.ResultadoMSCC;
 import com.inia_mscc.modulos.gem.entidades.Archivo;
 import com.inia_mscc.modulos.gem.entidades.Cultivo;
+import com.inia_mscc.modulos.gem.entidades.Escenario;
 import com.inia_mscc.modulos.gem.entidades.Propiedad;
 import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
 import com.inia_mscc.modulos.seg.entidades.Perfil;
@@ -48,6 +52,10 @@ public class HibernateUtil {
         	.addAnnotatedClass(ListaCriterioSeleccion.class)
         	.addAnnotatedClass(Archivo.class)
         	.addAnnotatedClass(Ubicacion.class)
+        	.addAnnotatedClass(Escenario.class)
+        	.addAnnotatedClass(EjecucionMSCC.class)
+        	.addAnnotatedClass(ResultadoMSCC.class)
+        	.addAnnotatedClass(Proyeccion.class)
         	.configure("hibernate.cfg.xml")
         	.buildSessionFactory();
             

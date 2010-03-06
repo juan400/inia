@@ -103,13 +103,19 @@ Secano.</title>
 
 															</rich:comboBox>
 
-															<h:outputText value="Seleccionar cultivar" />
-															<rich:comboBox value="#{escenarioBean.cultivar}">
+															<h:outputText value="Nombre del cultivar" />
+															<h:inputText value="#{escenarioBean.cultivar}"
+																styleClass="textoPlano"
+																onkeypress="ValidarCampoLetras(this, event)" />
 
-															</rich:comboBox>
-
-															<h:outputText value="" />
 														</h:panelGrid>
+														<h:panelGrid columns="2" styleClass="textoPlano">
+															<h:outputText
+																value="Ejecutar con proyecciones climatologicas generadas" />
+															<h:selectBooleanCheckbox 
+																value="#{escenarioBean.proyectarClima}" />
+														</h:panelGrid>
+
 														<h:panelGrid columns="3"
 															columnClasses="textoPlano,textoPlano">
 															<rich:panel headerClass="tituloPantalla"
@@ -202,34 +208,60 @@ Secano.</title>
 															columnClasses="textoPlano,textoPlano,textoPlano,textoPlano">
 
 															<h:outputText value="Nombre Suelo" />
-															<h:inputText value="#{escenarioBean.nombreSueloConeat}" />
+															<h:inputText value="#{escenarioBean.nombreSueloConeat}"
+																styleClass="textoPlano"
+																onkeypress="ValidarCampoNumericoDouble(this, event)" />
 															<h:outputText value="Profundidad A" />
-															<h:inputText value="#{escenarioBean.profundidadA}" />
+															<h:inputText value="#{escenarioBean.profundidadA}"
+																styleClass="textoPlano"
+																onkeypress="ValidarCampoNumericoDouble(this, event)" />
 															<h:outputText value="Profundidad B" />
-															<h:inputText value="#{escenarioBean.profundidadB}" />
+															<h:inputText value="#{escenarioBean.profundidadB}"
+																styleClass="textoPlano"
+																onkeypress="ValidarCampoNumericoDouble(this, event)" />
 															<h:outputText value="Densidad Plantas" />
-															<h:inputText value="#{escenarioBean.densidadPlantas}" />
+															<h:inputText value="#{escenarioBean.densidadPlantas}"
+																styleClass="textoPlano"
+																onkeypress="ValidarCampoNumericoDouble(this, event)" />
 															<h:outputText value="WULI" />
-															<h:inputText value="#{escenarioBean.wuli}" />
+															<h:inputText value="#{escenarioBean.wuli}"
+																styleClass="textoPlano"
+																onkeypress="ValidarCampoNumericoDouble(this, event)" />
 															<h:outputText value="WLLI" />
-															<h:inputText value="#{escenarioBean.wlli}" />
+															<h:inputText value="#{escenarioBean.wlli}"
+																styleClass="textoPlano"
+																onkeypress="ValidarCampoNumericoDouble(this, event)" />
 															<h:outputText value="DPMI" />
-															<h:inputText value="#{escenarioBean.dpmi}" />
+															<h:inputText value="#{escenarioBean.dpmi}"
+																styleClass="textoPlano"
+																onkeypress="ValidarCampoNumericoDouble(this, event)" />
 															<h:outputText value="RPMI" />
-															<h:inputText value="#{escenarioBean.rpmi}" />
+															<h:inputText value="#{escenarioBean.rpmi}"
+																styleClass="textoPlano"
+																onkeypress="ValidarCampoNumericoDouble(this, event)" />
 															<h:outputText value="HUMI" />
-															<h:inputText value="#{escenarioBean.humi}" />
+															<h:inputText value="#{escenarioBean.humi}"
+																styleClass="textoPlano"
+																onkeypress="ValidarCampoNumericoDouble(this, event)" />
 															<h:outputText value="NAULI" />
-															<h:inputText value="#{escenarioBean.nauli}" />
+															<h:inputText value="#{escenarioBean.nauli}"
+																styleClass="textoPlano"
+																onkeypress="ValidarCampoNumericoDouble(this, event)" />
 															<h:outputText value="NALLI" />
-															<h:inputText value="#{escenarioBean.nalli}" />
+															<h:inputText value="#{escenarioBean.nalli}"
+																styleClass="textoPlano"
+																onkeypress="ValidarCampoNumericoDouble(this, event)" />
 															<h:outputText value="NNULI" />
-															<h:inputText value="#{escenarioBean.nnuli}" />
+															<h:inputText value="#{escenarioBean.nnuli}"
+																styleClass="textoPlano"
+																onkeypress="ValidarCampoNumericoDouble(this, event)" />
 															<h:outputText value="NNLLI" />
-															<h:inputText value="#{escenarioBean.nnlli}" />
+															<h:inputText value="#{escenarioBean.nnlli}"
+																styleClass="textoPlano"
+																onkeypress="ValidarCampoNumericoDouble(this, event)" />
 
 														</h:panelGrid>
-														
+
 														<center><h:outputText value="" /> <h:panelGrid
 															columns="2">
 															<a4j:commandButton
