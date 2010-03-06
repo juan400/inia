@@ -784,6 +784,12 @@
    <to-view-id>/Servicios/ADM/ADM010.jsp</to-view-id>
    <redirect/>
   </navigation-case>
+  <navigation-case>
+   <from-action>#{ubicacionBean.verUbicacion}</from-action>
+   <from-outcome>resultados</from-outcome>
+   <to-view-id>/Servicios/ADM/ADM010.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
  </navigation-rule>
  <application>
   <navigation-handler>org.richfaces.ui.application.StateNavigationHandler</navigation-handler>

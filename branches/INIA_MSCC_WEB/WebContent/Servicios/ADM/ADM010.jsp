@@ -74,9 +74,9 @@ Secano.</title>
 												<rich:panel headerClass="tituloPantalla"
 													style="background-color: #ebf3fd;">
 													<f:facet name="header">
-														<h:outputText value="#{text.usuario_ActUsuario}" />
+														<h:outputText value="Ubicación de archivos" />
 													</f:facet>
-													<h:panelGrid>
+													<h:panelGroup>
 														<h:panelGrid columns="2"
 															columnClasses="textoPlano,textoDataTable">
 
@@ -85,15 +85,14 @@ Secano.</title>
 																value="#{ubicacionBean.pathDirectorio}" required="true"
 																requiredMessage="Debe ingresar un path para el directorio"
 																style=" width : 245px;">
-																<a4j:support event="onchange"
-																	action="#{ubicacionBean.validarURL}" ajaxSingle="true"
-																	reRender="txtDirectorio" />
+
 															</h:inputText>
 
 															<h:outputText value="Tipos de archivo a almacenar" />
 															<rich:comboBox styleClass="textoDataTable"
 																value="#{ubicacionBean.tipoArchvo}" width="245px"
 																required="true"
+																disabled="#{ubicacionBean.disableTipoArchivo}"
 																requiredMessage="Debe seleccionar un tipo de archivo a almacenar">
 																<f:selectItems value="#{ubicacionBean.tipos}" />
 															</rich:comboBox>
@@ -102,14 +101,16 @@ Secano.</title>
 															<a4j:commandButton
 																style="font-size: 10pt; color: #2d77c2; width : 120px;"
 																styleClass="textoPlano" action="#{ubicacionBean.nuevo}"
-																value="#{text.boton_Ingresar}" />
+																value="#{text.boton_Ingresar}"
+																disabled="#{ubicacionBean.disableIngresar}" />
 
 															<a4j:commandButton
 																style="font-size: 10pt; color: #2d77c2; width : 120px;"
 																styleClass="textoPlano"
-																action="#{ubicacionBean.actualizar}" value="#{text.boton_Actualizar}" />
+																disabled="#{ubicacionBean.disableActualizar}"
+																action="#{ubicacionBean.actualizar}"
+																value="#{text.boton_Actualizar}" />
 														</h:panelGrid></center>
-														<br></br>
 
 														<h:panelGrid>
 															<center><rich:dataTable border="2" width="550px"
@@ -144,7 +145,7 @@ Secano.</title>
 																		<h:outputText value="Modificar" />
 																	</f:facet>
 
-																	<center><a4j:commandButton
+																	<center><a4j:commandButton immediate="true"
 																		action="#{ubicacionBean.verUbicacion}"
 																		image="/Recursos/Imagenes/Iconos/edit.gif"
 																		style="width : 27px; height : 21px;">
@@ -155,44 +156,27 @@ Secano.</title>
 
 																</rich:column>
 
-																<rich:column width="80">
-																	<f:facet name="header">
-																		<h:outputText value="Eliminar ingreso" />
-																	</f:facet>
 
-																	<center><a4j:commandButton action="#{ubicacionBean.eliminar}"
-																		image="/Recursos/Imagenes/Iconos/delete.gif"
-																		immediate="true"
-																		style=" border:0; width : 27px; height : 21px;"
-																		reRender="panelPropiedades">
-																		<a4j:actionparam name="propiedadElegida"
-																			value="#{ubicacion._tipoArchivo}" />
-																		<rich:toolTip value="Elimina solo las agregadas" />
-																	</a4j:commandButton></center>
-
-																</rich:column>
 
 																<f:facet name="footer">
 																	<rich:datascroller renderIfSinglePage="false" />
 																</f:facet>
 															</rich:dataTable></center>
 														</h:panelGrid>
-													</h:panelGrid>
+														<center><h:panelGrid columns="3">
+															<a4j:commandButton
+																style="font-size: 10pt; color: #2d77c2; width : 120px;"
+																styleClass="textoPlano" immediate="true"
+																action="#{ubicacionBean.registrar}"
+																value="#{text.boton_Aceptar}" />
+
+															<a4j:commandButton immediate="true"
+																style="font-size: 10pt; color: #2d77c2; width : 120px;"
+																styleClass="textoPlano" action="salir"
+																value="#{text.boton_Cancelar}" />
+														</h:panelGrid></center>
+													</h:panelGroup>
 												</rich:panel>
-
-												<center><h:panelGrid columns="3">
-													<a4j:commandButton
-														style="font-size: 10pt; color: #2d77c2; width : 120px;"
-														styleClass="textoPlano"
-														action="#{ubicacionBean.registrar}"
-														value="#{text.boton_Aceptar}" />
-
-													<a4j:commandButton immediate="true"
-														style="font-size: 10pt; color: #2d77c2; width : 120px;"
-														styleClass="textoPlano" action="salir"
-														value="#{text.boton_Cancelar}" />
-												</h:panelGrid></center>
-
 												<center><f:facet name="footer">
 													<h:panelGrid>
 														<rich:messages styleClass="mensajeError">
