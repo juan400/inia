@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +20,7 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.ForeignKey;
 
 import com.inia_mscc.modulos.adm.entidades.Region;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
 @Entity(name = "Escenario")
@@ -34,6 +37,10 @@ public class Escenario implements Serializable {
 	@Column(name = "esce_dte_fecha",  nullable = false, columnDefinition = "DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date _fechaHora;
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "esce_str_estado", nullable = false, columnDefinition = "VARCHAR(45)")
+	private Estado _estado;
 	
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REFRESH }, targetEntity = Usuario.class)
 	@ForeignKey(name = "FK_esce_num_id_usuario")
@@ -84,6 +91,14 @@ public class Escenario implements Serializable {
 
 	public void set_fechaHora(Date fechaHora) {
 		_fechaHora = fechaHora;
+	}
+
+	public void set_estado(Estado _estado) {
+		this._estado = _estado;
+	}
+
+	public Estado get_estado() {
+		return _estado;
 	}
 
 	public Usuario get_usuarioInvestigador() {

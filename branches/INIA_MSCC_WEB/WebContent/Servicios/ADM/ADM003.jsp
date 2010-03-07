@@ -165,7 +165,7 @@ Secano.</title>
 																	required="true"
 																	requiredMessage="Ingrese un código para el Valor de Seleccción"
 																	styleClass="textoPlano" maxlength="10"
-																	onkeypress="ValidarCampoLetras(this, event)"
+																	onkeypress="ValidarCampoAlfaNumericoConEspacio(this, event)"
 																	style=" width : 230px;" />
 
 																<h:outputText value="#{text.valorSeleccion_Descripcion}" />
@@ -180,7 +180,7 @@ Secano.</title>
 																<h:outputText value="#{text.valorSeleccion_Unidad}" />
 																<h:inputText value="#{valorSeleccionBean.unidad}"
 																	styleClass="textoPlano" maxlength="45"
-																	onkeypress="ValidarCampoLetras(this, event)"
+																	onkeypress="ValidarCampoAlfaNumericoConEspacio(this, event)"
 																	style=" width : 230px;">
 																</h:inputText>
 

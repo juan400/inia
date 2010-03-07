@@ -44,10 +44,11 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 	private boolean disableRegion = true;
 
 	private Archivo archivoSubido = new Archivo();
+	private Escenario escenario = new Escenario();
 	private boolean useFlash = false;
 	private boolean disableUpload = false;
 	private List<UploadItem> files;
-	private List<Archivo> archivos;
+	private List<Escenario> escenarios;
 	private Usuario usuarioFiltro;
 	private List<Usuario> listaUsuarios;
 	private SelectItem[] usuarios;
@@ -113,19 +114,19 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 	public String buscarEscenarios(){
 		String retorno = "GEM006";
 		try{
-			Archivo unArchivo = new Archivo();
-			unArchivo.set_tipo(TipoArchivo.Escenario);
+			Escenario unEsce = new Escenario();
+			unEsce.set_usuarioInvestigador(this.getUsuario());
 			if(this.getCultivo() != null){
-//				unArchivo.set_cultivo(this.getCultivo());
+				unEsce.set_cultivo(this.getCultivo());
 			}
-			if(this.getUsuario() != null){
-				unArchivo.set_usuario(this.getUsuario());
+			if (this.getRegion() != null){
+				unEsce.set_region(this.getRegion());
 			}
 			if(!this.getEstado().equals(this
 					.getTextBundleKey("combo_seleccione"))){
-				unArchivo.set_estado(Estado.valueOf(this.getEstado()));
+				unEsce.set_estado(Estado.valueOf(this.getEstado()));
 			}
-			this.setArchivos(this.getGEMFachada(ServicioGEM.Escenario).ObtenerArchivos(unArchivo));
+			this.setEscenarios(this.getGEMFachada(ServicioGEM.Escenario).ObtenerEscenarios(unEsce));
 		}catch(Exception ex){
 			this.setError(ex.getMessage());
 		}
@@ -154,7 +155,7 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 			si = new SelectItem(Estado.Inactivo.name());
 			estados[2] = si;
 			files = new ArrayList<UploadItem>();
-			archivos = new ArrayList<Archivo>();
+			escenarios = new ArrayList<Escenario>();
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
 		}
@@ -163,13 +164,12 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 	public boolean isModificacion() {
 		try {
 			if (recargo) {
-				Archivo archi = new Archivo();
+				Escenario esce = new Escenario();
 				this.setUsuario((Usuario) this.getSesion(Usuario.class
 						.toString()));
-				archi.set_usuario(this.getUsuario());
-				archi.set_tipo(TipoArchivo.Escenario);
-				this.setArchivos(this.getGEMFachada(ServicioGEM.Archivo)
-						.ObtenerArchivos(archi));
+				esce.set_usuarioInvestigador(this.getUsuario());
+				this.setEscenarios((this.getGEMFachada(ServicioGEM.Archivo)
+						.ObtenerEscenarios(esce)));
 				this.setListaCultivos(this.getGEMFachada(ServicioGEM.Cultivo)
 						.ObtenerCultivos(null));
 				if (this.getListaCultivos() == null) {
@@ -217,15 +217,12 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 	}
 
 	public String buscarEscenario() {
-		Archivo archi = new Archivo();
-		archi.set_usuario((Usuario) this.getSesion(Usuario.class.toString()));
-		archi.set_fechaHora(this.getFecha());
-//		archi.set_cultivo(this.getCultivo());
-		archi.set_usuario(this.getUsuarioFiltro());
-		archi.set_estado(Estado.valueOf(this.getEstado()));
-		archi.set_tipo(TipoArchivo.Escenario);
-		archivos = this.getGEMFachada(ServicioGEM.Archivo).ObtenerArchivos(
-				archi);
+		Escenario esce = new Escenario();
+		this.setUsuario((Usuario) this.getSesion(Usuario.class.toString()));
+		esce.set_fechaHora(this.getFecha());
+		esce.set_usuarioInvestigador(this.getUsuario());
+		esce.set_estado(Estado.valueOf(this.getEstado()));
+		esce = this.getGEMFachada(ServicioGEM.Archivo).ObtenerEscenario(esce);
 		return "GEM006";
 	}
 
@@ -486,14 +483,6 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 		return files;
 	}
 
-	public List<Archivo> getArchivos() {
-		return archivos;
-	}
-
-	public void setArchivos(List<Archivo> archivos) {
-		this.archivos = archivos;
-	}
-
 	public Usuario getUsuarioFiltro() {
 		return usuarioFiltro;
 	}
@@ -548,6 +537,22 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 
 	public void setEstados(SelectItem[] estados) {
 		this.estados = estados;
+	}
+
+	public void setEscenarios(List<Escenario> escenarios) {
+		this.escenarios = escenarios;
+	}
+
+	public List<Escenario> getEscenarios() {
+		return escenarios;
+	}
+
+	public Escenario getEscenario() {
+		return escenario;
+	}
+
+	public void setEscenario(Escenario escenario) {
+		this.escenario = escenario;
 	}
 
 }

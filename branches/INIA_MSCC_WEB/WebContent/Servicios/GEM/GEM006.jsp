@@ -132,16 +132,16 @@ Secano.</title>
 															</rich:comboBox>
 
 														</h:panelGrid>
-														<br></br><center>
+														<center>
 														<a4j:commandButton immediate="true"
 																style="font-size: 10pt; color: #2d77c2; width : 120px;"
 																styleClass="textoPlano" action="#{escenarioBean.buscarEscenarios}"
 																value="#{text.boton_Buscar}" /></center>
-														<br></br>
+														
 														<h:panelGrid id="panelArchivo">
 															<center><rich:dataTable border="2" rows="5"
 																styleClass="textoDataTable" id="tablaArchivo"
-																value="#{escenarioBean.files}" var="archivo"
+																value="#{escenarioBean.escenarios}" var="escenario"
 																rowKeyVar="row" headerClass="columnHeader"
 																rowClasses="oddRow,evenRow">
 
@@ -153,28 +153,28 @@ Secano.</title>
 																	<f:facet name="header">
 																		<h:outputText value="#{text.archivo_nombre}" />
 																	</f:facet>
-																	<h:outputText value="#{archivo._nombre}" />
+																	<h:outputText value="#{escenario._archivoEscenario._nombre}" />
 																</rich:column>
 
 																<rich:column width="100px">
 																	<f:facet name="header">
 																		<h:outputText value="#{text.archivo_fechaHora}" />
 																	</f:facet>
-																	<h:outputText value="#{archivo._fechaHora}" />
+																	<h:outputText value="#{escenario._fechaHora}" />
 																</rich:column>
 
 																<rich:column width="100px">
 																	<f:facet name="header">
 																		<h:outputText value="#{text.archivo_estado}" />
 																	</f:facet>
-																	<h:outputText value="#{archivo._estado}" />
+																	<h:outputText value="#{escenario._estado}" />
 																</rich:column>
 
 																<rich:column width="100">
 																	<f:facet name="header">
 																		<h:outputText value="#{text.archivo_tipo}" />
 																	</f:facet>
-																	<h:outputText value="#{archivo._tipo}" />
+																	<h:outputText value="#{escenario._cultivo._nombre}" />
 																</rich:column>
 
 																<rich:column width="80">
