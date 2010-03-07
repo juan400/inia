@@ -48,8 +48,8 @@
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
-  <managed-bean-name>escenarioBean</managed-bean-name>
-  <managed-bean-class>com.bean.eje.EscenarioBean</managed-bean-class>
+  <managed-bean-name>ejecucionBean</managed-bean-name>
+  <managed-bean-class>com.bean.eje.EjecucionBean</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
@@ -68,8 +68,8 @@
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
-  <managed-bean-name>subirEscenarioBean</managed-bean-name>
-  <managed-bean-class>com.bean.gem.SubirEscenarioBean</managed-bean-class>
+  <managed-bean-name>escenarioBean</managed-bean-name>
+  <managed-bean-class>com.bean.gem.EscenarioBean</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
@@ -105,6 +105,11 @@
  <managed-bean>
   <managed-bean-name>ubicacionBean</managed-bean-name>
   <managed-bean-class>com.bean.adm.UbicacionBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>modeloBean</managed-bean-name>
+  <managed-bean-class>com.bean.gem.ModeloBean</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <navigation-rule>
@@ -749,7 +754,7 @@
  <navigation-rule>
   <from-view-id>/Servicios/GEM/GEM005.jsp</from-view-id>
   <navigation-case>
-   <from-action>#{subirEscenarioBean.RegistrarEscenario}</from-action>
+   <from-action>#{escenarioBean.RegistrarEscenario}</from-action>
    <from-outcome>GEM005</from-outcome>
    <to-view-id>/Servicios/GEM/GEM005.jsp</to-view-id>
    <redirect/>

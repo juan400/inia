@@ -22,7 +22,7 @@ import com.inia_mscc.modulos.gem.entidades.Archivo;
 import com.inia_mscc.modulos.gem.entidades.Cultivo;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
-public class SubirMSCCBean extends MaestroBean implements Serializable {
+public class ModeloBean extends MaestroBean implements Serializable {
 
 	/**
 	 * 
@@ -56,7 +56,7 @@ public class SubirMSCCBean extends MaestroBean implements Serializable {
 
 	private boolean recargo = true;
 
-	public SubirMSCCBean() {
+	public ModeloBean() {
 		try {
 			this.setListaCultivos(this.getGEMFachada(ServicioGEM.Cultivo)
 					.ObtenerCultivos(null));
@@ -124,7 +124,7 @@ public class SubirMSCCBean extends MaestroBean implements Serializable {
 		Archivo archi = new Archivo();
 		archi.set_usuario((Usuario) this.getSesion(Usuario.class.toString()));
 		archi.set_fechaHora(this.getFecha());
-		archi.set_cultivo(this.getCultivo());
+//		archi.set_cultivo(this.getCultivo());
 		archi.set_usuario(this.getUsuarioFiltro());
 		archi.set_estado(Estado.valueOf(this.getEstado()));
 		archi.set_tipo(TipoArchivo.Escenario);
@@ -290,7 +290,7 @@ public class SubirMSCCBean extends MaestroBean implements Serializable {
 								ubicacion);
 						archivoSubido.set_datos(this.getFiles().get(0)
 								.getFile());
-						archivoSubido.set_cultivo(this.getCultivo());
+//						archivoSubido.set_cultivo(this.getCultivo());
 						archivoSubido.set_usuario(this.getUsuario());
 						archivoSubido = this.getGEMFachada(ServicioGEM.Archivo)
 								.RegistrarArchivo(archivoSubido);
