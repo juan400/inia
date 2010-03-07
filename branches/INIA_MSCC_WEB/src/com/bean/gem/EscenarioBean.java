@@ -49,16 +49,14 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 	private boolean disableUpload = false;
 	private List<UploadItem> files;
 	private List<Escenario> escenarios;
-	private Usuario usuarioFiltro;
-	private List<Usuario> listaUsuarios;
-	private SelectItem[] usuarios;
-	private String usuarioElegido;
 	private String estado;
 	private SelectItem[] estados;
 
 	private boolean recargo = true;
-	
+
 	public String RegistrarEscenario() {
+		this.setError("");
+		this.setExito("");
 		String retorno = "";
 		try {
 			if (this.getCultivo() != null) {
@@ -83,17 +81,19 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 						escenario.set_region(this.getRegion());
 						escenario.set_fechaHora(this.getFecha());
 						escenario.set_usuarioInvestigador(this.getUsuario());
-						
-						escenario = this.getGEMFachada(ServicioGEM.Escenario).RegistrarEscenario(escenario);
+						escenario.set_estado(Estado.valueOf(this.getEstado()));
+						escenario = this.getGEMFachada(ServicioGEM.Escenario)
+								.RegistrarEscenario(escenario);
 						if (escenario != null) {
 							this.setDisableUpload(true);
 							recargo = true;
-							this.setExito("Se guardo el escenario exitosamente.");
+							this
+									.setExito("Se guardo el escenario exitosamente.");
 							retorno = "GEM005";
 						} else {
 							this.setError("No se pudo registrar el esceanrio");
 						}
-						
+
 					} else {
 						this
 								.setError("No se subieron archivos, seleccione y cargue el archivo para el escenario.");
@@ -111,43 +111,70 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 		return retorno;
 	}
 
-	public String buscarEscenarios(){
-		String retorno = "GEM006";
-		try{
-			Escenario unEsce = new Escenario();
-			unEsce.set_usuarioInvestigador(this.getUsuario());
-			if(this.getCultivo() != null){
-				unEsce.set_cultivo(this.getCultivo());
-			}
-			if (this.getRegion() != null){
-				unEsce.set_region(this.getRegion());
-			}
-			if(!this.getEstado().equals(this
-					.getTextBundleKey("combo_seleccione"))){
-				unEsce.set_estado(Estado.valueOf(this.getEstado()));
-			}
-			this.setEscenarios(this.getGEMFachada(ServicioGEM.Escenario).ObtenerEscenarios(unEsce));
-		}catch(Exception ex){
-			this.setError(ex.getMessage());
-		}
-		
-		return retorno;
+	public String ModificarEscenario() {
+		this.setError("");
+		this.setExito("");
+		String retorno = "";
+		return "GEM006";
+	}
+	
+	public String Actualizar() {
+		this.setError("");
+		this.setExito("");
+		String retorno = "";
+		return "GEM006";
 	}
 
-	private String ModificarEscenario() {
+	public String VerEscenario(){
+		this.setError("");
+		this.setExito("");
+		String retorno = "";
 		return "GEM006";
+	}
+	
+	public String Eliminar() {
+		this.setError("");
+		this.setExito("");
+		String retorno = "";
+		return "GEM006";
+	}
+	
+	public String buscarEscenarios() {
+		String retorno = "GEM006";
+		try {
+			this.setError("");
+			this.setExito("");
+			Escenario unEsce = new Escenario();
+			unEsce.set_usuarioInvestigador(this.getUsuario());
+			if (this.getCultivo() != null) {
+				unEsce.set_cultivo(this.getCultivo());
+			}
+			if (this.getRegion() != null) {
+				unEsce.set_region(this.getRegion());
+			}
+			if (!this.getEstado().equals(
+					this.getTextBundleKey("combo_seleccione"))) {
+				unEsce.set_estado(Estado.valueOf(this.getEstado()));
+			}
+			this.setEscenarios(this.getGEMFachada(ServicioGEM.Escenario)
+					.ObtenerEscenarios(unEsce));
+		} catch (Exception ex) {
+			this.setError(ex.getMessage());
+		}
+
+		return retorno;
 	}
 	
 	public EscenarioBean() {
 		try {
-
-			this.setUsuario((Usuario) this.getSesion(Usuario.class
-					.toString()));
+			this.setError("");
+			this.setExito("");
+			this.setUsuario((Usuario) this.getSesion(Usuario.class.toString()));
 			this.setListaCultivos(this.getGEMFachada(ServicioGEM.Cultivo)
 					.ObtenerCultivos(null));
 			this.setListaRegiones(this.getAdmFachada(ServicioADM.Region)
 					.ObtenerRegiones());
-			estados = new SelectItem[Estado.values().length+1];
+			estados = new SelectItem[Estado.values().length + 1];
 			estados[0] = new SelectItem(this
 					.getTextBundleKey("combo_seleccione"));
 			SelectItem si = new SelectItem(Estado.Activo.name());
@@ -164,11 +191,13 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 	public boolean isModificacion() {
 		try {
 			if (recargo) {
+				this.setError("");
+				this.setExito("");
 				Escenario esce = new Escenario();
 				this.setUsuario((Usuario) this.getSesion(Usuario.class
 						.toString()));
 				esce.set_usuarioInvestigador(this.getUsuario());
-				this.setEscenarios((this.getGEMFachada(ServicioGEM.Archivo)
+				this.setEscenarios((this.getGEMFachada(ServicioGEM.Escenario)
 						.ObtenerEscenarios(esce)));
 				this.setListaCultivos(this.getGEMFachada(ServicioGEM.Cultivo)
 						.ObtenerCultivos(null));
@@ -201,7 +230,7 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 					i++;
 				}
 				regionElegida = this.getTextBundleKey("combo_seleccione");
-				estados = new SelectItem[Estado.values().length+1];
+				estados = new SelectItem[Estado.values().length + 1];
 				estados[0] = new SelectItem(this
 						.getTextBundleKey("combo_seleccione"));
 				SelectItem si = new SelectItem(Estado.Activo.name());
@@ -214,16 +243,6 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 			this.setError(ex.getMessage());
 		}
 		return false;
-	}
-
-	public String buscarEscenario() {
-		Escenario esce = new Escenario();
-		this.setUsuario((Usuario) this.getSesion(Usuario.class.toString()));
-		esce.set_fechaHora(this.getFecha());
-		esce.set_usuarioInvestigador(this.getUsuario());
-		esce.set_estado(Estado.valueOf(this.getEstado()));
-		esce = this.getGEMFachada(ServicioGEM.Archivo).ObtenerEscenario(esce);
-		return "GEM006";
 	}
 
 	public boolean isInit() {
@@ -481,38 +500,6 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 
 	public List<UploadItem> getFiles() {
 		return files;
-	}
-
-	public Usuario getUsuarioFiltro() {
-		return usuarioFiltro;
-	}
-
-	public void setUsuarioFiltro(Usuario usuarioFiltro) {
-		this.usuarioFiltro = usuarioFiltro;
-	}
-
-	public List<Usuario> getListaUsuarios() {
-		return listaUsuarios;
-	}
-
-	public void setListaUsuarios(List<Usuario> listaUsuarios) {
-		this.listaUsuarios = listaUsuarios;
-	}
-
-	public SelectItem[] getUsuarios() {
-		return usuarios;
-	}
-
-	public void setUsuarios(SelectItem[] usuarios) {
-		this.usuarios = usuarios;
-	}
-
-	public String getUsuarioElegido() {
-		return usuarioElegido;
-	}
-
-	public void setUsuarioElegido(String usuarioElegido) {
-		this.usuarioElegido = usuarioElegido;
 	}
 
 	public boolean isRecargo() {

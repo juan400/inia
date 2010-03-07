@@ -796,6 +796,55 @@
    <redirect/>
   </navigation-case>
  </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/Servicios/GEM/GEM006.jsp</from-view-id>
+  <navigation-case>
+   <from-action>#{escenarioBean.buscarEscenarios}</from-action>
+   <from-outcome>GEM006</from-outcome>
+   <to-view-id>/Servicios/GEM/GEM006.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+  <navigation-case>
+   <from-action>#{escenarioBean.VerEscenarios}</from-action>
+   <from-outcome>GEM006</from-outcome>
+   <to-view-id>/Servicios/GEM/GEM006.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+  <navigation-case>
+   <from-action>#{escenarioBean.Eliminar}</from-action>
+   <from-outcome>GEM006</from-outcome>
+   <to-view-id>/Servicios/GEM/GEM006.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+  <navigation-case>
+   <from-action>#{escenarioBean.Actualizar}</from-action>
+   <from-outcome>GEM006</from-outcome>
+   <to-view-id>/Servicios/GEM/GEM006.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+  <navigation-case>
+   <from-action>#{escenarioBean.ModificarEscenario}</from-action>
+   <from-outcome>GEM006</from-outcome>
+   <to-view-id>/Servicios/GEM/GEM006.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+  <navigation-case>
+   <from-action>#{escenarioBean.RegistrarEscenario}</from-action>
+   <from-outcome>GEM006</from-outcome>
+   <to-view-id>/Servicios/GEM/GEM006.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <description>asdfadf</description>
+  <from-view-id>/Servicios/GEM/GEM007.jsp</from-view-id>
+  <navigation-case>
+   <from-action>#{modeloBean.RegistrarModelo}</from-action>
+   <from-outcome>GEM007</from-outcome>
+   <to-view-id>/Servicios/GEM/GEM007.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
  <application>
   <navigation-handler>org.richfaces.ui.application.StateNavigationHandler</navigation-handler>
   <el-resolver>org.richfaces.el.StateELResolver</el-resolver>

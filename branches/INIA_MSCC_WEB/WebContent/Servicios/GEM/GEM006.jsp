@@ -82,11 +82,10 @@ Secano.</title>
 															<h:outputText value="#{text.escenario_Fecha}" />
 															<rich:calendar id="calFecha"
 																inputClass="rich-calendar-input"
-																value="#{escenarioBean.fecha}"
-																enableManualInput="false" locale="ES"
-																showApplyButton="false" datePattern="dd/MM/yyyy"
-																popup="true" cellWidth="24px" cellHeight="22px"
-																style="width:200px">
+																value="#{escenarioBean.fecha}" enableManualInput="false"
+																locale="ES" showApplyButton="false"
+																datePattern="dd/MM/yyyy" popup="true" cellWidth="24px"
+																cellHeight="22px" style="width:200px">
 																<a4j:support
 																	action="#{escenarioBean.takeSelectionCalendar}"
 																	event="onchange" ajaxSingle="true"
@@ -96,9 +95,8 @@ Secano.</title>
 															<h:outputLabel value="#{text.escenario_SelecCultivo}" />
 															<rich:comboBox
 																requiredMessage="Debe seleccionar un cultivo"
-																value="#{escenarioBean.cultivoElegido}"
-																required="true" enableManualInput="false"
-																styleClass="combo" width="220">
+																value="#{escenarioBean.cultivoElegido}" required="true"
+																enableManualInput="false" styleClass="combo" width="220">
 																<f:selectItems value="#{escenarioBean.cultivos}" />
 																<a4j:support
 																	action="#{escenarioBean.takeSelectionCultivo}"
@@ -109,11 +107,9 @@ Secano.</title>
 															</rich:comboBox>
 
 															<h:outputLabel value="#{text.escenario_Region}" />
-															<rich:comboBox
-																disabled="#{escenarioBean.disableRegion}"
-																value="#{escenarioBean.regionElegida}"
-																required="true" enableManualInput="false"
-																styleClass="combo"
+															<rich:comboBox disabled="#{escenarioBean.disableRegion}"
+																value="#{escenarioBean.regionElegida}" required="true"
+																enableManualInput="false" styleClass="combo"
 																requiredMessage="Debe seleccionar una Región"
 																id="cmdRegiones" width="220">
 																<f:selectItems value="#{escenarioBean.regiones}" />
@@ -132,12 +128,12 @@ Secano.</title>
 															</rich:comboBox>
 
 														</h:panelGrid>
-														<center>
-														<a4j:commandButton immediate="true"
-																style="font-size: 10pt; color: #2d77c2; width : 120px;"
-																styleClass="textoPlano" action="#{escenarioBean.buscarEscenarios}"
-																value="#{text.boton_Buscar}" /></center>
-														
+														<center><a4j:commandButton immediate="true"
+															style="font-size: 10pt; color: #2d77c2; width : 120px;"
+															styleClass="textoPlano"
+															action="#{escenarioBean.buscarEscenarios}"
+															value="#{text.boton_Buscar}" /></center>
+
 														<h:panelGrid id="panelArchivo">
 															<center><rich:dataTable border="2" rows="5"
 																styleClass="textoDataTable" id="tablaArchivo"
@@ -153,7 +149,8 @@ Secano.</title>
 																	<f:facet name="header">
 																		<h:outputText value="#{text.archivo_nombre}" />
 																	</f:facet>
-																	<h:outputText value="#{escenario._archivoEscenario._nombre}" />
+																	<h:outputText
+																		value="#{escenario._archivoEscenario._nombre}" />
 																</rich:column>
 
 																<rich:column width="100px">
@@ -176,24 +173,33 @@ Secano.</title>
 																	</f:facet>
 																	<h:outputText value="#{escenario._cultivo._nombre}" />
 																</rich:column>
-
+																
 																<rich:column width="80">
 																	<f:facet name="header">
-																		<h:outputText value="Eliminar ingreso" />
+																		<h:outputText value="Acciones" />
 																	</f:facet>
+																	<a4j:commandButton
+																		action="#{escenarioBean.VerEscenario}"
+																		image="/Recursos/Imagenes/Iconos/edit.gif"
+																		immediate="true" style="width : 27px; height : 21px;"
+																		reRender="Modificar">
+																		<a4j:actionparam name="propiedadElegida"
+																			value="#{escenario._id}" />
+																		<rich:toolTip value="Modificar" />
+																	</a4j:commandButton>
 
 																	<a4j:commandButton
 																		action="#{escenarioBean.Eliminar}"
 																		image="/Recursos/Imagenes/Iconos/delete.gif"
 																		immediate="true"
 																		style=" border:0; width : 27px; height : 21px;"
-																		reRender="panelArchivo">
-																		<a4j:actionparam name="archivoElegida"
-																			value="#{archivo._id}" />
-																		<rich:toolTip value="Elimina solo las agregadas" />
+																		reRender="panelPropiedades">
+																		<a4j:actionparam name="propiedadElegida"
+																			value="#{escenario._id}" />
+																		<rich:toolTip value="Eliminar" />
 																	</a4j:commandButton>
-
 																</rich:column>
+
 																<f:facet name="footer">
 																	<rich:datascroller renderIfSinglePage="false"
 																		maxPages="6" />
@@ -205,7 +211,8 @@ Secano.</title>
 														<center><h:panelGrid columns="3">
 															<a4j:commandButton immediate="true"
 																style="font-size: 10pt; color: #2d77c2; width : 120px;"
-																styleClass="textoPlano" action="#{escenarioBean.ModificarEscenario}"
+																styleClass="textoPlano"
+																action="#{escenarioBean.ModificarEscenario}"
 																value="#{text.boton_Registrar}" />
 
 															<a4j:commandButton immediate="true"
