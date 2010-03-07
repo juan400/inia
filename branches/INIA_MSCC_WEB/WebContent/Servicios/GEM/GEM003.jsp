@@ -70,34 +70,34 @@ Secano.</title>
 											<rich:panelMenu binding="#{menuBean.panelMenu}" />
 										</h:column>
 										<h:column>
+
+
+											<h:panelGroup rendered="#{propiedadesBean.initPantalla}" />
 											<h:panelGrid>
+												<rich:panel headerClass="tituloPantalla"
+													style="background-color: #ebf3fd;">
+													<f:facet name="header">
+														<h:outputText value="#{text.propCul_Ingresar}" />
+													</f:facet>
+													<center><h:panelGrid columns="2"
+														columnClasses="textoPlano,tectoPlano"
+														style=" width : 408px;">
 
-												<h:panelGroup rendered="#{propiedadesBean.initPantalla}" />
-												<h:panelGrid>
-													<rich:panel headerClass="tituloPantalla"
-														style="background-color: #ebf3fd;">
-														<f:facet name="header">
-															<h:outputText value="#{text.propCul_Ingresar}" />
-														</f:facet>
-														<center><h:panelGrid columns="2"
-															columnClasses="textoPlano,tectoPlano"
-															style=" width : 408px;">
-									
-															<h:outputLabel value="#{text.propCul_ComboCultivo}"
-																styleClass="textoPlano" />
-															<rich:comboBox
-																value="#{propiedadesBean.cultivoSeleccionado}"
-																enableManualInput="false" styleClass="combo"
-																disabled="#{propiedadesBean.disableSeleccionCultivo}"
-																width="248px">
-																<f:selectItems value="#{propiedadesBean.cultivos}" />
-																<a4j:support
-																	action="#{propiedadesBean.TakeSelectionCultivo}"
-																	event="onchange" ajaxSingle="true"
-																	reRender="panelPropiedades" />
-															</rich:comboBox>
-														</h:panelGrid></center>
-
+														<h:outputLabel value="#{text.propCul_ComboCultivo}"
+															styleClass="textoPlano" />
+														<rich:comboBox
+															value="#{propiedadesBean.cultivoSeleccionado}"
+															enableManualInput="false" styleClass="combo"
+															disabled="#{propiedadesBean.disableSeleccionCultivo}"
+															width="248px">
+															<f:selectItems value="#{propiedadesBean.cultivos}" />
+															<a4j:support
+																action="#{propiedadesBean.TakeSelectionCultivo}"
+																event="onchange" ajaxSingle="true"
+																reRender="panelPropiedades" />
+														</rich:comboBox>
+													</h:panelGrid></center>
+													<h:panelGroup>
 														<h:panelGrid id="panelPropiedades">
 															<h:panelGrid>
 																<center><rich:dataTable border="2"
@@ -157,7 +157,8 @@ Secano.</title>
 																</rich:dataTable></center>
 															</h:panelGrid>
 
-															<center><h:panelGrid columns="2" id="datosPropiedad"
+															<center><h:panelGrid columns="2"
+																id="datosPropiedad"
 																columnClasses="textoPlano,textoPlano">
 
 																<h:outputText value="Código" />
@@ -196,7 +197,8 @@ Secano.</title>
 																<h:outputText />
 																<a4j:commandButton
 																	style="font-size: 10pt; color: #2d77c2; width : 123px;"
-																	styleClass="textoPlano" value="#{text.boton_IngresarProp}"
+																	styleClass="textoPlano"
+																	value="#{text.boton_IngresarProp}"
 																	disabled="#{propiedadesBean.disableAceptarPropiedad}">
 																	<a4j:support event="onclick" ajaxSingle="false"
 																		reRender="panelPropiedades"
@@ -218,19 +220,21 @@ Secano.</title>
 																styleClass="textoPlano" action="cancelar"
 																value="#{text.boton_Cerrar}" />
 														</h:panelGrid></center>
-														
-														<center><h:panelGrid id="mensajes">
-															<rich:messages styleClass="mensajeError">
-																<f:facet name="errorMarker">
-																	<h:graphicImage
-																		value="/Recursos/Imagenes/Iconos/error.gif" />
-																</f:facet>
-															</rich:messages>
-															<h:outputText styleClass="textoPlano"
-																value="#{propiedadesBean.exito}" />
-														</h:panelGrid></center>
-													</rich:panel>
-												</h:panelGrid>
+													</h:panelGroup>
+												</rich:panel>
+
+												<center><f:facet name="footer">
+													<h:panelGrid>
+														<rich:messages styleClass="mensajeError">
+															<f:facet name="errorMarker">
+																<h:graphicImage
+																	value="/Recursos/Imagenes/Iconos/error.gif" />
+															</f:facet>
+														</rich:messages>
+														<h:outputText styleClass="textoPlano"
+															value="#{cultivoBean.exito}" />
+													</h:panelGrid>
+												</f:facet></center>
 											</h:panelGrid>
 										</h:column>
 									</h:panelGrid>

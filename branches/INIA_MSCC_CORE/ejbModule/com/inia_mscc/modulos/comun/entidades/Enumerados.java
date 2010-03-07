@@ -3,7 +3,7 @@ package com.inia_mscc.modulos.comun.entidades;
 public class Enumerados {
 
 	static public enum TransaccionesNoContenidas {
-		SEG001, SEG002, SEG003, SEG006, SEG009, SEG010, ADM002, ADM006, ADM007, ADM009
+		SEG001, SEG002, SEG003, SEG006, SEG009, SEG010, SEG011, SEG012, SEG013, ADM002, ADM006, ADM007, ADM009
 	}
 
 	static public enum Proceso {

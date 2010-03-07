@@ -90,7 +90,7 @@ Secano.</title>
 															</h:inputText>
 
 															<h:outputText value="#{text.transaccion_Descripcion}" />
-															<h:inputTextarea id="descripcion"
+															<h:inputTextarea id="descripcion" required="true" requiredMessage="Debe ingresar descripción"
 																value="#{transaccionBean.descripcion}"
 																onkeypress="ValidarLargoMultiline(this, event, 220)"
 																style=" width : 245px; height : 71px;">
