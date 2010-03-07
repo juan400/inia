@@ -136,6 +136,21 @@ public class MenuBean extends MaestroBean implements Serializable {
 											.get_codigoBase()
 											.equalsIgnoreCase(
 													TransaccionesNoContenidas.SEG010
+															.name())
+									&& !unaTransa
+											.get_codigoBase()
+											.equalsIgnoreCase(
+													TransaccionesNoContenidas.SEG011
+															.name())
+									&& !unaTransa
+											.get_codigoBase()
+											.equalsIgnoreCase(
+													TransaccionesNoContenidas.SEG012
+															.name())
+									&& !unaTransa
+											.get_codigoBase()
+											.equalsIgnoreCase(
+													TransaccionesNoContenidas.SEG013
 															.name())) {
 								menuGroupSEG.getChildren().add(
 										cargarItemMenu(unaTransa));
