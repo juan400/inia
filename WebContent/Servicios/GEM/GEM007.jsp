@@ -79,6 +79,7 @@ Secano.</title>
 
 														<h:panelGrid columns="2" width="500px"
 															columnClasses="textoPlano,textoPlano">
+															
 															<h:outputText value="#{text.escenario_Fecha}" />
 															<rich:calendar id="calFecha"
 																inputClass="rich-calendar-input"
