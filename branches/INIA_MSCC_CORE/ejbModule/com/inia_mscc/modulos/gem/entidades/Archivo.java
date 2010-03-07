@@ -22,6 +22,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.ForeignKey;
 
@@ -80,9 +81,10 @@ public class Archivo implements Serializable {
 	@JoinColumn(name = "arch_num_id_usuario", referencedColumnName = "usua_num_id", updatable = true, nullable = false, columnDefinition = "BIGINT(20)")
 	private Usuario _usuario;
 	
-	@Lob
-    @Basic(fetch=FetchType.EAGER)
-	@Column(name = "arch_dat_dato", nullable = false, columnDefinition = "blob NOT NULL")
+//	@Lob
+//    @Basic(fetch=FetchType.EAGER)
+//	@Column(name = "arch_dat_dato", nullable = false, columnDefinition = "blob NOT NULL")
+	@Transient
 	private File _datos;
 
 	public Archivo() {

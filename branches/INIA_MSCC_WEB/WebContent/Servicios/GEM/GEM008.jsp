@@ -100,7 +100,7 @@ Secano.</title>
 																required="true" enableManualInput="false"
 																styleClass="combo"
 																requiredMessage="Debe seleccionar una Región"
-																id="cmdRegiones" width="220">
+																id="cmdUsuarios" width="220">
 																<f:selectItems value="#{subirEscenarioBean.usuarios}" />
 																<a4j:support
 																	action="#{subirEscenarioBean.takeSelectionUsuario}"
