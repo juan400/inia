@@ -74,7 +74,7 @@ Secano.</title>
 													<rich:panel headerClass="tituloPantalla"
 														style="background-color: #ebf3fd;">
 														<f:facet name="header">
-															<h:outputText value="#{text.escenario_Modificar}" />
+															<h:outputText value="Ingresar Modelo de Simulación de Crecimiento de Cultivo" />
 														</f:facet>
 
 														<h:panelGrid columns="2" width="500px"
@@ -82,7 +82,7 @@ Secano.</title>
 															<h:outputText value="#{text.escenario_Fecha}" />
 															<rich:calendar id="calFecha"
 																inputClass="rich-calendar-input"
-																value="#{modeloBean.fecha}"
+																value="#{modeloBean.fecha}" disabled="true"
 																enableManualInput="false" locale="ES"
 																showApplyButton="false" datePattern="dd/MM/yyyy"
 																popup="true" cellWidth="24px" cellHeight="22px"
@@ -93,52 +93,19 @@ Secano.</title>
 																	reRender="tablaArchivo" />
 															</rich:calendar>
 
-															<h:outputLabel value="#{text.escenario_Usuarios}" />
+															<h:outputLabel value="Seleccionar un Escenario" />
 															<rich:comboBox
-																disabled="#{modeloBean.disableUsuarios}"
-																value="#{modeloBean.usuarioElegido}"
-																required="true" enableManualInput="false"
-																styleClass="combo"
-																requiredMessage="Debe seleccionar una Región"
-																id="cmdUsuarios" width="220">
-																<f:selectItems value="#{modeloBean.usuarios}" />
-																<a4j:support
-																	action="#{modeloBean.takeSelectionUsuario}"
-																	event="onchange" ajaxSingle="true"
-																	reRender="tablaArchivo" />
-																<rich:toolTip
-																	value="Seleccionar el cultivo al cual asociar el escenario que va a registrar." />
-															</rich:comboBox>
-
-															<h:outputLabel value="#{text.escenario_SelecCultivo}" />
-															<rich:comboBox
-																requiredMessage="Debe seleccionar un cultivo"
-																value="#{modeloBean.cultivoElegido}"
-																required="true" enableManualInput="false"
-																styleClass="combo" width="220">
-																<f:selectItems value="#{modeloBean.cultivos}" />
-																<a4j:support
-																	action="#{modeloBean.takeSelectionCultivo}"
-																	event="onchange" ajaxSingle="true"
-																	reRender="upload,cmdRegiones" />
-																<rich:toolTip
-																	value="Seleccionar el cultivo al cual asociar el escenario que va a registrar." />
-															</rich:comboBox>
-
-															<h:outputLabel value="#{text.escenario_Region}" />
-															<rich:comboBox
-																disabled="#{modeloBean.disableRegion}"
-																value="#{modeloBean.regionElegida}"
+																value="#{modeloBean.escenarioElegido}"
 																required="true" enableManualInput="false"
 																styleClass="combo"
 																requiredMessage="Debe seleccionar una Región"
 																id="cmdRegiones" width="220">
-																<f:selectItems value="#{modeloBean.regiones}" />
+																<f:selectItems value="#{modeloBean.escenarios}" />
 																<a4j:support
-																	action="#{modeloBean.takeSelectionRegion}"
+																	action="#{modeloBean.takeSelectionEscenario}"
 																	event="onchange" ajaxSingle="true" reRender="upload" />
 																<rich:toolTip
-																	value="Seleccionar el cultivo al cual asociar el escenario que va a registrar." />
+																	value="Seleccionar el escenario al cual asociar el modelo que va a registrar." />
 															</rich:comboBox>
 
 															<h:outputLabel value="#{text.cultivo_Estado}" />
@@ -147,82 +114,27 @@ Secano.</title>
 																styleClass="combo" width="220">
 																<f:selectItems value="#{modeloBean.estados}" />
 															</rich:comboBox>
-
 														</h:panelGrid>
-														<br></br><center>
-														<a4j:commandButton immediate="true"
-																style="font-size: 10pt; color: #2d77c2; width : 120px;"
-																styleClass="textoPlano" action="#{modeloBean.estados}"
-																value="#{text.boton_Buscar}" /></center>
 														<br></br>
-														<h:panelGrid id="panelArchivo">
-															<center><rich:dataTable border="2" rows="5"
-																styleClass="textoDataTable" id="tablaArchivo"
-																value="#{modeloBean.files}" var="archivo"
-																rowKeyVar="row" headerClass="columnHeader"
-																rowClasses="oddRow,evenRow">
-
-																<f:facet name="header">
-																	<h:outputText value="#{text.archivo_ListaArchi}" />
-																</f:facet>
-
-																<rich:column width="50px">
-																	<f:facet name="header">
-																		<h:outputText value="#{text.archivo_nombre}" />
-																	</f:facet>
-																	<h:outputText value="#{archivo._nombre}" />
-																</rich:column>
-
-																<rich:column width="100px">
-																	<f:facet name="header">
-																		<h:outputText value="#{text.archivo_fechaHora}" />
-																	</f:facet>
-																	<h:outputText value="#{archivo._fechaHora}" />
-																</rich:column>
-
-																<rich:column width="100px">
-																	<f:facet name="header">
-																		<h:outputText value="#{text.archivo_estado}" />
-																	</f:facet>
-																	<h:outputText value="#{archivo._estado}" />
-																</rich:column>
-
-																<rich:column width="100">
-																	<f:facet name="header">
-																		<h:outputText value="#{text.archivo_tipo}" />
-																	</f:facet>
-																	<h:outputText value="#{archivo._tipo}" />
-																</rich:column>
-
-																<rich:column width="80">
-																	<f:facet name="header">
-																		<h:outputText value="Eliminar ingreso" />
-																	</f:facet>
-
-																	<a4j:commandButton
-																		action="#{ArchivoBean.EliminarArchivo}"
-																		image="/Recursos/Imagenes/Iconos/delete.gif"
-																		immediate="true"
-																		style=" border:0; width : 27px; height : 21px;"
-																		reRender="panelArchivo">
-																		<a4j:actionparam name="archivoElegida"
-																			value="#{archivo._id}" />
-																		<rich:toolTip value="Elimina solo las agregadas" />
-																	</a4j:commandButton>
-
-																</rich:column>
-																<f:facet name="footer">
-																	<rich:datascroller renderIfSinglePage="false"
-																		maxPages="6" />
-																</f:facet>
-															</rich:dataTable></center>
-														</h:panelGrid>
 														<h:outputText />
 
+														<rich:fileUpload
+															disabled="#{modeloBean.disableUpload}"
+															requiredMessage="Debe subir un archivo"
+															fileUploadListener="#{modeloBean.listener}"
+															maxFilesQuantity="1" 
+															uploadData="#{modeloBean.files}" required="true"
+															id="upload" immediateUpload="false" listWidth="457px"
+															acceptedTypes="py" allowFlash="true" listHeight="60">
+															<a4j:support event="onuploadcomplete" ajaxSingle="true"
+																reRender="mensajes" />
+														</rich:fileUpload>
+														<br></br>
 														<center><h:panelGrid columns="3">
 															<a4j:commandButton immediate="true"
 																style="font-size: 10pt; color: #2d77c2; width : 120px;"
-																styleClass="textoPlano" action="#{modeloBean.ModificarEscenario}"
+																styleClass="textoPlano"
+																action="#{modeloBean.RegistrarModelo}"
 																value="#{text.boton_Registrar}" />
 
 															<a4j:commandButton immediate="true"
