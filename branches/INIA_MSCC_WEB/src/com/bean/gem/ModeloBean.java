@@ -182,7 +182,7 @@ public class ModeloBean extends MaestroBean implements Serializable {
 			estados[0] = si;
 			si = new SelectItem(Estado.Inactivo.name());
 			estados[1] = si;
-			estado = Estado.Inactivo.name();
+			estado = Estado.Activo.name();
 			files = new ArrayList<UploadItem>();
 			modelos = new ArrayList<Modelo>();
 		} catch (Exception ex) {
@@ -227,7 +227,7 @@ public class ModeloBean extends MaestroBean implements Serializable {
 				estados[0] = si;
 				si = new SelectItem(Estado.Inactivo.name());
 				estados[1] = si;
-//				estado = Estado.Inactivo.name();
+				estado = Estado.Activo.name();
 			}
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
@@ -262,6 +262,14 @@ public class ModeloBean extends MaestroBean implements Serializable {
 					i++;
 				}
 				escenarioElegido = this.getTextBundleKey("combo_seleccione");
+				estados = new SelectItem[Estado.values().length];
+//				estados[0] = new SelectItem(this
+//						.getTextBundleKey("combo_seleccione"));
+				SelectItem si = new SelectItem(Estado.Activo.name());
+				estados[0] = si;
+				si = new SelectItem(Estado.Inactivo.name());
+				estados[1] = si;
+				estado = Estado.Activo.name();
 			}
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
