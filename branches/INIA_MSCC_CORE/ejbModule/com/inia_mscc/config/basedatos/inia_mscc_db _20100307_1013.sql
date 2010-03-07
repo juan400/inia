@@ -1,7 +1,7 @@
 -- MySQL Administrator dump 1.4
 --
 -- ------------------------------------------------------
--- Server version	5.1.43-community
+-- Server version	5.1.31-1ubuntu2
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -22,11 +22,11 @@ CREATE DATABASE IF NOT EXISTS inia_mscc_db;
 USE inia_mscc_db;
 
 --
--- Definition of table `tl_adc_pacl_parametroclimatologico`
+-- Definition of table `inia_mscc_db`.`tl_adc_pacl_parametroclimatologico`
 --
 
-DROP TABLE IF EXISTS `tl_adc_pacl_parametroclimatologico`;
-CREATE TABLE `tl_adc_pacl_parametroclimatologico` (
+DROP TABLE IF EXISTS `inia_mscc_db`.`tl_adc_pacl_parametroclimatologico`;
+CREATE TABLE  `inia_mscc_db`.`tl_adc_pacl_parametroclimatologico` (
   `pacl_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `pacl_num_id_usuario` bigint(20) NOT NULL,
   `pacl_num_id_archivo` bigint(20) NOT NULL,
@@ -36,19 +36,21 @@ CREATE TABLE `tl_adc_pacl_parametroclimatologico` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tl_adc_pacl_parametroclimatologico`
+-- Dumping data for table `inia_mscc_db`.`tl_adc_pacl_parametroclimatologico`
 --
 
 /*!40000 ALTER TABLE `tl_adc_pacl_parametroclimatologico` DISABLE KEYS */;
+LOCK TABLES `tl_adc_pacl_parametroclimatologico` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `tl_adc_pacl_parametroclimatologico` ENABLE KEYS */;
 
 
 --
--- Definition of table `tl_adc_proy_proyeccion`
+-- Definition of table `inia_mscc_db`.`tl_adc_proy_proyeccion`
 --
 
-DROP TABLE IF EXISTS `tl_adc_proy_proyeccion`;
-CREATE TABLE `tl_adc_proy_proyeccion` (
+DROP TABLE IF EXISTS `inia_mscc_db`.`tl_adc_proy_proyeccion`;
+CREATE TABLE  `inia_mscc_db`.`tl_adc_proy_proyeccion` (
   `proy_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `proy_num_perdiodo` bigint(20) NOT NULL,
   `proy_num_id_parametro` bigint(20) NOT NULL,
@@ -58,19 +60,21 @@ CREATE TABLE `tl_adc_proy_proyeccion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tl_adc_proy_proyeccion`
+-- Dumping data for table `inia_mscc_db`.`tl_adc_proy_proyeccion`
 --
 
 /*!40000 ALTER TABLE `tl_adc_proy_proyeccion` DISABLE KEYS */;
+LOCK TABLES `tl_adc_proy_proyeccion` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `tl_adc_proy_proyeccion` ENABLE KEYS */;
 
 
 --
--- Definition of table `tl_adm_ciud_ciudad`
+-- Definition of table `inia_mscc_db`.`tl_adm_ciud_ciudad`
 --
 
-DROP TABLE IF EXISTS `tl_adm_ciud_ciudad`;
-CREATE TABLE `tl_adm_ciud_ciudad` (
+DROP TABLE IF EXISTS `inia_mscc_db`.`tl_adm_ciud_ciudad`;
+CREATE TABLE  `inia_mscc_db`.`tl_adm_ciud_ciudad` (
   `ciud_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `ciud_str_nombre` varchar(220) NOT NULL,
   `ciud_num_id_departamento` bigint(20) NOT NULL,
@@ -80,25 +84,26 @@ CREATE TABLE `tl_adm_ciud_ciudad` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tl_adm_ciud_ciudad`
+-- Dumping data for table `inia_mscc_db`.`tl_adm_ciud_ciudad`
 --
 
 /*!40000 ALTER TABLE `tl_adm_ciud_ciudad` DISABLE KEYS */;
-INSERT INTO `tl_adm_ciud_ciudad` (`ciud_num_id`,`ciud_str_nombre`,`ciud_num_id_departamento`) VALUES 
- (1,'Montevideo',480),
+LOCK TABLES `tl_adm_ciud_ciudad` WRITE;
+INSERT INTO `inia_mscc_db`.`tl_adm_ciud_ciudad` VALUES  (1,'Montevideo',480),
  (2,'Rosario',474),
  (3,'Colonia del Sacramento',474),
  (4,'Nueva Helvecia',474),
  (5,'Comonia Valdense',474);
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `tl_adm_ciud_ciudad` ENABLE KEYS */;
 
 
 --
--- Definition of table `tl_adm_deto_departamento`
+-- Definition of table `inia_mscc_db`.`tl_adm_deto_departamento`
 --
 
-DROP TABLE IF EXISTS `tl_adm_deto_departamento`;
-CREATE TABLE `tl_adm_deto_departamento` (
+DROP TABLE IF EXISTS `inia_mscc_db`.`tl_adm_deto_departamento`;
+CREATE TABLE  `inia_mscc_db`.`tl_adm_deto_departamento` (
   `deto_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `deto_str_nombre` varchar(220) NOT NULL,
   `deto_num_id_pais` bigint(20) NOT NULL,
@@ -108,12 +113,12 @@ CREATE TABLE `tl_adm_deto_departamento` (
 ) ENGINE=InnoDB AUTO_INCREMENT=490 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tl_adm_deto_departamento`
+-- Dumping data for table `inia_mscc_db`.`tl_adm_deto_departamento`
 --
 
 /*!40000 ALTER TABLE `tl_adm_deto_departamento` DISABLE KEYS */;
-INSERT INTO `tl_adm_deto_departamento` (`deto_num_id`,`deto_str_nombre`,`deto_num_id_pais`) VALUES 
- (1,'Buenos Aires',1),
+LOCK TABLES `tl_adm_deto_departamento` WRITE;
+INSERT INTO `inia_mscc_db`.`tl_adm_deto_departamento` VALUES  (1,'Buenos Aires',1),
  (2,'Capital Federal',1),
  (3,'Catamarca',1),
  (4,'Chaco',1),
@@ -160,8 +165,8 @@ INSERT INTO `tl_adm_deto_departamento` (`deto_num_id`,`deto_str_nombre`,`deto_nu
  (45,'Mato Grosso do Sul',3),
  (46,'Minas Gerais',3),
  (47,'Para',3),
- (48,'Paraiba',3),
- (49,'Parana',3),
+ (48,'Paraiba',3);
+INSERT INTO `inia_mscc_db`.`tl_adm_deto_departamento` VALUES  (49,'Parana',3),
  (50,'Pernambuco',3),
  (51,'Piaui',3),
  (52,'Rio de Janeiro',3),
@@ -203,8 +208,8 @@ INSERT INTO `tl_adm_deto_departamento` (`deto_num_id`,`deto_str_nombre`,`deto_nu
  (88,'Arauca',6),
  (89,'Atlantico',6),
  (90,'Distrito Capital de Bogota',6),
- (91,'Bolivar',6),
- (92,'Boyaca',6),
+ (91,'Bolivar',6);
+INSERT INTO `inia_mscc_db`.`tl_adm_deto_departamento` VALUES  (92,'Boyaca',6),
  (93,'Caldas',6),
  (94,'Caqueta',6),
  (95,'Casanare',6),
@@ -249,8 +254,8 @@ INSERT INTO `tl_adm_deto_departamento` (`deto_num_id`,`deto_str_nombre`,`deto_nu
  (134,'Ciudad de La Habana',8),
  (135,'Granma',8),
  (136,'Guantanamo',8),
- (137,'Holguin',8),
- (138,'Isla de la Juventud',8),
+ (137,'Holguin',8);
+INSERT INTO `inia_mscc_db`.`tl_adm_deto_departamento` VALUES  (138,'Isla de la Juventud',8),
  (139,'La Habana',8),
  (140,'Las Tunas',8),
  (141,'Matanzas',8),
@@ -292,8 +297,8 @@ INSERT INTO `tl_adm_deto_departamento` (`deto_num_id`,`deto_str_nombre`,`deto_nu
  (177,'San Salvador',10),
  (178,'Santa Ana',10),
  (179,'San Vicente',10),
- (180,'Sonsonate',10),
- (181,'Usulutan',10),
+ (180,'Sonsonate',10);
+INSERT INTO `inia_mscc_db`.`tl_adm_deto_departamento` VALUES  (181,'Usulutan',10),
  (182,'Andalucia',11),
  (183,'Aragon',11),
  (184,'Asturias',11),
@@ -335,8 +340,8 @@ INSERT INTO `tl_adm_deto_departamento` (`deto_num_id`,`deto_str_nombre`,`deto_nu
  (220,'Maine',12),
  (221,'Maryland',12),
  (222,'Massachusetts',12),
- (223,'Michigan',12),
- (224,'Minnesota',12),
+ (223,'Michigan',12);
+INSERT INTO `inia_mscc_db`.`tl_adm_deto_departamento` VALUES  (224,'Minnesota',12),
  (225,'Mississippi',12),
  (226,'Missouri',12),
  (227,'Montana',12),
@@ -376,8 +381,8 @@ INSERT INTO `tl_adm_deto_departamento` (`deto_num_id`,`deto_str_nombre`,`deto_nu
  (261,'Jutiapa',13),
  (262,'Peten',13),
  (263,'Quetzaltenango',13),
- (264,'Quiche',13),
- (265,'Retalhuleu',13),
+ (264,'Quiche',13);
+INSERT INTO `inia_mscc_db`.`tl_adm_deto_departamento` VALUES  (265,'Retalhuleu',13),
  (266,'Sacatepequez',13),
  (267,'San Marcos',13),
  (268,'Santa Rosa',13),
@@ -417,8 +422,8 @@ INSERT INTO `tl_adm_deto_departamento` (`deto_num_id`,`deto_str_nombre`,`deto_nu
  (302,'Guerrero',15),
  (303,'Hidalgo',15),
  (304,'Jalisco',15),
- (305,'Mexico',15),
- (306,'Michoacan de Ocampo',15),
+ (305,'Mexico',15);
+INSERT INTO `inia_mscc_db`.`tl_adm_deto_departamento` VALUES  (306,'Michoacan de Ocampo',15),
  (307,'Morelos',15),
  (308,'Nayarit',15),
  (309,'Nuevo Leon',15),
@@ -459,8 +464,8 @@ INSERT INTO `tl_adm_deto_departamento` (`deto_num_id`,`deto_str_nombre`,`deto_nu
  (344,'Darien',17),
  (345,'Herrera',17),
  (346,'Los Santos',17),
- (347,'Panama',17),
- (348,'San Blas',17),
+ (347,'Panama',17);
+INSERT INTO `inia_mscc_db`.`tl_adm_deto_departamento` VALUES  (348,'San Blas',17),
  (349,'Kuna Yala',17),
  (350,'Veraguas',17),
  (351,'Alto Paraguay',18),
@@ -503,8 +508,8 @@ INSERT INTO `tl_adm_deto_departamento` (`deto_num_id`,`deto_str_nombre`,`deto_nu
  (388,'Puno',19),
  (389,'San Martin',19),
  (390,'Tacna',19),
- (391,'Tumbes',19),
- (392,'Ucayali',19),
+ (391,'Tumbes',19);
+INSERT INTO `inia_mscc_db`.`tl_adm_deto_departamento` VALUES  (392,'Ucayali',19),
  (393,'Adjuntas',20),
  (394,'Aguada',20),
  (395,'Aguadilla',20),
@@ -549,8 +554,8 @@ INSERT INTO `tl_adm_deto_departamento` (`deto_num_id`,`deto_str_nombre`,`deto_nu
  (434,'Lares',20),
  (435,'Las Marias',20),
  (436,'Las Piedras',20),
- (437,'Loiza',20),
- (438,'Luquillo',20),
+ (437,'Loiza',20);
+INSERT INTO `inia_mscc_db`.`tl_adm_deto_departamento` VALUES  (438,'Luquillo',20),
  (439,'Manati',20),
  (440,'Maricao',20),
  (441,'Maunabo',20),
@@ -593,8 +598,8 @@ INSERT INTO `tl_adm_deto_departamento` (`deto_num_id`,`deto_str_nombre`,`deto_nu
  (478,'Lavalleja',21),
  (479,'Maldonado',21),
  (480,'Montevideo',21),
- (481,'Paysandu',21),
- (482,'Rio Negro',21),
+ (481,'Paysandu',21);
+INSERT INTO `inia_mscc_db`.`tl_adm_deto_departamento` VALUES  (482,'Rio Negro',21),
  (483,'Rivera',21),
  (484,'Rocha',21),
  (485,'Salto',21),
@@ -602,15 +607,16 @@ INSERT INTO `tl_adm_deto_departamento` (`deto_num_id`,`deto_str_nombre`,`deto_nu
  (487,'Soriano',21),
  (488,'Tacuarembo',21),
  (489,'Treinta y Tres',21);
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `tl_adm_deto_departamento` ENABLE KEYS */;
 
 
 --
--- Definition of table `tl_adm_licr_listascriterio`
+-- Definition of table `inia_mscc_db`.`tl_adm_licr_listascriterio`
 --
 
-DROP TABLE IF EXISTS `tl_adm_licr_listascriterio`;
-CREATE TABLE `tl_adm_licr_listascriterio` (
+DROP TABLE IF EXISTS `inia_mscc_db`.`tl_adm_licr_listascriterio`;
+CREATE TABLE  `inia_mscc_db`.`tl_adm_licr_listascriterio` (
   `licr_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `licr_str_codigo` varchar(3) NOT NULL,
   `licr_str_descripcion` varchar(220) NOT NULL,
@@ -620,35 +626,36 @@ CREATE TABLE `tl_adm_licr_listascriterio` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tl_adm_licr_listascriterio`
+-- Dumping data for table `inia_mscc_db`.`tl_adm_licr_listascriterio`
 --
 
 /*!40000 ALTER TABLE `tl_adm_licr_listascriterio` DISABLE KEYS */;
-INSERT INTO `tl_adm_licr_listascriterio` (`licr_num_id`,`licr_str_codigo`,`licr_str_descripcion`,`licr_str_estado`) VALUES 
- (1,'FER','Fertilizantes','Activo'),
+LOCK TABLES `tl_adm_licr_listascriterio` WRITE;
+INSERT INTO `inia_mscc_db`.`tl_adm_licr_listascriterio` VALUES  (1,'FER','Fertilizantes','Activo'),
  (2,'CON','Indice de Coneat','Activo'),
  (3,'PAR','Parametros de Salida','Activo');
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `tl_adm_licr_listascriterio` ENABLE KEYS */;
 
 
 --
--- Definition of table `tl_adm_pais_pais`
+-- Definition of table `inia_mscc_db`.`tl_adm_pais_pais`
 --
 
-DROP TABLE IF EXISTS `tl_adm_pais_pais`;
-CREATE TABLE `tl_adm_pais_pais` (
+DROP TABLE IF EXISTS `inia_mscc_db`.`tl_adm_pais_pais`;
+CREATE TABLE  `inia_mscc_db`.`tl_adm_pais_pais` (
   `pais_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `pais_str_nombre` varchar(220) NOT NULL,
   PRIMARY KEY (`pais_num_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tl_adm_pais_pais`
+-- Dumping data for table `inia_mscc_db`.`tl_adm_pais_pais`
 --
 
 /*!40000 ALTER TABLE `tl_adm_pais_pais` DISABLE KEYS */;
-INSERT INTO `tl_adm_pais_pais` (`pais_num_id`,`pais_str_nombre`) VALUES 
- (1,'Argentina'),
+LOCK TABLES `tl_adm_pais_pais` WRITE;
+INSERT INTO `inia_mscc_db`.`tl_adm_pais_pais` VALUES  (1,'Argentina'),
  (2,'Bolivia'),
  (3,'Brasil'),
  (4,'Canada'),
@@ -669,15 +676,16 @@ INSERT INTO `tl_adm_pais_pais` (`pais_num_id`,`pais_str_nombre`) VALUES
  (19,'Perú'),
  (20,'Puerto Rico'),
  (21,'Uruguay');
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `tl_adm_pais_pais` ENABLE KEYS */;
 
 
 --
--- Definition of table `tl_adm_regi_regionclimatica`
+-- Definition of table `inia_mscc_db`.`tl_adm_regi_regionclimatica`
 --
 
-DROP TABLE IF EXISTS `tl_adm_regi_regionclimatica`;
-CREATE TABLE `tl_adm_regi_regionclimatica` (
+DROP TABLE IF EXISTS `inia_mscc_db`.`tl_adm_regi_regionclimatica`;
+CREATE TABLE  `inia_mscc_db`.`tl_adm_regi_regionclimatica` (
   `regi_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `regi_str_descripcion` varchar(220) NOT NULL,
   `regi_str_codigo` varchar(6) NOT NULL,
@@ -688,23 +696,24 @@ CREATE TABLE `tl_adm_regi_regionclimatica` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tl_adm_regi_regionclimatica`
+-- Dumping data for table `inia_mscc_db`.`tl_adm_regi_regionclimatica`
 --
 
 /*!40000 ALTER TABLE `tl_adm_regi_regionclimatica` DISABLE KEYS */;
-INSERT INTO `tl_adm_regi_regionclimatica` (`regi_num_id`,`regi_str_descripcion`,`regi_str_codigo`,`regi_str_nombre`) VALUES 
- (1,'Descripcion prueba 2','LE','La Estanzuela'),
+LOCK TABLES `tl_adm_regi_regionclimatica` WRITE;
+INSERT INTO `inia_mscc_db`.`tl_adm_regi_regionclimatica` VALUES  (1,'Descripcion prueba 2','LE','La Estanzuela'),
  (2,'Prueba de actualizacion 3','LB','Las Brujas'),
  (3,'asdf','P','prueba');
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `tl_adm_regi_regionclimatica` ENABLE KEYS */;
 
 
 --
--- Definition of table `tl_adm_tran_transaccion`
+-- Definition of table `inia_mscc_db`.`tl_adm_tran_transaccion`
 --
 
-DROP TABLE IF EXISTS `tl_adm_tran_transaccion`;
-CREATE TABLE `tl_adm_tran_transaccion` (
+DROP TABLE IF EXISTS `inia_mscc_db`.`tl_adm_tran_transaccion`;
+CREATE TABLE  `inia_mscc_db`.`tl_adm_tran_transaccion` (
   `tran_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `tran_num_id_estado` varchar(10) NOT NULL DEFAULT 'Activo',
   `tran_str_codigo` varchar(6) DEFAULT NULL,
@@ -719,12 +728,12 @@ CREATE TABLE `tl_adm_tran_transaccion` (
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tl_adm_tran_transaccion`
+-- Dumping data for table `inia_mscc_db`.`tl_adm_tran_transaccion`
 --
 
 /*!40000 ALTER TABLE `tl_adm_tran_transaccion` DISABLE KEYS */;
-INSERT INTO `tl_adm_tran_transaccion` (`tran_num_id`,`tran_num_id_estado`,`tran_str_codigo`,`tran_str_descripcion`,`tran_bol_definida`,`tran_str_url`,`tran_str_codigo_base`,`tran_str_descripcion_base`,`tran_dte_timestamp`) VALUES 
- (1,'Activo','001','Login',0,'/Servicios/SEG/SEG001.jsp','SEG001','Login','2010-02-22 21:18:12'),
+LOCK TABLES `tl_adm_tran_transaccion` WRITE;
+INSERT INTO `inia_mscc_db`.`tl_adm_tran_transaccion` VALUES  (1,'Activo','001','Login',0,'/Servicios/SEG/SEG001.jsp','SEG001','Login','2010-02-22 21:18:12'),
  (2,'Activo','002','Registro de usuarios',0,'/Servicios/SEG/SEG002.jsp','SEG002','Registro Usuario','2010-02-22 21:18:12'),
  (3,'Activo','003','Activar Usuario',0,'/Servicios/SEG/SEG003.jsp','SEG003','Activar Usuario','2010-02-22 21:18:12'),
  (4,'Activo','004','Modificar Usuario',0,'/Servicios/SEG/SEG004.jsp','SEG004','Modificar Usuario','2010-02-22 21:18:12'),
@@ -732,16 +741,16 @@ INSERT INTO `tl_adm_tran_transaccion` (`tran_num_id`,`tran_num_id_estado`,`tran_
  (6,'Activo','006','Recuperar Contraseña',0,'/Servicios/SEG/SEG006.jsp','SEG006','Recuperar Contraseña','2010-02-22 21:18:12'),
  (7,'Activo','007','Cambiar Contraseña',0,'/Servicios/SEG/SEG007.jsp','SEG007','Cambiar Contraseña','2010-02-22 21:18:12'),
  (8,'Activo','008','Ver Perfiles',0,'/Servicios/SEG/SEG008.jsp','SEG008','Ver Perfiles','2010-02-22 21:18:12'),
- (9,'Activo','009','Crear Perfil',0,'/Servicios/SEG/SEG009.jsp','SEG009','Crear Perfil','2010-02-22 21:18:12'),
- (10,'Activo','010','Modificar Perfil',0,'/Servicios/SEG/SEG010.jsp','SEG010','Modificar Perfil','2010-02-22 21:18:12'),
+ (9,'Activo','009','Crear Perfil',0,'/Servicios/SEG/SEG009.jsp','SEG009','Crear Perfil','2010-02-22 21:18:12');
+INSERT INTO `inia_mscc_db`.`tl_adm_tran_transaccion` VALUES  (10,'Activo','010','Modificar Perfil',0,'/Servicios/SEG/SEG010.jsp','SEG010','Modificar Perfil','2010-02-22 21:18:12'),
  (11,'Activo','011','Solicitud Privilegios',0,'/Servicios/SEG/SEG011.jsp','SEG011','Solicitud Privilegios','2010-02-22 21:18:12'),
  (12,'Activo','012','Autorizar Solicitud Privilegios',0,'/Servicios/SEG/SEG012.jsp','SEG012','Autorizar Solicitud Privilegios','2010-02-22 21:18:12'),
  (13,'Activo','013','Denegar Solicitud Privilegios',0,'/Servicios/SEG/SEG013jsp','SEG013','Denegar Solicitud Privilegios','2010-02-22 21:18:12'),
  (14,'Activo','014','Ver Transacciónes',0,'/Servicios/ADM/ADM001.jsp','ADM001','Ver Transacciónes','2010-02-22 21:18:12'),
  (15,'Activo','015','Modificar Transacción',0,'/Servicios/ADM/ADM002.jsp','ADM002','Modificar Transacción','2010-02-22 21:18:12'),
  (16,'Activo','016','Asignar Valores a Lista de Criterios',0,'/Servicios/ADM/ADM003.jsp','ADM003','Asignar Valores a Lista de Criterios','2010-02-22 21:18:12'),
- (17,'Activo','017','Modificar Valores de la Lista de Criterios',0,'/Servicios/ADM/ADM004.jsp','ADM004','Modificar Valores de la Lista de Criterios','2010-02-22 21:18:12'),
- (18,'Activo','018','Ver Regiones',0,'/Servicios/ADM/ADM005.jsp','ADM005','Ver Regiones','2010-02-22 21:18:12'),
+ (17,'Activo','017','Modificar Valores de la Lista de Criterios',0,'/Servicios/ADM/ADM004.jsp','ADM004','Modificar Valores de la Lista de Criterios','2010-02-22 21:18:12');
+INSERT INTO `inia_mscc_db`.`tl_adm_tran_transaccion` VALUES  (18,'Activo','018','Ver Regiones',0,'/Servicios/ADM/ADM005.jsp','ADM005','Ver Regiones','2010-02-22 21:18:12'),
  (19,'Activo','019','Crear Regiones',0,'/Servicios/ADM/ADM006.jsp','ADM006','Crear Regiones','2010-02-22 21:18:12'),
  (20,'Activo','020','Modificar Región',0,'/Servicios/ADM/ADM007.jsp','ADM007','Modificar Regiones','2010-02-22 21:18:12'),
  (21,'Activo','021','Ver Usuarios',0,'/Servicios/ADM/ADM008.jsp','ADM008','Ver Usuarios','2010-02-22 21:18:12'),
@@ -749,8 +758,8 @@ INSERT INTO `tl_adm_tran_transaccion` (`tran_num_id`,`tran_num_id_estado`,`tran_
  (23,'Activo','023','Ubicación de Ejecución',0,'/Servicios/ADM/ADM010.jsp','ADM010','Ubicación de Ejecución','2010-02-22 21:18:12'),
  (24,'Activo','024','Crear Cultivo',0,'/Servicios/GEM/GEM001.jsp','GEM001','Crear Cultivo','2010-02-22 21:18:12'),
  (25,'Activo','025','Modificar Cultivo',0,'/Servicios/GEM/GEM002.jsp','GEM002','Modificar Cultivo','2010-02-22 21:18:12'),
- (26,'Activo','026','Crear Propiedades Cultivo',0,'/Servicios/GEM/GEM003.jsp','GEM003','Crear Propiedades Cultivo','2010-02-22 21:18:12'),
- (27,'Activo','027','Modificar Propiedades de un Cultivo',0,'/Servicios/GEM/GEM004.jsp','GEM004','Modificar Propiedades de un Cultivo','2010-02-22 21:18:12'),
+ (26,'Activo','026','Crear Propiedades Cultivo',0,'/Servicios/GEM/GEM003.jsp','GEM003','Crear Propiedades Cultivo','2010-02-22 21:18:12');
+INSERT INTO `inia_mscc_db`.`tl_adm_tran_transaccion` VALUES  (27,'Activo','027','Modificar Propiedades de un Cultivo',0,'/Servicios/GEM/GEM004.jsp','GEM004','Modificar Propiedades de un Cultivo','2010-02-22 21:18:12'),
  (28,'Activo','028','Ingresar Escenario',0,'/Servicios/GEM/GEM005.jsp','GEM005','Ingresar Escenario','2010-02-22 21:18:12'),
  (29,'Activo','029','Modificar Escenario',0,'/Servicios/GEM/GEM006.jsp','GEM006','Modificar Escenario','2010-02-22 21:18:12'),
  (30,'Activo','030','Ingresar Python de MSCC',0,'/Servicios/GEM/GEM007.jsp','GEM007','Ingresar Python de MSCC','2010-02-22 21:18:12'),
@@ -758,35 +767,44 @@ INSERT INTO `tl_adm_tran_transaccion` (`tran_num_id`,`tran_num_id_estado`,`tran_
  (32,'Activo','032','Anular Python de MSCC',0,'/Servicios/GEM/GEM009.jsp','GEM009','Anular Python de MSCC','2010-02-22 21:18:12'),
  (33,'Activo','033','Ejecución de MSCC',0,'/Servicios/EJE/EJE001.jsp','EJE001','Ejecución de MSCC','2010-02-22 21:18:12'),
  (34,'Activo','034','Reporte Gráfico de MSCC',0,'/Servicios/EJE/EJE002.jsp','EJE002','Reporte Gráfico de MSCC','2010-02-22 21:18:12');
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `tl_adm_tran_transaccion` ENABLE KEYS */;
 
 
 --
--- Definition of table `tl_adm_ubar_ubicacionarchivo`
+-- Definition of table `inia_mscc_db`.`tl_adm_ubar_ubicacionarchivo`
 --
 
-DROP TABLE IF EXISTS `tl_adm_ubar_ubicacionarchivo`;
-CREATE TABLE `tl_adm_ubar_ubicacionarchivo` (
+DROP TABLE IF EXISTS `inia_mscc_db`.`tl_adm_ubar_ubicacionarchivo`;
+CREATE TABLE  `inia_mscc_db`.`tl_adm_ubar_ubicacionarchivo` (
   `ubar_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `ubar_str_path` text NOT NULL,
   `ubar_str_tipo_archivo` varchar(220) NOT NULL,
   PRIMARY KEY (`ubar_num_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tl_adm_ubar_ubicacionarchivo`
+-- Dumping data for table `inia_mscc_db`.`tl_adm_ubar_ubicacionarchivo`
 --
 
 /*!40000 ALTER TABLE `tl_adm_ubar_ubicacionarchivo` DISABLE KEYS */;
+LOCK TABLES `tl_adm_ubar_ubicacionarchivo` WRITE;
+INSERT INTO `inia_mscc_db`.`tl_adm_ubar_ubicacionarchivo` VALUES  (7,'/home/juan/ArchivosSubidos/Ejecucion','Eejcucion'),
+ (8,'/home/juan/ArchivosSubidos/Climatologicos','Climatologico'),
+ (9,'/home/juan/ArchivosSubidos/Escenario','Escenario'),
+ (10,'/home/juan/ArchivosSubidos/Modelo','ModeloSimulacion'),
+ (11,'/home/juan/ArchivosSubidos/ParametrosClimaticos','ParametrosClimaticos'),
+ (12,'/home/juan/ArchivosSubidos/Resultados','Resultados');
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `tl_adm_ubar_ubicacionarchivo` ENABLE KEYS */;
 
 
 --
--- Definition of table `tl_adm_vase_valorseleccion`
+-- Definition of table `inia_mscc_db`.`tl_adm_vase_valorseleccion`
 --
 
-DROP TABLE IF EXISTS `tl_adm_vase_valorseleccion`;
-CREATE TABLE `tl_adm_vase_valorseleccion` (
+DROP TABLE IF EXISTS `inia_mscc_db`.`tl_adm_vase_valorseleccion`;
+CREATE TABLE  `inia_mscc_db`.`tl_adm_vase_valorseleccion` (
   `vase_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `vase_str_codigo` varchar(10) NOT NULL,
   `vase_str_descripcion` varchar(220) DEFAULT NULL,
@@ -798,12 +816,12 @@ CREATE TABLE `tl_adm_vase_valorseleccion` (
 ) ENGINE=InnoDB AUTO_INCREMENT=260 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tl_adm_vase_valorseleccion`
+-- Dumping data for table `inia_mscc_db`.`tl_adm_vase_valorseleccion`
 --
 
 /*!40000 ALTER TABLE `tl_adm_vase_valorseleccion` DISABLE KEYS */;
-INSERT INTO `tl_adm_vase_valorseleccion` (`vase_num_id`,`vase_str_codigo`,`vase_str_descripcion`,`vase_str_unidad`,`vase_num_id_listacriterio`) VALUES 
- (1,'18-46-0','Urea',NULL,1),
+LOCK TABLES `tl_adm_vase_valorseleccion` WRITE;
+INSERT INTO `inia_mscc_db`.`tl_adm_vase_valorseleccion` VALUES  (1,'18-46-0','Urea',NULL,1),
  (2,'100',NULL,NULL,2),
  (3,'50',NULL,NULL,2),
  (4,'PNPRE',NULL,NULL,3),
@@ -840,8 +858,8 @@ INSERT INTO `tl_adm_vase_valorseleccion` (`vase_num_id`,`vase_str_codigo`,`vase_
  (35,'CRTI',NULL,NULL,3),
  (36,'IR2T',NULL,NULL,3),
  (37,'CRTD',NULL,NULL,3),
- (38,'DECRPM',NULL,NULL,3),
- (39,'DECRPN',NULL,NULL,3),
+ (38,'DECRPM',NULL,NULL,3);
+INSERT INTO `inia_mscc_db`.`tl_adm_vase_valorseleccion` VALUES  (39,'DECRPN',NULL,NULL,3),
  (40,'TSW',NULL,NULL,3),
  (41,'RFIR',NULL,NULL,3),
  (42,'NLVI',NULL,NULL,3),
@@ -877,8 +895,8 @@ INSERT INTO `tl_adm_vase_valorseleccion` (`vase_num_id`,`vase_str_codigo`,`vase_
  (72,'FNN6',NULL,NULL,3),
  (73,'FNN7',NULL,NULL,3),
  (74,'FNN4',NULL,NULL,3),
- (75,'FNN5',NULL,NULL,3),
- (76,'FT',NULL,NULL,3),
+ (75,'FNN5',NULL,NULL,3);
+INSERT INTO `inia_mscc_db`.`tl_adm_vase_valorseleccion` VALUES  (76,'FT',NULL,NULL,3),
  (77,'MINNUL',NULL,NULL,3),
  (78,'STEMNC',NULL,NULL,3),
  (79,'DOY',NULL,NULL,3),
@@ -914,8 +932,8 @@ INSERT INTO `tl_adm_vase_valorseleccion` (`vase_num_id`,`vase_str_codigo`,`vase_
  (109,'LVDS',NULL,NULL,3),
  (110,'FNN2T',NULL,NULL,3),
  (111,'ONC',NULL,NULL,3),
- (112,'LS',NULL,NULL,3),
- (113,'NNLLI',NULL,NULL,3),
+ (112,'LS',NULL,NULL,3);
+INSERT INTO `inia_mscc_db`.`tl_adm_vase_valorseleccion` VALUES  (113,'NNLLI',NULL,NULL,3),
  (114,'RAIN',NULL,NULL,3),
  (115,'WCI',NULL,NULL,3),
  (116,'CFO',NULL,NULL,3),
@@ -950,8 +968,8 @@ INSERT INTO `tl_adm_vase_valorseleccion` (`vase_num_id`,`vase_str_codigo`,`vase_
  (145,'RMUS',NULL,NULL,3),
  (146,'LNLV',NULL,NULL,3),
  (147,'RTNLV',NULL,NULL,3),
- (148,'NMINER',NULL,NULL,3),
- (149,'TNLV',NULL,NULL,3),
+ (148,'NMINER',NULL,NULL,3);
+INSERT INTO `inia_mscc_db`.`tl_adm_vase_valorseleccion` VALUES  (149,'TNLV',NULL,NULL,3),
  (150,'LAI',NULL,NULL,3),
  (151,'MDNUL',NULL,NULL,3),
  (152,'RHT',NULL,NULL,3),
@@ -986,8 +1004,8 @@ INSERT INTO `tl_adm_vase_valorseleccion` (`vase_num_id`,`vase_str_codigo`,`vase_
  (181,'SEEDW',NULL,NULL,3),
  (182,'MDNLL',NULL,NULL,3),
  (183,'FFAT',NULL,NULL,3),
- (184,'DAYL',NULL,NULL,3),
- (185,'RBIO',NULL,NULL,3),
+ (184,'DAYL',NULL,NULL,3);
+INSERT INTO `inia_mscc_db`.`tl_adm_vase_valorseleccion` VALUES  (185,'RBIO',NULL,NULL,3),
  (186,'DPMR0',NULL,NULL,3),
  (187,'TIME',NULL,NULL,3),
  (188,'TBD',NULL,NULL,3),
@@ -1022,8 +1040,8 @@ INSERT INTO `tl_adm_vase_valorseleccion` (`vase_num_id`,`vase_str_codigo`,`vase_
  (217,'FNN7T',NULL,NULL,3),
  (218,'RNDEMP',NULL,NULL,3),
  (219,'NCR',NULL,NULL,3),
- (220,'RPMRC',NULL,NULL,3),
- (221,'CCHK',NULL,NULL,3),
+ (220,'RPMRC',NULL,NULL,3);
+INSERT INTO `inia_mscc_db`.`tl_adm_vase_valorseleccion` VALUES  (221,'CCHK',NULL,NULL,3),
  (222,'RNCMIN',NULL,NULL,3),
  (223,'DS',NULL,NULL,3),
  (224,'BIO',NULL,NULL,3),
@@ -1058,19 +1076,20 @@ INSERT INTO `tl_adm_vase_valorseleccion` (`vase_num_id`,`vase_str_codigo`,`vase_
  (253,'NAI',NULL,NULL,3),
  (254,'WLLI',NULL,NULL,3),
  (255,'FNA6T',NULL,NULL,3),
- (256,'IR7T',NULL,NULL,3),
- (257,'SLNBC',NULL,NULL,3),
+ (256,'IR7T',NULL,NULL,3);
+INSERT INTO `inia_mscc_db`.`tl_adm_vase_valorseleccion` VALUES  (257,'SLNBC',NULL,NULL,3),
  (258,'SLNBI',NULL,NULL,3),
  (259,'FNN3T',NULL,NULL,3);
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `tl_adm_vase_valorseleccion` ENABLE KEYS */;
 
 
 --
--- Definition of table `tl_eje_arsa_archivosalida`
+-- Definition of table `inia_mscc_db`.`tl_eje_arsa_archivosalida`
 --
 
-DROP TABLE IF EXISTS `tl_eje_arsa_archivosalida`;
-CREATE TABLE `tl_eje_arsa_archivosalida` (
+DROP TABLE IF EXISTS `inia_mscc_db`.`tl_eje_arsa_archivosalida`;
+CREATE TABLE  `inia_mscc_db`.`tl_eje_arsa_archivosalida` (
   `arsa_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `arsa_str_nombre` varchar(220) NOT NULL,
   `arsa_dte_fecha` datetime NOT NULL,
@@ -1080,90 +1099,117 @@ CREATE TABLE `tl_eje_arsa_archivosalida` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tl_eje_arsa_archivosalida`
+-- Dumping data for table `inia_mscc_db`.`tl_eje_arsa_archivosalida`
 --
 
 /*!40000 ALTER TABLE `tl_eje_arsa_archivosalida` DISABLE KEYS */;
+LOCK TABLES `tl_eje_arsa_archivosalida` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `tl_eje_arsa_archivosalida` ENABLE KEYS */;
 
 
 --
--- Definition of table `tl_eje_ejec_ejecucion`
+-- Definition of table `inia_mscc_db`.`tl_eje_ejec_ejecucion`
 --
 
-DROP TABLE IF EXISTS `tl_eje_ejec_ejecucion`;
-CREATE TABLE `tl_eje_ejec_ejecucion` (
+DROP TABLE IF EXISTS `inia_mscc_db`.`tl_eje_ejec_ejecucion`;
+CREATE TABLE  `inia_mscc_db`.`tl_eje_ejec_ejecucion` (
   `ejec_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `ejec_str_fecha` datetime NOT NULL,
+  `ejec_det_fecha` datetime NOT NULL,
   `ejec_num_id_usua_eje` bigint(20) NOT NULL,
   `ejec_num_id_archivo_eje` bigint(20) NOT NULL,
-  `ejec_num_id_escenario` bigint(20) unsigned NOT NULL,
-  `ejec_nim_id_resultado` bigint(20) unsigned NOT NULL,
-  PRIMARY KEY (`ejec_num_id`)
+  `ejec_num_id_escenario` bigint(20) NOT NULL,
+  `ejec_num_id_resultado` bigint(20) NOT NULL,
+  `ejec_num_id_proyeccion` bigint(20) NOT NULL,
+  PRIMARY KEY (`ejec_num_id`),
+  KEY `FK_ejec_num_id_usua_eje` (`ejec_num_id_usua_eje`),
+  KEY `FK_ejec_num_id_archivo_eje` (`ejec_num_id_archivo_eje`),
+  KEY `FK_ejec_num_id_escenario` (`ejec_num_id_escenario`),
+  KEY `FK_ejec_num_id_resultado` (`ejec_num_id_resultado`),
+  KEY `FK_ejec_num_id_proyeccion` (`ejec_num_id_proyeccion`),
+  CONSTRAINT `FK_ejec_num_id_proyeccion` FOREIGN KEY (`ejec_num_id_proyeccion`) REFERENCES `tl_adc_proy_proyeccion` (`proy_num_id`),
+  CONSTRAINT `FK_ejec_num_id_archivo_eje` FOREIGN KEY (`ejec_num_id_archivo_eje`) REFERENCES `tl_gem_arch_archivo` (`arch_num_id`),
+  CONSTRAINT `FK_ejec_num_id_escenario` FOREIGN KEY (`ejec_num_id_escenario`) REFERENCES `tl_eje_esce_escenacio` (`esce_num_id`),
+  CONSTRAINT `FK_ejec_num_id_resultado` FOREIGN KEY (`ejec_num_id_resultado`) REFERENCES `tl_eje_resu_resultado` (`resu_num_id`),
+  CONSTRAINT `FK_ejec_num_id_usua_eje` FOREIGN KEY (`ejec_num_id_usua_eje`) REFERENCES `tl_seg_usua_usuario` (`usua_num_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tl_eje_ejec_ejecucion`
+-- Dumping data for table `inia_mscc_db`.`tl_eje_ejec_ejecucion`
 --
 
 /*!40000 ALTER TABLE `tl_eje_ejec_ejecucion` DISABLE KEYS */;
+LOCK TABLES `tl_eje_ejec_ejecucion` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `tl_eje_ejec_ejecucion` ENABLE KEYS */;
 
 
 --
--- Definition of table `tl_eje_esce_escenacio`
+-- Definition of table `inia_mscc_db`.`tl_eje_esce_escenacio`
 --
 
-DROP TABLE IF EXISTS `tl_eje_esce_escenacio`;
-CREATE TABLE `tl_eje_esce_escenacio` (
+DROP TABLE IF EXISTS `inia_mscc_db`.`tl_eje_esce_escenacio`;
+CREATE TABLE  `inia_mscc_db`.`tl_eje_esce_escenacio` (
   `esce_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `esce_dte_fecha` datetime NOT NULL,
   `esce_num_id_usuario` bigint(20) NOT NULL,
   `esce_num_id_region_climatica` bigint(20) NOT NULL,
   `esce_num_id_cultivo` bigint(20) NOT NULL,
-  `esce_str_valores_propiedades` longtext NOT NULL,
-  PRIMARY KEY (`esce_num_id`)
+  `esce_num_id_archivo_mscc` bigint(20) NOT NULL,
+  `esce_num_id_archivo_escenario` bigint(20) NOT NULL,
+  PRIMARY KEY (`esce_num_id`),
+  KEY `FK_esce_num_id_usuario` (`esce_num_id_usuario`),
+  KEY `FK_esce_num_id_region_climatica` (`esce_num_id_region_climatica`),
+  KEY `FK_esce_num_id_cultivo` (`esce_num_id_cultivo`),
+  KEY `FK_esce_num_id_archivo_mscc` (`esce_num_id_archivo_mscc`),
+  KEY `FK_esce_num_id_archivo_escenario` (`esce_num_id_archivo_escenario`),
+  CONSTRAINT `FK_esce_num_id_archivo_escenario` FOREIGN KEY (`esce_num_id_archivo_escenario`) REFERENCES `tl_gem_arch_archivo` (`arch_num_id`),
+  CONSTRAINT `FK_esce_num_id_archivo_mscc` FOREIGN KEY (`esce_num_id_archivo_mscc`) REFERENCES `tl_gem_arch_archivo` (`arch_num_id`),
+  CONSTRAINT `FK_esce_num_id_cultivo` FOREIGN KEY (`esce_num_id_cultivo`) REFERENCES `tl_gem_cult_cultivo` (`cult_num_id`),
+  CONSTRAINT `FK_esce_num_id_region_climatica` FOREIGN KEY (`esce_num_id_region_climatica`) REFERENCES `tl_adm_regi_regionclimatica` (`regi_num_id`),
+  CONSTRAINT `FK_esce_num_id_usuario` FOREIGN KEY (`esce_num_id_usuario`) REFERENCES `tl_seg_usua_usuario` (`usua_num_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tl_eje_esce_escenacio`
+-- Dumping data for table `inia_mscc_db`.`tl_eje_esce_escenacio`
 --
 
 /*!40000 ALTER TABLE `tl_eje_esce_escenacio` DISABLE KEYS */;
+LOCK TABLES `tl_eje_esce_escenacio` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `tl_eje_esce_escenacio` ENABLE KEYS */;
 
 
 --
--- Definition of table `tl_eje_resu_resultado`
+-- Definition of table `inia_mscc_db`.`tl_eje_resu_resultado`
 --
 
-DROP TABLE IF EXISTS `tl_eje_resu_resultado`;
-CREATE TABLE `tl_eje_resu_resultado` (
+DROP TABLE IF EXISTS `inia_mscc_db`.`tl_eje_resu_resultado`;
+CREATE TABLE  `inia_mscc_db`.`tl_eje_resu_resultado` (
   `resu_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `resu_dte_fecha` datetime NOT NULL,
   `resu_num_id_archivo` bigint(20) NOT NULL,
-  `resu_num_id_escenario` bigint(20) NOT NULL,
   PRIMARY KEY (`resu_num_id`),
   KEY `FK_resu_num_id_archivo` (`resu_num_id_archivo`),
-  KEY `FK_resu_num_id_escenario` (`resu_num_id_escenario`),
-  CONSTRAINT `FK_resu_num_id_archivo` FOREIGN KEY (`resu_num_id_archivo`) REFERENCES `tl_gem_arch_archivo` (`arch_num_id`),
-  CONSTRAINT `FK_resu_num_id_escenario` FOREIGN KEY (`resu_num_id_escenario`) REFERENCES `tl_eje_esce_escenacio` (`esce_num_id`)
+  CONSTRAINT `FK_resu_num_id_archivo` FOREIGN KEY (`resu_num_id_archivo`) REFERENCES `tl_gem_arch_archivo` (`arch_num_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tl_eje_resu_resultado`
+-- Dumping data for table `inia_mscc_db`.`tl_eje_resu_resultado`
 --
 
 /*!40000 ALTER TABLE `tl_eje_resu_resultado` DISABLE KEYS */;
+LOCK TABLES `tl_eje_resu_resultado` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `tl_eje_resu_resultado` ENABLE KEYS */;
 
 
 --
--- Definition of table `tl_gem_arch_archivo`
+-- Definition of table `inia_mscc_db`.`tl_gem_arch_archivo`
 --
 
-DROP TABLE IF EXISTS `tl_gem_arch_archivo`;
-CREATE TABLE `tl_gem_arch_archivo` (
+DROP TABLE IF EXISTS `inia_mscc_db`.`tl_gem_arch_archivo`;
+CREATE TABLE  `inia_mscc_db`.`tl_gem_arch_archivo` (
   `arch_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `arch_str_nombre` varchar(220) NOT NULL,
   `arch_dte_fecha` datetime NOT NULL,
@@ -1180,22 +1226,26 @@ CREATE TABLE `tl_gem_arch_archivo` (
   CONSTRAINT `FK_arch_num_id_cultivo` FOREIGN KEY (`arch_num_id_cultivo`) REFERENCES `tl_gem_cult_cultivo` (`cult_num_id`),
   CONSTRAINT `FK_arch_num_id_ubicacion_archivo` FOREIGN KEY (`arch_num_id_ubicacion_archivo`) REFERENCES `tl_adm_ubar_ubicacionarchivo` (`ubar_num_id`),
   CONSTRAINT `FK_arch_num_id_usuario` FOREIGN KEY (`arch_num_id_usuario`) REFERENCES `tl_seg_usua_usuario` (`usua_num_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tl_gem_arch_archivo`
+-- Dumping data for table `inia_mscc_db`.`tl_gem_arch_archivo`
 --
 
 /*!40000 ALTER TABLE `tl_gem_arch_archivo` DISABLE KEYS */;
+LOCK TABLES `tl_gem_arch_archivo` WRITE;
+INSERT INTO `inia_mscc_db`.`tl_gem_arch_archivo` VALUES  (1,'Escenario_admin_2010-3-7_93219193.py','2010-03-07 09:32:19','Activo',9,2,1,'Escenario','py'),
+ (2,'Escenario_admin_2010-3-7_93430880.py','2010-03-07 09:34:30','Activo',9,2,1,'Escenario','py');
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `tl_gem_arch_archivo` ENABLE KEYS */;
 
 
 --
--- Definition of table `tl_gem_cult_cultivo`
+-- Definition of table `inia_mscc_db`.`tl_gem_cult_cultivo`
 --
 
-DROP TABLE IF EXISTS `tl_gem_cult_cultivo`;
-CREATE TABLE `tl_gem_cult_cultivo` (
+DROP TABLE IF EXISTS `inia_mscc_db`.`tl_gem_cult_cultivo`;
+CREATE TABLE  `inia_mscc_db`.`tl_gem_cult_cultivo` (
   `cult_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `cult_str_descripcion` varchar(220) NOT NULL,
   `cult_num_id_estado` varchar(10) NOT NULL,
@@ -1204,47 +1254,54 @@ CREATE TABLE `tl_gem_cult_cultivo` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tl_gem_cult_cultivo`
+-- Dumping data for table `inia_mscc_db`.`tl_gem_cult_cultivo`
 --
 
 /*!40000 ALTER TABLE `tl_gem_cult_cultivo` DISABLE KEYS */;
-INSERT INTO `tl_gem_cult_cultivo` (`cult_num_id`,`cult_str_descripcion`,`cult_num_id_estado`,`cult_str_nombre`) VALUES 
- (1,'bonato','Activo','bonato'),
+LOCK TABLES `tl_gem_cult_cultivo` WRITE;
+INSERT INTO `inia_mscc_db`.`tl_gem_cult_cultivo` VALUES  (1,'bonato','Activo','bonato'),
  (2,'primer cultivo de prueba','Activo','Trigo');
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `tl_gem_cult_cultivo` ENABLE KEYS */;
 
 
 --
--- Definition of table `tl_gem_mscc_modelo`
+-- Definition of table `inia_mscc_db`.`tl_gem_mscc_modelo`
 --
 
-DROP TABLE IF EXISTS `tl_gem_mscc_modelo`;
-CREATE TABLE `tl_gem_mscc_modelo` (
+DROP TABLE IF EXISTS `inia_mscc_db`.`tl_gem_mscc_modelo`;
+CREATE TABLE  `inia_mscc_db`.`tl_gem_mscc_modelo` (
   `mscc_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `mscc_dte_fecha` datetime NOT NULL,
   `mscc_num_id_usuario` bigint(20) NOT NULL,
-  `mscc_num_id_cultivo` bigint(20) NOT NULL,
-  `mscc_num_id_region` bigint(20) NOT NULL,
-  `mscc_str_estado` bigint(20) NOT NULL,
+  `mscc_str_estado` varchar(45) NOT NULL,
+  `mscc_num_id_archivo_mscc` bigint(20) NOT NULL,
+  `mscc_num_id_escenario` bigint(20) NOT NULL,
   PRIMARY KEY (`mscc_num_id`),
   KEY `FK_mscc_num_id_usuario` (`mscc_num_id_usuario`),
+  KEY `FK_mscc_num_id_escenario` (`mscc_num_id_escenario`),
+  KEY `FK_mscc_num_id_archivo_mscc` (`mscc_num_id_archivo_mscc`),
+  CONSTRAINT `FK_mscc_num_id_archivo_mscc` FOREIGN KEY (`mscc_num_id_archivo_mscc`) REFERENCES `tl_gem_arch_archivo` (`arch_num_id`),
+  CONSTRAINT `FK_mscc_num_id_escenario` FOREIGN KEY (`mscc_num_id_escenario`) REFERENCES `tl_eje_esce_escenacio` (`esce_num_id`),
   CONSTRAINT `FK_mscc_num_id_usuario` FOREIGN KEY (`mscc_num_id_usuario`) REFERENCES `tl_seg_usua_usuario` (`usua_num_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tl_gem_mscc_modelo`
+-- Dumping data for table `inia_mscc_db`.`tl_gem_mscc_modelo`
 --
 
 /*!40000 ALTER TABLE `tl_gem_mscc_modelo` DISABLE KEYS */;
+LOCK TABLES `tl_gem_mscc_modelo` WRITE;
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `tl_gem_mscc_modelo` ENABLE KEYS */;
 
 
 --
--- Definition of table `tl_gem_prcu_propiedadescultivo`
+-- Definition of table `inia_mscc_db`.`tl_gem_prcu_propiedadescultivo`
 --
 
-DROP TABLE IF EXISTS `tl_gem_prcu_propiedadescultivo`;
-CREATE TABLE `tl_gem_prcu_propiedadescultivo` (
+DROP TABLE IF EXISTS `inia_mscc_db`.`tl_gem_prcu_propiedadescultivo`;
+CREATE TABLE  `inia_mscc_db`.`tl_gem_prcu_propiedadescultivo` (
   `prcu_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `prcu_str_codigo` varchar(10) NOT NULL,
   `prcu_str_nombre` varchar(220) NOT NULL,
@@ -1261,23 +1318,24 @@ CREATE TABLE `tl_gem_prcu_propiedadescultivo` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tl_gem_prcu_propiedadescultivo`
+-- Dumping data for table `inia_mscc_db`.`tl_gem_prcu_propiedadescultivo`
 --
 
 /*!40000 ALTER TABLE `tl_gem_prcu_propiedadescultivo` DISABLE KEYS */;
-INSERT INTO `tl_gem_prcu_propiedadescultivo` (`prcu_num_id`,`prcu_str_codigo`,`prcu_str_nombre`,`prcu_str_unidad_medida`,`prcu_str_tipo`,`prcu_num_id_cultivo`,`prcu_num_id_lista`) VALUES 
- (1,'tuberculo','asdf','','Ninguno',1,NULL),
+LOCK TABLES `tl_gem_prcu_propiedadescultivo` WRITE;
+INSERT INTO `inia_mscc_db`.`tl_gem_prcu_propiedadescultivo` VALUES  (1,'tuberculo','asdf','','Ninguno',1,NULL),
  (2,'tarta','asdf','','Ninguno',1,NULL),
  (3,'flor','de','poronga','Fenotipica',1,NULL);
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `tl_gem_prcu_propiedadescultivo` ENABLE KEYS */;
 
 
 --
--- Definition of table `tl_seg_daus_datosusuario`
+-- Definition of table `inia_mscc_db`.`tl_seg_daus_datosusuario`
 --
 
-DROP TABLE IF EXISTS `tl_seg_daus_datosusuario`;
-CREATE TABLE `tl_seg_daus_datosusuario` (
+DROP TABLE IF EXISTS `inia_mscc_db`.`tl_seg_daus_datosusuario`;
+CREATE TABLE  `inia_mscc_db`.`tl_seg_daus_datosusuario` (
   `daus_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `daus_num_id_estado` varchar(45) NOT NULL,
   `daus_str_nombre` varchar(220) NOT NULL,
@@ -1301,24 +1359,28 @@ CREATE TABLE `tl_seg_daus_datosusuario` (
   CONSTRAINT `FK_daus_num_id_departamentos` FOREIGN KEY (`daus_num_id_departamento`) REFERENCES `tl_adm_deto_departamento` (`deto_num_id`),
   CONSTRAINT `FK_daus_num_id_pais` FOREIGN KEY (`daus_num_id_pais`) REFERENCES `tl_adm_pais_pais` (`pais_num_id`),
   CONSTRAINT `FK_daus_num_id_perfil` FOREIGN KEY (`daus_num_id_perfil`) REFERENCES `tl_seg_perf_perfil` (`perf_num_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tl_seg_daus_datosusuario`
+-- Dumping data for table `inia_mscc_db`.`tl_seg_daus_datosusuario`
 --
 
 /*!40000 ALTER TABLE `tl_seg_daus_datosusuario` DISABLE KEYS */;
-INSERT INTO `tl_seg_daus_datosusuario` (`daus_num_id`,`daus_num_id_estado`,`daus_str_nombre`,`daus_dte_timestamp`,`daus_str_apellido`,`daus_str_email`,`daus_str_telefono`,`daus_str_celular`,`daus_str_direccion`,`daus_num_id_pais`,`daus_num_id_departamento`,`daus_num_id_ciudad`,`daus_dte_fecha_registro`,`daus_num_id_perfil`) VALUES 
- (1,'Activo','admin','2010-01-01 00:00:01','admin','admin@inia.com',NULL,NULL,'-',21,474,2,'2010-01-01 00:00:01',1);
+LOCK TABLES `tl_seg_daus_datosusuario` WRITE;
+INSERT INTO `inia_mscc_db`.`tl_seg_daus_datosusuario` VALUES  (1,'Activo','admin','2010-01-01 00:00:01','admin','admin@inia.com',NULL,NULL,'-',21,474,2,'2010-01-01 00:00:01',1),
+ (2,'Activo','Juan Andres','2010-03-07 10:01:45','Pio','juan4002@gmail.com','','','Rio Negro 1076',21,480,1,'2010-03-07 10:01:45',3),
+ (3,'Activo','Juan Andres','2010-03-07 10:06:49','Pio','juan400_4@hotmail.com','','','rio negro 1076',NULL,NULL,NULL,'2010-03-07 10:06:49',3),
+ (4,'Activo','Juan Andres','2010-03-07 10:08:56','Pio','juan400@gmail.com','','','rio negro 1076',21,480,1,'2010-03-07 10:08:56',3);
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `tl_seg_daus_datosusuario` ENABLE KEYS */;
 
 
 --
--- Definition of table `tl_seg_perf_perfil`
+-- Definition of table `inia_mscc_db`.`tl_seg_perf_perfil`
 --
 
-DROP TABLE IF EXISTS `tl_seg_perf_perfil`;
-CREATE TABLE `tl_seg_perf_perfil` (
+DROP TABLE IF EXISTS `inia_mscc_db`.`tl_seg_perf_perfil`;
+CREATE TABLE  `inia_mscc_db`.`tl_seg_perf_perfil` (
   `perf_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `perf_str_estado` varchar(45) NOT NULL,
   `perf_str_nombre` varchar(45) NOT NULL,
@@ -1328,23 +1390,24 @@ CREATE TABLE `tl_seg_perf_perfil` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tl_seg_perf_perfil`
+-- Dumping data for table `inia_mscc_db`.`tl_seg_perf_perfil`
 --
 
 /*!40000 ALTER TABLE `tl_seg_perf_perfil` DISABLE KEYS */;
-INSERT INTO `tl_seg_perf_perfil` (`perf_num_id`,`perf_str_estado`,`perf_str_nombre`,`perf_str_descripcion`,`perf_bol_fijo`) VALUES 
- (1,'Activo','Administrador','Administrador del sistema',1),
+LOCK TABLES `tl_seg_perf_perfil` WRITE;
+INSERT INTO `inia_mscc_db`.`tl_seg_perf_perfil` VALUES  (1,'Activo','Administrador','Administrador del sistema',1),
  (2,'Activo','Investigador','Investigadores de MSCC',1),
  (3,'Activo','Publico','Publico en general',1);
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `tl_seg_perf_perfil` ENABLE KEYS */;
 
 
 --
--- Definition of table `tl_seg_trpe_transaccionperfil`
+-- Definition of table `inia_mscc_db`.`tl_seg_trpe_transaccionperfil`
 --
 
-DROP TABLE IF EXISTS `tl_seg_trpe_transaccionperfil`;
-CREATE TABLE `tl_seg_trpe_transaccionperfil` (
+DROP TABLE IF EXISTS `inia_mscc_db`.`tl_seg_trpe_transaccionperfil`;
+CREATE TABLE  `inia_mscc_db`.`tl_seg_trpe_transaccionperfil` (
   `trpe_num_id_perfil` bigint(20) NOT NULL,
   `trpe_num_id_transaccion` bigint(20) NOT NULL,
   PRIMARY KEY (`trpe_num_id_transaccion`,`trpe_num_id_perfil`) USING BTREE,
@@ -1355,12 +1418,12 @@ CREATE TABLE `tl_seg_trpe_transaccionperfil` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tl_seg_trpe_transaccionperfil`
+-- Dumping data for table `inia_mscc_db`.`tl_seg_trpe_transaccionperfil`
 --
 
 /*!40000 ALTER TABLE `tl_seg_trpe_transaccionperfil` DISABLE KEYS */;
-INSERT INTO `tl_seg_trpe_transaccionperfil` (`trpe_num_id_perfil`,`trpe_num_id_transaccion`) VALUES 
- (1,1),
+LOCK TABLES `tl_seg_trpe_transaccionperfil` WRITE;
+INSERT INTO `inia_mscc_db`.`tl_seg_trpe_transaccionperfil` VALUES  (1,1),
  (2,1),
  (3,1),
  (1,2),
@@ -1425,15 +1488,16 @@ INSERT INTO `tl_seg_trpe_transaccionperfil` (`trpe_num_id_perfil`,`trpe_num_id_t
  (1,34),
  (2,34),
  (3,34);
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `tl_seg_trpe_transaccionperfil` ENABLE KEYS */;
 
 
 --
--- Definition of table `tl_seg_usua_usuario`
+-- Definition of table `inia_mscc_db`.`tl_seg_usua_usuario`
 --
 
-DROP TABLE IF EXISTS `tl_seg_usua_usuario`;
-CREATE TABLE `tl_seg_usua_usuario` (
+DROP TABLE IF EXISTS `inia_mscc_db`.`tl_seg_usua_usuario`;
+CREATE TABLE  `inia_mscc_db`.`tl_seg_usua_usuario` (
   `usua_num_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `usua_str_login` varchar(20) NOT NULL,
   `usua_str_password` varchar(220) NOT NULL,
@@ -1446,15 +1510,19 @@ CREATE TABLE `tl_seg_usua_usuario` (
   PRIMARY KEY (`usua_num_id`),
   KEY `FK_usua_num_id_dato_usuario` (`usua_num_id_dato_usuario`),
   CONSTRAINT `FK_usua_num_id_dato_usuario` FOREIGN KEY (`usua_num_id_dato_usuario`) REFERENCES `tl_seg_daus_datosusuario` (`daus_num_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tl_seg_usua_usuario`
+-- Dumping data for table `inia_mscc_db`.`tl_seg_usua_usuario`
 --
 
 /*!40000 ALTER TABLE `tl_seg_usua_usuario` DISABLE KEYS */;
-INSERT INTO `tl_seg_usua_usuario` (`usua_num_id`,`usua_str_login`,`usua_str_password`,`usua_bol_activado`,`usua_dte_ultimo_acceso`,`usua_str_estado_usuario`,`usua_num_id_dato_usuario`,`usua_str_frase`,`usua_str_codigo_activacion`) VALUES 
- (1,'admin','+GW1NiOxIf007lQmx5Llwzr4wic=',1,'2010-03-02 18:39:38','Activo',1,'ProyectoFinal','54032683');
+LOCK TABLES `tl_seg_usua_usuario` WRITE;
+INSERT INTO `inia_mscc_db`.`tl_seg_usua_usuario` VALUES  (1,'admin','+GW1NiOxIf007lQmx5Llwzr4wic=',1,'2010-03-07 10:05:49','Activo',1,'ProyectoFinal','54032683'),
+ (2,'juan4002','Xq0P4xmJL467buGtCLNx05AeS/s=',0,'2010-03-07 10:01:45','Registrado',2,'Ingrese su frase secreta','74708833'),
+ (3,'juan400_4','ptfKDIcMZq7yunlWqYkacz8/occ=',0,'2010-03-07 10:06:49','Registrado',3,'Ingrese su frase secreta','79567210'),
+ (4,'juan400','6BU9xNyb8/OWnf5nUQxTRA4wyEk=',1,'2010-03-07 10:11:04','Activo',4,'juan cuatrocientos tres','89149997');
+UNLOCK TABLES;
 /*!40000 ALTER TABLE `tl_seg_usua_usuario` ENABLE KEYS */;
 
 
