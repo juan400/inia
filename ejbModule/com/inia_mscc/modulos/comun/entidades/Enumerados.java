@@ -31,7 +31,7 @@ public class Enumerados {
 	}
 
 	static public enum ServicioGEM {
-		Cultivo, Propiedad, Escenario, Archivo
+		Cultivo, Propiedad, Escenario, Archivo, Modelo
 	}
 
 	static public enum ServicioEJE {

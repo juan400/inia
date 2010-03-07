@@ -7,14 +7,17 @@ import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.gem.entidades.Archivo;
 import com.inia_mscc.modulos.gem.entidades.Cultivo;
 import com.inia_mscc.modulos.gem.entidades.Escenario;
+import com.inia_mscc.modulos.gem.entidades.Modelo;
 import com.inia_mscc.modulos.gem.entidades.Propiedad;
 import com.inia_mscc.modulos.gem.proveedores.ProveedorArchivo;
 import com.inia_mscc.modulos.gem.proveedores.ProveedorCultivo;
 import com.inia_mscc.modulos.gem.proveedores.ProveedorEscenario;
+import com.inia_mscc.modulos.gem.proveedores.ProveedorModelo;
 import com.inia_mscc.modulos.gem.proveedores.ProveedorPropiedad;
 import com.inia_mscc.modulos.gem.servicios.ServicioArchivo;
 import com.inia_mscc.modulos.gem.servicios.ServicioCultivo;
 import com.inia_mscc.modulos.gem.servicios.ServicioEscenario;
+import com.inia_mscc.modulos.gem.servicios.ServicioModelo;
 import com.inia_mscc.modulos.gem.servicios.ServicioPropiedad;
 
 public class GEMFachada {
@@ -22,6 +25,7 @@ public class GEMFachada {
 	private ServicioPropiedad srvPropiedad;
 	private ServicioArchivo srvArchivo;
 	private ServicioEscenario srvEscenario;
+	private ServicioModelo srvModelo;
 
 	public GEMFachada(Enumerados.ServicioGEM servicio) {
 		try {
@@ -37,6 +41,9 @@ public class GEMFachada {
 				break;
 			case Escenario:
 				srvEscenario = new ProveedorEscenario();
+				break;
+			case Modelo:
+				srvModelo = new ProveedorModelo();
 				break;
 			}
 
@@ -116,5 +123,21 @@ public class GEMFachada {
 
 	public Escenario RegistrarEscenario(Escenario pEscenario) throws Exception {
 		return srvEscenario.RegistrarEscenario(pEscenario);
+	}
+
+	public void ActualizarModelo(Modelo pModelo) throws Exception {
+		srvModelo.ActualizarModelo(pModelo);
+	}
+
+	public Modelo ObtenerModelo(Modelo pModelo) {
+		return srvModelo.ObtenerModelo(pModelo);
+	}
+
+	public List<Modelo> ObtenerModelos(Modelo pModelo) {
+		return srvModelo.ObtenerModelos(pModelo);
+	}
+
+	public Modelo RegistrarModelo(Modelo pModelo) throws Exception {
+		return srvModelo.RegistrarModelo(pModelo);
 	}
 }
