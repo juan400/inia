@@ -62,7 +62,7 @@ public class Enumerados {
 	}
 
 	static public enum TipoArchivo {
-		Eejcucion, ModeloSimulacion, Climatologico, Escenario, ParametrosClimaticos, Resultados,
+		Ejecucion, ModeloSimulacion, Climatologico, Escenario, ParametrosClimaticos, Resultados,
 	}
 
 	static public enum NobresDeArchivos {

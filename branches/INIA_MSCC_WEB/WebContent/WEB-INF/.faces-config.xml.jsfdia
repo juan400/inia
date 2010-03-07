@@ -651,7 +651,41 @@
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#Servicios#GEM#GEM006.jsp"
-  PATH="/Servicios/GEM/GEM006.jsp" SHAPE="304,3473,0,0" model-entity="JSFProcessGroup"/>
+  PATH="/Servicios/GEM/GEM006.jsp" SHAPE="304,3473,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#GEM#GEM006.jsp:0" NAME="item"
+   PATH="/Servicios/GEM/GEM006.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="GEM006:#{escenarioBean.buscarEscenarios}:#Servicios#GEM#GEM006.jsp"
+    NAME="output" PATH="/Servicios/GEM/GEM006.jsp"
+    TARGET="rules:#Servicios#GEM#GEM006.jsp"
+    TITLE="#{escenarioBean.buscarEscenarios}:GEM006" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="GEM006:#{escenarioBean.VerEscenarios}:#Servicios#GEM#GEM006.jsp"
+    NAME="output1" PATH="/Servicios/GEM/GEM006.jsp"
+    TARGET="rules:#Servicios#GEM#GEM006.jsp"
+    TITLE="#{escenarioBean.VerEscenarios}:GEM006" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="GEM006:#{escenarioBean.Eliminar}:#Servicios#GEM#GEM006.jsp"
+    NAME="output2" PATH="/Servicios/GEM/GEM006.jsp"
+    TARGET="rules:#Servicios#GEM#GEM006.jsp"
+    TITLE="#{escenarioBean.Eliminar}:GEM006" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="GEM006:#{escenarioBean.Actualizar}:#Servicios#GEM#GEM006.jsp"
+    NAME="output3" PATH="/Servicios/GEM/GEM006.jsp"
+    TARGET="rules:#Servicios#GEM#GEM006.jsp"
+    TITLE="#{escenarioBean.Actualizar}:GEM006" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="GEM006:#{escenarioBean.ModificarEscenario}:#Servicios#GEM#GEM006.jsp"
+    NAME="output4" PATH="/Servicios/GEM/GEM006.jsp"
+    TARGET="rules:#Servicios#GEM#GEM006.jsp"
+    TITLE="#{escenarioBean.ModificarEscenario}:GEM006" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="GEM006:#{escenarioBean.RegistrarEscenario}:#Servicios#GEM#GEM006.jsp"
+    NAME="output5" PATH="/Servicios/GEM/GEM006.jsp"
+    TARGET="rules:#Servicios#GEM#GEM006.jsp"
+    TITLE="#{escenarioBean.RegistrarEscenario}:GEM006" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#Servicios#ADM#ADM004.lsp"
   PATH="/Servicios/ADM/ADM004.lsp" SHAPE="576,2017,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#Servicios#GEM#GEM008.jsp"
@@ -661,7 +695,16 @@
  <PROCESS-ITEM NAME="rules:#Servicios#ADM#ADM003.lsp"
   PATH="/Servicios/ADM/ADM003.lsp" SHAPE="576,1809,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#Servicios#GEM#GEM007.jsp"
-  PATH="/Servicios/GEM/GEM007.jsp" SHAPE="304,3585,0,0" model-entity="JSFProcessGroup"/>
+  PATH="/Servicios/GEM/GEM007.jsp" SHAPE="304,3585,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Servicios#GEM#GEM007.jsp:0" NAME="item"
+   PATH="/Servicios/GEM/GEM007.jsp" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="GEM007:#{modeloBean.RegistrarModelo}:#Servicios#GEM#GEM007.jsp"
+    NAME="output" PATH="/Servicios/GEM/GEM007.jsp"
+    TARGET="rules:#Servicios#GEM#GEM007.jsp"
+    TITLE="#{modeloBean.RegistrarModelo}:GEM007" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#Servicios#GEM#GEM009.jsp"
   PATH="/Servicios/GEM/GEM009.jsp" SHAPE="304,3809,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#Servicios#Contenedora.jsp"
