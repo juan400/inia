@@ -24,30 +24,33 @@ public class DAOModelo implements Serializable {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			Criteria c = session.createCriteria(Modelo.class);
-			if (pModelo.get_id() != 0) {
-				c.add(Restrictions.eq("_id", pModelo.get_id()));
-			}
-			if (pModelo.get_escenario() != null) {
+			if (pModelo != null) {
 				if (pModelo.get_id() != 0) {
-					c.add(Restrictions
-							.eq("_escenario", pModelo.get_escenario()));
-				} else {
-					if (pModelo.get_escenario().get_cultivo() != null) {
-						c.add(Restrictions.eq("_cultivo", pModelo
-								.get_escenario().get_cultivo()));
-					}
-					if (pModelo.get_escenario().get_region() != null) {
-						c.add(Restrictions.eq("_region", pModelo
-								.get_escenario().get_region()));
+					c.add(Restrictions.eq("_id", pModelo.get_id()));
+				}
+				if (pModelo.get_escenario() != null) {
+					if (pModelo.get_id() != 0) {
+						c.add(Restrictions.eq("_escenario", pModelo
+								.get_escenario()));
+					} else {
+						if (pModelo.get_escenario().get_cultivo() != null) {
+							c.add(Restrictions.eq("_cultivo", pModelo
+									.get_escenario().get_cultivo()));
+						}
+						if (pModelo.get_escenario().get_region() != null) {
+							c.add(Restrictions.eq("_region", pModelo
+									.get_escenario().get_region()));
+						}
 					}
 				}
-			}
-			if (pModelo.get_usuarioInvestigador() != null) {
-				c.add(Restrictions.eq("_usuarioInvestigador", pModelo
-						.get_usuarioInvestigador()));
-			}
-			if (pModelo.get_fechaHora() != null) {
-				c.add(Restrictions.eq("_fechaHora", pModelo.get_fechaHora()));
+				if (pModelo.get_usuarioInvestigador() != null) {
+					c.add(Restrictions.eq("_usuarioInvestigador", pModelo
+							.get_usuarioInvestigador()));
+				}
+				if (pModelo.get_fechaHora() != null) {
+					c.add(Restrictions
+							.eq("_fechaHora", pModelo.get_fechaHora()));
+				}
 			}
 			listaModelo = (List<Modelo>) c.list();
 		} catch (Exception e) {
@@ -63,30 +66,33 @@ public class DAOModelo implements Serializable {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			Criteria c = session.createCriteria(Modelo.class);
-			if (pModelo.get_id() != 0) {
-				c.add(Restrictions.eq("_id", pModelo.get_id()));
-			}
-			if (pModelo.get_escenario() != null) {
+			if (pModelo != null) {
 				if (pModelo.get_id() != 0) {
-					c.add(Restrictions
-							.eq("_escenario", pModelo.get_escenario()));
-				} else {
-					if (pModelo.get_escenario().get_cultivo() != null) {
-						c.add(Restrictions.eq("_cultivo", pModelo
-								.get_escenario().get_cultivo()));
-					}
-					if (pModelo.get_escenario().get_region() != null) {
-						c.add(Restrictions.eq("_region", pModelo
-								.get_escenario().get_region()));
+					c.add(Restrictions.eq("_id", pModelo.get_id()));
+				}
+				if (pModelo.get_escenario() != null) {
+					if (pModelo.get_id() != 0) {
+						c.add(Restrictions.eq("_escenario", pModelo
+								.get_escenario()));
+					} else {
+						if (pModelo.get_escenario().get_cultivo() != null) {
+							c.add(Restrictions.eq("_cultivo", pModelo
+									.get_escenario().get_cultivo()));
+						}
+						if (pModelo.get_escenario().get_region() != null) {
+							c.add(Restrictions.eq("_region", pModelo
+									.get_escenario().get_region()));
+						}
 					}
 				}
-			}
-			if (pModelo.get_usuarioInvestigador() != null) {
-				c.add(Restrictions.eq("_usuarioInvestigador", pModelo
-						.get_usuarioInvestigador()));
-			}
-			if (pModelo.get_fechaHora() != null) {
-				c.add(Restrictions.eq("_fechaHora", pModelo.get_fechaHora()));
+				if (pModelo.get_usuarioInvestigador() != null) {
+					c.add(Restrictions.eq("_usuarioInvestigador", pModelo
+							.get_usuarioInvestigador()));
+				}
+				if (pModelo.get_fechaHora() != null) {
+					c.add(Restrictions
+							.eq("_fechaHora", pModelo.get_fechaHora()));
+				}
 			}
 			unModelo = (Modelo) c.uniqueResult();
 		} catch (Exception e) {
