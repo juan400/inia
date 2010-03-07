@@ -86,7 +86,7 @@ Secano.</title>
 																requiredMessage="Debe ingresar el Código."
 																value="#{regionBean.codigo}"
 																onkeypress="ValidarCampoParaCodigo(this, event)"
-																style=" width : 245px;">
+																style=" width : 245px" styleClass="textoPlano">
 																<f:validateLength maximum="6">
 																</f:validateLength>
 															</h:inputText>
@@ -96,7 +96,7 @@ Secano.</title>
 																requiredMessage="Debe ingresar el Nombre."
 																value="#{regionBean.nombre}"
 																onkeypress="ValidarCampoLetras(this, event)"
-																style=" width : 245px;">
+																style=" width : 245px" styleClass="textoPlano">
 																<f:validateLength maximum="45">
 																</f:validateLength>
 															</h:inputText>
@@ -105,7 +105,7 @@ Secano.</title>
 															<h:inputTextarea id="descripcion"
 																value="#{regionBean.descripcion}"
 																onkeypress="ValidarLargoMultiline(this, event, 220)"
-																style=" width : 245px; height : 71px;" />
+																style=" width : 245px; height : 71px;" styleClass="textoPlano"/>
 
 															<td></td>
 														</h:panelGrid>
