@@ -24,6 +24,21 @@ public class DAOArchivo  implements Serializable {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			Criteria c = session.createCriteria(Archivo.class);
+			if (pArchivo.get_id() != 0) {
+				c.add(Restrictions.eq("_id", pArchivo.get_id()));
+			}
+			if (pArchivo.get_usuario() != null) {
+				c.add(Restrictions.eq("_usuario", pArchivo.get_usuario()));
+			}
+//			if (pArchivo.get_fechaHora() != null) {
+//				c.add(Restrictions.eq("_fechaHora", pArchivo.get_fechaHora()));
+//			}
+			if (pArchivo.get_nombre() != null) {
+				c.add(Restrictions.eq("_nombre", pArchivo.get_nombre()));
+			}
+			if (pArchivo.get_tipo() != null) {
+				c.add(Restrictions.eq("_tipo", pArchivo.get_tipo()));
+			}
 			listaArchivo = (List<Archivo>) c.list();
 		} catch (Exception e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
