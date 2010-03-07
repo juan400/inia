@@ -6,18 +6,15 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -71,10 +68,10 @@ public class Archivo implements Serializable {
 	@JoinColumn(name = "arch_num_id_ubicacion_archivo", referencedColumnName = "ubar_num_id", updatable = true, nullable = false, columnDefinition = "BIGINT(20)")
 	private Ubicacion _ubicacion;
 
-	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REFRESH }, targetEntity = Cultivo.class)
-	@ForeignKey(name = "FK_arch_num_id_cultivo")
-	@JoinColumn(name = "arch_num_id_cultivo", referencedColumnName = "cult_num_id", updatable = true, nullable = false, columnDefinition = "BIGINT(20)")
-	private Cultivo _cultivo;
+//	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REFRESH }, targetEntity = Cultivo.class)
+//	@ForeignKey(name = "FK_arch_num_id_cultivo")
+//	@JoinColumn(name = "arch_num_id_cultivo", referencedColumnName = "cult_num_id", updatable = true, nullable = false, columnDefinition = "BIGINT(20)")
+//	private Cultivo _cultivo;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REFRESH }, targetEntity = Usuario.class)
 	@ForeignKey(name = "FK_arch_num_id_usuario")
@@ -184,13 +181,13 @@ public class Archivo implements Serializable {
 		_estado = estado;
 	}
 
-	public Cultivo get_cultivo() {
-		return _cultivo;
-	}
-
-	public void set_cultivo(Cultivo cultivo) {
-		_cultivo = cultivo;
-	}
+//	public Cultivo get_cultivo() {
+//		return _cultivo;
+//	}
+//
+//	public void set_cultivo(Cultivo cultivo) {
+//		_cultivo = cultivo;
+//	}
 
 	public Usuario get_usuario() {
 		return _usuario;

@@ -22,6 +22,7 @@ import com.inia_mscc.modulos.eje.entidades.ResultadoMSCC;
 import com.inia_mscc.modulos.gem.entidades.Archivo;
 import com.inia_mscc.modulos.gem.entidades.Cultivo;
 import com.inia_mscc.modulos.gem.entidades.Escenario;
+import com.inia_mscc.modulos.gem.entidades.Modelo;
 import com.inia_mscc.modulos.gem.entidades.Propiedad;
 import com.inia_mscc.modulos.seg.entidades.DatoUsuario;
 import com.inia_mscc.modulos.seg.entidades.Perfil;
@@ -55,6 +56,7 @@ public class HibernateUtil {
         	.addAnnotatedClass(Escenario.class)
         	.addAnnotatedClass(EjecucionMSCC.class)
         	.addAnnotatedClass(ResultadoMSCC.class)
+        	.addAnnotatedClass(Modelo.class)
         	.addAnnotatedClass(Proyeccion.class)
         	.configure("hibernate.cfg.xml")
         	.buildSessionFactory();

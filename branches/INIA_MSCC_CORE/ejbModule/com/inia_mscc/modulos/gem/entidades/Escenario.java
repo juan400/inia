@@ -6,8 +6,6 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,7 +29,7 @@ public class Escenario implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "esce_num_id", updatable = false, nullable = false, columnDefinition = "BIGINT(20)")
-	private long id;
+	private long _id;
 
 	@Column(name = "esce_dte_fecha",  nullable = false, columnDefinition = "DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -57,10 +55,10 @@ public class Escenario implements Serializable {
 	@JoinColumn(name = "esce_num_id_archivo_escenario", referencedColumnName = "arch_num_id", updatable = true, nullable = false, columnDefinition = "BIGINT(20)")
 	private Archivo _archivoEscenario;
 
-	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REFRESH }, targetEntity = Archivo.class)
-	@ForeignKey(name = "FK_arch_num_id_cultivo")
-	@JoinColumn(name = "esce_num_id_archivo_mscc", referencedColumnName = "arch_num_id", updatable = true, nullable = false, columnDefinition = "BIGINT(20)")
-	private Archivo _archivoMSCC;
+//	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REFRESH }, targetEntity = Archivo.class)
+//	@ForeignKey(name = "FK_arch_num_id_cultivo")
+//	@JoinColumn(name = "esce_num_id_archivo_mscc", referencedColumnName = "arch_num_id", updatable = true, nullable = false, columnDefinition = "BIGINT(20)")
+//	private Archivo _archivoMSCC;
 	
 	public Escenario() {
 		super();
@@ -69,7 +67,15 @@ public class Escenario implements Serializable {
 		_region = null;
 		_cultivo = null;
 		_archivoEscenario = null;
-		_archivoMSCC = null;
+//		_archivoMSCC = null;
+	}
+
+	public void set_id(long _id) {
+		this._id = _id;
+	}
+
+	public long get_id() {
+		return _id;
 	}
 
 	public Date get_fechaHora() {
@@ -112,12 +118,12 @@ public class Escenario implements Serializable {
 		_archivoEscenario = archivoEscenario;
 	}
 
-	public Archivo get_archivoMSCC() {
-		return _archivoMSCC;
-	}
-
-	public void set_archivoMSCC(Archivo archivoMSCC) {
-		_archivoMSCC = archivoMSCC;
-	}
+//	public Archivo get_archivoMSCC() {
+//		return _archivoMSCC;
+//	}
+//
+//	public void set_archivoMSCC(Archivo archivoMSCC) {
+//		_archivoMSCC = archivoMSCC;
+//	}
 	
 }

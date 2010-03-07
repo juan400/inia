@@ -34,13 +34,13 @@ public class EJBEjecucionMSCC implements ServicioEjecucionMSCC{
 	@Override
 	public void generarArchivoEscenario(EjecucionMSCC ejecucionMSCC) throws Exception {
 		try{
-			File templateCultivo = ejecucionMSCC.get_escenario().get_archivoEscenario().get_datos();
+			File templateCultivo = ejecucionMSCC.get_modelo().get_escenario().get_archivoEscenario().get_datos();
 			File archivoEjecucion = ejecucionMSCC.get_archivoEjecucion().get_datos();
 			
 			BufferedReader fileIn = new BufferedReader(new FileReader(templateCultivo));
 			PrintWriter fileOut = new PrintWriter(new FileWriter(archivoEjecucion, true));
 			
-			List<Propiedad> propiedades = ejecucionMSCC.get_escenario().get_cultivo().get_listaPropiedades();
+			List<Propiedad> propiedades = ejecucionMSCC.get_modelo().get_escenario().get_cultivo().get_listaPropiedades();
 			
 			String linea = "";
 			while ((linea = fileIn.readLine()) != null) {
@@ -60,7 +60,7 @@ public class EJBEjecucionMSCC implements ServicioEjecucionMSCC{
 			throw new Exception("No se encuentra el archivo");
 		}catch(Exception e){
 			e.printStackTrace();
-			throw new Exception("Ha ocurrido un error al procesar el archivo de ejecución.");
+			throw new Exception("Ha ocurrido un error al procesar el archivo de ejecuciï¿½n.");
 		}
 		
 	}
@@ -101,7 +101,7 @@ public class EJBEjecucionMSCC implements ServicioEjecucionMSCC{
 			}
 			
 		}else{
-			throw new Exception("Error al procesar el resultado de la ejecución");
+			throw new Exception("Error al procesar el resultado de la ejecuciï¿½n");
 		}
 		
 		return resultado;
