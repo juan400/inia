@@ -11,7 +11,6 @@ import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
 
 import com.bean.comun.MaestroBean;
-import com.inia_mscc.modulos.adm.entidades.Region;
 import com.inia_mscc.modulos.adm.entidades.Ubicacion;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioADM;
@@ -19,7 +18,8 @@ import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioGEM;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.TipoArchivo;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.TipoExtencionArchivo;
 import com.inia_mscc.modulos.gem.entidades.Archivo;
-import com.inia_mscc.modulos.gem.entidades.Cultivo;
+import com.inia_mscc.modulos.gem.entidades.Escenario;
+import com.inia_mscc.modulos.gem.entidades.Modelo;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
 public class ModeloBean extends MaestroBean implements Serializable {
@@ -29,41 +29,162 @@ public class ModeloBean extends MaestroBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Date fecha;
+	private Date fecha = new Date();
 
-	private List<Cultivo> listaCultivos;
-	private SelectItem[] cultivos;
-	private String cultivoElegido;
-	private Cultivo cultivo;
-
-	private List<Region> listaRegiones;
-	private SelectItem[] regiones;
-	private String regionElegida;
-	private Region region;
-	private boolean disableRegion = true;
+	private List<Escenario> listaEscenarios;
+	private SelectItem[] escenarios;
+	private String escenarioElegido;
+	private Escenario escenario;
 
 	private Archivo archivoSubido = new Archivo();
 	private boolean useFlash = false;
 	private boolean disableUpload = false;
 	private List<UploadItem> files;
-	private List<Archivo> archivos;
-	private Usuario usuarioFiltro;
-	private List<Usuario> listaUsuarios;
-	private SelectItem[] usuarios;
-	private String usuarioElegido;
 	private String estado;
 	private SelectItem[] estados;
+	
+	private List<Modelo> modelos;
+	private Modelo modelo;
 
 	private boolean recargo = true;
 
+	public String RegistrarModelo() {
+		this.setError("");
+		this.setExito("");
+		String retorno = "";
+		try {
+			if (this.getEscenario() != null) {
+				if (this.getFiles() != null && !this.getFiles().isEmpty()) {
+					this.setUsuario((Usuario) getSesion(Usuario.class
+							.toString()));
+					Ubicacion ubicacion = new Ubicacion();
+					ubicacion.set_tipoArchivo(TipoArchivo.ModeloSimulacion);
+					ubicacion = this.getAdmFachada(ServicioADM.Ubicacion)
+							.ObtenerUbicacion(ubicacion);
+					archivoSubido = new Archivo(getUsuario().get_login(),
+							TipoArchivo.ModeloSimulacion, new Date(),
+							Estado.Activo, TipoExtencionArchivo.py, ubicacion);
+					archivoSubido.set_datos(this.getFiles().get(0).getFile());
+					archivoSubido.set_usuario(this.getUsuario());
+					Modelo modelo = new Modelo();
+					modelo.set_archivoMSCC(archivoSubido);
+					modelo.set_escenario(this.getEscenario());
+					modelo.set_fechaHora(this.getFecha());
+					modelo.set_estado(Estado.valueOf(this.getEstado()));
+					modelo.set_usuarioInvestigador(this.getUsuario());
+					modelo = this.getGEMFachada(ServicioGEM.Modelo)
+							.RegistrarModelo(modelo);
+					if (modelo != null) {
+						this.setDisableUpload(true);
+						recargo = true;
+						this
+								.setExito("Se guardo el modelo de simulación exitosamente.");
+						this.setEscenario(null);
+						this.setArchivoSubido(null);
+						this.setModelo(null);
+						retorno = "GEM007";
+					} else {
+						this
+								.setError("No se pudo registrar el modelo de simulación");
+					}
+
+				} else {
+					this
+							.setError("No se subieron archivos, seleccione y cargue el archivo para el modelo de simulación.");
+				}
+			} else {
+				this.setError("Debe seleccionar un escenario de ejecución.");
+			}
+		} catch (Exception ex) {
+			this.setError(ex.getMessage());
+		}
+		return retorno;
+	}
+
+	public String ModificarModelo() {
+		this.setError("");
+		this.setExito("");
+		String retorno = "";
+		return "GEM008";
+	}
+
+	public String Actualizar() {
+		this.setError("");
+		this.setExito("");
+		String retorno = "";
+		return "GEM008";
+	}
+
+	public String VerEscenario() {
+		this.setError("");
+		this.setExito("");
+		String retorno = "";
+		return "GEM008";
+	}
+
+	public String Eliminar() {
+		this.setError("");
+		this.setExito("");
+		String retorno = "";
+		return "GEM008";
+	}
+
+	public String buscarModelos() {
+		this.setError("");
+		this.setExito("");
+		String retorno = "";
+		try {
+			Modelo unModelo = new Modelo();
+			unModelo.set_usuarioInvestigador(this.getUsuario());
+			if (this.getEscenario() != null) {
+				unModelo.set_escenario(this.getEscenario());
+			}
+			if (!this.getEstado().equals(
+					this.getTextBundleKey("combo_seleccione"))) {
+				unModelo.set_estado(Estado.valueOf(this.getEstado()));
+			}
+			this.setModelos(this.getGEMFachada(ServicioGEM.Modelo)
+					.ObtenerModelos(unModelo));
+			retorno = "GEM008";
+		} catch (Exception ex) {
+			this.setError(ex.getMessage());
+		}
+		return retorno;
+	}
+
 	public ModeloBean() {
 		try {
-			this.setListaCultivos(this.getGEMFachada(ServicioGEM.Cultivo)
-					.ObtenerCultivos(null));
-			this.setListaRegiones(this.getAdmFachada(ServicioADM.Region)
-					.ObtenerRegiones());
+			this.setError("");
+			this.setExito("");
+			Escenario esce = new Escenario();
+			this.setUsuario((Usuario) this.getSesion(Usuario.class
+					.toString()));
+			esce.set_usuarioInvestigador(this.getUsuario());
+			this.setUsuario((Usuario) this.getSesion(Usuario.class.toString()));
+			this.setListaEscenarios(this.getGEMFachada(ServicioGEM.Escenario)
+					.ObtenerEscenarios(esce));
+			if (this.getListaEscenarios() == null) {
+				this.setListaEscenarios(new ArrayList<Escenario>());
+			}
+			escenarios = new SelectItem[this.getListaEscenarios().size() + 1];
+			escenarios[0] = new SelectItem(this
+					.getTextBundleKey("combo_seleccione"));
+			int i = 1;
+			for (Escenario e : this.getListaEscenarios()) {
+				SelectItem si = new SelectItem(e.get_archivoEscenario().get_nombre());
+				escenarios[i] = si;
+				i++;
+			}
+			estados = new SelectItem[Estado.values().length];
+//			estados[0] = new SelectItem(this
+//					.getTextBundleKey("combo_seleccione"));
+			SelectItem si = new SelectItem(Estado.Activo.name());
+			estados[0] = si;
+			si = new SelectItem(Estado.Inactivo.name());
+			estados[1] = si;
+			estado = Estado.Inactivo.name();
 			files = new ArrayList<UploadItem>();
-			archivos = new ArrayList<Archivo>();
+			modelos = new ArrayList<Modelo>();
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
 		}
@@ -72,106 +193,75 @@ public class ModeloBean extends MaestroBean implements Serializable {
 	public boolean isModificacion() {
 		try {
 			if (recargo) {
-//				SelectItem[] usuarios = new SelectItem[1];
-//				usuarios[0] = new SelectItem(this
-//						.getTextBundleKey("combo_seleccione"));
-//				usuarioElegido = this.getTextBundleKey("combo_seleccione");
-				Archivo archi = new Archivo();
-				archi.set_usuario((Usuario) this.getSesion(Usuario.class
+				this.setError("");
+				this.setExito("");
+				Escenario esce = new Escenario();
+				this.setUsuario((Usuario) this.getSesion(Usuario.class
 						.toString()));
-				archi.set_tipo(TipoArchivo.Escenario);
-				archivos = this.getGEMFachada(ServicioGEM.Archivo)
-						.ObtenerArchivos(archi);
-				this.setListaCultivos(this.getGEMFachada(ServicioGEM.Cultivo)
-						.ObtenerCultivos(null));
-				if (this.getListaCultivos() == null) {
-					this.setListaCultivos(new ArrayList<Cultivo>());
+				esce.set_usuarioInvestigador(this.getUsuario());
+				this.setUsuario((Usuario) this.getSesion(Usuario.class.toString()));
+				this.setListaEscenarios(this.getGEMFachada(ServicioGEM.Escenario)
+						.ObtenerEscenarios(esce));
+				if (this.getListaEscenarios() == null) {
+					this.setListaEscenarios(new ArrayList<Escenario>());
 				}
-				cultivos = new SelectItem[listaCultivos.size() + 1];
-				cultivos[0] = new SelectItem(this
+				escenarios = new SelectItem[this.getListaEscenarios().size() + 1];
+				escenarios[0] = new SelectItem(this
 						.getTextBundleKey("combo_seleccione"));
 				int i = 1;
-				for (Cultivo c : listaCultivos) {
-					SelectItem si = new SelectItem(c.get_nombre());
-					cultivos[i] = si;
+				for (Escenario e : this.getListaEscenarios()) {
+					SelectItem si = new SelectItem(e.get_archivoEscenario().get_nombre());
+					escenarios[i] = si;
 					i++;
 				}
-				cultivoElegido = this.getTextBundleKey("combo_seleccione");
-				this.setListaRegiones(this.getAdmFachada(ServicioADM.Region)
-						.ObtenerRegiones());
-				if (this.getListaRegiones() == null) {
-					this.setListaRegiones(new ArrayList<Region>());
+				escenarioElegido = this.getTextBundleKey("combo_seleccione");
+				this.setModelos(this.getGEMFachada(ServicioGEM.Modelo)
+						.ObtenerModelos(null));
+				if (this.getModelos() == null) {
+					this.setModelos(new ArrayList<Modelo>());
 				}
-				regiones = new SelectItem[listaRegiones.size() + 1];
-				regiones[0] = new SelectItem(this
-						.getTextBundleKey("combo_seleccione"));
-				i = 1;
-				for (Region c : listaRegiones) {
-					SelectItem si = new SelectItem(c.get_codigo(), c
-							.get_nombre(), c.get_descripcion());
-					regiones[i] = si;
-					i++;
-				}
-				regionElegida = this.getTextBundleKey("combo_seleccione");
+				estados = new SelectItem[Estado.values().length];
+//				estados[0] = new SelectItem(this
+//						.getTextBundleKey("combo_seleccione"));
+				SelectItem si = new SelectItem(Estado.Activo.name());
+				estados[0] = si;
+				si = new SelectItem(Estado.Inactivo.name());
+				estados[1] = si;
+//				estado = Estado.Inactivo.name();
 			}
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
 		}
 		return false;
-	}
-
-	public String buscarMSCC() {
-		Archivo archi = new Archivo();
-		archi.set_usuario((Usuario) this.getSesion(Usuario.class.toString()));
-		archi.set_fechaHora(this.getFecha());
-//		archi.set_cultivo(this.getCultivo());
-		archi.set_usuario(this.getUsuarioFiltro());
-		archi.set_estado(Estado.valueOf(this.getEstado()));
-		archi.set_tipo(TipoArchivo.Escenario);
-		archivos = this.getGEMFachada(ServicioGEM.Archivo).ObtenerArchivos(
-				archi);
-		return "GEM006";
-	}
-
-	private String ModificarMSCC() {
-		return "GEM006";
 	}
 
 	public boolean isInit() {
 		try {
 			if (recargo) {
+				this.setError("");
+				this.setExito("");
 				files = new ArrayList<UploadItem>();
-				this.setListaCultivos(this.getGEMFachada(ServicioGEM.Cultivo)
-						.ObtenerCultivos(null));
-				if (this.getListaCultivos() == null) {
-					this.setListaCultivos(new ArrayList<Cultivo>());
+
+				Escenario esce = new Escenario();
+				this.setUsuario((Usuario) this.getSesion(Usuario.class
+						.toString()));
+				esce.set_usuarioInvestigador(this.getUsuario());
+				this.setUsuario((Usuario) this.getSesion(Usuario.class.toString()));
+				this.setListaEscenarios(this.getGEMFachada(ServicioGEM.Escenario)
+						.ObtenerEscenarios(esce));
+				if (this.getListaEscenarios() == null) {
+					this.setListaEscenarios(new ArrayList<Escenario>());
 				}
-				cultivos = new SelectItem[listaCultivos.size() + 1];
-				cultivos[0] = new SelectItem(this
+				escenarios = new SelectItem[this.getListaEscenarios().size() + 1];
+				escenarios[0] = new SelectItem(this
 						.getTextBundleKey("combo_seleccione"));
 				int i = 1;
-				for (Cultivo c : listaCultivos) {
-					SelectItem si = new SelectItem(c.get_nombre());
-					cultivos[i] = si;
+				for (Escenario e : this.getListaEscenarios()) {
+					SelectItem si = new SelectItem(e.get_archivoEscenario().get_nombre());
+					escenarios[i] = si;
 					i++;
 				}
-				cultivoElegido = this.getTextBundleKey("combo_seleccione");
-				this.setListaRegiones(this.getAdmFachada(ServicioADM.Region)
-						.ObtenerRegiones());
-				if (this.getListaRegiones() == null) {
-					this.setListaRegiones(new ArrayList<Region>());
-				}
-				regiones = new SelectItem[listaRegiones.size() + 1];
-				regiones[0] = new SelectItem(this
-						.getTextBundleKey("combo_seleccione"));
-				i = 1;
-				for (Region c : listaRegiones) {
-					SelectItem si = new SelectItem(c.get_codigo(), c
-							.get_nombre(), c.get_descripcion());
-					regiones[i] = si;
-					i++;
-				}
-				regionElegida = this.getTextBundleKey("combo_seleccione");
+				escenarioElegido = this.getTextBundleKey("combo_seleccione");
 			}
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
@@ -179,54 +269,21 @@ public class ModeloBean extends MaestroBean implements Serializable {
 		return false;
 	}
 
-	public void takeSelectionCultivo() {
+	public void takeSelectionEscenario() {
 		try {
-			cultivo = new Cultivo();
-			if (!this.getCultivoElegido().isEmpty()
-					&& !this.getCultivoElegido().equals(
+			escenario = new Escenario();
+			if (!this.getEscenarioElegido().isEmpty()
+					&& !this.getEscenarioElegido().equals(
 							this.getTextBundleKey("combo_seleccione"))) {
-				this.setCultivo(BuscarCultivo(this.getCultivoElegido()));
-				this.setDisableRegion(false);
-				this.setDisableUpload(true);
-				this.setError("");
-				this.setExito("");
-				recargo = false;
-			} else {
-				this.setCultivo(null);
-				this.setDisableRegion(true);
-				this.setDisableUpload(true);
-				this.setError("");
-				this.setExito("");
-			}
-			regiones = new SelectItem[listaRegiones.size() + 1];
-			regiones[0] = new SelectItem(this
-					.getTextBundleKey("combo_seleccione"));
-			int i = 1;
-			for (Region c : listaRegiones) {
-				SelectItem si = new SelectItem(c.get_codigo(), c.get_nombre(),
-						c.get_descripcion());
-				regiones[i] = si;
-				i++;
-			}
-			regionElegida = this.getTextBundleKey("combo_seleccione");
-		} catch (Exception ex) {
-			this.setError(ex.getMessage());
-		}
-	}
-
-	public void takeSelectionRegion() {
-		try {
-			region = new Region();
-			if (!this.getRegionElegida().isEmpty()
-					&& !this.getRegionElegida().equals(
-							this.getTextBundleKey("combo_seleccione"))) {
-				this.setRegion(BuscarRegion(this.getRegionElegida()));
+				this.setEscenario(BuscarEscenario(this.getEscenarioElegido()));
+//				this.setDisableEscenario(false);
 				this.setDisableUpload(false);
 				this.setError("");
 				this.setExito("");
 				recargo = false;
 			} else {
-				this.setRegion(null);
+				this.setEscenario(null);
+//				this.setDisableRegion(true);
 				this.setDisableUpload(true);
 				this.setError("");
 				this.setExito("");
@@ -236,30 +293,17 @@ public class ModeloBean extends MaestroBean implements Serializable {
 		}
 	}
 
-	private Cultivo BuscarCultivo(String pCodigo) {
-		Cultivo cultivoBuscado = null;
-		if (this.getListaCultivos() != null
-				&& !this.getListaCultivos().isEmpty()) {
-			for (Cultivo cultivo : this.getListaCultivos()) {
-				if (cultivo.get_nombre().equals(pCodigo)) {
-					cultivoBuscado = cultivo;
+	private Escenario BuscarEscenario(String pCodigo) {
+		Escenario escenarioBuscado = null;
+		if (this.getListaEscenarios() != null
+				&& !this.getListaEscenarios().isEmpty()) {
+			for (Escenario esce : this.getListaEscenarios()) {
+				if (esce.get_archivoEscenario().get_nombre().equals(pCodigo)) {
+					escenarioBuscado = esce;
 				}
 			}
 		}
-		return cultivoBuscado;
-	}
-
-	private Region BuscarRegion(String pCodigo) {
-		Region regionBuscada = null;
-		if (this.getListaRegiones() != null
-				&& !this.getListaRegiones().isEmpty()) {
-			for (Region region : this.getListaRegiones()) {
-				if (region.get_codigo().equals(pCodigo)) {
-					regionBuscada = region;
-				}
-			}
-		}
-		return regionBuscada;
+		return escenarioBuscado;
 	}
 
 	public void listener(UploadEvent event) {
@@ -272,54 +316,6 @@ public class ModeloBean extends MaestroBean implements Serializable {
 		}
 	}
 
-	public String RegistrarMSCC() {
-		String retorno = "";
-		try {
-			if (this.getCultivo() != null) {
-				if (this.getRegion() != null) {
-					if (this.getFiles() != null && !this.getFiles().isEmpty()) {
-						this.setUsuario((Usuario) getSesion(Usuario.class
-								.toString()));
-						Ubicacion ubicacion = new Ubicacion();
-						ubicacion.set_tipoArchivo(TipoArchivo.Escenario);
-						ubicacion = this.getAdmFachada(ServicioADM.Ubicacion)
-								.ObtenerUbicacion(ubicacion);
-						archivoSubido = new Archivo(getUsuario().get_login(),
-								TipoArchivo.Escenario, new Date(),
-								Estado.Activo, TipoExtencionArchivo.py,
-								ubicacion);
-						archivoSubido.set_datos(this.getFiles().get(0)
-								.getFile());
-//						archivoSubido.set_cultivo(this.getCultivo());
-						archivoSubido.set_usuario(this.getUsuario());
-						archivoSubido = this.getGEMFachada(ServicioGEM.Archivo)
-								.RegistrarArchivo(archivoSubido);
-						if (archivoSubido != null) {
-							this.setDisableUpload(true);
-							recargo = true;
-							this.setExito("Se guardo el archivo para "
-									+ "el MSCC exitosamente.");
-							retorno = "GEM005";
-						} else {
-							this.setError("No se pudo registrar el archivo");
-						}
-					} else {
-						this
-								.setError("No se subieron archivos, seleccione y cargue el archivo para el MSCC.");
-					}
-				} else {
-					this.setError("Debe seleccionar una regi�n clim�tica.");
-				}
-			} else {
-				this.setError("Debe seleccionar un cultivo.");
-			}
-
-		} catch (Exception ex) {
-			this.setError(ex.getMessage());
-		}
-		return retorno;
-	}
-
 	public String clearUploadData() {
 		archivoSubido = null;
 		files = new ArrayList<UploadItem>();
@@ -330,12 +326,36 @@ public class ModeloBean extends MaestroBean implements Serializable {
 		return System.currentTimeMillis();
 	}
 
-	public boolean isUseFlash() {
-		return useFlash;
+	public Date getFecha() {
+		return fecha;
 	}
 
-	public void setUseFlash(boolean useFlash) {
-		this.useFlash = useFlash;
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	public SelectItem[] getEscenarios() {
+		return escenarios;
+	}
+
+	public void setEscenarios(SelectItem[] escenarios) {
+		this.escenarios = escenarios;
+	}
+
+	public String getEscenarioElegido() {
+		return escenarioElegido;
+	}
+
+	public void setEscenarioElegido(String escenarioElegido) {
+		this.escenarioElegido = escenarioElegido;
+	}
+
+	public Escenario getEscenario() {
+		return escenario;
+	}
+
+	public void setEscenario(Escenario escenario) {
+		this.escenario = escenario;
 	}
 
 	public Archivo getArchivoSubido() {
@@ -346,84 +366,12 @@ public class ModeloBean extends MaestroBean implements Serializable {
 		this.archivoSubido = archivoSubido;
 	}
 
-	public Date getFecha() {
-		return fecha;
+	public boolean isUseFlash() {
+		return useFlash;
 	}
 
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
-
-	public List<Cultivo> getListaCultivos() {
-		return listaCultivos;
-	}
-
-	public void setListaCultivos(List<Cultivo> listaCultivos) {
-		this.listaCultivos = listaCultivos;
-	}
-
-	public SelectItem[] getCultivos() {
-		return cultivos;
-	}
-
-	public void setCultivos(SelectItem[] cultivos) {
-		this.cultivos = cultivos;
-	}
-
-	public String getCultivoElegido() {
-		return cultivoElegido;
-	}
-
-	public void setCultivoElegido(String cultivoElegido) {
-		this.cultivoElegido = cultivoElegido;
-	}
-
-	public Cultivo getCultivo() {
-		return cultivo;
-	}
-
-	public void setCultivo(Cultivo cultivo) {
-		this.cultivo = cultivo;
-	}
-
-	public String getRegionElegida() {
-		return regionElegida;
-	}
-
-	public void setRegionElegida(String regionElegida) {
-		this.regionElegida = regionElegida;
-	}
-
-	public List<Region> getListaRegiones() {
-		return listaRegiones;
-	}
-
-	public void setListaRegiones(List<Region> listaRegiones) {
-		this.listaRegiones = listaRegiones;
-	}
-
-	public SelectItem[] getRegiones() {
-		return regiones;
-	}
-
-	public void setRegiones(SelectItem[] regiones) {
-		this.regiones = regiones;
-	}
-
-	public Region getRegion() {
-		return region;
-	}
-
-	public void setRegion(Region region) {
-		this.region = region;
-	}
-
-	public boolean isDisableRegion() {
-		return disableRegion;
-	}
-
-	public void setDisableRegion(boolean disableRegion) {
-		this.disableRegion = disableRegion;
+	public void setUseFlash(boolean useFlash) {
+		this.useFlash = useFlash;
 	}
 
 	public boolean isDisableUpload() {
@@ -434,60 +382,12 @@ public class ModeloBean extends MaestroBean implements Serializable {
 		this.disableUpload = disableUpload;
 	}
 
-	public void setFiles(List<UploadItem> files) {
-		this.files = files;
-	}
-
 	public List<UploadItem> getFiles() {
 		return files;
 	}
 
-	public List<Archivo> getArchivos() {
-		return archivos;
-	}
-
-	public void setArchivos(List<Archivo> archivos) {
-		this.archivos = archivos;
-	}
-
-	public Usuario getUsuarioFiltro() {
-		return usuarioFiltro;
-	}
-
-	public void setUsuarioFiltro(Usuario usuarioFiltro) {
-		this.usuarioFiltro = usuarioFiltro;
-	}
-
-	public List<Usuario> getListaUsuarios() {
-		return listaUsuarios;
-	}
-
-	public void setListaUsuarios(List<Usuario> listaUsuarios) {
-		this.listaUsuarios = listaUsuarios;
-	}
-
-	public SelectItem[] getUsuarios() {
-		return usuarios;
-	}
-
-	public void setUsuarios(SelectItem[] usuarios) {
-		this.usuarios = usuarios;
-	}
-
-	public String getUsuarioElegido() {
-		return usuarioElegido;
-	}
-
-	public void setUsuarioElegido(String usuarioElegido) {
-		this.usuarioElegido = usuarioElegido;
-	}
-
-	public boolean isRecargo() {
-		return recargo;
-	}
-
-	public void setRecargo(boolean recargo) {
-		this.recargo = recargo;
+	public void setFiles(List<UploadItem> files) {
+		this.files = files;
 	}
 
 	public String getEstado() {
@@ -504,6 +404,38 @@ public class ModeloBean extends MaestroBean implements Serializable {
 
 	public void setEstados(SelectItem[] estados) {
 		this.estados = estados;
+	}
+
+	public boolean isRecargo() {
+		return recargo;
+	}
+
+	public void setRecargo(boolean recargo) {
+		this.recargo = recargo;
+	}
+
+	public void setListaEscenarios(List<Escenario> listaEscenarios) {
+		this.listaEscenarios = listaEscenarios;
+	}
+
+	public List<Escenario> getListaEscenarios() {
+		return listaEscenarios;
+	}
+
+	public List<Modelo> getModelos() {
+		return modelos;
+	}
+
+	public void setModelos(List<Modelo> modelos) {
+		this.modelos = modelos;
+	}
+
+	public Modelo getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(Modelo modelo) {
+		this.modelo = modelo;
 	}
 
 }
