@@ -93,9 +93,18 @@ Secano.</title>
 
 															</rich:calendar>
 
-															<h:outputText value="Seleccionar cultivo" />
-															<rich:comboBox>
-
+															<h:outputText value="Seleccionar cultivo"
+																styleClass="textoPlano" />
+															<rich:comboBox
+																value="#{propiedadesBean.cultivoSeleccionado}"
+																enableManualInput="false" styleClass="combo"
+																disabled="#{propiedadesBean.disableSeleccionCultivo}"
+																width="248px">
+																<f:selectItems value="#{propiedadesBean.cultivos}" />
+																<a4j:support
+																	action="#{propiedadesBean.TakeSelectionCultivo}"
+																	event="onchange" ajaxSingle="true"
+																	reRender="panelPropiedades" />
 															</rich:comboBox>
 
 															<h:outputText value="Seleccionar estacion climatica" />
@@ -111,8 +120,8 @@ Secano.</title>
 														</h:panelGrid>
 														<h:panelGrid columns="2" styleClass="textoPlano">
 															<h:outputText
-																value="Ejecutar con proyecciones climatologicas generadas" />
-															<h:selectBooleanCheckbox 
+																value="Basado en proyecciones climatológicas" />
+															<h:selectBooleanCheckbox
 																value="#{escenarioBean.proyectarClima}" />
 														</h:panelGrid>
 
@@ -204,10 +213,10 @@ Secano.</title>
 																</h:panelGrid>
 															</rich:panel>
 														</h:panelGrid>
-														<h:panelGrid columns="4" width="650px"
-															columnClasses="textoPlano,textoPlano,textoPlano,textoPlano">
+														<h:panelGrid columns="2"
+															columnClasses="textoPlano,textoPlano">
 
-															<h:outputText value="Nombre Suelo" />
+															<h:outputText value="Nombre Coneat" />
 															<h:inputText value="#{escenarioBean.nombreSueloConeat}"
 																styleClass="textoPlano"
 																onkeypress="ValidarCampoNumericoDouble(this, event)" />
@@ -223,39 +232,46 @@ Secano.</title>
 															<h:inputText value="#{escenarioBean.densidadPlantas}"
 																styleClass="textoPlano"
 																onkeypress="ValidarCampoNumericoDouble(this, event)" />
-															<h:outputText value="WULI" />
+															<h:outputText
+																value="Indice agua en la capa superior del suelo" />
 															<h:inputText value="#{escenarioBean.wuli}"
 																styleClass="textoPlano"
 																onkeypress="ValidarCampoNumericoDouble(this, event)" />
-															<h:outputText value="WLLI" />
+															<h:outputText
+																value="Indice agua en la capa inferior del suelo" />
 															<h:inputText value="#{escenarioBean.wlli}"
 																styleClass="textoPlano"
 																onkeypress="ValidarCampoNumericoDouble(this, event)" />
-															<h:outputText value="DPMI" />
+															<h:outputText value="Descompocición del material vegetal" />
 															<h:inputText value="#{escenarioBean.dpmi}"
 																styleClass="textoPlano"
 																onkeypress="ValidarCampoNumericoDouble(this, event)" />
-															<h:outputText value="RPMI" />
+															<h:outputText value="Material vegetal resistente" />
 															<h:inputText value="#{escenarioBean.rpmi}"
 																styleClass="textoPlano"
 																onkeypress="ValidarCampoNumericoDouble(this, event)" />
-															<h:outputText value="HUMI" />
+															<h:outputText
+																value="Materia orgánica en el suelo humedecido" />
 															<h:inputText value="#{escenarioBean.humi}"
 																styleClass="textoPlano"
 																onkeypress="ValidarCampoNumericoDouble(this, event)" />
-															<h:outputText value="NAULI" />
+															<h:outputText
+																value="Amonio N en la capa superior del suelo" />
 															<h:inputText value="#{escenarioBean.nauli}"
 																styleClass="textoPlano"
 																onkeypress="ValidarCampoNumericoDouble(this, event)" />
-															<h:outputText value="NALLI" />
+															<h:outputText
+																value="Amonio N en la capa inferior del suelo" />
 															<h:inputText value="#{escenarioBean.nalli}"
 																styleClass="textoPlano"
 																onkeypress="ValidarCampoNumericoDouble(this, event)" />
-															<h:outputText value="NNULI" />
+															<h:outputText
+																value="Nitrato N en la capa superior del suelo" />
 															<h:inputText value="#{escenarioBean.nnuli}"
 																styleClass="textoPlano"
 																onkeypress="ValidarCampoNumericoDouble(this, event)" />
-															<h:outputText value="NNLLI" />
+															<h:outputText
+																value="Nitrato N en la capa inferior del suelo" />
 															<h:inputText value="#{escenarioBean.nnlli}"
 																styleClass="textoPlano"
 																onkeypress="ValidarCampoNumericoDouble(this, event)" />
