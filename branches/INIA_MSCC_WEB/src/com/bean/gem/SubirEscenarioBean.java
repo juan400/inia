@@ -1,5 +1,6 @@
 package com.bean.gem;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,6 +21,7 @@ import com.inia_mscc.modulos.comun.entidades.Enumerados.TipoArchivo;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.TipoExtencionArchivo;
 import com.inia_mscc.modulos.gem.entidades.Archivo;
 import com.inia_mscc.modulos.gem.entidades.Cultivo;
+import com.inia_mscc.modulos.gem.entidades.Escenario;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
 public class SubirEscenarioBean extends MaestroBean implements Serializable {
@@ -29,7 +31,7 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Date fecha;
+	private Date fecha = new Date();
 
 	private List<Cultivo> listaCultivos;
 	private SelectItem[] cultivos;
@@ -56,28 +58,59 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 
 	private boolean recargo = true;
 
+	public String buscarEscenarios(){
+		String retorno = "GEM006";
+		try{
+			Archivo unArchivo = new Archivo();
+			if(this.getCultivo() != null){
+				unArchivo.set_cultivo(this.getCultivo());
+			}
+			if(this.getCultivo() != null){
+				unArchivo.set_cultivo(this.getCultivo());
+			}
+			if(this.getCultivo() != null){
+				unArchivo.set_cultivo(this.getCultivo());
+			}
+			this.setArchivos(this.getGEMFachada(ServicioGEM.Escenario).ObtenerArchivos(unArchivo));
+		}catch(Exception ex){
+			this.setError(ex.getMessage());
+		}
+		
+		return retorno;
+	}
+	
+	
 	public SubirEscenarioBean() {
-		this.setListaCultivos(this.getGEMFachada(ServicioGEM.Cultivo)
-				.ObtenerCultivos(null));
-		this.setListaRegiones(this.getAdmFachada(ServicioADM.Region)
-				.ObtenerRegiones());
-		files = new ArrayList<UploadItem>();
-		archivos = new ArrayList<Archivo>();
+		try {
+			this.setListaCultivos(this.getGEMFachada(ServicioGEM.Cultivo)
+					.ObtenerCultivos(null));
+			this.setListaRegiones(this.getAdmFachada(ServicioADM.Region)
+					.ObtenerRegiones());
+			estados = new SelectItem[Estado.values().length];
+			SelectItem si = new SelectItem(Estado.Activo.name());
+			estados[0] = si;
+			si = new SelectItem(Estado.Inactivo.name());
+			estados[1] = si;
+			files = new ArrayList<UploadItem>();
+			archivos = new ArrayList<Archivo>();
+		} catch (Exception ex) {
+			this.setError(ex.getMessage());
+		}
 	}
 
 	public boolean isModificacion() {
 		try {
 			if (recargo) {
-				SelectItem[] usuarios = new SelectItem[1];
-				usuarios[0] = new SelectItem(this
-						.getTextBundleKey("combo_seleccione"));
-				usuarioElegido = this.getTextBundleKey("combo_seleccione");
+//				SelectItem[] usuarios = new SelectItem[1];
+//				usuarios[0] = new SelectItem(this
+//						.getTextBundleKey("combo_seleccione"));
+//				usuarioElegido = this.getTextBundleKey("combo_seleccione");
 				Archivo archi = new Archivo();
 				archi.set_usuario((Usuario) this.getSesion(Usuario.class
 						.toString()));
 				archi.set_tipo(TipoArchivo.Escenario);
-				archivos = this.getGEMFachada(ServicioGEM.Archivo)
-						.ObtenerArchivos(archi);
+				this.setArchivos(this.getGEMFachada(ServicioGEM.Archivo)
+						.ObtenerArchivos(archi));
 				this.setListaCultivos(this.getGEMFachada(ServicioGEM.Cultivo)
 						.ObtenerCultivos(null));
 				if (this.getListaCultivos() == null) {
@@ -109,6 +142,12 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 					i++;
 				}
 				regionElegida = this.getTextBundleKey("combo_seleccione");
+				estados = new SelectItem[Estado.values().length];
+				SelectItem si = new SelectItem(Estado.Activo.name());
+				estados[0] = si;
+				si = new SelectItem(Estado.Inactivo.name());
+				estados[1] = si;
+				estado = estados[0].getValue().toString();
 			}
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
@@ -288,6 +327,11 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 								.getFile());
 						archivoSubido.set_cultivo(this.getCultivo());
 						archivoSubido.set_usuario(this.getUsuario());
+
+//						File file = new File(ubicacion.get_urlPaht() + "/"
+//								+ archivoSubido.get_nombre());
+//						file.createNewFile();
+						
 						archivoSubido = this.getGEMFachada(ServicioGEM.Archivo)
 								.RegistrarArchivo(archivoSubido);
 						if (archivoSubido != null) {
@@ -304,7 +348,7 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 								.setError("No se subieron archivos, seleccione y cargue el archivo para el escenario.");
 					}
 				} else {
-					this.setError("Debe seleccionar una región climática.");
+					this.setError("Debe seleccionar una regiï¿½n climï¿½tica.");
 				}
 			} else {
 				this.setError("Debe seleccionar un cultivo.");

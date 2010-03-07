@@ -1,5 +1,6 @@
 package com.inia_mscc.modulos.gem.ejb;
 
+import java.io.File;
 import java.util.List;
 
 import javax.ejb.Remote;
@@ -11,6 +12,7 @@ import javax.ejb.TransactionManagementType;
 
 import com.inia_mscc.modulos.gem.dao.DAOArchivo;
 import com.inia_mscc.modulos.gem.entidades.Archivo;
+import com.inia_mscc.modulos.gem.entidades.ArchivosTexto;
 import com.inia_mscc.modulos.gem.servicios.ServicioArchivo;
 
 @Stateless(name = "EJBArchivo", mappedName = "EJBArchivo")
@@ -39,18 +41,27 @@ public class EJBArchivo implements ServicioArchivo {
 	@Override
 	public Archivo RegistrarArchivo(Archivo pArchivo) throws Exception {
 		Archivo archivo = null;
-		archivo = dao.RegistrarArchivo(pArchivo);
-		if (archivo==null){
-			throw new Exception("No se puedo subir el archivo");
+		try {
+			File file = new File(pArchivo.get_ubicacion().get_urlPaht() + "/"
+					+ pArchivo.get_nombre());
+			file.setExecutable(true);
+			if (!file.isFile()) {// createNewFile()) {
+				throw new Exception("No es un archivo existente.");
+			}
+			ArchivosTexto.copiarArchio(pArchivo.get_datos(), file);
+			pArchivo.set_datos(file);
+			// archivo = dao.RegistrarArchivo(pArchivo);
+			if (!pArchivo.get_datos().exists()) {
+				throw new Exception("No se puedo subir el archivo");
+			} else {
+				archivo = dao.RegistrarArchivo(pArchivo);
+				if (archivo == null) {
+					throw new Exception("No se puedo subir el archivo");
+				}
+			}
+		} catch (Exception ex) {
+			throw ex;
 		}
-//		File file = new File(pArchivo.get_ubicacion().get_urlPaht() +"/"+ pArchivo.get_nombre());
-//		file.setExecutable(true);
-//		if (!file.createNewFile()) {
-//			throw new Exception("Se a subido el archivo");
-//		}
-//		ArchivosTexto.copiarArchio(pArchivo.get_datos(), file);
-//		pArchivo.set_datos(file);
-//		archivo = dao.RegistrarArchivo(pArchivo);
 		return archivo;
 	}
 
@@ -110,7 +121,7 @@ public class EJBArchivo implements ServicioArchivo {
 // while ((linea = fileIn.readLine()) != null) {
 // /** TODO Usar la linea para algo */
 // /**
-// * * Por ejemplo, para sacar un valor después del igual (muy
+// * * Por ejemplo, para sacar un valor despuï¿½s del igual (muy
 // * usado en * archivos de configuracion) * String setting =
 // * linea.substring(linea.indexOf('='));
 // */

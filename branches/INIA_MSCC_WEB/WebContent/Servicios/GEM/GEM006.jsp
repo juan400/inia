@@ -93,23 +93,6 @@ Secano.</title>
 																	reRender="tablaArchivo" />
 															</rich:calendar>
 
-															<h:outputLabel value="#{text.escenario_Usuarios}" />
-															<rich:comboBox
-																disabled="#{subirEscenarioBean.disableUsuarios}"
-																value="#{subirEscenarioBean.usuarioElegido}"
-																required="true" enableManualInput="false"
-																styleClass="combo"
-																requiredMessage="Debe seleccionar una Región"
-																id="cmdRegiones" width="220">
-																<f:selectItems value="#{subirEscenarioBean.usuarios}" />
-																<a4j:support
-																	action="#{subirEscenarioBean.takeSelectionUsuario}"
-																	event="onchange" ajaxSingle="true"
-																	reRender="tablaArchivo" />
-																<rich:toolTip
-																	value="Seleccionar el cultivo al cual asociar el escenario que va a registrar." />
-															</rich:comboBox>
-
 															<h:outputLabel value="#{text.escenario_SelecCultivo}" />
 															<rich:comboBox
 																requiredMessage="Debe seleccionar un cultivo"
@@ -152,7 +135,7 @@ Secano.</title>
 														<br></br><center>
 														<a4j:commandButton immediate="true"
 																style="font-size: 10pt; color: #2d77c2; width : 120px;"
-																styleClass="textoPlano" action="#{subirEscenarioBean.estados}"
+																styleClass="textoPlano" action="#{subirEscenarioBean.buscarEscenarios}"
 																value="#{text.boton_Buscar}" /></center>
 														<br></br>
 														<h:panelGrid id="panelArchivo">
