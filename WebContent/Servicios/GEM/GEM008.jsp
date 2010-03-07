@@ -74,7 +74,7 @@ Secano.</title>
 													<rich:panel headerClass="tituloPantalla"
 														style="background-color: #ebf3fd;">
 														<f:facet name="header">
-															<h:outputText value="#{text.escenario_Modificar}" />
+															<h:outputText value="Modificación de Modelo de Simulación" />
 														</f:facet>
 
 														<h:panelGrid columns="2" width="500px"
@@ -120,7 +120,7 @@ Secano.</title>
 														<center><a4j:commandButton immediate="true"
 															style="font-size: 10pt; color: #2d77c2; width : 120px;"
 															styleClass="textoPlano"
-															action="#{escenarioBean.buscarEscenarios}"
+															action="#{modeloBean.buscarModelos}"
 															value="#{text.boton_Buscar}" /></center>
 
 														<h:panelGrid id="panelArchivo">
@@ -131,7 +131,7 @@ Secano.</title>
 																rowClasses="oddRow,evenRow">
 
 																<f:facet name="header">
-																	<h:outputText value="#{text.archivo_ListaArchi}" />
+																	<h:outputText value="Lista de Archivos de Modelo de Simulación" />
 																</f:facet>
 
 																<rich:column width="50px">
@@ -158,9 +158,9 @@ Secano.</title>
 
 																<rich:column width="100">
 																	<f:facet name="header">
-																		<h:outputText value="#{text.archivo_tipo}" />
+																		<h:outputText value="Escenario" />
 																	</f:facet>
-																	<h:outputText value="#{escenario._cultivo._nombre}" />
+																	<h:outputText value="#{modelo._escenario._archivoEscenario._nombre}" />
 																</rich:column>
 																
 																<rich:column width="80">
@@ -168,23 +168,23 @@ Secano.</title>
 																		<h:outputText value="Acciones" />
 																	</f:facet>
 																	<a4j:commandButton
-																		action="#{escenarioBean.VerEscenario}"
+																		action="#{modeloBean.VerEscenario}"
 																		image="/Recursos/Imagenes/Iconos/edit.gif"
 																		immediate="true" style="width : 27px; height : 21px;"
 																		reRender="Modificar">
 																		<a4j:actionparam name="propiedadElegida"
-																			value="#{escenario._id}" />
+																			value="#{modelo._id}" />
 																		<rich:toolTip value="Modificar" />
 																	</a4j:commandButton>
 
 																	<a4j:commandButton
-																		action="#{escenarioBean.Eliminar}"
+																		action="#{modeloBean.Eliminar}"
 																		image="/Recursos/Imagenes/Iconos/delete.gif"
 																		immediate="true"
 																		style=" border:0; width : 27px; height : 21px;"
 																		reRender="panelPropiedades">
 																		<a4j:actionparam name="propiedadElegida"
-																			value="#{escenario._id}" />
+																			value="#{modelo._id}" />
 																		<rich:toolTip value="Eliminar" />
 																	</a4j:commandButton>
 																</rich:column>
@@ -201,7 +201,7 @@ Secano.</title>
 															<a4j:commandButton immediate="true"
 																style="font-size: 10pt; color: #2d77c2; width : 120px;"
 																styleClass="textoPlano"
-																action="#{escenarioBean.ModificarEscenario}"
+																action="#{modeloBean.ModificarModelo}"
 																value="#{text.boton_Registrar}" />
 
 															<a4j:commandButton immediate="true"
@@ -217,7 +217,7 @@ Secano.</title>
 																</f:facet>
 															</rich:messages>
 															<h:outputText styleClass="textoPlano"
-																value="#{escenarioBean.exito}" />
+																value="#{modeloBean.exito}" />
 														</h:panelGrid></center>
 													</rich:panel>
 												</h:panelGrid>
