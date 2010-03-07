@@ -34,10 +34,13 @@ public class DAOEscenario implements Serializable {
 				c.add(Restrictions.eq("_region", pEscenario.get_region()));
 			}
 			if (pEscenario.get_usuarioInvestigador() != null) {
-				c.add(Restrictions.eq("_usuarioInvestigador", pEscenario.get_usuarioInvestigador()));
+				c.add(Restrictions.eq("_usuarioInvestigador", pEscenario
+						.get_usuarioInvestigador()));
 			}
 			if (pEscenario.get_fechaHora() != null) {
-				c.add(Restrictions.eq("_fechaHora", pEscenario.get_fechaHora()));
+				c
+						.add(Restrictions.eq("_fechaHora", pEscenario
+								.get_fechaHora()));
 			}
 			listaEscenario = (List<Escenario>) c.list();
 		} catch (Exception e) {
@@ -63,13 +66,16 @@ public class DAOEscenario implements Serializable {
 				c.add(Restrictions.eq("_region", pEscenario.get_region()));
 			}
 			if (pEscenario.get_usuarioInvestigador() != null) {
-				c.add(Restrictions.eq("_usuarioInvestigador", pEscenario.get_usuarioInvestigador()));
+				c.add(Restrictions.eq("_usuarioInvestigador", pEscenario
+						.get_usuarioInvestigador()));
 			}
 			if (pEscenario.get_fechaHora() != null) {
-				c.add(Restrictions.eq("_fechaHora", pEscenario.get_fechaHora()));
+				c
+						.add(Restrictions.eq("_fechaHora", pEscenario
+								.get_fechaHora()));
 			}
 			unEscenario = (Escenario) c.uniqueResult();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);
@@ -86,7 +92,7 @@ public class DAOEscenario implements Serializable {
 			Criteria c = session.createCriteria(Escenario.class);
 			c.add(Restrictions.eq("_id", id));
 			cultivo = (Escenario) c.uniqueResult();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
 			throw new IniaPersistenciaException(e.getMessage(), e);
@@ -107,4 +113,3 @@ public class DAOEscenario implements Serializable {
 	}
 
 }
-
