@@ -179,7 +179,7 @@ public class UbicacionBean extends MaestroBean implements Serializable {
 				this.setDisableIngresar(false);
 			}
 			tipos = new SelectItem[TipoArchivo.values().length];
-			SelectItem si = new SelectItem(TipoArchivo.Eejcucion.name());// ,
+			SelectItem si = new SelectItem(TipoArchivo.Ejecucion.name());// ,
 			// "Ejecuci�n");
 			tipos[0] = si;
 			si = new SelectItem(TipoArchivo.Climatologico.name());
@@ -193,7 +193,7 @@ public class UbicacionBean extends MaestroBean implements Serializable {
 			si = new SelectItem(TipoArchivo.Resultados.name());
 			tipos[5] = si;
 			tipoArchvo = tipos[0].getValue().toString();
-			this.getUbicacion().set_tipoArchivo(TipoArchivo.Eejcucion);
+			this.getUbicacion().set_tipoArchivo(TipoArchivo.Ejecucion);
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
 		}
@@ -213,7 +213,7 @@ public class UbicacionBean extends MaestroBean implements Serializable {
 				this.setDisableIngresar(false);
 			}
 			tipos = new SelectItem[TipoArchivo.values().length];
-			SelectItem si = new SelectItem(TipoArchivo.Eejcucion.name());// ,
+			SelectItem si = new SelectItem(TipoArchivo.Ejecucion.name());// ,
 			// "Ejecuci�n");
 			tipos[0] = si;
 			si = new SelectItem(TipoArchivo.Climatologico.name());
