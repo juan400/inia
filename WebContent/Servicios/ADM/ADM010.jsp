@@ -80,7 +80,7 @@ Secano.</title>
 														<h:panelGrid columns="2"
 															columnClasses="textoPlano,textoDataTable">
 
-															<h:outputText value="Direcctorio de archivos" />
+															<h:outputText value="Directorio de archivos" />
 															<h:inputText id="txtDirectorio"
 																value="#{ubicacionBean.pathDirectorio}" required="true"
 																requiredMessage="Debe ingresar un path para el directorio"
