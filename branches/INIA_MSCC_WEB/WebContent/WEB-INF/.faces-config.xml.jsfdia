@@ -607,10 +607,10 @@
   <PROCESS-ITEM ID="rules:#Servicios#GEM#GEM005.jsp:0" NAME="item"
    PATH="/Servicios/GEM/GEM005.jsp" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="GEM005:#{subirEscenarioBean.RegistrarEscenario}:#Servicios#GEM#GEM005.jsp"
+    ID="GEM005:#{escenarioBean.RegistrarEscenario}:#Servicios#GEM#GEM005.jsp"
     NAME="output" PATH="/Servicios/GEM/GEM005.jsp"
     TARGET="rules:#Servicios#GEM#GEM005.jsp"
-    TITLE="#{subirEscenarioBean.RegistrarEscenario}:GEM005" model-entity="JSFProcessItemOutput"/>
+    TITLE="#{escenarioBean.RegistrarEscenario}:GEM005" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#Servicios#EJE#EJE002.jsp"
