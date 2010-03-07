@@ -6,19 +6,23 @@ import java.util.List;
 import com.inia_mscc.modulos.comun.entidades.Enumerados;
 import com.inia_mscc.modulos.gem.entidades.Archivo;
 import com.inia_mscc.modulos.gem.entidades.Cultivo;
+import com.inia_mscc.modulos.gem.entidades.Escenario;
 import com.inia_mscc.modulos.gem.entidades.Propiedad;
 import com.inia_mscc.modulos.gem.proveedores.ProveedorArchivo;
 import com.inia_mscc.modulos.gem.proveedores.ProveedorCultivo;
+import com.inia_mscc.modulos.gem.proveedores.ProveedorEscenario;
 import com.inia_mscc.modulos.gem.proveedores.ProveedorPropiedad;
 import com.inia_mscc.modulos.gem.servicios.ServicioArchivo;
 import com.inia_mscc.modulos.gem.servicios.ServicioCultivo;
+import com.inia_mscc.modulos.gem.servicios.ServicioEscenario;
 import com.inia_mscc.modulos.gem.servicios.ServicioPropiedad;
 
 public class GEMFachada {
 	private ServicioCultivo srvCultivo;
 	private ServicioPropiedad srvPropiedad;
 	private ServicioArchivo srvArchivo;
-	
+	private ServicioEscenario srvEscenario;
+
 	public GEMFachada(Enumerados.ServicioGEM servicio) {
 		try {
 			switch (servicio) {
@@ -26,10 +30,13 @@ public class GEMFachada {
 				srvCultivo = new ProveedorCultivo();
 				break;
 			case Propiedad:
-				srvPropiedad = new ProveedorPropiedad();	
+				srvPropiedad = new ProveedorPropiedad();
 				break;
 			case Archivo:
-				srvArchivo = new ProveedorArchivo();	
+				srvArchivo = new ProveedorArchivo();
+				break;
+			case Escenario:
+				srvEscenario = new ProveedorEscenario();
 				break;
 			}
 
@@ -37,10 +44,10 @@ public class GEMFachada {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void ActualizarCultivo(Cultivo pCultivo) {
 		srvCultivo.ActualizarCultivo(pCultivo);
-		
+
 	}
 
 	public Cultivo ObtenerCultivo(Cultivo pCultivo) {
@@ -54,10 +61,11 @@ public class GEMFachada {
 	public Cultivo RegistrarCultivo(Cultivo pCultivo) {
 		return srvCultivo.RegistrarCultivo(pCultivo);
 	}
-	
-	public Cultivo ComprobarCultivo(Cultivo pCultivo){
+
+	public Cultivo ComprobarCultivo(Cultivo pCultivo) {
 		return srvCultivo.ComprobarCultivo(pCultivo);
 	}
+
 	public void ActualizarPropiedad(Propiedad pPropiedad) {
 		srvPropiedad.ActualizarPropiedad(pPropiedad);
 	}
@@ -92,5 +100,21 @@ public class GEMFachada {
 
 	public Archivo RegistrarArchivo(Archivo pArchivo) throws Exception {
 		return srvArchivo.RegistrarArchivo(pArchivo);
+	}
+
+	public void ActualizarEscenario(Escenario pEscenario) throws Exception {
+		srvEscenario.ActualizarEscenario(pEscenario);
+	}
+
+	public Escenario ObtenerEscenario(Escenario pEscenario) {
+		return srvEscenario.ObtenerEscenario(pEscenario);
+	}
+
+	public List<Escenario> ObtenerEscenarios(Escenario pEscenario) {
+		return srvEscenario.ObtenerEscenarios(pEscenario);
+	}
+
+	public Escenario RegistrarEscenario(Escenario pEscenario) throws Exception {
+		return srvEscenario.RegistrarEscenario(pEscenario);
 	}
 }

@@ -69,7 +69,7 @@ Secano.</title>
 										</h:column>
 										<h:column>
 											<h:panelGrid>
-												<h:panelGroup rendered="#{subirEscenarioBean.modificacion}" />
+												<h:panelGroup rendered="#{modeloBean.modificacion}" />
 												<h:panelGrid>
 													<rich:panel headerClass="tituloPantalla"
 														style="background-color: #ebf3fd;">
@@ -82,28 +82,28 @@ Secano.</title>
 															<h:outputText value="#{text.escenario_Fecha}" />
 															<rich:calendar id="calFecha"
 																inputClass="rich-calendar-input"
-																value="#{subirEscenarioBean.fecha}"
+																value="#{modeloBean.fecha}"
 																enableManualInput="false" locale="ES"
 																showApplyButton="false" datePattern="dd/MM/yyyy"
 																popup="true" cellWidth="24px" cellHeight="22px"
 																style="width:200px">
 																<a4j:support
-																	action="#{subirEscenarioBean.takeSelectionCalendar}"
+																	action="#{modeloBean.takeSelectionCalendar}"
 																	event="onchange" ajaxSingle="true"
 																	reRender="tablaArchivo" />
 															</rich:calendar>
 
 															<h:outputLabel value="#{text.escenario_Usuarios}" />
 															<rich:comboBox
-																disabled="#{subirEscenarioBean.disableUsuarios}"
-																value="#{subirEscenarioBean.usuarioElegido}"
+																disabled="#{modeloBean.disableUsuarios}"
+																value="#{modeloBean.usuarioElegido}"
 																required="true" enableManualInput="false"
 																styleClass="combo"
 																requiredMessage="Debe seleccionar una Región"
 																id="cmdUsuarios" width="220">
-																<f:selectItems value="#{subirEscenarioBean.usuarios}" />
+																<f:selectItems value="#{modeloBean.usuarios}" />
 																<a4j:support
-																	action="#{subirEscenarioBean.takeSelectionUsuario}"
+																	action="#{modeloBean.takeSelectionUsuario}"
 																	event="onchange" ajaxSingle="true"
 																	reRender="tablaArchivo" />
 																<rich:toolTip
@@ -113,12 +113,12 @@ Secano.</title>
 															<h:outputLabel value="#{text.escenario_SelecCultivo}" />
 															<rich:comboBox
 																requiredMessage="Debe seleccionar un cultivo"
-																value="#{subirEscenarioBean.cultivoElegido}"
+																value="#{modeloBean.cultivoElegido}"
 																required="true" enableManualInput="false"
 																styleClass="combo" width="220">
-																<f:selectItems value="#{subirEscenarioBean.cultivos}" />
+																<f:selectItems value="#{modeloBean.cultivos}" />
 																<a4j:support
-																	action="#{subirEscenarioBean.takeSelectionCultivo}"
+																	action="#{modeloBean.takeSelectionCultivo}"
 																	event="onchange" ajaxSingle="true"
 																	reRender="upload,cmdRegiones" />
 																<rich:toolTip
@@ -127,38 +127,38 @@ Secano.</title>
 
 															<h:outputLabel value="#{text.escenario_Region}" />
 															<rich:comboBox
-																disabled="#{subirEscenarioBean.disableRegion}"
-																value="#{subirEscenarioBean.regionElegida}"
+																disabled="#{modeloBean.disableRegion}"
+																value="#{modeloBean.regionElegida}"
 																required="true" enableManualInput="false"
 																styleClass="combo"
 																requiredMessage="Debe seleccionar una Región"
 																id="cmdRegiones" width="220">
-																<f:selectItems value="#{subirEscenarioBean.regiones}" />
+																<f:selectItems value="#{modeloBean.regiones}" />
 																<a4j:support
-																	action="#{subirEscenarioBean.takeSelectionRegion}"
+																	action="#{modeloBean.takeSelectionRegion}"
 																	event="onchange" ajaxSingle="true" reRender="upload" />
 																<rich:toolTip
 																	value="Seleccionar el cultivo al cual asociar el escenario que va a registrar." />
 															</rich:comboBox>
 
 															<h:outputLabel value="#{text.cultivo_Estado}" />
-															<rich:comboBox value="#{subirEscenarioBean.estado}"
+															<rich:comboBox value="#{modeloBean.estado}"
 																style=" higth : 18px;" enableManualInput="false"
 																styleClass="combo" width="220">
-																<f:selectItems value="#{subirEscenarioBean.estados}" />
+																<f:selectItems value="#{modeloBean.estados}" />
 															</rich:comboBox>
 
 														</h:panelGrid>
 														<br></br><center>
 														<a4j:commandButton immediate="true"
 																style="font-size: 10pt; color: #2d77c2; width : 120px;"
-																styleClass="textoPlano" action="#{subirEscenarioBean.estados}"
+																styleClass="textoPlano" action="#{modeloBean.estados}"
 																value="#{text.boton_Buscar}" /></center>
 														<br></br>
 														<h:panelGrid id="panelArchivo">
 															<center><rich:dataTable border="2" rows="5"
 																styleClass="textoDataTable" id="tablaArchivo"
-																value="#{subirEscenarioBean.files}" var="archivo"
+																value="#{modeloBean.files}" var="archivo"
 																rowKeyVar="row" headerClass="columnHeader"
 																rowClasses="oddRow,evenRow">
 
@@ -222,7 +222,7 @@ Secano.</title>
 														<center><h:panelGrid columns="3">
 															<a4j:commandButton immediate="true"
 																style="font-size: 10pt; color: #2d77c2; width : 120px;"
-																styleClass="textoPlano" action="#{subirEscenarioBean.ModificarEscenario}"
+																styleClass="textoPlano" action="#{modeloBean.ModificarEscenario}"
 																value="#{text.boton_Registrar}" />
 
 															<a4j:commandButton immediate="true"
@@ -238,7 +238,7 @@ Secano.</title>
 																</f:facet>
 															</rich:messages>
 															<h:outputText styleClass="textoPlano"
-																value="#{subirEscenarioBean.exito}" />
+																value="#{modeloBean.exito}" />
 														</h:panelGrid></center>
 													</rich:panel>
 												</h:panelGrid>

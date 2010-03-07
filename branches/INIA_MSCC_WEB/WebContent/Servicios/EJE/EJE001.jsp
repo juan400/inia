@@ -85,7 +85,7 @@ Secano.</title>
 															<h:outputText value="Fecha de ejecución" />
 															<rich:calendar id="calFechaEjecucion"
 																inputClass="rich-calendar-input"
-																value="#{escenarioBean.fechaEjecucion}"
+																value="#{ejecucionBean.fechaEjecucion}"
 																enableManualInput="false" locale="ES" disabled="true"
 																showApplyButton="false" datePattern="dd/MM/yyyy hh:mm a"
 																popup="true" cellWidth="24px" cellHeight="22px"
@@ -108,12 +108,12 @@ Secano.</title>
 															</rich:comboBox>
 
 															<h:outputText value="Seleccionar estacion climatica" />
-															<rich:comboBox value="#{escenarioBean.estacionClimatica}">
+															<rich:comboBox value="#{ejecucionBean.estacionClimatica}">
 
 															</rich:comboBox>
 
 															<h:outputText value="Nombre del cultivar" />
-															<h:inputText value="#{escenarioBean.cultivar}"
+															<h:inputText value="#{ejecucionBean.cultivar}"
 																styleClass="textoPlano"
 																onkeypress="ValidarCampoLetras(this, event)" />
 
@@ -122,7 +122,7 @@ Secano.</title>
 															<h:outputText
 																value="Basado en proyecciones climatológicas" />
 															<h:selectBooleanCheckbox
-																value="#{escenarioBean.proyectarClima}" />
+																value="#{ejecucionBean.proyectarClima}" />
 														</h:panelGrid>
 
 														<h:panelGrid columns="3"
@@ -135,7 +135,7 @@ Secano.</title>
 																<h:panelGrid styleClass="textoPlano">
 																	<h:outputText value="Fecha" />
 																	<rich:calendar id="calFechaSiembra"
-																		value="#{escenarioBean.fFertilizacionSiembra}"
+																		value="#{ejecucionBean.fFertilizacionSiembra}"
 																		enableManualInput="false" locale="ES"
 																		showApplyButton="false"
 																		datePattern="dd/MM/yyyy hh:mm a" popup="true"
@@ -145,13 +145,13 @@ Secano.</title>
 
 																	<h:outputText value="Fuente" />
 																	<rich:comboBox id="comboFuente1"
-																		value="#{escenarioBean.fuenteFertilizacionSiembra}">
+																		value="#{ejecucionBean.fuenteFertilizacionSiembra}">
 
 																	</rich:comboBox>
 
 																	<h:outputText value="Rate" />
 																	<rich:comboBox id="comboRate1"
-																		value="#{escenarioBean.rateFertilizacionSiembra}">
+																		value="#{ejecucionBean.rateFertilizacionSiembra}">
 
 																	</rich:comboBox>
 																</h:panelGrid>
@@ -164,7 +164,7 @@ Secano.</title>
 																<h:panelGrid styleClass="textoPlano">
 																	<h:outputText value="Fecha" />
 																	<rich:calendar id="calFechaRefer1"
-																		value="#{escenarioBean.fRefertilizacion1}"
+																		value="#{ejecucionBean.fRefertilizacion1}"
 																		enableManualInput="false" locale="ES"
 																		showApplyButton="false"
 																		datePattern="dd/MM/yyyy hh:mm a" popup="true"
@@ -173,12 +173,12 @@ Secano.</title>
 																	</rich:calendar>
 																	<h:outputText value="Fuente" />
 																	<rich:comboBox id="comboFuente2"
-																		value="#{escenarioBean.fuenteRefertilizacion1}">
+																		value="#{ejecucionBean.fuenteRefertilizacion1}">
 
 																	</rich:comboBox>
 																	<h:outputText value="Rate" />
 																	<rich:comboBox id="comboRate2"
-																		value="#{escenarioBean.rateRefertilizacion1}">
+																		value="#{ejecucionBean.rateRefertilizacion1}">
 
 																	</rich:comboBox>
 																</h:panelGrid>
@@ -191,7 +191,7 @@ Secano.</title>
 																<h:panelGrid styleClass="textoPlano">
 																	<h:outputText value="Fecha" />
 																	<rich:calendar id="calFechaRefer2"
-																		value="#{escenarioBean.fRefertilizacion2}"
+																		value="#{ejecucionBean.fRefertilizacion2}"
 																		enableManualInput="false" locale="ES"
 																		showApplyButton="false"
 																		datePattern="dd/MM/yyyy hh:mm a" popup="true"
@@ -201,13 +201,13 @@ Secano.</title>
 
 																	<h:outputText value="Fuente" />
 																	<rich:comboBox id="comboFuente3"
-																		value="#{escenarioBean.fuenteRefertilizacion2}">
+																		value="#{ejecucionBean.fuenteRefertilizacion2}">
 
 																	</rich:comboBox>
 
 																	<h:outputText value="Rate" />
 																	<rich:comboBox id="comboRate3"
-																		value="#{escenarioBean.rateRefertilizacion2}">
+																		value="#{ejecucionBean.rateRefertilizacion2}">
 
 																	</rich:comboBox>
 																</h:panelGrid>
@@ -217,62 +217,62 @@ Secano.</title>
 															columnClasses="textoPlano,textoPlano">
 
 															<h:outputText value="Nombre Coneat" />
-															<h:inputText value="#{escenarioBean.nombreSueloConeat}"
+															<h:inputText value="#{ejecucionBean.nombreSueloConeat}"
 																styleClass="textoPlano"
 																onkeypress="ValidarCampoNumericoDouble(this, event)" />
 															<h:outputText value="Profundidad A" />
-															<h:inputText value="#{escenarioBean.profundidadA}"
+															<h:inputText value="#{ejecucionBean.profundidadA}"
 																styleClass="textoPlano"
 																onkeypress="ValidarCampoNumericoDouble(this, event)" />
 															<h:outputText value="Profundidad B" />
-															<h:inputText value="#{escenarioBean.profundidadB}"
+															<h:inputText value="#{ejecucionBean.profundidadB}"
 																styleClass="textoPlano"
 																onkeypress="ValidarCampoNumericoDouble(this, event)" />
 															<h:outputText value="Densidad Plantas" />
-															<h:inputText value="#{escenarioBean.densidadPlantas}"
+															<h:inputText value="#{ejecucionBean.densidadPlantas}"
 																styleClass="textoPlano"
 																onkeypress="ValidarCampoNumericoDouble(this, event)" />
 															<h:outputText
 																value="Indice agua en la capa superior del suelo" />
-															<h:inputText value="#{escenarioBean.wuli}"
+															<h:inputText value="#{ejecucionBean.wuli}"
 																styleClass="textoPlano"
 																onkeypress="ValidarCampoNumericoDouble(this, event)" />
 															<h:outputText
 																value="Indice agua en la capa inferior del suelo" />
-															<h:inputText value="#{escenarioBean.wlli}"
+															<h:inputText value="#{ejecucionBean.wlli}"
 																styleClass="textoPlano"
 																onkeypress="ValidarCampoNumericoDouble(this, event)" />
 															<h:outputText value="Descompocición del material vegetal" />
-															<h:inputText value="#{escenarioBean.dpmi}"
+															<h:inputText value="#{ejecucionBean.dpmi}"
 																styleClass="textoPlano"
 																onkeypress="ValidarCampoNumericoDouble(this, event)" />
 															<h:outputText value="Material vegetal resistente" />
-															<h:inputText value="#{escenarioBean.rpmi}"
+															<h:inputText value="#{ejecucionBean.rpmi}"
 																styleClass="textoPlano"
 																onkeypress="ValidarCampoNumericoDouble(this, event)" />
 															<h:outputText
 																value="Materia orgánica en el suelo humedecido" />
-															<h:inputText value="#{escenarioBean.humi}"
+															<h:inputText value="#{ejecucionBean.humi}"
 																styleClass="textoPlano"
 																onkeypress="ValidarCampoNumericoDouble(this, event)" />
 															<h:outputText
 																value="Amonio N en la capa superior del suelo" />
-															<h:inputText value="#{escenarioBean.nauli}"
+															<h:inputText value="#{ejecucionBean.nauli}"
 																styleClass="textoPlano"
 																onkeypress="ValidarCampoNumericoDouble(this, event)" />
 															<h:outputText
 																value="Amonio N en la capa inferior del suelo" />
-															<h:inputText value="#{escenarioBean.nalli}"
+															<h:inputText value="#{ejecucionBean.nalli}"
 																styleClass="textoPlano"
 																onkeypress="ValidarCampoNumericoDouble(this, event)" />
 															<h:outputText
 																value="Nitrato N en la capa superior del suelo" />
-															<h:inputText value="#{escenarioBean.nnuli}"
+															<h:inputText value="#{ejecucionBean.nnuli}"
 																styleClass="textoPlano"
 																onkeypress="ValidarCampoNumericoDouble(this, event)" />
 															<h:outputText
 																value="Nitrato N en la capa inferior del suelo" />
-															<h:inputText value="#{escenarioBean.nnlli}"
+															<h:inputText value="#{ejecucionBean.nnlli}"
 																styleClass="textoPlano"
 																onkeypress="ValidarCampoNumericoDouble(this, event)" />
 
@@ -283,12 +283,12 @@ Secano.</title>
 															<a4j:commandButton
 																style="font-size: 10pt; color: #2d77c2;"
 																styleClass="textoPlano"
-																action="#{escenarioBean.ejecutarEscenario}"
+																action="#{ejecucionBean.ejecutarEscenario}"
 																value="#{text.boton_Aceptar}" />
 															<a4j:commandButton
 																style="font-size: 10pt; color: #2d77c2;"
 																styleClass="textoPlano"
-																action="#{escenarioBean.cancelar}"
+																action="#{ejecucionBean.cancelar}"
 																value="#{text.boton_Cancelar}" />
 														</h:panelGrid></center>
 
@@ -300,7 +300,7 @@ Secano.</title>
 																</f:facet>
 															</rich:messages>
 															<h:outputText styleClass="textoPlano"
-																value="#{escenarioBean.exito}" />
+																value="#{ejecucionBean.exito}" />
 														</h:panelGrid></center>
 													</h:panelGroup>
 												</rich:panel>

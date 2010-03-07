@@ -19,7 +19,7 @@ import com.inia_mscc.modulos.gem.entidades.Cultivo;
 import com.inia_mscc.modulos.gem.entidades.Escenario;
 import com.inia_mscc.modulos.gem.entidades.Propiedad;
 
-public class EscenarioBean extends MaestroBean implements Serializable {
+public class EjecucionBean extends MaestroBean implements Serializable {
 
 	/**
 	 * 
@@ -72,7 +72,7 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 		Cultivo cultivo = new Cultivo();
 
 		escenario.set_cultivo(cultivo);
-		ejecucionMSCC.set_escenario(escenario);
+		ejecucionMSCC.get_modelo().set_escenario(escenario);
 
 		cultivo.set_listaPropiedades(this.armarListaPropiedades());
 
@@ -85,7 +85,7 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 		archivoResultado.set_datos(new File("C:/INIA/resultado.py"));
 
 		ejecucionMSCC.set_archivoEjecucion(archivoResultado);
-		ejecucionMSCC.get_escenario().set_archivoEscenario(archivoTemplate);
+		ejecucionMSCC.get_modelo().get_escenario().set_archivoEscenario(archivoTemplate);
 
 		this.generarEscenario(ejecucionMSCC);
 

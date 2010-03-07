@@ -1,6 +1,5 @@
 package com.bean.gem;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,7 +23,7 @@ import com.inia_mscc.modulos.gem.entidades.Cultivo;
 import com.inia_mscc.modulos.gem.entidades.Escenario;
 import com.inia_mscc.modulos.seg.entidades.Usuario;
 
-public class SubirEscenarioBean extends MaestroBean implements Serializable {
+public class EscenarioBean extends MaestroBean implements Serializable {
 
 	/**
 	 * 
@@ -57,19 +56,74 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 	private SelectItem[] estados;
 
 	private boolean recargo = true;
+	
+	public String RegistrarEscenario() {
+		String retorno = "";
+		try {
+			if (this.getCultivo() != null) {
+				if (this.getRegion() != null) {
+					if (this.getFiles() != null && !this.getFiles().isEmpty()) {
+						this.setUsuario((Usuario) getSesion(Usuario.class
+								.toString()));
+						Ubicacion ubicacion = new Ubicacion();
+						ubicacion.set_tipoArchivo(TipoArchivo.Escenario);
+						ubicacion = this.getAdmFachada(ServicioADM.Ubicacion)
+								.ObtenerUbicacion(ubicacion);
+						archivoSubido = new Archivo(getUsuario().get_login(),
+								TipoArchivo.Escenario, new Date(),
+								Estado.Activo, TipoExtencionArchivo.py,
+								ubicacion);
+						archivoSubido.set_datos(this.getFiles().get(0)
+								.getFile());
+						archivoSubido.set_usuario(this.getUsuario());
+						Escenario escenario = new Escenario();
+						escenario.set_archivoEscenario(archivoSubido);
+						escenario.set_cultivo(this.getCultivo());
+						escenario.set_region(this.getRegion());
+						escenario.set_fechaHora(this.getFecha());
+						escenario.set_usuarioInvestigador(this.getUsuario());
+						
+						escenario = this.getGEMFachada(ServicioGEM.Escenario).RegistrarEscenario(escenario);
+						if (escenario != null) {
+							this.setDisableUpload(true);
+							recargo = true;
+							this.setExito("Se guardo el escenario exitosamente.");
+							retorno = "GEM005";
+						} else {
+							this.setError("No se pudo registrar el esceanrio");
+						}
+						
+					} else {
+						this
+								.setError("No se subieron archivos, seleccione y cargue el archivo para el escenario.");
+					}
+				} else {
+					this.setError("Debe seleccionar una regi�n clim�tica.");
+				}
+			} else {
+				this.setError("Debe seleccionar un cultivo.");
+			}
+
+		} catch (Exception ex) {
+			this.setError(ex.getMessage());
+		}
+		return retorno;
+	}
 
 	public String buscarEscenarios(){
 		String retorno = "GEM006";
 		try{
 			Archivo unArchivo = new Archivo();
+			unArchivo.set_tipo(TipoArchivo.Escenario);
 			if(this.getCultivo() != null){
-				unArchivo.set_cultivo(this.getCultivo());
+//				unArchivo.set_cultivo(this.getCultivo());
 			}
-			if(this.getCultivo() != null){
-				unArchivo.set_cultivo(this.getCultivo());
+			if(this.getUsuario() != null){
+				unArchivo.set_usuario(this.getUsuario());
 			}
-			if(this.getCultivo() != null){
-				unArchivo.set_cultivo(this.getCultivo());
+			if(!this.getEstado().equals(this
+					.getTextBundleKey("combo_seleccione"))){
+				unArchivo.set_estado(Estado.valueOf(this.getEstado()));
 			}
 			this.setArchivos(this.getGEMFachada(ServicioGEM.Escenario).ObtenerArchivos(unArchivo));
 		}catch(Exception ex){
@@ -78,19 +132,27 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 		
 		return retorno;
 	}
+
+	private String ModificarEscenario() {
+		return "GEM006";
+	}
 	
-	
-	public SubirEscenarioBean() {
+	public EscenarioBean() {
 		try {
+
+			this.setUsuario((Usuario) this.getSesion(Usuario.class
+					.toString()));
 			this.setListaCultivos(this.getGEMFachada(ServicioGEM.Cultivo)
 					.ObtenerCultivos(null));
 			this.setListaRegiones(this.getAdmFachada(ServicioADM.Region)
 					.ObtenerRegiones());
-			estados = new SelectItem[Estado.values().length];
+			estados = new SelectItem[Estado.values().length+1];
+			estados[0] = new SelectItem(this
+					.getTextBundleKey("combo_seleccione"));
 			SelectItem si = new SelectItem(Estado.Activo.name());
-			estados[0] = si;
-			si = new SelectItem(Estado.Inactivo.name());
 			estados[1] = si;
+			si = new SelectItem(Estado.Inactivo.name());
+			estados[2] = si;
 			files = new ArrayList<UploadItem>();
 			archivos = new ArrayList<Archivo>();
 		} catch (Exception ex) {
@@ -101,13 +163,10 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 	public boolean isModificacion() {
 		try {
 			if (recargo) {
-//				SelectItem[] usuarios = new SelectItem[1];
-//				usuarios[0] = new SelectItem(this
-//						.getTextBundleKey("combo_seleccione"));
-//				usuarioElegido = this.getTextBundleKey("combo_seleccione");
 				Archivo archi = new Archivo();
-				archi.set_usuario((Usuario) this.getSesion(Usuario.class
+				this.setUsuario((Usuario) this.getSesion(Usuario.class
 						.toString()));
+				archi.set_usuario(this.getUsuario());
 				archi.set_tipo(TipoArchivo.Escenario);
 				this.setArchivos(this.getGEMFachada(ServicioGEM.Archivo)
 						.ObtenerArchivos(archi));
@@ -142,11 +201,13 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 					i++;
 				}
 				regionElegida = this.getTextBundleKey("combo_seleccione");
-				estados = new SelectItem[Estado.values().length];
+				estados = new SelectItem[Estado.values().length+1];
+				estados[0] = new SelectItem(this
+						.getTextBundleKey("combo_seleccione"));
 				SelectItem si = new SelectItem(Estado.Activo.name());
-				estados[0] = si;
-				si = new SelectItem(Estado.Inactivo.name());
 				estados[1] = si;
+				si = new SelectItem(Estado.Inactivo.name());
+				estados[2] = si;
 				estado = estados[0].getValue().toString();
 			}
 		} catch (Exception ex) {
@@ -159,16 +220,12 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 		Archivo archi = new Archivo();
 		archi.set_usuario((Usuario) this.getSesion(Usuario.class.toString()));
 		archi.set_fechaHora(this.getFecha());
-		archi.set_cultivo(this.getCultivo());
+//		archi.set_cultivo(this.getCultivo());
 		archi.set_usuario(this.getUsuarioFiltro());
 		archi.set_estado(Estado.valueOf(this.getEstado()));
 		archi.set_tipo(TipoArchivo.Escenario);
 		archivos = this.getGEMFachada(ServicioGEM.Archivo).ObtenerArchivos(
 				archi);
-		return "GEM006";
-	}
-
-	private String ModificarEscenario() {
 		return "GEM006";
 	}
 
@@ -305,59 +362,6 @@ public class SubirEscenarioBean extends MaestroBean implements Serializable {
 		} catch (Exception ex) {
 			setError(ex.getMessage());
 		}
-	}
-
-	public String RegistrarEscenario() {
-		String retorno = "";
-		try {
-			if (this.getCultivo() != null) {
-				if (this.getRegion() != null) {
-					if (this.getFiles() != null && !this.getFiles().isEmpty()) {
-						this.setUsuario((Usuario) getSesion(Usuario.class
-								.toString()));
-						Ubicacion ubicacion = new Ubicacion();
-						ubicacion.set_tipoArchivo(TipoArchivo.Escenario);
-						ubicacion = this.getAdmFachada(ServicioADM.Ubicacion)
-								.ObtenerUbicacion(ubicacion);
-						archivoSubido = new Archivo(getUsuario().get_login(),
-								TipoArchivo.Escenario, new Date(),
-								Estado.Activo, TipoExtencionArchivo.py,
-								ubicacion);
-						archivoSubido.set_datos(this.getFiles().get(0)
-								.getFile());
-						archivoSubido.set_cultivo(this.getCultivo());
-						archivoSubido.set_usuario(this.getUsuario());
-
-//						File file = new File(ubicacion.get_urlPaht() + "/"
-//								+ archivoSubido.get_nombre());
-//						file.createNewFile();
-						
-						archivoSubido = this.getGEMFachada(ServicioGEM.Archivo)
-								.RegistrarArchivo(archivoSubido);
-						if (archivoSubido != null) {
-							this.setDisableUpload(true);
-							recargo = true;
-							this.setExito("Se guardo el archivo para "
-									+ "el escenario exitosamente.");
-							retorno = "GEM005";
-						} else {
-							this.setError("No se pudo registrar el archivo");
-						}
-					} else {
-						this
-								.setError("No se subieron archivos, seleccione y cargue el archivo para el escenario.");
-					}
-				} else {
-					this.setError("Debe seleccionar una regi�n clim�tica.");
-				}
-			} else {
-				this.setError("Debe seleccionar un cultivo.");
-			}
-
-		} catch (Exception ex) {
-			this.setError(ex.getMessage());
-		}
-		return retorno;
 	}
 
 	public String clearUploadData() {
