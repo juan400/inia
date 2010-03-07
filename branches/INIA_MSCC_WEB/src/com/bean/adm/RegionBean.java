@@ -23,7 +23,8 @@ public class RegionBean extends MaestroBean implements Serializable {
 
 	public boolean isInit() {
 		this.limpiarBean();
-		this.setRegiones(this.getAdmFachada(ServicioADM.Region).ObtenerRegiones());
+		this.setRegiones(this.getAdmFachada(ServicioADM.Region)
+				.ObtenerRegiones());
 		return false;
 	}
 
@@ -42,11 +43,22 @@ public class RegionBean extends MaestroBean implements Serializable {
 	public String actualizar() throws Exception {
 		String retorno = "registro-error";
 		try {
+			Region datosRegion = new Region();
 			region.set_codigo(codigo);
 			region.set_descripcion(descripcion);
 			region.set_nombre(nombre);
-			this.getAdmFachada(ServicioADM.Region).ActualizarRegion(region);
-			retorno = "registro-ok";
+
+			Region regNom = this.getAdmFachada(ServicioADM.Region)
+					.ComprobarRegion(datosRegion);
+
+			if (regNom == null) {
+				this.getAdmFachada(ServicioADM.Region).ActualizarRegion(region);
+				retorno = "registro-ok";
+			} else {
+				this
+						.setError("Ya existe una Región con igual nombre, Por favor ingrese otro nombre.");
+			}
+
 		} catch (Exception ex) {
 			this
 					.setError("Se ha producido un error, por favor intente nuevamente.");
