@@ -297,7 +297,7 @@ Secano.</title>
 															<a4j:commandButton
 																style="font-size: 10pt; color: #2d77c2;"
 																styleClass="textoPlano"
-																action="#{ejecucionBean.cancelar}"
+																action="cancelar"
 																value="#{text.boton_Cancelar}" />
 														</h:panelGrid></center>
 
