@@ -261,9 +261,9 @@
   <PROCESS-ITEM ID="rules:#Servicios#SEG#SEG007.jsp:0" NAME="item"
    PATH="/Servicios/SEG/SEG007.jsp" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="SEG001:#{recuperarContraseniaBean.confirmar}:#Servicios#SEG#SEG001.jsp"
-    NAME="output" PATH="/Servicios/SEG/SEG001.jsp"
-    TARGET="rules:#Servicios#SEG#SEG001.jsp"
+    ID="SEG001:#{recuperarContraseniaBean.confirmar}:#Servicios#Contenido.jsp"
+    NAME="output" PATH="/Servicios/Contenido.jsp"
+    TARGET="rules:#Servicios#Contenido.jsp"
     TITLE="#{recuperarContraseniaBean.confirmar}:SEG001" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
