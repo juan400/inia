@@ -150,9 +150,6 @@ Secano.</title>
 																		<a4j:support event="onchange" reRender=":graficaGenerica" />
 																	</rich:comboBox>
 																</h:panelGrid>
-																<h:panelGrid>
-																<a4j:commandButton  />
-																</h:panelGrid>
 																<rich:paint2D id="graficaGenerica" width="600" 
 																	height="500" data="#{paintData}" format="png"
 																	paint="#{resultadoBean.paintScatterPlot}" />
