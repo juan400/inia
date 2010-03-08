@@ -176,7 +176,7 @@ public class EjecucionBean extends MaestroBean implements Serializable {
 			// archivoTemplate);
 
 			this.generarEscenario(ejecucionMSCC);
-			resultado = "GEM002";
+			resultado = "EJE002";
 		} catch (Exception ex) {
 			this.setError(ex.getLocalizedMessage());
 		}

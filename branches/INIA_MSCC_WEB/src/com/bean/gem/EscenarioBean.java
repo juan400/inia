@@ -81,7 +81,7 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 						escenario.set_region(this.getRegion());
 //						escenario.set_fechaHora(this.getFecha());
 						escenario.set_usuarioInvestigador(this.getUsuario());
-						escenario.set_estado(Estado.valueOf(this.getEstado()));
+						escenario.set_estado(Estado.Activo);
 						escenario = this.getGEMFachada(ServicioGEM.Escenario)
 								.RegistrarEscenario(escenario);
 						if (escenario != null) {
@@ -145,6 +145,7 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 			this.setError("");
 			this.setExito("");
 			Escenario unEsce = new Escenario();
+			unEsce.set_fechaHora(null);
 			unEsce.set_usuarioInvestigador(this.getUsuario());
 			if (this.getCultivo() != null) {
 				unEsce.set_cultivo(this.getCultivo());
@@ -196,6 +197,7 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 				Escenario esce = new Escenario();
 				this.setUsuario((Usuario) this.getSesion(Usuario.class
 						.toString()));
+				esce.set_fechaHora(null);
 				esce.set_usuarioInvestigador(this.getUsuario());
 				this.setEscenarios((this.getGEMFachada(ServicioGEM.Escenario)
 						.ObtenerEscenarios(esce)));

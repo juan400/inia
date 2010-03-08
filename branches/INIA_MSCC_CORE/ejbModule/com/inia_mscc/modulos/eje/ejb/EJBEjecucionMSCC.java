@@ -104,6 +104,10 @@ public class EJBEjecucionMSCC implements ServicioEjecucionMSCC {
 			}
 			fileOut.close();
 			fileIn.close();
+			
+			//Ejecutar el python
+//			EjecutarPyhton
+			
 			// Borrar el directorio y todos sus archivos
 			File[] ficheros = directorioTemporal.listFiles();
 

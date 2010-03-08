@@ -159,6 +159,7 @@ public class ModeloBean extends MaestroBean implements Serializable {
 			Escenario esce = new Escenario();
 			this.setUsuario((Usuario) this.getSesion(Usuario.class
 					.toString()));
+			esce.set_fechaHora(null);
 			esce.set_usuarioInvestigador(this.getUsuario());
 			this.setUsuario((Usuario) this.getSesion(Usuario.class.toString()));
 			this.setListaEscenarios(this.getGEMFachada(ServicioGEM.Escenario)
@@ -198,6 +199,7 @@ public class ModeloBean extends MaestroBean implements Serializable {
 				Escenario esce = new Escenario();
 				this.setUsuario((Usuario) this.getSesion(Usuario.class
 						.toString()));
+				esce.set_fechaHora(null);
 				esce.set_usuarioInvestigador(this.getUsuario());
 				this.setUsuario((Usuario) this.getSesion(Usuario.class.toString()));
 				this.setListaEscenarios(this.getGEMFachada(ServicioGEM.Escenario)
@@ -245,6 +247,7 @@ public class ModeloBean extends MaestroBean implements Serializable {
 				Escenario esce = new Escenario();
 				this.setUsuario((Usuario) this.getSesion(Usuario.class
 						.toString()));
+				esce.set_fechaHora(null);
 				esce.set_usuarioInvestigador(this.getUsuario());
 				this.setUsuario((Usuario) this.getSesion(Usuario.class.toString()));
 				this.setListaEscenarios(this.getGEMFachada(ServicioGEM.Escenario)
