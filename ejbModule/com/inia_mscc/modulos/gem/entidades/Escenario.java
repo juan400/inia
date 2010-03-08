@@ -69,7 +69,7 @@ public class Escenario implements Serializable {
 	
 	public Escenario() {
 		super();
-		_fechaHora = null;
+		_fechaHora = new Date();
 		_usuarioInvestigador = null;
 		_region = null;
 		_cultivo = null;

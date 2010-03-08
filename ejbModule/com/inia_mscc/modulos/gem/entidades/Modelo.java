@@ -66,7 +66,7 @@ public class Modelo implements Serializable {
 	public Modelo(Date fechaHora, Usuario usuarioInvestigador, Estado estado,
 			Escenario escenario, Archivo archivoMSCC) {
 		super();
-		_fechaHora = fechaHora;
+		_fechaHora = new Date();
 		_usuarioInvestigador = usuarioInvestigador;
 		_estado = estado;
 		_escenario = escenario;
