@@ -11,12 +11,16 @@ import java.util.List;
 import javax.faces.model.SelectItem;
 
 import com.bean.comun.MaestroBean;
+import com.inia_mscc.modulos.adm.entidades.ListaCriterioSeleccion;
+import com.inia_mscc.modulos.adm.entidades.Region;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioADM;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioEJE;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioGEM;
 import com.inia_mscc.modulos.eje.entidades.EjecucionMSCC;
 import com.inia_mscc.modulos.gem.entidades.Archivo;
 import com.inia_mscc.modulos.gem.entidades.Cultivo;
 import com.inia_mscc.modulos.gem.entidades.Escenario;
+import com.inia_mscc.modulos.gem.entidades.Modelo;
 import com.inia_mscc.modulos.gem.entidades.Propiedad;
 
 public class EjecucionBean extends MaestroBean implements Serializable {
@@ -31,9 +35,21 @@ public class EjecucionBean extends MaestroBean implements Serializable {
 	private String estacionClimatica = "LE";
 	private String cultivar = "DonAlberto";
 	private boolean proyectarClima = false;
-	private String cultivoElegido;
+	private List<Cultivo> listaCultivos;
 	private SelectItem[] cultivos;
-	private List<Cultivo> listaCultivo;
+	private String cultivoElegido;
+	private Cultivo cultivo;
+
+	private Escenario escenario;
+	private Modelo modelo;
+
+	private List<Region> listaRegiones;
+	private SelectItem[] regiones;
+	private String regionElegida;
+	private Region region;
+
+	private ListaCriterioSeleccion listaRate;
+	private ListaCriterioSeleccion listaFertilizantes;
 
 	// Fertilizacion
 	private Date fFertilizacionSiembra = new Date();
@@ -64,6 +80,49 @@ public class EjecucionBean extends MaestroBean implements Serializable {
 	private double nnuli = 20;
 	private double nnlli = 20;
 
+	public EjecucionBean() {
+		super();
+	}
+
+	public boolean isInit() {
+		try {
+			this.setListaCultivos(this.getGEMFachada(ServicioGEM.Cultivo)
+					.ObtenerCultivos(null));
+			if (this.getListaCultivos() == null) {
+				this.setListaCultivos(new ArrayList<Cultivo>());
+			}
+			cultivos = new SelectItem[listaCultivos.size() + 1];
+			cultivos[0] = new SelectItem(this
+					.getTextBundleKey("combo_seleccione"));
+			int i = 1;
+			for (Cultivo c : listaCultivos) {
+				SelectItem si = new SelectItem(c.get_nombre());
+				cultivos[i] = si;
+				i++;
+			}
+			cultivoElegido = this.getTextBundleKey("combo_seleccione");
+			this.setListaRegiones(this.getAdmFachada(ServicioADM.Region)
+					.ObtenerRegiones());
+			if (this.getListaRegiones() == null) {
+				this.setListaRegiones(new ArrayList<Region>());
+			}
+			regiones = new SelectItem[listaRegiones.size() + 1];
+			regiones[0] = new SelectItem(this
+					.getTextBundleKey("combo_seleccione"));
+			i = 1;
+			for (Region c : listaRegiones) {
+				SelectItem si = new SelectItem(c.get_codigo(), c.get_nombre(),
+						c.get_descripcion());
+				regiones[i] = si;
+				i++;
+			}
+			regionElegida = this.getTextBundleKey("combo_seleccione");
+		} catch (Exception ex) {
+			this.setError(ex.getMessage());
+		}
+		return false;
+	}
+
 	public String ejecutarEscenario() {
 		String resultado = "";
 
@@ -85,7 +144,8 @@ public class EjecucionBean extends MaestroBean implements Serializable {
 		archivoResultado.set_datos(new File("C:/INIA/resultado.py"));
 
 		ejecucionMSCC.set_archivoEjecucion(archivoResultado);
-		ejecucionMSCC.get_modelo().get_escenario().set_archivoEscenario(archivoTemplate);
+		ejecucionMSCC.get_modelo().get_escenario().set_archivoEscenario(
+				archivoTemplate);
 
 		this.generarEscenario(ejecucionMSCC);
 
@@ -238,6 +298,135 @@ public class EjecucionBean extends MaestroBean implements Serializable {
 		return propiedades;
 	}
 
+	public void takeSelectionCultivo() {
+		this.setError("");
+		this.setExito("");
+		try {
+			cultivo = new Cultivo();
+			if (!this.getCultivoElegido().isEmpty()
+					&& !this.getCultivoElegido().equals(
+							this.getTextBundleKey("combo_seleccione"))) {
+				this.setCultivo(BuscarCultivo(this.getCultivoElegido()));
+				Escenario esce = new Escenario();
+				esce.set_cultivo(this.getCultivo());
+				if (this.getRegion() != null) {
+					esce.set_region(this.getRegion());
+					this.setEscenario(this.getGEMFachada(ServicioGEM.Escenario)
+							.ObtenerEscenario(esce));
+					if (this.getEscenario() == null) {
+						this.setError("No hay escenarios registrados "
+								+ "para la estación climática "
+								+ "y el cultivo escogidos.");
+					} else {
+						Modelo modelo = new Modelo();
+						modelo.set_escenario(esce);
+						modelo = this.getGEMFachada(ServicioGEM.Modelo)
+								.ObtenerModelo(modelo);
+						if (modelo == null) {
+							this
+									.setError("No hay modelos de sinulación registrados "
+											+ "para la estación climática "
+											+ "y el cultivo escogidos.");
+						}
+					}
+				}
+				// this.setDisableRegion(false);
+				// this.setDisableUpload(true);
+				// recargo = false;
+			} else {
+				this.setCultivo(null);
+				// this.setDisableRegion(true);
+				// this.setDisableUpload(true);
+			}
+			regiones = new SelectItem[listaRegiones.size() + 1];
+			regiones[0] = new SelectItem(this
+					.getTextBundleKey("combo_seleccione"));
+			int i = 1;
+			for (Region c : listaRegiones) {
+				SelectItem si = new SelectItem(c.get_codigo(), c.get_nombre(),
+						c.get_descripcion());
+				regiones[i] = si;
+				i++;
+			}
+			regionElegida = this.getTextBundleKey("combo_seleccione");
+		} catch (Exception ex) {
+			this.setError(ex.getMessage());
+		}
+	}
+
+	public void takeSelectionRegion() {
+		this.setError("");
+		this.setExito("");
+		try {
+			region = new Region();
+			if (!this.getRegionElegida().isEmpty()
+					&& !this.getRegionElegida().equals(
+							this.getTextBundleKey("combo_seleccione"))) {
+				this.setRegion(BuscarRegion(this.getRegionElegida()));
+				Escenario esce = new Escenario();
+				esce.set_region(this.getRegion());
+				if (this.getCultivo() != null) {
+					esce.set_cultivo(this.getCultivo());
+					this.setEscenario(this.getGEMFachada(ServicioGEM.Escenario)
+							.ObtenerEscenario(esce));
+					if (this.getEscenario() == null) {
+						this.setError("No hay escenarios registrados "
+								+ "para la estación climática "
+								+ "y el cultivo escogidos.");
+					} else {
+						Modelo modelo = new Modelo();
+						modelo.set_escenario(esce);
+						modelo = this.getGEMFachada(ServicioGEM.Modelo)
+								.ObtenerModelo(modelo);
+						if (modelo == null) {
+							this
+									.setError("No hay modelos de sinulación registrados "
+											+ "para la estación climática "
+											+ "y el cultivo escogidos.");
+						}
+					}
+				}
+				// this.setDisableUpload(false);
+				// this.setError("");
+				// this.setExito("");
+				// recargo = false;
+			} else {
+				this.setRegion(null);
+				// this.setDisableUpload(true);
+				// this.setError("");
+				// this.setExito("");
+			}
+		} catch (Exception ex) {
+			this.setError(ex.getMessage());
+		}
+	}
+
+	private Cultivo BuscarCultivo(String pCodigo) {
+		Cultivo cultivoBuscado = null;
+		if (this.getListaCultivos() != null
+				&& !this.getListaCultivos().isEmpty()) {
+			for (Cultivo cultivo : this.getListaCultivos()) {
+				if (cultivo.get_nombre().equals(pCodigo)) {
+					cultivoBuscado = cultivo;
+				}
+			}
+		}
+		return cultivoBuscado;
+	}
+
+	private Region BuscarRegion(String pCodigo) {
+		Region regionBuscada = null;
+		if (this.getListaRegiones() != null
+				&& !this.getListaRegiones().isEmpty()) {
+			for (Region region : this.getListaRegiones()) {
+				if (region.get_codigo().equals(pCodigo)) {
+					regionBuscada = region;
+				}
+			}
+		}
+		return regionBuscada;
+	}
+
 	private String formatearFecha(Date fecha) {
 		String fechaFormateada = "";
 		Calendar gc = new GregorianCalendar();
@@ -248,29 +437,6 @@ public class EjecucionBean extends MaestroBean implements Serializable {
 				+ gc.get(Calendar.DAY_OF_MONTH);
 
 		return fechaFormateada;
-	}
-
-	private boolean isInit() {
-		try {
-			this.setListaCultivo(this.getGEMFachada(ServicioGEM.Cultivo)
-					.ObtenerCultivos(null));
-			if (this.getListaCultivo() == null) {
-				this.setListaCultivo(new ArrayList<Cultivo>());
-			}
-			cultivos = new SelectItem[listaCultivo.size() + 1];
-			cultivos[0] = new SelectItem(this
-					.getTextBundleKey("combo_seleccione"));
-			int i = 1;
-			for (Cultivo c : listaCultivo) {
-				SelectItem si = new SelectItem(c.get_nombre());
-				cultivos[i] = si;
-				i++;
-			}
-			cultivoElegido = this.getTextBundleKey("combo_seleccione");
-		} catch (Exception ex) {
-			this.setError(ex.getMessage());
-		}
-		return false;
 	}
 
 	public Date getfSiembra() {
@@ -311,14 +477,6 @@ public class EjecucionBean extends MaestroBean implements Serializable {
 
 	public void setCultivos(SelectItem[] cultivos) {
 		this.cultivos = cultivos;
-	}
-
-	public List<Cultivo> getListaCultivo() {
-		return listaCultivo;
-	}
-
-	public void setListaCultivo(List<Cultivo> listaCultivo) {
-		this.listaCultivo = listaCultivo;
 	}
 
 	public Date getfFertilizacionSiembra() {
@@ -511,6 +669,86 @@ public class EjecucionBean extends MaestroBean implements Serializable {
 
 	public boolean isProyectarClima() {
 		return proyectarClima;
+	}
+
+	public void setListaRate(ListaCriterioSeleccion listaRate) {
+		this.listaRate = listaRate;
+	}
+
+	public ListaCriterioSeleccion getListaRate() {
+		return listaRate;
+	}
+
+	public void setListaFertilizantes(ListaCriterioSeleccion listaFertilizantes) {
+		this.listaFertilizantes = listaFertilizantes;
+	}
+
+	public ListaCriterioSeleccion getListaFertilizantes() {
+		return listaFertilizantes;
+	}
+
+	public List<Cultivo> getListaCultivos() {
+		return listaCultivos;
+	}
+
+	public void setListaCultivos(List<Cultivo> listaCultivos) {
+		this.listaCultivos = listaCultivos;
+	}
+
+	public Cultivo getCultivo() {
+		return cultivo;
+	}
+
+	public void setCultivo(Cultivo cultivo) {
+		this.cultivo = cultivo;
+	}
+
+	public List<Region> getListaRegiones() {
+		return listaRegiones;
+	}
+
+	public void setListaRegiones(List<Region> listaRegiones) {
+		this.listaRegiones = listaRegiones;
+	}
+
+	public SelectItem[] getRegiones() {
+		return regiones;
+	}
+
+	public void setRegiones(SelectItem[] regiones) {
+		this.regiones = regiones;
+	}
+
+	public String getRegionElegida() {
+		return regionElegida;
+	}
+
+	public void setRegionElegida(String regionElegida) {
+		this.regionElegida = regionElegida;
+	}
+
+	public Region getRegion() {
+		return region;
+	}
+
+	public void setRegion(Region region) {
+		this.region = region;
+	}
+
+	public Escenario getEscenario() {
+		return escenario;
+	}
+
+	public void setEscenario(Escenario escenario) {
+		this.escenario = escenario;
+	}
+
+	public Modelo getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(Modelo modelo) {
+		this.modelo = modelo;
 	}
 
 }

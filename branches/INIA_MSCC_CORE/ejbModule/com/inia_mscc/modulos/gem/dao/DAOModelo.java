@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import com.inia_mscc.config.hibernate.HibernateUtil;
@@ -32,16 +33,17 @@ public class DAOModelo implements Serializable {
 					if (pModelo.get_id() != 0) {
 						c.add(Restrictions.eq("_escenario", pModelo
 								.get_escenario()));
-					} else {
-						if (pModelo.get_escenario().get_cultivo() != null) {
-							c.add(Restrictions.eq("_cultivo", pModelo
-									.get_escenario().get_cultivo()));
-						}
-						if (pModelo.get_escenario().get_region() != null) {
-							c.add(Restrictions.eq("_region", pModelo
-									.get_escenario().get_region()));
-						}
 					}
+					// else {
+					// if (pModelo.get_escenario().get_cultivo() != null) {
+					// c.add(Restrictions.eq("_cultivo", pModelo
+					// .get_escenario().get_cultivo()));
+					// }
+					// if (pModelo.get_escenario().get_region() != null) {
+					// c.add(Restrictions.eq("_region", pModelo
+					// .get_escenario().get_region()));
+					// }
+					// }
 				}
 				if (pModelo.get_usuarioInvestigador() != null) {
 					c.add(Restrictions.eq("_usuarioInvestigador", pModelo
@@ -74,16 +76,18 @@ public class DAOModelo implements Serializable {
 					if (pModelo.get_id() != 0) {
 						c.add(Restrictions.eq("_escenario", pModelo
 								.get_escenario()));
-					} else {
-						if (pModelo.get_escenario().get_cultivo() != null) {
-							c.add(Restrictions.eq("_cultivo", pModelo
-									.get_escenario().get_cultivo()));
-						}
-						if (pModelo.get_escenario().get_region() != null) {
-							c.add(Restrictions.eq("_region", pModelo
-									.get_escenario().get_region()));
-						}
 					}
+					// else {
+					// Criteria ce = session.createCriteria(Escenario.class);
+					// if (pModelo.get_escenario().get_cultivo() != null) {
+					// ce.add(Restrictions.eq("_cultivo", pModelo
+					// .get_escenario().get_cultivo()));
+					// }
+					// if (pModelo.get_escenario().get_region() != null) {
+					// ce.add(Restrictions.eq("_region", pModelo
+					// .get_escenario().get_region()));
+					// }
+					// }
 				}
 				if (pModelo.get_usuarioInvestigador() != null) {
 					c.add(Restrictions.eq("_usuarioInvestigador", pModelo
@@ -93,8 +97,9 @@ public class DAOModelo implements Serializable {
 					c.add(Restrictions
 							.eq("_fechaHora", pModelo.get_fechaHora()));
 				}
+				c.setProjection(Projections.max("_fechaHora"));
 			}
-			unModelo = (Modelo) c.uniqueResult();
+			unModelo = (Modelo) c.list().get(0);
 		} catch (Exception e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);

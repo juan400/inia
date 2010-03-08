@@ -72,7 +72,7 @@ Secano.</title>
 										</h:column>
 
 										<h:column>
-											<h:panelGroup rendered="#{cultivoBean.init}" />
+											<h:panelGroup rendered="#{ejecucionBean.init}" />
 											<h:panelGrid>
 												<rich:panel headerClass="tituloPantalla"
 													style="background-color: #ebf3fd;">
@@ -93,23 +93,32 @@ Secano.</title>
 
 															</rich:calendar>
 
-															<h:outputText value="Seleccionar cultivo"
-																styleClass="textoPlano" />
+															<h:outputLabel value="#{text.escenario_SelecCultivo}" />
 															<rich:comboBox
-																value="#{propiedadesBean.cultivoSeleccionado}"
-																enableManualInput="false" styleClass="combo"
-																disabled="#{propiedadesBean.disableSeleccionCultivo}"
-																width="248px">
-																<f:selectItems value="#{propiedadesBean.cultivos}" />
+																requiredMessage="Debe seleccionar un cultivo"
+																value="#{ejecucionBean.cultivoElegido}" required="true"
+																enableManualInput="false" styleClass="combo" width="220">
+																<f:selectItems value="#{ejecucionBean.cultivos}" />
 																<a4j:support
-																	action="#{propiedadesBean.TakeSelectionCultivo}"
+																	action="#{ejecucionBean.takeSelectionCultivo}"
 																	event="onchange" ajaxSingle="true"
-																	reRender="panelPropiedades" />
+																	reRender="upload,cmdRegiones" />
+																<rich:toolTip
+																	value="Seleccionar el cultivo al cual asociar el escenario que va a registrar." />
 															</rich:comboBox>
 
-															<h:outputText value="Seleccionar estacion climatica" />
-															<rich:comboBox value="#{ejecucionBean.estacionClimatica}">
-
+															<h:outputLabel value="#{text.escenario_Region}" />
+															<rich:comboBox 
+																value="#{ejecucionBean.regionElegida}" required="true"
+																enableManualInput="false" styleClass="combo"
+																requiredMessage="Debe seleccionar una Región"
+																id="cmdRegiones" width="220">
+																<f:selectItems value="#{ejecucionBean.regiones}" />
+																<a4j:support
+																	action="#{ejecucionBean.takeSelectionRegion}"
+																	event="onchange" ajaxSingle="true" />
+																<rich:toolTip
+																	value="Seleccionar el cultivo al cual asociar el escenario que va a registrar." />
 															</rich:comboBox>
 
 															<h:outputText value="Nombre del cultivar" />
