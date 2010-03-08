@@ -138,7 +138,7 @@ Secano.</title>
 																			<h:outputText value="Eliminar ingreso" />
 																		</f:facet>
 
-																		<a4j:commandButton
+																		<center><a4j:commandButton
 																			action="#{propiedadesBean.EliminarPropiedad}"
 																			image="/Recursos/Imagenes/Iconos/delete.gif"
 																			immediate="true" disabled="#{propiedad._grabada}"
@@ -147,7 +147,7 @@ Secano.</title>
 																			<a4j:actionparam name="propiedadElegida"
 																				value="#{propiedad._codigo}" />
 																			<rich:toolTip value="Elimina solo las agregadas" />
-																		</a4j:commandButton>
+																		</a4j:commandButton></center>
 
 																	</rich:column>
 																	<f:facet name="footer">
@@ -181,7 +181,7 @@ Secano.</title>
 																<h:outputText value="Unidad de Medida" />
 																<h:inputText value="#{propiedadesBean.unidadedida}"
 																	styleClass="textoPlano" maxlength="220"
-																	onkeypress="ValidarCampoLetras(this, event)"
+																	
 																	style=" width : 230px;">
 																</h:inputText>
 
