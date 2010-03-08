@@ -18,12 +18,17 @@ import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 
+import com.inia_mscc.modulos.adm.dao.DAOUbicacion;
 import com.inia_mscc.modulos.adm.entidades.Ubicacion;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioADM;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.TipoArchivo;
 import com.inia_mscc.modulos.eje.entidades.EjecucionMSCC;
 import com.inia_mscc.modulos.eje.entidades.ResultadoMSCC;
 import com.inia_mscc.modulos.eje.servicios.ServicioEjecucionMSCC;
 import com.inia_mscc.modulos.gem.entidades.ArchivosTexto;
+import com.inia_mscc.modulos.gem.entidades.Escenario;
 import com.inia_mscc.modulos.gem.entidades.Propiedad;
+import com.inia_mscc.modulos.pyhton.EjecutarPyhton;
 
 @Stateless(name = "EJBEjecucionMSCC", mappedName = "EJBEjecucionMSCC")
 @Remote(ServicioEjecucionMSCC.class)
@@ -32,11 +37,18 @@ import com.inia_mscc.modulos.gem.entidades.Propiedad;
 public class EJBEjecucionMSCC implements ServicioEjecucionMSCC {
 
 	private static final String CARACTER_DE_SEPARACION = ",";
-
+	private DAOUbicacion daoUbicacion = new DAOUbicacion();
+	
 	@Override
 	public void generarArchivoEscenario(EjecucionMSCC ejecucionMSCC)
 			throws Exception {
 		try {
+			Ubicacion ubicacionEJE = new Ubicacion();
+			ubicacionEJE.set_tipoArchivo(TipoArchivo.Ejecucion);
+			ubicacionEJE = daoUbicacion.ObtenerUbicacion(ubicacionEJE);
+			if (ubicacionEJE == null) {
+				throw new Exception("No hay definida una ubicación para los archivos de ejecución.");
+			}
 			File templateCultivo = ejecucionMSCC.get_modelo().get_escenario()
 					.get_archivoEscenario().get_datos();
 
@@ -59,6 +71,21 @@ public class EJBEjecucionMSCC implements ServicioEjecucionMSCC {
 				throw new Exception("No es posible crear el "
 						+ "directorio temporal para la ejecución.");
 			}
+
+			// Copiamos el gcros_for
+			ejecucionMSCC.get_modelo().get_archivoMSCC().set_datos(
+					new File(ubicacionEJE.get_urlPaht()
+							+ "/gecros_for.for"));
+			File gcrosTemporal = new File(nombreDirectorioTemporal + "/gcros_for.for");
+			ArchivosTexto.copiarArchio(ejecucionMSCC.get_modelo()
+					.get_archivoMSCC().get_datos(), gcrosTemporal);
+			// Copiamos el weather_data
+			ejecucionMSCC.get_modelo().get_archivoMSCC().set_datos(
+					new File(ubicacionEJE.get_urlPaht()
+							+ "/weather_data.txt"));
+			File weatherTemporal = new File(nombreDirectorioTemporal + "/weather_data.txt");
+			ArchivosTexto.copiarArchio(ejecucionMSCC.get_modelo()
+					.get_archivoMSCC().get_datos(), weatherTemporal);
 			// Copiamos el mscc
 			ejecucionMSCC.get_modelo().get_archivoMSCC().set_datos(
 					new File(ejecucionMSCC.get_modelo().get_archivoMSCC()
@@ -70,26 +97,28 @@ public class EJBEjecucionMSCC implements ServicioEjecucionMSCC {
 			ArchivosTexto.copiarArchio(ejecucionMSCC.get_modelo()
 					.get_archivoMSCC().get_datos(), msccTemporal);
 			// Copiamos el escenario cargado
-//			ejecucionMSCC.get_modelo().get_archivoMSCC().set_datos(
-//					new File(ejecucionMSCC.get_archivoEjecucion().get_datos().get_ubicacion().get_urlPaht()
-//							+ "/"
-//							+ ejecucionMSCC.get_modelo().get_archivoMSCC()
-//									.get_nombre()));
-//			File escenarioTemporal = new File(nombreDirectorioTemporal + "/escenario.py");
-//			ArchivosTexto.copiarArchio(ejecucionMSCC.get_modelo()
-//					.get_archivoMSCC().get_datos(), escenarioTemporal);
+			ejecucionMSCC.get_modelo().get_escenario().get_archivoEscenario().set_datos(
+					new File(ejecucionMSCC.get_modelo().get_escenario().get_archivoEscenario().get_ubicacion().get_urlPaht()
+							+ "/"
+							+ ejecucionMSCC.get_modelo().get_escenario().get_archivoEscenario()
+									.get_nombre()));
 
-			File archivoEjecucion = ejecucionMSCC.get_archivoEjecucion()
-					.get_datos();
-
+			File escenarioTemporal = new File(nombreDirectorioTemporal + "/escenario.py");
+			ArchivosTexto.copiarArchio(ejecucionMSCC.get_modelo().get_escenario().get_archivoEscenario().get_datos(), escenarioTemporal);
+			//leer el escenario y lo carga
 			BufferedReader fileIn = new BufferedReader(new FileReader(
-					templateCultivo));
+					ejecucionMSCC.get_modelo().get_escenario().get_archivoEscenario().get_ubicacion().get_urlPaht()
+					+ "/"
+					+ ejecucionMSCC.get_modelo().get_escenario().get_archivoEscenario()
+							.get_nombre()));
 			PrintWriter fileOut = new PrintWriter(new FileWriter(
-					archivoEjecucion, true));
+					escenarioTemporal, true));
 
 			List<Propiedad> propiedades = ejecucionMSCC.get_modelo()
 					.get_escenario().get_cultivo().get_listaPropiedades();
-
+			if (propiedades==null){
+				throw new Exception("El cultivo no tiene propiedades.");
+			}
 			String linea = "";
 			while ((linea = fileIn.readLine()) != null) {
 
@@ -105,8 +134,18 @@ public class EJBEjecucionMSCC implements ServicioEjecucionMSCC {
 			fileOut.close();
 			fileIn.close();
 			
+			//Copiamos el archivo escenario dentro del archivo de ejecucion
+//			File archivoEjecucion = ejecucionMSCC.get_archivoEjecucion()
+//			.set_datos(escenarioTemporal);			
+			ArchivosTexto.copiarArchio(ejecucionMSCC.get_archivoEjecucion().get_datos(), escenarioTemporal);
+
+			
 			//Ejecutar el python
-//			EjecutarPyhton
+			String comandoPyhton = nombreDirectorioTemporal+ "/mscc.py";
+			ArrayList<String> parametros = new ArrayList<String>();
+			parametros.add(nombreDirectorioTemporal + "/escenario.py");
+			EjecutarPyhton ejecutar = new EjecutarPyhton(comandoPyhton, parametros);
+			ejecutar.ejecutarPython();
 			
 			// Borrar el directorio y todos sus archivos
 			File[] ficheros = directorioTemporal.listFiles();
