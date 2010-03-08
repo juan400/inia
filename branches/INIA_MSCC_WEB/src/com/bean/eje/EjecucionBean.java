@@ -133,23 +133,14 @@ public class EjecucionBean extends MaestroBean implements Serializable {
 		try {
 
 			EjecucionMSCC ejecucionMSCC = new EjecucionMSCC();
-			// Escenario escenario = new Escenario();
-			// Cultivo cultivo = new Cultivo();
-
+//if (proyectarClima){
+//	this.getGEMFachada(ServicioEJE.)
+//}
 			escenario.set_cultivo(cultivo);
 			ejecucionMSCC.set_modelo(modelo);
 
 			cultivo.set_listaPropiedades(this.armarListaPropiedades());
 
-			// TODO Reemplazar rutas de los archivos por las que correspondan.
-			// Archivo archivoTemplate = new Archivo();
-			// archivoTemplate.set_datos(new File(
-			// "C:/INIA/Templates/TemplateEscenario.py"));
-
-			// Archivo archivoResultado = new Archivo();
-			// archivoResultado.set_datos(new File("C:/INIA/resultado.py"));
-
-			// private Ubicacion UbicacionCarpetaTemporalEjecucion(){
 			Ubicacion ubicacion = new Ubicacion();
 			ubicacion.set_tipoArchivo(TipoArchivo.Ejecucion);
 			ubicacion = this.getAdmFachada(ServicioADM.Ubicacion)
@@ -159,21 +150,16 @@ public class EjecucionBean extends MaestroBean implements Serializable {
 						.setError("No hay definida una ubicación para los archivos de ejecución.");
 			}
 			ubicacion.set_urlPaht(ubicacion.get_urlPaht());
-			// return ubicacion;
-			// }
 
-			// Archivo archivoEjecucion = new Archivo();
 			this.setUsuario((Usuario) this.getSesion(Usuario.class.toString()));
 			Archivo archivoEjecucion = new Archivo(getUsuario().get_login(),
 					TipoArchivo.Ejecucion, new Date(), Estado.Activo,
 					TipoExtencionArchivo.py, ubicacion);
-			// archivoSubido.set_datos(this.getFiles().get(0).getFile());
+
 			archivoEjecucion.set_usuario(this.getUsuario());
 
 			archivoEjecucion.set_ubicacion(ubicacion);
 			ejecucionMSCC.set_archivoEjecucion(archivoEjecucion);
-			// ejecucionMSCC.get_modelo().get_escenario().set_archivoEscenario(
-			// archivoTemplate);
 
 			this.generarEscenario(ejecucionMSCC);
 			resultado = "EJE002";
