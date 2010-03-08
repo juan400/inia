@@ -69,7 +69,7 @@ public class ModeloBean extends MaestroBean implements Serializable {
 					Modelo modelo = new Modelo();
 					modelo.set_archivoMSCC(archivoSubido);
 					modelo.set_escenario(this.getEscenario());
-					modelo.set_fechaHora(this.getFecha());
+					// modelo.set_fechaHora(this.getFecha());
 					modelo.set_estado(Estado.valueOf(this.getEstado()));
 					modelo.set_usuarioInvestigador(this.getUsuario());
 					modelo = this.getGEMFachada(ServicioGEM.Modelo)

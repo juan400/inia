@@ -73,7 +73,7 @@ public class DAOModelo implements Serializable {
 					c.add(Restrictions.eq("_id", pModelo.get_id()));
 				}
 				if (pModelo.get_escenario() != null) {
-					if (pModelo.get_id() != 0) {
+					if (pModelo.get_escenario().get_id() != 0) {
 						c.add(Restrictions.eq("_escenario", pModelo
 								.get_escenario()));
 					}
@@ -97,7 +97,7 @@ public class DAOModelo implements Serializable {
 					c.add(Restrictions
 							.eq("_fechaHora", pModelo.get_fechaHora()));
 				}
-				c.setProjection(Projections.max("_fechaHora"));
+//				c.setProjection(Projections.max("_fechaHora"));
 			}
 			unModelo = (Modelo) c.list().get(0);
 		} catch (Exception e) {
