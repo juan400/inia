@@ -91,7 +91,7 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 									.setExito("Se guardo el escenario exitosamente.");
 							retorno = "GEM005";
 						} else {
-							this.setError("No se pudo registrar el esceanrio");
+							this.setError("No se pudo registrar el escenario");
 						}
 
 					} else {
@@ -99,7 +99,7 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 								.setError("No se subieron archivos, seleccione y cargue el archivo para el escenario.");
 					}
 				} else {
-					this.setError("Debe seleccionar una regiï¿½n climï¿½tica.");
+					this.setError("Debe seleccionar una región climática.");
 				}
 			} else {
 				this.setError("Debe seleccionar un cultivo.");
