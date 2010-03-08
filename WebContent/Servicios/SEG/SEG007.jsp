@@ -35,7 +35,7 @@ Secano.</title>
 						<h:panelGrid width="956" cellpadding="0" cellspacing="0">
 							<rich:panel headerClass="tituloPantalla"
 								style="background-color: #ebf3fd;">
-<f:facet name="header">
+								<f:facet name="header">
 									<h:panelGrid columns="2" width="900px">
 										<h:column>
 											<h:outputText
@@ -56,7 +56,7 @@ Secano.</title>
 									<h:panelGrid>
 										<center><h:outputText styleClass="mensajeError"
 											style="font-size: 12pt" value="#{text.login_notLogged}" /></center>
-				
+
 										<center><a4j:commandButton
 											style="font-size: 10pt; color: #2d77c2; width : 120px;"
 											styleClass="textoPlano" action="#{loginBean.logout}"
@@ -88,7 +88,8 @@ Secano.</title>
 																	value="#{recuperarContraseniaBean.actual}"
 																	label="Debe ingresar su contraseña actual"
 																	styleClass="textoPlano" tabindex="1" required="true"
-																	onkeypress="ValidarCampoLogin(this,event)" maxlength="13"
+																	onkeypress="ValidarCampoLogin(this,event)"
+																	maxlength="13"
 																	requiredMessage="Debe ingresar frase secreta">
 																	<f:validateLength minimum="6" maximum="13" />
 																	<a4j:support
@@ -114,7 +115,7 @@ Secano.</title>
 																<h:inputSecret id="txtConfirmarContrasenia"
 																	label="Debe ingresar confirmación de contraseña"
 																	value="#{recuperarContraseniaBean.confirmacion}"
-																	required="true" 
+																	required="true"
 																	onkeypress="ValidarCampoLogin(this, event)"
 																	requiredMessage="Debe ingresar confirmación de contraseña"
 																	styleClass="textoPlano" tabindex="3" maxlength="13">
@@ -139,20 +140,23 @@ Secano.</title>
 																	immediate="true" value="#{text.boton_Cancelar}" />
 															</h:panelGrid></center>
 														</h:panelGroup>
-														<center><f:facet name="footer">
-															<h:panelGrid>
-																<rich:messages styleClass="mensajeError">
-																	<f:facet name="errorMarker">
-																		<h:graphicImage
-																			value="/Recursos/Imagenes/Iconos/error.gif" />
-																	</f:facet>
-																</rich:messages>
-																<h:outputText styleClass="textoPlano"
-																	value="#{recuperarContraseniaBean.exito}" />
-															</h:panelGrid>
-														</f:facet></center>
+
+
 													</h:panelGrid>
 												</rich:panel>
+												<center><f:facet name="footer">
+													<h:panelGrid>
+														<rich:messages styleClass="mensajeError">
+															<f:facet name="errorMarker">
+																<h:graphicImage
+																	value="/Recursos/Imagenes/Iconos/error.gif" />
+															</f:facet>
+														</rich:messages>
+														<h:outputText styleClass="textoPlano"
+															value="#{recuperarContraseniaBean.exito}" />
+													</h:panelGrid>
+												</f:facet></center>
+
 											</h:panelGrid>
 										</h:column>
 									</h:panelGrid>

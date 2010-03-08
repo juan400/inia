@@ -113,7 +113,7 @@ Secano.</title>
 															<a4j:commandButton
 																style="font-size: 10pt; color: #2d77c2; width : 120px;"
 																styleClass="textoPlano"
-																action="#{cultivoBean.registrar}"
+																action="#{cultivoBean.Registrar}"
 																value="#{text.boton_Aceptar}" />
 															<a4j:commandButton immediate="true"
 																style="font-size: 10pt; color: #2d77c2; width : 120px;"

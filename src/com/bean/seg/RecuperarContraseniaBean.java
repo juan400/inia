@@ -132,7 +132,7 @@ public class RecuperarContraseniaBean extends MaestroBean implements
 									+ "igual al nombre del usuario logueado.");
 						}
 					} else {
-						this.setError("Ingrese la nueva contraseña y la confirmación.");
+						this.setError("Ingrese la nueva contraseña y la confirmación o verifique que las mismas sean iguales.");
 					}
 				} else {
 					this.setError("La contraseña actual ingresada "
