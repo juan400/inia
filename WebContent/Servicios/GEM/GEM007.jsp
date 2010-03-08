@@ -99,7 +99,7 @@ Secano.</title>
 																value="#{modeloBean.escenarioElegido}"
 																required="true" enableManualInput="false"
 																styleClass="combo"
-																requiredMessage="Debe seleccionar una Región"
+																requiredMessage="Debe seleccionar un Escenario"
 																id="cmdRegiones" width="220">
 																<f:selectItems value="#{modeloBean.escenarios}" />
 																<a4j:support
