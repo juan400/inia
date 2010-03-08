@@ -139,11 +139,6 @@ public class DAOUsuario implements Serializable {
 		return usuario;
 	}
 
-	/**
-	 * Actualiza los datos de un usuario registrado en el sitema.
-	 * 
-	 * @param pDatosUsuario
-	 */
 	public void ActualizarDatos(DatoUsuario pDatosUsuario) {
 		try {
 			Session session = HibernateUtil.getSessionFactory()
@@ -156,10 +151,6 @@ public class DAOUsuario implements Serializable {
 		}
 	}
 
-	/**
-	 * @param pClave
-	 * @return
-	 */
 	public Usuario ComprobarClaveReigstro(String pClave) {
 		Usuario retorno = null;
 		try {
