@@ -224,7 +224,7 @@ Secano.</title>
 																style="font-size: 10pt; color: #2d77c2; width : 120px;"
 																styleClass="textoPlano"
 																action="#{propiedadesBean.ModificarPropiedades}"
-																value="#{text.boton_Registrar}" />
+																value="#{text.boton_Actualizar}" />
 
 															<a4j:commandButton immediate="true"
 																style="font-size: 10pt; color: #2d77c2; width : 120px;"
