@@ -77,8 +77,8 @@ public class DAOEscenario implements Serializable {
 								.get_fechaHora()));
 			}
 //			c.setProjection(Projections.max("_fechaHora"));
-//			unEscenario = (Escenario) c.list().get(0);
-			unEscenario = (Escenario) c.uniqueResult();
+			unEscenario = (Escenario) c.list().get(0);
+//			unEscenario = (Escenario) c.uniqueResult();
 		} catch (Exception e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
 			logger.error(stackTrace);
