@@ -227,7 +227,7 @@ public class UbicacionBean extends MaestroBean implements Serializable {
 			si = new SelectItem(TipoArchivo.Resultados.name());
 			tipos[5] = si;
 			tipoArchvo = tipos[0].getValue().toString();
-			// this.getUbicacion().set_tipoArchivo(TipoArchivo.Eejcucion);
+			this.getUbicacion().set_tipoArchivo(TipoArchivo.Ejecucion);
 		} catch (Exception ex) {
 			this.setError(ex.getMessage());
 		}

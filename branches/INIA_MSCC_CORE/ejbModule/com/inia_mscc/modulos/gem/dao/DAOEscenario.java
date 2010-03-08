@@ -6,12 +6,14 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import com.inia_mscc.config.hibernate.HibernateUtil;
 import com.inia_mscc.config.util.LoggingUtilities;
 import com.inia_mscc.excepciones.IniaPersistenciaException;
 import com.inia_mscc.modulos.gem.entidades.Escenario;
+import com.inia_mscc.modulos.gem.entidades.Modelo;
 
 public class DAOEscenario implements Serializable {
 
@@ -74,6 +76,8 @@ public class DAOEscenario implements Serializable {
 						.add(Restrictions.eq("_fechaHora", pEscenario
 								.get_fechaHora()));
 			}
+//			c.setProjection(Projections.max("_fechaHora"));
+//			unEscenario = (Escenario) c.list().get(0);
 			unEscenario = (Escenario) c.uniqueResult();
 		} catch (Exception e) {
 			String stackTrace = LoggingUtilities.obtenerStackTrace(e);
