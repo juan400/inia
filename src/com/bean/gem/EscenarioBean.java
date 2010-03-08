@@ -79,7 +79,7 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 						escenario.set_archivoEscenario(archivoSubido);
 						escenario.set_cultivo(this.getCultivo());
 						escenario.set_region(this.getRegion());
-						escenario.set_fechaHora(this.getFecha());
+//						escenario.set_fechaHora(this.getFecha());
 						escenario.set_usuarioInvestigador(this.getUsuario());
 						escenario.set_estado(Estado.valueOf(this.getEstado()));
 						escenario = this.getGEMFachada(ServicioGEM.Escenario)
@@ -99,7 +99,7 @@ public class EscenarioBean extends MaestroBean implements Serializable {
 								.setError("No se subieron archivos, seleccione y cargue el archivo para el escenario.");
 					}
 				} else {
-					this.setError("Debe seleccionar una región climática.");
+					this.setError("Debe seleccionar una regiï¿½n climï¿½tica.");
 				}
 			} else {
 				this.setError("Debe seleccionar un cultivo.");
