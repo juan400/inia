@@ -13,7 +13,6 @@ import javax.faces.model.SelectItem;
 import com.bean.comun.MaestroBean;
 import com.inia_mscc.modulos.adm.entidades.Ubicacion;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioADM;
-import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioGEM;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.TipoArchivo;
 
 public class UbicacionBean extends MaestroBean implements Serializable {

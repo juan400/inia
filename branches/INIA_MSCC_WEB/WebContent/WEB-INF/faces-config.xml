@@ -398,7 +398,7 @@
   <navigation-case>
    <from-action>#{recuperarContraseniaBean.confirmar}</from-action>
    <from-outcome>SEG001</from-outcome>
-   <to-view-id>/Servicios/SEG/SEG001.jsp</to-view-id>
+   <to-view-id>/Servicios/Contenido.jsp</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
