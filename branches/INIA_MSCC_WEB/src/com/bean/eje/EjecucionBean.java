@@ -13,15 +13,20 @@ import javax.faces.model.SelectItem;
 import com.bean.comun.MaestroBean;
 import com.inia_mscc.modulos.adm.entidades.ListaCriterioSeleccion;
 import com.inia_mscc.modulos.adm.entidades.Region;
+import com.inia_mscc.modulos.adm.entidades.Ubicacion;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.Estado;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioADM;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioEJE;
 import com.inia_mscc.modulos.comun.entidades.Enumerados.ServicioGEM;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.TipoArchivo;
+import com.inia_mscc.modulos.comun.entidades.Enumerados.TipoExtencionArchivo;
 import com.inia_mscc.modulos.eje.entidades.EjecucionMSCC;
 import com.inia_mscc.modulos.gem.entidades.Archivo;
 import com.inia_mscc.modulos.gem.entidades.Cultivo;
 import com.inia_mscc.modulos.gem.entidades.Escenario;
 import com.inia_mscc.modulos.gem.entidades.Modelo;
 import com.inia_mscc.modulos.gem.entidades.Propiedad;
+import com.inia_mscc.modulos.seg.entidades.Usuario;
 
 public class EjecucionBean extends MaestroBean implements Serializable {
 
@@ -125,30 +130,56 @@ public class EjecucionBean extends MaestroBean implements Serializable {
 
 	public String ejecutarEscenario() {
 		String resultado = "";
+		try {
 
-		EjecucionMSCC ejecucionMSCC = new EjecucionMSCC();
-		Escenario escenario = new Escenario();
-		Cultivo cultivo = new Cultivo();
+			EjecucionMSCC ejecucionMSCC = new EjecucionMSCC();
+			// Escenario escenario = new Escenario();
+			// Cultivo cultivo = new Cultivo();
 
-		escenario.set_cultivo(cultivo);
-		ejecucionMSCC.get_modelo().set_escenario(escenario);
+			escenario.set_cultivo(cultivo);
+			ejecucionMSCC.set_modelo(modelo);
 
-		cultivo.set_listaPropiedades(this.armarListaPropiedades());
+			cultivo.set_listaPropiedades(this.armarListaPropiedades());
 
-		// TODO Reemplazar rutas de los archivos por las que correspondan.
-		Archivo archivoTemplate = new Archivo();
-		archivoTemplate.set_datos(new File(
-				"C:/INIA/Templates/TemplateEscenario.py"));
+			// TODO Reemplazar rutas de los archivos por las que correspondan.
+			// Archivo archivoTemplate = new Archivo();
+			// archivoTemplate.set_datos(new File(
+			// "C:/INIA/Templates/TemplateEscenario.py"));
 
-		Archivo archivoResultado = new Archivo();
-		archivoResultado.set_datos(new File("C:/INIA/resultado.py"));
+			// Archivo archivoResultado = new Archivo();
+			// archivoResultado.set_datos(new File("C:/INIA/resultado.py"));
 
-		ejecucionMSCC.set_archivoEjecucion(archivoResultado);
-		ejecucionMSCC.get_modelo().get_escenario().set_archivoEscenario(
-				archivoTemplate);
+			// private Ubicacion UbicacionCarpetaTemporalEjecucion(){
+			Ubicacion ubicacion = new Ubicacion();
+			ubicacion.set_tipoArchivo(TipoArchivo.Ejecucion);
+			ubicacion = this.getAdmFachada(ServicioADM.Ubicacion)
+					.ObtenerUbicacion(ubicacion);
+			if (ubicacion == null) {
+				this
+						.setError("No hay definida una ubicación para los archivos de ejecución.");
+			}
+			ubicacion.set_urlPaht(ubicacion.get_urlPaht());
+			// return ubicacion;
+			// }
 
-		this.generarEscenario(ejecucionMSCC);
+			// Archivo archivoEjecucion = new Archivo();
+			this.setUsuario((Usuario) this.getSesion(Usuario.class.toString()));
+			Archivo archivoEjecucion = new Archivo(getUsuario().get_login(),
+					TipoArchivo.Ejecucion, new Date(), Estado.Activo,
+					TipoExtencionArchivo.py, ubicacion);
+			// archivoSubido.set_datos(this.getFiles().get(0).getFile());
+			archivoEjecucion.set_usuario(this.getUsuario());
 
+			archivoEjecucion.set_ubicacion(ubicacion);
+			ejecucionMSCC.set_archivoEjecucion(archivoEjecucion);
+			// ejecucionMSCC.get_modelo().get_escenario().set_archivoEscenario(
+			// archivoTemplate);
+
+			this.generarEscenario(ejecucionMSCC);
+			resultado = "GEM002";
+		} catch (Exception ex) {
+			this.setError(ex.getLocalizedMessage());
+		}
 		return resultado;
 	}
 
@@ -162,139 +193,143 @@ public class EjecucionBean extends MaestroBean implements Serializable {
 		return false;
 	}
 
-	private List<Propiedad> armarListaPropiedades() {
-		List<Propiedad> propiedades = new ArrayList<Propiedad>();
+	private List<Propiedad> armarListaPropiedades() throws Exception {
+		List<Propiedad> propiedades = null;
+		try {
+			propiedades = new ArrayList<Propiedad>();
 
-		Propiedad propiedad = new Propiedad();
-		propiedad.set_codigo("KeyCorrida");
-		propiedad.set_valor("Key_de_corrida");
-		propiedades.add(propiedad);
+			Propiedad propiedad = new Propiedad();
+			propiedad.set_codigo("KeyCorrida");
+			propiedad.set_valor("Key_de_corrida");
+			propiedades.add(propiedad);
 
-		propiedad = new Propiedad();
-		propiedad.set_codigo("FSirmbra");
-		propiedad.set_valor(this.formatearFecha(fSiembra));
-		propiedades.add(propiedad);
+			propiedad = new Propiedad();
+			propiedad.set_codigo("FSirmbra");
+			propiedad.set_valor(this.formatearFecha(fSiembra));
+			propiedades.add(propiedad);
 
-		propiedad = new Propiedad();
-		propiedad.set_codigo("EstacionClimatica");
-		propiedad.set_valor(this.estacionClimatica);
-		propiedades.add(propiedad);
+			propiedad = new Propiedad();
+			propiedad.set_codigo("EstacionClimatica");
+			propiedad.set_valor(this.estacionClimatica);
+			propiedades.add(propiedad);
 
-		propiedad = new Propiedad();
-		propiedad.set_codigo("Cultivar");
-		propiedad.set_valor(this.cultivar);
-		propiedades.add(propiedad);
+			propiedad = new Propiedad();
+			propiedad.set_codigo("Cultivar");
+			propiedad.set_valor(this.cultivar);
+			propiedades.add(propiedad);
 
-		propiedad = new Propiedad();
-		propiedad.set_codigo("Fecha1");
-		propiedad.set_valor(this.formatearFecha(fFertilizacionSiembra));
-		propiedades.add(propiedad);
+			propiedad = new Propiedad();
+			propiedad.set_codigo("Fecha1");
+			propiedad.set_valor(this.formatearFecha(fFertilizacionSiembra));
+			propiedades.add(propiedad);
 
-		propiedad = new Propiedad();
-		propiedad.set_codigo("Fuente1");
-		propiedad.set_valor(this.fuenteFertilizacionSiembra);
-		propiedades.add(propiedad);
+			propiedad = new Propiedad();
+			propiedad.set_codigo("Fuente1");
+			propiedad.set_valor(this.fuenteFertilizacionSiembra);
+			propiedades.add(propiedad);
 
-		propiedad = new Propiedad();
-		propiedad.set_codigo("Rate1");
-		propiedad.set_valor(this.rateFertilizacionSiembra);
-		propiedades.add(propiedad);
+			propiedad = new Propiedad();
+			propiedad.set_codigo("Rate1");
+			propiedad.set_valor(this.rateFertilizacionSiembra);
+			propiedades.add(propiedad);
 
-		propiedad = new Propiedad();
-		propiedad.set_codigo("Fecha2");
-		propiedad.set_valor(this.formatearFecha(fRefertilizacion1));
-		propiedades.add(propiedad);
+			propiedad = new Propiedad();
+			propiedad.set_codigo("Fecha2");
+			propiedad.set_valor(this.formatearFecha(fRefertilizacion1));
+			propiedades.add(propiedad);
 
-		propiedad = new Propiedad();
-		propiedad.set_codigo("Fuente2");
-		propiedad.set_valor(this.fuenteRefertilizacion1);
-		propiedades.add(propiedad);
+			propiedad = new Propiedad();
+			propiedad.set_codigo("Fuente2");
+			propiedad.set_valor(this.fuenteRefertilizacion1);
+			propiedades.add(propiedad);
 
-		propiedad = new Propiedad();
-		propiedad.set_codigo("Rate2");
-		propiedad.set_valor(this.rateRefertilizacion1);
-		propiedades.add(propiedad);
+			propiedad = new Propiedad();
+			propiedad.set_codigo("Rate2");
+			propiedad.set_valor(this.rateRefertilizacion1);
+			propiedades.add(propiedad);
 
-		propiedad = new Propiedad();
-		propiedad.set_codigo("Fecha3");
-		propiedad.set_valor(this.formatearFecha(fRefertilizacion2));
-		propiedades.add(propiedad);
+			propiedad = new Propiedad();
+			propiedad.set_codigo("Fecha3");
+			propiedad.set_valor(this.formatearFecha(fRefertilizacion2));
+			propiedades.add(propiedad);
 
-		propiedad = new Propiedad();
-		propiedad.set_codigo("Fuente3");
-		propiedad.set_valor(this.fuenteRefertilizacion2);
-		propiedades.add(propiedad);
+			propiedad = new Propiedad();
+			propiedad.set_codigo("Fuente3");
+			propiedad.set_valor(this.fuenteRefertilizacion2);
+			propiedades.add(propiedad);
 
-		propiedad = new Propiedad();
-		propiedad.set_codigo("Rate3");
-		propiedad.set_valor(this.rateRefertilizacion2);
-		propiedades.add(propiedad);
+			propiedad = new Propiedad();
+			propiedad.set_codigo("Rate3");
+			propiedad.set_valor(this.rateRefertilizacion2);
+			propiedades.add(propiedad);
 
-		propiedad = new Propiedad();
-		propiedad.set_codigo("NombreSuelo");
-		propiedad.set_valor(this.nombreSueloConeat);
-		propiedades.add(propiedad);
+			propiedad = new Propiedad();
+			propiedad.set_codigo("NombreSuelo");
+			propiedad.set_valor(this.nombreSueloConeat);
+			propiedades.add(propiedad);
 
-		propiedad = new Propiedad();
-		propiedad.set_codigo("ProfundidadA");
-		propiedad.set_valor(String.valueOf(this.profundidadA));
-		propiedades.add(propiedad);
+			propiedad = new Propiedad();
+			propiedad.set_codigo("ProfundidadA");
+			propiedad.set_valor(String.valueOf(this.profundidadA));
+			propiedades.add(propiedad);
 
-		propiedad = new Propiedad();
-		propiedad.set_codigo("ProfundidadB");
-		propiedad.set_valor(String.valueOf(this.profundidadB));
-		propiedades.add(propiedad);
+			propiedad = new Propiedad();
+			propiedad.set_codigo("ProfundidadB");
+			propiedad.set_valor(String.valueOf(this.profundidadB));
+			propiedades.add(propiedad);
 
-		propiedad = new Propiedad();
-		propiedad.set_codigo("DensidadPlantas");
-		propiedad.set_valor(String.valueOf(this.densidadPlantas));
-		propiedades.add(propiedad);
+			propiedad = new Propiedad();
+			propiedad.set_codigo("DensidadPlantas");
+			propiedad.set_valor(String.valueOf(this.densidadPlantas));
+			propiedades.add(propiedad);
 
-		propiedad = new Propiedad();
-		propiedad.set_codigo("WULI");
-		propiedad.set_valor(String.valueOf(this.wuli));
-		propiedades.add(propiedad);
+			propiedad = new Propiedad();
+			propiedad.set_codigo("WULI");
+			propiedad.set_valor(String.valueOf(this.wuli));
+			propiedades.add(propiedad);
 
-		propiedad = new Propiedad();
-		propiedad.set_codigo("WLLI");
-		propiedad.set_valor(String.valueOf(this.wlli));
-		propiedades.add(propiedad);
+			propiedad = new Propiedad();
+			propiedad.set_codigo("WLLI");
+			propiedad.set_valor(String.valueOf(this.wlli));
+			propiedades.add(propiedad);
 
-		propiedad = new Propiedad();
-		propiedad.set_codigo("DPMI");
-		propiedad.set_valor(String.valueOf(this.dpmi));
-		propiedades.add(propiedad);
+			propiedad = new Propiedad();
+			propiedad.set_codigo("DPMI");
+			propiedad.set_valor(String.valueOf(this.dpmi));
+			propiedades.add(propiedad);
 
-		propiedad = new Propiedad();
-		propiedad.set_codigo("RPMI");
-		propiedad.set_valor(String.valueOf(this.rpmi));
-		propiedades.add(propiedad);
+			propiedad = new Propiedad();
+			propiedad.set_codigo("RPMI");
+			propiedad.set_valor(String.valueOf(this.rpmi));
+			propiedades.add(propiedad);
 
-		propiedad = new Propiedad();
-		propiedad.set_codigo("HUMI");
-		propiedad.set_valor(String.valueOf(this.humi));
-		propiedades.add(propiedad);
+			propiedad = new Propiedad();
+			propiedad.set_codigo("HUMI");
+			propiedad.set_valor(String.valueOf(this.humi));
+			propiedades.add(propiedad);
 
-		propiedad = new Propiedad();
-		propiedad.set_codigo("NAULI");
-		propiedad.set_valor(String.valueOf(this.nauli));
-		propiedades.add(propiedad);
+			propiedad = new Propiedad();
+			propiedad.set_codigo("NAULI");
+			propiedad.set_valor(String.valueOf(this.nauli));
+			propiedades.add(propiedad);
 
-		propiedad = new Propiedad();
-		propiedad.set_codigo("NALLI");
-		propiedad.set_valor(String.valueOf(this.nalli));
-		propiedades.add(propiedad);
+			propiedad = new Propiedad();
+			propiedad.set_codigo("NALLI");
+			propiedad.set_valor(String.valueOf(this.nalli));
+			propiedades.add(propiedad);
 
-		propiedad = new Propiedad();
-		propiedad.set_codigo("NNULI");
-		propiedad.set_valor(String.valueOf(this.nnuli));
-		propiedades.add(propiedad);
+			propiedad = new Propiedad();
+			propiedad.set_codigo("NNULI");
+			propiedad.set_valor(String.valueOf(this.nnuli));
+			propiedades.add(propiedad);
 
-		propiedad = new Propiedad();
-		propiedad.set_codigo("NNLLI");
-		propiedad.set_valor(String.valueOf(this.nnlli));
-		propiedades.add(propiedad);
-
+			propiedad = new Propiedad();
+			propiedad.set_codigo("NNLLI");
+			propiedad.set_valor(String.valueOf(this.nnlli));
+			propiedades.add(propiedad);
+		} catch (Exception ex) {
+			throw ex;
+		}
 		return propiedades;
 	}
 
@@ -308,6 +343,7 @@ public class EjecucionBean extends MaestroBean implements Serializable {
 							this.getTextBundleKey("combo_seleccione"))) {
 				this.setCultivo(BuscarCultivo(this.getCultivoElegido()));
 				Escenario esce = new Escenario();
+				esce.set_fechaHora(null);
 				esce.set_cultivo(this.getCultivo());
 				if (this.getRegion() != null) {
 					esce.set_region(this.getRegion());
@@ -319,7 +355,8 @@ public class EjecucionBean extends MaestroBean implements Serializable {
 								+ "y el cultivo escogidos.");
 					} else {
 						Modelo modelo = new Modelo();
-						modelo.set_escenario(esce);
+						modelo.set_fechaHora(null);
+						modelo.set_escenario(this.getEscenario());
 						modelo = this.getGEMFachada(ServicioGEM.Modelo)
 								.ObtenerModelo(modelo);
 						if (modelo == null) {
@@ -364,6 +401,7 @@ public class EjecucionBean extends MaestroBean implements Serializable {
 							this.getTextBundleKey("combo_seleccione"))) {
 				this.setRegion(BuscarRegion(this.getRegionElegida()));
 				Escenario esce = new Escenario();
+				esce.set_fechaHora(null);
 				esce.set_region(this.getRegion());
 				if (this.getCultivo() != null) {
 					esce.set_cultivo(this.getCultivo());
@@ -375,10 +413,11 @@ public class EjecucionBean extends MaestroBean implements Serializable {
 								+ "y el cultivo escogidos.");
 					} else {
 						Modelo modelo = new Modelo();
-						modelo.set_escenario(esce);
-						modelo = this.getGEMFachada(ServicioGEM.Modelo)
-								.ObtenerModelo(modelo);
-						if (modelo == null) {
+						modelo.set_fechaHora(null);
+						modelo.set_escenario(this.getEscenario());
+						this.setModelo(this.getGEMFachada(ServicioGEM.Modelo)
+								.ObtenerModelo(modelo));
+						if (this.getModelo() == null) {
 							this
 									.setError("No hay modelos de sinulación registrados "
 											+ "para la estación climática "
