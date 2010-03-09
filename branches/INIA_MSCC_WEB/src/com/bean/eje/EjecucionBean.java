@@ -136,10 +136,12 @@ public class EjecucionBean extends MaestroBean implements Serializable {
 //if (proyectarClima){
 //	this.getGEMFachada(ServicioEJE.)
 //}
-			escenario.set_cultivo(cultivo);
+			
+//			cultivo.set_listaPropiedades(this.armarListaPropiedades());
+//			escenario.set_cultivo(cultivo);
+			modelo.get_escenario().get_cultivo().set_listaPropiedades(this.armarListaPropiedades());
 			ejecucionMSCC.set_modelo(modelo);
 
-			cultivo.set_listaPropiedades(this.armarListaPropiedades());
 
 			Ubicacion ubicacion = new Ubicacion();
 			ubicacion.set_tipoArchivo(TipoArchivo.Ejecucion);
