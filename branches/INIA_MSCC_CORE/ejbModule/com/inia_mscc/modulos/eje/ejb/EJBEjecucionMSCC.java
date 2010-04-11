@@ -74,10 +74,11 @@ public class EJBEjecucionMSCC implements ServicioEjecucionMSCC {
 			}
 
 			// Copiamos el gcros_for
+			// TODO Hacer la validacion para win 32 o 64
 			ejecucionMSCC.get_modelo().get_archivoMSCC().set_datos(
-					new File(ubicacionEJE.get_urlPaht() + "/gecros_for.for"));
+					new File(ubicacionEJE.get_urlPaht() + "/gecros_for.so"));
 			File gcrosTemporal = new File(nombreDirectorioTemporal
-					+ "/gcros_for.for");
+					+ "/gecros_for.so");
 			ArchivosTexto.copiarArchio(ejecucionMSCC.get_modelo()
 					.get_archivoMSCC().get_datos(), gcrosTemporal);
 			// Copiamos el weather_data
@@ -160,8 +161,11 @@ public class EJBEjecucionMSCC implements ServicioEjecucionMSCC {
 			parametros.add(nombreDirectorioTemporal + "/escenario.py");
 			EjecutarPyhton ejecutar = new EjecutarPyhton(comandoPyhton,
 					parametros);
-			ejecutar.ejecutarPython();
-
+			
+			//ejecutar.ejecutarPython();
+			ejecutar.ejecutarComando();
+			
+			
 			// Borrar el directorio y todos sus archivos
 			File[] ficheros = directorioTemporal.listFiles();
 
