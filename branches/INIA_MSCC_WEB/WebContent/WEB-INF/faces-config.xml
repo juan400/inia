@@ -129,7 +129,7 @@
   </navigation-case>
   <navigation-case>
    <from-outcome>inicio</from-outcome>
-   <to-view-id>/Servicios/Contenedora.jsp</to-view-id>
+   <to-view-id>/Servicios/Contenido.jsp</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-action>#{menuBean.updateCurrent}</from-action>
@@ -398,7 +398,7 @@
   <navigation-case>
    <from-action>#{recuperarContraseniaBean.confirmar}</from-action>
    <from-outcome>SEG001</from-outcome>
-   <to-view-id>/Servicios/Contenido.jsp</to-view-id>
+   <to-view-id>/Servicios/SEG/SEG001.jsp</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
@@ -519,7 +519,7 @@
   <navigation-case>
    <from-action>#{valorSeleccionBean.RegistrarValores}</from-action>
    <from-outcome>ADM003</from-outcome>
-   <to-view-id>/Servicios/ADM/ADM003.lsp</to-view-id>
+   <to-view-id>/Servicios/ADM/ADM003.jsp</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>cancelar</from-outcome>
@@ -532,22 +532,22 @@
   <navigation-case>
    <from-action>#{valorSeleccionBean.ModificarValor}</from-action>
    <from-outcome>modificar</from-outcome>
-   <to-view-id>/Servicios/ADM/ADM004.lsp</to-view-id>
+   <to-view-id>/Servicios/ADM/ADM004.jsp</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-action>#{valorSeleccionBean.EliminarValor}</from-action>
    <from-outcome>eliminar</from-outcome>
-   <to-view-id>/Servicios/ADM/ADM004.lsp</to-view-id>
+   <to-view-id>/Servicios/ADM/ADM004.jsp</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-action>#{valorSeleccionBean.AceptarModificacion}</from-action>
    <from-outcome>ADM004</from-outcome>
-   <to-view-id>/Servicios/ADM/ADM004.lsp</to-view-id>
+   <to-view-id>/Servicios/ADM/ADM004.jsp</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-action>#{valorSeleccionBean.ModificarValores}</from-action>
    <from-outcome>ADM004</from-outcome>
-   <to-view-id>/Servicios/ADM/ADM004.lsp</to-view-id>
+   <to-view-id>/Servicios/ADM/ADM004.jsp</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>cancelar</from-outcome>
@@ -648,7 +648,7 @@
   <navigation-case>
    <from-action>#{administrarUsuarioBean.actualizar}</from-action>
    <from-outcome>registro-error</from-outcome>
-   <to-view-id>/Servicios/ADM/ADM009jsp</to-view-id>
+   <to-view-id>/Servicios/ADM/ADM009.jsp</to-view-id>
    <redirect/>
   </navigation-case>
   <navigation-case>
@@ -860,11 +860,9 @@
   <el-resolver>org.richfaces.el.StateELResolver</el-resolver>
   <locale-config>
    <default-locale>es</default-locale>
-   <supported-locale>en</supported-locale>
    <supported-locale>es</supported-locale>
   </locale-config>
   <message-bundle>com.bean.text_es</message-bundle>
-  <message-bundle>com.bean.text_en</message-bundle>
   <resource-bundle>
    <base-name>com.bean.juan400SVN</base-name>
    <var>mailjuan400SVN</var>
