@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"  ?>
-
 <jboss-web>
 	<security-domain>INIA_MSCC_Policy</security-domain>
 	<context-root>/INIA_MSCC</context-root>
