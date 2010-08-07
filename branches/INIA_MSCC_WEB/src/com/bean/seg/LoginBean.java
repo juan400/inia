@@ -1,6 +1,7 @@
 package com.bean.seg;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.bean.comun.MaestroBean;
@@ -11,7 +12,8 @@ import com.inia_mscc.modulos.seg.entidades.Usuario;
 public class LoginBean extends MaestroBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+	
 	private String loginName;
 	private String password;
 	private String error;
@@ -42,6 +44,7 @@ public class LoginBean extends MaestroBean implements Serializable {
 							this.setLogged(true);
 							this.setUsuario(u);
 							Date fecha = u.get_ultimoAcceso();
+							super.setFechaEjecucionFormt(formatoFecha.format(fecha));
 							u.set_ultimoAcceso(new Date());
 							this.getSegFachada(ServicioSEG.Usuario)
 									.ActualizarUltimoAccesoUsuario(u);
@@ -52,10 +55,10 @@ public class LoginBean extends MaestroBean implements Serializable {
 						} else {
 							this
 									.setError(u.get_datos().get_nombre()
-											+ " su cuenta está "
+											+ " su cuenta estï¿½ "
 											+ u.get_estadoUsuario().toString()
 													.toLowerCase()
-											+ " aún, recuerde chequear su correo, se le a enviado un e-mail para concluir con el registro.");
+											+ " aï¿½n, recuerde chequear su correo, se le a enviado un e-mail para concluir con el registro.");
 							mensaje = "";// "login-error";
 						}
 					} else {
@@ -67,7 +70,7 @@ public class LoginBean extends MaestroBean implements Serializable {
 				} else {
 					this
 							.setError(u.get_datos().get_nombre()
-									+ " su cuenta no está activa aún, recuerde chequear su correo, se le a enviado un e-mail para concluir con el registro.");
+									+ " su cuenta no estï¿½ activa aï¿½n, recuerde chequear su correo, se le a enviado un e-mail para concluir con el registro.");
 					mensaje = "";// "login-error";
 				}
 			} else {

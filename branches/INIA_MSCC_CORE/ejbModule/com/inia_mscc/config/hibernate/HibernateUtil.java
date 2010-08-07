@@ -62,7 +62,7 @@ public class HibernateUtil {
         	.buildSessionFactory();
             
         } catch (Throwable ex) {
-            logger.fatal("Creaci�n de la SessionFactory fallida." + ex);
+            logger.fatal("Creación de la SessionFactory fallida." + ex);
             String stackTrace = LoggingUtilities.obtenerStackTrace(ex);
             logger.fatal(stackTrace);
             throw new IniaPersistenciaException(ex);

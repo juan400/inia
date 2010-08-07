@@ -41,7 +41,7 @@ Secano.</title>
 										<h:column>
 											<h:outputText
 												style="font-size: 9pt; color: #2d77c2; width: 750; aling: left"
-												value="Usuario #{loginBean.usuario._datos._nombre} #{loginBean.usuario._datos._apellido}  -  Ultimo acceso #{loginBean.usuario._ultimoAcceso}">
+												value="Usuario #{loginBean.usuario._datos._nombre} #{loginBean.usuario._datos._apellido}  -  Ultimo acceso #{loginBean.fechaEjecucionFormt}">
 											</h:outputText>
 										</h:column>
 										<h:column>
