@@ -40,7 +40,8 @@ Secano.</title>
 										<h:column>
 											<h:outputText
 												style="font-size: 9pt; color: #2d77c2; width: 750; aling: left"
-												value="Usuario #{loginBean.usuario._datos._nombre} #{loginBean.usuario._datos._apellido}  -  Ultimo acceso #{loginBean.usuario._ultimoAcceso}">
+												value="Usuario #{loginBean.usuario._datos._nombre} #{loginBean.usuario._datos._apellido}  
+												-  Ultimo acceso #{loginBean.fechaEjecucionFormt}">
 											</h:outputText>
 										</h:column>
 										<h:column>
@@ -80,27 +81,23 @@ Secano.</title>
 														<h:outputText value="Resultados del modelo de simulación" />
 													</f:facet>
 													<h:panelGrid width="700px">
-														<h:panelGrid columnClasses="textoPlano">
-															Salida modelo INIA-Trigo
+														<h:panelGrid styleClass="textoPlano">
+
+															<h:outputText
+																value="Fecha de ejecución: #{ejecucionBean.fechaEjecucionFormt}" />
+
+
+															<h:outputLabel
+																value="#{text.escenario_SelecCultivo}: #{ejecucionBean.cultivoElegido}" />
+
+															<h:outputLabel
+																value="#{text.escenario_Region}: #{ejecucionBean.regionElegida}" />
+
+															<h:outputText
+																value="Nombre del cultivar: #{ejecucionBean.cultivar}" />
+
 															<br />
-															Corrida #xxxx 10/9/2009 11:30
-															<br />
-															 'FSirmbra': (2009,6,1 ), #ano,mes,dia
-              'EstacionClimatica': 'LE',
-              'Cultivar':'DonAlberto'
-              'FertilizacionSiembra':[ {'fecha': (2009,6,1),
-                          'Fuente': '18-46-0',
-                          'rate': 100},
-              'Refertilizacion1': [ {'fecha': (2009,7,1),
-                          'Fuente': '18-46-0',
-                          'rate': 100},
-              'Refertilizacion2': [ {'fecha': (2009,8,1),
-                          'Fuente': '18-46-0',
-                          'rate': 100},
-              'NombreSuelo': '10.1', #nombre coneat
-              'ProfundidadA':0.2
-              'ProfundidadB':0.3
-              'DensidadPlantas': 200     # plantas m-2
+
 															<rich:simpleTogglePanel switchType="client"
 																style="background-color: #ebf3fd;"
 																label="Acumulación de biomasa y Indice de area foliar"
@@ -138,7 +135,8 @@ Secano.</title>
 																		style=" higth : 18px;" enableManualInput="false"
 																		styleClass="combo" width="220">
 																		<f:selectItems value="#{resultadoBean.variables}" />
-																		<a4j:support event="onchange" reRender=":graficaGenerica" />
+																		<a4j:support event="onchange"
+																			reRender=":graficaGenerica" />
 																	</rich:comboBox>
 
 																	<h:outputLabel
@@ -147,10 +145,11 @@ Secano.</title>
 																		style=" higth : 18px;" enableManualInput="false"
 																		styleClass="combo" width="220">
 																		<f:selectItems value="#{resultadoBean.variables}" />
-																		<a4j:support event="onchange" reRender=":graficaGenerica" />
+																		<a4j:support event="onchange"
+																			reRender=":graficaGenerica" />
 																	</rich:comboBox>
 																</h:panelGrid>
-																<rich:paint2D id="graficaGenerica" width="600" 
+																<rich:paint2D id="graficaGenerica" width="600"
 																	height="500" data="#{paintData}" format="png"
 																	paint="#{resultadoBean.paintScatterPlot}" />
 															</rich:simpleTogglePanel>

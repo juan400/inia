@@ -1,7 +1,7 @@
 package com.bean.eje;
 
-import java.io.File;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -35,7 +35,10 @@ public class EjecucionBean extends MaestroBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+	
 	private Date fechaEjecucion = new Date();
+	private String fechaEjecucionFormt=formatoFecha.format(new Date());
 	private Date fSiembra = new Date();
 	private String estacionClimatica = "LE";
 	private String cultivar = "DonAlberto";
@@ -687,6 +690,7 @@ public class EjecucionBean extends MaestroBean implements Serializable {
 	}
 
 	public void setFechaEjecucion(Date fechaEjecucion) {
+		this.setFechaEjecucionFormt(formatoFecha.format(fechaEjecucion));
 		this.fechaEjecucion = fechaEjecucion;
 	}
 
@@ -776,6 +780,14 @@ public class EjecucionBean extends MaestroBean implements Serializable {
 
 	public void setModelo(Modelo modelo) {
 		this.modelo = modelo;
+	}
+
+	public void setFechaEjecucionFormt(String fechaEjecucionFormt) {
+		this.fechaEjecucionFormt = fechaEjecucionFormt;
+	}
+
+	public String getFechaEjecucionFormt() {
+		return fechaEjecucionFormt;
 	}
 
 }

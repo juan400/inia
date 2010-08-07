@@ -54,17 +54,17 @@ public class ConfirmacionBean extends MaestroBean implements Serializable {
 							retorno = "confirmar-ok";
 						} else {
 							this
-									.setError("Ingrese la Clave Secreta y recuerde que no sea igual a su contraseña o nombre de usuario.");
+									.setError("Ingrese la Clave Secreta y recuerde que no sea igual a su contraseï¿½a o nombre de usuario.");
 							retorno = "confirmar-error";
 						}
 					} else {
 						this
-								.setError("La contraseña ingresada no es igual a la confirmación.");
+								.setError("La contraseï¿½a ingresada no es igual a la confirmaciï¿½n.");
 						retorno = "confirmar-error";
 					}
 				} else {
 					this
-							.setError("La contraseña ingresada no puede ser igual al Nombre de usuario.");
+							.setError("La contraseï¿½a ingresada no puede ser igual al Nombre de usuario.");
 					retorno = "confirmar-error";
 				}
 
@@ -105,28 +105,28 @@ public class ConfirmacionBean extends MaestroBean implements Serializable {
 					loginName = this.getUsuario().get_login();
 					if (this.getUsuario().is_activado()) {
 						this.setError("Estiamdo usuario " + nombre
-								+ " su cuenta está confirmada.");
+								+ " su cuenta estï¿½ confirmada.");
 						setActivado(true);
 					} else if (this.getUsuario().get_estadoUsuario().equals(
 							Enumerados.EstadoUsuario.Activo)) {
 						this
 								.setError("Estiamdo usuario "
 										+ nombre
-										+ " su cuenta está activada, no es necesario este paso.");
+										+ " su cuenta estï¿½ activada, no es necesario este paso.");
 						setActivado(true);
 					} else if (this.getUsuario().get_estadoUsuario().equals(
 							Enumerados.EstadoUsuario.Bloqueado)) {
 						this
 								.setError("Estiamdo usuario "
 										+ nombre
-										+ " su cuenta está BLOQUEADA, ingrese a Recuperar Contraseña para activarla.");
+										+ " su cuenta estï¿½ BLOQUEADA, ingrese a Recuperar Contraseï¿½a para activarla.");
 						setActivado(true);
 					} else if (this.getUsuario().get_estadoUsuario().equals(
 							Enumerados.EstadoUsuario.Inactivo)) {
 						this
 								.setError("Estiamdo usuario "
 										+ nombre
-										+ " su cuenta está momentaneamente INACTIVA, consulte al administrador del sistema.");
+										+ " su cuenta estï¿½ momentaneamente INACTIVA, consulte al administrador del sistema.");
 						setActivado(true);
 					} else {
 						this.setError("");
