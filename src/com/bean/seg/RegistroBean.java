@@ -63,7 +63,7 @@ public class RegistroBean extends MaestroBean implements Serializable {
 				if (!this.getSegFachada(ServicioSEG.Usuario).ComprobarEmail(
 						email)) {
 					this
-							.setError("El e-mail ingresado ya está registrado en el sistema.");
+							.setError("El e-mail ingresado ya estï¿½ registrado en el sistema.");
 					this.setEmail("");
 				} else {
 					this.setError("");
@@ -72,7 +72,7 @@ public class RegistroBean extends MaestroBean implements Serializable {
 				if (!this.getSegFachada(ServicioSEG.Usuario).ComprobarEmail(
 						email)) {
 					this
-							.setError("El e-mail ingresado ya está registrado en el sistema.");
+							.setError("El e-mail ingresado ya estï¿½ registrado en el sistema.");
 					this.setEmail("");
 				} else {
 					this.setError("");
@@ -297,7 +297,7 @@ public class RegistroBean extends MaestroBean implements Serializable {
 			props.setProperty("mail.smtp.host", "smtp.gmail.com");// gmail
 			// smtp.live.com
 
-			// TLS si está disponible
+			// TLS si estï¿½ disponible
 			props.setProperty("mail.smtp.starttls.enable", "true");
 
 			// Puerto de gmail para envio de correos

@@ -2,6 +2,7 @@ package com.bean.comun;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -31,7 +32,10 @@ public class MaestroBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+	
 	private Usuario usuario;
+	private String fechaEjecucionFormt = "";
 	private boolean logged = false;
 	private String opcion;
 	private ResourceBundle textBundle;
@@ -229,6 +233,14 @@ public class MaestroBean implements Serializable {
 
 	public void setError(String error) {
 		this.addGlobalMessage(error);
+	}
+
+	public String getFechaEjecucionFormt() {
+		return fechaEjecucionFormt;
+	}
+
+	public void setFechaEjecucionFormt(String fechaEjecucionFormt) {
+		this.fechaEjecucionFormt = fechaEjecucionFormt;
 	}
 
 }

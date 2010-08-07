@@ -37,7 +37,7 @@ Secano.</title>
 								style="background-color: #ebf3fd;">
 								<f:facet name="header">
 									<h:outputText
-										value="Bienvenido #{loginBean.usuario._datos._nombre} #{loginBean.usuario._datos._apellido}. Ultimo acceso #{loginBean.usuario._ultimoAcceso}" />
+										value="Bienvenido #{loginBean.usuario._datos._nombre} #{loginBean.usuario._datos._apellido}. Ultimo acceso #{loginBean.fechaEjecucionFormt}" />
 								</f:facet>
 								<center><h:panelGrid rendered="#{!loginBean.logged}">
 									<h:outputText styleClass="mensajeError" style="font-size: 12pt"
