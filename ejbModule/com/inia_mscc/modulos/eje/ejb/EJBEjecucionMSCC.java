@@ -163,7 +163,7 @@ public class EJBEjecucionMSCC implements ServicioEjecucionMSCC {
 					parametros);
 			
 			//ejecutar.ejecutarPython();
-			ejecutar.ejecutarComando();
+			//ejecutar.ejecutarComando();
 			
 			
 			// Borrar el directorio y todos sus archivos
